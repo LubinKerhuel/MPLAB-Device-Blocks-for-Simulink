@@ -4,6 +4,8 @@
 
 Download [zip](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip) package.
 
+Visit Microchip dedicated [forum](https://www.microchip.com/forums/f192.aspx)
+
 This support package enables code generation of real-time executable for dsPIC :registered:, PIC32 :registered: and SAM7x from a Simulink model.
 
 ![MPLAB Device Blocks for Simulink](MPLAB_Blockset.jpg)
