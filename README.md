@@ -51,6 +51,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx7)
 
 ## Release notes
+- v3.45.04:
+  - Fixed possible issue with MPLAB X project creation with model targeting PIC32
+  - Fixed Typo on Timer code generator for PIC32 (project not compiling when problem occurs)
+  - Added an External Mode example for PIC32MZ + minor update on other example and script compiling all models
 - v3.45.03:
   - Fixed wrong heap linker flag at command line for PIC32 when using Compiler Option block  
   - Fixed PIL and External Mode GUI not showing the model UART block settings.
