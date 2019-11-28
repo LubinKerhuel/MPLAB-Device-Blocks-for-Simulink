@@ -1,6 +1,6 @@
 # MPLAB Device Blocks for Simulink
 
-**Microchip official blockset v3.45** supporting up to 348 microcontrollers.
+**Microchip official blockset v3.46** supporting up to 348 microcontrollers.
 
 MPLAB Device Blocks for Simulink enables Embedded Coder for automated build and execution of real-time executable for any board equipped with a dsPIC :registered:, PIC32 :registered: or SAMx7 from a Simulink model.
 
