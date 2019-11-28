@@ -8,6 +8,8 @@ This support package is functional for R2010a and beyond.
 
 ## Installation
 
+[![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
+
 Type picclean at matlab prompt to clean-up matlab path from previous installations if any.
 
 1. [download](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip) and unzip the package
@@ -53,6 +55,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx7)
 
 ## Release notes
+
+- v3.46.01:
+  - Programmer interface (Java might not be found)
+  - SAMx7 chip issues with doc block ; MPLAB X project
+  - Installer script propose old installation method (might fix add-ons issues related to user permissions in classroom/lab configuration)
 - v3.46.00:
   - Added support for dual core dsPIC CH
 
