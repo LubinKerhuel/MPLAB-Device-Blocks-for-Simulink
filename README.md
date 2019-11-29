@@ -19,7 +19,7 @@ The MCHP\_example folder is created in the current folder and examples copied in
 
 Visit the Microchip [blockset forum](https://www.microchip.com/forums/f192.aspx)
 
-![MPLAB Device Blocks for Simulink](MPLAB_Blockset.jpg)
+<img src="https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/raw/master/mplab-deviceblocksforsimulink-whitebackground.png" width="300">
 
 ## Presentation
 
