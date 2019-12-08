@@ -56,6 +56,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Release notes
 
+- v3.46.03:
+  - fixed Java related issue with programmer interface
+- v3.46.02:
+  - SPI fixed DMA support for PIC32. Added 8 bit mode with DMA enabled for dsPIC
 - v3.46.01:
   - Programmer interface (Java might not be found)
   - SAMx7 chip issues with doc block ; MPLAB X project
