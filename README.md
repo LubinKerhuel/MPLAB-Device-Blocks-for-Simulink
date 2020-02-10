@@ -56,6 +56,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Release notes
 
+- v3.46.04:
+  - PIC32: Extend limited choice for output pin function (Pin mapping)
 - v3.46.03:
   - fixed Java related issue with programmer interface
 - v3.46.02:
