@@ -55,7 +55,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx7)
 
 ## Release notes
-
+- v3.46.05:
+  - Fixed compiling issue when using a model reference block (compiling submodel as a library)
 - v3.46.04:
   - PIC32: Extend limited choice for output pin function (Pin mapping)
 - v3.46.03:
