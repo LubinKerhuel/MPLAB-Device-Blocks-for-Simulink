@@ -55,6 +55,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx7)
 
 ## Release notes
+- v3.46.063:
+  - Support for SAMx5 familly
+  - Fixed search issue for recent XC compilers
+  - Support external CMSIS and DFP packages
+  - Renamed scripts pad and padr to picgui.pad/padr (Conflict with MathWorks scripts on recent versions)  
 - v3.46.05:
   - Fixed compiling issue when using a model reference block (compiling submodel as a library)
 - v3.46.04:
