@@ -56,6 +56,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
 
 ## Release notes
+- v3.47.00:
+  - Added SPI support for dsPIC GS, CH, CK
+  - Fixed pin mapping inconsistency on dualcore dsPIC for Secondary Core
+  - Fixed generic issue with former Matlab release 
 - v3.46.064:
   - Improved SAMx5 support. Added SPI support
   - Fixed issue with dual core dsPIC support. Renamed core appelation with Main and Secondary.
