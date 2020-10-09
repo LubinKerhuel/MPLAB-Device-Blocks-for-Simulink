@@ -60,6 +60,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - Added SPI support for dsPIC GS, CH, CK
   - Fixed pin mapping inconsistency on dualcore dsPIC for Secondary Core
   - Fixed generic issue with former Matlab release 
+  - Fixed MPLAB X project creation with R2019a
 - v3.46.064:
   - Improved SAMx5 support. Added SPI support
   - Fixed issue with dual core dsPIC support. Renamed core appelation with Main and Secondary.
