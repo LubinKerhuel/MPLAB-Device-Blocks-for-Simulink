@@ -36,7 +36,7 @@ No embedded programming knowledge is required. The toolbox transforms any board 
 
 The blockset also support MathWorks features:
 
-- Hardware in the loop (HIL)
+- Processor in the loop (PIL)
 - External mode.
 - Code replacement to benefit from DSP architecture of dsPIC
 
@@ -50,12 +50,31 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - Embedded Coder
   - Matlab Coder
   - Simulink Coder  
-- Microchip
+- Microchip Ide
   - MPLAB X IDE [download](https://www.microchip.com/MPLABX)
+- Microchip Compiler: 
   - xc16 compiler for 16 bits devices [download](https://www.microchip.com/xc16) (dsPIC)
   - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
+- Microchip programmer:
+  - PicKit4
+  - ICD4
+  - J-32
+  - Snap programmer
+  - Real-Ice
+  - PicKit3
+  - ICD3
+  - Microchip kit Embedded programmer (EDBG)
+  -  ...
 
 ## Release notes
+- v3.48: 
+  - Added SPI & I2C for SAMx5 family  
+  - ADC for SAMx5: fixed AIN0 channel input not working 
+  - Added support for 64 bit MPLAB X Ide (v5.45 and above)
+  - Fixed I2C & SPI register names for some dsPICs (EV, FJ)  
+  - dsPIC Change Notification / Input Capture: Fixed GUI Error when copy-past block to a model with a different chip
+  - Relaxed conditions triggering SINCOS Code Replacement.  
+
 - v3.47.00:
   - Added SPI support for dsPIC GS, CH, CK
   - Fixed pin mapping inconsistency on dualcore dsPIC for Secondary Core
