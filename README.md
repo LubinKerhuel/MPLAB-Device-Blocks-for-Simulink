@@ -68,10 +68,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Release notes
 - v3.49:
-  - Fixed External-Mode & PIL with some dsPIC. Added examples
-  - MPLAB X project creation is more robust
+  - Updated External-Mode & PIL. Added examples
   - SAMx scheduler robust to overload
   - PICGUI: data visualisation run in background  
+  - MPLAB X project creation is more robust
   - dsPIC UART Driver update (typo fixed, robust in idle tasks sending data) 
   - dsPIC EV watch dog setting fixed
   - Task State block fixed pin settinf for SAMx
@@ -79,7 +79,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - dsPIC 30f default fuse value is not 1 by default. Write all fuses
   - dsPIC CK/CH fixed code replacement FastMemCpy implementation
   - dsPIC CCPx timer typo for some blocks that use timer
-  - Updated PIC32 IPS switch function
+  - Updated PIC32 IPL switch function
 - v3.48: 
   - Added SPI & I2C for SAMx5 family  
   - ADC for SAMx5: fixed AIN0 channel input not working 
