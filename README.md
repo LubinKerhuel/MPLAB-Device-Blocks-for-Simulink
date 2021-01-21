@@ -67,6 +67,9 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.49.01:
+  - Fixed PIL issue with dsPIC / R2018b
+
 - v3.49:
   - Updated External-Mode & PIL. Added examples
   - SAMx scheduler robust to overload
