@@ -67,6 +67,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.49.02
+  - PWM HS FEP fixed several issues
+  - programmation interface update. overall speed improvement
+  - Support Seeger programming hardware (J-32 / J flash seeger driver)
+  - ...
 - v3.49.01:
   - Fixed PIL issue with dsPIC / R2018b
 
