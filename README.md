@@ -79,10 +79,16 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
    - Improved Siumulink compiler option set in MPLAB project created.
    - Improve doc block ability to locate online chip datasheet
 
+   - dSPIC CH/CK fixed issue on PWM HS for noncontiguous channel setup. Duty cycle block input inverted (Ch1-Ch3)
+   - CHANGE BEHAVIOUR !! SAMx7 PWM: Dead Time initial value were divided by 2. (1us on GUI set 0.5us on board)  
+   - Issue if no CMSIS installed
+   - Improved Simulink compiler option set in MPLAB project created.
+   - Improve doc block ability to locate online chip datasheet
+
 - v3.49.02
   - PWM HS FEP fixed several issues
-  - programmation interface update. overall speed improvement
-  - Support Seeger programming hardware (J-32 / J flash seeger driver)
+  - programming interface update. overall speed improvement
+  - Support Seeger programming hardware (J-32 / J flash Seeger driver)
   - ...
 - v3.49.01:
   - Fixed PIL issue with dsPIC / R2018b
