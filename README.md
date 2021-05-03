@@ -73,17 +73,12 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
    - SAMx5 QDEC: Add further options and simplify GUI.     
    - Linux support (except PIL & External Mode)
    - dsPIC Code Replacement fixed on R2021a 
-   - dSPIC CH/CK fixed issue on PWM HS for non contiguous channel setup. Duty cycle block input inverted (Ch1-Ch3)
-   - CHANGE BEHAVIOUR !! SAMx7 PWM: Dead Time initial value were devided by 2. (1us on GUI set 0.5us on board)  
-   - Issue if no CMSIS installed
-   - Improved Siumulink compiler option set in MPLAB project created.
-   - Improve doc block ability to locate online chip datasheet
-
-   - dSPIC CH/CK fixed issue on PWM HS for noncontiguous channel setup. Duty cycle block input inverted (Ch1-Ch3)
+   - dSPIC CH/CK fixed issue on PWM HS for noncontiguous channel setup. Duty cycle block input swapped (Ch1-Ch3)
    - CHANGE BEHAVIOUR !! SAMx7 PWM: Dead Time initial value were divided by 2. (1us on GUI set 0.5us on board)  
    - Issue if no CMSIS installed
    - Improved Simulink compiler option set in MPLAB project created.
    - Improve doc block ability to locate online chip datasheet
+   - picgui update
 
 - v3.49.02
   - PWM HS FEP fixed several issues
