@@ -67,11 +67,12 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.03: 
+	- Fixed issue with MW environment block Sim/CodeGen for mixed model (simulation & code generation)
 - v3.50.02:
 	- Fixed CMSIS DSP Library possibly added with incorrect path for SAMx5 & SAMx2
 	- Enabled  DMSIS DSP library link option
 	- Fixed SAMx7 PWM1 trigger not set on ADC depending on PWM0 and on blocks PWM0/1 execution order
-	- Fixed potential issue on SAMx5 with ADC triggering time Step in single tasking implementation
 - v3.50.01:
 	- Fixed UART DMA Tx implementation for SAMx7
 
