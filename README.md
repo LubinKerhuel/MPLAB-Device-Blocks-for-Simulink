@@ -67,6 +67,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.04: 
+	- Added SAMx7 PWM Override block
+	- SAMx Peripheral Port mapping issue when a peripheral set-up several time the same pin (i.e. ADC multiple conversion of the same input pin on SAMx7)
+	- Fixed issue with MW environment block Sim/CodeGen for mixed model (simulation & code generation) (update)
 - v3.50.03: 
 	- Fixed issue with MW environment block Sim/CodeGen for mixed model (simulation & code generation)
 - v3.50.02:
