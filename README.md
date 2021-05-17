@@ -67,6 +67,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.05:
+	- DFP & CMSIS DSP library search path not proposing newly installed package/library
+	  linux: CMSIS DSP lib failed at compilation time
+	- MPLAB X project not created (R2020b, SAMx7)
 - v3.50.04: 
 	- Added SAMx7 PWM Override block
 	- SAMx Peripheral Port mapping issue when a peripheral set-up several time the same pin (i.e. ADC multiple conversion of the same input pin on SAMx7)
