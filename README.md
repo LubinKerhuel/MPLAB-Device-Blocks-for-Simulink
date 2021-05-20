@@ -1,10 +1,8 @@
 # MPLAB Device Blocks for Simulink
 
-**Microchip official blockset v3.46.064** supporting up to 350 microcontrollers.
-
 MPLAB Device Blocks for Simulink enables Embedded Coder for automated build and execution of real-time executable for any board equipped with a dsPIC :registered:, PIC32 :registered:, SAMx5 or SAMx7 from a Simulink model.
 
-This support package is functional for R2010a and beyond (tested with R2020b).
+This support package is functional for R2010a and beyond (tested with R2021a).
 
 ## Installation
 
@@ -15,16 +13,15 @@ Type picclean at matlab prompt to clean-up matlab path from previous installatio
 1. [download](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip) and unzip the package
 2. execute the .p installer script . Within Matlab, right click on file install.p and select run.
 
-The MCHP\_example folder is created in the current folder and examples copied into.
+The MCHP\_example folder is created in the current folder with a copy of simple examples.
 
 Visit the Microchip [blockset forum](https://www.microchip.com/forums/f192.aspx)
 
-<img src="https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/raw/master/mplab-deviceblocksforsimulink-whitebackground.png" width="300">
+<img src="https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/raw/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
 ## Presentation
 
-Peripheral blocks configure and inserts code in the MathWorks generated code by embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
-
+Library blocks configure peripherals and inserts code in the MathWorks generated code by embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
 No embedded programming knowledge is required. The toolbox transforms any board equipped with a supported MCU into a rapid control prototyping tool and enable a model-based design development scheme.
 
 ## Features
@@ -67,6 +64,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.07:
+	- SAMx5 & SAMx7 Busy flag (for CPU load measurement ) stuck to 1 after short period of time
+	- SAMx chip: Add CMSIS DSP librar to MPLAB X project when using CRL (Required Mathworks Support Package for ARM Cortex-M)
+	- SAMx7 PWM event set to instant 0 had no effect
+	- SAMx7 ADC: Fixes on AFEC 1 behaviour (not working when used without AFEC0, Issue with triggering time step when used with AFEC 0)
 - v3.50.06:
 	- dsPIC 33FJxxGS had incorrect fuse option name (compilation break)
 	- Internal error might cause incorrect peripheral behaviour  with blocks supporting multiple instantiation
