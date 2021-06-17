@@ -64,6 +64,13 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.08:
+  - Added SPI & I2C Support for SAMx2 & SAMx5
+  - picflash issue when multiple MPLAB X above v5.45 installed
+  - SAMx5 Number of UART listed might be incorrect
+  - SAMx5 ADC Time Step Trigger Parameters lost when model is saved
+  - SAMx Improved performance by removing some instruction barriere (DSP & ISB)
+  - dsPIC ADC HS SAR Fractional mode : typo prevent compilation.
 - v3.50.07:
 	- SAMx5 & SAMx7 Busy flag (for CPU load measurement ) stuck to 1 after short period of time
 	- SAMx chip: Add CMSIS DSP librar to MPLAB X project when using CRL (Required Mathworks Support Package for ARM Cortex-M)
