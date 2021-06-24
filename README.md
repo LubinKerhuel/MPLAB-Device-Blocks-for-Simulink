@@ -64,6 +64,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.09:
+  - Fixed Watch dog not Disabled for some (ds)PIC chips reseting after few seconds.
+  - Updated PIL & External mode for dsPIC with R2020b + updated example with dsPIC33CK Curiosity board
+  - Fixed SAMx7 AFEC (ADC) possible issue with channel inversion (wrong block outputs)
+  - SAMx7 improved library inclusion in MPLAB X project 
 - v3.50.08:
   - Added SPI & I2C Support for SAMx2 & SAMx5
   - picflash issue when multiple MPLAB X above v5.45 installed
