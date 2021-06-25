@@ -64,6 +64,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.50.10:
+  - dsPIC CH update Slave->Secondary call convention for XC16 1.70
 - v3.50.09:
   - Fixed Watch dog not Disabled for some (ds)PIC chips reseting after few seconds.
   - Updated PIL & External mode for dsPIC with R2020b + updated example with dsPIC33CK Curiosity board
