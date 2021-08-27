@@ -1,6 +1,6 @@
 # MPLAB Device Blocks for Simulink
 
-MPLAB Device Blocks for Simulink enables Embedded Coder for automated build and execution of real-time executable for any board equipped with a dsPIC :registered:, PIC32 :registered:, SAMx5 or SAMx7 from a Simulink model.
+MPLAB Device Blocks for Simulink enables Embedded Coder to target any board equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7 from a Simulink model.
 
 This support package is functional for R2010a and beyond (tested with R2021a).
 
@@ -63,7 +63,12 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - Microchip kit Embedded programmer (EDBG)
   -  ...
 
+## Contact: simulink_support@microchip.com
+
 ## Release notes
+- v3.50.11:
+  - Improved robustness for long or special path with Windows & Linux
+  - SAMx7 QDEC peripheral: added Index edge option
 - v3.50.10:
   - dsPIC CH update Slave->Secondary call convention for XC16 1.70
 - v3.50.09:
