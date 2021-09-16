@@ -66,6 +66,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Contact: simulink_support@microchip.com
 
 ## Release notes
+v3.50.12:
+  - SAMx: Fixed Link Time Optimizer incorrect syntax 
+  - SAMx: Added CAN example for SAMx7
+  - SAMx: Optimized DCache update
+  - SAMx7: Fixed typo on UART Tx when set with DMA & single buffer   
 - v3.50.11:
   - Improved robustness for long or special path with Windows & Linux
   - SAMx7 QDEC peripheral: added Index edge option
