@@ -66,7 +66,9 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Contact: simulink_support@microchip.com
 
 ## Release notes
-v3.50.12:
+- v3.50.13:
+  - dsPIC CH (dual core): Fixed Main/Secondary Interface. MSI Fuse not configured
+- v3.50.12:
   - SAMx: Fixed Link Time Optimizer incorrect syntax 
   - SAMx: Added CAN example for SAMx7
   - SAMx: Optimized DCache update
