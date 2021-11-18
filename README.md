@@ -2,7 +2,7 @@
 
 MPLAB Device Blocks for Simulink enables Embedded Coder to target any board equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7 from a Simulink model.
 
-This support package is functional for R2010a and beyond (tested with R2021a).
+This support package is functional for R2015a and beyond (tested with R2021b).
 
 ## Installation
 
@@ -41,7 +41,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Requirements
 
-- MathWorks (from R2010a to R2020b)   
+- MathWorks (from R2015a to R2020b)   
   - Matlab
   - Simulink
   - Embedded Coder
@@ -66,6 +66,21 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Contact: simulink_support@microchip.com
 
 ## Release notes
+- v3.50.16:  
+  - C Function Call: fixed issue breaking simulink datatype class settings
+  - Matlab R2021b: code generator report not showing-up. Renamed compilation from .X to _X
+  - Improving DFP & CMSIS search script
+  - SAMx7 ADC: remove pull-up on analog chanels
+  - SAMx5 UART: add distinct priority for Tx & Rx
+  - SAMx5 UART: some baudrate setting were not working (no output)
+  - SAMx: removed register keyword wich might cause issue at compilation
+  - dsPIC PWM FEP: not working wheh channel 1 were not used
+  - dsPIC with dual core: always re-compile Main model code required.
+  - dsPIC: fixed code generated issue with SPI peripheral
+  - dsPIC: remove default fuse set for Brown Out reset
+  - dsPIC: fixed short double setting in MPLAB X project
+  - Improved MPLAB X project creation
+  - External mode: Add XCP protocol option (experimental)  
 - v3.50.13:
   - dsPIC CH (dual core): Fixed Main/Secondary Interface. MSI Fuse not configured
 - v3.50.12:
