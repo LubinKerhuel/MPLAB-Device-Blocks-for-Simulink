@@ -1,0 +1,1119 @@
+%implements  MCHP_BUS_SPI "C"
+%include "MCHP_Functions.tlc"
+%assign ::MCHP_NumSPIBlocks = [0,0,0,0,0,0,0,0,0,0,0,0]
+%assign ::MCHP_SPI_NextState = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]		
+%assign ::MCHP_SPI_StartImplemented = [0,0,0,0,0,0,0,0,0,0,0,0]		
+%assign ::MCHP_SPI_OutputImplemented = [0,0,0,0,0,0,0,0,0,0,0,0]	
+%assign ::MCHP_SPI_UseDMA = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%include "MCHP_BUS_SPI_Functions_SAMx5.tlc"
+%elseif ::MCHP_modsrc.DOS_01329_spi_pb_v2 
+%include "MCHP_BUS_SPI_Functions_PIC32_DOS_01329_spi_pb_v2.tlc"
+%elseif ::MCHP_modsrc.DOS_01482 
+%include "MCHP_BUS_SPI_Functions_dsPIC_DOS_01482.tlc"
+%else 
+%include "MCHP_BUS_SPI_Functions_dsPIC.tlc"
+%endif
+%function BlockInstanceSetup(block, system) void
+%assign ::DOS_01329_spi_pb_v2 = CAST("Number",block.RTWdata.DOS_01329_spi_pb_v2)
+%assign SPIRef = CAST("Number",block.RTWdata.SPIRef)
+%assign ::MCHP_NumSPIBlocks[SPIRef] = ::MCHP_NumSPIBlocks[SPIRef] + 1
+%createrecord MCHP_TLCData {Current_NumSPIBlocks ::MCHP_NumSPIBlocks[SPIRef]}
+%addtorecord block MCHP_TLCData MCHP_TLCData
+%assign DMA_Rx = CAST("Number",block.RTWdata.DMA_Rx)
+%assign DMA_Tx = CAST("Number",block.RTWdata.DMA_Tx)
+%assign useDMA = (DMA_Rx != -1) || (DMA_Tx != -1)
+%if (::MCHP_SPI_UseDMA[SPIRef] == -1) || (::MCHP_SPI_UseDMA[SPIRef] == useDMA)
+%assign ::MCHP_SPI_UseDMA[SPIRef] = useDMA
+%else
+%error("SPI%<SPIRef> error: Some block use DMA while some other do not use DMA. All block from the same SPI should have the same setting regarding DMA")
+%endif
+%<HARMONY_RegisterPeripheral("SPI",SPIRef,block)>
+%if (DMA_Rx != -1)
+%<HARMONY_RegisterPeripheral("DMA",DMA_Rx,block)>
+%endif
+%if (DMA_Tx != -1)
+%<HARMONY_RegisterPeripheral("DMA",DMA_Tx,block)>
+%endif
+%endfunction
+%function Start(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign DOS_01329_spi_pb_v2 = CAST("Number",block.RTWdata.DOS_01329_spi_pb_v2)
+%assign SPIRef = CAST("Number",block.RTWdata.SPIRef)
+%assign blockingMode = CAST("Number",block.RTWdata.blockingMode)
+%assign MASTER = CAST("Number",block.RTWdata.MASTER)
+%assign SPIxCON1 = CAST("Number",block.RTWdata.SPIxCON1)	
+%assign SPIxCON2 = CAST("Number",block.RTWdata.SPIxCON2)	
+%assign IntPriority = CAST("Number",block.RTWdata.IntPriority)
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%assign Exist_EnhancedSPIBuff = 0
+%else
+%if DOS_01329_spi_pb_v2
+%assign Exist_EnhancedSPIBuff = ((SPIxCON1 & 65536) != 0)
+%else
+%assign Exist_EnhancedSPIBuff = ((SPIxCON2 & 1) != 0)
+%endif
+%endif
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%assign MS = "S"	
+%if MASTER
+%assign MS = "M"			
+%endif			
+%endif
+%assign SPISequence = MchpVector64(block.RTWdata.SPISequence)
+%assign SeqL = 10
+%assign SPISequenceLength = FEVAL("numel",SPISequence)
+%assign nSeq = SPISequenceLength / SeqL	
+%assign DMA_Rx = CAST("Number",block.RTWdata.DMA_Rx)
+%assign DMA_Tx = CAST("Number",block.RTWdata.DMA_Tx)
+%assign useDMA = (DMA_Rx != -1) || (DMA_Tx != -1)
+%assign ::MCHP_SPI_StartImplemented[SPIRef] = ::MCHP_SPI_StartImplemented[SPIRef] + 1
+%assign SPIUserData = MchpVector(block.RTWdata.SPIUserData)	
+%if ::MCHP_NumSPIBlocks[SPIRef] == 1
+%assign SPI_Id = ""
+%else
+%assign SPI_Id = block.MCHP_TLCData.Current_NumSPIBlocks
+%endif
+%if ::MCHP_SPI_StartImplemented[SPIRef] == 1	
+%<SPIConfig(SPIRef,Exist_EnhancedSPIBuff,0,SPISequence,useDMA,MASTER)>
+%endif
+%if SPISequence[0] == -1
+%if ::MCHP_SPI_StartImplemented[SPIRef] == 1	
+%if DOS_01329_spi_pb_v2 != 0 
+%assign SPIMode8_16_32 = ((SPISequence[0+1]) >> 10) & 3 	
+%assign SPIMode8_16_32Tab = [8,16,32]
+%assign NB = SPIMode8_16_32Tab[SPIMode8_16_32]
+%endif 
+%if DOS_01329_spi_pb_v2 == 0 
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+%break
+%case "EP"
+%case "EV"
+%if DMA_Rx != -1
+DMA%<DMA_Rx>STAH = 0x0000;	/* DMA High pointer index set only once */
+%endif
+%if DMA_Tx != -1
+DMA%<DMA_Tx>STAH = 0x0000; 	/* DMA High pointer index set only once */
+%endif
+%break
+%endswitch
+%endif
+%if DMA_Rx != -1 
+/* Configure DMA for SPI Reception (Rx) */			
+%<Configure_DMA_Rx(DMA_Rx,SPIRef,SPIBUF,MASTER)>					
+%endif
+%if DMA_Tx != -1  
+/* Configure DMA for SPI Emission (Tx) */
+%<Configure_DMA_Tx(DMA_Tx,SPIRef,SPIBUF,MASTER)>
+%endif
+%if useDMA
+/* Configure DMA for SPI (Rx). Even when sending only, DMA for SPI (Rx) interrupt is used because is is triggered after the SPI transaction is completed. */
+%<SPI_DMA_Rx_InterruptsConfig(DMA_Rx,MASTER)>
+%else 
+%<SPI_InterruptsConfig(SPIRef,IntPriority)>
+%endif
+%endif 
+%if DMA_Tx != -1  
+%foreach iSeq = nSeq
+%assign seqRepeat = SPISequence[iSeq*SeqL+1]
+%switch (SPISequence[iSeq*SeqL+5])
+%case 0
+%assign NB = 8
+%break
+%case 1
+%assign NB = 16
+%break
+%case 2
+%assign NB = 32
+%break
+%endswitch	
+%switch SPISequence[iSeq*SeqL]
+%case 33 
+%assign seqRepeat = 1	
+%case 1 
+%case 3 
+%if SPISequence[iSeq*SeqL+2] != 1	
+/* Initialize Constant to be sent through SPI into SPI buffer*/
+%assign repeat2max = SPISequence[iSeq*SeqL+4]
+%foreach repeat = seqRepeat 
+%foreach repeat2 = repeat2max	
+SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6] + repeat*repeat2max + repeat2>] = \
+%<MchpHex(SPIUserData[SPISequence[iSeq*SeqL+3]+repeat2-(repeat2max+1)])>;
+%endforeach
+%endforeach
+%endif
+%break
+%endswitch
+%endforeach
+%endif 
+%endif		
+%assign nSPIPortOut = 0
+%foreach iSeq = nSeq
+%switch SPISequence[iSeq*SeqL]
+%case 2 
+%case 3 
+%assign nSPIPortOut = nSPIPortOut + 1
+%break
+%endswitch
+%endforeach
+%if LibBlockSampleTime(block) == -2		
+%if (nSPIPortOut != 0) && (blockingMode == 0)		
+%error("This SPI block used for initialisation (inf sample time) requires to set the 'blocking mode' option to provide a valide output.")
+%else
+/* SPI Initialisation sequence executed once */
+%<OutputsSPI(block, system)>
+%endif
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign SPIRef = CAST("Number",block.RTWdata.SPIRef)
+%assign blockingMode = CAST("Number",block.RTWdata.blockingMode)
+%assign SPISequence = MchpVector64(block.RTWdata.SPISequence)
+%assign SeqL = 10
+%assign SPISequenceLength = FEVAL("numel",SPISequence)
+%assign nSeq = SPISequenceLength / SeqL	
+%assign nSPIPortOut = 0
+%foreach iSeq = nSeq
+%switch SPISequence[iSeq*SeqL]
+%case 2 
+%case 3 
+%assign nSPIPortOut = nSPIPortOut + 1
+%break
+%endswitch
+%endforeach
+%if (LibBlockSampleTime(block) != -2) || ...
+((LibBlockSampleTime(block) == -2) && (nSPIPortOut != 0) && (blockingMode == 0))
+%<OutputsSPI(block, system)>
+%endif
+%endfunction
+%function OutputsSPI(block, system) Output
+%assign SPIRef = CAST("Number",block.RTWdata.SPIRef)
+%assign blockingMode = CAST("Number",block.RTWdata.blockingMode)
+%assign MASTER = CAST("Number",block.RTWdata.MASTER)
+%addtorecord block.MCHP_TLCData SPI_StartSequenceState ::MCHP_SPI_NextState[SPIRef]
+/* number of SPI blocks : %<::MCHP_NumSPIBlocks[SPIRef]> ; Current: %<block.MCHP_TLCData.Current_NumSPIBlocks> ; MCHP_SPI_StartImplemented =  %<::MCHP_SPI_StartImplemented[SPIRef]>*/
+%assign ::MCHP_SPI_OutputImplemented[SPIRef] = ::MCHP_SPI_OutputImplemented[SPIRef] + 1
+%assign MS = "S"	
+%if MASTER
+%assign MS = "M"			
+%endif				
+%<MCHP_SPI_Interrupt(block)>
+%if ::MCHP_NumSPIBlocks[SPIRef] == 1
+%assign SPI_Id = ""
+%else
+%assign SPI_Id = block.MCHP_TLCData.Current_NumSPIBlocks
+%endif
+%assign DOS_01329_spi_pb_v2 = CAST("Number",block.RTWdata.DOS_01329_spi_pb_v2)
+%assign SPIxCON1 = CAST("Number",block.RTWdata.SPIxCON1)	
+%assign SPIxCON2 = CAST("Number",block.RTWdata.SPIxCON2)
+%assign SPISequence = MchpVector64(block.RTWdata.SPISequence)
+%assign SPIUserData = MchpVector(block.RTWdata.SPIUserData)
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%assign Exist_EnhancedSPIBuff = 0
+%else
+%if ::MCHP_modsrc.DOS_01329_spi_pb_v2 
+%assign Exist_EnhancedSPIBuff = ((SPIxCON1 & 65536) != 0)		
+%elseif ::MCHP_modsrc.DOS_01482 
+%assign Exist_EnhancedSPIBuff = 1	
+%else 
+%assign Exist_EnhancedSPIBuff = ((SPIxCON2 & 1) != 0)
+%endif
+%endif
+%assign Buff32_size = CAST("Number",block.RTWdata.Buff32_size)
+%assign Buff16_size = CAST("Number",block.RTWdata.Buff16_size)
+%assign Buff8_size = CAST("Number",block.RTWdata.Buff8_size)
+%assign DMA_Rx = CAST("Number",block.RTWdata.DMA_Rx)
+%assign DMA_Tx = CAST("Number",block.RTWdata.DMA_Tx)
+%assign useDMA = (DMA_Rx != -1) || (DMA_Tx != -1)
+%assign StartSequenceState = block.MCHP_TLCData.SPI_StartSequenceState
+%assign SeqL = 10
+%assign SPISequenceLength = FEVAL("numel",SPISequence)
+%assign nSeq = SPISequenceLength / SeqL	
+%if DMA_Tx != -1	
+%assign SPIDMA = "DMA"
+%assign intRef = %<DMA_Rx>
+%elseif DMA_Rx != -1	
+%assign SPIDMA = "DMA"
+%assign intRef = %<DMA_Rx>
+%else 
+%assign SPIDMA = "SPI"
+%assign intRef = %<SPIRef>
+%endif
+%assign uIdx = 0	
+%assign yIdx = 0	
+%assign yIdxTab = [0:1024]	
+%assign uIdxTab = [0:1024]
+%foreach iSeq = nSeq
+%assign uIdxTab[iSeq] = -1
+%assign yIdxTab[iSeq] = -1
+%switch SPISequence[iSeq*SeqL]
+%case 1 
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign uIdxTab[iSeq] = uIdx
+%assign uIdx = uIdx+1
+%endif
+%break
+%case 2 
+%assign yIdxTab[iSeq] = yIdx
+%assign yIdx = yIdx+1
+%break
+%case 3 
+%assign yIdxTab[iSeq] = yIdx
+%assign yIdx = yIdx+1
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign uIdxTab[iSeq] = uIdx
+%assign uIdx = uIdx+1
+%endif
+%break
+%endswitch
+%endforeach
+%if blockingMode == 0
+%include "MCHP_BUS_SPI_InOutBackground.tlc"
+%else 
+%include "MCHP_BUS_SPI_InOutblocking.tlc"
+%endif
+%endfunction
+%function MCHP_SPI_Interrupt(block) void
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign SPIRef = CAST("Number",block.RTWdata.SPIRef)
+%assign MASTER = CAST("Number",block.RTWdata.MASTER)
+%assign DOS_01329_spi_pb_v2 = CAST("Number",block.RTWdata.DOS_01329_spi_pb_v2)
+%if ::MCHP_NumSPIBlocks[SPIRef] == 1
+%assign SPI_Id = ""
+%else
+%assign SPI_Id = block.MCHP_TLCData.Current_NumSPIBlocks
+%endif
+%assign IntPriority = CAST("Number",block.RTWdata.IntPriority)
+%assign SPIxCON1 = CAST("Number",block.RTWdata.SPIxCON1)	
+%assign SPIxCON2 = CAST("Number",block.RTWdata.SPIxCON2)
+%assign SPISequence = MchpVector(block.RTWdata.SPISequenceFold)		
+%assign SPIUserData = MchpVector(block.RTWdata.SPIUserData)
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%assign Exist_EnhancedSPIBuff = 0
+%else
+%if DOS_01329_spi_pb_v2
+%assign Exist_EnhancedSPIBuff = ((SPIxCON1 & 65536) != 0)
+%else
+%assign Exist_EnhancedSPIBuff = ((SPIxCON2 & 1) != 0)
+%endif
+%endif
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%assign MS = "S"	
+%if MASTER
+%assign MS = "M"			
+%endif			
+%endif
+%assign PIN_SCK = CAST("Number",block.RTWdata.PIN_SCK_out)
+%assign Buff32_size = CAST("Number",block.RTWdata.Buff32_size)
+%assign Buff16_size = CAST("Number",block.RTWdata.Buff16_size)
+%assign Buff8_size = CAST("Number",block.RTWdata.Buff8_size)
+%assign DMA_Rx = CAST("Number",block.RTWdata.DMA_Rx)
+%assign DMA_Tx = CAST("Number",block.RTWdata.DMA_Tx)
+%assign useDMA = (DMA_Rx != -1) || (DMA_Tx != -1)
+%assign MASTER = CAST("Number",block.RTWdata.MASTER)
+%assign SeqL = 10
+%assign SPISequenceLength = FEVAL("numel",SPISequence)
+%assign nSeq = SPISequenceLength / SeqL	
+%assign uIdx = 0	
+%assign yIdx = 0	
+%assign UseUserInterrupt = 0
+%foreach iSeq = nSeq
+%if SPISequence[iSeq*SeqL] == 16
+%assign UseUserInterrupt = 1
+%break
+%endif
+%endforeach
+%if ::MCHP_SPI_OutputImplemented[SPIRef] == 1
+%openfile SPI_InterruptFun =  "MCHP_SPI%<SPIRef>_Interrupt.c"
+%assign ::MCHP_SPI_InterruptImplemented[SPIRef] = 1	
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%else
+%openfile SPI_InterruptFun ="MCHP_SPI%<SPIRef>_Interrupt.c","a"	
+%endif
+%assign cDatafile = "MCHP_SPI%<SPIRef>_Interrupt_data.c"
+%if ::MCHP_SPI_OutputImplemented[SPIRef] == 1
+%openfile SPI_InterruptFun_data =  cDatafile
+/* Declaration of Global Variable for SPI %<SPIRef> Peripheral */
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"	
+/* SPI - Interrupt: %<Name> */
+volatile uint_T MCHP_SPI%<SPIRef>_State = 0;
+%openfile buffer
+extern uint_T volatile MCHP_SPI%<SPIRef>_State;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%else
+%openfile SPI_InterruptFun_data = cDatafile,"a" 
+%endif
+%if ::MCHP_NumSPIBlocks[SPIRef] != 1
+boolean_T volatile MCHP_SPI%<SPIRef>%<SPI_Id>_Request = 0;
+%openfile buffer
+extern boolean_T volatile MCHP_SPI%<SPIRef>%<SPI_Id>_Request;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%if ::MCHP_SPI_OutputImplemented[SPIRef] == 1
+%openfile buffer
+typedef struct MCHP_SPI%<SPIRef>_QueueStr{
+volatile uint16_T buffer[%<::MCHP_NumSPIBlocks[SPIRef]+1>];			/* Size is equal to the number or distinct sequence set +1 */
+uint16_T  tail;									/* tail is the index for the next value to be read from the Circular buffer */				
+volatile uint16_T  head;							/* head is the index for the next value to be written into the Circular buffer */
+}  MCHP_SPI%<SPIRef>_QueueStr;
+%closefile buffer
+%<LibCacheTypedefs(buffer)>
+/* Declare SPI%<SPIRef> Queue Circular Buffer */
+MCHP_SPI%<SPIRef>_QueueStr MCHP_SPI%<SPIRef>_Queue;
+%openfile buffer
+/* Declare SPI%<SPIRef> Queue Circular Buffer */
+extern MCHP_SPI%<SPIRef>_QueueStr MCHP_SPI%<SPIRef>_Queue;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%endif
+%endif
+%if Buff16_size != 0
+%if (useDMA == 1)
+%assign MEMORY_DMA_ATTRIBUTE16 = MchpDMA_MemoryAttribute(%<Buff16_size>)
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()
+%<MEMORY_DMA_QUALIFIER>  volatile uint16_T SPI%<SPIRef>%<SPI_Id>_Buff16[%<Buff16_size>] %<MEMORY_DMA_ATTRIBUTE16>;
+%openfile buffer
+extern %<MEMORY_DMA_QUALIFIER> volatile uint16_T SPI%<SPIRef>%<SPI_Id>_Buff16[%<Buff16_size>] %<MEMORY_DMA_ATTRIBUTE16>;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%else
+volatile uint16_T SPI%<SPIRef>%<SPI_Id>_Buff16[%<Buff16_size>];
+%openfile buffer
+extern volatile uint16_T SPI%<SPIRef>%<SPI_Id>_Buff16[%<Buff16_size>];
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%endif
+%endif	
+%if Buff8_size != 0
+%if (useDMA == 1)
+%assign MEMORY_DMA_ATTRIBUTE8 = MchpDMA_MemoryAttribute(%<Buff8_size/2>)
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()
+volatile %<MEMORY_DMA_QUALIFIER> uint8_T SPI%<SPIRef>%<SPI_Id>_Buff8[%<Buff8_size>] %<MEMORY_DMA_ATTRIBUTE8>;
+%openfile buffer
+extern %<MEMORY_DMA_QUALIFIER> volatile uint8_T SPI%<SPIRef>%<SPI_Id>_Buff8[%<Buff8_size>] %<MEMORY_DMA_ATTRIBUTE8>;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%else
+volatile uint8_T SPI%<SPIRef>%<SPI_Id>_Buff8[%<Buff8_size>];
+%openfile buffer
+extern volatile uint8_T SPI%<SPIRef>%<SPI_Id>_Buff8[%<Buff8_size>];
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%endif
+%endif
+%if Buff32_size != 0
+%if (useDMA == 1)
+%assign MEMORY_DMA_ATTRIBUTE32 = MchpDMA_MemoryAttribute(%<Buff32_size/2>)
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()
+volatile %<MEMORY_DMA_QUALIFIER> uint32_T SPI%<SPIRef>%<SPI_Id>_Buff32[%<Buff32_size>] %<MEMORY_DMA_ATTRIBUTE32>;
+%openfile buffer
+extern %<MEMORY_DMA_QUALIFIER> volatile uint32_T SPI%<SPIRef>%<SPI_Id>_Buff32[%<Buff32_size>] %<MEMORY_DMA_ATTRIBUTE32>;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%else
+volatile uint32_T SPI%<SPIRef>%<SPI_Id>_Buff32[%<Buff32_size>];
+%openfile buffer
+extern volatile uint32_T SPI%<SPIRef>%<SPI_Id>_Buff32[%<Buff32_size>];
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%endif		
+%endif
+%closefile SPI_InterruptFun_data
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%if ::MCHP_SPI_OutputImplemented[SPIRef] == 1
+%if DMA_Tx != -1	
+%assign SPIDMA = "DMA"
+%assign intRef = %<DMA_Rx>		
+%elseif DMA_Rx != -1	
+%assign SPIDMA = "DMA"
+%assign intRef = %<DMA_Rx>
+%else 
+%assign SPIDMA = "SPI"
+%assign intRef = %<SPIRef>
+%endif
+%if useDMA	
+%<Declare_DMA_Interrupt(intRef,IntPriority,MASTER,UseUserInterrupt,block)>
+%else
+%<Declare_SPI_Interrupt(SPIRef,IntPriority,MASTER,UseUserInterrupt,block)>		
+%endif
+{
+%<MCHP_InterruptProlog()>
+%if ::MCHP_NumSPIBlocks[SPIRef] != 1	
+boolean_T Continue;
+%endif
+%if useDMA
+%<Clear_DMA_Interrupt_Flag(intRef,MASTER)>
+%else
+%<Clear_SPI_Interrupt_Flag(SPIRef,MASTER)>
+%endif
+%<MCHP_ProfileMCU("enter")>
+/* Declaration of Variables */
+%assign MCHP_SPIx_State = 0
+%if useDMA == 1
+%assign MEMORY_DMA_ATTRIBUTE = MchpDMA_MemoryAttribute(1)
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()
+uint_T %<MEMORY_DMA_QUALIFIER> static tmp %<MEMORY_DMA_ATTRIBUTE>;
+%else
+uint_T tmp;
+%endif
+%if ::MCHP_NumSPIBlocks[SPIRef] != 1	
+do{
+Continue = 0;	/* By default, execute one sequence only */
+%endif
+switch(MCHP_SPI%<SPIRef>_State)
+{
+case %<MCHP_SPIx_State>:	/* Idle */
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%if ::MCHP_NumSPIBlocks[SPIRef] != 1	
+/* Check if the next sequence is already in the queue. If so, start it */
+Continue = (MCHP_SPI%<SPIRef>_Queue.head != MCHP_SPI%<SPIRef>_Queue.tail); /* One next sequence queued, start it now */
+if (Continue) {
+MCHP_SPI%<SPIRef>_State = MCHP_SPI%<SPIRef>_Queue.buffer[MCHP_SPI%<SPIRef>_Queue.tail];
+if (MCHP_SPI%<SPIRef>_Queue.tail >= %<::MCHP_NumSPIBlocks[SPIRef]>)	/* There are %<::MCHP_NumSPIBlocks[SPIRef]> SPI%<SPIRef> blocks, max idx for queue is %<::MCHP_NumSPIBlocks[SPIRef]> */
+MCHP_SPI%<SPIRef>_Queue.tail = 0;
+else
+MCHP_SPI%<SPIRef>_Queue.tail++;
+}
+%if DOS_01329_spi_pb_v2 
+else
+{					
+%if useDMA				
+%<DisableInterrupt_DMA_Tx(DMA_Tx,MASTER)>
+%<DisableInterrupt_DMA_Rx(DMA_Rx,MASTER)>							
+%else
+%<DisableInterrupt(SPIRef,MASTER)>
+%endif				
+}
+%endif	
+%else
+%if DOS_01329_spi_pb_v2  
+%if useDMA				
+%<DisableInterrupt_DMA_Tx(DMA_Tx,MASTER)>
+%<DisableInterrupt_DMA_Rx(DMA_Rx,MASTER)>							
+%else
+%<DisableInterrupt(SPIRef,MASTER)>
+%endif					
+%endif
+%endif
+break;
+%else
+%assign MCHP_SPIx_State = ::MCHP_SPI_NextState[SPIRef]
+%endif
+case %<MCHP_SPIx_State>:	/* Start a new SPI Sequence */
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0
+%if MASTER == 0	
+/* Re-Enable SPI to listen for one sequence  */
+%<EnableSPI(SPIRef,MASTER)>
+%endif
+%assign DMA_Tx_PostINC = -1
+%assign DMA_Rx_PostINC = -1
+%assign DMA_Rx_NullWrite = -1
+%assign Flag_AuthorizeReEnable = 0
+%foreach iSeq = nSeq
+%assign seqRepeat = SPISequence[iSeq*SeqL+1]
+%switch (SPISequence[iSeq*SeqL+5])
+%case 0
+%assign NB = 8
+%assign Enh_Size = 16	
+%break
+%case 1
+%assign NB = 16
+%assign Enh_Size = 8	
+%break
+%case 2
+%assign NB = 32
+%assign Enh_Size = 4	
+%break
+%endswitch
+%if DOS_01329_spi_pb_v2 == 0  
+%assign Enh_Size = 8	
+%endif
+%switch SPISequence[iSeq*SeqL]
+%case 0	
+%if (Exist_EnhancedSPIBuff != 0) && (SPIxBUF_idx != 0)		
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%endif
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach					
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+/*	Start SPI configuration update */
+%if (MASTER == 1) && (PIN_SCK != -1) 
+%if ::isdsPIC || ::isPIC32 					
+%assign Value = %<( (SPISequence[iSeq*SeqL+1] & 64) != 0)>	
+%else
+%assign tmp = CAST("Number",SPISequence[iSeq*SeqL+1])	
+%assign SPI_Mode = 3 & (tmp >> 13)	
+%assign Value = (SPI_Mode >= 2)	
+/* tmp=%<tmp> SPI_Mode= %<SPI_Mode> Value = %<Value>*/
+%endif						
+%assign COMMENT = "protect clock (CLK) signal from potential glitch at peripheral switch off"
+%<MCHP_SetOutputBit(PIN_SCK,Value,COMMENT)>
+%endif			
+%<DisableSPI(SPIRef,MASTER,"Switch off SPI before updating its config")>
+%<SPIConfig(SPIRef,Exist_EnhancedSPIBuff,iSeq*SeqL,SPISequence,useDMA,MASTER)>
+/* End of SPI configuration update */
+%break
+%case 33 
+%case 1 
+/* Write only Sequence */
+%if (useDMA == 0)	
+%foreach repeat = seqRepeat
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign repeat2max = 1
+%else
+%assign repeat2max = SPISequence[iSeq*SeqL+4]
+%endif
+%foreach repeat2 = repeat2max
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign value = "SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6] + repeat * repeat2max + repeat2>]"
+%else 
+%assign value = MchpHex(SPIUserData[SPISequence[iSeq*SeqL+3]+repeat2-(repeat2max+1)])
+%endif
+%<WriteDataRegister(SPIRef,MASTER,NB,value)>										
+%switch (NB)
+%case 8
+%assign PreviousValue8[SPIxBUF_idx] = -2
+%break
+%case 16
+%assign PreviousValue16[SPIxBUF_idx] = -2
+%break
+%case 32
+%assign PreviousValue32[SPIxBUF_idx] = -2
+%break				
+%endswitch
+%if ((SPIxCON2 & 1) == 0) || (SPIxBUF_idx == (Enh_Size-1))
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%else
+%assign SPIxBUF_idx = SPIxBUF_idx + 1
+%endif
+%endforeach
+%endforeach
+%else	
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign CNT = %<seqRepeat -1>
+%else 
+%assign CNT = %<SPISequence[iSeq*SeqL+4] * seqRepeat - 1>
+%endif
+%if DOS_01329_spi_pb_v2 != 0 
+DCH%<DMA_Tx>SSIZ = %<(CNT+1) * (NB/8)>;	/* Source Size for DMA (SPI) Tx */ 	
+DCH%<DMA_Tx>SSA = (unsigned int)  &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>] & 0x1FFFFFFF;  /*  Physical address for Tx Buffer */		
+DCH%<DMA_Rx>DSIZ = %<(CNT+1) * (NB/8)>;	/* Destination Size for DMA (SPI) Rx */ 	
+DCH%<DMA_Rx>DSA = (unsigned int)  &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>] & 0x1FFFFFFF;  /*  Physical address for Rx Buffer */											
+DCH%<DMA_Rx>CONSET = 0x80;    /* CHEN - Enable DMA Rx */	
+DCH%<DMA_Tx>CONSET = 0x80;    /* CHEN - Enable DMA Tx */	
+%else
+DMA%<DMA_Tx>CNT = %<CNT>;      /* DMA (SPI) Tx */
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+DMA%<DMA_Tx>STA = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>];
+%break
+%case "EP"
+%case "EV"
+DMA%<DMA_Tx>STAL = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>];
+%break
+%endswitch
+DMA%<DMA_Rx>CNT = %<CNT>;      /* DMA (SPI) Rx */
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+DMA%<DMA_Rx>STA = (uint16_T) &tmp;
+%break
+%case "EP"
+%case "EV"
+DMA%<DMA_Rx>STAL = (uint16_T) &tmp;
+%break
+%endswitch		
+%if SPISequence[iSeq*SeqL] == 33	
+%if DMA_Tx_PostINC != 0
+DMA%<DMA_Tx>CON |= 0x10; /* Do not use DMA Tx Post-Incrementation */
+%assign DMA_Tx_PostINC = 0
+%endif
+%else
+%if DMA_Tx_PostINC != 1
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16)>; /* Use DMA Tx Post-Incrementation */
+%assign DMA_Tx_PostINC = 1
+%endif
+%endif
+%if DMA_Rx_PostINC != 0
+DMA%<DMA_Rx>CON |= 0x10; /* Do not use DMA Rx Post-Incrementation */
+%assign DMA_Rx_PostINC = 0
+%endif
+%if DMA_Rx_NullWrite != 0
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 2048)>; /* Disable Null data Write */
+%assign DMA_Rx_NullWrite = 0
+%endif
+%switch (NB)
+%case 8
+DMA%<DMA_Rx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+DMA%<DMA_Tx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+%break
+%case 16
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+%break
+%case 32
+%error("32 bit transfert for dsPIC is not available.")
+%break				
+%endswitch
+DMA%<DMA_Tx>CONbits.CHEN = 1;  /* Enable DMA Tx */
+DMA%<DMA_Rx>CONbits.CHEN = 1;	/* Enable DMA Rx */	
+DMA%<DMA_Tx>REQbits.FORCE = 1; /* Force Start DMA Tx */
+%endif
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%endif
+%break
+%case 2 
+/* Read only Sequence */
+%if (useDMA == 0)	
+%foreach repeat = seqRepeat
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+%assign SPIBUF_W = DataWriteRegister(NB,SPIRef,MASTER)
+%switch NB
+%case 16				
+%<SPIBUF_W> = %<MchpHex(::CompiledModel.MCHP.UINTMAX)>;
+%assign PreviousValue16[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat )>
+%break
+%case 8					
+%<SPIBUF_W> = %<MchpHex(::CompiledModel.MCHP.UINTMAX)>;
+%assign PreviousValue8[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat )>
+%break
+%case 32
+%<SPIBUF_W> = %<MchpHex(::CompiledModel.MCHP.UINTMAX)>;
+%assign PreviousValue32[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat )>
+%break				
+%endswitch
+%if (Exist_EnhancedSPIBuff == 0) || (SPIxBUF_idx == (Enh_Size-1))
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%else
+%assign SPIxBUF_idx = SPIxBUF_idx + 1
+%endif
+%endforeach
+%else	
+%assign CNT = %<seqRepeat -1>
+%if DOS_01329_spi_pb_v2 != 0 
+DCH%<DMA_Rx>DSIZ = %<(CNT+1) * (NB/8)>;	/* Destination Size for DMA (SPI) Rx */ 	
+DCH%<DMA_Rx>DSA = (unsigned int)  &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>] & 0x1FFFFFFF;  /*  Physical address for Rx Buffer */		
+tmp = 0xFFFFFFFF;
+DCH%<DMA_Tx>SSIZ = %<(NB/8)>;	/* Source Size for DMA (SPI) Rx */ 	
+DCH%<DMA_Tx>SSA = (unsigned int)  &tmp & 0x1FFFFFFF;  /*  Physical address for Rx Buffer */		
+DCH%<DMA_Rx>CONSET = 0x80;    /* CHEN - Enable DMA Rx */	
+DCH%<DMA_Tx>CONSET = 0x80;    /* CHEN - Enable DMA Tx */	
+%else		
+DMA%<DMA_Rx>CNT = %<CNT>;      /* DMA (SPI) Rx */
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+DMA%<DMA_Rx>STA = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>];
+%break
+%case "EP"
+%case "EV"
+DMA%<DMA_Rx>STAL = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>];
+%break
+%endswitch
+%if DMA_Tx_PostINC != 1
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16)>; /* Use DMA Tx Post-Incrementation */
+%assign DMA_Tx_PostINC = 1
+%endif
+%if DMA_Rx_PostINC != 1
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 16)>; /* Use DMA Rx Post-Incrementation */
+%assign DMA_Rx_PostINC = 1
+%endif
+%if DMA_Rx_NullWrite != 1
+DMA%<DMA_Rx>CON |= 0x800; /* Null data Write in addition do Peripheral to RAM write */
+%assign DMA_Rx_NullWrite = 1
+%endif
+%switch (NB)
+%case 8
+DMA%<DMA_Rx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+DMA%<DMA_Tx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+%break
+%case 16
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+%break
+%case 32
+%error("32 bit transfert for dsPIC is not available.")
+%break				
+%endswitch		
+DMA%<DMA_Rx>CONbits.CHEN =1;	/* Enable DMA Rx */	
+%assign SPIBUF_W = DataWriteRegister(NB,SPIRef,MASTER)
+%<SPIBUF_W> = %<MchpHex(::CompiledModel.MCHP.UINTMAX)>; /* Start DMA sequence */
+%endif
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%endif
+%break
+%case 3 
+/* Read - Write Sequence */
+%if (useDMA == 0)	
+%foreach repeat = seqRepeat
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign repeat2max = 1
+%else
+%assign repeat2max = SPISequence[iSeq*SeqL+4]
+%endif
+%foreach repeat2 = repeat2max
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign value = "SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6] + repeat * repeat2max + repeat2>]"
+%else 
+%assign value = MchpHex(SPIUserData[SPISequence[iSeq*SeqL+3]+repeat2-(repeat2max+1)])
+%endif
+%<WriteDataRegister(SPIRef,MASTER,NB,value)>	
+%if NB == 16 			
+%assign PreviousValue16[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat * repeat2max + repeat2 )>
+%elseif NB == 8
+%assign PreviousValue8[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat * repeat2max + repeat2 )>
+%else
+%assign PreviousValue32[SPIxBUF_idx] = %<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat * repeat2max + repeat2 )>
+%endif
+%if (Exist_EnhancedSPIBuff == 0) || (SPIxBUF_idx == (Enh_Size-1))
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%else
+%assign SPIxBUF_idx = SPIxBUF_idx + 1
+%endif
+%endforeach
+%endforeach
+%else	
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign CNT = %<seqRepeat -1>
+%else 
+%assign CNT = %<SPISequence[iSeq*SeqL+4] * seqRepeat - 1>
+%endif
+%if DOS_01329_spi_pb_v2 != 0 
+DCH%<DMA_Rx>DSIZ = %<(CNT+1) * (NB/8)>;	/* Destination Size for DMA (SPI) Rx */ 	
+DCH%<DMA_Rx>DSA = (unsigned int)  &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>] & 0x1FFFFFFF;  /*  Physical address for Rx Buffer */		
+DCH%<DMA_Tx>SSIZ = %<(CNT+1) * (NB/8)>;	/* Source Size for DMA (SPI) Tx */ 	
+DCH%<DMA_Tx>SSA = (unsigned int)  &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>] & 0x1FFFFFFF;  /*  Physical address for Tx Buffer */		
+DCH%<DMA_Rx>CONSET = 0x80;    /* CHEN - Enable DMA Rx */	
+DCH%<DMA_Tx>CONSET = 0x80;    /* CHEN - Enable DMA Tx */	
+%else		
+DMA%<DMA_Tx>CNT = %<CNT>;      /* DMA (SPI) Tx */
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+DMA%<DMA_Tx>STA = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>];
+%break
+%case "EP"
+%case "EV"
+DMA%<DMA_Tx>STAL = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+6]>];
+%break
+%endswitch
+DMA%<DMA_Rx>CNT = %<CNT>;      /* DMA (SPI) Rx */
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+DMA%<DMA_Rx>STA = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>];
+%break
+%case "EP"
+%case "EV"
+DMA%<DMA_Rx>STAL = (unsigned int) &SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<SPISequence[iSeq*SeqL+7]>];
+%break
+%endswitch
+%if DMA_Tx_PostINC != 1
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16)>; /* Use DMA Tx Post-Incrementation */
+%assign DMA_Tx_PostINC = 1
+%endif
+%if DMA_Rx_PostINC != 1
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 16)>; /* Use DMA Rx Post-Incrementation */
+%assign DMA_Rx_PostINC = 1
+%endif
+%if DMA_Rx_NullWrite != 0
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 2048)>; /* Disable Null data Write */
+%assign DMA_Rx_NullWrite = 0
+%endif
+%switch (NB)
+%case 8
+DMA%<DMA_Rx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+DMA%<DMA_Tx>CON |= %<MchpHex(16384)>; /* DMA Byte transfert size */
+%break
+%case 16
+DMA%<DMA_Rx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+DMA%<DMA_Tx>CON &= %<MchpHex(65535 - 16384)>; /* DMA word transfert size */
+%break
+%case 32
+%error("32 bit transfert for dsPIC is not available.")
+%break				
+%endswitch
+DMA%<DMA_Tx>CONbits.CHEN =1;  /* Enable DMA Tx */
+DMA%<DMA_Rx>CONbits.CHEN =1;	/* Enable DMA Rx */	
+DMA%<DMA_Tx>REQbits.FORCE = 1; /* Force Start DMA Tx */
+%endif
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%endif
+%break
+%case 4 
+%if (Exist_EnhancedSPIBuff != 0) && (SPIxBUF_idx != 0)		
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%endif
+%assign pinRef = SPISequence[iSeq*SeqL+1]
+%assign pinVal = SPISequence[iSeq*SeqL+2]
+%<MCHP_SetOutputBit(pinRef,pinVal,"switch output pin value to %<SPISequence[iSeq*SeqL+2]>")>
+%break
+%case 8 
+/* Delay */
+%if (Exist_EnhancedSPIBuff != 0) && (SPIxBUF_idx != 0)		
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%endif
+__delay32(%<SPISequence[iSeq*SeqL+2]>);	/* Delay  */ 
+%break
+%case 16 
+/* Call user Interrupt */
+%if (Exist_EnhancedSPIBuff != 0) && (SPIxBUF_idx != 0)		
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%endif
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+%if (Flag_AuthorizeReEnable == 0) && (iSeq == (nSeq-1) )	
+/* This last interrupt from this SPI sequence could re-enabled itself (this SPI sequence) */
+%if ::MCHP_NumSPIBlocks[SPIRef] != 1
+MCHP_SPI%<SPIRef>%<SPI_Id>_Request = 0;	/* This SPI sequence could be Re-Enabled */
+MCHP_SPI%<SPIRef>_State = 0; /* End of SPI Sequence. SPI Interrupt should be started for new sequence */
+%else
+MCHP_SPI%<SPIRef>_State = 0; /* This SPI sequence could be Re-Enabled */
+%endif		
+%if DOS_01329_spi_pb_v2
+%if useDMA
+%<DisableInterrupt_DMA_Tx(DMA_Tx,MASTER)>
+%<DisableInterrupt_DMA_Rx(DMA_Rx,MASTER)>	
+%assign Flag_AuthorizeReEnable = 1		
+%else
+%<DisableInterrupt(SPIRef,MASTER)>							
+%assign Flag_AuthorizeReEnable = 1		
+%endif					
+%endif
+%endif
+%assign cDatafilename = "MCHP_SPI%<SPIRef>_%<SPISequence[iSeq*SeqL+1]>"	  
+#ifdef Flag_%<cDatafilename>
+%<cDatafilename>();
+#else
+#warning "No code were generated for at least one SPI interrupt present in a SPI sequence."
+#endif
+%break
+%endswitch
+%endforeach
+%if (Exist_EnhancedSPIBuff != 0) && (SPIxBUF_idx != 0)		
+MCHP_SPI%<SPIRef>_State++;
+break;
+case %<MCHP_SPIx_State>:
+%assign MCHP_SPIx_State = MCHP_SPIx_State+1
+%assign SPIxBUF_idx = 0		
+%endif
+%if (SPIxBUF_idx == 0)
+%foreach i = 16
+%if (PreviousValue16[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff16[%<PreviousValue16[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,16,writeTo)>						
+%elseif  (PreviousValue16[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue8[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff8[%<PreviousValue8[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,8,writeTo)>		
+%elseif  (PreviousValue8[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%elseif (PreviousValue32[i] >= 0)
+%assign writeTo = "SPI%<SPIRef>%<SPI_Id>_Buff32[%<PreviousValue32[i]>]"
+%<ReadDataRegister(SPIRef,MASTER,32,writeTo)>		
+%elseif  (PreviousValue32[i] == -2)
+tmp = %<DataReadRegister(NB,SPIRef,MASTER)>;	
+%endif
+%endforeach
+%assign PreviousValue32 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue16 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%assign PreviousValue8 = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]	
+%endif
+%if (::MCHP_NumSPIBlocks[SPIRef] != 1)
+%if (Flag_AuthorizeReEnable == 0)	
+%if MASTER == 0	
+%<DisableSPI(SPIRef,MASTER,"Disable SPI until next demand to listen a sequence ")>							
+%endif
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1	
+%<DisableInterrupt(SPIRef,MASTER)>
+%endif								
+MCHP_SPI%<SPIRef>%<SPI_Id>_Request = 0;	/* This SPI sequence could be Re-Enabled */
+MCHP_SPI%<SPIRef>_State = 0; /* End of SPI Sequence. SPI Interrupt should be started for new sequence */		
+%assign Flag_AuthorizeReEnable = 1		
+%endif
+%else 		
+%if (Flag_AuthorizeReEnable == 0)	
+%if MASTER == 0	
+%<DisableSPI(SPIRef,MASTER,"Disable SPI until next demand to listen a sequence ")>	
+%endif
+MCHP_SPI%<SPIRef>_State = 0; /* End of SPI Sequence. SPI is available for a new sequence */						
+%assign Flag_AuthorizeReEnable = 1		
+%else
+if (MCHP_SPI%<SPIRef>_State != 0)
+{
+%<EnableAndTrig_Interrupt(SPIRef,MASTER)>
+}
+%if MASTER == 0	
+%<DisableSPI(SPIRef,MASTER,cmt)>
+%endif
+%endif
+%endif
+%if ::MCHP_NumSPIBlocks[SPIRef] > 1
+Continue = (MCHP_SPI%<SPIRef>_Queue.head != MCHP_SPI%<SPIRef>_Queue.tail); /* One next sequence queued, start it now */		
+%endif
+break;
+%closefile SPI_InterruptFun
+%assign ::MCHP_SPI_NextState[SPIRef] = MCHP_SPIx_State
+%endfunction

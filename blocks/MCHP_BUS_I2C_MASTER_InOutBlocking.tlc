@@ -1,0 +1,26 @@
+
+{
+%include "MCHP_BUS_I2C_MASTER_BlkIn.tlc"
+/* Enable I2C sequence */
+%if ::MCHP_NumI2CBlocks[I2CRef] == 1	
+MCHP_I2C%<I2CRef>_Request ++;
+MCHP_I2C%<I2CRef>_State = %<StartSequenceState>;	
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+%else
+MCHP_I2C%<I2CRef>%<I2C_Id>_Request ++;
+MCHP_I2C%<I2CRef>_Queue.buffer[MCHP_I2C%<I2CRef>_Queue.head] = 	%<StartSequenceState>;
+if (MCHP_I2C%<I2CRef>_Queue.head >= %<::MCHP_NumI2CBlocks[I2CRef]>)	/* There are %<::MCHP_NumI2CBlocks[I2CRef]> blocks I2C%<I2CRef>, max idx for queue is %<::MCHP_NumI2CBlocks[I2CRef]> */
+MCHP_I2C%<I2CRef>_Queue.head = 0;
+else
+MCHP_I2C%<I2CRef>_Queue.head ++;
+if (MCHP_I2C%<I2CRef>_State == 0)
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+%endif
+/* Wait for end of I2C sequence (handle within an interrupt) */
+%if ::MCHP_NumI2CBlocks[I2CRef] == 1	
+while (MCHP_I2C%<I2CRef>_Request != 0); /* Wait until end of I2C sequence. */  
+%else
+while (MCHP_I2C%<I2CRef>%<I2C_Id>_Request != 0); /* Wait until end of I2C sequence. */  
+%endif
+%include "MCHP_BUS_I2C_MASTER_BlkOut.tlc"
+}

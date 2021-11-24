@@ -1,0 +1,188 @@
+%selectfile NULL_FILE
+%function FcnMultiTaskingMain() void
+%<LibWriteToStandardOutput("--- Multi Tasking implementation (Treat each discrete rate as separate task)---")>
+%assign POWERSAVE = CAST("Number",RTWGenSettings.POWERSAVE)
+%assign TimeStep_Timer = CAST("Number",RTWGenSettings.TimeStep_Timer)
+%assign TimeStep_SyncADC = CAST("Number",RTWGenSettings.TimeStep_SyncADC)
+%assign nTIMERS = CAST("Number",RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",RTWGenSettings.nSCCP)	
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN = MchpVector(RTWGenSettings.ChipIdN)
+%if GenerateSampleERTMain
+%assign ::CompiledModel.GenerateSampleERTMain = TLC_FALSE
+%warning Overriding example ert_main.c!
+%endif
+%if TimeStep_Timer <= nTIMERS	
+%assign idxT = TimeStep_Timer
+%assign TimerName = "TIMER %<idxT>"
+%assign intPrefix = "T"						
+%else 
+%assign idxT = TimeStep_Timer - nTIMERS
+%assign TimerName = "CCP TIMER %<idxT>"
+%assign intPrefix = "CCP"
+%endif
+%openfile tmpBuf
+%<LibERTMainDeclareVariables(TLC_TRUE,TLC_TRUE)>
+%<LibWriteModelData()>\
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_data_defn", tmpBuf)>
+%openfile tmpBuf
+%if ExtMode
+#include <ext_work.h>          /* External mode header files */
+#include <ext_svr.h>
+#include <ext_share.h>
+#include <updown.h>
+%endif
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
+%openfile tmpBuf
+%if TimeStep_SyncADC == -1	
+%switch ::CORE
+%case "PIC32" 
+%assign tmp = Mchp_Interrupt32(2,0,1,"TIMER_%<TimeStep_Timer>_VECTOR",[])		
+%switch ::MCHP_MCU_NbrShadowRegisterSet
+%case 2				
+%assign fcnReturns = "void __attribute__((interrupt(IPL2SOFT), vector(_TIMER_%<TimeStep_Timer>_VECTOR))) "		
+%break
+%case 8
+%default
+%assign fcnReturns = "void __attribute__((interrupt(IPL2SOFT), vector(_TIMER_%<TimeStep_Timer>_VECTOR))) "		
+%break
+%endswitch		
+%assign fcnName = "_T%<TimeStep_Timer>Interrupt"
+%break
+%case "CORTEX_M7"
+%case "CORTEX_M4F"
+%case "CORTEX_M0p"
+%assign tmp = Mchp_Interrupt_ARM(1,"SysTick",[])       
+%assign  fcnReturns = "void __attribute__((naked,aligned(4)))"
+%assign fcnName = "SysTick_Handler"       						
+%break
+%case "PIC"
+%assign tmp = Mchp_Interrupt16(2,"__auto_psv__", "%<intPrefix>%<idxT>Interrupt",[]) 	
+%assign fcnReturns = "void __attribute__((__interrupt__,__auto_psv__))"		
+%assign fcnName = "_%<intPrefix>%<idxT>Interrupt"
+%break
+%endswitch
+%assign fcnParams = "void"
+%assign fcnCategory = "main"
+%createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+Abstract "Scheduler"; Category fcnCategory; GeneratedBy "MCHP_main_mr.tlc"; ...
+Type "Main"}
+%<SLibDumpFunctionBanner(fcnRec)>
+%undef fcnRec
+%<fcnReturns> %<fcnName>(%<fcnParams>)
+{
+%<MCHP_ProfileMCU("enter")>
+%<MCHP_Scheduler(intPrefix,idxT,ChipIdN)>
+%<MCHP_ProfileMCU("exitUpdate")>
+}
+%else 
+%switch ::CORE
+%case "CORTEX_M7"
+%case "CORTEX_M4F"			
+%case "CORTEX_M0p"
+%switch ::CORE
+%case "CORTEX_M7"
+%assign tmp = Mchp_Interrupt_ARM(1,"TC0_CH0",[])       
+%assign fcnName = "TC0_CH0_Handler"
+%break			
+%case "CORTEX_M4F"
+%assign tmp = Mchp_Interrupt_ARM(1,"TC0",[])       
+%assign fcnName = "TC0_Handler"
+%break			
+%case "CORTEX_M0p"   	
+%switch ::ChipIs
+%case "SAMC2x"
+%case "PIC32C"				
+%assign tmp = Mchp_Interrupt_ARM(1,"TC0",[])       
+%assign fcnName = "TC0_Handler"
+%break
+%case "SAMD2_DA1"
+%assign tmp = Mchp_Interrupt_ARM(1,"TC0",[])       
+%assign fcnName = "PM_Handler"
+%break
+%default
+%error("Chip not recognized when setting scheduler interrupt")
+%endswitch 
+%break				
+%default
+%error("Chip not recognized when setting scheduler interrupt")
+%endswitch 
+%assign fcnReturns = "void __attribute__((naked,aligned(4)))"
+%assign fcnParams = "void"
+%assign fcnCategory = "main"
+%createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+Abstract "Scheduler"; Category fcnCategory; GeneratedBy "MCHP_main_mr.tlc"; ...
+Type "Main"}
+%<SLibDumpFunctionBanner(fcnRec)>
+%undef fcnRec
+%<fcnReturns> %<fcnName>(%<fcnParams>)
+{
+%<MCHP_ProfileMCU("enter")>
+%<MCHP_Scheduler(intPrefix,idxT,ChipIdN)>
+%<MCHP_ProfileMCU("exitUpdate")>
+}	
+%endswitch 
+%endif
+%assign fcnReturns = "int"
+%assign fcnName = "main"
+%assign fcnParams = ""
+%assign fcnCategory = "main"
+%assign fcnAbstract = "Solver mode : " + "%<CompiledModel.FixedStepOpts.SolverMode>"
+%createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+Abstract ""; Category fcnCategory; GeneratedBy "MCHP_main_mr.tlc"; ...
+Type "Main"}
+%<SLibDumpFunctionBanner(fcnRec)>
+%undef fcnRec
+%<fcnReturns> %<fcnName>(%<fcnParams>)
+{
+/* Initialize model */
+%include "MCHP_Function_Startup.tlc"
+%<MchpStartup(0)>	
+%if ExtMode
+rtExtModeParseArgs(0,NULL,NULL);	
+%<SLibGenERTExtModeInit()>
+%endif
+/* Enable Time-step */
+%<::Startup_TrigTimeStepInstruction>
+/* Main Loop */
+for(;;)
+%if EXISTS(::IdleTaskImplemented) == 0
+%assign ::IdleTaskImplemented = 0
+%endif
+%if (::IdleTaskImplemented == 1)
+%if (POWERSAVE ==1)
+/* Override POWER SAVE mode */
+%warning *** One Idle Task is defined while POWER SAVE mode is activated in MASTER block. POWER SAVE mode is disabled ***
+%elseif ExtMode
+/* Override POWER SAVE mode */
+%warning *** Ext Mode set one Idle Task which is not compatible with the POWER SAVE mode activated in MASTER block. POWER SAVE mode is disabled ***
+%endif
+%endif
+%if (::IdleTaskImplemented == 1) || (ExtMode)
+{
+%if ExtMode
+%<ExtModeExecuteIdle()>
+%endif		 		
+%if (::IdleTaskImplemented == 1)
+%<::MCHP_IdleTask>
+%endif
+} /* end of for (;;) */
+%elseif (POWERSAVE == 1)  
+%<MCHP_GoToSleepMode()>       
+%else
+;
+%endif
+} /* end of main() */  
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_fcn_defn", tmpBuf)>
+%endfunction
+%function ExtModeExecuteIdle() Output
+%if ExtMode
+%<FcnGenerateExtModeOneStep()>
+rtExtModeCheckEndTrigger();
+%endif
+%endfunction

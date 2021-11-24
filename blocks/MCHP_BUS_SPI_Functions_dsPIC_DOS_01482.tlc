@@ -1,0 +1,115 @@
+
+%function DataReadRegister(NB,SPIRef,MASTER) void
+%if NB == 32
+%return "SPI%<SPIRef>BUFH"
+%else
+%return "SPI%<SPIRef>BUFL"
+%endif
+%endfunction
+%function DataWriteRegister(NB,SPIRef,MASTER) void
+%if NB == 32
+%return "SPI%<SPIRef>BUFH"
+%else
+%return "SPI%<SPIRef>BUFL"
+%endif
+%endfunction
+%function WriteDataRegister(SPIRef,MASTER,NB,value) Output
+%if NB == 32
+SPI%<SPIRef>BUFL = (%<value>) & 0xFFFF;
+SPI%<SPIRef>BUFH |= (%<value>) >> 16;
+%else
+%<DataWriteRegister(NB,SPIRef,MASTER)> = %<value>;
+%endif
+%endfunction
+%function ReadDataRegister(SPIRef,MASTER,NB,writeTo) Output
+%if NB == 32
+%<writeTo> = SPI%<SPIRef>BUFL;
+%<writeTo> |= SPI%<SPIRef>BUFH << 16;
+%else
+%<writeTo> = %<DataReadRegister(NB,SPIRef,MASTER)>;
+%endif
+%endfunction
+%function Declare_SPI_Interrupt(SPIRef,IntPriority,MASTER,UseUserInterrupt,block) Output
+/* Implement SPI %<SPIRef> Interrupts */				
+%if (UseUserInterrupt == 1)
+%assign AUTO_PSV = "__auto_psv__"	
+%else
+%assign AUTO_PSV = Mchp_No_auto_psv()		
+%endif
+%<Mchp_Interrupt16(IntPriority,AUTO_PSV,"SPI%<SPIRef>Interrupt",block)> 			/* SPI%<SPIRef> ISR */	
+%endfunction
+%function Declare_DMA_Interrupt(intRef,IntPriority,MASTER,UseUserInterrupt,block) Output
+/* Implement DMA %<intRef> Interrupts for SPI */				
+%if (UseUserInterrupt == 1)
+%assign AUTO_PSV = "__auto_psv__"	
+%else
+%assign AUTO_PSV = Mchp_No_auto_psv()		
+%endif
+%<Mchp_Interrupt16(IntPriority,AUTO_PSV,"DMA%<intRef>Interrupt",block)> 			/* DMA%<intRef> ISR */	
+%endfunction
+%function SPI_InterruptsConfig(SPIRef,IntPriority) Output
+/* Configure SPI%<SPIRef> Tx tnterrupt */
+%<MCHP_SFR( "SPI%<SPIRef>IP" , IntPriority , "Set SPI%<SPIRef> Interrupt Priority" )>
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 0 , "Clear SPI%<SPIRef> Interrupt Flag" )>
+%<MCHP_SFR( "SPI%<SPIRef>IE" , 1 , "Enable SPI%<SPIRef> Interrupt" )>	
+%endfunction
+%function SPI_DMAREQ_TAB(SPIRef) void
+%assign DMAREQ_TAB = CAST("Vector",[-1 ,10, 33, 91, 123 ])			
+%return DMAREQ_TAB[SPIRef]
+%endfunction
+%function Configure_DMA_Rx(DMA_Rx,SPIRef,MASTER) Output
+DMA%<DMA_Rx>CON = 0x0001;
+DMA%<DMA_Rx>REQ = %<MchpHex(SPI_DMAREQ_TAB(SPIRef))>;
+DMA%<DMA_Rx>PAD = (volatile unsigned int) & %<SPIBUF>;	
+%endfunction
+%function Configure_DMA_Tx(DMA_Tx,SPIRef,SPIBUF,MASTER) Output
+DMA%<DMA_Tx>CON = 0x2001;
+DMA%<DMA_Tx>REQ = %<MchpHex(SPI_DMAREQ_TAB(SPIRef))>;
+DMA%<DMA_Tx>PAD = (volatile unsigned int) & %<SPIBUF>;
+%endfunction
+%function SPI_DMA_Rx_InterruptsConfig(DMA_Rx,MASTER) Output
+%<MCHP_SFR( "DMA%<DMA_Rx>IP" , IntPriority , "Set DMA%<DMA_Rx> Interrupt Priority" )>				
+%<MCHP_SFR( "DMA%<DMA_Rx>IF" , 0 , "Clear DMA%<DMA_Rx> Interrupt Flag" )>				
+%<MCHP_SFR( "DMA%<DMA_Rx>IE" , 1 , "Enable DMA%<DMA_Rx> Interrupt" )>
+%endfunction
+%function EnableAndTrig_DMA_Interrupt(intRef,MASTER) Output
+%<MCHP_SFR( "DMA%<intRef>IF" , 1 , "Force Interrupt" )>
+%endfunction
+%function Clear_DMA_Interrupt_Flag(intRef,MASTER) Output	
+%<MCHP_SFR( "DMA%<intRef>IF" , 0 , "Clear DMA%<intRef> Interrupt Flag" )>  
+%endfunction
+%function DisableInterrupt_DMA_Tx(DMA_Tx,MASTER) Output
+%endfunction
+%function DisableInterrupt_DMA_Rx(DMA_Rx,MASTER) Output
+%endfunction
+%function EnableAndTrig_Interrupt(SPIRef,MASTER) Output
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 1 , "Force Interrupt" )>  
+%endfunction
+%function DisableInterrupt() Output
+%endfunction
+%function Clear_SPI_Interrupt_Flag(SPIRef,MASTER) Output
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 0 , "Clear SPI%<SPIRef> Interrupt Flag" )>  
+%endfunction
+%function EnableSPI(SPIRef,MASTER) Output
+SPI%<SPIRef>STATLbits.SPIROV = 0; /* Reset possible receive overflow */
+SPI%<SPIRef>CON1Lbits.SPIEN = 1; 	/* Enable SPI */
+%endfunction
+%function DisableSPI(SPIRef,MASTER,cmt) Output	
+SPI%<SPIRef>CON1Lbits.SPIEN = 0;	/* %<cmt> */
+SPI%<SPIRef>STATL = 0;
+SPI%<SPIRef>STATH = 0;
+%endfunction
+%function SPIConfig(SPIRef,Exist_EnhancedSPIBuff,idx,SPISequence,useDMA,MASTER) Output
+/* Set-up SPI %<SPIRef> peripheral with Fsck = %<SPISequence[idx+5]>  (%<SPISequence[idx+4]> with  %<SPISequence[idx+5]/(0.01*SPISequence[idx+4]) - 100> % error)  */
+SPI%<SPIRef>CON1H = 0;
+SPI%<SPIRef>CON2L = 0;
+SPI%<SPIRef>STATL = 0;
+SPI%<SPIRef>STATH = 0;
+SPI%<SPIRef>BRGL =  %<MchpHex(SPISequence[idx+6])>;
+SPI%<SPIRef>IMSKL =  0x0080; /* Interrupt on Shift Register Empty and no pending transaction */
+%if Exist_EnhancedSPIBuff && !useDMA			
+SPI%<SPIRef>CON1L =  %<MchpHex(SPISequence[idx+1] + ( 1U ) )>; 
+%else					
+SPI%<SPIRef>CON1L =  %<MchpHex(SPISequence[idx+1] +  0 )>; /* Enable SPI */
+%endif	
+%endfunction

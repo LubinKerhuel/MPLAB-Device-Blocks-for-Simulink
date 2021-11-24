@@ -1,0 +1,44 @@
+
+%function Mchp_asm_ABset(Variable,bit) Output
+__asm__ volatile ( "BSET.b %[MyVar], #%<bit>" : [MyVar] "+m" (%<Variable>) ) ;	/* Atomic bit-set: %<Variable> |= %< 1U << bit > */
+%endfunction
+%function Mchp_asm_ABclr(Variable,bit) Output
+__asm__ volatile ("BCLR.b %[MyVar], #%<bit>"  : [MyVar] "+m" (%<Variable>) );	/* Atomic bit-clear of %<Variable> bit %< 1U << bit > */
+%endfunction
+%function Mchp_asm_Ainc(Variable) Output
+__asm__ volatile ("INC %[MyVar]"  : [MyVar] "+m" (%<Variable>) ); /* ensure atomic increment of %<Variable> */
+%endfunction
+%function Mchp_asm_Adec(Variable) Output
+__asm__ volatile ("DEC %[MyVar]"  : [MyVar] "+m" (%<Variable>) ); /* ensure atomic decrement of %<Variable> */
+%endfunction
+%function Mchp_asm_DisableSchedulerInterrupt() Output
+%if ::CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+_IPL1 = 1;     /* Disable Scheduler Interrupts. Rise IPL from 1 to 2 */
+_IPL0 = 0;
+%else
+_IPL0 = 1;  /* Disable Scheduler Interrupts. Rise IPL from 0 to 1 */   
+%endif
+%endfunction
+%function Mchp_asm_EnableSchedulerInterrupt() Output
+%if ::CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+_IPL0 = 1;	/* Enable Scheduler re-entrant interrupt. Lower IPL from 2 to 1 */
+_IPL1 = 0;		
+%else
+_IPL0 = 0;    /* Enable Scheduler interrupt. Lower IPL from 1 to 0 */ 
+%endif
+%endfunction
+%function SET_AND_SAVE_CPU_IPL(cpu_ipl_switchVar,IPL,cmt) Output
+%<cpu_ipl_switchVar> = %<IPL> << 5; /* new IPL (SR bits 5,6,7) */
+%<cpu_ipl_switchVar> ^= SR; /* bit to reverse */
+%<cpu_ipl_switchVar> &= 0xE0; /* mask to not change other SR bits */
+SR ^= %<cpu_ipl_switchVar>; /* %<cmt> */
+%endfunction
+%function RESTORE_CPU_IPL(cpu_ipl_switchVar,cmt) Output	
+SR ^= %<cpu_ipl_switchVar>; /* %<cmt> */
+%endfunction
+%function Mchp_asm_DisableAllInterrupt() Output
+__builtin_disi(0x3FFF);
+%endfunction
+%function Mchp_asm_EnableAllInterrupt() Output
+__builtin_disi(0);
+%endfunction

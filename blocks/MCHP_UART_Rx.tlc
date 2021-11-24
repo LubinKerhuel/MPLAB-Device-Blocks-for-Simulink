@@ -1,0 +1,48 @@
+%implements  MCHP_UART_Rx  "C"
+%include "MCHP_Functions.tlc"
+%if ::isSAMx7                                    
+%include "MCHP_UART_Rx_SAMx7_FunUtils.tlc"
+%include "MCHP_UART_Rx_SAMx7_bare_and_Interrupt.tlc"
+%include "MCHP_UART_Rx_SAMx7_DMA_pingPongBuffer.tlc" 	
+%elseif ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%include "MCHP_UART_Rx_SAMx5_FunUtils.tlc"
+%include "MCHP_UART_Rx_SAMx5_bare_and_Interrupt.tlc"
+%include "MCHP_UART_Rx_SAMx5_DMA_pingPongBuffer.tlc" 	
+%elseif ::isdsPIC || ::isPIC32														
+%include "MCHP_UART_Rx_PIC_FunUtils.tlc"
+%include "MCHP_UART_Rx_PIC_bare_and_Interrupt.tlc"
+%endif
+%function Start(block, system) Output
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function Outputs(block, system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+/* MCHP_UART_Rx Block: %<Name>/Outputs */
+%switch RX_IMPLEMENTATION
+%case 0	
+%warning("RX is not implemented, please select one implementation method in the UART %<UARTRef> configuration block.")
+%break	
+%case 1
+%<MCHP_UART_Rx_bare(block,system)>
+%break
+%case 2	
+%<MCHP_UART_Rx_Interrupt(block,system)> 
+%break				 	
+%case 3 
+%if ::isSAMx7 
+%<MCHP_UART_Rx_SAMx7_DMA_pingPongBuffer(block,system)> 
+%else
+%warning("RX-DMA Ping-Pong is not implemented for this device, please select one implementation method in the UART %<UARTRef> configuration block.")
+%endif
+%break
+%case 4	
+%warning("RX is not implemented for this device, please select one implementation method in the UART %<UARTRef> configuration block.")
+%break
+%default		
+%<LibBlockReportError(block,"Rx implementation not recognized")>
+%break		
+%endswitch		
+%endfunction

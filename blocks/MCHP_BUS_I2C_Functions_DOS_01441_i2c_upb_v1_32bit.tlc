@@ -1,0 +1,147 @@
+
+%assign FirstState = 4
+%function I2C_WriteDataRegister(I2CRef,MASTER,NB,value) Output
+I2C%<I2CRef>TRN = %<value>; /* Write I2C data */
+%endfunction
+%function I2C_ReadDataRegister(I2CRef,MASTER,NB,writeTo) Output
+%<writeTo> = I2C%<I2CRef>RCV; /* Read I2C data */
+%endfunction
+%function I2C_Write_NACK(I2CRef,MASTER,MCHP_I2Cx_State) Output
+I2C%<I2CRef>CONbits.ACKDT = 1;		/* set to NACK */
+I2C%<I2CRef>CONbits.ACKEN = 1;		/* Start Not Acknowledge sequence */
+MCHP_I2C%<I2CRef>_State++;
+break;
+case %<MCHP_I2Cx_State>:
+%return 1		
+%endfunction	
+%function I2C_Write_ACK(I2CRef,MASTER,MCHP_I2Cx_State) Output
+I2C%<I2CRef>CONbits.ACKDT = 0;		/* set to ACK */
+I2C%<I2CRef>CONbits.ACKEN = 1;		/* Start Acknowledge sequence  */
+MCHP_I2C%<I2CRef>_State++;
+break;
+case %<MCHP_I2Cx_State>:
+%return 1		
+%endfunction	
+%function I2C_Enable(I2CRef) Output
+I2C%<I2CRef>CONbits.I2CEN = 1; 		/* Enable I2C peripheral */
+%endfunction
+%function I2C_Disable(I2CRef) Output
+I2C%<I2CRef>CONbits.I2CEN = 0;	/* Disable I2C peripheral */
+%endfunction
+%function I2C_ResetStateError(I2CRef) Output
+I2C%<I2CRef>STAT &= %<MchpHex(65535 - (2^6 + 2^7 + 2^10 ))>;		/* Reset I2C Error States */
+%endfunction
+%function I2C_Reset(I2CRef) Output
+%<I2C_Disable(I2CRef)>
+%endfunction
+%function I2C_Start(I2CRef) Output
+I2C%<I2CRef>CONbits.SEN = 1;		/* START sequence  */
+%return 1	
+%endfunction
+%function I2C_Restart(I2CRef,MCHP_I2Cx_State) Output
+I2C%<I2CRef>CONbits.RSEN = 1;		/* REPEATED-START sequence */	
+MCHP_I2C%<I2CRef>_State++;
+break;
+case %<MCHP_I2Cx_State>:
+%return 1	
+%endfunction
+%function I2C_Stop(I2CRef,NextNACK) Output
+I2C%<I2CRef>CONbits.PEN = 1;		/* STOP sequence*/	
+%return 1	
+%endfunction
+%function I2C_Receive(I2CRef,NextNACK) Output
+I2C%<I2CRef>CONbits.RCEN = 1;		/* RECEIVE sequence */
+%endfunction
+%function I2C_isNACK(I2CRef) void
+%return "I2C%<I2CRef>STATbits.ACKSTAT"
+%endfunction
+%function Set_SDA_SCL_DIT_Pin_Input(PIN_SDA,PIN_SCL) Output
+%assign PortSDA_Num = PIN_SDA % 16
+%assign PortSDA_Letter =  STRINGOF([%<PIN_SDA / 16 + 65>])
+%assign PortSCL_Num = PIN_SCL % 16
+%assign PortSCL_Letter =  STRINGOF([%<PIN_SCL / 16 + 65>])
+TRIS%<PortSDA_Letter>bits.TRIS%<PortSDA_Letter>%<PortSDA_Num>  = 1;	/* Set I2C PIN as Port Input */
+TRIS%<PortSCL_Letter>bits.TRIS%<PortSCL_Letter>%<PortSCL_Num>  = 1;
+%endfunction
+%function Set_SDA_SCL_DIT_Pin_Output(PIN_SDA,PIN_SCL) Output
+%assign PortSDA_Num = PIN_SDA % 16
+%assign PortSDA_Letter =  STRINGOF([%<PIN_SDA / 16 + 65>])
+%assign PortSCL_Num = PIN_SCL % 16
+%assign PortSCL_Letter =  STRINGOF([%<PIN_SCL / 16 + 65>])
+TRIS%<PortSDA_Letter>bits.TRIS%<PortSDA_Letter>%<PortSDA_Num>  = 0;	/* Set I2C PIN as Port Output */
+TRIS%<PortSCL_Letter>bits.TRIS%<PortSCL_Letter>%<PortSCL_Num>  = 0;
+%endfunction
+%function SetSDA_SCL_Output_0(PIN_SDA,PIN_SCL) Output
+%<MCHP_SetOutputBit(PIN_SDA,0,"Might help to reset I2C bus when stuck (Disabling I2C peripheral force SDA & SCL to 0)")>
+%<MCHP_SetOutputBit(PIN_SCL,0,"")>
+%endfunction
+%function I2C_WriteAddress_DataReadReady(I2CRef,MASTER,NB,address,RW,AddressIsBlockInput,N_Read,MCHP_I2Cx_State) void
+%return 0
+%endfunction
+%function I2C_WriteAddress(I2CRef,MASTER,NB,address,RW,AddressIsBlockInput,N_Read,MCHP_I2Cx_State) Output
+%if AddressIsBlockInput == 0
+%switch NB
+%case 10
+/* send 10 bit address: %<address \>\> 1>  (%<MchpHex(address \>\> 1)>) */
+I2C%<I2CRef>TRN = %<address \>\> 8 > ; 	/* Send I2C MSB address :  1 1 1 1 0 A9 A8 RW */
+MCHP_I2C%<I2CRef>_State++;
+break;
+case %<MCHP_I2Cx_State>:
+%assign MCHP_I2Cx_State = MCHP_I2Cx_State+1
+I2C%<I2CRef>TRN = %<MchpHex(address & 255 )>; 	/* Send I2C LSB address : [A7 ... A0 ] */
+%break
+%case 7
+/* send 7 bit address: %<address \>\> 1>  (%<MchpHex(address \>\> 1)>) */
+I2C%<I2CRef>TRN = %<MchpHex(address)>;		/* Send I2C Address : [A6 ... A0 RW] */
+%break
+%endswitch	
+%else 
+%switch NB
+%case 10
+%assign mask = (240 + RW) * 256
+I2C%<I2CRef>TRN  = ( ((%<address> & 0x0300) << 1) | %<mask> ) >> 8; /* Send I2C MSB Address:  1 1 1 1 0 A9 A8 RW */
+MCHP_I2C%<I2CRef>_State++;
+break;
+case %<MCHP_I2Cx_State>:
+%assign MCHP_I2Cx_State = MCHP_I2Cx_State+1
+I2C%<I2CRef>TRN = %<address> ;	/* Write 10 bit address 8 LSB */
+%break
+%case 7
+%if RW == 1
+I2C%<I2CRef>TRN = ([%<address>] << 1) | 1;	/* Send I2C Addresss + read bit: [A6 ... A0 RW] */
+%else
+I2C%<I2CRef>TRN = (%<address> << 1) ;	/* Send I2C Addresss + write bit: [A6 ... A0 RW] */
+%endif	
+%break
+%default
+%error("Address bit length is different from 7 or 10")
+%endswitch
+%endif
+%return MCHP_I2Cx_State
+%endfunction
+%function I2C_Declare_Interrupt(I2CRef,IntPriority,UseUserInterrupt,block) Output
+/* Implement I2C %<I2CRef> Interrupts */						
+%<Mchp_Interrupt32(IntPriority,1,UseUserInterrupt,"I2C%<I2CRef>_MASTER_VECTOR",block)>  
+%endfunction
+%function I2C_InterruptsConfig(I2CRef,IntPriority) Output
+/* Configure I2C%<I2CRef> interrupt */
+%<MCHP_SFR( "I2C%<I2CRef>MIP" , IntPriority , "Set I2C%<I2CRef> Master Interrupt Priority" )>
+%<MCHP_SFR( "I2C%<I2CRef>MIF" , 0 , "Clear I2C%<I2CRef> Master Interrupt" )>
+%<MCHP_SFR( "I2C%<I2CRef>MIE" , 1 , "Enable I2C%<I2CRef> Master Interrupt" )>		
+%endfunction
+%function I2C_Trig_Interrupt(I2CRef,cmt) Output
+%<MCHP_SFR( "I2C%<I2CRef>MIF" , 1 , cmt )>
+%endfunction
+%function I2C_DisableInterrupt() Output
+%endfunction
+%function Clear_I2C_Interrupt_Flag(I2CRef) Output	
+%<MCHP_SFR( "I2C%<I2CRef>MIF" , 0 , "Clear I2C%<I2CRef> Master Interrupt" )>
+%endfunction
+%function I2C_Config(I2CRef,I2CSequence,iSeq_SeqL) Output
+/* Set-up I2C %<I2CRef> peripheral with Fsck = %<I2CSequence[iSeq_SeqL+3]>   (%<I2CSequence[iSeq_SeqL+2]> with  %<I2CSequence[iSeq_SeqL+2]/(0.01*I2CSequence[iSeq_SeqL+3]) - 100>% error) */ 			
+I2C%<I2CRef>BRG =  %<MchpHex(I2CSequence[iSeq_SeqL+4])>;     		/* I2C clock = %<I2CSequence[iSeq_SeqL+3]>  (%<I2CSequence[iSeq_SeqL+2]> with  %<I2CSequence[iSeq_SeqL+2]/(0.01*I2CSequence[iSeq_SeqL+3]) - 100>% error) */
+I2C%<I2CRef>CON =  %<MchpHex(I2CSequence[iSeq_SeqL+1])>;	
+%endfunction
+%function I2C_delay(time_s,param) Output
+%error("I2C delay not implemented on PIC32 chip family. Remove delay from I2C Block")
+%endfunction

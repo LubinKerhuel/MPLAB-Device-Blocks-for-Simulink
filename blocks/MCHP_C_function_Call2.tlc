@@ -1,0 +1,107 @@
+
+%implements  MCHP_C_function_Call2 "C"
+%function Start(block, system) Output
+%assign isFctUpdate = CAST( "Number",block.RTWdata.isFctUpdate)
+%assign isFctStart = CAST( "Number",block.RTWdata.isFctStart)
+%assign isFctInit = CAST( "Number",block.RTWdata.isFctInit)
+%openfile buffer
+%if (isFctUpdate == 1)
+%<block.RTWdata.FctDeclaration>
+%endif
+%if (isFctStart == 1)
+%<block.RTWdata.FctStart_Declaration>
+%endif
+%if (isFctInit == 1)
+%<block.RTWdata.FctInit_Declaration>
+%endif
+%closefile buffer
+%<LibCacheFunctionPrototype(buffer)>
+%if (isFctStart == 1)
+%<block.RTWdata.FctStart_Call>
+%endif
+%endfunction
+%function Init(block, system) Output
+%assign isFctInit = CAST( "Number",block.RTWdata.isFctInit)
+%if (isFctInit == 1)
+%<block.RTWdata.FctInit_Call>
+%endif
+%endfunction
+%function Outputs(block, system) Output
+/* S-Function "MCHP_C_function_Call2" Block: %<Name> */
+%assign isFctUpdate = CAST( "Number",block.RTWdata.isFctUpdate)
+%assign INPUT_SIZE = CAST( "Number",block.RTWdata.INPUT_SIZE)
+%assign OUTPUT_SIZE = CAST( "Number",block.RTWdata.OUTPUT_SIZE)
+%assign NBR_INPUT = CAST( "Number",block.RTWdata.NBR_INPUT)
+%assign NBR_OUTPUT = CAST( "Number",block.RTWdata.NBR_OUTPUT)
+%if (isFctUpdate == 1)
+%if (NBR_OUTPUT == 1)
+%assign y1 = LibBlockOutputSignal(0, "", "", 0)
+%endif
+%if (INPUT_SIZE <= 1)
+%if (NBR_INPUT >= 1)
+%assign u1 = LibBlockInputSignal(0, "", "", 0)
+%endif
+%if (NBR_INPUT >= 2)
+%assign u2 = LibBlockInputSignal(1, "", "", 0)
+%endif
+%if (NBR_INPUT >= 3)
+%assign u3 = LibBlockInputSignal(2, "", "", 0)
+%endif
+%else 
+%if (NBR_INPUT >= 1)
+%assign u1 = LibBlockInputSignalAddr(0, "", "", 0)
+%endif
+%if (NBR_INPUT >= 2)
+%assign u2 = LibBlockInputSignalAddr(1, "", "", 0)
+%endif
+%if (NBR_INPUT >= 3)
+%assign u3 = LibBlockInputSignalAddr(2, "", "", 0)
+%endif
+%endif
+%if (OUTPUT_SIZE <= 1)
+%if (NBR_OUTPUT == 0)
+%if (NBR_INPUT == 0)
+%<RTWdata.fctName>();
+%elseif (NBR_INPUT == 1)
+%<RTWdata.fctName>(%<u1>);
+%elseif (NBR_INPUT == 2)
+%<RTWdata.fctName>(%<u1>,%<u2>);
+%elseif (NBR_INPUT == 3)
+%<RTWdata.fctName>(%<u1>,%<u2>,%<u3>);
+%endif
+%else 	
+%if (NBR_INPUT == 0)
+%<y1> = %<RTWdata.fctName>();
+%elseif (NBR_INPUT == 1)
+%<y1> = %<RTWdata.fctName>(%<u1>);
+%elseif (NBR_INPUT == 2)
+%<y1> = %<RTWdata.fctName>(%<u1>,%<u2>);
+%elseif (NBR_INPUT == 3)
+%<y1> = %<RTWdata.fctName>(%<u1>,%<u2>,%<u3>);
+%endif
+%endif
+%else 
+%if (NBR_OUTPUT == 0)
+%if (NBR_INPUT == 0)
+%<RTWdata.fctName>();
+%elseif (NBR_INPUT == 1)
+%<RTWdata.fctName>(%<u1>);
+%elseif (NBR_INPUT == 2)
+%<RTWdata.fctName>(%<u1>,%<u2>);
+%elseif (NBR_INPUT == 3)
+%<RTWdata.fctName>(%<u1>,%<u2>,%<u3>);
+%endif
+%else	
+%if (NBR_INPUT == 0)
+%<RTWdata.fctName>(&%<y1>);
+%elseif (NBR_INPUT == 1)
+%<RTWdata.fctName>(%<u1>,&%<y1>);
+%elseif (NBR_INPUT == 2)
+%<RTWdata.fctName>(%<u1>,%<u2>,&%<y1>);
+%elseif (NBR_INPUT == 3)
+%<RTWdata.fctName>(%<u1>,%<u2>,%<u3>,&%<y1>);
+%endif
+%endif
+%endif  
+%endif 
+%endfunction

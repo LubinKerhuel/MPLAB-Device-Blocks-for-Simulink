@@ -1,0 +1,38 @@
+%implements  MCHP_Digital_Output_Read  "C"
+%include "MCHP_Functions.tlc"
+%switch ::CORE
+%case "CORTEX_M7"
+%include "MCHP_Digital_Output_Read_SAMx7.tlc"
+%break
+%case "CORTEX_M4F"
+%include "MCHP_Digital_Output_Read_SAMx5.tlc"
+%break
+%case "CORTEX_M0p"
+%include "MCHP_Digital_Output_Read_SAMx2.tlc"
+%break
+%case "PIC32"                           
+%case "PIC"
+%include "MCHP_Digital_Output_Read_PIC.tlc"
+%break
+%default
+%error("CORE not recognized.")
+%endswitch
+%function BlockInstanceSetup(block, system) void
+%assign SIMULTANEOUS = CAST("Number",block.RTWdata.Simultaneous_Flag)
+%assign PACK = CAST("Number",block.RTWdata.Pack_Flag)
+%if (PACK == 1) || (SIMULTANEOUS == 0)
+%<LibBlockSetIsExpressionCompliant(block)>
+%endif
+%endfunction
+%function Start(block, system) Output
+%if LibBlockSampleTime(block) == -2		
+%<Outputs(block, system)>
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%<Outputs_MCHP_Digital_Output_Read(block, system)>
+%endfunction
+%function BlockOutputSignal(block,system,portIdx,ucv,lcv,idx,retType) void
+%assign retVal = BlockOutputSignal_MCHP_Digital_Output_Read(block,system,portIdx,ucv,lcv,idx,retType)
+%return retVal
+%endfunction

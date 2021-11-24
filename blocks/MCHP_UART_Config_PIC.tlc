@@ -1,0 +1,84 @@
+%include "MCHP_UART_Rx_PIC_FunUtils.tlc"
+%include "MCHP_UART_Tx_PIC_FunUtils.tlc"
+%function UART_Config_SetBaudRateParity(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UxBRG = CAST("Number",block.RTWdata.UxBRG)
+%assign UxBRGH = CAST("Number",block.RTWdata.UxBRGH)
+%assign UxMODE = CAST("Number",block.RTWdata.UxMODE)
+%assign UxMODEH = CAST("Number",block.RTWdata.UxMODEH)
+%assign UxSTA = CAST("Number",block.RTWdata.UxSTA)
+%assign UxSTAH = CAST("Number",block.RTWdata.UxSTAH)
+%assign DesiredBaud = CAST("String",block.RTWdata.DesiredBaud)
+%assign Error = CAST("String",block.RTWdata.Error)
+U%<UARTRef>BRG = %<MchpHex(UxBRG)>;	/* Baud rate: %<DesiredBaud> (%<Error>%) */
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+U%<UARTRef>BRGH = %<MchpHex(UxBRGH)>;	/* Baud rate MSB */
+%endif
+U%<UARTRef>MODE = %<MchpHex(UxMODE)>;
+%if (UxMODEH != -1)
+U%<UARTRef>MODEH = %<MchpHex(UxMODEH)>;
+%endif
+U%<UARTRef>STA = %<MchpHex(UxSTA)>;
+%if (UxSTAH != -1)
+U%<UARTRef>STAH = %<MchpHex(UxSTAH)>;
+%endif
+%endfunction
+%function UART_Config_WriteInitialisationOutputStream(block,sytem) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UxMODE_InitSeq = CAST("Number",block.RTWdata.UxMODE_InitSeq)
+%assign UxMODEH_InitSeq = CAST("Number",block.RTWdata.UxMODEH_InitSeq)
+%assign UxBRG_InitSeq = CAST("Number",block.RTWdata.UxBRG_InitSeq)
+%assign UxBRGH_InitSeq = CAST("Number",block.RTWdata.UxBRGH_InitSeq)
+%assign UxSTA_InitSeq = CAST("Number",block.RTWdata.UxSTA_InitSeq)
+%assign UxSTAH_InitSeq = CAST("Number",block.RTWdata.UxSTAH_InitSeq)
+%assign DesiredBaud_InitSeq = CAST("String",block.RTWdata.DesiredBaud_InitSeq)
+%assign Error_InitSeq = CAST("String",block.RTWdata.Error_InitSeq)
+%assign InitSequence = MchpVector(block.RTWdata.InitSequence)
+%assign InitSequence_str = CAST("String",block.RTWdata.InitSequence_str)
+%assign InitSequenceLength = %<SIZE(InitSequence,1)>
+%assign InitBreakPos = MchpVector(block.RTWdata.InitBreakPos)
+%assign InitBreakValue = MchpVector(block.RTWdata.InitBreakValue)
+%assign InitBreakLength = %<SIZE(InitBreakPos,1)>
+/* Initialisation sequence for UART %<UARTRef> */
+{
+const uint8_T InitSequence[%<InitSequenceLength>] = %<InitSequence_str>;
+U%<UARTRef>BRG = %<MchpHex(UxBRG_InitSeq)>;	/* Baud rate: %<DesiredBaud_InitSeq> (%<Error_InitSeq>%) */
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+U%<UARTRef>BRGH = %<MchpHex(UxBRGH_InitSeq)>;	/* MSB for Baud rate*/
+%endif
+U%<UARTRef>MODE = %<MchpHex(UxMODE_InitSeq)>;
+%if (UxMODEH_InitSeq != -1)
+U%<UARTRef>MODEH = %<MchpHex(UxMODEH_InitSeq)>;
+%endif
+U%<UARTRef>STA = %<MchpHex(UxSTA_InitSeq)>;		
+%if (UxSTAH_InitSeq != -1)
+U%<UARTRef>STAH = %<MchpHex(UxSTAH_InitSeq)>;
+%endif
+%foreach s = (InitBreakLength)		
+__delay32(%<InitBreakValue[s]>); /* Wait for %<InitBreakValue[s]> cycles */
+%if %<s> == %<InitBreakLength-1>  
+%assign SequenceLength = InitSequenceLength+1 - InitBreakPos[s]	
+%else
+%assign SequenceLength = InitBreakPos[%<s+1>] - InitBreakPos[s]
+%endif
+%if SequenceLength != 0
+%if SequenceLength > 1
+{
+uint_T i1;		
+for (i1 = %<InitBreakPos[s]-1>; i1 < %< InitBreakPos[s]-1 + SequenceLength> ; i1++) {
+%assign u = "i1"
+%else
+%assign u = %<InitBreakPos[s]-1>
+%endif
+while %<UTXNotEmpty(block)>;	/* Wait for one empty space within buffer UART */	
+%<UART_Tx_WriteRegister(block)> = InitSequence[%<u>];
+%if SequenceLength > 1
+}	
+}
+%endif
+while %<UTX_NotCompleted(block)>;	/* Wait for all value to be sent */	
+%endif
+%endforeach
+U%<UARTRef>MODE = 0;	/* Then switch off UART */
+}	
+%endfunction	

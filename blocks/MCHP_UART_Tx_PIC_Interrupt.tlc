@@ -1,0 +1,120 @@
+
+%include "MCHP_Fct_FastMemCpy_dsPIC.tlc"
+%function MCHP_UART_Tx_Interrupt(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%assign UARTString = CAST("Number",block.RTWdata.UARTString)	
+%assign NSend_Input = CAST("Number",block.RTWdata.NSend_Input)
+%assign NSend_Output = CAST("Number",block.RTWdata.NSend_Output)
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%assign BlockInputLength = LibBlockInputSignalWidth(NSend_Input==1)		
+%if BlockInputLength == 1
+%assign UARTString = 0	
+%endif
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign AllOrNothing = CAST("Number",block.RTWdata.AllOrNothing)
+%if (NSend_Input == 1)
+%assign N_in = LibBlockInputSignal(0,"","",0)
+%assign idxInputChars = 1
+%else
+%assign N_in = BlockInputLength
+%assign idxInputChars = 0
+%endif
+%assign TxBufferPtrType = CAST( "String","uint_T")	
+%if UART_HALF_DUPLEX_MODE
+if (U%<UARTRef>STAbits.RIDLE == 1)	/* Half Duplex mode: if ongoing reception (RIDLE=0), cancel the transmission. */
+%endif
+{
+%<TxBufferPtrType> Tmp;
+%if NSend_Output
+%<TxBufferPtrType> N_Out;
+%endif	
+Tmp = ~(MCHP_%<UART_NAME>_Tx.tail - MCHP_%<UART_NAME>_Tx.head);		/* head - tail - 1 */
+Tmp = Tmp & (Tx_BUFF_SIZE_%<UART_NAME> - 1);							/* Modulo Buffer Size (Buffer Size is 2^n). Tmp is the buffer free space */
+%if BlockInputLength > 1
+{					
+uint_T i1 = 0;
+register uint_T LocalTail = MCHP_%<UART_NAME>_Tx.tail;	/* Tail is a volatile variable. Use local variable to speed-up execution */						
+%assign u0 = LibBlockInputSignalAddr( idxInputChars, "","", 0)
+const uint8_T *u0 = %<u0> ;
+%assign u = "u0[i1]"					
+if (Tmp >= %<N_in>)		/* Does buffer can contains all char to be sent ? */
+{						
+Tmp = %<N_in> ;		/* If so, set tmp to the number of char to be sent */		
+%if AllOrNothing == 0		
+}				/* Otherwise, send only the number of char which can be contained within the buffer (Tmp) */
+%endif
+%if (BlockInputLength >= ::FastMemCpyThreshold ) && (UARTString == 0)	
+{					
+uint_T Tmp2 = LocalTail + Tmp;
+if (Tmp2 > (Tx_BUFF_SIZE_%<UART_NAME>))	/* do we reach end of buffer ? */
+{ 	
+/* Yes, Fill-in buffer until roll-off */
+uint_T Tmp3 =  (Tx_BUFF_SIZE_%<UART_NAME>) - LocalTail;
+%<FastMemCpy("& MCHP_%<UART_NAME>_Tx.buffer[LocalTail]" , "&(%<u>)" , "Tmp3")>
+i1 = i1 + Tmp3; /* update source index after First packet sent */
+Tmp2 = Tmp - Tmp3;			/* Then fill-in first part of buffer */
+%<FastMemCpy("& MCHP_%<UART_NAME>_Tx.buffer[0]" , "&(%<u>)" , "Tmp2")>
+i1 = i1 + Tmp2; /* update source index after Second packet sent */
+} else /* No buffer wrap. Fill-in buffer */
+{
+%<FastMemCpy("& MCHP_%<UART_NAME>_Tx.buffer[LocalTail]" , "&(%<u>)" , "Tmp")>
+i1 = i1 + Tmp;	/* All values are sent */
+}					
+LocalTail = (LocalTail + Tmp) & (Tx_BUFF_SIZE_%<UART_NAME> - 1);					
+}
+%else 	
+while (i1 < Tmp) {
+%if UARTString
+if (%<u> == 0) break; /* Stop on first 0 */
+%endif
+MCHP_%<UART_NAME>_Tx.buffer[LocalTail] = %<u>;						
+LocalTail = (LocalTail + 1) & (Tx_BUFF_SIZE_%<UART_NAME> - 1);	
+i1= i1 + 1;
+}
+%endif
+%if UART_HALF_DUPLEX_MODE
+%if UARTString
+if (MCHP_%<UART_NAME>_Tx.tail != LocalTail) {	
+%<MCHP_SFR(  "U%<UARTRef>RXIE"  , 0 				   , "Switch to Tx only. Disable Rx interrupts")>
+}
+%else
+%<MCHP_SFR(  "U%<UARTRef>RXIE"  , 0 				   , "Switch to Tx only. Disable Rx interrupts")>
+%endif
+%endif
+MCHP_%<UART_NAME>_Tx.tail = LocalTail; /* Push back volatile variable */      				
+%if AllOrNothing						
+} /* enf of if (Tmp >= %<N_in>) => option send all or nothing */
+%endif
+%if NSend_Output
+%assign Port_NOut = LibBlockOutputSignal(0, "","", 0)
+%<Port_NOut> = i1;		
+%endif	
+}				
+%else
+%assign u = LibBlockInputSignal( idxInputChars, "", "", 0)
+%if UARTString
+if (%<u> != 0)  /* Stop on first 0 */							
+%endif
+{
+%if UART_HALF_DUPLEX_MODE
+%<MCHP_SFR(  "U%<UARTRef>RXIE"  , 0 				   , "Switch to Tx only. Disable Rx interrupts")>		
+%endif								
+register uint_T LocalTail = MCHP_%<UART_NAME>_Tx.tail;	/* Tail is a volatile variable. Use local variable to speed-up execution */
+MCHP_%<UART_NAME>_Tx.buffer[LocalTail] = %<u>;
+MCHP_%<UART_NAME>_Tx.tail = (LocalTail + 1) & (Tx_BUFF_SIZE_%<UART_NAME> - 1);					
+%if NSend_Output
+%<Port_NOut> = 1;
+%endif
+}
+%if UARTString							
+%if NSend_Output
+else %<Port_NOut> = 0;
+%endif
+%endif
+%endif
+%<UART_Tx_FlushCirculerBuffer(UART_HALF_DUPLEX_MODE,block)>
+}
+%endfunction

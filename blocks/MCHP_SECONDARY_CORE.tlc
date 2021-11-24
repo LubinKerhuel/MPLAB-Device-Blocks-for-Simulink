@@ -1,0 +1,15 @@
+%implements  MCHP_SECONDARY_CORE  "C"
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%assign ::MCHP_dsPIC_HAVESECONDARYIMAGE = 1
+%if ISEQUAL(SlaveModelReference, "")	
+%assign ::MCHP_dsPIC_HAVESECONDARYIMAGE = 0
+%endif
+%endfunction
+%function Start(block, system) Output
+%endfunction
+%function Outputs(block, system) Output
+%endfunction
+%function Update(block, system) Output
+%endfunction

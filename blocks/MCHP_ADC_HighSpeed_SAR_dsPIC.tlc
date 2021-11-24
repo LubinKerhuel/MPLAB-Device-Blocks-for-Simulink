@@ -1,0 +1,531 @@
+%implements  MCHP_ADC_HighSpeed_SAR_dsPIC  "C"
+%include "MCHP_Functions.tlc"		
+%include "MCHP_Scheduler.tlc"
+%if EXISTS(::MCHP_ADC_HS_SAR_on) == 0
+%assign ::MCHP_ADC_HS_SAR_on = [-1, -1, -1, -1, -1, -1, -1, -1]		
+%endif
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%if EXISTS(::ADC_HS_SAR_nBlocks)
+%assign ::ADC_HS_SAR_nBlocks = ::ADC_HS_SAR_nBlocks + 1
+%else
+%assign ::ADC_HS_SAR_nBlocks = 1
+%assign ::ADC_HS_SAR_ADCFILTER_idx = 0
+%assign ::ADC_HS_SAR_ADCFILTER_CH = [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+%assign ::ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL = 0
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime = 0
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrig = -1
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrigType = -1		
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime = 0
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrig = -1
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrigType = -1		
+%assign ::ADC_HS_SAR_USE_EOS_TRIG = 0		
+%assign ::ADC_HS_SAR_GLSWTRG = -1
+%assign ::ADC_HS_SAR_SequentialTrig = -1	
+%assign ::ADC_HS_SAR_HighestChForTrig_Override = -1		
+%assign ::ADC_HS_SAR_HighestChForTrigType_Override = -1
+%assign ::MCHP_MCPWM_bf_DMABL = -1
+%assign ::MCHP_MCPWM_bf_DMA_ChannelOn = [ -1,-1,-1,-1,-1,-1,-1 ]
+%endif
+%assign ::MCHP_MCPWM_bf_DMABL = MchpLocal2Global(block,::MCHP_MCPWM_bf_DMABL ,  CAST("Number",block.RTWdata.MCHP_MCPWM_bf_DMABL),"MCHP_MCPWM_bf_DMABL","")
+%assign ::MCHP_MCPWM_bf_DMA_ChannelOn = MchpLocal2Global(block,::MCHP_MCPWM_bf_DMA_ChannelOn ,  MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn),"MCHP_MCPWM_bf_DMA_ChannelOn","")
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_CxCHS = MchpVector(block.RTWdata.reg_CxCHS)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_WARMTIME = CAST("Number",block.RTWdata.reg_WARMTIME)
+%assign reg_CLKSEL = CAST("Number",block.RTWdata.reg_CLKSEL)
+%assign reg_CLKDIV = CAST("Number",block.RTWdata.reg_CLKDIV)
+%assign reg_REFSEL = CAST("Number",block.RTWdata.reg_REFSEL)
+%assign reg_FRACT = CAST("Number",block.RTWdata.reg_FRACT)
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)	
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size)
+%assign reg_ADCSx = CAST("Number",block.RTWdata.reg_ADCSx)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign param_endConversionTime = MchpVector(block.RTWdata.param_endConversionTime)
+%assign param_endConversionTime_s = MchpVectorDbl(block.RTWdata.param_endConversionTime_s)
+%assign param_useAuxilliaryClock = CAST("Number",block.RTWdata.param_useAuxilliaryClock)
+%if EXISTS(::param_useAuxilliaryClock)
+%assign ::MCHP_useAuxilliaryClock_APLL = ::MCHP_useAuxilliaryClock_APLL || param_useAuxilliaryClock
+%else
+%assign ::MCHP_useAuxilliaryClock_APLL = param_useAuxilliaryClock
+%endif
+%assign ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL_Offset = 1	
+%switch  param_TrigSync
+%case "Continuous"
+%assign ::ADC_HS_SAR_GLSWTRG = 1
+%break
+%case "UserTrig_FastADC"
+%break
+%case "UserTrig_FastADC_SyncTimeStep"
+%assign ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL_Offset = 65536	
+%case "Timer_FastADC"
+%foreach idx= SIZE(reg_TRGSRCx,1)	
+%if reg_TRGSRCx[idx] != -1					
+%assign reg_TRGSRC = reg_TRGSRCx[idx]
+%break	
+%endif
+%endforeach				
+%assign uniqueTRIGId = ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL_Offset + reg_TRGSRC
+%if (::ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL == uniqueTRIGId) || (::ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL == 0)	
+%assign ::ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL = uniqueTRIGId		
+%else
+%<LibBlockReportError(block,"Another ADC blocks is already set to trig the time step using a different trigger source. Considere modifying one of theses ADC blocks.")>
+%endif
+%foreach idx= SIZE(reg_CxCHS,1)		
+%if reg_CxCHS[idx] != -1
+%if ::ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime <= param_endConversionTime_s[idx]		
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime = param_endConversionTime_s[idx]	
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrig = idx
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrigType = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ::ADC_HS_SAR_HighestCh_06_ForTrigType = 1	
+%endif
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(param_OUTPUT_Size,1)	
+%if idx > 6	
+%if param_OUTPUT_Size[idx] != -1
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime = ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime + param_endConversionTime_s[idx]
+%if idx > ::ADC_HS_SAR_HighestCh__7_ForTrig					
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrig = idx
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrigType = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ::ADC_HS_SAR_HighestCh__7_ForTrigType = 1	
+%endif					
+%endif		
+%endif			
+%endif
+%endforeach
+%if (param_ADC_TrigTimeStep == 2)	
+%assign ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime_Local = 0
+%assign ADC_HS_SAR_HighestCh_06_ForTrig_Local = 0
+%assign ADC_HS_SAR_HighestCh_06_ForTrigType_Local = 0
+%foreach idx= SIZE(reg_CxCHS,1)		
+%if reg_CxCHS[idx] != -1
+%if ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime_Local <= param_endConversionTime_s[idx]		
+%assign ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime_Local = param_endConversionTime_s[idx]	
+%assign ADC_HS_SAR_HighestCh_06_ForTrig_Local = idx
+%assign ADC_HS_SAR_HighestCh_06_ForTrigType_Local = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ADC_HS_SAR_HighestCh_06_ForTrigType_Local = 1	
+%endif
+%endif
+%endif
+%endforeach
+%assign ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime_Local = 0
+%assign ADC_HS_SAR_HighestCh__7_ForTrig_Local = 0
+%assign ADC_HS_SAR_HighestCh__7_ForTrigType_Local = 0
+%foreach idx= SIZE(param_OUTPUT_Size,1)	
+%if idx > 6	
+%if param_OUTPUT_Size[idx] != -1
+%assign ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime_Local = ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime_Local + param_endConversionTime_s[idx]
+%if idx > ADC_HS_SAR_HighestCh__7_ForTrig_Local					
+%assign ADC_HS_SAR_HighestCh__7_ForTrig_Local = idx
+%assign ADC_HS_SAR_HighestCh__7_ForTrigType_Local = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ADC_HS_SAR_HighestCh__7_ForTrigType_Local = 1	
+%endif					
+%endif		
+%endif			
+%endif
+%endforeach				
+%if (ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime_Local > ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime_Local) && (ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime_Local != 0) ...
+|| 	(ADC_HS_SAR_HighestCh__7_ForTrigType_Local == 4)
+%assign ADC_HS_SAR_HighestChForTrig_Local = ADC_HS_SAR_HighestCh_06_ForTrig_Local
+%assign ADC_HS_SAR_HighestChForTrigType_Local = ADC_HS_SAR_HighestCh_06_ForTrigType_Local
+%else
+%assign ADC_HS_SAR_HighestChForTrig_Local = ADC_HS_SAR_HighestCh__7_ForTrig_Local
+%assign ADC_HS_SAR_HighestChForTrigType_Local = ADC_HS_SAR_HighestCh__7_ForTrigType_Local
+%endif			
+%if (::ADC_HS_SAR_HighestChForTrig_Override == -1) || (::ADC_HS_SAR_HighestChForTrig_Override == ADC_HS_SAR_HighestChForTrig_Local)
+%assign ::ADC_HS_SAR_HighestChForTrig_Override = ADC_HS_SAR_HighestChForTrig_Local
+%else
+%<LibBlockReportError(block,"Another ADC block is trying to trig the model time step with incompatible setting for trigger.")>
+%endif
+%if (::ADC_HS_SAR_HighestChForTrigType_Override == -1) || (::ADC_HS_SAR_HighestChForTrigType_Override == ADC_HS_SAR_HighestChForTrigType_Local)
+%assign ::ADC_HS_SAR_HighestChForTrigType_Override = ADC_HS_SAR_HighestChForTrigType_Local
+%else
+%<LibBlockReportError(block,"Another ADC block is trying to trig the model time step with incompatible setting for trigger.")>
+%endif	
+%endif
+%break
+%endswitch
+%<HARMONY_RegisterPeripheral("ADCHS",0,block)>
+%endfunction
+%function InitializeConditions (block, system) Output
+%endfunction
+%function Start(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_CxCHS = MchpVector(block.RTWdata.reg_CxCHS)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_WARMTIME = CAST("Number",block.RTWdata.reg_WARMTIME)
+%assign reg_CLKSEL = CAST("Number",block.RTWdata.reg_CLKSEL)
+%assign reg_CLKDIV = CAST("Number",block.RTWdata.reg_CLKDIV)
+%assign reg_REFSEL = CAST("Number",block.RTWdata.reg_REFSEL)
+%assign reg_FRACT = MchpVector(block.RTWdata.reg_FRACT)
+%assign reg_NRE = CAST("Number",block.RTWdata.reg_NRE)
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)	
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size)
+%assign reg_ADCSx = CAST("Number",block.RTWdata.reg_ADCSx)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign param_endConversionTime = MchpVector(block.RTWdata.param_endConversionTime)
+%assign param_endConversionTime_s = MchpVectorDbl(block.RTWdata.param_endConversionTime_s)
+%assign nFilter = CAST("Number",block.RTWdata.nFilter)
+%assign CALIBRATION = CAST("Number",block.RTWdata.CALIBRATION)
+%assign Local_MCHP_MCPWM_bf_DMA_ChannelOn = MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn)
+%switch  param_TrigSync
+%case "Continuous"	
+%assign ADC_HS_SAR_ADC_TRIG_TIMESTEP = 0		
+%break
+%case "UserTrig_FastADC"
+%assign ADC_HS_SAR_ADC_TRIG_TIMESTEP = 0	
+%break
+%case "UserTrig_FastADC_SyncTimeStep"
+%case "Timer_FastADC"
+%assign ADC_HS_SAR_ADC_TRIG_TIMESTEP = 1	
+%endswitch
+%if EXISTS(::ADC_HS_SAR_iBlocks)
+%assign ::ADC_HS_SAR_iBlocks = ::ADC_HS_SAR_iBlocks + 1
+%else
+%assign ::ADC_HS_SAR_iBlocks = 1
+%endif
+%if ::ADC_HS_SAR_iBlocks == 1	
+/* ADC common settings */
+%if reg_FRACT	
+ADCON1Hbits.FORM = 1;		/* Fractional format */		
+%else
+%endif
+%if reg_NRE
+ADCON1Lbits.NRE = 1;		/* Fractional format */	
+%else
+%endif
+ADCON5Hbits.WARMTIME = %<reg_WARMTIME>;		/* Warm-up time, minimum is 10us (DS700005213F) */
+ADCON3Hbits.CLKSEL = %<reg_CLKSEL>; 		/* Select input clock source */
+ADCON3Hbits.CLKDIV = %<reg_CLKDIV>;  		/* clock pre scaler */	
+ADCON3Lbits.REFSEL = %<reg_REFSEL>;  		/* Select AVdd and AVss as reference source */
+/* Configuration for ADC Core */
+%endif
+%foreach idx= SIZE(reg_CxCHS,1)	
+%if reg_CxCHS[idx] != -1
+ADCON4Hbits.C%<idx>CHS = %<reg_CxCHS[idx]>; /* Dedicated core - Input pins */
+%assign ::MCHP_ADC_HS_SAR_on[idx] = 1
+%endif
+%endforeach
+%foreach idx = SIZE(reg_SAMCx,1)
+%if (idx == 7) && (reg_SAMCx[idx] != -1)
+%assign ::MCHP_ADC_HS_SAR_on[idx] = 1	
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SAMCx,1)
+%if reg_SAMCx[idx] != -1
+%if idx == 7	
+ADCON2Hbits.SHRSAMC = %<reg_SAMCx[idx]>;	/* ADC Sample Time for shared ADC7 */	
+%else
+%if %<reg_STRGENx[idx]> != -1	
+ADCORE%<idx>L = %<reg_SAMCx[idx]>;	/* ADC Sample Time for dedicated ADC (SAMC field) (if SAMCEN not set-default => trig end sampling ) */
+%endif
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_STRGENx,1)
+%if reg_STRGENx[idx] != -1
+%if %<reg_STRGENx[idx]> == 1
+ADCON4Lbits.SAMC%<idx>EN = %<reg_STRGENx[idx]>; /* Trig start (or continue) sampling for a time set in SAMC */
+%else	 			
+%endif
+%endif
+%endforeach	
+%foreach idx= SIZE(reg_SSAMPENx,1)
+%if reg_SSAMPENx[idx] != -1
+%if %<reg_SSAMPENx[idx]>
+ADCON4Lbits.SYNCTRG%<idx> = %<reg_SSAMPENx[idx]>; /* Synchronous Sampling */
+%else
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SIGNx,1)	
+%if reg_SIGNx[idx] == 1	
+%if FEVAL("rem",idx,16) < 8
+%assign HL = "L"
+%else
+%assign HL = "H"
+%endif
+ADMOD%<(idx \>\> 4)>%<HL>bits.SIGN%<idx> = %<reg_SIGNx[idx]>;	/* Signed (1) / Unsigned (0) data format */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_DIFFx,1)	
+%if reg_DIFFx[idx] == 1	
+%if FEVAL("rem",idx,16) < 8
+%assign HL = "L"
+%else
+%assign HL = "H"
+%endif	
+ADMOD%<(idx \>\> 4)>%<HL>bits.DIFF%<idx> = %<reg_DIFFx[idx]>;	/* Single ended / Differential mode */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_TRGSRCx,1)	
+%if reg_TRGSRCx[idx] != -1					
+%if FEVAL("rem",idx,4) < 2
+%assign HL = "L"
+%else
+%assign HL = "H"
+%endif					
+ADTRIG%<(idx \>\> 2)>%<HL>bits.TRGSRC%<idx> = %<reg_TRGSRCx[idx]>;	/* CH%<idx> Trigger source */		
+%endif
+%endforeach
+%foreach idx= SIZE(reg_LVLx,1)	
+%if reg_LVLx[idx] != -1
+%if FEVAL("rem",idx,32) < 16
+%assign HL = "L"
+%else
+%assign HL = "H"
+%endif		
+%if %<reg_LVLx[idx]>
+%assign comment = "Input trig is level sensitive"
+%else
+%assign comment = "Input trig is edge sensitive"
+%endif
+ADLVLTRG%<HL>bits.LVLEN%<idx> = %<reg_LVLx[idx]>;	/* %<comment> */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SAMCx,1)
+%if reg_SAMCx[idx] != -1
+%if idx == 7	
+ADCON2Lbits.SHRADCS = %<reg_ADCSx>;	/* ADC Clock Frequency for shared ADC7 */ 
+%else
+ADCORE%<idx>Hbits.ADCS = %<reg_ADCSx>;	/* ADC Clock Frequency for core %<idx> */
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SELRESx,1)
+%if reg_SELRESx[idx] != -1
+%if idx == 7	
+ADCON1Hbits.SHRRES = %<reg_SELRESx[idx]>;	/* ADC Resolution for shared ADC7 */ 
+%else
+ADCORE%<idx>Hbits.RES = %<reg_SELRESx[idx]>;	/* ADC Resolution for core %<idx> */
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_ADCFLTRx,1)	
+%if reg_ADCFLTRx[idx] != -1
+%if (::ADC_HS_SAR_ADCFILTER_idx < nFilter)
+ADFL%<::ADC_HS_SAR_ADCFILTER_idx>CON = %<MchpHex(reg_ADCFLTRx[idx])>;	/* Use ADC Oversampling/Filter %<::ADC_HS_SAR_ADCFILTER_idx> for ADC Channel %<idx>  */ 
+%assign ::ADC_HS_SAR_ADCFILTER_CH[::ADC_HS_SAR_ADCFILTER_idx] = idx
+%assign ::ADC_HS_SAR_ADCFILTER_idx = ::ADC_HS_SAR_ADCFILTER_idx + 1
+%else
+%error("2 ADC Oversampling/Filters are already used.")
+%endif
+%endif
+%endforeach
+%if (::ADC_HS_SAR_iBlocks == ::ADC_HS_SAR_nBlocks)	
+%if ::ADC_HS_SAR_ADC_TRIG_TIMESTEP_GLOBAL != 0
+%if (ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime > ADC_HS_SAR_HighestCh__7_ForTrigEndOfConversionTime) && (ADC_HS_SAR_HighestCh_06_ForTrigEndOfConversionTime != 0) ...
+|| 	(::ADC_HS_SAR_HighestCh_06_ForTrigType == 4)
+%assign ADC_HS_SAR_HighestChForTrig = ::ADC_HS_SAR_HighestCh_06_ForTrig
+%assign ADC_HS_SAR_HighestChForTrigType = ::ADC_HS_SAR_HighestCh_06_ForTrigType
+%else
+%assign ADC_HS_SAR_HighestChForTrig = ::ADC_HS_SAR_HighestCh__7_ForTrig
+%assign ADC_HS_SAR_HighestChForTrigType = ::ADC_HS_SAR_HighestCh__7_ForTrigType		
+%endif
+%if ::ADC_HS_SAR_HighestChForTrig_Override != -1
+%assign ADC_HS_SAR_HighestChForTrig = ::ADC_HS_SAR_HighestChForTrig_Override
+%endif
+%if ::ADC_HS_SAR_HighestChForTrigType_Override != -1
+%assign ADC_HS_SAR_HighestChForTrigType = ::ADC_HS_SAR_HighestChForTrigType_Override
+%endif
+%switch ADC_HS_SAR_HighestChForTrigType
+%case 0 
+%assign IntPrefix = "ADCAN"
+%assign IntPrefix0 = IntPrefix
+%assign IntIndex = ADC_HS_SAR_HighestChForTrig
+%assign InterruptVector = "ADCAN%<IntIndex>Interrupt"
+%assign InterruptDataRead = "ADCBUF%<IntIndex>"
+%if ADC_HS_SAR_HighestChForTrig < 16				 		
+ADIELbits.IE%<IntIndex> = 1; /* enable interrupt for ADC channel %<IntIndex> */
+%else
+ADIEHbits.IE%<IntIndex> = 1; /* enable interrupt for ADC channel %<IntIndex> */
+%endif
+%break
+%case  1 
+%assign RefFilter = -1
+%foreach iFilt = SIZE(::ADC_HS_SAR_ADCFILTER_CH,1)
+%if (::ADC_HS_SAR_ADCFILTER_CH[iFilt] == ADC_HS_SAR_HighestChForTrig)
+%assign RefFilter = iFilt 	
+%break
+%endif
+%endforeach
+%assign IntPrefix = "ADFLTR"
+%assign IntPrefix0 = IntPrefix
+%assign IntIndex = RefFilter		
+%assign InterruptVector = "ADFLTR%<IntIndex>Interrupt"
+%assign InterruptDataRead = "ADFL%<IntIndex>DAT"
+ADFL%<IntIndex>CONbits.IE = 1;	/* Enable Interrupt for Digital Filter %<IntIndex>*/				 	
+%break
+%default
+%error("Problem with trigger setting with ADC")
+%endswitch		 	
+%assign InterruptPriority = 2
+%<MCHP_SFR( "%<IntPrefix0>%<IntIndex>IP" , InterruptPriority , "Set Interrupt priority for tasking" )>
+%<MCHP_SFR( "%<IntPrefix>%<IntIndex>IF" , 0 , "Reset pending interrupt" )>
+%<MCHP_SFR( "%<IntPrefix>%<IntIndex>IE" , 1 , "Enable Interrupt which trig the base rate time step" )>
+%openfile dspicfun = "MCHP_ADC_Interrupt.c"
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%assign AUTO_PSV = "__auto_psv__"
+%<Mchp_Interrupt16(InterruptPriority,AUTO_PSV,InterruptVector,block)> 			
+{
+%<MCHP_ProfileMCU("enter")>
+unsigned int tmp __attribute__((unused)) = %<InterruptDataRead> ; /* remove cause of interrupt */
+%with CompiledModel	
+%<MCHP_Scheduler(IntPrefix,IntIndex,ChipIdN)>
+%endwith
+%<MCHP_ProfileMCU("exitUpdate")>
+}
+%closefile dspicfun
+%endif
+/* Turn on ADC module common to all ADC core */
+ADCON1Lbits.ADON = 1;
+%foreach idx= SIZE(MCHP_ADC_HS_SAR_on,1)
+%if MCHP_ADC_HS_SAR_on[idx] != -1
+%if idx == 7	
+/* Switch on shared ADC core */
+ADCON5Lbits.SHRPWR = 1;				/* Turn on Analog power for shared core */
+while(ADCON5Lbits.SHRRDY == 0);		/* Wait for shared core ready */
+ADCON3Hbits.SHREN = 1;				/* Turn on Digital power enabling triggers to shared */
+%else
+/* Switch on dedicated ADC core %<idx> */
+ADCON5Lbits.C%<idx>PWR = 1;				/* Turn on Analog power for dedicated core %<idx> */
+while(ADCON5Lbits.C%<idx>RDY == 0);		/* Wait for core %<idx> ready */
+ADCON3Hbits.C%<idx>EN = 1;				/* Turn on Digital power enabling triggers to core %<idx> */
+%endif
+%endif
+%endforeach
+%if CALIBRATION 
+%foreach idx= SIZE(MCHP_ADC_HS_SAR_on,1)
+%if MCHP_ADC_HS_SAR_on[idx] != -1
+%if idx == 7	
+/* ADC calibration for Shared core */
+ADCAL1Hbits.CSHREN = 1;					/* Enable Calibration for shared core */
+ADCAL1Hbits.CSHRRUN = 1;				/* Start Calibration (Single Ended by default) */
+while(ADCAL1Hbits.CSHRRDY == 0);		/* Wait for end of calibration */
+ADCAL1Hbits.CSHREN = 0;					/* Disable Calibration for shared core */
+%else
+/* ADC calibration for dedicated core %<idx> */
+%switch idx
+%case 0
+%assign reg = "ADCAL0Lbits"
+%break
+%case 1
+%assign reg = "ADCAL0Lbits"
+%break
+%case 2								
+%assign reg = "ADCAL0Hbits"
+%break
+%case 3								
+%assign reg = "ADCAL0Hbits"
+%break
+%case 4								
+%assign reg = "ADCAL1Lbits"
+%break
+%case 5								
+%assign reg = "ADCAL1Lbits"
+%break
+%case 6								
+%assign reg = "ADCAL1Hbits"
+%break
+%endswitch
+%<reg>.CAL%<idx>EN = 1;					/* Enable Calibration for dedicated core %<idx> */
+%<reg>.CAL%<idx>RUN = 1;				/* Start Calibration (Single Ended by default) */
+while(%<reg>.CAL%<idx>RDY == 0);		/* Wait for end of calibration */
+%<reg>.CAL%<idx>EN = 0;					/* Disable Calibration for dedicated core %<idx> */
+%endif
+%endif
+%endforeach
+%endif
+%if ::ADC_HS_SAR_GLSWTRG == 1
+/* Start Continuous Conversions */
+ADCON3Lbits.SWLCTRG = 1;	/* ADC: Trig a Continuous conversion */
+%endif
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_CxCHS = MchpVector(block.RTWdata.reg_CxCHS)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_WARMTIME = CAST("Number",block.RTWdata.reg_WARMTIME)
+%assign reg_CLKSEL = CAST("Number",block.RTWdata.reg_CLKSEL)
+%assign reg_CLKDIV = CAST("Number",block.RTWdata.reg_CLKDIV)
+%assign reg_REFSEL = CAST("Number",block.RTWdata.reg_REFSEL)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_ADCSx = CAST("Number",block.RTWdata.reg_ADCSx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_FRACT = CAST("Number",block.RTWdata.reg_FRACT)
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size) 
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)	
+%assign IndexOutput = 0
+%assign Local_MCHP_MCPWM_bf_DMA_ChannelOn = MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn)
+%foreach idx= SIZE(param_OUTPUT_Size,1)
+%if param_OUTPUT_Size[idx] != -1
+%assign x = 1 + (idx > 31)
+%if (idx <=6)  && (Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1) 
+%assign IndexOutput = IndexOutput + 1
+%else
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%if reg_ADCFLTRx[idx] == -1			
+%if reg_SIGNx[idx] == 1
+%assign ssign = "signed"
+%else
+%assign ssign = "unsigned"
+%endif
+%<u> = (%<ssign> int) ADCBUF%<idx>; /* Read ADC converted value */
+%else	
+%assign RefFilter = -1
+%foreach iFilt = SIZE(::ADC_HS_SAR_ADCFILTER_CH,1)
+%if (::ADC_HS_SAR_ADCFILTER_CH[iFilt] == idx)
+%assign RefFilter = iFilt 	
+%break
+%endif
+%endforeach
+%<u> = ADFL%<RefFilter>DAT;	/* read ADC Filtered value %<RefFilter>*/
+%endif
+%endif
+%endif
+%endforeach
+%endfunction
+%function Update(block, system) Output
+%endfunction

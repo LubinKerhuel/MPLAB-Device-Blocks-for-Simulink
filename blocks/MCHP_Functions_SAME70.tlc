@@ -1,0 +1,210 @@
+
+%function MCHP_SetOutputBit(pinRef,Value,COMMENT) void
+%assign L = STRINGOF([%<(pinRef / 32) + 65>])
+%assign N = %<pinRef % 32>	
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMV"
+%case "SAMS"
+%assign z = ""
+%assign LL = L
+%break
+%case "SAMRH"
+%assign z = "PIO_GROUP[%<CAST("Number",pinRef / 32)>]."
+%assign LL = ""
+%break
+%default
+%error(" Internal error with output bit: Chip %<::ChipIdL1> not supported")
+%endswitch
+%if Value == 1
+%assign retVal = "PIO%<LL>_REGS->%<z>PIO_SODR = %<MchpHex( 1U << N )>; /* set pin PIO %<L>%<N> = %<Value> ; %<COMMENT> */"		
+%elseif Value == 0		
+%assign retVal = "PIO%<LL>_REGS->%<z>PIO_CODR = %<MchpHex( 1U << N )>; /* clear pin PIO %<L>%<N> = %<Value> ; %<COMMENT> */"
+%else
+%assign retVal = ""
+%error Value %<Value> different from 0 or 1 within function MCHP_SetOutputBit
+%endif
+%return retVal
+%endfunction
+%function MCHP_ToggleOutputBit(pinRef,COMMENT) Output		
+%assign L = STRINGOF([%<(pinRef / 32) + 65>])
+%assign N = %<pinRef % 32>	
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMV"
+%case "SAMS"
+%assign z = ""
+%assign LL = L
+%break
+%case "SAMRH"
+%assign z = "PIO_GROUP[%<CAST("Number",pinRef / 32)>]."  	
+%assign LL = ""
+%break
+%default
+%error(" Internal error with output bit: Chip %<::ChipIdL1> not supported")
+%endswitch
+{ /* Toggle PIN %<L>%<N> %<COMMENT> */
+if (0 != (PIO%<LL>_REGS->%<z>PIO_PDSR & %< MchpHex( 1U << N )>)) /* test pin PIO  %<L>%<N>  */
+PIO%<LL>_REGS->%<z>PIO_CODR = %<MchpHex( 1U << N )>; 	/* clear  %<L>%<N> */
+else
+PIO%<LL>_REGS->%<z>PIO_SODR = %<MchpHex( 1U << N )>; 	/* set %<L>%<N> */
+}
+%endfunction
+%function MCHP_GoToSleepMode() Output
+/* To be completed - Power Save mode */
+%endfunction
+%function MCHP_StartTimer(RefTimer) Output
+/* To be completed -  (re) start Timer */	
+%endfunction
+%function MCHP_StopTimer(RefTimer) Output
+/* To be completed - 	/* Stop Timer */
+%endfunction
+%function DSB() Output
+__DSB(); /* Data Synchronisation Barrier */
+%endfunction
+%function ISB() Output
+__ISB(); /* Instruction Synchronisation Barrier */
+%endfunction	
+%function Mchp_NEAR_MEM() void
+%return ""
+%endfunction
+%function MchpDMA_MemoryAttribute(DMASize) void
+%assign MEMORY_DMA_ATTRIBUTE = ""
+%return MEMORY_DMA_ATTRIBUTE
+%endfunction
+%function MchpDMA_MemoryQualifier() void
+%assign MEMORY_DMA_QUALIFIER = ""
+%return MEMORY_DMA_QUALIFIER
+%endfunction
+%function MCHP_InterruptProlog() Output
+%<ISB()>
+%<DSB()>
+%endfunction
+%function MCHP_InterruptEpilog() Output
+%<DSB()>
+%endfunction
+%function Mchp_Interrupt_ARM(fpuSave,VectorName,blk)
+%assign INTERRUPT = "void %<VectorName>_Handler(void)"
+%if ISEMPTY(blk)
+%assign blk = -1
+%endif
+%assign Err = ""
+%if ISFIELD(::CompiledModel.MCHP,VectorName)
+%assign Err = ::CompiledModel.MCHP.%<VectorName>
+%else
+%createrecord INTERRUPT_toAdd { %<VectorName> blk }
+%mergerecord ::CompiledModel.MCHP INTERRUPT_toAdd		
+%endif
+%if ISEMPTY(Err) != 1	
+%assign Msg = "Interrupt Vector %<VectorName> is used more than once in this model."
+%if TYPE(blk) == "Scope"
+%<LibBlockReportError(blk,Msg)>			
+%elseif TYPE(Err) == "Scope"		
+%<LibBlockReportError(Err,Msg)>
+%else
+%<LibReportError(Msg)>
+%endif
+%endif
+%return INTERRUPT
+%endfunction
+%function MCHP_SFR_direct(SFR) void
+%error("SFR_direct should not be used with SAME70 chip")
+%endfunction
+%function MCHP_SFR(SFR,Value,Comment) void
+%error("SFR should not be used with SAME70 chip")
+/* Debug: SFR attempt to access %<SFR>, , %<Value> , %<Comment> */
+%endfunction
+%function MCHP_ConfigPins() void
+%openfile tmpFcnConfigPin
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMV"
+%case "SAMS"
+%assign PIO_ABCDSR_0 = MchpVector64(RTWGenSettings.PIO_ABCDSR_0)
+%assign PIO_ABCDSR_1 = MchpVector64(RTWGenSettings.PIO_ABCDSR_1)
+/* Peripheral Pin mapping */
+%foreach idx = SIZE(PIO_ABCDSR_0,1)
+%assign L = STRINGOF([%<idx> + 65]) 
+%if (PIO_ABCDSR_0[idx] != 0) 	
+PIO%<L>_REGS->PIO_ABCDSR[0] =  %<MchpHex(PIO_ABCDSR_0[idx])>;	/* Pin mapping for Port PIO%<L> */	
+%endif	
+%if (PIO_ABCDSR_1[idx] != 0)
+PIO%<L>_REGS->PIO_ABCDSR[1] =  %<MchpHex(PIO_ABCDSR_1[idx])>;	/* Pin mapping for Port PIO%<L> */	
+%endif
+%endforeach
+%assign PIO_PER = MchpVector64(RTWGenSettings.PIO_PER)	
+%assign PIO_PDR = MchpVector64(RTWGenSettings.PIO_PDR)	
+%assign PIO_OER = MchpVector64(RTWGenSettings.PIO_OER)	
+%assign PIO_ODR = MchpVector64(RTWGenSettings.PIO_ODR)	
+%assign PIO_PUDR = MchpVector64(RTWGenSettings.PIO_PUDR)	
+/* Configure Pins a Digital input or Output */		
+%foreach idx = SIZE(PIO_PER,1)
+%if PIO_PER[idx] > 0
+%assign L = STRINGOF([%<idx> + 65]) 
+PIO%<L>_REGS->PIO_PER =  %<MchpHex(PIO_PER[idx])>;  /*  Port%<L> selected pin are either digital Input or Output (driven by PIO) */
+%if PIO_OER[idx] > 0
+PIO%<L>_REGS->PIO_OER =  %<MchpHex(PIO_OER[idx])>;  /*  selected pin are digital Output */
+%endif
+%if PIO_ODR[idx] > 0
+PIO%<L>_REGS->PIO_ODR =  %<MchpHex(PIO_ODR[idx])>;  /*  selected pin are digital Input */
+%endif
+%if PIO_PUDR[idx] > 0
+PIO%<L>_REGS->PIO_PUDR =  %<MchpHex(PIO_PUDR[idx])>; /* Disalbe pull-up for selected pins */
+%endif
+%endif
+%if PIO_PDR[idx] > 0
+%assign L = STRINGOF([%<idx> + 65]) 
+PIO%<L>_REGS->PIO_PDR =  %<MchpHex(PIO_PDR[idx])>;  /*  Port%<L> selected pins are driven by Peripheral */								
+%endif
+%endforeach
+%break
+%case "SAMRH"
+%assign CFGRx_DIR_FUNC = MchpVector64(RTWGenSettings.CFGRx_DIR_FUNC)			
+%assign PIO_PER = MchpVector64(RTWGenSettings.PIO_PER)	
+%assign PIO_PDR = MchpVector64(RTWGenSettings.PIO_PDR)	
+%assign PIO_OER = MchpVector64(RTWGenSettings.PIO_OER)	
+%assign PIO_ODR = MchpVector64(RTWGenSettings.PIO_ODR)	
+%assign PIO_PUDR = MchpVector64(RTWGenSettings.PIO_PUDR)	
+%foreach idx = SIZE(CFGRx_DIR_FUNC,1)
+%assign idxL = idx / 32
+%assign idxN = idx % 32		
+%assign idxNpow = (1U << idxN) 
+%assign L = STRINGOF([%<idxL> + 65]) 
+%if PIO_PER[idxL] > 0 
+%assign PIO_OERi = CAST("Unsigned",PIO_OER[idxL])
+%if (%<CAST("Unsigned",PIO_PER[idxL])> & idxNpow ) 
+%if ( (PIO_OERi & idxNpow) != 0) 
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_MSKR = %<MchpHex(idxNpow)>;	/* Select pins */
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_CFGR = %<MchpHex( 1 << 8 )>;		/* PIO%<L>_%<idxN> is digital output */						
+%else
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_MSKR = %<MchpHex(idxNpow)>;	/* Select pins */
+%if (%<CAST("Unsigned",PIO_PUDR[idxL])> & idxNpow ) 
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_CFGR = 0;		/* PIO%<L>_%<idxN> is digital input */																
+%else
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_CFGR = PIO_CFGR_PUEN_ENABLED;		/* PIO%<L>_%<idxN> is digital input with Pull-up */																
+%endif
+%endif
+%endif
+%endif
+%endforeach
+%foreach idx = SIZE(CFGRx_DIR_FUNC,1)
+%assign idxL = idx / 32
+%assign idxN = idx % 32		
+%assign idxNpow = (1U << idxN) 
+%assign L = STRINGOF([%<idxL> + 65]) 
+%if PIO_PDR[idxL] > 0 
+%if (%<CAST("Unsigned",PIO_PDR[idxL])> & idxNpow ) 
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_MSKR = %<MchpHex(idxNpow)>;	
+PIO_REGS->PIO_GROUP[%<idxL>].PIO_CFGR = %<MchpHex( (0 << 8) + ( CFGRx_DIR_FUNC[idx] + 1) ) >; /* PIO%<L>_%<idxN> is driven by Peripheral */		
+%endif
+%endif
+%endforeach
+%break
+%default
+%error("No Pin mapping definition for chip family " + ::ChipIdL1 )
+%endswitch  	
+%closefile tmpFcnConfigPin
+%return tmpFcnConfigPin
+%endfunction
+%function MCHP_RemoveCauseOfInterrupt(InterruptPrefix,InterruptNumber,ChipIdN) Output
+%endfunction

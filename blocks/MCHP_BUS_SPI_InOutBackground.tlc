@@ -1,0 +1,122 @@
+
+%if ::MCHP_NumSPIBlocks[SPIRef] == 1	
+if (MCHP_SPI%<SPIRef>_State == 0) /* Free for next sequence ?*/  
+%else 
+if (MCHP_SPI%<SPIRef>%<SPI_Id>_Request == 0)	/* Last SPI sequence from this block is finished (not in the queue ?) */
+%endif
+{
+%foreach iSeq = nSeq
+%assign seqRepeat = SPISequence[iSeq*SeqL+1]
+%switch (SPISequence[iSeq*SeqL+5])
+%case 0
+%assign NB = 8
+%break
+%case 1
+%assign NB = 16		
+%break
+%case 2
+%assign NB = 32		
+%break
+%endswitch
+%switch SPISequence[iSeq*SeqL]
+%case 2 
+%if LibBlockOutputSignalConnected(yIdxTab[iSeq])
+%foreach repeat = seqRepeat
+%assign y = LibBlockOutputSignal(yIdxTab[iSeq], "", "", repeat)
+%<y> = SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat)>];
+%endforeach
+%endif
+%break
+%endswitch
+%endforeach
+%foreach iSeq = nSeq
+%assign seqRepeat = SPISequence[iSeq*SeqL+1]
+%switch (SPISequence[iSeq*SeqL+5])
+%case 0
+%assign NB = 8
+%break
+%case 1
+%assign NB = 16		
+%break
+%case 2
+%assign NB = 32		
+%break
+%endswitch
+%switch SPISequence[iSeq*SeqL]
+%case 3 
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign repeat2max = 1
+%else
+%assign repeat2max = SPISequence[iSeq*SeqL+4]
+%endif
+/* SPI sequence No : %<iSeq> */ 
+%if LibBlockOutputSignalConnected(yIdxTab[iSeq])
+%foreach repeat = seqRepeat
+%foreach repeat2 = repeat2max
+%assign y = LibBlockOutputSignal(yIdxTab[iSeq], "", "", repeat * repeat2max + repeat2 )
+%<y> = SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<CAST("Number",SPISequence[iSeq*SeqL+7] + repeat * repeat2max + repeat2)>];
+%endforeach
+%endforeach
+%endif
+%foreach repeat = seqRepeat
+%if SPISequence[iSeq*SeqL+2] == 1	
+%assign u = LibBlockInputSignal(uIdxTab[iSeq], "", "", repeat)
+SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<CAST("Number",SPISequence[iSeq*SeqL+6] + repeat)>]= %<u>;
+%endif
+%endforeach
+%break
+%endswitch
+%endforeach
+%foreach iSeq = nSeq
+%assign seqRepeat = SPISequence[iSeq*SeqL+1]
+%switch (SPISequence[iSeq*SeqL+5])
+%case 0
+%assign NB = 8
+%break
+%case 1
+%assign NB = 16		
+%break
+%case 2
+%assign NB = 32		
+%break
+%endswitch
+%switch SPISequence[iSeq*SeqL]
+%case 33 
+%assign seqRepeat = 1	
+%case 1 
+%if SPISequence[iSeq*SeqL+2] == 1	
+%foreach repeat = seqRepeat
+%assign u = LibBlockInputSignal(uIdxTab[iSeq], "", "", repeat)
+SPI%<SPIRef>%<SPI_Id>_Buff%<NB>[%<CAST("Number",SPISequence[iSeq*SeqL+6] + repeat)>]= %<u>;
+%endforeach
+%else 
+%endif
+%break
+%endswitch
+%endforeach
+%if ::MCHP_NumSPIBlocks[SPIRef] == 1	
+MCHP_SPI%<SPIRef>_State = %<StartSequenceState>;	
+%if ISEQUAL(SPIDMA,"SPI")
+%<EnableAndTrig_Interrupt(SPIRef,MASTER)>
+%else
+%<EnableAndTrig_DMA_Interrupt(intRef,MASTER)>
+%endif
+%else
+MCHP_SPI%<SPIRef>%<SPI_Id>_Request = 1;
+MCHP_SPI%<SPIRef>_Queue.buffer[MCHP_SPI%<SPIRef>_Queue.head] = 	%<StartSequenceState>;
+if (MCHP_SPI%<SPIRef>_Queue.head >= %<::MCHP_NumSPIBlocks[SPIRef]>)	/* There are %<::MCHP_NumSPIBlocks[SPIRef]> blocks SPI%<SPIRef>, max idx for queue is %<::MCHP_NumSPIBlocks[SPIRef]> */
+MCHP_SPI%<SPIRef>_Queue.head = 0;
+else
+MCHP_SPI%<SPIRef>_Queue.head ++;
+if (MCHP_SPI%<SPIRef>_State == 0)
+%if ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%<EnableAndTrig_Interrupt(SPIRef,MASTER)>
+%else	
+%if ISEQUAL(SPIDMA,"SPI")
+%<EnableAndTrig_Interrupt(SPIRef,MASTER)>
+%else
+%<EnableAndTrig_DMA_Interrupt(intRef,MASTER)>
+%endif	
+%endif
+%endif
+}

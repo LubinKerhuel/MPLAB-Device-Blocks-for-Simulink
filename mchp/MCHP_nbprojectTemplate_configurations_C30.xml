@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="65">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+                   %%HeaderFiles%%
+    </logicalFolder>
+    <logicalFolder name="LibraryFiles"
+                   displayName="Library Files"
+                   projectFiles="true">
+                   %%LibraryFiles%%
+    </logicalFolder>
+    <logicalFolder name="LinkerFiles"
+                   displayName="Linker Files"
+                   projectFiles="true">
+                   %%LinkerFiles%%
+    </logicalFolder>
+    <logicalFolder name="ObjectFiles"
+                   displayName="Object Files"
+                   projectFiles="true">
+                   %%ObjectFiles%%
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+                   %%SourceFiles%%
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Simulink Model"
+                   projectFiles="false">
+                   %%OthersFiles%%
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Simulink" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>%%Chip%%</targetDevice>
+        <targetHeader></targetHeader>
+        <platformTool>%%PlatformTool%%</platformTool>
+        <languageToolchain>%%CmplrSelected%%</languageToolchain>
+        <languageToolchainVersion>%%CmplrVersion%%</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <C30>
+        <property key="extra-include-directories" value="%%ExtraIncludeDirectory%%"/>
+        <property key="optimization-level" value="%%OPTIM_GCC%%"/>
+        <property key="preprocessor-macros" value="%%DEFINES%%"/>
+        <property key="code-model" value="%%CODE_MODEL%%"/>
+        <property key="const-model" value="%%CONST_MODEL%%"/>
+        <property key="scalar-model" value="%%SCALAR_MODEL%%"/>
+        <property key="data-model" value="%%DATA_MODEL%%"/>
+        <property key="enable-large-arrays" value="%%ENABLE_LARGEARRAY%%"/>
+        <property key="enable-unroll-loops" value="%%ENABLE_UNROLL_LOOP%%"/>
+        <property key="enable-procedural-abstraction" value="%%ENABLE_PROCEDURAL_ABSTRACTION%%"/>
+        <property key="oXC16gcc-large-aggregate" value="%%LARGE_AGGREGATE%%"/>
+        <property key="enable-omit-frame-pointer" value="false"/>
+        <property key="enable-short-double" value="%%ENABLE_SHORT_DOUBLE%%"/>
+        <property key="enable-symbols" value="true"/>
+%%APPEND_ME%%      </C30>
+      <C30-AS>
+      </C30-AS>
+      <C30-LD>
+        <property key="extra-lib-directories" value="%%ExtraLibDirectory%%"/>
+        <property key="heap-size" value="%%HEAP_SIZE%%"/>        
+%%APPEND_ME_LD%%      </C30-LD>
+      <C30Global>
+      </C30Global>
+      <%%PlatformTool%%>
+      </%%PlatformTool%%>
+    </conf>
+  </confs>
+</configurationDescriptor>

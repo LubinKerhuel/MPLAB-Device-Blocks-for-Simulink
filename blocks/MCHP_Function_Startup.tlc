@@ -1,0 +1,23 @@
+	%switch ::ChipIs
+%case "PIC32"
+%include "MCHP_Function_Startup_PIC32.tlc"	
+%break
+%case "dsPIC"
+%include "MCHP_Function_Startup_dsPIC.tlc"		
+%break
+%case "SAMx7"
+%include "MCHP_Function_Startup_SAME70.tlc"		
+%break
+%case "SAMx5"			
+%include "MCHP_Function_Startup_SAME5x.tlc"		
+%break				
+%case "SAMC2x"
+%case "PIC32C"
+%include "MCHP_Function_Startup_SAMC2x.tlc"		
+%break
+%case "SAMD2_DA1"			
+%include "MCHP_Function_Startup_SAMD2x.tlc"		
+%break
+%default
+%error("Chip not recognized in MCHP_Functions.tlc file")						
+%endswitch

@@ -1,0 +1,62 @@
+
+%function MCHP_UART_Tx_bare(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign nUSART = CAST("Number",block.RTWdata.nUSART)	
+%assign UARTString = CAST("Number",block.RTWdata.UARTString)	
+%assign UART_NAME = "SERCOM USART %<UARTRef>"
+%assign NSend_Input = CAST("Number",block.RTWdata.NSend_Input)
+%assign NSend_Output = CAST("Number",block.RTWdata.NSend_Output)
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+/* Tx bare implementation for %<UART_NAME> */
+%assign BlockInputLength = LibBlockInputSignalWidth(NSend_Input==1)		
+%if BlockInputLength == 1
+%assign UARTString = 0	
+%endif
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign AllOrNothing = CAST("Number",block.RTWdata.AllOrNothing)
+%if (NSend_Input == 1)
+%assign N_in = LibBlockInputSignal(0,"","",0)
+%assign idxInputChars = 1
+%else
+%assign N_in = BlockInputLength
+%assign idxInputChars = 0
+%endif
+%if UART_HALF_DUPLEX_MODE
+%assign errmsg = "%<UART_NAME> is configured for Half duplex mode. This mode is not compatible with the \"No interrupt\" implementation for Tx. Considere using the Circular buffer or remove half duplex mode."
+%<LibBlockReportError(block,errmsg)>
+%error(errmsg)				
+%endif
+%if NSend_Output
+%<LibBlockReportError(block,"%<UART_NAME> Tx block cannot output \"Number of byte sent\" with Tx implementation set to Simplest (see UART Configuration block)")>
+%error("%<UART_NAME> Tx block cannot output \"Number of byte sent\" with Tx implementation set to Simplest (see UART Configuration block")
+%endif
+%if AllOrNothing
+%<LibBlockReportError(block,"%<UART_NAME> Tx block does not support the option \"Send all or nothing on buffer overrun\" with Tx implementation set to Simplest (see UART Configuration block)")>
+%error("%<UART_NAME> Tx block does not support the option \"Send all or nothing on buffer overrun\" with Tx implementation set to Simplest (see UART Configuration block)")
+%endif				
+%if BlockInputLength > 1
+{
+int_T i1;
+%assign u0 = LibBlockInputSignalAddr( idxInputChars, "","", 0)		
+const uint8_T *u0 = %<u0> ;
+for (i1 = 0; i1 < %<N_in> ; i1++)
+{
+%assign u = "u0[i1]"		
+%if UARTString == 1
+if (%<u> == 0)
+break;
+%endif	
+while %<UTXNotEmpty(block)>;	/* Wait for empty Tx buffer */	
+%<UART_Tx_WriteRegister(block)> = %<u>;       /* Simplest UART Tx implementation: copy byte into the buffer */				
+}
+}				
+%else
+%assign u = LibBlockInputSignal( idxInputChars, "", "", 0)
+%if (NSend_Input == 1)				
+if (%<N_in> != 0)
+%endif
+%<UART_Tx_WriteRegister(block)> = %<u>;       /* Simplest UART Tx implementation: copy byte into the buffer wether it is full or not. */				
+%endif
+%endfunction

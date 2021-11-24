@@ -1,0 +1,150 @@
+
+%include "MCHP_Fct_FastMemCpy_dsPIC.tlc"
+%function MCHP_UART_Tx_DMA_pingPongBuffer(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%assign UARTString = CAST("Number",block.RTWdata.UARTString)	
+/* MCHP_UART_Tx DMA pingPong (dual buffer) for %<UART_NAME> */
+%assign NSend_Input = CAST("Number",block.RTWdata.NSend_Input)
+%assign NSend_Output = CAST("Number",block.RTWdata.NSend_Output)
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()
+%assign BlockInputLength = LibBlockInputSignalWidth(NSend_Input==1)		
+%if BlockInputLength == 1
+%assign UARTString = 0	
+%endif
+%assign UART_TX_DMACHANNEL = MchpVector(RTWGenSettings.UART_TX_DMACHANNEL)
+%assign TX_DMA_CHANNEL = UART_TX_DMACHANNEL[UARTRef-1]		
+%if ::isPIC32
+%assign DMA_DCH = "DCH"	
+%else
+%assign DMA_DCH = "DMA"	
+%endif
+%assign No_DMA_Transfert = Test_No_DMA_Transfert_F(DMA_DCH,TX_DMA_CHANNEL,UARTRef,block)
+%assign Active_DMA_Transfer = "(!%<No_DMA_Transfert>)"
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign AllOrNothing = CAST("Number",block.RTWdata.AllOrNothing)
+%if (NSend_Input == 1)
+%assign N_in = LibBlockInputSignal(0,"","",0)
+%assign idxInputChars = 1
+%else
+%assign N_in = BlockInputLength
+%assign idxInputChars = 0
+%endif
+%if UART_HALF_DUPLEX_MODE
+%assign errmsg = "%<UART_NAME> is configured for Half duplex mode. This mode is not compatible with DMA implementation for Tx. Consider using the Circular buffer or remove half duplex mode."
+%<LibBlockReportError(block,errmsg)>
+%error(errmsg)				
+%endif
+if (MCHP_%<UART_NAME>_Tx.overload == 0)
+{
+%if NSend_Output
+uint_T N_Out = 0;
+%endif	
+%if BlockInputLength > 1
+{		
+%assign u0 = LibBlockInputSignalAddr( idxInputChars, "","", 0)
+%assign u = "u0[i1]"
+int_T i1;
+const uint8_T *u0 = %<u0> ;
+register uint_T LocalTail = MCHP_%<UART_NAME>_Tx.tail;	/* Tail is a volatile variable. Use local variable to speed-up execution */	
+%if AllOrNothing
+if ( (%<N_in> <= (Tx_BUFF_SIZE_%<UART_NAME> - LocalTail )) || (%<No_DMA_Transfert> && (%<N_in> <= (2*Tx_BUFF_SIZE_%<UART_NAME> - LocalTail) ) ) )
+{
+%endif
+%if UARTString == 0
+for (i1 = 0; i1 < %<N_in> ; ) {
+%else
+for (i1 = 0; ( (i1 < %<N_in>) && (%<u> != 0) ) ; ) {
+%endif
+uint_T Tmp = LocalTail + %<N_in> - i1;	/* Pre-compute final pointer index (without taking into account buffer ping-pong roll-over) */
+%else
+%assign u = LibBlockInputSignal( idxInputChars, "", "", 0)
+int_T i1 = 0;
+register uint_T LocalTail = MCHP_%<UART_NAME>_Tx.tail;	/* Tail is a volatile variable. Use local variable to speed-up execution */	
+uint_T Tmp = LocalTail + %<N_in> ;		/* Pre-compute final pointer index (without taking into account buffer ping-pong roll-over) */
+%endif	
+if (Tmp >= Tx_BUFF_SIZE_%<UART_NAME>) /* Taking into account buffer ping-pong roll-over */
+Tmp = Tx_BUFF_SIZE_%<UART_NAME>;	/* Current buffer to be filled-in completely */
+%if (BlockInputLength >= ::FastMemCpyThreshold_DMA ) && (UARTString == 0)	
+{			
+uint_T length = Tmp - LocalTail;	/* Number of bytes to be copied */
+switch (MCHP_%<UART_NAME>_Tx.BufferAB) {
+case 0:
+%<FastMemCpy("& MCHP_%<UART_NAME>_Tx_bufferA[LocalTail]" , "&(%<u>)" , "length")>
+break;
+case 1:	
+%<FastMemCpy("& MCHP_%<UART_NAME>_Tx_bufferB[LocalTail]" , "&(%<u>)" , "length")>
+break;
+}	
+i1 += length;
+LocalTail += length;
+}					
+%else
+switch (MCHP_%<UART_NAME>_Tx.BufferAB) {
+case 0:		        	
+%if UARTString == 0
+while (LocalTail < Tmp) {		
+%else
+while ((LocalTail < Tmp) && (%<u> != 0)) {
+%endif
+MCHP_%<UART_NAME>_Tx_bufferA[LocalTail++] = %<u>;		
+i1++;
+}
+break;
+case 1:	
+%if UARTString == 0
+while (LocalTail < Tmp) {		
+%else
+while ((LocalTail < Tmp) && (%<u> != 0)) {
+%endif		
+MCHP_%<UART_NAME>_Tx_bufferB[LocalTail++] = %<u>;		
+i1++;			
+}
+break;
+}	
+%endif
+%if NSend_Output
+N_Out  = i1;
+%endif	
+if (LocalTail >= (Tx_BUFF_SIZE_%<UART_NAME> ) )	/* Buffer Full, require switching */
+{
+if %<Active_DMA_Transfer>   /* If there is an ongoing DMA Transfer */
+{								
+MCHP_%<UART_NAME>_Tx.overload = 1;
+%<MCHP_SFR("DMA%<TX_DMA_CHANNEL>IE"  , 1 , " Buffer full, other buffer beeing send through DMA : Enable Interrupt to start DMA Transfer of buffer full as soon as current buffer is sent.")>
+%if BlockInputLength > 1		
+i1 = %<N_in>; /* break for loop. Data will be lost. */
+%endif
+}						
+else
+{
+%<UART_Tx_DMA_Send_SwitchBuffer(UART_NAME,TX_DMA_CHANNEL,ChipIdN,ChipIdL1)>	
+LocalTail = 0;		
+}
+}
+%if BlockInputLength > 1
+} /* end for; loop only if values remains to be filled-in another buffer */
+MCHP_%<UART_NAME>_Tx.tail = LocalTail; /* Push back volatile variable */						
+}
+%if AllOrNothing						
+}
+%endif
+%else
+MCHP_%<UART_NAME>_Tx.tail = LocalTail; /* Push back volatile variable */	
+%endif
+%if NSend_Output
+%assign Port_NOut = LibBlockOutputSignal(0, "","", 0)
+%<Port_NOut> = N_Out;		
+%endif						
+} /* end of if (MCHP_%<UART_NAME>_Tx.overload == 0) */
+%if NSend_Output
+else 				
+{
+%assign Port_NOut = LibBlockOutputSignal(0, "","", 0)
+%<Port_NOut> = 0;		
+}
+%endif						
+%endfunction

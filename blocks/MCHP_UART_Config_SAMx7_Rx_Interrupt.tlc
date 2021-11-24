@@ -1,0 +1,88 @@
+
+%include "MCHP_UART_Rx_SAMx7_FunUtils.tlc"
+%function MCHP_UART_Config_Rx_Interrupt(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign nUSART = CAST("Number",block.RTWdata.nUSART)
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMS"
+%case "SAMV"
+%if UARTRef > nUSART
+%assign Per_Type = "UART"
+%assign REG_NAME = "UART"
+%assign REG_NAME2 = ""
+%assign INTERRUPT_STATUS_REG = "SR"
+%assign UART_Index = (UARTRef-1) - nUSART
+%else
+%assign Per_Type = "USART"
+%assign REG_NAME = "US"
+%assign REG_NAME2 = "USART_"
+%assign INTERRUPT_STATUS_REG = "CSR"
+%assign UART_Index = UARTRef-1
+%endif
+%assign UART_NAME = "%<Per_Type>%<UART_Index>"
+%break
+%case "SAMRH"
+%assign Per_Type = "USART"
+%assign REG_NAME = "FLEX_US"
+%assign REG_NAME2 = ""
+%assign INTERRUPT_STATUS_REG = "CSR"
+%assign UART_Index = UARTRef-1
+%assign UART_NAME = "FLEXCOM%<UART_Index>"
+%break
+%default
+%error("Internal error with UART")
+%endswitch
+%assign TX_INT_PRIORITY = 3
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign RX_INT_PRIORITY = CAST("Number",block.RTWdata.RX_INT_PRIORITY)
+%assign RX_BufferSize = CAST("Number",block.RTWdata.RX_CIRCULAR_SIZE)
+%openfile buffer
+/* Declare %<UART_NAME> Rx Circular Buffer Structure */
+#define Rx_BUFF_SIZE_%<UART_NAME> (%<RX_BufferSize>)
+typedef struct MCHP_%<UART_NAME>_RxStr{
+volatile uint8_T buffer[Rx_BUFF_SIZE_%<UART_NAME>];			/* Size Rx_BUFF_SIZE_%<UART_NAME> is %<RX_BufferSize> */
+volatile uint_T  tail;					/* tail is the index for the next value to be written into the Circular buffer */
+volatile uint_T  head;					/* head is the index for the next value to be read from the Circular buffer */ 
+}  MCHP_%<UART_NAME>_RxStr;			 			 		 								
+%closefile buffer
+%<LibCacheTypedefs(buffer)>	
+/* Configure %<UART_NAME> Rx Interruption */    		
+NVIC_SetPriority(XDMAC_IRQn, %<TX_INT_PRIORITY>);
+NVIC_ClearPendingIRQ(XDMAC_IRQn); /* Clear Interrupt flag */
+{unsigned int MCHP_dummy __attribute__((unused)) = %<UART_NAME>_REGS->%<REG_NAME>_%<INTERRUPT_STATUS_REG>;}     /* Clear interrupt flags */
+%<UART_NAME>_REGS->%<REG_NAME>_IER = %<REG_NAME>_IER_%<REG_NAME2>RXRDY_Msk;       /* RXRDY Interrupt Enable */
+%openfile buffer
+extern MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%openfile ::rx_prologue	
+MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx = { .head = 0, .tail = 0}; /* %<UART_NAME> Rx FIFO */
+%closefile rx_prologue
+%openfile ::rx_epilogue
+/* Handle Rx interrupt (RXREADY) */
+if (%<UART_NAME>_REGS->%<REG_NAME>_IMR & %<REG_NAME>_IMR_%<REG_NAME2>RXRDY_Msk)
+{
+uint_T Tmp;
+Tmp = ~(MCHP_%<UART_NAME>_Rx.tail - MCHP_%<UART_NAME>_Rx.head);		/* head - tail - 1 */ 
+Tmp &= (Rx_BUFF_SIZE_%<UART_NAME>-1);	/* Tmp =  (head - tail - 1) modulo buffersize Rx_BUFF_SIZE_%<UART_NAME>) ; tmp <~ Rx_BUFF_SIZE_%<UART_NAME> - (head - tail) - 1*/
+while %<URXNotEmpty(block)>
+{
+if (Tmp--) {	
+MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.tail] = (uint8_T) %<UART_Rx_ReadRegister(block)>;
+MCHP_%<UART_NAME>_Rx.tail = (MCHP_%<UART_NAME>_Rx.tail+1) & (Rx_BUFF_SIZE_%<UART_NAME>-1);
+} else {
+uint8_T a;
+do a = %<UART_Rx_ReadRegister(block)>;
+while %<URXNotEmpty(block)>;
+break;
+}
+}
+%<UART_Rx_TestAndClearErrors(block)>
+}
+%closefile ::rx_epilogue
+%endfunction

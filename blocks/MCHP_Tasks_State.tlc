@@ -1,0 +1,9 @@
+%implements  MCHP_Tasks_State "C"
+%include "MCHP_Functions.tlc"
+%function BlockInstanceSetup(block, system) void
+%assign ::MCHP_TaskPinProfile = MchpVector(block.RTWdata.TaskPinProfile)
+%endfunction
+%function BlockTypeSetup(block, system) void
+%endfunction
+%function Outputs(block, system) Output
+%endfunction

@@ -1,0 +1,636 @@
+%implements  MCHP_ADC_HighSpeed_SAR  "C"
+%include "MCHP_Functions.tlc"		
+%include "MCHP_Scheduler.tlc"
+%if EXISTS(::MCHP_ADC_PIC32EF_on) == 0
+%assign ::MCHP_ADC_PIC32EF_on = [-1, -1, -1, -1, -1, -1, -1, -1]		
+%endif
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%if EXISTS(::ADC_PIC32EF_nBlocks)
+%assign ::ADC_PIC32EF_nBlocks = ::ADC_PIC32EF_nBlocks + 1
+%else
+%assign ::ADC_PIC32EF_nBlocks = 1
+%assign ::ADC_PIC32EF_ADCFILTER_idx = 1
+%assign ::ADC_PIC32EF_ADCFILTER_CH = [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+%assign ::ADC_PIC32EF_ADC_TRIG_TIMESTEP_GLOBAL = 0
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime = 0
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrig = -1
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigType = -1		
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime = 0
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrig = -1
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrigType = -1		
+%assign ::ADC_PIC32EF_USE_EOS_TRIG = 0		
+%assign ::ADC_PIC32EF_GLSWTRG = -1
+%assign ::ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN = 0
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrig = -1	
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrigFlag = 0	
+%assign ::MCHP_MCPWM_bf_DMABL = -1
+%assign ::MCHP_MCPWM_bf_DMA_ChannelOn = [ -1,-1,-1,-1,-1,-1,-1 ]
+%assign ::ADC_PIC32EF_VREFSEL = -1
+%assign ::ADC_PIC32EF_FRACT = -1
+%endif
+%assign ::MCHP_MCPWM_bf_DMABL = MchpLocal2Global(block,::MCHP_MCPWM_bf_DMABL ,  CAST("Number",block.RTWdata.MCHP_MCPWM_bf_DMABL), "DMABL", "")
+%assign ::MCHP_MCPWM_bf_DMA_ChannelOn = MchpLocal2Global(block,::MCHP_MCPWM_bf_DMA_ChannelOn ,  MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn), "MCHP_MCPWM_bf_DMA_ChannelOn", "DMA Channel")
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_SHxALT = MchpVector(block.RTWdata.reg_SHxALT)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_DMAx = MchpVector(block.RTWdata.reg_DMAx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_WKUPCLKCNT = CAST("Number",block.RTWdata.reg_WKUPCLKCNT)
+%assign reg_ADCSEL = CAST("Number",block.RTWdata.reg_ADCSEL)
+%assign reg_CONCLKDIV = CAST("Number",block.RTWdata.reg_CONCLKDIV)
+%assign reg_VREFSEL = CAST("Number",block.RTWdata.reg_VREFSEL)
+%assign reg_FRACT = CAST("Number",block.RTWdata.reg_FRACT)
+%assign ::ADC_PIC32EF_VREFSEL = MchpLocal2Global(block,::ADC_PIC32EF_VREFSEL ,  reg_VREFSEL ,"reg_VREFSEL","Vref+ and Vref-")
+%assign ::ADC_PIC32EF_FRACT = MchpLocal2Global(block,::ADC_PIC32EF_FRACT ,  reg_FRACT , "reg_FRACT","Conversion format (Fractional or Integer)")
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)
+%assign param_FSPBCLKEN = CAST("Number",block.RTWdata.param_FSPBCLKEN)
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size)
+%assign reg_ADCDIVx = CAST("Number",block.RTWdata.reg_ADCDIVx)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign param_endConversionTime = MchpVector(block.RTWdata.param_endConversionTime)
+%switch  param_TrigSync
+%case "Continuous"
+%assign ::ADC_PIC32EF_GLSWTRG = 1
+%foreach idx = SIZE(reg_SAMCx,1)
+%if (idx == 7) && (reg_SAMCx[idx] != -1)					
+%assign ::ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN = 1	
+%endif
+%endforeach
+%break
+%case "UserTrig_FastADC"
+%break
+%case "UserTrig_FastADC_SyncTimeStep"
+%case "Timer_FastADC"
+%assign ::ADC_PIC32EF_ADC_TRIG_TIMESTEP_GLOBAL = 1
+%foreach idx= SIZE(reg_SHxALT,1)
+%if reg_SHxALT[idx] != -1
+%if ::ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime <= param_endConversionTime[idx]		
+%if ::ADC_PIC32EF_HighestCh_06_ForTrigType  != 4		
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime = param_endConversionTime[idx]		
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrig = idx
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigType = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigType = 1	
+%endif
+%endif
+%if ::MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1	
+%assign ::ADC_PIC32EF_HighestCh_06_ForTrigType = 4	
+%endif
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(param_OUTPUT_Size,1)
+%if param_OUTPUT_Size[idx] != -1
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime = ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime + param_endConversionTime[idx]
+%if idx > ::ADC_PIC32EF_HighestCh__7_ForTrig					
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrig = idx
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrigType = 0	
+%if reg_ADCFLTRx[idx] > 0
+%assign ::ADC_PIC32EF_HighestCh__7_ForTrigType = 1	
+%endif					
+%endif					
+%endif
+%endforeach
+%break
+%endswitch
+%foreach idx= SIZE(reg_TRGSRCx,1)
+%if reg_TRGSRCx[idx] != -1
+%if idx == 32
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrigFlag = 1	
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrig_Source = reg_TRGSRCx[idx]
+%endif
+%endif
+%endforeach
+%<HARMONY_RegisterPeripheral("ADCHS",0,block)>
+%endfunction
+%function InitializeConditions (block, system) Output
+%endfunction
+%function Start(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_SHxALT = MchpVector(block.RTWdata.reg_SHxALT)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_DMAx = MchpVector(block.RTWdata.reg_DMAx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_WKUPCLKCNT = CAST("Number",block.RTWdata.reg_WKUPCLKCNT)
+%assign reg_ADCSEL = CAST("Number",block.RTWdata.reg_ADCSEL)
+%assign reg_CONCLKDIV = CAST("Number",block.RTWdata.reg_CONCLKDIV)
+%assign reg_VREFSEL = CAST("Number",block.RTWdata.reg_VREFSEL)
+%assign reg_FRACT = MchpVector(block.RTWdata.reg_FRACT)
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)
+%assign param_FSPBCLKEN = CAST("Number",block.RTWdata.param_FSPBCLKEN)
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size)
+%assign reg_ADCDIVx = CAST("Number",block.RTWdata.reg_ADCDIVx)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign param_endConversionTime = MchpVector(block.RTWdata.param_endConversionTime)
+%assign Local_MCHP_MCPWM_bf_DMA_ChannelOn = MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn)
+%assign ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN_Local = 0	
+%switch  param_TrigSync
+%case "Continuous"		
+%foreach idx = SIZE(reg_SAMCx,1)
+%if (idx == 7) && (reg_SAMCx[idx] != -1)					
+%assign ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN_Local = 1	
+%endif
+%endforeach
+%case "UserTrig_FastADC"
+%assign ADC_PIC32EF_ADC_TRIG_TIMESTEP = 0	
+%break
+%case "UserTrig_FastADC_SyncTimeStep"
+%case "Timer_FastADC"
+%assign ADC_PIC32EF_ADC_TRIG_TIMESTEP = 1	
+%endswitch
+%if (::ADC_PIC32EF_HighestCh_06_ForTrigType != 4)
+%if (::ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime != 0) && (::ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime != 0)
+%if (::ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime > ::ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime)
+%assign ::ADC_PIC32EF_USE_EOS_TRIG = 1		
+%elseif (::ADC_PIC32EF_CLASS3_SequentialTrigFlag == 0) && (::ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN == 0)	
+%assign ::ADC_PIC32EF_USE_EOS_TRIG = 1
+%elseif (::ADC_PIC32EF_CLASS3_SequentialTrigFlag == 1) && ADC_PIC32EF_ADC_TRIG_TIMESTEP && (::ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN == 0)  
+%assign tmp = 1
+%foreach idx= SIZE(reg_TRGSRCx,1)
+%if reg_TRGSRCx[idx] != -1
+%if ::ADC_PIC32EF_CLASS3_SequentialTrig_Source != reg_TRGSRCx[idx]
+%assign tmp = 0
+%endif				
+%endif
+%endforeach
+%if (tmp == 0) && (::ADC_PIC32EF_USE_EOS_TRIG)
+%error("ADC block(s) can trig the time step with only one trig. If you set different trig for the ADC, ensure only one kind of ADC trig will trig the time step. In any Class 3 ADC input is used, only trig for such input can be used to trig the time step.")
+%else			
+%assign ::ADC_PIC32EF_USE_EOS_TRIG = tmp
+%endif
+%endif
+%endif
+%endif
+%if EXISTS(::ADC_PIC32EF_iBlocks)
+%assign ::ADC_PIC32EF_iBlocks = ::ADC_PIC32EF_iBlocks + 1
+%else
+%assign ::ADC_PIC32EF_iBlocks = 1
+%endif
+%if ::ADC_PIC32EF_iBlocks == 1	
+/* Reset ADC */
+ADCCON1 = 0;		
+/* ADC common settings */
+%if reg_FRACT
+ADCCON1bits.FRACT = 1;
+%endif
+ADCANCONbits.WKUPCLKCNT = %<reg_WKUPCLKCNT>;		/* ADC: Initialize warm up time register */
+ADCCON3bits.ADCSEL = %<reg_ADCSEL>; 		/* Select input clock source */
+ADCCON1bits.FSSCLKEN = 1; 		/* Must be set to ensure correct funcion see DS60001344A-page 22-77 */
+ADCCON1bits.FSPBCLKEN = %<param_FSPBCLKEN>; 		/* Must be set except if ADC clock is faster than Peripheral clock to ensure correct funcion see DS60001344A-page 22-77 */
+ADCCON3bits.CONCLKDIV = %<reg_CONCLKDIV>;  	/* Control clock frequency is fraction of input clock */
+ADCCON3bits.VREFSEL = %<reg_VREFSEL>;  		/* Select AVdd and AVss as reference source */
+/* ADC settings by blocks */
+%endif
+%foreach idx= SIZE(reg_SHxALT,1)	
+%if reg_SHxALT[idx] != -1
+ADCTRGMODEbits.SH%<idx>ALT = %<reg_SHxALT[idx]>; /* ADC Input pin */
+%assign ::MCHP_ADC_PIC32EF_on[idx] = 1
+%endif
+%endforeach
+%foreach idx = SIZE(reg_SAMCx,1)
+%if (idx == 7) && (reg_SAMCx[idx] != -1)
+%assign ::MCHP_ADC_PIC32EF_on[idx] = 1	
+%endif
+%endforeach
+%foreach idx= SIZE(reg_STRGENx,1)
+%if reg_STRGENx[idx] != -1
+ADCTRGMODEbits.STRGEN%<idx> = %<reg_STRGENx[idx]>; /* Presynchronized Trigger  */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SSAMPENx,1)
+%if reg_SSAMPENx[idx] != -1
+ADCTRGMODEbits.SSAMPEN%<idx> = %<reg_SSAMPENx[idx]>; /* Synchronous Sampling */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SIGNx,1)	
+%if reg_SIGNx[idx] != -1
+ADCIMCON%<(idx \>\> 4)+1>bits.SIGN%<idx> = %<reg_SIGNx[idx]>;	/* Signed / Unsigned data format */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_DIFFx,1)	
+%if reg_DIFFx[idx] != -1
+ADCIMCON%<(idx \>\> 4)+1>bits.DIFF%<idx> = %<reg_DIFFx[idx]>;	/* Single ended / Differential mode */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_TRGSRCx,1)
+%if reg_TRGSRCx[idx] != -1
+%if idx == 32
+%if ::ADC_PIC32EF_CLASS3_SequentialTrig == -1  				
+ADCCON1bits.STRGSRC = %<reg_TRGSRCx[idx]>;	/* Scan ADC Trigger source */ 	
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrig = reg_TRGSRCx[idx]	
+%elseif (::ADC_PIC32EF_CLASS3_SequentialTrig == reg_TRGSRCx[idx])
+%else
+%error("Class 3 analog inputs (channels above AN31) can have only one type of trig.")
+%endif
+%elseif idx < 32
+%if (ADC_PIC32EF_ADC_TRIG_TIMESTEP && (::ADC_PIC32EF_USE_EOS_TRIG)) || (ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN_Local == 1)
+%if ::ADC_PIC32EF_CLASS3_SequentialTrig == -1  				
+ADCCON1bits.STRGSRC = %<reg_TRGSRCx[idx]>;	/* Scan ADC Trigger source */ 	
+%assign ::ADC_PIC32EF_CLASS3_SequentialTrig = reg_TRGSRCx[idx]	
+%elseif (::ADC_PIC32EF_CLASS3_SequentialTrig == reg_TRGSRCx[idx])
+%else
+%error("Only one trig source should be set for all ADC block that will trig the time step at end of all the conversions.")
+%endif				
+ADCTRG%<(idx \>\> 2) + 1>bits.TRGSRC%<idx> = 3;	/* Scan Trigger */				
+%else 
+ADCTRG%<(idx \>\> 2) + 1>bits.TRGSRC%<idx> = %<reg_TRGSRCx[idx]>;	/* Trigger source */
+%endif
+%else
+%error("Class 3 analog input cannot have individual trigger. Internal error.")
+%endif
+%endif
+%endforeach
+%assign ADCCSS2 = 0
+%assign ADCCSS1 = 0
+%foreach idx = SIZE(param_OUTPUT_Size,1)
+%if param_OUTPUT_Size[idx] != -1
+%if (idx < 32)
+%if (ADC_PIC32EF_ADC_TRIG_TIMESTEP && (::ADC_PIC32EF_USE_EOS_TRIG)) || (::ADC_PIC32EF_GLSWTRG_REQUIRE_SCAN == 1)
+;/* ADCCSS1bits.CSS%<idx> = 1; 	Scan Trig for Channel %<idx> enabled */
+%assign ADCCSS1 = ADCCSS1 + %< 1U << idx >			
+%endif
+%else
+;/* ADCCSS2bits.CSS%<idx> = 1; 	Scan Trig for Channel %<idx> enabled */
+%assign ADCCSS2 = ADCCSS2 + %< 1U << idx >
+%endif
+%endif
+%endforeach
+%if ADCCSS1 != 0	
+ADCCSS1 |= %<MchpHex(ADCCSS1)>;  /* Set Scan Trigger */ 
+%endif
+%if ADCCSS2 != 0
+ADCCSS2 |= %<MchpHex(ADCCSS2)>;  /* Set Scan Trigger for Class 3 ADC channels */ 
+%endif
+%foreach idx= SIZE(reg_LVLx,1)	
+%if reg_LVLx[idx] != -1
+%if idx == 32
+ADCCON1bits.STRGLVL = %<reg_LVLx[idx]>;	/* Edge Trigger for class 3 analog inputs */
+%elseif idx < 32
+ADCTRGSNSbits.LVL%<idx> = %<reg_LVLx[idx]>;	/* Edge Trigger for individual class 1 and 2 analog inputs */
+%else
+%error("Class 3 analog input cannot have individual trigger edge. Internal error.")
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SHxALT,1)
+%if reg_SHxALT[idx] != -1
+ADC%<idx>TIMEbits.ADCDIV = %<reg_ADCDIVx>;	/* ADC Clock Frequency */
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SAMCx,1)
+%if reg_SAMCx[idx] != -1
+%if idx == 7	
+ADCCON2bits.ADCDIV = %<reg_ADCDIVx>;	/* ADC Clock Frequency for ADC7 (Class 2 & 3 analog inputs)*/	
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SAMCx,1)
+%if reg_SAMCx[idx] != -1
+%if idx == 7	
+ADCCON2bits.SAMC = %<reg_SAMCx[idx]>;	/* ADC Sample Time for ADC7 (Class 2 & 3 analog inputs)*/	
+%else
+ADC%<idx>TIMEbits.SAMC = %<reg_SAMCx[idx]>;	/* ADC Sample Time */
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_SELRESx,1)
+%if reg_SELRESx[idx] != -1
+%if idx == 7	
+ADCCON1bits.SELRES = %<reg_SELRESx[idx]>;	/* ADC Resolution for ADC7 (Class 2 & 3 analog inputs)*/
+%else
+ADC%<idx>TIMEbits.SELRES = %<reg_SELRESx[idx]>;	/* ADC Resolution */
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(reg_ADCFLTRx,1)	
+%if reg_ADCFLTRx[idx] != -1
+%if (::ADC_PIC32EF_ADCFILTER_idx < 7)
+ADCFLTR%<::ADC_PIC32EF_ADCFILTER_idx> = %<MchpHex(reg_ADCFLTRx[idx])>;	/* Use ADC Oversampling/Filter %<::ADC_PIC32EF_ADCFILTER_idx> for ADC Channel %<idx>  */ 
+%assign ::ADC_PIC32EF_ADCFILTER_CH[::ADC_PIC32EF_ADCFILTER_idx-1] = idx
+%assign ::ADC_PIC32EF_ADCFILTER_idx = ::ADC_PIC32EF_ADCFILTER_idx + 1
+%else
+%error("6 ADC Oversampling/Filters are already used.")
+%endif
+%endif
+%endforeach
+%foreach idx= SIZE(Local_MCHP_MCPWM_bf_DMA_ChannelOn,1)
+%if Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1
+%switch ChipIdL1
+%case "MK"
+ADC%<idx>TIMEbits.BCHEN = 1;	/* Enable DMA for ADC channel %<idx> */ 
+%break
+%default 
+ADC%<idx>TIMEbits.DMAEN = 1;	/* Enable DMA for ADC channel %<idx> */
+%break
+%endswitch
+%endif
+%endforeach
+%switch ChipIdL1
+%case "MK"
+%assign ADCD = "AD1D"
+%assign ADCDMASTAT = "ADCDSTAT"
+%break
+%default 
+%assign ADCD = "ADCD"
+%assign ADCDMASTAT = "ADCDMASTAT"
+%endswitch
+%if (::ADC_PIC32EF_iBlocks == ::ADC_PIC32EF_nBlocks)	
+/* ADC common settings */
+%if (::MCHP_MCPWM_bf_DMABL != -1)	
+%assign MaxDMAChannel = 0
+%foreach iADBuff = 7
+%if (::MCHP_MCPWM_bf_DMA_ChannelOn[iADBuff] != -1)
+%assign MaxDMAChannel = iADBuff		
+%endif
+%endforeach
+%assign DMABufferWordLength =  %< 2 * (MaxDMAChannel+1) * (1U << (::MCHP_MCPWM_bf_DMABL) ) >
+%openfile dspicfun = "MCHP_ADC_HighSpeed_SAR_DMA.c"	
+/* Declare DMA buffer for ADC */
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+uint16_T MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%<DMABufferWordLength>];	/* Set DMA buffer A and B with %<DMABufferWordLength/2> elements (x2) */
+%closefile dspicfun
+%openfile buffer
+/* Declare ADC DMA buffer */
+extern uint16_T MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%<DMABufferWordLength>];	/* Set DMA buffer A and B with %<DMABufferWordLength/2> elements (x2) */
+%closefile buffer
+%<LibCacheExtern(buffer)>	
+ADCCON1bits.DMABL = %<::MCHP_MCPWM_bf_DMABL> ; /* Set %<(1U << (::MCHP_MCPWM_bf_DMABL) )> elements for each DMA based ADC channel. With max DMA-ADC Channel = %<MaxDMAChannel>, DMA buffer size set to 2 * (%<MaxDMAChannel>+1) *  %<(1U << (::MCHP_MCPWM_bf_DMABL) ) > */
+ADCDMAB = (unsigned int) &MCHP_ADC_HighSpeed_SAR_DMA_Buffer & 0x1FFFFFFF;  /*  Physical address for ADC DMA Buffer */
+%<ADCDMASTAT>bits.DMAEN = 1;
+%endif
+%if ::ADC_PIC32EF_ADC_TRIG_TIMESTEP_GLOBAL == 1
+%if (ADC_PIC32EF_HighestCh_06_ForTrigEndOfConversionTime > ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime) && (ADC_PIC32EF_HighestCh__7_ForTrigEndOfConversionTime != 0) ...
+|| 	(::ADC_PIC32EF_HighestCh_06_ForTrigType == 4)
+%assign ADC_PIC32EF_HighestChForTrig = ::ADC_PIC32EF_HighestCh_06_ForTrig
+%assign ADC_PIC32EF_HighestChForTrigType = ::ADC_PIC32EF_HighestCh_06_ForTrigType
+%else
+%assign ADC_PIC32EF_HighestChForTrig = ::ADC_PIC32EF_HighestCh__7_ForTrig
+%assign ADC_PIC32EF_HighestChForTrigType = ::ADC_PIC32EF_HighestCh__7_ForTrigType		
+%endif
+%if (::ADC_PIC32EF_USE_EOS_TRIG == 1) && (ADC_PIC32EF_HighestChForTrigType == 0)	
+ADCCON2bits.EOSIEN = 1;	/* Enable End of Scan Interrupt */
+%assign IntPrefix = "AD1EOS"
+%assign IntPrefix0 = IntPrefix
+%assign IntIndex = ""
+%assign InterruptVector = "ADC_EOS_VECTOR"			
+%else
+%switch ADC_PIC32EF_HighestChForTrigType
+%case 0 
+%assign IntPrefix = ADCD
+%assign IntIndex = ADC_PIC32EF_HighestChForTrig
+%assign InterruptVector = "ADC_DATA%<IntIndex>_VECTOR"
+ADCGIRQEN%<(ADC_PIC32EF_HighestChForTrig / 32) + 1>bits.AGIEN%<ADC_PIC32EF_HighestChForTrig> = 1;	 /* Required to enable ADC Data interrupt */
+%switch ChipIdL1
+%case "MK"	
+%if IntIndex < 10
+%assign IntPrefix0 = IntPrefix 
+%else
+%assign IntPrefix0 = IntPrefix
+%endif	
+%break
+%default 
+%assign IntPrefix0 = IntPrefix
+%endswitch
+%break
+%case  1 
+%assign RefFilter = -1
+%foreach iFilt = SIZE(::ADC_PIC32EF_ADCFILTER_CH,1)
+%if (::ADC_PIC32EF_ADCFILTER_CH[iFilt] == ADC_PIC32EF_HighestChForTrig)
+%assign RefFilter = iFilt +1	
+%break
+%endif
+%endforeach
+%assign IntPrefix = ADCD + "F"
+%assign IntPrefix0 = IntPrefix
+%assign IntIndex = RefFilter		
+%assign InterruptVector = "ADC_DF%<IntIndex>_VECTOR"
+ADCFLTR%<IntIndex>bits.AFGIEN = 1;	/* Enable Interrupt for Digital Filter %<IntIndex>*/
+%break
+%case 4	
+%assign IntPrefix = "AD1FCBT"		
+%assign IntPrefix0 = IntPrefix
+%assign IntIndex = ""
+%assign InterruptVector = "ADC_DMA_VECTOR"
+%<ADCDMASTAT>bits.RAFIEN%<::ADC_PIC32EF_HighestCh_06_ForTrig> = 1; /* Enable ADC DMA interrupt after %<(1U << (::MCHP_MCPWM_bf_DMABL) )> DMA transfert of ADC channel %<::ADC_PIC32EF_HighestCh_06_ForTrig> */
+%<ADCDMASTAT>bits.RBFIEN%<::ADC_PIC32EF_HighestCh_06_ForTrig> = 1; /* Thus DMA full is full. Enable for both channels A and B */
+%break
+%endswitch		 	
+%endif
+%<MCHP_SFR( "%<IntPrefix0>%<IntIndex>IP" , 2 , "Set Interrupt priority for tasking" )>
+%<MCHP_SFR( "%<IntPrefix>%<IntIndex>IF" , 0 , "Reset pending interrupt" )>
+%<MCHP_SFR( "%<IntPrefix>%<IntIndex>IE" , 1 , "Enable Interrupt which trig the base rate time step" )>
+%openfile dspicfun = "MCHP_ADC_Interrupt.c"
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%switch ::MCHP_MCU_NbrShadowRegisterSet
+%case 2				
+%<Mchp_Interrupt32(2,0,1,InterruptVector,block)>  
+%break
+%case 8
+%default
+%<Mchp_Interrupt32(2,0,1,InterruptVector,block)>  
+%break
+%endswitch
+{
+%<MCHP_ProfileMCU("enter")>
+%switch InterruptVector
+%case "ADC_DMA_VECTOR"
+{volatile register tmp = %<ADCDMASTAT>;}		/* Remove interrupt cause */
+%break
+%endswitch
+%with CompiledModel	
+%<MCHP_Scheduler(IntPrefix,IntIndex,ChipIdN)>
+%endwith
+%<MCHP_ProfileMCU("exitUpdate")>
+}
+%closefile dspicfun
+%endif
+/* Turn the ADC on */
+ADCCON1bits.ON = 1;
+/* Wait for voltage reference to be stable */
+while(!ADCCON2bits.BGVRRDY); /* Wait until the reference voltage is ready */
+while(ADCCON2bits.REFFLT);  /* Wait if there is a fault with the reference voltage */
+%foreach idx= SIZE(MCHP_ADC_PIC32EF_on,1)
+%if MCHP_ADC_PIC32EF_on[idx] == 1
+ADCANCONbits.ANEN%<idx> = 1;	/* Enable the clock to analog bias */
+%endif
+%endforeach
+%foreach idx= SIZE(MCHP_ADC_PIC32EF_on,1)
+%if MCHP_ADC_PIC32EF_on[idx] == 1
+while(!ADCANCONbits.WKRDY%<idx>);	/* Wait until ADC%<idx> is ready */
+%endif
+%endforeach
+%foreach idx= SIZE(MCHP_ADC_PIC32EF_on,1)
+%if MCHP_ADC_PIC32EF_on[idx] == 1
+ADCCON3bits.DIGEN%<idx> = 1;  /* Enable ADC%<idx> */
+%endif
+%endforeach
+%if ::ADC_PIC32EF_GLSWTRG == 1
+/* Start Continuous Conversions */
+ADCCON3bits.GLSWTRG = 1;	/* ADC: Trig a Continuous conversion */
+%endif
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_SHxALT = MchpVector(block.RTWdata.reg_SHxALT)
+%assign reg_SIGNx = MchpVector(block.RTWdata.reg_SIGNx)
+%assign reg_DIFFx = MchpVector(block.RTWdata.reg_DIFFx)
+%assign reg_TRGSRCx = MchpVector(block.RTWdata.reg_TRGSRCx)
+%assign reg_LVLx = MchpVector(block.RTWdata.reg_LVLx)
+%assign reg_DMAx = MchpVector(block.RTWdata.reg_DMAx)
+%assign reg_WKUPCLKCNT = CAST("Number",block.RTWdata.reg_WKUPCLKCNT)
+%assign reg_ADCSEL = CAST("Number",block.RTWdata.reg_ADCSEL)
+%assign reg_CONCLKDIV = CAST("Number",block.RTWdata.reg_CONCLKDIV)
+%assign reg_VREFSEL = CAST("Number",block.RTWdata.reg_VREFSEL)
+%assign reg_SELRESx = MchpVector(block.RTWdata.reg_SELRESx)
+%assign reg_ADCDIVx = CAST("Number",block.RTWdata.reg_ADCDIVx)
+%assign reg_SAMCx = MchpVector(block.RTWdata.reg_SAMCx)
+%assign reg_STRGENx = MchpVector(block.RTWdata.reg_STRGENx)
+%assign reg_SSAMPENx = MchpVector(block.RTWdata.reg_SSAMPENx)
+%assign reg_ADCFLTRx = MchpVector64(block.RTWdata.reg_ADCFLTRx)
+%assign reg_FRACT = CAST("Number",block.RTWdata.reg_FRACT)
+%assign param_OUTPUT_Size = MchpVector(block.RTWdata.param_OUTPUT_Size) 
+%assign param_TrigSync = CAST("String",block.RTWdata.param_TrigSync)
+%assign param_ADC_TrigTimeStep = CAST("Number",block.RTWdata.param_ADC_TrigTimeStep)
+%assign IndexOutput = 0
+%assign Local_MCHP_MCPWM_bf_DMA_ChannelOn = MchpVector64(block.RTWdata.MCHP_MCPWM_bf_DMA_ChannelOn)
+%assign Flag_DMAForAtLeastOneOutput = 0
+%foreach idx = SIZE(Local_MCHP_MCPWM_bf_DMA_ChannelOn,1)	
+%if (param_OUTPUT_Size[idx] != -1) && (Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1)	
+%assign Flag_DMAForAtLeastOneOutput = 1
+%endif
+%endforeach
+%if Flag_DMAForAtLeastOneOutput
+%assign DMABufferSize = (1U << (::MCHP_MCPWM_bf_DMABL) )
+{
+static unsigned int flag_AB_ADC_Buffer = 0;
+flag_AB_ADC_Buffer ^= 1; /* Switch ADC DMA Buffer A <-> B */
+if (flag_AB_ADC_Buffer != 0) {	
+%assign DMA_OutputOffset = 0
+%foreach idx = 7	
+%if reg_SIGNx[idx] == 1
+%assign ssign = "signed"
+%else
+%assign ssign = "unsigned"
+%endif				
+%if (Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1)	
+%if LibBlockOutputSignalConnected(IndexOutput + DMA_OutputOffset)
+%foreach ADCt = DMABufferSize 	
+%assign u = LibBlockOutputSignal(IndexOutput + DMA_OutputOffset, "", "",ADCt)											
+%if param_OUTPUT_Size[idx] == 0		
+%<u> = (%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2*DMABufferSize>]; /* Read ADC DMA Buffer A */	
+%else 
+%if reg_FRACT== 1
+%<u> = (%<ssign> int) ((%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2*DMABufferSize>] << 16);	/* Read ADC DMA Buffer A */		
+%else
+%<u> = (%<ssign> int) (%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2*DMABufferSize>]; /* Read ADC DMA Buffer A */	
+%endif								
+%endif																	
+%endforeach
+%assign DMA_OutputOffset = DMA_OutputOffset + 1
+%endif
+%endif
+%endforeach						
+} else {
+%assign DMA_OutputOffset = 0
+%foreach idx = 7	
+%if reg_SIGNx[idx] == 1
+%assign ssign = "signed"
+%else
+%assign ssign = "unsigned"
+%endif						
+%if (Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1)	
+%if LibBlockOutputSignalConnected(IndexOutput + DMA_OutputOffset)
+%foreach ADCt = DMABufferSize 	
+%assign u = LibBlockOutputSignal(IndexOutput + DMA_OutputOffset, "", "",ADCt)							
+%if param_OUTPUT_Size[idx] == 0		
+%<u> = (%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2* DMABufferSize + DMABufferSize>]; /* Read ADC DMA Buffer B */
+%else 
+%if reg_FRACT== 1
+%<u> = (%<ssign> int) ((%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2* DMABufferSize + DMABufferSize>] << 16);	/* Read ADC DMA Buffer B */	
+%else
+%<u> = (%<ssign> int) (%<ssign> short int) MCHP_ADC_HighSpeed_SAR_DMA_Buffer[%< ADCt + idx * 2* DMABufferSize + DMABufferSize>]; /* Read ADC DMA Buffer B */
+%endif								
+%endif								
+%endforeach
+%assign DMA_OutputOffset = DMA_OutputOffset + 1
+%endif
+%endif
+%endforeach	
+}	
+}
+%endif
+%foreach idx= SIZE(param_OUTPUT_Size,1)
+%if param_OUTPUT_Size[idx] != -1
+%assign x = 1 + (idx > 31)
+%if (idx <=6)  && (Local_MCHP_MCPWM_bf_DMA_ChannelOn[idx] == 1) 
+%assign IndexOutput = IndexOutput + 1
+%else
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%if reg_ADCFLTRx[idx] == -1			
+%if reg_SIGNx[idx] == 1
+%assign ssign = "signed"
+%else
+%assign ssign = "unsigned"
+%endif
+%if param_OUTPUT_Size[idx] == 1		
+%<u> = (%<ssign> int) ADCDATA%<idx>;
+%else
+%if reg_FRACT== 1
+%<u> = (%<ssign> short int) ((%<ssign> int) ADCDATA%<idx> >> 16); /* 16 upper bits */		
+%else
+%<u> = (%<ssign> short int) (%<ssign> int) ADCDATA%<idx>; /* 16 lower bits */
+%endif
+%endif
+%else	
+%assign RefFilter = -1
+%foreach iFilt = SIZE(::ADC_PIC32EF_ADCFILTER_CH,1)
+%if (::ADC_PIC32EF_ADCFILTER_CH[iFilt] == idx)
+%assign RefFilter = iFilt +1	
+%break
+%endif
+%endforeach
+%if (param_OUTPUT_Size[idx] == 0)					
+%<u> = ADCFLTR%<RefFilter>;	/* Extract 16 lower bits */
+%else
+%if reg_FRACT== 1
+%<u> = ADCFLTR%<RefFilter> << 16; /* convert to 32 bit Fractional value */	
+%else
+%<u> = ADCFLTR%<RefFilter> & 0xFFFF; /* Keep 16 lower bits only */	
+%endif
+%endif
+%endif
+%endif
+%endif
+%endforeach
+%endfunction
+%function Update(block, system) Output
+%endfunction

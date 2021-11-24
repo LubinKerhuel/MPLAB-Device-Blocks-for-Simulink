@@ -1,0 +1,17 @@
+%implements  MCHP_Master "C"
+%include "MCHP_Functions.tlc"
+%function BlockTypeSetup(block, system) void
+%<HARMONY_Initialize()>
+%endfunction
+%function Start(block, system) Output
+/* S-Function "Microchip MASTER" initialization Block: %<Name> */
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN = MchpVector(RTWGenSettings.ChipIdN)
+%if (ChipIdN[0] == 32)			
+%assign and = CAST("String","|")
+%else
+%assign and = CAST("String","&")
+%endif
+%endfunction

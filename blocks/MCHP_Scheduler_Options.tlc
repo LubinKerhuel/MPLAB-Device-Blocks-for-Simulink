@@ -1,0 +1,5 @@
+%implements  MCHP_Scheduler_Options "C"
+%include "MCHP_Functions.tlc"
+%function BlockInstanceSetup(block, system) void
+%assign ::MCHP_SchedulerTaskOverload = block.RTWdata.MCHP_SchedulerTaskOverload
+%endfunction

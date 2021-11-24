@@ -1,0 +1,27 @@
+%with CompiledModel		
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  CAST("String",RTWGenSettings.ChipIdN)
+%assign ChipIdN = FEVAL("str2num",ChipIdN)
+%assign ChipIdN = FEVAL("int32",ChipIdN)		
+%endwith
+%switch ::CORE
+%case "PIC32"
+%include "MCHP_Functions_Atomic_PIC32.tlc"	
+%break
+%case "PIC"
+%include "MCHP_Functions_Atomic_dsPIC.tlc"		
+%break
+%case "CORTEX_M7"
+%include "MCHP_Functions_Atomic_SAME70.tlc"		
+%break
+%case "CORTEX_M4F"
+%include "MCHP_Functions_Atomic_SAME5x.tlc"		
+%break
+%case "CORTEX_M0p"	
+%include "MCHP_Functions_Atomic_SAMC2x.tlc"		
+%break	
+%default		
+%error("Chip not recognized while writing atomic bit set operation. Chip N ref: %<ChipIdN>")
+%endswitch

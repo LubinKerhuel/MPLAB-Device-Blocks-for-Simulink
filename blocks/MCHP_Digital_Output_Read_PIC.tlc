@@ -1,0 +1,62 @@
+
+%function Outputs_MCHP_Digital_Output_Read(block, system) Output
+/* MCHP_Digital_Output_Read Block: %<Name>/Output */
+%assign PORT = CAST("String",block.RTWdata.Port)
+%assign PINS = MchpVector(block.RTWdata.Pins)
+%assign nPars = SIZE(PINS,1)
+%assign SIMULTANEOUS = CAST("Number",block.RTWdata.Simultaneous_Flag)
+%assign PACK = CAST("Number",block.RTWdata.Pack_Flag)
+%if PACK
+%if !LibBlockOutputSignalIsExpr(0)
+%assign u = LibBlockOutputSignal(0, "", "", 0)
+%<u> = PORT%<PORT>;
+%endif 
+%else
+%if SIMULTANEOUS
+{
+uint16_T register ReadPort%<PORT> = LAT%<PORT> ;
+%foreach idx=nPars
+%if %<PINS[idx]> != -1	
+%assign u = LibBlockOutputSignal(idx, "", "", 0)
+%<u> = ReadPort%<PORT> & %< 1U << PINS[idx]>;	/* Read pin %<PORT>%<PINS[idx]> */
+%endif
+%endforeach
+}
+%else
+%foreach idx=nPars
+%if !LibBlockOutputSignalIsExpr(idx)
+%if %<PINS[idx]> != -1	
+%assign u = LibBlockOutputSignal(idx, "", "", 0)
+%<u> = LAT%<PORT>bits.LAT%<PORT>%<PINS[idx]>;	/* Read pin %<PORT>%<PINS[idx]> */
+%endif
+%endif 
+%endforeach
+%endif
+%endif
+%endfunction
+%function BlockOutputSignal_MCHP_Digital_Output_Read(block,system,portIdx,ucv,lcv,idx,retType) void
+%assign PORT = CAST("String",block.RTWdata.Port)
+%assign PINS = MchpVector(block.RTWdata.Pins)
+%assign SIMULTANEOUS = CAST("Number",block.RTWdata.Simultaneous_Flag)
+%assign PACK = CAST("Number",block.RTWdata.Pack_Flag)
+%assign retVal = "0U"
+%switch retType
+%case "Signal"
+%if PACK
+%assign retVal = "LAT%<PORT>"
+%else
+%if SIMULTANEOUS
+%assign errTxt = "Cannot generate output block signal code with SIMULTANEUS option set"
+%<LibBlockReportError(block,errTxt)>
+%else
+%assign retVal = "LAT%<PORT>bits.LAT%<PORT>%<PINS[portIdx]>"
+%endif
+%endif
+%break
+%default
+%assign errTxt = "Unsupported return type: %<retType>"
+%<LibBlockReportError(block,errTxt)>
+%break
+%endswitch
+%return retVal
+%endfunction

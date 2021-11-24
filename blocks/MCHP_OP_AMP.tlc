@@ -1,0 +1,59 @@
+%implements  MCHP_OP_AMP  "C"
+%include "MCHP_Functions.tlc"		
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%if EXISTS(::MCHP_OP_AMP_PIC32EFMC_nBlocks)
+%assign ::MCHP_OP_AMP_PIC32EFMC_nBlocks = ::MCHP_OP_AMP_PIC32EFMC_nBlocks + 1
+%else
+%assign ::MCHP_OP_AMP_PIC32EFMC_nBlocks = 1
+%assign ::PWM_HS_FEP_AMPON = -1
+%assign ::PWM_HS_FEP_AMPEN = [ -1,-1,-1 ]
+%assign ::PWM_HS_FEP_NCHDIS = [ -1,-1,-1 ]
+%endif
+%endfunction
+%function Start(block, system) Output
+%assign ::PWM_HS_FEP_AMPON = MchpLocal2Global(block,::PWM_HS_FEP_AMPON ,  CAST("Number",block.RTWdata.PWM_HS_FEP_AMPON),"AMPON" , "")
+%assign ::PWM_HS_FEP_AMPEN = MchpLocal2Global(block,::PWM_HS_FEP_AMPEN ,  MchpVector64(block.RTWdata.PWM_HS_FEP_AMPEN),"AMPEN" , "")
+%assign ::PWM_HS_FEP_NCHDIS = MchpLocal2Global(block,::PWM_HS_FEP_NCHDIS ,  MchpVector64(block.RTWdata.PWM_HS_FEP_NCHDIS),"NCHDIS" , "")
+%if EXISTS(::MCHP_OP_AMP_PIC32EFMC_iBlocks)
+%assign ::MCHP_OP_AMP_PIC32EFMC_iBlocks = ::MCHP_OP_AMP_PIC32EFMC_iBlocks + 1
+%else
+%assign ::MCHP_OP_AMP_PIC32EFMC_iBlocks = 1
+%endif
+%if (::MCHP_OP_AMP_PIC32EFMC_iBlocks == ::MCHP_OP_AMP_PIC32EFMC_nBlocks)  
+%openfile myCode
+%assign myDeclaration = "{ /* Configure Op-Amp */ \n"
+%assign d = ""
+%foreach idx = SIZE(::PWM_HS_FEP_NCHDIS,1)
+%if ::PWM_HS_FEP_NCHDIS[idx] == 1
+R_AMPCON1H.NCHDIS%<idx+1>  = 1; /* Reduce Op-Amp %<idx+1> non linearity */
+%assign d = "AMPCON1HBITS R_AMPCON1H = {0};\n"        	
+%endif
+%endforeach
+%if !ISEMPTY(d)    	
+AMPCON1Hbits = R_AMPCON1H;
+%endif
+%assign myDeclaration = myDeclaration + d
+%assign d = ""
+%foreach idx = SIZE(::PWM_HS_FEP_AMPEN,1)
+%if ::PWM_HS_FEP_AMPEN[idx] == 1
+R_AMPCON1L.AMPEN%<idx+1>  = 1; /* Enable Op-Amp %<idx+1> */
+%assign d = "AMPCON1LBITS R_AMPCON1L = {0};\n"        	
+%endif
+%endforeach
+%if !ISEMPTY(d)
+R_AMPCON1L.AMPON = 1; /* Enable Op-Amp Module */
+AMPCON1Lbits = R_AMPCON1L;
+%endif
+%assign myDeclaration = myDeclaration + d
+%closefile myCode
+%<myDeclaration>
+%<myCode>	
+}
+%endif 
+%endfunction
+%function Outputs(block, system) Output
+%endfunction
+%function Update(block, system) Output
+%endfunction

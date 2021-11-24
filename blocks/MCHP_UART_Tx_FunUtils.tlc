@@ -1,0 +1,126 @@
+
+%if ::isSAMx7                                    
+%include "MCHP_UART_Tx_SAMx7_FunUtils.tlc"  	
+%elseif ::isSAMx5 || ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%include "MCHP_UART_Tx_SAMx5_FunUtils.tlc"  	
+%elseif ::isdsPIC || ::isPIC32														
+%include "MCHP_UART_Tx_PIC_FunUtils.tlc"
+%endif
+%function UART_Tx_BlockInstanceSetup(block) void
+%if EXISTS(::MCHP_UART_TX_TID_RefUART) == 0
+%assign ::MCHP_UART_TX_TID_RefUART = []
+%assign ::MCHP_UART_TX_TID_SampleTime = []
+%assign ::MCHP_UART_TX_TID_OffsetSampleTime = []
+%assign ::MCHP_UART_TX_TID_hasSemapore = [0,0,0,0,0,0,0,0,0,0,0,0]
+%endif
+%assign tmpTID = LibBlockSampleTime(block) 
+%if tmpTID == 0
+%assign tmpTID = -3	
+%endif
+%assign ::MCHP_UART_TX_TID_RefUART 		= ::MCHP_UART_TX_TID_RefUART + CAST("Number",block.RTWdata.UARTRef)
+%if tmpTID > 0	
+%assign ::MCHP_UART_TX_TID_SampleTime 	= ::MCHP_UART_TX_TID_SampleTime + LibGetSampleTimePeriodAndOffset(block.TID,0) 
+%assign ::MCHP_UART_TX_TID_OffsetSampleTime 	= ::MCHP_UART_TX_TID_OffsetSampleTime + LibGetSampleTimePeriodAndOffset(block.TID,1)
+%else		
+%assign ::MCHP_UART_TX_TID_SampleTime 	= ::MCHP_UART_TX_TID_SampleTime + tmpTID 
+%assign ::MCHP_UART_TX_TID_OffsetSampleTime 	= ::MCHP_UART_TX_TID_OffsetSampleTime + -1
+%endif
+%endfunction
+%function UART_ThreadProtection(block,UARTRef,UART_TX_THREAD_PROTECTION,BlockInputLength,NSend_Input,N_in,StopStart) Output
+%assign tmpTID = LibBlockSampleTime(block) 
+%if tmpTID == 0
+%assign tmpTID = -3	
+%endif
+%if tmpTID > 0	
+%assign ThisBlockSampleTime 	= LibGetSampleTimePeriodAndOffset(block.TID,0) 
+%assign ThisBlockOffsetSampleTime	= LibGetSampleTimePeriodAndOffset(block.TID,1)
+%else		
+%assign ThisBlockSampleTime 	=  tmpTID 
+%assign ThisBlockOffsetSampleTime 	=  -1
+%endif
+%assign hasAsynchronousUART = 0
+%assign IsHighestPriority = 1	
+%assign IsUniquePriority = 1	
+%if ThisBlockSampleTime == -1			
+%assign IsHighestPriority = 0
+%endif
+%foreach iUART = SIZE(::MCHP_UART_TX_TID_RefUART,1)
+%if ::MCHP_UART_TX_TID_RefUART[iUART] == UARTRef
+%if ThisBlockSampleTime > MCHP_UART_TX_TID_SampleTime[iUART]
+%assign IsHighestPriority = 0
+%elseif ThisBlockOffsetSampleTime > MCHP_UART_TX_TID_OffsetSampleTime[iUART]
+%assign IsHighestPriority = 0
+%endif
+%if ThisBlockSampleTime != MCHP_UART_TX_TID_SampleTime[iUART]
+%assign IsUniquePriority = 0
+%elseif ThisBlockOffsetSampleTime != MCHP_UART_TX_TID_OffsetSampleTime[iUART]
+%assign IsUniquePriority = 0
+%endif
+%if MCHP_UART_TX_TID_SampleTime[iUART] == -1	
+%assign hasAsynchronousUART = 1
+%endif
+%endif
+%endforeach	
+%if ::CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+%assign MultiTasking = 1
+%else
+%assign MultiTasking = 0
+%endif
+%assign UART_TX_THREAD_PROTECTION_DelayTask = (ThisBlockSampleTime != -1) && ...
+(IsUniquePriority == 0) && (...
+(UART_TX_THREAD_PROTECTION & 1)  && MultiTasking && (IsHighestPriority == 0)...												
+|| ...												
+( (UART_TX_THREAD_PROTECTION & 4) && hasAsynchronousUART) ...
+)  
+%assign UART_TX_THREAD_PROTECTION_Semaphore = (IsUniquePriority == 0) && (...
+(UART_TX_THREAD_PROTECTION & 2) && MultiTasking  ||...
+(UART_TX_THREAD_PROTECTION & 8) && hasAsynchronousUART...
+) 
+%switch StopStart
+%case "Start"
+%if UART_TX_THREAD_PROTECTION_DelayTask		
+%if (BlockInputLength > 1)
+%if (NSend_Input == 1)
+if (%<N_in>)
+{
+%endif
+%if (UART_TX_THREAD_PROTECTION & 4) && (hasAsynchronousUART != 0)
+%<Mchp_asm_DisableAllInterrupt()>						
+%else
+%<Mchp_asm_DisableSchedulerInterrupt()>		
+%endif	
+%endif
+%endif
+%if UART_TX_THREAD_PROTECTION_Semaphore 
+if (MCHP_SemUART%<UARTRef>Tx == 0)
+{
+MCHP_SemUART%<UARTRef>Tx = 1;	/* Protect UART %<UARTRef> Tx from intertwined messages	*/
+%if ::MCHP_UART_TX_TID_hasSemapore[UARTRef] == 0
+%assign ::MCHP_UART_TX_TID_hasSemapore[UARTRef] = 1
+%openfile buffer					
+extern volatile int MCHP_SemUART%<UARTRef>Tx;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%assign ::GlobalVariable = ::GlobalVariable + "volatile int MCHP_SemUART%<UARTRef>Tx = 0;"
+%endif						
+%endif
+%break
+%case "Stop"
+%if UART_TX_THREAD_PROTECTION_Semaphore 
+MCHP_SemUART%<UARTRef>Tx = 0;	/* Free-up UART %<UARTRef> Tx ressource */
+}
+%endif	
+%if UART_TX_THREAD_PROTECTION_DelayTask 
+%if (BlockInputLength > 1)
+%if (UART_TX_THREAD_PROTECTION & 4) && (hasAsynchronousUART != 0)				
+%<Mchp_asm_EnableAllInterrupt()>	
+%else
+%<Mchp_asm_EnableSchedulerInterrupt()>			
+%endif	
+%if (NSend_Input == 1)
+} /* end if (%<N_in>) */
+%endif			
+%endif
+%endif		
+%endswitch
+%endfunction

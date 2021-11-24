@@ -1,0 +1,186 @@
+%implements  MCHP_OC_HW  "C"
+%include "MCHP_Functions.tlc"
+%function BlockInstanceSetup(block, system) void
+%assign Channels =  MchpVector(block.RTWdata.Channels)
+%foreach idx = SIZE(Channels,1)
+%<HARMONY_RegisterPeripheral("OC",Channels[idx],block)>	
+%endforeach
+%endfunction
+%function Start(block, system) Output
+%assign OCtype = CAST("Number",block.RTWdata.OCtype)
+%assign PulseTrig = CAST("Number",block.RTWdata.PulseTrig)
+%assign PeriodIsBlockInput = CAST("Number",block.RTWdata.PeriodIsBlockInput)
+%assign Channels = MchpVector(block.RTWdata.Channels)
+%assign RefTimers = MchpVector(block.RTWdata.RefTimers)
+%assign RefTimersMax = MchpVector(block.RTWdata.RefTimersMax)
+%assign Channel_UP_Down_Periode = MchpVector(block.RTWdata.Channel_UP_Down_Periode)
+%assign OCxCON1 =  MchpVector(block.RTWdata.OCxCON1)
+%assign OCxCON2 = MchpVector(block.RTWdata.OCxCON2)
+%if OCtype == 1
+%assign OCTypeRef = "1"
+%else
+%assign OCTypeRef = ""
+%endif
+%foreach idx = SIZE(Channels,1)
+%if OCxCON1[idx] == -1
+%continue
+%endif
+%if (PulseTrig == 0)	
+OC%<Channels[idx]>CON%<OCTypeRef> = %<MchpHex(OCxCON1[idx])>;
+%endif
+%if %<OCxCON2[idx]> != -1		
+OC%<Channels[idx]>CON2 = %<MchpHex(OCxCON2[idx])>;
+%endif
+%if (OCtype == 1) && (PeriodIsBlockInput == 0)
+OC%<Channels[idx]>RS = %<MchpHex(RefTimersMax[idx])>;
+%endif
+%if (OCtype == 1) && (PulseTrig != 0)	
+OC%<Channels[idx]>R = 1;	
+%elseif (PulseTrig != 0) && ( (Channel_UP_Down_Periode[idx] == 5) || (Channel_UP_Down_Periode[idx] == 10) )
+OC%<Channels[idx]>R = 0;	
+%endif
+%endforeach
+%if LibBlockSampleTime(block) == -2		
+%<Update(block, system)>
+%endif
+%endfunction
+%function Update(block, system) Output
+/* S-Function "dsPIC_PWM_OC" Block: %<Name> */
+%assign OCtype = CAST("Number",block.RTWdata.OCtype)
+%assign PulseTrig = CAST("Number",block.RTWdata.PulseTrig)
+%assign PeriodIsBlockInput = CAST("Number",block.RTWdata.PeriodIsBlockInput)
+%assign Channels = MchpVector(block.RTWdata.Channels)
+%assign Channel_UP_Down_Periode =  MchpVector(block.RTWdata.Channel_UP_Down_Periode)
+%assign OCxCON1 = MchpVector(block.RTWdata.OCxCON1)
+%assign PortPin = MchpVector(block.RTWdata.PortPin)
+%assign PortLetter = MchpVector(block.RTWdata.PortLetter)
+%assign RefTimers = MchpVector(block.RTWdata.RefTimers)
+%assign RefTimersMax = MchpVector(block.RTWdata.RefTimersMax)
+%if OCtype == 1
+%assign OCTypeRef = "1"
+%else
+%assign OCTypeRef = ""
+%endif
+%assign portIn = 0
+%foreach idx = SIZE(Channels,1)
+%if OCxCON1[idx] == -1
+%continue
+%endif
+%if PulseTrig == 0	
+%switch Channel_UP_Down_Periode[idx]         
+%case  5
+%case 10
+%assign up = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%if PeriodIsBlockInput == 2
+%assign period = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%if (OCtype == 0) || (OCtype == 2)
+OC%<Channels[idx]>RS = %<up>;	/* OC%<Channels[idx]>R will get this value at next period */ 
+PR%<RefTimers[idx]> = %<period>;
+%else
+OC%<Channels[idx]>R = %<up>;	
+OC%<Channels[idx]>RS = %<period>;
+%endif
+%else
+%if (OCtype == 0) || (OCtype == 2)
+OC%<Channels[idx]>RS = %<up>;	/* OC%<Channels[idx]>R will get this value at next period */ 
+%else
+OC%<Channels[idx]>R = %<up>;	
+%endif
+%endif
+%break
+%case 16 
+%assign set = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%assign reset = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+OC%<Channels[idx]>R = %<set>;	
+OC%<Channels[idx]>RS = %<reset>;	
+%if PeriodIsBlockInput == 2
+%assign period = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%if (OCtype == 0) || (OCtype == 2)
+PR%<RefTimers[idx]> = %<period>;	
+%else
+OC%<Channels[idx]>RS = %<period>;
+%endif
+%endif
+%break
+%endswitch
+%elseif PulseTrig != 0		
+%switch Channel_UP_Down_Periode[idx]
+%case  5
+%case 10	
+%assign up = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%if OCtype == 1
+OC%<Channels[idx]>CON1 = %<MchpHex(OCxCON1[idx] & (65535-7) )>; /* Disable OC%<Channels[idx]> */
+OC%<Channels[idx]>CON2bits.TRIGSTAT = 0;
+%endif
+OC%<Channels[idx]>RS = %<up>;	/* Pulse in Set-Reset mode (mimic up & down mode) */ 
+%break
+%case 16 
+%assign set = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%assign reset = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+OC%<Channels[idx]>R = %<set>;	
+OC%<Channels[idx]>RS = %<reset>;	
+%if PeriodIsBlockInput == 2
+%assign period = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%if (OCtype == 0) || (OCtype == 2)
+PR%<RefTimers[idx]> = %<period>;	
+%else
+OC%<Channels[idx]>RS = %<period>;
+%endif
+%endif
+%break
+%endswitch
+%if PulseTrig == 2 
+%assign trig = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+if (%<trig>)
+{
+%if (OCtype == 0) || (OCtype == 2)
+OC%<Channels[idx]>CON%<OCTypeRef> = %<MchpHex(OCxCON1[idx])>;	/* Trig OC%<Channels[idx]> pulse */
+%else
+OC%<Channels[idx]>CON2bits.TRIGSTAT = 1;
+OC%<Channels[idx]>CON%<OCTypeRef> = %<MchpHex(OCxCON1[idx])>;	/* Trig OC%<Channels[idx]> pulse */
+%endif
+}
+%endif
+%endif
+%endforeach
+%if PeriodIsBlockInput == 1
+%assign period = LibBlockInputSignal(portIn, "", "", 1)
+%assign portIn = portIn+1
+%foreach idx = SIZE(Channels,1)
+%if OCxCON1[idx] == -1
+%continue
+%endif
+%if (OCtype == 0) || (OCtype == 2)
+PR%<RefTimers[idx]> = %<period>;	
+%break 
+%else
+OC%<Channels[idx]>RS = %<period>;	
+%endif
+%endforeach
+%endif
+%if PulseTrig == 1
+%foreach idx = SIZE(Channels,1)
+%if OCxCON1[idx] == -1
+%continue
+%endif
+%if (OCtype == 0) || (OCtype == 2)
+OC%<Channels[idx]>CON%<OCTypeRef> = %<MchpHex(OCxCON1[idx])>;	/* Trig OC%<Channels[idx]> pulse */
+%else
+OC%<Channels[idx]>CON2bits.TRIGSTAT = 1;
+OC%<Channels[idx]>CON%<OCTypeRef> = %<MchpHex(OCxCON1[idx])>;	/* Trig OC%<Channels[idx]> pulse */
+%endif
+%endforeach
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%endfunction

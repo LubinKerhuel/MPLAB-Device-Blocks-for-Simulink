@@ -1,0 +1,555 @@
+%implements  MCHP_PWM_SAM7x  "C"
+%include "MCHP_Functions.tlc"		
+%assign ::PWM_SAMx7_PWM_nBlocks = [0,0]		
+%assign ::PWM_SAMx7_PWM_iBlocks = [0,0]		
+%assign ::PWM_SAMx7_PWM_Centered = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_SyncWithPWM0 = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PushPull_Mode = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_invert_PWMH = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_invert_PWML = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FPE_FPEx = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FPV_PVMH = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FPV_PVML = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FPV_PVZH = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FPV_PVZL = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FMR_FPOLy = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FMR_FMODy = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_FMR_FFILy = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ETRGy_RFEN = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGSRC = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGFILT = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGEDGE = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGMODE = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_CLK_PREA = [ -1,-1 ]
+%assign ::PWM_SAMx7_PWM_CLK_DIVA = [ -1,-1 ]
+%assign ::PWM_SAMx7_PWM_CLK_PREB = [ -1,-1 ]
+%assign ::PWM_SAMx7_PWM_CLK_DIVB = [ -1,-1 ]
+%assign ::PWM_SAMx7_PWM_CMRx_CPRE = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_CPRDx = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_CDTYx = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_DTx_DTL = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_DTx_DTH = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ELMR_CSELx = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_CMPVx_CV = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::PWM_SAMx7_PWM_ENA_CHIDx = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%assign PWMx =  CAST("Number",block.RTWdata.PWMx)
+%assign ::PWM_SAMx7_PWM_nBlocks[PWMx] = ::PWM_SAMx7_PWM_nBlocks[PWMx] + 1
+%endfunction
+%function Start(block, system) Output
+%assign ::PWM_SAMx7_PWM_Centered = MchpLocal2Global(block,::PWM_SAMx7_PWM_Centered ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_Centered),"PWM_Centered" , "Problem with the PWM centered option (see block main tab).")
+%assign ::PWM_SAMx7_PWM_SyncWithPWM0 = MchpLocal2Global(block,::PWM_SAMx7_PWM_SyncWithPWM0 ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_SyncWithPWM0),"PWM_SyncWithPWM0" , "Problem with the PWM0 synchronisation option (see block main tab).")
+%assign ::PWM_SAMx7_PushPull_Mode = MchpLocal2Global(block,::PWM_SAMx7_PushPull_Mode ,  MchpVector64(block.RTWdata.PWM_SAMx7_PushPull_Mode),"PushPull_Mode" , "Problem with the Push-Pull option (see block main tab).")
+%assign ::PWM_SAMx7_invert_PWMH = MchpLocal2Global(block,::PWM_SAMx7_invert_PWMH ,  MchpVector64(block.RTWdata.PWM_SAMx7_invert_PWMH),"invert_PWMH" , "Problem with at least one of the PWM high side polarity option.")
+%assign ::PWM_SAMx7_invert_PWML = MchpLocal2Global(block,::PWM_SAMx7_invert_PWML ,  MchpVector64(block.RTWdata.PWM_SAMx7_invert_PWML),"invert_PWML" , "Problem with at least one of the PWM Low side polarity option.")
+%assign ::PWM_SAMx7_PWM_FPE_FPEx = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPE_FPEx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPE_FPEx),"PWM_FPE_FPEx" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVMH = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVMH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVMH),"PWM_FPV_PVMH" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVML = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVML ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVML),"PWM_FPV_PVML" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVZH = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVZH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVZH),"PWM_FPV_PVZH" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVZL = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVZL ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVZL),"PWM_FPV_PVZL" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FPOLy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FPOLy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FPOLy),"PWM_FMR_FPOLy" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FMODy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FMODy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FMODy),"PWM_FMR_FMODy" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FFILy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FFILy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FFILy),"PWM_FMR_FFILy" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_RFEN = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_RFEN ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_RFEN),"PWM_ETRGy_RFEN" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGSRC = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGSRC ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGSRC),"PWM_ETRGy_TRGSRC" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGFILT = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGFILT ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGFILT),"PWM_ETRGy_TRGFILT" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGEDGE = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGEDGE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGEDGE),"PWM_ETRGy_TRGEDGE" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGMODE = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGMODE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGMODE),"PWM_ETRGy_TRGMODE" , "")
+%assign ::PWM_SAMx7_PWM_CLK_PREA = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_PREA ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_PREA),"PWM_CLK_PREA" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_DIVA = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_DIVA ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_DIVA),"PWM_CLK_DIVA" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_PREB = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_PREB ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_PREB),"PWM_CLK_PREB" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_DIVB = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_DIVB ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_DIVB),"PWM_CLK_DIVB" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CMRx_CPRE = MchpLocal2Global(block,::PWM_SAMx7_PWM_CMRx_CPRE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CMRx_CPRE),"PWM_CMRx_CPRE" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CPRDx = MchpLocal2Global(block,::PWM_SAMx7_PWM_CPRDx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CPRDx),"PWM_CPRDx" , "Inital Period is not consistent.")
+%assign ::PWM_SAMx7_PWM_CDTYx = MchpLocal2Global(block,::PWM_SAMx7_PWM_CDTYx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CDTYx),"PWM_CDTYx" , "Inital Duty Cycle is not consistent.")
+%assign ::PWM_SAMx7_PWM_DTx_DTL = MchpLocal2Global(block,::PWM_SAMx7_PWM_DTx_DTL ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_DTx_DTL),"PWM_DTx_DTL" , "Initial Dead Time for Low side is not consistent.")
+%assign ::PWM_SAMx7_PWM_DTx_DTH = MchpLocal2Global(block,::PWM_SAMx7_PWM_DTx_DTH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_DTx_DTH),"PWM_DTx_DTH" , "Initial Dead Time for High side is not consistent.")
+%assign ::PWM_SAMx7_PWM_ELMR_CSELx = MchpLocal2Global(block,::PWM_SAMx7_PWM_ELMR_CSELx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ELMR_CSELx),"PWM_ELMR_CSELx" , "")
+%assign ::PWM_SAMx7_PWM_CMPVx_CV = MchpLocal2Global(block,::PWM_SAMx7_PWM_CMPVx_CV ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CMPVx_CV),"PWM_CMPVx_CV" , "")
+%assign ::PWM_SAMx7_PWM_ENA_CHIDx = MchpLocal2Global(block,::PWM_SAMx7_PWM_ENA_CHIDx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ENA_CHIDx),"PWM_ENA_CHIDx" , "")
+%assign PWMx =  CAST("Number",block.RTWdata.PWMx)
+%assign ChEnH =  MchpVector64(block.RTWdata.ChEnH)
+%assign ChEnL =  MchpVector64(block.RTWdata.ChEnL)
+%assign ChEn =  MchpVector64(block.RTWdata.ChEn)
+%assign MaxPeriod_s =  CAST("Real",block.RTWdata.MaxPeriod_s)
+%assign InitPeriod_s =  MchpVectorDbl(block.RTWdata.InitPeriod_s)
+%assign InitDutyCycle_s =  MchpVectorDbl(block.RTWdata.InitDutyCycle_s)
+%assign InitDeadTimeL_s =  MchpVectorDbl(block.RTWdata.InitDeadTimeL_s)
+%assign InitDeadTimeH_s =  MchpVectorDbl(block.RTWdata.InitDeadTimeH_s)
+%assign InitEventLine0_ComparatorValue_s =  CAST("Real",block.RTWdata.InitEventLine0_ComparatorValue_s)
+%assign InitEventLine1_ComparatorValue_s =  MchpVectorDbl(block.RTWdata.InitEventLine1_ComparatorValue_s)
+%assign PWM_FPE_FPEy =  MchpVector64(block.RTWdata.PWM_FPE_FPEy)
+%assign OneFaultOutput =  CAST("Number",block.RTWdata.OneFaultOutput)
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockInput_Period =  CAST("Number",block.RTWdata.BlockInput_Period)
+%assign BlockInput_DutyCycle =  MchpVector64(block.RTWdata.BlockInput_DutyCycle)
+%assign BlockInput_DeadTime =  MchpVector64(block.RTWdata.BlockInput_DeadTime)
+%assign PCER_idx =  CAST("Number",block.RTWdata.PCER_idx)
+%assign Peripheral_ID =  CAST("Number",block.RTWdata.Peripheral_ID)
+%assign MaxPeriod_RAW =  CAST("Number",block.RTWdata.MaxPeriod_RAW)
+%assign MaxPeriod_ss =  CAST("Real",block.RTWdata.MaxPeriod_ss)
+%assign MaxPeriod_DeadTime_RAW =  CAST("Number",block.RTWdata.MaxPeriod_DeadTime_RAW)
+%assign MaxPeriod_DeadTime_ss =  CAST("Real",block.RTWdata.MaxPeriod_DeadTime_ss)
+%assign MustAssignPWM0with = -1
+%assign ::PWM_SAMx7_PWM_iBlocks[PWMx] = ::PWM_SAMx7_PWM_iBlocks[PWMx] + 1
+%assign Sh1 = PWMx * 1
+%assign Sh4 = PWMx * 4
+%assign Sh8 = PWMx * 8
+%if ::PWM_SAMx7_PWM_iBlocks[PWMx] == 1	
+/* Enable the PWM clock in the Power Management Controller (PMC):  PWMC%<PWMx> => PID_%<Peripheral_ID> */
+PMC_REGS->PMC_PCER%<PWMx> |=  PMC_PCER%<PWMx>_PID%<Peripheral_ID>(1);           /* Enable peripheral clock for PWM Controller %<PWMx> */
+%openfile buffer_out
+%openfile buffer_tmpreg
+%if %<::PWM_SAMx7_PWM_CLK_PREA[Sh1]> != -1		
+tmp |= PWM_CLK_PREA(%<CAST("Number",::PWM_SAMx7_PWM_CLK_PREA[Sh1])>);	/* Clock A Divider (power of 2) */
+%endif
+%if %<::PWM_SAMx7_PWM_CLK_PREB[Sh1]> != -1
+tmp |= PWM_CLK_PREB(%<CAST("Number",::PWM_SAMx7_PWM_CLK_PREB[Sh1])>);	/* Clock B Divider */
+%endif				
+%if %<::PWM_SAMx7_PWM_CLK_DIVA[Sh1]> != -1
+tmp |= PWM_CLK_DIVA(%<CAST("Number",::PWM_SAMx7_PWM_CLK_DIVA[Sh1])>);	/* Clock A Divider (power of 2) */
+%endif
+%if %<::PWM_SAMx7_PWM_CLK_DIVB[Sh1]> != -1
+tmp |= PWM_CLK_DIVB(%<CAST("Number",::PWM_SAMx7_PWM_CLK_DIVB[Sh1])>);	/* Clock B Divider */
+%endif			
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)	
+/* Clock Settings for PWM */	
+tmp = 0;	
+%<buffer_tmpreg>
+PWM%<PWMx>_REGS->PWM_CLK = tmp;	/* Set Clock Setting */
+%endif
+%openfile buffer_tmpreg				
+%foreach idx = SIZE(ChEn,1)
+%if ::PWM_SAMx7_PWM_SyncWithPWM0[idx+Sh4] == 1
+tmp |= PWM_SCM_SYNC%<idx>(1);	/* Synchronize PWM%<idx> to PWM0 */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* PWM Synchronized channels */
+tmp = 0;	
+%<buffer_tmpreg>
+PWM%<PWMx>_REGS->PWM_SCM = tmp; 	/* Synchronize PWM channels listed above */		
+%endif
+%openfile buffer_tmpreg		
+%foreach iPWM=4
+%if PWM_SAMx7_PWM_FPE_FPEx[iPWM] != -1				
+tmp |= PWM_FPE_FPE%<iPWM>(%<MchpHex(PWM_SAMx7_PWM_FPE_FPEx[iPWM])>);  /* Fault signal inputs for channel %<iPWM> */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* PWM Faults */
+tmp = 0;	
+%<buffer_tmpreg>		
+PWM%<PWMx>_REGS->PWM_FPE = tmp; /* Enable selected fault input for selected PWM channels */
+%endif
+%openfile buffer_tmpreg		
+%foreach iPWM=4
+%if PWM_SAMx7_PWM_FPV_PVMH[iPWM] > 0				
+tmp |= PWM_FPV_PVMH%<iPWM>(%<PWM_SAMx7_PWM_FPV_PVMH[iPWM]>);  /* Fault Level for PWM%<iPWM> High Side */
+tmp |= PWM_FPV_PVML%<iPWM>(%<PWM_SAMx7_PWM_FPV_PVML[iPWM]>);  /* Fault Level for PWM%<iPWM> Low Side */
+tmp |= PWM_FPV_PVZH%<iPWM>(%<PWM_SAMx7_PWM_FPV_PVZH[iPWM]>);  /* Fault in high impedance for PWM%<iPWM> High Side (override Flt level if 1) */
+tmp |= PWM_FPV_PVZH%<iPWM>(%<PWM_SAMx7_PWM_FPV_PVZL[iPWM]>);  /* Fault in high impedance for PWM%<iPWM> Low Side (override Flt level if 1) */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* PWM Faults */
+tmp = 0;	
+%<buffer_tmpreg>		
+PWM%<PWMx>_REGS->PWM_FPV = tmp; /* Set PWM output pin state on Fault */
+%endif		
+%foreach iiFlt=2
+%assign iFlt = iiFlt+1 
+%openfile buffer_tmpreg
+%if PWM_SAMx7_PWM_ETRGy_RFEN[iFlt] == 1				
+tmp |= PWM_ETRG%<iFlt>_RFEN(1);		/* Enable Recoverable Fault */
+%endif
+%if PWM_SAMx7_PWM_ETRGy_TRGSRC[iFlt] == 1
+tmp |= PWM_ETRG%<iFlt>_TRGSRC(1);		/* Source signal is the Analog Comaprator Controller (value 0 is for PWMEXTRGx pin)*/
+%endif
+%if PWM_SAMx7_PWM_ETRGy_TRGFILT[iFlt] == 1
+tmp |= PWM_ETRG%<iFlt>_TRGFILT(1);		/* Glitch filter */
+%endif
+%if PWM_SAMx7_PWM_ETRGy_TRGEDGE[iFlt] == 1
+tmp |= PWM_ETRG%<iFlt>_TRGEDGE(1);		/* Value 1: Trig on rising edge or level 1 */
+%endif				
+%if PWM_SAMx7_PWM_ETRGy_TRGMODE[iFlt] > 0
+tmp |= PWM_ETRG%<iFlt>_TRGMODE(%<CAST("Number",PWM_SAMx7_PWM_ETRGy_TRGMODE[iFlt])>); /* External Trigger mode */
+%endif	
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Enable Recoverable Fault */
+tmp = 0;	
+%<buffer_tmpreg>		
+PWM%<PWMx>_REGS->PWM_ETRG%<iFlt> = tmp; /* Set Recoverable fault */
+%endif										
+%endforeach		
+%openfile buffer_tmpreg
+%foreach iFlt=8
+%if PWM_SAMx7_PWM_FMR_FPOLy[iFlt] == 1
+tmp |= PWM_FMR_FPOL(%<MchpHex( 1U <<iFlt)>);	/* Fault %<iFlt> Active on Level high (1=High, 0=Low) */
+%endif
+%if PWM_SAMx7_PWM_FMR_FMODy[iFlt] == 1
+tmp |= PWM_FMR_FMOD(%<MchpHex( 1U <<iFlt)>);	/* Fault %<iFlt> require software clearance to re-enable PWM (1)*/
+%endif
+%if PWM_SAMx7_PWM_FMR_FFILy[iFlt] == 1
+tmp |= PWM_FMR_FFIL(%<MchpHex( 1U <<iFlt)>);	/* Fault %<iFlt> input is filtered to reduce glitches */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Fault Mode  */
+tmp = 0;	
+%<buffer_tmpreg>		
+PWM%<PWMx>_REGS->PWM_FMR = tmp; /* Set */
+%endif	
+%openfile buffer_tmpreg	
+%foreach iEv = 8
+%if ::PWM_SAMx7_PWM_CMPVx_CV[iEv + Sh8]  != -1
+PWM%<PWMx>_REGS->PWM_CMP[%<iEv>].PWM_CMPV = %<CAST("Number",::PWM_SAMx7_PWM_CMPVx_CV[iEv + Sh8])>;	/* Comparison %<iEv> Value Register */
+PWM%<PWMx>_REGS->PWM_CMP[%<iEv>].PWM_CMPM = 1;			
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* PWM Event Line trigger settings */
+%<buffer_tmpreg>	
+%endif
+%openfile buffer_tmpreg		
+%foreach iEv = 8
+%if ::PWM_SAMx7_PWM_ELMR_CSELx[iEv + Sh8] != -1
+tmp |= PWM_ELMR_CSEL%<iEv>(1);	/* Pulse generated on Event Line 1 */				
+%endif			
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* PWM Event Line 0 Mode Register */
+tmp = 0;	
+%<buffer_tmpreg>		
+PWM%<PWMx>_REGS->PWM_ELMR[0] = tmp; /* Set PWM Event Line 0 Mode Register */
+%endif			
+%closefile buffer_out
+%if !ISEMPTY(buffer_out)
+/* COMMON PWM REGISTERS for all PWM CHANNELS */
+{
+uint32_T tmp; /* Temporary variable to precompute values (by compiler) */
+%<buffer_out>
+}
+%endif
+%endif 
+{	
+uint32_T CMR; /* local Variables to precompute Config register valus */
+uint32_T DT;
+%assign idxInfo = -1	
+%foreach idx = SIZE(ChEn,1)
+%if ChEn[idx] == 1
+%assign idxInfo = idxInfo + 1
+/* Configure PWM Channel %<idx> */
+CMR = PWM_CMR_DTE(1);	/* Reinitialize CMR. Dead Time Enabled */
+%if %<::PWM_SAMx7_PWM_CMRx_CPRE[idx+Sh4]> != -1
+CMR |= PWM_CMR_CPRE(%<CAST("Number",::PWM_SAMx7_PWM_CMRx_CPRE[idx+Sh4])>);	/* Select Clock Source */
+%endif
+%if %<::PWM_SAMx7_PushPull_Mode[idx+Sh4]> == 1
+CMR |= PWM_CMR_PPM(1);	/* Enable Push Pull mode */
+%endif
+%if %<::PWM_SAMx7_invert_PWMH[idx+Sh4]> == 1
+CMR |= PWM_CMR_DTHI(1);	/* Invert polarity for pin PWM H */
+%endif
+%if %<::PWM_SAMx7_invert_PWML[idx+Sh4]> == 1
+CMR |= PWM_CMR_DTLI(1);	/* Invert polarity for pin PWM L */
+%endif
+%if %<::PWM_SAMx7_PWM_Centered[idx+Sh4]> == 1
+CMR |= PWM_CMR_CALG(1);	/* Center align */
+%endif
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_CMR = CMR; /* PWM Mode Register */
+DT = PWM_DT_DTL(%<CAST("Number",::PWM_SAMx7_PWM_DTx_DTL[idx+Sh4])>); 	/* Set Initial Dead Time Low to %<InitDeadTimeL_s[idxInfo]> (s) */
+DT |= PWM_DT_DTH(%<CAST("Number",::PWM_SAMx7_PWM_DTx_DTH[idx+Sh4])>);	/* Set Initial Dead Time High to %<InitDeadTimeH_s[idxInfo]> (s) */				
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_DT = DT; /* Dead Time register */
+%if ::PWM_SAMx7_PWM_SyncWithPWM0[idx+Sh4] == 0
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_CPRD = %<CAST("Number",::PWM_SAMx7_PWM_CPRDx[idx+Sh4])>; 	/* Set initial Period to %<InitPeriod_s[idxInfo]> (s) */
+%else
+%assign MustAssignPWM0with = CAST("Number",::PWM_SAMx7_PWM_CPRDx[idx+Sh4])
+%assign MustAssignPWM0with_s = %<InitPeriod_s[idxInfo]>
+%endif
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_CDTY = %<CAST("Number",::PWM_SAMx7_PWM_CDTYx[idx+Sh4])>;	/* Set initial Duty Cycle to %<InitDutyCycle_s[idxInfo]> (s) */		
+%endif
+%endforeach
+%if (MustAssignPWM0with != -1) && (ChEn[0] == 0)
+/* PWM0 (not used) required for synchronisation mechanism used by PWM chanels in sync */
+CMR = PWM%<PWMx>_REGS->PWM_CH_NUM[0].PWM_CMR;
+%if %<::PWM_SAMx7_PWM_CMRx_CPRE[0+Sh4]> != -1
+CMR |= PWM_CMR_CPRE(%<CAST("Number",::PWM_SAMx7_PWM_CMRx_CPRE[0+Sh4])>);	/* Select Clock Source */
+%endif
+%if %<::PWM_SAMx7_PushPull_Mode[0+Sh4]> == 1
+CMR |= PWM_CMR_PPM(1);	/* Enable Push Pull mode */
+%endif
+%if %<::PWM_SAMx7_PWM_Centered[0+Sh4]> == 1
+CMR |= PWM_CMR_CALG(1);	/* Center align */
+%endif
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<0>].PWM_CMR = CMR; /* PWM Mode Register */			
+%endif
+%if MustAssignPWM0with != -1		
+/* Set comon PWM period through PWM0 */						
+PWM%<PWMx>_REGS->PWM_CH_NUM[0].PWM_CPRD  = %<MustAssignPWM0with>; 	/* Set initial Period for PWM0 (and channels period synchronized with PWM0) to %<MustAssignPWM0with_s> (s) */
+%endif
+}
+%if (::PWM_SAMx7_PWM_iBlocks[0] == ::PWM_SAMx7_PWM_nBlocks[0]) && (::PWM_SAMx7_PWM_iBlocks[1] == ::PWM_SAMx7_PWM_nBlocks[1])
+/* Enable all PWM channels */	
+{	
+uint32_T ENA;   		
+%foreach PWMController = 2	
+%assign flag = 0	
+%foreach idx = 3
+%if (::PWM_SAMx7_PWM_ENA_CHIDx[idx + 4*PWMController]  == 1)		
+%if flag == 0
+ENA = 0;
+%endif
+ENA |= PWM_ENA_CHID%<idx>(1);	/* PWM Controller %<PWMController> channel %<idx> */
+%assign flag = 1
+%endif
+%endforeach
+%if flag == 1
+PWM%<PWMController>_REGS->PWM_ENA = ENA;	/* Enable PWM channels for controller %<PWMController> */
+%endif
+%endforeach	
+}
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ::PWM_SAMx7_PWM_Centered = MchpLocal2Global(block,::PWM_SAMx7_PWM_Centered ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_Centered),"PWM_Centered" , "Problem with the PWM centered option (see block main tab).")
+%assign ::PWM_SAMx7_PWM_SyncWithPWM0 = MchpLocal2Global(block,::PWM_SAMx7_PWM_SyncWithPWM0 ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_SyncWithPWM0),"PWM_SyncWithPWM0" , "Problem with the PWM0 synchronisation option (see block main tab).")
+%assign ::PWM_SAMx7_PushPull_Mode = MchpLocal2Global(block,::PWM_SAMx7_PushPull_Mode ,  MchpVector64(block.RTWdata.PWM_SAMx7_PushPull_Mode),"PushPull_Mode" , "Problem with the Push-Pull option (see block main tab).")
+%assign ::PWM_SAMx7_invert_PWMH = MchpLocal2Global(block,::PWM_SAMx7_invert_PWMH ,  MchpVector64(block.RTWdata.PWM_SAMx7_invert_PWMH),"invert_PWMH" , "Problem with at least one of the PWM high side polarity option.")
+%assign ::PWM_SAMx7_invert_PWML = MchpLocal2Global(block,::PWM_SAMx7_invert_PWML ,  MchpVector64(block.RTWdata.PWM_SAMx7_invert_PWML),"invert_PWML" , "Problem with at least one of the PWM Low side polarity option.")
+%assign ::PWM_SAMx7_PWM_FPE_FPEx = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPE_FPEx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPE_FPEx),"PWM_FPE_FPEx" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVMH = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVMH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVMH),"PWM_FPV_PVMH" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVML = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVML ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVML),"PWM_FPV_PVML" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVZH = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVZH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVZH),"PWM_FPV_PVZH" , "")
+%assign ::PWM_SAMx7_PWM_FPV_PVZL = MchpLocal2Global(block,::PWM_SAMx7_PWM_FPV_PVZL ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FPV_PVZL),"PWM_FPV_PVZL" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FPOLy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FPOLy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FPOLy),"PWM_FMR_FPOLy" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FMODy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FMODy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FMODy),"PWM_FMR_FMODy" , "")
+%assign ::PWM_SAMx7_PWM_FMR_FFILy = MchpLocal2Global(block,::PWM_SAMx7_PWM_FMR_FFILy ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_FMR_FFILy),"PWM_FMR_FFILy" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_RFEN = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_RFEN ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_RFEN),"PWM_ETRGy_RFEN" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGSRC = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGSRC ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGSRC),"PWM_ETRGy_TRGSRC" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGFILT = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGFILT ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGFILT),"PWM_ETRGy_TRGFILT" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGEDGE = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGEDGE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGEDGE),"PWM_ETRGy_TRGEDGE" , "")
+%assign ::PWM_SAMx7_PWM_ETRGy_TRGMODE = MchpLocal2Global(block,::PWM_SAMx7_PWM_ETRGy_TRGMODE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ETRGy_TRGMODE),"PWM_ETRGy_TRGMODE" , "")
+%assign ::PWM_SAMx7_PWM_CLK_PREA = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_PREA ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_PREA),"PWM_CLK_PREA" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_DIVA = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_DIVA ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_DIVA),"PWM_CLK_DIVA" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_PREB = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_PREB ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_PREB),"PWM_CLK_PREB" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CLK_DIVB = MchpLocal2Global(block,::PWM_SAMx7_PWM_CLK_DIVB ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CLK_DIVB),"PWM_CLK_DIVB" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CMRx_CPRE = MchpLocal2Global(block,::PWM_SAMx7_PWM_CMRx_CPRE ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CMRx_CPRE),"PWM_CMRx_CPRE" , "Problem with the PWM internal clock setting affecting the PWM resolution. This parameter is derived from the max period setting in the block main tab.")
+%assign ::PWM_SAMx7_PWM_CPRDx = MchpLocal2Global(block,::PWM_SAMx7_PWM_CPRDx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CPRDx),"PWM_CPRDx" , "Inital Period is not consistent.")
+%assign ::PWM_SAMx7_PWM_CDTYx = MchpLocal2Global(block,::PWM_SAMx7_PWM_CDTYx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CDTYx),"PWM_CDTYx" , "Inital Duty Cycle is not consistent.")
+%assign ::PWM_SAMx7_PWM_DTx_DTL = MchpLocal2Global(block,::PWM_SAMx7_PWM_DTx_DTL ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_DTx_DTL),"PWM_DTx_DTL" , "Initial Dead Time for Low side is not consistent.")
+%assign ::PWM_SAMx7_PWM_DTx_DTH = MchpLocal2Global(block,::PWM_SAMx7_PWM_DTx_DTH ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_DTx_DTH),"PWM_DTx_DTH" , "Initial Dead Time for High side is not consistent.")
+%assign ::PWM_SAMx7_PWM_ELMR_CSELx = MchpLocal2Global(block,::PWM_SAMx7_PWM_ELMR_CSELx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ELMR_CSELx),"PWM_ELMR_CSELx" , "")
+%assign ::PWM_SAMx7_PWM_CMPVx_CV = MchpLocal2Global(block,::PWM_SAMx7_PWM_CMPVx_CV ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_CMPVx_CV),"PWM_CMPVx_CV" , "")
+%assign ::PWM_SAMx7_PWM_ENA_CHIDx = MchpLocal2Global(block,::PWM_SAMx7_PWM_ENA_CHIDx ,  MchpVector64(block.RTWdata.PWM_SAMx7_PWM_ENA_CHIDx),"PWM_ENA_CHIDx" , "")
+%assign PWMx =  CAST("Number",block.RTWdata.PWMx)
+%assign ChEnH =  MchpVector64(block.RTWdata.ChEnH)
+%assign ChEnL =  MchpVector64(block.RTWdata.ChEnL)
+%assign ChEn =  MchpVector64(block.RTWdata.ChEn)
+%assign MaxPeriod_s =  CAST("Real",block.RTWdata.MaxPeriod_s)
+%assign InitPeriod_s =  MchpVectorDbl(block.RTWdata.InitPeriod_s)
+%assign InitDutyCycle_s =  MchpVectorDbl(block.RTWdata.InitDutyCycle_s)
+%assign InitDeadTimeL_s =  MchpVectorDbl(block.RTWdata.InitDeadTimeL_s)
+%assign InitDeadTimeH_s =  MchpVectorDbl(block.RTWdata.InitDeadTimeH_s)
+%assign InitEventLine0_ComparatorValue_s =  CAST("Real",block.RTWdata.InitEventLine0_ComparatorValue_s)
+%assign InitEventLine1_ComparatorValue_s =  MchpVectorDbl(block.RTWdata.InitEventLine1_ComparatorValue_s)
+%assign PWM_FPE_FPEy =  MchpVector64(block.RTWdata.PWM_FPE_FPEy)
+%assign OneFaultOutput =  CAST("Number",block.RTWdata.OneFaultOutput)
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockInput_Period =  CAST("Number",block.RTWdata.BlockInput_Period)
+%assign BlockInput_DutyCycle =  MchpVector64(block.RTWdata.BlockInput_DutyCycle)
+%assign BlockInput_DeadTime =  MchpVector64(block.RTWdata.BlockInput_DeadTime)
+%assign PCER_idx =  CAST("Number",block.RTWdata.PCER_idx)
+%assign Peripheral_ID =  CAST("Number",block.RTWdata.Peripheral_ID)
+%assign MaxPeriod_RAW =  CAST("Number",block.RTWdata.MaxPeriod_RAW)
+%assign MaxPeriod_ss =  CAST("Real",block.RTWdata.MaxPeriod_ss)
+%assign MaxPeriod_DeadTime_RAW =  CAST("Number",block.RTWdata.MaxPeriod_DeadTime_RAW)
+%assign MaxPeriod_DeadTime_ss =  CAST("Real",block.RTWdata.MaxPeriod_DeadTime_ss)
+%assign Sh1 = PWMx * 1
+%assign Sh4 = PWMx * 4
+%assign Sh8 = PWMx * 8
+%assign IndexOutput = 0
+%assign IndexInput = 0
+%assign IndexVect = 0
+%assign ChEnIndex = [-1,-1,-1,-1]
+%assign count = 0
+%foreach idx= SIZE(ChEn,1)
+%if ChEn[idx] == 1
+%assign ChEnIndex[count] = idx
+%assign count = count + 1
+%endif
+%endforeach
+%assign SomethingToUpdateforSynchronousUpdate = 0	
+%assign BlockInput_xx = BlockInput_Period			
+%assign idx = 0 			
+%if BlockInput_xx[idx] != -1			
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)					
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1							
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%assign SyncWithPWM0 = 0
+%foreach idx= SIZE(ChEn,1)
+%if (ChEn[idx]  && ::PWM_SAMx7_PWM_SyncWithPWM0[idx+Sh4])	
+%assign SyncWithPWM0 = 1
+%endif
+%endforeach
+%if yConnected			
+%if SyncWithPWM0 == 0	
+{
+uint32_T buffer_tmpreg = %<yScale>;	/* Precompute PWM Period */
+%foreach idx= SIZE(ChEn,1)		
+%if ChEn[idx] == 1
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_CPRDUPD = buffer_tmpreg;	/* Update PWM%<ChEnIndex[idx]> Period */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endforeach
+}
+%else
+PWM%<PWMx>_REGS->PWM_CH_NUM[0].PWM_CPRDUPD = %<yScale>;	/* Update PWM0 Period (and channels period synchronized with PWM0) */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endif
+%endif		
+%assign IndexInput = IndexInput + (IndexVect != 0)
+%assign IndexVect = 0	
+%assign BlockInput_xx = BlockInput_DutyCycle			
+%foreach idx= SIZE(BlockInput_xx,1)	
+%if BlockInput_xx[idx] != -1			
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%switch BlockInput_VectorScalar		
+%case 0	
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)					
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1							
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)		
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%if yConnected
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_CDTYUPD = %<yScale>;	/* Update PWM%<ChEnIndex[idx]> Duty Cycle */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endif
+%endforeach	
+%assign IndexInput = IndexInput + (IndexVect != 0)
+%assign IndexVect = 0
+%assign BlockInput_xx = BlockInput_DeadTime			
+%foreach idx= SIZE(BlockInput_xx,1)	
+%if BlockInput_xx[idx] != -1			
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%assign yConnected2 = LibBlockInputSignalConnected(IndexInput+1)
+%switch BlockInput_VectorScalar		
+%case 0	
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)					
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1	
+%assign y2 = LibBlockInputSignal(IndexInput, "", "",0)	
+%assign y_dtId2 = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1		
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)		
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)					
+%assign y2 = LibBlockInputSignal(IndexInput+1, "", "",IndexVect)	
+%assign y_dtId2 = LibBlockInputSignalDataTypeId(IndexInput+1)						
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_DeadTime_RAW,MaxPeriod_DeadTime_ss,0)
+%assign yScale2 = yScaleFct(y2,y_dtId2,BlockInput_xx[idx],MaxPeriod_DeadTime_RAW,MaxPeriod_DeadTime_ss,0)
+%if (yConnected && yConnected2) 
+%if ISEQUAL(yScale,yScale2)	 
+{
+uint32_T buffer_tmpreg;	/* Precompute PWM Dead Time */
+buffer_tmpreg = PWM_DTUPD_DTHUPD(%<yScale>);
+buffer_tmpreg |= PWM_DTUPD_DTLUPD(%<yScale>);	
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_DTUPD = buffer_tmpreg; /* Update PWM%<ChEnIndex[idx]> Dead Time */	
+%assign SomethingToUpdateforSynchronousUpdate = 1
+}
+%else
+{
+uint32_T buffer_tmpreg;	/* Precompute PWM Dead Time */		
+buffer_tmpreg = PWM_DTUPD_DTHUPD(%<yScale>);
+buffer_tmpreg |= PWM_DTUPD_DTLUPD(%<yScale2>);
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_DTUPD = buffer_tmpreg; /* Update Dead Time */	
+%assign SomethingToUpdateforSynchronousUpdate = 1
+}
+%endif
+%else 
+%if yConnected
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_DTUPD = (PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_DTUPD  & (~PWM_DTUPD_DTHUPD_Msk)) | PWM_DTUPD_DTHUPD(%<yScale>);	/* Update %<ChEnIndex[idx]> Dead Time High */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%if yConnected2
+PWM%<PWMx>_REGS->PWM_CH_NUM[%<ChEnIndex[idx]>].PWM_DTUPD = (PWM%<PWMx>_REGS->PWM_CH_NUM[%<idx>].PWM_DTUPD  & (~PWM_DTUPD_DTLUPD_Msk)) | PWM_DTUPD_DTLUPD(%<yScale2>);	/* Update %<ChEnIndex[idx]> Dead Time Low */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endif
+%endif
+%endforeach	
+%assign IndexInput = IndexInput + (IndexVect != 0) + (IndexVect != 0)
+%assign IndexVect = 0
+%if SomethingToUpdateforSynchronousUpdate
+PWM%<PWMx>_REGS->PWM_SCUC = 1UL; /* synchronous Update of PWM (after current period) */
+%endif
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function MCHP_MAX0(val) void
+%if val < 0
+%return CAST("Number",0)
+%else
+%return CAST("Number",val)
+%endif
+%endfunction	
+%function yScaleFct(y,y_dtId,BlockInput_xx,MaxPeriod_RAW,MaxPeriod_ss,Rshift) void
+%switch y_dtId
+%case 0
+%assign y_CAST = "Real"		
+%break
+%case 1
+%assign y_CAST = "Real32"	
+%break
+%endswitch 		
+%switch Rshift
+%case 0
+%assign RshiftMult = 1
+%break
+%default
+%assign RshiftMult = 1.0/(1U << Rshift)
+%break
+%endswitch
+%switch BlockInput_xx
+%case 1		
+%if Rshift > 0
+%assign yScale = "(%<y> >> %<Rshift>)"
+%else
+%assign yScale = y
+%endif
+%break
+%case 10	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW * RshiftMult) >  ))"
+%break
+%case 11	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, 0.5*MaxPeriod_RAW * RshiftMult) >  +  %< CAST(y_CAST, 0.5*MaxPeriod_RAW*RshiftMult) >  ))"
+%break
+%case 12	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW*RshiftMult/MaxPeriod_ss) >  ))"
+%break
+%endswitch
+%return yScale
+%endfunction

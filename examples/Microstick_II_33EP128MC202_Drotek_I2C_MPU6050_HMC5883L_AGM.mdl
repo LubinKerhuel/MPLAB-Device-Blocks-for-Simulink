@@ -1,0 +1,3914 @@
+Model {
+  Name			  "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM"
+  Version		  7.5
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.35"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1252"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength	  120
+  Created		  "Fri Oct 04 15:58:11 2013"
+  Creator		  "Lubin Kerhuel"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Lubin Kerhuel"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Mon Mar 21 21:13:30 2016"
+  RTWModifiedTimeStamp	  380495594
+  ModelVersionFormat	  "1.%<AutoIncrement:35>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  on
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.10.0"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.10.0"
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  FixedStep		  "0.001"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.10.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.10.0"
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  on
+	  UseIntDivNetSlope	  off
+	  InlineInvariantSignals  on
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  EnforceIntegerDowncast  on
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  128
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode on
+	  LifeSpan		  "1"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.10.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Enable All"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "none"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    10
+	    Cell		    "ProdHWDeviceType"
+	    Cell		    "ProdEqTarget"
+	    Cell		    "ProdBitPerChar"
+	    Cell		    "ProdBitPerShort"
+	    Cell		    "ProdBitPerInt"
+	    Cell		    "ProdBitPerLong"
+	    Cell		    "ProdWordSize"
+	    Cell		    "ProdShiftRightIntArith"
+	    Cell		    "ProdEndianess"
+	    Cell		    "ProdIntDivRoundTo"
+	    PropName		    "DisabledProps"
+	  }
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  16
+	  ProdBitPerLong	  32
+	  ProdIntDivRoundTo	  "Zero"
+	  ProdEndianess		  "LittleEndian"
+	  ProdWordSize		  16
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "Generic->Custom"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.10.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Single"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.10.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "TargetLang"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "MCHP_dsPIC_stf.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "MCHP_dsPIC.tmf"
+	  Description		  "Microchip Embedded Target PIC24 dsPIC30 dsPIC33 (real-time)"
+	  GenerateReport	  on
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "MCHP_dsPIC_stf_make_rtw_hook"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport on
+	  LaunchReport		  on
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  on
+	  GenerateTraceReport	  on
+	  GenerateTraceReportSl	  on
+	  GenerateTraceReportSf	  on
+	  GenerateTraceReportEml  on
+	  GenerateCodeInfo	  off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.10.0"
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses off
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      255
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M_T"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      SimulinkBlockComments   on
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.STFCustomTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.10.0"
+	      Array {
+		Type			"Cell"
+		Dimension		6
+		Cell			"GenerateSampleERTMain"
+		Cell			"MatFileLogging"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"UtilityFuncGeneration"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"ModelReferenceCompliant"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      "_lib.a"
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant off
+	      CompOptLevelCompliant   off
+	      IncludeMdlTerminateFcn  off
+	      GeneratePreprocessorConditionals "Use local settings"
+	      CombineOutputUpdateFcns on
+	      SuppressErrorStatus     on
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    on
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   off
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      SystemTargetFile	      "MCHP_dsPIC_stf.tlc"
+	      DialogCategory	      0
+	      Array {
+		Type			"Handle"
+		Dimension		1
+		Simulink.ERTTargetCC {
+		  $BackupClass		  "Simulink.TargetCC"
+		  $ObjectID		  12
+		  Version		  "1.10.0"
+		  Array {
+		    Type		    "Cell"
+		    Dimension		    12
+		    Cell		    "GenerateSampleERTMain"
+		    Cell		    "ERTCustomFileTemplate"
+		    Cell		    "MatFileLogging"
+		    Cell		    "GRTInterface"
+		    Cell		    "SupportNonInlinedSFcns"
+		    Cell		    "UtilityFuncGeneration"
+		    Cell		    "IncludeMdlTerminateFcn"
+		    Cell		    "ERTDataHdrFileTemplate"
+		    Cell		    "ERTDataSrcFileTemplate"
+		    Cell		    "ERTHdrFileBannerTemplate"
+		    Cell		    "ERTSrcFileBannerTemplate"
+		    Cell		    "ModelReferenceCompliant"
+		    PropName		    "DisabledProps"
+		  }
+		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
+		  TargetLibSuffix	  "_lib.a"
+		  TargetPreCompLibLocation ""
+		  TargetFunctionLibrary	  "ANSI_C"
+		  UtilityFuncGeneration	  "Auto"
+		  ERTMultiwordTypeDef	  "System defined"
+		  ERTCodeCoverageTool	  "None"
+		  ERTMultiwordLength	  256
+		  MultiwordLength	  2048
+		  GenerateFullHeader	  on
+		  GenerateSampleERTMain	  off
+		  GenerateTestInterfaces  off
+		  IsPILTarget		  off
+		  ModelReferenceCompliant on
+		  ParMdlRefBuildCompliant off
+		  CompOptLevelCompliant	  off
+		  IncludeMdlTerminateFcn  off
+		  GeneratePreprocessorConditionals "Use local settings"
+		  CombineOutputUpdateFcns on
+		  SuppressErrorStatus	  on
+		  ERTFirstTimeCompliant	  off
+		  IncludeFileDelimiter	  "Auto"
+		  ERTCustomFileBanners	  on
+		  SupportAbsoluteTime	  on
+		  LogVarNameModifier	  "rt_"
+		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
+		  SupportNonFinite	  on
+		  SupportComplex	  on
+		  PurelyIntegerCode	  off
+		  SupportContinuousTime	  off
+		  SupportNonInlinedSFcns  on
+		  SupportVariableSizeSignals off
+		  EnableShiftOperators	  on
+		  ParenthesesLevel	  "Nominal"
+		  PortableWordSizes	  off
+		  ModelStepFunctionPrototypeControlCompliant off
+		  CPPClassGenCompliant	  off
+		  AutosarCompliant	  off
+		  GenerateErtSFunction	  off
+		  GenerateASAP2		  off
+		  ExtMode		  off
+		  ExtModeTransport	  0
+		  ExtModeStaticAlloc	  off
+		  ExtModeStaticAllocSize  1000000
+		  ExtModeTesting	  off
+		  ExtModeMexFile	  "ext_comm"
+		  ExtModeIntrfLevel	  "Level1"
+		  InlinedParameterPlacement "NonHierarchical"
+		  TargetOS		  "BareBoardExample"
+		  MultiInstanceErrorCode  "Error"
+		  RateGroupingCode	  on
+		  RootIOFormat		  "Individual arguments"
+		  RTWCAPISignals	  off
+		  RTWCAPIParams		  off
+		  RTWCAPIStates		  off
+		  ERTSrcFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTHdrFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTDataSrcFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTDataHdrFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTCustomFileTemplate	  "MCHP_main.tlc"
+		  CoverageDialogOpen	  "off"
+		  ModuleNamingRule	  "Unspecified"
+		  SignalDisplayLevel	  10
+		  ParamTuneLevel	  10
+		  GlobalDataDefinition	  "Auto"
+		  DataDefinitionFile	  "global.c"
+		  GlobalDataReference	  "Auto"
+		  ERTFilePackagingFormat  "Modular"
+		  DataReferenceFile	  "global.h"
+		  GRTInterface		  off
+		  PreserveExpressionOrder off
+		  PreserveIfCondition	  off
+		  ConvertIfToSwitch	  off
+		  PreserveExternInFcnDecls on
+		  EnableUserReplacementTypes off
+		  Array {
+		    Type		    "Struct"
+		    Dimension		    1
+		    MATStruct {
+		    double		    ""
+		    single		    ""
+		    int32		    ""
+		    int16		    ""
+		    int8		    ""
+		    uint32		    ""
+		    uint16		    ""
+		    uint8		    ""
+		    boolean		    ""
+		    int			    ""
+		    uint		    ""
+		    char		    ""
+		    }
+		    PropName		    "ReplacementTypes"
+		  }
+		  MemSecPackage		  "--- None ---"
+		  MemSecDataConstants	  "Default"
+		  MemSecDataIO		  "Default"
+		  MemSecDataInternal	  "Default"
+		  MemSecDataParameters	  "Default"
+		  MemSecFuncInitTerm	  "Default"
+		  MemSecFuncExecute	  "Default"
+		}
+		PropName		"Components"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_REF"
+		Value			"33EP128MC202"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"HOST_PLATFORM"
+		Value			"PC"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OPTIM_GCC"
+		Value			" -O3 -funroll-loops"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LDFLAGS"
+		Value			"'-t,--report-mem,-Map=info.map,-cref,--memorysummary,memoryfile.xml'"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__Program Files (x86)_Microchip_MatlabTools_blocks_MCHP_dsPIC_stf_1OMF"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "elf"
+		  Value			  1
+		  String		  "coff"
+		}
+		Name			"OMF"
+		Value			"elf"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"ProduceHexOutput"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"AssemblyListing"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCCPATH"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/bin"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LINKER_SCRIPT"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/gld/P3B4A2~1.GLD"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_LIB"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libm-elf.a C:/PROGRA"
+		"~2/MICROC~1/xc16/v1.26/lib/libc-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26"
+		"/lib/libq-dsp-elf.a "
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_INCLUDES"
+		Value			"-IC:/PROGRA~2/MICROC~1/xc16/v1.26/include -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h -IC:/PROGRA~"
+		"2/MICROC~1/xc16/v1.26/support/generic/h"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCC1"
+		Value			"xc16-gcc.exe"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"AR1"
+		Value			"xc16-ar"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"BIN2HEX"
+		Value			"xc16-bin2hex"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OBJDUMP"
+		Value			"xc16-objdump"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_AUTO_FLASH"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_MULTITHREAD_COMPILATION"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PRESCALER"
+		Value			"[1 -1 -1 -1 -1]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PERIOD"
+		Value			"[8749]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_START"
+		Value			"[3]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"RTWGenSettings_txt"
+		Value			"s.RefMasterBlk='Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master';s.ChipIdN='[33"
+		"  128  202]';s.ChipIdL1='EP';s.ChipIdL2='MC';s.ChipIdL3='';s.arch3='33E';s.ChipId='33EP128MC202';s.bitFieldsSFR='7';"
+		"s.ChipRAM='16384';s.ChipRAM_XBegin='4096';s.ChipRAM_dma='[-1 -1]';s.FuseConfigTxt='_FOSCSEL( FNOSC_PRI & PWMLOCK_OFF"
+		" ) ;_FOSC( POSCMD_XT & FCKSM_CSECMD ) ;_FWDT( FWDTEN_OFF ) ;_FPOR( ALTI2C1_ON ) ;_FICD( JTAGEN_OFF ) ;';s.TimeStep_T"
+		"imer='1';s.TimeStep_SyncADC='-1';s.ADPCFG='1';s.ANSEL_Exist='1';s.ANSEL='[18  15  -1  -1  -1  -1  -1  -1  -1  -1  -1"
+		"]';s.TRIS='[65534  64511     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1 "
+		"    -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     "
+		"-1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1  "
+		"   -1     -1     -1     -1     -1     -1     -1     -1     -1]';s.RPOR='[-1 -1 -1 -1  1]';s.RPINR='[-1]';s.PortConfi"
+		"gTxt='';s.CLKDIV='5';s.PLLFBD='243';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='-1';s.POWERSAVE='0';s.MIPS"
+		"='70000000';s.AN_type2='0';s.UART_TX_IMPLEMENTATION='[2]';s.UART_RX_IMPLEMENTATION='[0]';s.UART_TX_DMACHANNEL='[0]';"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"EXTMODE_DATA_UPLOAD"
+		Value			off
+	      }
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Optimization/Signals and Parameters"
+      ConfigPrmDlgPosition    " [ 404, 160, 1516, 876 ] "
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    1
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit via back propagation"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParamMin		      "[]"
+      ParamMax		      "[]"
+      ParameterDataTypeMode   "Same as input"
+      ParameterDataType	      "fixdt(1,16,0)"
+      ParameterScalingMode    "Best Precision: Matrix-wise"
+      ParameterScaling	      "[]"
+      ParamDataTypeStr	      "Inherit: Same as input"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Logic
+      Operator		      "AND"
+      Inputs		      "2"
+      IconShape		      "rectangular"
+      AllPortsSameDT	      on
+      OutDataTypeMode	      "Logical (see Configuration Parameters: Optimization)"
+      LogicDataType	      "uint(8)"
+      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      RateTransition
+      Integrity		      on
+      Deterministic	      on
+      X0		      "0"
+      OutPortSampleTimeOpt    "Specify"
+      OutPortSampleTimeMultiple	"1"
+      OutPortSampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+  }
+  System {
+    Name		    "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM"
+    Location		    [102, 80, 1313, 1023]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    172
+    Block {
+      BlockType		      Reference
+      Name		      "BUS I2C\nInitialize HMC5883L Magnetometer"
+      SID		      114
+      Ports		      []
+      Position		      [70, 134, 215, 186]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"24"
+	PIN_SDA			"25"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     0      33536      100000   134331.2224       511        -1        -1        -1        -1        -1        1     "
+	"   -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0        0    "
+	"    60        -1        -1        -1        -1        -1        -1        64        1        0        5        4     "
+	"   -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1        -1   "
+	"     -1        -1        -1        0      33536      400000   399771.5591       165        -1        -1        -1    "
+	"    -1        -1]"
+	I2CUserData		"[0 120  0  0]"
+	I2CRef			"1"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"4011606000000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"5"
+	blockingMode		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
+      SourceType	      "I2C Driver"
+      I2CRef		      "1"
+      I2C_IntPriority	      "5"
+      I2Csequence_txt	      "Initial-Configuration$     ---     $Update-Configuration$Start$Write Address:{[0x1E]}    "
+      "% HMC5883L Address$Write Data (x1)  Write:{[0x00 0x78 0x00 0x00]}      % Configure$Stop$Update-Configuration"
+      I2Csequence_num	      "[BFF0000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]$[4070000000000000]$"
+      "[0000000000000000 40E0600000000000 40F86A0000000000 410065D9C7810E65]$[3FF0000000000000 40E0600000000000 41186A0"
+      "000000000 4118666E3C87173F]$[4040000000000000 0000000000000000 0000000000000000 403E000000000000]$[4050000000000"
+      "000 3FF0000000000000 0000000000000000 0000000000000000 405E000000000000 0000000000000000 0000000000000000]$[4000"
+      "000000000000 40E0600000000000 40F86A0000000000 40F866E066594CA2]$[0000000000000000 40E0600000000000 41186A000000"
+      "0000 4118666E3C87173F]"
+      InitialConfigurationNum "0"
+      PIN_SDA_TXT	      "B9 / Pin[18]"
+      PIN_SCL_TXT	      "B8 / Pin[17]"
+      S_INPUT		      "[5  5]"
+      S_OUTPUT		      "[5]"
+      S_INPUT_Size	      "[2  2]"
+      S_OUTPUT_Size	      "[4]"
+      BlockingMode	      off
+      SampleTime	      "inf"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_PORT		      "{I2C 1 Clock}{SCL1}13:0:B8;{I2C 1 SDA}{SDA1}13:0:B9;"
+      ORDERING		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "BUS I2C\nInitialize MPU 6000 rate gyro & Accelerometer"
+      SID		      113
+      Ports		      []
+      Position		      [70, 224, 215, 276]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"24"
+	PIN_SDA			"25"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0  "
+	"      0       210        -1        -1        -1        -1        -1        -1        64        1        0        3   "
+	"     2        -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1  "
+	"      -1        -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1"
+	"        -1        -1        32        0        0       210        -1        -1        -1        -1        -1        -"
+	"1        64        1        0        5        2        -1        -1        -1        -1        -1        2        -1 "
+	"       -1        -1        -1        -1        -1        -1        -1        -1]"
+	I2CUserData		"[107  1  55  2]"
+	I2CRef			"1"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"4014032000000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"5"
+	blockingMode		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
+      SourceType	      "I2C Driver"
+      I2CRef		      "1"
+      I2C_IntPriority	      "5"
+      I2Csequence_txt	      "Initial-Configuration$     ---     $Start$Write Address:{[0x69]}    % MPU 6000 addr with "
+      "AD0 = 1$Write Data (x1)  Write:{[0x6B 0x01]}      % conf Pow Mngt 1$Stop$Start$Write Address:{[0x69]}    % MPU 6"
+      "000 addr with AD0 = 1$Write Data (x1)  Write:{[0x37 0x02]}      % I2C Bypass$Stop"
+      I2Csequence_num	      "[BFF0000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]$[4070000000000000]$"
+      "[3FF0000000000000 40E0200000000000 40F86A0000000000 40F866E066594CA2]$[4040000000000000 0000000000000000 0000000"
+      "000000000 405A400000000000]$[4050000000000000 3FF0000000000000 0000000000000000 405AC00000000000 3FF000000000000"
+      "0]$[4000000000000000 40E0600000000000 40F86A0000000000 40F866E066594CA2]$[3FF0000000000000 40E0600000000000 4118"
+      "6A0000000000 41185D86632136AD]$[4040000000000000 0000000000000000 0000000000000000 405A400000000000]$[4050000000"
+      "000000 3FF0000000000000 0000000000000000 404B800000000000 4000000000000000]$[4000000000000000 40E0600000000000 4"
+      "0F86A0000000000 40F866E066594CA2]"
+      InitialConfigurationNum "0"
+      PIN_SDA_TXT	      "B9 / Pin[18]"
+      PIN_SCL_TXT	      "B8 / Pin[17]"
+      S_INPUT		      "[5  5]"
+      S_OUTPUT		      "[5]"
+      S_INPUT_Size	      "[2  2]"
+      S_OUTPUT_Size	      "[4]"
+      BlockingMode	      off
+      SampleTime	      "inf"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_PORT		      "{I2C 1 Clock}{SCL1}13:0:B8;{I2C 1 SDA}{SDA1}13:0:B9;"
+      ORDERING		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "BUS I2C\nRead HMC5883L Magnetometer"
+      SID		      21
+      Ports		      [0, 1]
+      Position		      [50, 666, 245, 724]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"24"
+	PIN_SDA			"25"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     0      33536      100000   134331.2224       511        -1        -1        -1        -1        -1        1     "
+	"   -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0        0    "
+	"    60        -1        -1        -1        -1        -1        -1        64        1        0        2        1     "
+	"   -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1        -1   "
+	"     -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1        -1 "
+	"       -1        32        0        0        61        -1        -1        -1        -1        -1        -1       128"
+	"        6        -1        -1        -1        -1        -1        0        -1        -1        2        -1        -1"
+	"        -1        -1        -1        -1        -1        -1        -1        0      33536      400000   399771.5591 "
+	"      165        -1        -1        -1        -1        -1]"
+	I2CUserData		"[3]"
+	I2CRef			"1"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"4018022000000000"
+	Buff8_size		"6"
+	Buff16_size		"0"
+	IntPriority		"5"
+	blockingMode		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
+      SourceType	      "I2C Driver"
+      I2CRef		      "1"
+      I2C_IntPriority	      "5"
+      I2Csequence_txt	      "Initial-Configuration$     ---     $Update-Configuration$Start$Write Address:{[0x1E]}    "
+      "% HMC5883L Address$Write Data (x1)  Write:{[0x3]}  $Stop$Start$Write Address:{[0x1E]}    % HMC5883L Address$Read"
+      " Data (x6)  Read:{Magn xyz}$Stop$Update-Configuration"
+      I2Csequence_num	      "[BFF0000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]$[4070000000000000]$"
+      "[0000000000000000 40E0600000000000 40F86A0000000000 410065D9C7810E65]$[3FF0000000000000 40E0200000000000 40F86A0"
+      "000000000 40F866E066594CA2]$[4040000000000000 0000000000000000 0000000000000000 403E000000000000]$[4050000000000"
+      "000 3FF0000000000000 0000000000000000 4008000000000000]$[4000000000000000 40E0600000000000 40F86A0000000000 40F8"
+      "66E066594CA2]$[3FF0000000000000 40E0200000000000 40F86A0000000000 40F866E066594CA2]$[4040000000000000 0000000000"
+      "000000 0000000000000000 403E000000000000]$[4060000000000000 4018000000000000]$[4000000000000000 40E0600000000000"
+      " 40F86A0000000000 40F866E066594CA2]$[0000000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]"
+      InitialConfigurationNum "0"
+      PIN_SDA_TXT	      "B9 / Pin[18]"
+      PIN_SCL_TXT	      "B8 / Pin[17]"
+      S_INPUT		      "[5  5]"
+      S_OUTPUT		      "[5]"
+      S_INPUT_Size	      "[2  2]"
+      S_OUTPUT_Size	      "[4]"
+      BlockingMode	      off
+      SampleTime	      "[.01]"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_PORT		      "{I2C 1 Clock}{SCL1}13:0:B8;{I2C 1 SDA}{SDA1}13:0:B9;"
+      ORDERING		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "BUS I2C\nRead MPU 6000 Rate Gyro & Accelerometer"
+      SID		      20
+      Ports		      [0, 1]
+      Position		      [40, 391, 255, 459]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"24"
+	PIN_SDA			"25"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0  "
+	"      0       210        -1        -1        -1        -1        -1        -1        64        1        0        2   "
+	"     1        -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1  "
+	"      -1        -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1"
+	"        -1        -1        32        0        0       211        -1        -1        -1        -1        -1        -"
+	"1       128        14        -1        -1        -1        -1        -1        0        -1        -1        2        "
+	"-1        -1        -1        -1        -1        -1        -1        -1        -1]"
+	I2CUserData		"[59]"
+	I2CRef			"1"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"401c022000000000"
+	Buff8_size		"14"
+	Buff16_size		"0"
+	IntPriority		"5"
+	blockingMode		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
+      SourceType	      "I2C Driver"
+      I2CRef		      "1"
+      I2C_IntPriority	      "5"
+      I2Csequence_txt	      "Initial-Configuration$     ---     $Start$Write Address:{[0x69]}    % MPU 6000 addr with "
+      "AD0 = 1$Write Data (x1)  Write:{[0x3B]}      % Addr Accel Xout$Stop$Start$Write Address:{[0x69]}    % MPU 6000 a"
+      "ddr with AD0 = 1$Read Data (x14)  Read:{Acc Gyr xyz}$Stop"
+      I2Csequence_num	      "[BFF0000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]$[4070000000000000]$"
+      "[3FF0000000000000 40E0200000000000 40F86A0000000000 40F866E066594CA2]$[4040000000000000 0000000000000000 0000000"
+      "000000000 405A400000000000]$[4050000000000000 3FF0000000000000 0000000000000000 404D800000000000]$[4000000000000"
+      "000 40E0600000000000 40F86A0000000000 40F866E066594CA2]$[3FF0000000000000 40E0600000000000 40F86A0000000000 40F8"
+      "66E066594CA2]$[4040000000000000 0000000000000000 0000000000000000 405A400000000000]$[4060000000000000 402C000000"
+      "000000]$[4000000000000000 40E0600000000000 40F86A0000000000 40F866E066594CA2]"
+      InitialConfigurationNum "0"
+      PIN_SDA_TXT	      "B9 / Pin[18]"
+      PIN_SCL_TXT	      "B8 / Pin[17]"
+      S_INPUT		      "[5  5]"
+      S_OUTPUT		      "[5]"
+      S_INPUT_Size	      "[2  2]"
+      S_OUTPUT_Size	      "[4]"
+      BlockingMode	      off
+      SampleTime	      "[.001]"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_PORT		      "{I2C 1 Clock}{SCL1}13:0:B8;{I2C 1 SDA}{SDA1}13:0:B9;"
+      ORDERING		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Compiler Options"
+      SID		      2
+      Ports		      []
+      Position		      [214, 29, 309, 84]
+      Priority		      "1"
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
+      SourceType	      ""
+      LATEST_CMPLR	      on
+      COMP_LIST		      "Dynamic Options"
+      COMP_LIST_TXT	      "xc16 - v1.26"
+      USE_64BIT_DOUBLE	      off
+      MCHP_MULTITHREAD_COMPILATION on
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      OPTIMIZATION_LEVEL      "3"
+      MPLAB_LINKLIB	      "default"
+      MPLAB_LINKLIB1	      "default"
+      UNROLL_LOOPS	      on
+      OMIT_FRAME_POINTER      off
+      PROCEDURAL_ABSTRACTION  off
+      MCONST		      "in code memory"
+      MDATA		      "Use only memory below address 8192 (faster)"
+      MSCALAR		      "Use only memory below address 8192 (faster)"
+      MCODE		      "is less than 32768 (faster)"
+      HEAP_SIZE		      "0"
+      OMF		      "elf"
+      DEBUG_INFO	      off
+      AssemblyListing	      off
+      ProduceHexOutput	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Data Sheet"
+      SID		      6
+      Ports		      []
+      Position		      [335, 34, 382, 79]
+      AttributesFormatString  "%<cpy_MCHP_Id>"
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
+      SourceBlock	      "MCHP_Blockset/System Info/Data Sheet"
+      SourceType	      ""
+      DOC_Type		      "datasheet"
+      DOC_MCHP_Id	      "33FJ64MC802"
+      DOC_FileLastCheckTime   "[0 0 0 0 0 0]"
+      cpy_MCHP_Id	      "33EP128MC202"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux"
+      SID		      22
+      Ports		      [1, 14]
+      Position		      [310, 282, 315, 568]
+      ShowName		      off
+      Outputs		      "14"
+      DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+	Name			"U1 CH1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"U1 CH2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		3
+	Name			"U1 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		4
+	Name			"U1 CH4"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		5
+	Name			"U1 CH6"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		6
+	Name			"U1 CH6"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		7
+	Name			"U1 CH8"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		8
+	Name			"U1 CH9"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		9
+	Name			"U1 CH9"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		10
+	Name			"U1 CH10"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		11
+	Name			"U1 CH11"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		12
+	Name			"U1 CH12"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		13
+	Name			"U1 CH13"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		14
+	Name			"U1 CH14"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux1"
+      SID		      84
+      Ports		      [1, 6]
+      Position		      [310, 610, 315, 775]
+      ShowName		      off
+      Outputs		      "6"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Digital Output"
+      SID		      9
+      Ports		      [1, 1]
+      Position		      [405, 143, 490, 177]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	PortNum			"0"
+	PinsBitewise		"15"
+	Pins			"[0  1  2  3]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Output"
+      SourceType	      ""
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "A   [ 0 : 4 ]"
+      PIN		      "0"
+      PACK		      off
+      SIMULTANEOUS	      off
+      READPREVIOUS	      on
+      ORDERING		      "None"
+      SampleTime	      ".05"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+    }
+    Block {
+      BlockType		      Logic
+      Name		      "Logical\nOperator"
+      SID		      11
+      Ports		      [1, 1]
+      Position		      [530, 144, 560, 176]
+      Operator		      "NOT"
+      AllPortsSameDT	      off
+      OutDataTypeMode	      "boolean"
+      OutDataTypeStr	      "boolean"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Microchip Master"
+      SID		      1
+      Ports		      []
+      Position		      [70, 27, 170, 83]
+      Priority		      "1"
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Microchip Master"
+      SourceType	      ""
+      PICREF		      "33EP128MC202"
+      TIMESTEP_REF	      "Timer  ( 0.001s )"
+      BUSYFLAG		      "Dynamic Options"
+      BUSYFLAG_TXT	      "None"
+      PWRTEN		      "PWRT enabled"
+      BOREN		      "Disable"
+      BODENV		      "2.7V"
+      BORV		      "Brown-out Reset set at 2.0V"
+      FPWRT		      "64ms"
+      DSBOREN		      "Deep Sleep BOR enabled in Deep Sleep"
+      DSLPBOR		      "Deep Sleep BOR enabled in Deep Sleep"
+      MCLRE		      "Enabled"
+      SMCLR		      "MCLR pin generates a normal system Reset"
+      PMDL1WAY		      "Allow only one reconfiguration"
+      RSTPRI		      "Device will obtain reset instruction from Primary flash"
+      TEMP		      "Not used"
+      SOSCSRC		      "Analog Mode for use with crystal"
+      SOSCSEL		      "Secondary oscillator configured for high-power operation"
+      IOL1WAY		      "Allow only one reconfiguration"
+      ALTVREF		      "Voltage reference input; ADC =RA9/RA10 Comparator =RA9;RA10"
+      DISUVREG		      "Regulator is disabled"
+      DSSWEN		      "Deep Sleep is controlled by the register bit DSEN"
+      LPCFG		      "Disabled - regardless of RETEN"
+      RTCBAT		      "RTC operation is continued through VBAT"
+      VBTBOR		      "VBAT BOR enabled"
+      WUTSEL		      "Default regulator start-up time used"
+      POWERSAVE		      off
+      FNOSC		      "Primary oscillator (XT; HS; EC)"
+      FPR		      "ECIO w/ PLL 16x"
+      FOSFPR		      "HS3 w/PLL 16x"
+      FOS		      "Internal Fast RC"
+      FRANGE		      "High Range"
+      OSCILLATOR_SELECT	      "Crystal / Ceramic resonator"
+      OSCILLATOR_SELECT_spd   "Crystal / Ceramic resonator"
+      QUARTZ		      "8e+06"
+      QUARTZ_spd	      "8e+06"
+      POSCGAIN		      "2x gain setting"
+      POSCBOOST		      "Boost the kick start of the oscillator"
+      SOSCGAIN		      "2x gain setting"
+      SOSCBOOST		      "Boost the kick start of the oscillator"
+      ACTIV_PLL		      on
+      ACTIV_PLL_spd	      "on"
+      MIPS_DESIRED	      "70e6"
+      MIPS_DESIRED_spd	      "70e6"
+      FPLLMUL		      "24x Multiplier"
+      FPLLIDIV		      "12x Divider"
+      POSCFREQ		      "Primary oscillator/external clock input frequency greater than 8MHz"
+      POSCMD		      "XT Crystal Oscillator Mode"
+      POSCMOD		      "Primary Oscillator Disabled"
+      MIPS		      "70 * 1e6"
+      FPLLODIV		      "PLL Divide by 256"
+      PLLKEN		      "Clock switch to PLL source will wait until the PLL lock signal is valid."
+      FCKSM		      "Clock switching is enabled;Fail-safe Clock Monitor is disabled"
+      FCKSMEN		      "Sw Disabled; Mon Disabled"
+      IESO		      "Start up with FRC; then switch"
+      DSWDTPS		      "1:2;147;483;648 (25.7 Days)"
+      FWDTEN		      "Disable"
+      FWDTWINSZ		      "Window size is 25%"
+      FWPSA		      "1:512"
+      FWPSA0		      "1:128"
+      FWPSB		      "1:16"
+      WDT		      "Disable"
+      WDTPOST		      "1:32768"
+      WDTPRE		      "1:128"
+      WDTPS		      "1:32768"
+      WINDIS		      "Watchdog Timer in Non-Window mode"
+      WWDTEN		      "Non-Window mode"
+      DSWDTEN		      "DSWDT enabled"
+      DSWDTOSC		      "DSWDT uses Low Power RC Oscillator (LPRC)"
+      FPBDIV		      "Pb_Clk is Sys_Clk/8"
+      FSOSCEN		      "Enabled"
+      LPRCSEL		      "High Power; High Accuracy Mode"
+      OSCIOFCN		      "OSCO/CLKO/RA3 functions as CLKO (FOSC/2)"
+      OSCIOFNC		      "OSC2 is clock output"
+      LVRCFG		      "Low Voltage regulator is not available"
+      PLL_96MHZ		      "Enabled"
+      PLL96MHZ		      "96 MHz PLL Startup is enabled automatically on start-up"
+      PLLDIV		      "PLL is disabled"
+      WDTCLK		      "WDT uses LPRC"
+      WDTCMX		      "WDT clock source is determined by the WDTCLK Configuration bits"
+      WDTWIN		      "WDT Window is 25% of WDT period"
+      APL		      "Aux Flash Code protect is disabled"
+      APLK		      "Aux Flash Write Protection or Code Protection is Enabled"
+      AWRP		      "Aux Flash may be written"
+      BSS		      "No boot program Flash segment"
+      BWP		      "Protection Disabled"
+      BWRP		      "Boot Segment may be written"
+      CP		      "Protection Disabled"
+      EBS		      "No Boot EEPROM"
+      ESS		      "No Segment Data EEPROM"
+      GCP		      "General Segment Code protect is disabled"
+      GSS		      "User program memory is not code-protected"
+      GSS0		      "No protection"
+      GSSK		      "General Segment Write Protection or Code Protection is Enabled"
+      GWRP		      "General Segment may be written"
+      PWP		      "Disable"
+      RBS		      "No Boot RAM"
+      RSS		      "No Secure RAM"
+      SSS		      "No Secure Segment"
+      SWRP		      "Secure segment may be written"
+      WPCFG		      "Disable"
+      WPDIS		      "Disable"
+      WPEND		      "Write Protect from WPFP to the last page of memory"
+      WPFP		      "Page 127 (0x1FC00)"
+      ICESEL		      "Communicate on PGEC1/PGED1"
+      ICS		      "Communicate on PGEC1 and PGED1"
+      JTAGEN		      "Disable"
+      COE		      "Reset Into Operational Mode"
+      RES		      "Not used"
+      DEBUG		      "Debugger is disabled"
+      BACKBUG		      "Not used"
+      BKBUG		      "Device resets into Operational mode"
+      ALTI2C		      "I2C mapped to SDA1/SCL1 pins"
+      ALTI2C1		      "I2C1 mapped to ASDA1/ASCL1 pins"
+      ALTI2C2		      "I2C2 mapped to SDA2/SCL2 pins"
+      ALTQIO		      "QEA1; QEB1; INDX1 are selected as inputs to QEI1"
+      ALTSS1		      "SS1A is selected as the I/O pin for SPI1"
+      CMPPOL0		      "Hysteresis is applied to falling edge"
+      CMPPOL1		      "Hysteresis is applied to falling edge"
+      FCANIO		      "Default CAN I/O"
+      FETHIO		      "Default Ethernet I/O"
+      FMIIEN		      "MII Enabled"
+      FSRSSEL		      "SRS Priority 7"
+      FUSBIDIO		      "Controlled by the USB Module"
+      FVBUSONIO		      "Controlled by USB Module"
+      HPOL		      "Active High"
+      HYST0		      "45 mV Hysteresis"
+      HYST1		      "45 mV Hysteresis"
+      I2C1SEL		      "Use Default SCL1/SDA1 Pins For I2C1"
+      LPOL		      "Active High"
+      PWMPIN		      "Control with PORT/TRIS regs"
+      RTCOSC		      "RTCC uses Secondary Oscillator (SOSC)"
+      UPLLEN		      "Disabled and bypassed"
+      UPLLIDIV		      "12x Divider"
+      ATMOD8		      "Not used"
+      ALTPMP		      "EPMP pins are in default location mode"
+      I2C2SEL		      "I2C2 is multiplexed to SDA2/RA3 and SCL2/RA2 "
+      ALTADREF		      "AVREF+/AVREF- are mapped to RA9/RA10"
+      ALTCVREF		      "CVREF+/CVREF- are mapped to RA9/RA10"
+      PWMLOCK		      "PWM registers may be written without key sequence"
+      MCHP_TIMER_REQUEST      "{Time Step}{TS}0:2:3:1:[]:70000;"
+      MCHP_TIMER_RESULT	      "[1 8748.9999999999927 ]"
+      MCHP_PLLRegisters	      "[5    243  16385     -1]"
+      MCHPVAR		      "MCHP.fcy.periph=70000000;MCHP.fcy.MIPS=70000000;MCHP.PowerSave=0;MCHP.TimeStepFactor=MCHP_Fun.He"
+      "x2num('[3FF0000000000004]');MCHP.TimeStep_Timer=1;MCHP.NTIMERS=5;MCHP.id.name='33EP128MC202';MCHP.id.N=reshape(["
+      "33 128 202],1,3);MCHP.id.L=reshape({ 'EP','MC',''},1,3);MCHP.id.Arch=3;MCHP.periph.PPS.reg_RPINRx=reshape([-1 1 "
+      "1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 -1 1 1 1 1 -1 -1 -1 -1 -1 -1 1 1 -1 -1 1 1 1 1 -1 -1 -1 -1 1 -1 1 -1 -1 -1 -1 -1 "
+      "1 1 1 -1 -1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 -1 1 1 1],1,80);MCHP."
+      "PPS.dsPIC.RP=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 19 20 21 22 23 24 25 26 27],1,44);MCHP.PPS.dsPIC.RPI=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 16 17 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 28 29 30 31],1,4"
+      "8);MCHP.PPS.dsPIC.RPINR_list=reshape({ '1','INT1','INT2','INT3','INT4','T1CK','T2CK','T3CK','T4CK','T5CK','T6CK'"
+      ",'T7CK','T8CK','T9CK','IC1','IC2','IC3','IC4','IC5','IC6','IC7','IC8','OCFA','OCFB','FLT1','FLT2','FLT3','FLT4',"
+      "'QEA1','QEB1','INDX1','HOME1','QEA2','QEB2','INDX2','HOME2','U1RX','U1CTS','U2RX','U2CTS','SDI1','SCK1','SS1','4"
+      "4','SDI2','SCK2','SS2','48','CSDIR','CSCK','COFS','52','C1RX','C2RX','U3RX','U3CTS','U4RX','U4CTS','SDI3','SCK3'"
+      ",'SS3','62','SDI4','SCK4','SS4','66','IC9','IC10','IC11','IC12','IC13','IC14','IC15','IC16','OCFC','SYNCI1','SYN"
+      "CI2','DTCMP1','DTCMP2','DTCMP3','DTCMP4','DTCMP5','DTCMP6','DTCMP7','FLT5','FLT6','FLT7','FLT8','89','SENT1','SE"
+      "NT2','92'},1,92);MCHP.PPS.dsPIC.RPOR_list=reshape({ '1','U1TX','U1RTS','U2TX','U2RTS','SDO1','SCK1','SS1','SDO2'"
+      ",'SCK2','SS2','CSDO','CSCK','COFS','C1TX','C2TX','OC1','OC2','OC3','OC4','OC5','OC6','OC7','OC8','C1OUT','C2OUT'"
+      ",'C3OUT','U3TX','U3RTS','U4TX','U4RTS','SDO3','SCK3','SS3','SDO4','SCK4','SS4','OC9','OC10','OC11','OC12','OC13'"
+      ",'OC14','OC15','OC16','SYNCO1','SYNCO2','QEI1CCMP','QEI2CCMP','REFCLK','C4OUT','C5OUT','52','53','54','55','56',"
+      "'SENT1','SENT2'},1,59);MCHP.PPS.map_RPnR_RPORx=reshape([20 35 36 37 38 39 40 41 42 43],1,10);MCHP.Rx=reshape([2 "
+      "4 -1 -1 -1 -1 -1 -1 -1 -1 -1 3 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 9 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 10 7 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 12 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 14 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " 16 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 17 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 21 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 22 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 23 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 24 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 25 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 26 -1 -1 -1 -1 -1 -1 -1 -1 -1],11,16);MCHP.ADC.ANtype=reshape([3 0],1,2"
+      ");MCHP.ADC.ADCONx=reshape([47103 59391 40959 263 0 0],1,6);MCHP.ADC.ADCHS_0=reshape([40863 1799],1,2);MCHP.ADC.F"
+      "lags=reshape([1 0],1,2);MCHP.ADC.Buffer=reshape([16 -1],1,2);MCHP.ADC.port=reshape([0 1 16 17 18 19 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,57);MCHP.ADC.port_VrefP=17;MCHP.ADC.port_VrefM=16;MCHP.ADC.port_AVdd=-1;MCHP.ADC"
+      ".port_AVss=-1;MCHP.memory.RAM=16384;MCHP.memory.RAM_XBegin=4096;MCHP.memory.RAM_YBegin=12288;MCHP.memory.RAM_dma"
+      "=reshape([-1 -1],1,2);MCHP.DMA.Num=4;MCHP.DMA.CNTmax=16383;MCHP.QEI.QEICONx=reshape([49023 -1 -1 -1 -1 -1],1,6);"
+      "MCHP.QEI.QEItype=1;MCHP.QEI.Port_QEI_INDX=reshape([-1 -1],1,2);MCHP.QEI.Port_QEI_QEA=reshape([-1 -1],1,2);MCHP.Q"
+      "EI.Port_QEI_QEB=reshape([-1 -1],1,2);MCHP.QEI.Port_QEI_UPDN=reshape([-1 -1],1,2);MCHP.INT.Port=reshape([23 32767"
+      " 32767 -1 -1],1,5);MCHP.PWM_HS.Flags=reshape([3 1 0],1,3);MCHP.PWM.port_FLT=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 20],1,33);MCHP.PWM.PWMRef=-1;MCHP.PWM.Flag="
+      "0;MCHP.PWM.Port_PWM_l=reshape([31 -1 29 -1 27 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],2,9);MCHP.PWM.Port_PWM_h=r"
+      "eshape([30 -1 28 -1 26 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],2,9);MCHP.IC.Port=reshape([32767 32767 32767 3276"
+      "7 0 0 0 0 0 0 0 0 0 0 0 0],1,16);MCHP.IC.type=1;MCHP.OC.Port=reshape([32767 32767 32767 32767 0 0 0 0 0 0 0 0 0 "
+      "0 0 0],1,16);MCHP.OC.type=1;MCHP.CN.Port=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,85);MCHP.CN.PullUp=reshape(["
+      "31 65535 0 0 0 0 0 0 0 0 0],1,11);MCHP.CN.type=1;MCHP.CN.Flag_PullDown=1;MCHP.SPI.Refs=reshape([1 2 0 0 0 0],1,6"
+      ");MCHP.SPI.SPIxCON1=8191;MCHP.SPI.SPIxCON2=57347;MCHP.SPI.Port_SDI=reshape([25 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Por"
+      "t_SDO=reshape([24 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SCK=reshape([23 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SS=resha"
+      "pe([16 -1 -1 -1 -1 -1],1,6);MCHP.I2C.Refs=reshape([1 2 0 0 0],1,5);MCHP.I2C.I2CxCON=49151;MCHP.I2C.NewRegName=1;"
+      "MCHP.I2C.Port_SDA=reshape([-1 -1 -1 -1 -1],1,5);MCHP.I2C.Port_SCL=reshape([-1 -1 -1 -1 -1],1,5);MCHP.I2C.Port_AS"
+      "DA=reshape([25 21 -1 -1 -1],1,5);MCHP.I2C.Port_ASCL=reshape([24 22 -1 -1 -1],1,5);MCHP.I2C.Fuse_Port_SCL_SDA=res"
+      "hape([3 1 4 1 -1 -1 -1 -1 -1 -1],2,5);MCHP.I2C.Fuse_Port_ASCL_ASDA=reshape([3 2 4 2 -1 -1 -1 -1 -1 -1],2,5);MCHP"
+      ".Comp.Port_CVrefin=-1;MCHP.Comp.Port_CVref=-1;MCHP.Comp.Port_CVref1O=24;MCHP.Comp.Port_CVref2O=4;MCHP.Comp.Port_"
+      "CxOUT=reshape([32767 32767 32767 32767 -1],1,5);MCHP.Comp.Port_OAxOUT=reshape([17 0 -1 -1 -1],1,5);MCHP.Comp.Por"
+      "t_CxINP=reshape([18 1 -1 -1 -1],1,5);MCHP.Comp.Port_CxINM=reshape([19 -1 -1 -1 16 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1],4,5);MCHP.Comp.nComp=reshape([4 0 0],1,3);MCHP.Comp.OpAmp=3;MCHP.Comp.CVRCON=reshape([17663 0],1"
+      ",2);MCHP.UART.port_Rx=reshape([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.port_Tx=reshape([32767 32767 -1 -1 -1 -1]"
+      ",1,6);MCHP.UART.port_ARx=reshape([-1 -1],1,2);MCHP.UART.port_ATx=reshape([-1 -1],1,2);MCHP.UART.port_RTS=reshape"
+      "([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.port_CTS=reshape([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.reg_UxMODE=r"
+      "eshape([48127 48127 -1 -1 -1 -1],1,6);MCHP.UART.reg_UxSTA=reshape([61439 61439 -1 -1 -1 -1],1,6);"
+      MCHP_CRC		      "2948448"
+      BTMODE		      "Device is in Single Boot (legacy) mode"
+      RES1		      "Not used"
+      PLLSS		      "PLL is fed by the Primary oscillator"
+      RES2		      "Not used"
+      ALTCMPI		      "C1INC is on RB13; C2INC is on RB9 and C3INC is on RA0"
+      BOREN1		      "BOR Enabled [When BOREN=1]"
+      ALTRB6		      "Append the RP6/ASCL1/PMPD6 functions of RB6 to RA1 pin functions"
+      RETCFG		      "Retention regulator is not available"
+      DFMCY		      "Not used"
+      BSS2		      "No Boot Segment"
+      BSEN		      "No Boot Segment"
+      CWRP		      "Configuration Segment may be written"
+      CSS		      "No Protection (other than CWRP)"
+      AIVTDIS		      "Disable Alternate Vector Table"
+      BSLIM		      "Not used"
+      WDTEN		      "Disable"
+      BTSWP		      "Not used"
+      DBCC		      "Not used"
+      CTXT1		      "Not Assigned"
+      CTXT2		      "Not Assigned"
+      SEQNUM		      "Not used"
+      nSEQNUM		      "Not used"
+      BOREN0		      "Enabled"
+      DMTIVT		      "Not used"
+      DMTCNT		      "2^31 (2147483648)"
+      DMTEN		      "Dead Man Timer is Enabled and cannot be disabled by software"
+      ON		      "Not used"
+      USERID		      "Not used"
+      RESERVED1		      "Not used"
+      PGL1WAY		      "Allow only one reconfiguration"
+      FPLLRNG		      "34-68 MHz Input"
+      FPLLICLK		      "FRC is input to the System PLL"
+      FPLLMULT		      "PLL Multiply by 128"
+      UPLLFSEL		      "USB PLL input is 24 MHz"
+      DMTINTV		      "Window/Interval value is 127/128 counter value"
+      WDTSPGM		      "WDT stops during Flash programming"
+      FDMTEN		      "Deadman Timer is disabled"
+      TRCEN		      "Trace features in the CPU are enabled"
+      BOOTISA		      "Boot code and Exception code is MIPS32"
+      FECCCON		      "ECC and Dynamic ECC are disabled (ECCCON bits are writable)"
+      EXTDDRSIZE	      "External DDR2 Size is 128 MB"
+      FSLEEP		      "Flash is powered down when the device is in Sleep mode"
+      DBGPER		      "Allow CPU access to all permission regions"
+      EJTAGBEN		      "Normal EJTAG functionality"
+      TSEQ		      "Not used"
+      CSEQ		      "Not used"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Port Info"
+      SID		      132
+      Ports		      []
+      Position		      [642, 41, 789, 226]
+      DropShadow	      on
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
+      SourceBlock	      "MCHP_Blockset/System Info/Port Info"
+      SourceType	      ""
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition"
+      SID		      134
+      Position		      [545, 294, 560, 316]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition1"
+      SID		      135
+      Position		      [545, 334, 560, 356]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition2"
+      SID		      136
+      Position		      [545, 374, 560, 396]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition3"
+      SID		      137
+      Position		      [550, 414, 565, 436]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH4"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition4"
+      SID		      138
+      Position		      [550, 454, 565, 476]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH5"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition5"
+      SID		      139
+      Position		      [550, 494, 565, 516]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH6"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition6"
+      SID		      140
+      Position		      [550, 534, 565, 556]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH7"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition7"
+      SID		      141
+      Position		      [480, 619, 495, 641]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH8"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition8"
+      SID		      142
+      Position		      [480, 674, 495, 696]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH9"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      RateTransition
+      Name		      "Rate Transition9"
+      SID		      143
+      Position		      [480, 729, 495, 751]
+      OutPortSampleTime	      ".005"
+      Port {
+	PortNumber		1
+	Name			"U1 CH10"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem1"
+      SID		      23
+      Ports		      [2, 1]
+      Position		      [450, 487, 495, 523]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"gyro2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem1"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  24
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  25
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  26
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  27
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  28
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  29
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  163
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  31
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem10"
+      SID		      85
+      Ports		      [2, 1]
+      Position		      [375, 722, 420, 758]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"mag3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem10"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  86
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  87
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  88
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  89
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  90
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  91
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  164
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  93
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem2"
+      SID		      32
+      Ports		      [2, 1]
+      Position		      [370, 447, 415, 483]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"gyro1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem2"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  33
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  34
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  35
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  36
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  37
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  38
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  165
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  40
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem3"
+      SID		      41
+      Ports		      [2, 1]
+      Position		      [450, 407, 495, 443]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"Temp"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem3"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  42
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  43
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  44
+	  Position		  [345, 28, 420, 62]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  SID			  45
+	  Position		  [110, 27, 175, 63]
+	  Gain			  "2^8"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  SID			  46
+	  Ports			  [2, 1]
+	  Position		  [235, 35, 255, 55]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "|++"
+	  InputSameDT		  off
+	  AccumDataTypeStr	  "uint16"
+	  OutDataTypeMode	  "Same as accumulator"
+	  OutDataTypeStr	  "Inherit: Same as accumulator"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  47
+	  Position		  [515, 38, 545, 52]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  Points		  [190, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem4"
+      SID		      48
+      Ports		      [2, 1]
+      Position		      [370, 367, 415, 403]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"a3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem4"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  49
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  50
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  51
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  52
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  53
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  54
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  166
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  56
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem5"
+      SID		      57
+      Ports		      [2, 1]
+      Position		      [450, 327, 495, 363]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"a2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem5"
+	Location		[16, 52, 1368, 1276]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  58
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  59
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  60
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  61
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  62
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  63
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  167
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  65
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem6"
+      SID		      66
+      Ports		      [2, 1]
+      Position		      [370, 527, 415, 563]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"gyro3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem6"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  67
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  68
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  69
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  70
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  71
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  72
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  168
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  74
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem7"
+      SID		      75
+      Ports		      [2, 1]
+      Position		      [370, 287, 415, 323]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"a1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem7"
+	Location		[35, 52, 1954, 1328]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  76
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  77
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  78
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  79
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  80
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  81
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  169
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  83
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem8"
+      SID		      94
+      Ports		      [2, 1]
+      Position		      [355, 612, 400, 648]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"mag1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem8"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  95
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  96
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  97
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  98
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  99
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  100
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  170
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  102
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Subsystem9"
+      SID		      103
+      Ports		      [2, 1]
+      Position		      [355, 667, 400, 703]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"mag2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Subsystem9"
+	Location		[33, 52, 1954, 1332]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Hi"
+	  SID			  104
+	  Position		  [20, 38, 50, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Low"
+	  SID			  105
+	  Position		  [20, 88, 50, 102]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Bitwise\nOperator"
+	  SID			  106
+	  Ports			  [2, 1]
+	  Position		  [350, 21, 400, 119]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	  SourceType		  "Bitwise Operator"
+	  logicop		  "OR"
+	  UseBitMask		  off
+	  NumInputPorts		  "2"
+	  BitMask		  "bin2dec('11011001')"
+	  BitMaskRealWorld	  "Stored Integer"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  107
+	  Position		  [105, 28, 180, 62]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  108
+	  Position		  [465, 53, 540, 87]
+	  OutDataTypeMode	  "int16"
+	  OutDataTypeStr	  "int16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  109
+	  Position		  [105, 78, 180, 112]
+	  OutDataTypeMode	  "uint16"
+	  OutDataTypeStr	  "uint16"
+	  ConvertRealWorld	  "Stored Integer (SI)"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Shift\nArithmetic"
+	  SID			  171
+	  Ports			  [1, 1]
+	  Position		  [230, 25, 310, 65]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	  SourceType		  "Shift Arithmetic"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  nBitShiftRight	  "8"
+	  nBinPtShiftRight	  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  111
+	  Position		  [560, 63, 590, 77]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion3"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Low"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Shift\nArithmetic"
+	  SrcPort		  1
+	  DstBlock		  "Bitwise\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Shift\nArithmetic"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bitwise\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Hi"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Configuration"
+      SID		      12
+      Ports		      []
+      Position		      [445, 32, 545, 88]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	UARTRef			"1"
+	UxBRG			"37"
+	DesiredBaud		"115200"
+	Error			"-0.06"
+	InitSequence_enable	"0"
+	UxBRG_InitSeq		""
+	DesiredBaud_InitSeq	""
+	Error_InitSeq		""
+	UxMODE			"32768"
+	UxSTA			"9216"
+	UxMODE_InitSeq		""
+	TX_INT_PRIORITY		"5"
+	TX_CIRCULAR_SIZE	"32"
+	MCHP_COM_ExtPIL		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
+      SourceType	      "Configuration for UART peripheral"
+      UART_REF		      "1"
+      BAUD_Choice	      "Dynamic Options"
+      BAUD_Choice_TXT	      "  115200         [-0.06%]"
+      BAUD_Choice_IR	      "Dynamic Options"
+      BAUD_Choice_IR_TXT      "[]"
+      BAUD_Custom	      "115200"
+      IRDA		      off
+      ALT_IO		      on
+      PIN_RX		      "Dynamic Options"
+      PIN_RX_TXT	      "B11 / P43 / Pin[22]"
+      PIN_TX		      "Dynamic Options"
+      PIN_TX_TXT	      "B10 / P42 / Pin[21]"
+      FlowControl	      "None"
+      PIN_CTS		      "Dynamic Options"
+      PIN_CTS_TXT	      "A4 / P20 / Pin[12]"
+      PIN_RTS		      "Dynamic Options"
+      PIN_RTS_TXT	      "A4 / P20 / Pin[12]"
+      MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P42;"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_COM_ExtPil	      off
+      TX_IMPLEMENTATION	      "Circular Buffer"
+      TX_INT_PRIORITY	      "5"
+      TX_INT_WHEN	      "is empty & last char is sent"
+      TX_CIRCULAR_SIZE	      "32"
+      TX_DMA_CHANNEL	      "0   (Lowest Priority)"
+      TX_DMA_SIZE	      "[]"
+      RX_IMPLEMENTATION	      "Do not implement Rx"
+      RX_INT_PRIORITY	      "1"
+      RX_INT_WHEN	      "receive 1 character"
+      RX_CIRCULAR_SIZE	      "32"
+      InitSequence_chkbox     off
+      BAUD_Choice_InitSeq     "Dynamic Options"
+      BAUD_Choice_InitSeq_TXT "0"
+      BAUD_Choice_IR_InitSeq  "Dynamic Options"
+      BAUD_Choice_IR_InitSeq_TXT "0"
+      BAUD_Custom_InitSeq     "0"
+      InitSequence	      "'Hello World'"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Tx-Matlab"
+      SID		      112
+      Ports		      [3]
+      Position		      [555, 605, 675, 765]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	UARTRef			"1"
+	ControlChar		"[117  133  149]"
+	AllOrNothing		"0"
+	BytesSent		"9"
+	NbrDataBytes		"[2  2  2]"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Tx-Matlab"
+      SourceType	      "Higl Level UART protocol"
+      UART_REF		      "1"
+      CHANNELS		      "[8:10]"
+      AllOrNothing	      off
+      SampleTime	      "-1 "
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_COMPILED_INFO      "CompiledSampleTime= [0.0050000000000000001   0 ];CompiledInportDataTypes=[  4   4   4 ]"
+      ";CompiledInportDataWidth=[1  1  1];"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Tx-Matlab1"
+      SID		      115
+      Ports		      [7]
+      Position		      [695, 281, 840, 569]
+      LibraryVersion	      "3.38"
+      List {
+	ListType		RTWdata
+	UARTRef			"1"
+	ControlChar		"[5   21   37   53   69   85  101]"
+	AllOrNothing		"0"
+	BytesSent		"21"
+	NbrDataBytes		"[2  2  2  2  2  2  2]"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Tx-Matlab"
+      SourceType	      "Higl Level UART protocol"
+      UART_REF		      "1"
+      CHANNELS		      "[1:7]"
+      AllOrNothing	      off
+      SampleTime	      "-1 "
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_Drotek_I2C_MPU6050_HMC5883L_AGM/Microchip Master"
+      MCHP_COMPILED_INFO      "CompiledSampleTime= [0.0050000000000000001   0 ];CompiledInportDataTypes=[  4   4   4  "
+      " 4   4   4   4 ];CompiledInportDataWidth=[1  1  1  1  1  1  1];"
+    }
+    Line {
+      SrcBlock		      "Digital Output"
+      SrcPort		      1
+      DstBlock		      "Logical\nOperator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Logical\nOperator"
+      SrcPort		      1
+      Points		      [46, 0; 0, 56; -239, 0; 0, -56]
+      DstBlock		      "Digital Output"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH1"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      DstBlock		      "Subsystem7"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH2"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      DstBlock		      "Subsystem7"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH4"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      4
+      DstBlock		      "Subsystem5"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH3"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      3
+      Points		      [9, 0; 0, 12; 104, 0; 0, -12]
+      DstBlock		      "Subsystem5"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH6"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      6
+      DstBlock		      "Subsystem4"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH6"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      5
+      DstBlock		      "Subsystem4"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH9"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux"
+      SrcPort		      8
+      DstBlock		      "Subsystem3"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH8"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux"
+      SrcPort		      7
+      Points		      [22, 0; 0, 15; 91, 0; 0, -15]
+      DstBlock		      "Subsystem3"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH10"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      10
+      DstBlock		      "Subsystem2"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH9"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      9
+      DstBlock		      "Subsystem2"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH12"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      12
+      DstBlock		      "Subsystem1"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH11"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      11
+      DstBlock		      "Subsystem1"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH14"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      14
+      DstBlock		      "Subsystem6"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH13"
+      Labels		      [0, 1]
+      SrcBlock		      "Demux"
+      SrcPort		      13
+      DstBlock		      "Subsystem6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "BUS I2C\nRead MPU 6000 Rate Gyro & Accelerometer"
+      SrcPort		      1
+      DstBlock		      "Demux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "BUS I2C\nRead HMC5883L Magnetometer"
+      SrcPort		      1
+      DstBlock		      "Demux1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      1
+      Points		      [15, 0; 0, -10]
+      DstBlock		      "Subsystem8"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      2
+      Points		      [20, 0]
+      DstBlock		      "Subsystem8"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      3
+      Points		      [0, -5]
+      DstBlock		      "Subsystem9"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      4
+      Points		      [20, 0]
+      DstBlock		      "Subsystem9"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      6
+      Points		      [25, 0; 0, -5]
+      DstBlock		      "Subsystem10"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      5
+      DstBlock		      "Subsystem10"
+      DstPort		      1
+    }
+    Line {
+      Name		      "mag3"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem10"
+      SrcPort		      1
+      DstBlock		      "Rate Transition9"
+      DstPort		      1
+    }
+    Line {
+      Name		      "mag2"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem9"
+      SrcPort		      1
+      DstBlock		      "Rate Transition8"
+      DstPort		      1
+    }
+    Line {
+      Name		      "mag1"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem8"
+      SrcPort		      1
+      DstBlock		      "Rate Transition7"
+      DstPort		      1
+    }
+    Line {
+      Name		      "Temp"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem3"
+      SrcPort		      1
+      DstBlock		      "Rate Transition3"
+      DstPort		      1
+    }
+    Line {
+      Name		      "a2"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem5"
+      SrcPort		      1
+      DstBlock		      "Rate Transition1"
+      DstPort		      1
+    }
+    Line {
+      Name		      "gyro2"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem1"
+      SrcPort		      1
+      DstBlock		      "Rate Transition5"
+      DstPort		      1
+    }
+    Line {
+      Name		      "a1"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem7"
+      SrcPort		      1
+      DstBlock		      "Rate Transition"
+      DstPort		      1
+    }
+    Line {
+      Name		      "a3"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem4"
+      SrcPort		      1
+      DstBlock		      "Rate Transition2"
+      DstPort		      1
+    }
+    Line {
+      Name		      "gyro1"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem2"
+      SrcPort		      1
+      DstBlock		      "Rate Transition4"
+      DstPort		      1
+    }
+    Line {
+      Name		      "gyro3"
+      Labels		      [0, 0]
+      SrcBlock		      "Subsystem6"
+      SrcPort		      1
+      DstBlock		      "Rate Transition6"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH1"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH2"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition1"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH3"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition2"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      3
+    }
+    Line {
+      Name		      "U1 CH4"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition3"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      4
+    }
+    Line {
+      Name		      "U1 CH5"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition4"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      5
+    }
+    Line {
+      Name		      "U1 CH6"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition5"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      6
+    }
+    Line {
+      Name		      "U1 CH7"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition6"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab1"
+      DstPort		      7
+    }
+    Line {
+      Name		      "U1 CH8"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition7"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH9"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition8"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH10"
+      Labels		      [0, 0]
+      SrcBlock		      "Rate Transition9"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      3
+    }
+    Annotation {
+      Name		      "Read from an MPU6000 and an HMC5883L:\n- Rate gyro\n- Accelerometers\n- Magnetometers\n\nTested wit"
+      "h a Microstick II board endowed with a dsPIC 33EP128MC202\nThe MS5611 I2C bus was connected to pins B8 (SCL) and"
+      " B9 (SDA).\nThe sensor board IMU 10DOF V2 from Drotek was used for this test.\n\nNote the I2C speed reconfigurat"
+      "ion"
+      Position		      [828, 41]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+    }
+  }
+}

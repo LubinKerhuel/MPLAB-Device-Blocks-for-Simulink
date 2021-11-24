@@ -1,0 +1,315 @@
+%implements  MCHP_COMPARATOR1 "C"
+%include "MCHP_Functions.tlc"
+%function BlockInstanceSetup(block, system) void
+%assign CMxCON = MchpVector(block.RTWdata.CMxCON)
+%foreach idx = SIZE(CMxCON,1)
+%if CMxCON[idx] != -1
+%<HARMONY_RegisterPeripheral("CMP",idx+1,block)>	/* Comparator - Op-Amps function */			
+%endif
+%endforeach
+%endfunction
+%function Start(block, system) Output
+/* Initialize Comparator Peripheral */
+%assign CVRCON = CAST("Number",block.RTWdata.CVRCON)
+%assign CVRxCON = MchpVector(block.RTWdata.CVRxCON)
+%assign DACxCON = MchpVector(block.RTWdata.DACxCON)	
+%assign CMxCON = MchpVector(block.RTWdata.CMxCON)
+%assign CMCON = CAST("Number",block.RTWdata.CMCON)
+%assign CMxFLTR = MchpVector(block.RTWdata.CMxFLTR)
+%assign CMxMSKSRC = MchpVector(block.RTWdata.CMxMSKSRC)
+%assign CMxMSKCON = MchpVector(block.RTWdata.CMxMSKCON)
+%assign InterruptEvent = MchpVector(block.RTWdata.InterruptEvent)
+%assign CVR2OE_Variant = CAST("Number",block.RTWdata.CVR2OE_Variant)
+%assign IntPriority = CAST("Number",block.RTWdata.IntPriority)
+%if CVRCON != -1
+CVRCON = %<MchpHex(CVRCON)> ;	/* Set Voltage Reference */
+%endif
+%foreach idx = SIZE(CVRxCON,1)
+%if CVRxCON[idx] != -1
+CVR%<idx+1>CON = %<MchpHex(CVRxCON[idx])>;	/* Set Voltage Reference */
+%endif
+%endforeach
+%foreach idx = SIZE(DACxCON,1) 
+%if DACxCON[idx] != -1
+DAC%<idx+1>CON = %<MchpHex(DACxCON[idx])>;	/* Set Voltage Reference */
+%endif
+%endforeach	
+%foreach idx = SIZE(CMxMSKCON,1)
+%if CMxMSKCON[idx] != -1
+%if CMxMSKSRC[idx] != -1
+CM%<idx+1>MSKSRC = %<MchpHex(CMxMSKSRC[idx])>;
+%endif
+CM%<idx+1>MSKCON = %<MchpHex(CMxMSKCON[idx])>; /* Blanking function */
+%endif
+%endforeach
+%foreach idx = SIZE(CMxFLTR,1)
+%if CMxFLTR[idx] != -1
+CM%<idx+1>FLTR = %<MchpHex(CMxFLTR[idx])>;	/* Filtering function */
+%endif
+%endforeach
+%foreach idx = SIZE(CMxCON,1)
+%if CMxCON[idx] != -1
+CM%<idx+1>CON = %<MchpHex(CMxCON[idx])>;	/* Comparator - Op-Amps function */
+%endif
+%endforeach
+%if CMCON != -1
+CMCON = %<MchpHex(CMCON)>;	/* Comparator  */
+%endif
+%if ::MCHP_COMPARATOR1_InterruptRequest == 1
+%if CVR2OE_Variant == 3		
+%foreach idx = SIZE(InterruptEvent,1)
+%if InterruptEvent[idx] != 0
+%<MCHP_SFR( "CMP%<idx+1>IP" , IntPriority , "Set Comparator %<idx+1> Interrupt Priority" )>
+%<MCHP_SFR( "CMP%<idx+1>IF" , 0 , "Clear Comparator %<idx+1> Interrupt Flag" )>
+%<MCHP_SFR( "CMP%<idx+1>IE" , 1 , "Enable Comparator %<idx+1> Interrupt" )>
+%endif
+%endforeach		
+%else 
+%<MCHP_SFR( "CMIP" , IntPriority , "Set Comparator Interrupt Priority" )>
+%<MCHP_SFR( "CMIF" , 0 , "Clear Comparator Interrupt Flag" )>
+%<MCHP_SFR( "CMIE" , 1 , "Enable Comparator Interrupt" )>
+%endif
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign BlockInputDac = MchpVector(block.RTWdata.BlockInputDac)
+%assign InterruptEvent = MchpVector(block.RTWdata.InterruptEvent)
+%assign BlockOutputEvent = MchpVector(block.RTWdata.BlockOutputEvent)
+%assign BlockOutputState = MchpVector(block.RTWdata.BlockOutputState)
+%assign IntPriority = CAST("Number",block.RTWdata.IntPriority)
+%assign IE_LongDescCRC = MchpVector(block.RTWdata.IE_LongDescCRC)
+%assign CVR2OE_Variant = CAST("Number",block.RTWdata.CVR2OE_Variant)
+%assign CMCON = CAST("Number",block.RTWdata.CMCON)
+%assign DACxCON = MchpVector(block.RTWdata.DACxCON)	
+%assign IndexOutput = 0
+%switch CVR2OE_Variant
+%case 0
+%if (BlockInputDac[0] == 1)
+%assign u = LibBlockInputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+{unsigned int tmp;
+tmp = (CVRCON ^ %<u>) & 0x0F;
+CVRCON ^= tmp;
+}
+%endif
+%break
+%case 1 
+%case 2
+%if (BlockInputDac[0] == 1)
+%assign u = LibBlockInputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+{unsigned int tmp;
+tmp = (CVR1CON ^ %<u>) & 0x0F;
+CVR1CON ^= tmp;
+}
+%endif
+%if (BlockInputDac[1] == 1)
+%assign u = LibBlockInputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+{unsigned int tmp;
+tmp = (CVR2CON ^ %<u>) & 0x0F;
+CVR2CON ^= tmp;
+}
+%endif
+%break
+%case 3 
+%if (BlockInputDac[0] == 1)
+%assign u = LibBlockInputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+{unsigned int tmp;
+tmp = (DAC1CON ^ ((uint32_T) %<u><<16)) & 0xFFFF0000;
+DAC1CON ^= tmp;
+}
+%endif
+%if (BlockInputDac[1] == 1)
+%assign u = LibBlockInputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+{unsigned int tmp;
+tmp = (DAC2CON ^ ((uint32_T) %<u><<16)) & 0xFFFF0000;
+DAC2CON ^= tmp;
+}
+%endif
+%endswitch
+%assign IndexOutput = 0
+%foreach idx = SIZE(BlockOutputEvent,1)
+%switch BlockOutputEvent[idx]
+%case 0
+%break
+%case 1 
+%assign y = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%if ::MCHP_COMPARATOR1_InterruptRequest == 1
+%<y> = 	MCHP_CEVT%<idx+1>; /* use copy done by the Comparator Interrupt */
+MCHP_CEVT%<idx+1> = 0;
+%else
+%switch CVR2OE_Variant
+%case 3		
+%<y> = CM%<idx+1>CONbits.CEVT; /* Comparator Event occured */
+CM%<idx+1>CONbits.CEVT = 0;		/* Re-Enable Comparator Event */
+%break
+%default
+%<y> = CMSTATbits.C%<idx+1>EVT; /* Comparator Event occured */
+CMSTATbits.C%<idx+1>EVT = 0;		/* Re-Enable Comparator Event */
+%endswitch
+%endif
+%break
+%case 2 
+%break
+%endswitch
+%if BlockOutputState[idx] == 1
+%assign y = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%if CMCON == -1
+%<y> = CM%<idx+1>CONbits.COUT; /* Comparator State Output */
+%else
+%<y> = CMCONbits.C%<idx+1>OUT; /* Comparator State Output */
+%endif
+%endif
+%endforeach
+%if ::MCHP_COMPARATOR1_InterruptRequest == 1
+%openfile buffer
+%foreach idx = 4
+%switch BlockOutputEvent[idx]
+%case 0
+%break
+%case 1 
+extern boolean_T volatile MCHP_CEVT%<idx+1>;
+%break
+%endswitch
+%endforeach
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%openfile buffer
+%foreach idx = 4
+%switch BlockOutputEvent[idx]
+%case 0
+%break
+%case 1 
+boolean_T volatile MCHP_CEVT%<idx+1> = 0;
+%break
+%endswitch
+%endforeach
+%closefile buffer
+%assign srcFile = LibGetModelDotCFile()
+%<LibSetSourceFileSection(srcFile,"Declarations",buffer)>
+%if CVR2OE_Variant != 3		
+%assign cDatafile = "MCHP_Comp_Interrupt.c"
+%openfile Comp_InterruptFun_File =  cDatafile
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+/* Comparator - Interrupt: %<Name> */
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%switch ChipIdL1		
+%case "FJ"
+%case "F"
+%assign InterruptVector = "CMPInterrupt"
+%break
+%default
+%assign InterruptVector = "CM1Interrupt"
+%break
+%endswitch
+%if IE_LongDescCRC[4] != -1
+%assign	AUTO_PSV = "__auto_psv__"	
+%else
+%assign AUTO_PSV = Mchp_No_auto_psv()	
+%endif
+/* Implement Comparator Interrupts */
+%<Mchp_Interrupt16(IntPriority,AUTO_PSV,InterruptVector,block)> 			/* Comparator ISR */ 
+{
+%<MCHP_SFR( "CMIF" , 0 , "Clear Comparator Interrupt Flag" )>		
+%<MCHP_ProfileMCU("enter")>
+%foreach idx = 4
+%if CMCON == -1
+%assign BitEvent = "CM%<idx+1>CONbits.CEVT"
+%else
+%assign BitEvent = "CMCONbits.C%<idx+1>EVT"
+%endif
+%switch InterruptEvent[idx]
+%case 0
+%break
+%default
+%if BlockOutputEvent[idx]
+MCHP_CEVT%<idx+1> |= %<BitEvent>;	/* Keep track of Event for Block Output */
+%endif
+%if IE_LongDescCRC[idx] != -1
+%assign IE_ref = "CM%<idx+1>"
+%assign hFilename = "MCHP_%<IE_ref>_%<IE_LongDescCRC[idx]>"
+#ifdef Flag_%<hFilename>
+if (%<BitEvent>)
+{
+%<BitEvent> = 0;	/* Re-Initialize Interrupt */
+%<hFilename>();						/* Call User defined Interrupt */
+}
+#endif
+#ifndef Flag_%<hFilename>
+%<BitEvent> = 0;	/* Re-Initialize Interrupt */
+#endif
+%else
+%<BitEvent> = 0;	/* Re-Initialize Interrupt */
+%endif
+%break
+%endswitch
+%endforeach
+%if IE_LongDescCRC[4] != -1
+%assign IE_ref = "CMx"
+%assign hFilename = "MCHP_%<IE_ref>_%<IE_LongDescCRC[4]>"
+#ifdef Flag_%<hFilename>
+%<hFilename>();
+#endif
+%endif
+%<MCHP_ProfileMCU("exitUpdate")>
+}
+%closefile Comp_InterruptFun_File
+%else 
+%foreach idx = SIZE(InterruptEvent,1)
+%if InterruptEvent[idx] != 0
+%assign cDatafile = "MCHP_Comp%<idx+1>_Interrupt.c"
+%openfile Comp_InterruptFun_File =  cDatafile
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+/* Comparator %<idx+1> - Interrupt: %<Name> */
+%<Mchp_Interrupt32(IntPriority,1,1,"COMPARATOR_%<idx+1>_VECTOR",block)>  
+{
+%<MCHP_SFR( "CMP%<idx+1>IF" , 0 , "Clear Comparator %<idx+1> Interrupt Flag" )>
+%<MCHP_ProfileMCU("enter")>
+%switch InterruptEvent[idx]
+%case 0
+%break
+%default
+%if BlockOutputEvent[idx]
+MCHP_CEVT%<idx+1> |= CM%<idx+1>CONbits.CEVT;	/* Keep track of Event for Block Output */
+%endif
+%if IE_LongDescCRC[idx] != -1
+%assign IE_ref = "CM%<idx+1>"
+%assign hFilename = "MCHP_%<IE_ref>_%<IE_LongDescCRC[idx]>"
+#ifdef Flag_%<hFilename>
+/*	if (CM%<idx+1>CONbits.CEVT) {  Seems never set*/							
+CM%<idx+1>CONbits.CEVT = 0;	/* Re-Initialize Interrupt */
+%<hFilename>();						/* Call User defined Interrupt */
+/* } */
+#endif
+#ifndef Flag_%<hFilename>
+CM%<idx+1>CONbits.CEVT = 0;	/* Re-Initialize Interrupt */
+#endif
+%else
+CM%<idx+1>CONbits.CEVT = 0;	/* Re-Initialize Interrupt */
+%endif
+%break
+%endswitch
+%if IE_LongDescCRC[4] != -1
+%assign IE_ref = "CMx"
+%assign hFilename = "MCHP_%<IE_ref>_%<IE_LongDescCRC[4]>"
+#ifdef Flag_%<hFilename>
+%<hFilename>();
+#endif
+%endif
+%<MCHP_ProfileMCU("exitUpdate")>
+}
+%closefile Comp_InterruptFun_File
+%endif
+%endforeach
+%endif
+%endif
+%endfunction

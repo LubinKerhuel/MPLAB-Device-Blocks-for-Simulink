@@ -1,0 +1,79 @@
+%implements  MCHP_C_function_Call "C"
+%function Start(block, system) Output
+%assign FctOutput = CAST("Number",block.RTWdata.FctOutput)
+%assign FctOutput_PtrSize = MchpVector(block.RTWdata.FctOutput_PtrSize)		
+%assign AddHeaderDeclaration = CAST("Number",block.RTWdata.AddHeaderDeclaration)
+%assign FctDeclarationName = CAST("String",block.RTWdata.FctDeclarationName)
+%assign FctParam_PtrSize = MchpVector(block.RTWdata.FctParam_PtrSize)
+%assign InputBlockIdxFct = MchpVector(block.RTWdata.InputBlockIdxFct)
+%assign OutputBlockIdxFct = MchpVector(block.RTWdata.OutputBlockIdxFct)
+%if AddHeaderDeclaration == 1
+%openfile buffer
+/* C Function Call declare function as extern */
+%<FctDeclarationName>;
+%closefile buffer
+%<LibCacheFunctionPrototype(buffer)>
+%endif
+%assign FctType = CAST("Number",block.RTWdata.FctType)
+%if FctType == 2
+%<CFunctionCall(block, system)>
+%endif
+%endfunction 
+%function CFunctionCall(block, system) Output
+%assign FctOutput = CAST("Number",block.RTWdata.FctOutput)
+%assign FctOutput_PtrSize = MchpVector(block.RTWdata.FctOutput_PtrSize)		
+%assign AddHeaderDeclaration = CAST("Number",block.RTWdata.AddHeaderDeclaration)
+%assign FctParam_PtrSize = MchpVector(block.RTWdata.FctParam_PtrSize)
+%assign InputBlockIdxFct = MchpVector(block.RTWdata.InputBlockIdxFct)
+%assign OutputBlockIdxFct = MchpVector(block.RTWdata.OutputBlockIdxFct)
+%assign FctParamValue = MchpVector(block.RTWdata.FctParamValue)
+%if FctOutput == 1
+%if FctOutput_PtrSize[0] == 0
+%assign Return =  LibBlockOutputSignal(0, "", "", 0) + " = "
+%else
+%assign Return = ""
+%endif
+%else
+%assign Return = ""
+%endif
+%<Return> %<RTWdata.FctName>(
+%foreach param = SIZE(InputBlockIdxFct,1)
+%if param == 0
+%assign COMA = ""
+%else
+%assign COMA = ","
+%endif
+%if InputBlockIdxFct[param] == -2	
+%<COMA> %<FctParamValue[param]>
+%elseif InputBlockIdxFct[param] > -1 
+%assign tmp = CAST("Number",InputBlockIdxFct[param])
+%assign Ptr = FctParam_PtrSize[%<(param)*10>]
+%if Ptr == 0
+%assign u = LibBlockInputSignal( %<tmp> - 1, "", "",0)
+%else
+%assign u = LibBlockInputSignalAddr( %<tmp> - 1, "", "", 0)
+%endif
+%<COMA> %<u>
+%elseif OutputBlockIdxFct[param] > -1
+%assign tmp = CAST("Number",OutputBlockIdxFct[param])
+%assign Ptr = FctParam_PtrSize[%<(param)*10>]
+%if Ptr == 0
+%assign u = LibBlockOutputSignal( %<tmp> - 1, "", "",0)
+%warning Custom C function: Function operand cannot be a block output value !
+%else
+%assign u = LibBlockOutputSignalAddr( %<tmp> - 1, "", "", 0)
+%endif
+%<COMA> %<u>
+%else
+%warning ("One parameters for the function %<RTWdata.FctName> is not defined")
+%<COMA>
+%endif
+%endforeach
+);
+%endfunction 
+%function Outputs(block, system) Output
+%assign FctType = CAST("Number",block.RTWdata.FctType)
+%if FctType == 1
+%<CFunctionCall(block, system)>
+%endif
+%endfunction 

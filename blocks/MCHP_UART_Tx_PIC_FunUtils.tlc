@@ -1,0 +1,159 @@
+
+%function UART_Tx_get_UART_NAME(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%return UART_NAME
+%endfunction	
+%function UTXEmpty(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+%assign UTXBF = "U%<UARTRef>" +  "STAHbits.UTXBF"
+%else
+%assign UTXBF = "U%<UARTRef>" + "STAbits.UTXBF"
+%endif	
+%return "(0U == %<UTXBF>)"
+%endfunction
+%function UTXNotEmpty(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+%assign UTXBF = "U%<UARTRef>" +  "STAHbits.UTXBF"
+%else
+%assign UTXBF = "U%<UARTRef>" + "STAbits.UTXBF"
+%endif	
+%return  "(1U == %<UTXBF>)"	
+%endfunction
+%function UTX_NotCompleted(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "(0U == U%<UARTRef>STAbits.TRMT)"
+%endfunction
+%function UTX_Completed(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "(0U != U%<UARTRef>STAbits.TRMT)"	
+%endfunction
+%function UART_Tx_WriteRegister(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "U%<UARTRef>TXREG "
+%endfunction
+%function Test_No_DMA_Transfert_F(DMA_DCH,TX_DMA_CHANNEL,UARTRef,block) void
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+%assign UTXBF = "U%<UARTRef>" +  "STAHbits.UTXBF"
+%else
+%assign UTXBF = "U%<UARTRef>" + "STAbits.UTXBF"
+%endif	
+%return "((%<DMA_DCH>%<TX_DMA_CHANNEL>CONbits.CHEN == 0) && (%<UTXBF> == 0))"
+%endfunction
+%function Enable_Tx_DMA_interrupt(TX_DMA_CHANNEL,comment) Output
+%<MCHP_SFR("DMA%<TX_DMA_CHANNEL>IE"  , 1 , comment)>
+%endfunction
+%function UART_Tx_SingleBuffer_RequestDMATransfert(TX_DMA_CHANNEL,UART_NAME,block) Output
+%if ::isPIC32
+DCH%<TX_DMA_CHANNEL>CONSET = 0x80;	/* Enable channel , turn on bit CHEN */	
+DCH%<TX_DMA_CHANNEL>ECONSET = 0x80;	/* Buffer is full, request a DMA Transfer, turn on bit CFORCE */
+%else
+DMA%<TX_DMA_CHANNEL>CONbits.CHEN = 1;
+DMA%<TX_DMA_CHANNEL>REQbits.FORCE = 1;	/* Buffer is full, request a DMA Transfer */
+%endif
+%endfunction
+%function UART_Tx_DMA_Send_SwitchBuffer(UART_NAME,TX_DMA_CHANNEL,ChipIdN,ChipIdL1) Output
+%if ::isPIC32
+switch (MCHP_%<UART_NAME>_Tx.BufferAB){
+case 0:
+DCH%<TX_DMA_CHANNEL>SSA = (unsigned int) MCHP_%<UART_NAME>_Tx_bufferA & 0x1FFFFFFF; /* Set up Next Buffer to sent through DMA */
+MCHP_%<UART_NAME>_Tx.BufferAB = 1;
+break;
+case 1:
+DCH%<TX_DMA_CHANNEL>SSA = (unsigned int) MCHP_%<UART_NAME>_Tx_bufferB & 0x1FFFFFFF; /* Set up Next Buffer to sent through DMA */
+MCHP_%<UART_NAME>_Tx.BufferAB = 0;
+break;
+}
+DCH%<TX_DMA_CHANNEL>CONSET = 0x80;	/* Enable channel , turn on bit CHEN */	
+DCH%<TX_DMA_CHANNEL>INTCLR = 0xFF;	/* Reset pending interrupt */	
+%<MCHP_SFR("DMA%<TX_DMA_CHANNEL>IF"  , 0 , "Reinitialize pending interrupt")>										
+DCH%<TX_DMA_CHANNEL>ECONSET = 0x80;	/* Buffer is full, request a DMA Transfer, turn on bit CFORCE */				
+%else
+DMA%<TX_DMA_CHANNEL>CONbits.CHEN = 1;
+%switch ChipIdL1
+%case "HJ"
+%case "FJ"
+switch (MCHP_%<UART_NAME>_Tx.BufferAB) {
+case 0:
+DMA%<TX_DMA_CHANNEL>STA = MCHP_%<UART_NAME>_Tx_bufferA ; /* Set up Next Buffer to sent through DMA */
+MCHP_%<UART_NAME>_Tx.BufferAB = 1;
+break;
+case 1:
+DMA%<TX_DMA_CHANNEL>STA = MCHP_%<UART_NAME>_Tx_bufferB ; /* Set up Next Buffer to sent through DMA */
+MCHP_%<UART_NAME>_Tx.BufferAB = 0;
+break;
+}											
+%break
+%case "EP"		
+%case "EV"		
+switch (MCHP_%<UART_NAME>_Tx.BufferAB) {
+case 0:
+DMA%<TX_DMA_CHANNEL>STAL = __builtin_dmaoffset(MCHP_%<UART_NAME>_Tx_bufferA) ; /* Set up Next Buffer to sent through DMA */
+DMA%<TX_DMA_CHANNEL>STAH = __builtin_dmapage(MCHP_%<UART_NAME>_Tx_bufferA);
+MCHP_%<UART_NAME>_Tx.BufferAB = 1;
+break;
+case 1:
+DMA%<TX_DMA_CHANNEL>STAL = __builtin_dmaoffset(MCHP_%<UART_NAME>_Tx_bufferB) ; /* Set up Next Buffer to sent through DMA */
+DMA%<TX_DMA_CHANNEL>STAH = __builtin_dmapage(MCHP_%<UART_NAME>_Tx_bufferB);
+MCHP_%<UART_NAME>_Tx.BufferAB = 0;
+break;
+}							
+%break				
+%endswitch	
+%<MCHP_SFR("DMA%<TX_DMA_CHANNEL>IF"  , 0 , "Reinitialize pending interrupt")>	
+DMA%<TX_DMA_CHANNEL>REQbits.FORCE = 1;	/* Buffer is full, request a DMA Transfer */				
+%endif			
+%endfunction
+%function UART_Tx_FlushCirculerBuffer(UART_HALF_DUPLEX_MODE,block) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%if ::DOS_03076_uart_protocol_upb_v1_16bit
+%assign UTXBF = "U%<UARTRef>" +  "STAHbits.UTXBF"
+%else
+%assign UTXBF = "U%<UARTRef>" + "STAbits.UTXBF"
+%endif	
+%if UART_HALF_DUPLEX_MODE
+U%<UARTRef>STAbits.UTXEN = 1;	/* Half duplex: Enable Tx peripheral (Rx still active, but interrupts disabled and Rx buffer will get flushed before switch Rx back on) */
+%endif
+%if (LibBlockSampleTime(block) == -1) || (::MCHP_UART_TX_INT_PRIORITY[UARTRef-1] <= 2)
+if (1U == U%<UARTRef>STAbits.TRMT)
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 1 				   , "Tx Buffer is empty, enable Interrupt")>
+%if ::isPIC32	
+%<MCHP_SFR(  "U%<UARTRef>TXIE"  , 1 				   , "Enable Interrupt")>
+%else
+%endif			
+%else
+{						
+register uint_T LocalHead;
+int cpu_ipl_switchVar;
+%<SET_AND_SAVE_CPU_IPL("cpu_ipl_switchVar",::MCHP_UART_TX_INT_PRIORITY[UARTRef-1],"mimic Tx interrupt, disable Tx & thread switching interrupts")>
+LocalHead = MCHP_%<UART_NAME>_Tx.head;	/* Head is a volatile variable. Use local variable to speed-up execution */					
+%if ::isdsPIC	
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 0 				   , "Clear Interrupt Flag")>
+%endif
+while ( %<UTXEmpty(block)>  && (MCHP_%<UART_NAME>_Tx.tail != LocalHead) ) /* while UxTXREG buffer is not full */
+{ 													
+U%<UARTRef>TXREG = MCHP_%<UART_NAME>_Tx.buffer[LocalHead++];				
+LocalHead &= (Tx_BUFF_SIZE_%<UART_NAME>-1);
+}			
+MCHP_%<UART_NAME>_Tx.head = LocalHead; /* Push back volatile variable */
+%if ::isPIC32	
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 0 				   , "Clear Interrupt Flag")>
+%endif
+%if UART_HALF_DUPLEX_MODE == 1		
+%<MCHP_SFR(  "U%<UARTRef>TXIE"  , 1 				   , "Enable Interrupt")> 					
+%else								
+%if ::isPIC32	
+if (MCHP_%<UART_NAME>_Tx.tail != LocalHead)	
+{ /* If circuler buffer not empty */					
+%<MCHP_SFR(  "U%<UARTRef>TXIE"  , 1 				   , "Enable Tx Interrupt")>								
+}
+%else 
+%endif
+%endif
+%<RESTORE_CPU_IPL("cpu_ipl_switchVar","stop mimic UART TX interrupt IPL level")>
+}
+%endif
+%endfunction		

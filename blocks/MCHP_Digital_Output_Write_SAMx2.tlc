@@ -1,0 +1,40 @@
+%function DigitalOutputWrite_MCHP_Digital_Output_Write(block, system) Output
+%assign PORT = CAST("String",block.RTWdata.Port)
+%assign PortNum = CAST("Number",block.RTWdata.PortNum)
+%assign PINS = MchpVector(block.RTWdata.Pins)
+%assign nInputs = SIZE(PINS,1)
+%assign SIMULTANEOUS = CAST("Number",block.RTWdata.Simultaneous_Flag)
+%assign PACK = CAST("Number",block.RTWdata.Pack_Flag)
+%assign PinsBitewise = CAST("Unsigned",block.RTWdata.PinsBitewise)
+%assign PORTidx = PortNum
+%if PACK
+%assign y = LibBlockInputSignal(0, "", "", 0)
+%if PinsBitewise == 4294967295	
+PORT_REGS->GROUP[%<PORTidx>].PORT_OUT = %<y>;	/* Update Output Port %<PORT> */
+%else	 	
+PORT_REGS->GROUP[%<PORTidx>].PORT_OUTTGL = (%< MchpHex(PinsBitewise)> & (PORT_REGS->GROUP[%<PORTidx>].PORT_OUT ^ %<y>)); /* Update Port %<PORT>, toggle required pins */
+%endif
+%else 
+%if (SIMULTANEOUS && (nInputs >1))
+{	 			
+%assign y = LibBlockInputSignal(0, "", "", 0)		
+uint32_T WritePort%<PORT> = (uint32_T) (%<y>) << %<PINS[0]>;	
+%foreach idx=(nInputs-1)
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx+1, "", "", 0)
+WritePort%<PORT>  = WritePort%<PORT> + ( (uint32_T) (%<y>) << %<PINS[idx+1]> );
+%endif
+%endforeach
+PORT_REGS->GROUP[%<PORTidx>].PORT_OUTTGL = (%< MchpHex(PinsBitewise)> & (PORT_REGS->GROUP[%<PORTidx>].PORT_OUT ^ WritePort%<PORT>)); /* Update Port %<PORT>, toggle required pins. theses pin should not be updated in a concurent thread */
+}
+%else 
+%foreach idx=nInputs
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx, "", "", 0)		 			
+if (%<y>) PORT_REGS->GROUP[%<PORTidx>].PORT_OUTSET = %< MchpHex( 1U << PINS[idx])>; /* Set pin %<PORT>%<PINS[idx]>*/
+else PORT_REGS->GROUP[%<PORTidx>].PORT_OUTCLR = %< MchpHex( 1U << PINS[idx])>;  /* Clear pin %<PORT>%<PINS[idx]>*/
+%endif
+%endforeach
+%endif
+%endif
+%endfunction

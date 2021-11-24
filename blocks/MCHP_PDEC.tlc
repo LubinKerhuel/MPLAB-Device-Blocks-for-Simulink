@@ -1,0 +1,325 @@
+%implements  MCHP_PDEC  "C"
+%include "MCHP_Functions.tlc"
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%endfunction
+%function Start(block, system) Output
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign FILTER_period_s =  CAST("Real",block.RTWdata.FILTER_period_s)
+%assign CC =  MchpVector64(block.RTWdata.CC)
+%assign PEREN =  CAST("Number",block.RTWdata.PEREN)
+%assign PINVEN =  MchpVector64(block.RTWdata.PINVEN)
+%assign OutputCounter =  CAST("Number",block.RTWdata.OutputCounter)
+%assign OutputCounter_Signed =  CAST("Number",block.RTWdata.OutputCounter_Signed)
+%assign OutputRevolution =  CAST("Number",block.RTWdata.OutputRevolution)
+%assign MAXPOS_INPUT =  CAST("Number",block.RTWdata.MAXPOS_INPUT)
+%assign RESET_INPUT =  CAST("Number",block.RTWdata.RESET_INPUT)
+%assign ANGULAR_LENGTH =  CAST("Number",block.RTWdata.ANGULAR_LENGTH)
+%assign MODE =  CAST("Number",block.RTWdata.MODE)
+%assign CONF =  CAST("Number",block.RTWdata.CONF)
+%assign PINEN =  MchpVector64(block.RTWdata.PINEN)
+%assign SWAP =  CAST("Number",block.RTWdata.SWAP)
+%assign CONF_secure =  CAST("Number",block.RTWdata.CONF_secure)
+%assign MAXCMP =  CAST("Number",block.RTWdata.MAXCMP)
+%assign AUTOC =  CAST("Number",block.RTWdata.AUTOC)
+%assign RUNSTDBY =  CAST("Number",block.RTWdata.RUNSTDBY)
+%assign ENABLE =  CAST("Number",block.RTWdata.ENABLE)
+%assign PRESC =  CAST("Number",block.RTWdata.PRESC)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign FILTER =  CAST("Number",block.RTWdata.FILTER)
+/* ========================= PDEC Peripheral setup ========================= */
+{
+uint32_T tmp_reg;
+/* PDEC APB clock */
+MCLK_REGS->MCLK_APBCMASK |= MCLK_APBCMASK_PDEC_Msk ; 	/* Enable PDEC clock */
+/* PDEC Config */
+%if PRESC > 0
+PDEC_REGS->PDEC_PRESC =  PDEC_PRESC_PRESC_DIV%< 1 << PRESC >; /* Divide GCLK by %< 1 << PRESC > */
+%endif
+%if FILTER > 0
+PDEC_REGS->PDEC_FILTER = PDEC_FILTER_FILTER(%<FILTER>); /* Filter out below  %<FILTER_period_s>(s) */
+%endif
+%if CC[0] > 0
+PDEC_REGS->PDEC_CC[0] = PDEC_CC_CC(%<CAST("Number",CC[0])>); /* Channel 0 Compare Value */
+%endif
+%if CC[1] > 0
+PDEC_REGS->PDEC_CC[1] = PDEC_CC_CC(%<CAST("Number",CC[1])>); /* Channel 1 Compare Value */
+%endif
+while (0U != PDEC_REGS->PDEC_SYNCBUSY) ; /* Wait for Sync */			
+tmp_reg = PDEC_CTRLA_ENABLE_Msk;	/* Enable PDEC */
+%switch MODE
+%case 0
+tmp_reg |= PDEC_CTRLA_MODE_QDEC;      /* QDEC operating mode  */
+%break
+%case 1
+tmp_reg |= PDEC_CTRLA_MODE_HALL;      /* HALL operating mode  */
+%break
+%case 2
+tmp_reg |= PDEC_CTRLA_MODE_COUNTER;   /* COUNTER operating mode  */
+%break
+%endswitch
+%if MODE == 0
+%switch (CONF)
+%case 0
+tmp_reg |= PDEC_CTRLA_CONF_X4; 		/* Quadrature decoder direction  */			
+%break
+%case 1
+tmp_reg |= PDEC_CTRLA_CONF_X4S; 	/* Secure Quadrature decoder  */			
+%break
+%case 2
+tmp_reg |= PDEC_CTRLA_CONF_X2; 		/* Counter with direction  */		
+%break	
+%case 3
+tmp_reg |= PDEC_CTRLA_CONF_X2S; 	/* Secure Counter with direction  */	
+%break		
+%case 4
+tmp_reg |= PDEC_CTRLA_CONF_AUTOC; 	/* Auto correction mode. Index if used reset only once  */		
+%break	
+%endswitch	
+%endif	
+%if ANGULAR_LENGTH > 0
+tmp_reg |= PDEC_CTRLA_ANGULAR(%<ANGULAR_LENGTH>); /* Angular Counter Length: %<9 + ANGULAR_LENGTH> */
+%endif
+%if MAXCMP > 0
+tmp_reg |= PDEC_CTRLA_MAXCMP(%<MAXCMP>); /* Maximum Consecutive Missing Pulses */
+%endif
+%if RUNSTDBY
+tmp_reg |= PDEC_CTRLA_RUNSTDBY_Msk; /* Run in Standby */
+%endif
+%if PINEN[0] == 1
+tmp_reg |= PDEC_CTRLA_PINEN0_Msk;	/* Enable QDI0 signal */
+%endif
+%if PINEN[1] == 1
+tmp_reg |= PDEC_CTRLA_PINEN1_Msk;	/* Enable QDI1 signal */
+%endif
+%if PINEN[2] == 1
+tmp_reg |= PDEC_CTRLA_PINEN2_Msk;	/* Enable QDI2 signal */
+%endif		
+%if PINVEN[0] == 1
+tmp_reg |= PDEC_CTRLA_PINVEN0_Msk;	/* Invert QDI0 signal */
+%endif
+%if PINVEN[1] == 1
+tmp_reg |= PDEC_CTRLA_PINVEN1_Msk;	/* Invert QDI1 signal */
+%endif
+%if PINVEN[2] == 1
+tmp_reg |= PDEC_CTRLA_PINVEN2_Msk;	/* Invert QDI2 signal */
+%endif
+%if SWAP
+tmp_reg |= PDEC_CTRLA_SWAP_Msk; /* SWAP QDI0 and QDI1 */
+%endif
+%if PEREN
+tmp_reg |= PDEC_CTRLA_PEREN_Msk; /* Period Enable */
+%endif
+PDEC_REGS->PDEC_CTRLA =  tmp_reg; /* Config & Enable PDEC */
+while (0U != PDEC_REGS->PDEC_SYNCBUSY) ; /* Wait for Sync */
+PDEC_REGS->PDEC_CTRLBSET =  PDEC_CTRLBSET_CMD_START; /* Start PDEC */		
+}
+%endfunction
+%function Outputs(block, system) Output
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign FILTER_period_s =  CAST("Real",block.RTWdata.FILTER_period_s)
+%assign CC =  MchpVector64(block.RTWdata.CC)
+%assign PEREN =  CAST("Number",block.RTWdata.PEREN)
+%assign PINVEN =  MchpVector64(block.RTWdata.PINVEN)
+%assign OutputCounter =  CAST("Number",block.RTWdata.OutputCounter)
+%assign OutputCounter_Signed =  CAST("Number",block.RTWdata.OutputCounter_Signed)
+%assign OutputRevolution =  CAST("Number",block.RTWdata.OutputRevolution)
+%assign OutputRevolution_Signed =  CAST("Number",block.RTWdata.OutputRevolution_Signed)
+%assign MAXPOS_INPUT =  CAST("Number",block.RTWdata.MAXPOS_INPUT)
+%assign RESET_INPUT =  CAST("Number",block.RTWdata.RESET_INPUT)
+%assign ANGULAR_LENGTH =  CAST("Number",block.RTWdata.ANGULAR_LENGTH)
+%assign MODE =  CAST("Number",block.RTWdata.MODE)
+%assign CONF =  CAST("Number",block.RTWdata.CONF)
+%assign PINEN =  MchpVector64(block.RTWdata.PINEN)
+%assign SWAP =  CAST("Number",block.RTWdata.SWAP)
+%assign CONF_secure =  CAST("Number",block.RTWdata.CONF_secure)
+%assign MAXCMP =  CAST("Number",block.RTWdata.MAXCMP)
+%assign AUTOC =  CAST("Number",block.RTWdata.AUTOC)
+%assign RUNSTDBY =  CAST("Number",block.RTWdata.RUNSTDBY)
+%assign ENABLE =  CAST("Number",block.RTWdata.ENABLE)
+%assign PRESC =  CAST("Number",block.RTWdata.PRESC)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign FILTER =  CAST("Number",block.RTWdata.FILTER)
+%assign IndexOutput = 0
+%assign IndexInput = 0
+%if ANGULAR_LENGTH == 7
+PDEC_REGS->PDEC_CTRLBSET =  PDEC_CTRLBSET_CMD_READSYNC; /* Force read sync of COUNT */	
+while((PDEC_REGS->PDEC_SYNCBUSY)); /* Wait for Sync */					
+%if OutputCounter
+%assign yConnected = LibBlockOutputSignalConnected(IndexOutput)
+%assign y = LibBlockOutputSignal(IndexOutput, "", "", 1)
+%assign IndexOutput = IndexOutput + 1
+%if yConnected
+%if OutputCounter_Signed
+%<y> = (int16_T) PDEC_REGS->PDEC_COUNT; /* Read PDEC counter value */
+%else
+%<y> = (uint16_T) PDEC_REGS->PDEC_COUNT; /* Read PDEC counter value */
+%endif
+%endif
+%endif
+%else
+%if OutputCounter || OutputRevolution
+{			
+PDEC_REGS->PDEC_CTRLBSET =  PDEC_CTRLBSET_CMD_READSYNC; /* Force read sync of COUNT */	
+while((PDEC_REGS->PDEC_SYNCBUSY)); /* Wait for Sync */						
+uint16_T PDEC_COUNT_tmp =  PDEC_REGS->PDEC_COUNT; /* Read PDEC counter value */
+%if OutputCounter
+%assign yConnected = LibBlockOutputSignalConnected(IndexOutput)
+%if yConnected
+%assign y = LibBlockOutputSignal(IndexOutput, "", "", 1)
+%switch ANGULAR_LENGTH
+%case 0						
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x1FF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ;/* counter is signed 9 bits */
+%else
+%<y> = 0x1FF & PDEC_COUNT_tmp;/* counter is 9 bits */
+%endif
+%break
+%case 1		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x3FF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 10 bits signed */
+%else				
+%<y> = 0x3FF & PDEC_COUNT_tmp ;/* counter is 10 bits */
+%endif
+%break
+%case 2		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x7FF &  PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 11 bits signed */
+%else				
+%<y> = 0x7FF &  PDEC_COUNT_tmp ;/* counter is 11 bits */
+%endif
+%break
+%case 3		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0xFFF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 12 bits signed */
+%else				
+%<y> = 0xFFF & PDEC_COUNT_tmp ;/* counter is 12 bits */
+%endif
+%break
+%case 4		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x1FFF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 13 bits signed */
+%else				
+%<y> = 0x1FFF & PDEC_COUNT_tmp ;/* counter is 13 bits */
+%endif
+%break
+%case 5		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x3FFF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 14 bits signed */
+%else				
+%<y> = 0x3FFF & PDEC_COUNT_tmp ;/* counter is 14 bits */
+%endif
+%break
+%case 6		
+%if OutputCounter_Signed
+%<y> = ( ((int16_T) ((0x7FFF & PDEC_COUNT_tmp) << %<7-ANGULAR_LENGTH>)) >> %<7-ANGULAR_LENGTH> ) ; /* counter is 15 bits signed */
+%else				
+%<y> = 0x7FFF & PDEC_COUNT_tmp ;/* counter is 15 bits */
+%endif
+%break
+%endswitch
+%endif
+%assign IndexOutput = IndexOutput +1
+%endif
+%if OutputRevolution
+%assign yConnected = LibBlockOutputSignalConnected(IndexOutput)
+%if yConnected
+%assign y = LibBlockOutputSignal(IndexOutput, "", "", 1)
+%if OutputRevolution_Signed
+%<y> = ((int16_T) PDEC_COUNT_tmp) >> %<9 + ANGULAR_LENGTH>; /* revolution is %<7-ANGULAR_LENGTH> bits signed */
+%else
+%<y> = PDEC_COUNT_tmp >> %<9 + ANGULAR_LENGTH>; /* revolution is %<7-ANGULAR_LENGTH> bits */
+%endif
+%endif
+%assign IndexOutput = IndexOutput +1
+%endif
+}
+%endif
+%endif
+%if MAXPOS_INPUT
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)		
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)		
+%switch ANGULAR_LENGTH
+%case 0	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xFE00) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xFE00); /* Update Channel 0 Compare Value ; counter is 9 bits */										
+if ((0x1FF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 1	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xFC00) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xFC00); /* Update Channel 0 Compare Value ; counter is 10 bits */										
+if ((0x3FF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 2	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xF800) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xF800); /* Update Channel 0 Compare Value ; counter is 11 bits */										
+if ((0x7FF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 3	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xF000) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xF000); /* Update Channel 0 Compare Value ; counter is 12 bits */										
+if ((0xFFF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 4	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xE000) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xE000); /* Update Channel 0 Compare Value ; counter is 13 bits */										
+if ((0x1FFF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 5	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0xC000) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0xC000); /* Update Channel 0 Compare Value ; counter is 14 bits */										
+if ((0x3FFF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%case 6	
+if (PDEC_REGS->PDEC_CC[0] != (%<y> | 0x8000) )
+{
+PDEC_REGS->PDEC_CC[0] = (%<y> | 0x8000); /* Update Channel 0 Compare Value ;counter is 15 bits */										
+if ((0x7FFF & PDEC_REGS->PDEC_COUNT) > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%break
+%default
+if (PDEC_REGS->PDEC_CC[0] != (%<y>) )
+{
+PDEC_REGS->PDEC_CC[0] = %<y>; /* Update Channel 0 Compare Value */	
+if (PDEC_REGS->PDEC_COUNT > %<y>)
+PDEC_REGS->PDEC_COUNT = 0;
+}
+%endswitch				
+%endif
+%assign IndexInput = IndexInput + 1
+%endif
+%if RESET_INPUT
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)		
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+if (0U != %<y>)
+PDEC_REGS->PDEC_COUNT = 0;	/* Reset PDEC counter & revolution */
+%endif
+%assign IndexInput = IndexInput + 1
+%endif	
+%endfunction
+%function Update(block, system) Output
+%endfunction

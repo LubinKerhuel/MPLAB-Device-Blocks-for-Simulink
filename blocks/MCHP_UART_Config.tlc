@@ -1,0 +1,213 @@
+%implements  MCHP_UART_Config  "C"
+%include "MCHP_Functions.tlc"	
+%include "MCHP_UART_Tx_FunUtils.tlc"		
+%if ::isSAMx7                                    
+%include "MCHP_UART_Rx_SAMx7_FunUtils.tlc"
+%include "MCHP_UART_Config_SAMx7.tlc"  	  	
+%include "MCHP_UART_Config_SAMx7_Tx_Interrupt.tlc"
+%include "MCHP_UART_Config_SAMx7_Tx_DMA.tlc"
+%include "MCHP_UART_Config_SAMx7_Rx_Interrupt.tlc"	
+%include "MCHP_UART_Config_SAMx7_Rx_DMA.tlc"  	
+%include "MCHP_UART_rtiostream_XCP_SAMx7.tlc"  	
+%elseif ::isSAMx5
+%include "MCHP_UART_Rx_SAMx5_FunUtils.tlc"
+%include "MCHP_UART_Config_SAMx5.tlc"  	  	
+%include "MCHP_UART_Config_SAMx5_Tx_Interrupt.tlc"
+%include "MCHP_UART_Config_SAMx5_Tx_DMA.tlc"
+%include "MCHP_UART_Config_SAMx5_Rx_Interrupt.tlc"	
+%include "MCHP_UART_Config_SAMx5_Rx_DMA.tlc"  	
+%include "MCHP_UART_rtiostream_XCP_SAMx5.tlc"  	
+%elseif ::isSAMC2 || ::isPIC32C || ::isSAMD2_DA1
+%include "MCHP_UART_Rx_SAMx5_FunUtils.tlc"
+%include "MCHP_UART_Config_SAMx5.tlc"  	  	
+%include "MCHP_UART_Config_SAMx2_Tx_Interrupt.tlc"
+%include "MCHP_UART_Config_SAMx5_Tx_DMA.tlc"
+%include "MCHP_UART_Config_SAMx2_Rx_Interrupt.tlc"	
+%include "MCHP_UART_Config_SAMx5_Rx_DMA.tlc"  	
+%include "MCHP_UART_rtiostream_XCP_SAMx5.tlc"  	
+%elseif ::isdsPIC || ::isPIC32														
+%include "MCHP_UART_Rx_PIC_FunUtils.tlc"
+%include "MCHP_UART_Config_PIC.tlc"
+%include "MCHP_UART_Config_PIC_Tx_Interrupt.tlc"
+%include "MCHP_UART_Config_PIC_Tx_DMA.tlc"
+%include "MCHP_UART_Config_PIC_Rx_Interrupt.tlc"
+%include "MCHP_UART_rtiostream_XCP_PIC.tlc"
+%else
+%error("Error with UART configuration. Chip not recognized")
+%endif
+%if EXISTS(::MCHP_UART_RX_INT_PRIORITY) == 0
+%assign ::MCHP_UART_RX_INT_PRIORITY = [-1, -1, -1, -1, -1, -1, -1, -1 , -1 , -1 , -1 , -1]
+%endif
+%if EXISTS(::MCHP_UART_TX_INT_PRIORITY) == 0
+%assign ::MCHP_UART_TX_INT_PRIORITY = [-1, -1, -1, -1, -1, -1, -1, -1 , -1 , -1 , -1 , -1]
+%endif
+%function BlockInstanceSetup(block, system) void
+%if ::isSAMx7
+%assign Peripheral_ID = CAST("String",block.RTWdata.Peripheral_ID)
+%assign ::MCHP_Clock_PMC_PCR[Peripheral_ID] = 1 
+%endif
+%assign ::DOS_03076_uart_protocol_upb_v1_16bit = CAST("Number",block.RTWdata.DOS_03076_uart_protocol_upb_v1_16bit)
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%if RX_IMPLEMENTATION == 2		
+%assign ::MCHP_UART_RX_INT_PRIORITY[UARTRef-1] = CAST("Number",block.RTWdata.RX_INT_PRIORITY)
+%endif
+%if TX_IMPLEMENTATION == 2		
+%assign ::MCHP_UART_TX_INT_PRIORITY[UARTRef-1] = CAST("Number",block.RTWdata.TX_INT_PRIORITY)
+%endif
+%assign MCHP_COM_ExtPIL = CAST("Number",block.RTWdata.MCHP_COM_ExtPIL)
+%if MCHP_COM_ExtPIL		
+%if !IsModelReferenceTarget()	
+%if ExtMode
+%<UART_rtiostream(block, system)>			
+%endif
+%else	
+%if !ISEQUAL(ModelReferenceTargetType,"RTW")			
+%<UART_rtiostream(block, system)>
+%else
+%<UART_rtiostream(block, system)>
+%endif
+%endif	
+%endif
+%<HARMONY_RegisterPeripheral("USART",UARTRef,block)>
+%endfunction
+%function Start(block, system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+/* MCHP_UART_Config Block for UART %<UARTRef>: %<Name>/Initialize */
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%if InitSequence_enable ==  1
+%<UART_Config_WriteInitialisationOutputStream(block,system)>
+%endif
+%<UART_Config_SetBaudRateParity(block,system)>
+%switch TX_IMPLEMENTATION
+%case 0	
+%break	
+%case 1
+%break
+%case 2     
+%<MCHP_UART_Config_Tx_Interrupt(block,system)>  
+%break				 	
+%case 3     
+%case 4     
+%<MCHP_UART_Config_Tx_DMA(block,system)>
+%break	
+%default
+%<LibBlockReportError(block,"Tx implementation not recognized")>
+%break	
+%endswitch
+%switch RX_IMPLEMENTATION
+%case 0	
+%break	
+%case 1
+%break
+%case 2     
+%<MCHP_UART_Config_Rx_Interrupt(block,system)>
+%break	
+%case 3     
+%<MCHP_UART_Config_Rx_DMA(block,system)>
+%break		
+%default			
+%<LibBlockReportError(block,"Rx implementation not recognized")>
+%break			
+%endswitch
+%assign Tx_InterruptCodeRequired = CAST("Boolean", (TX_IMPLEMENTATION == 2)) 
+%assign Rx_InterruptCodeRequired = CAST("Boolean", (RX_IMPLEMENTATION == 2)) 
+%assign Tx_DMA_InterruptCodeRequired = CAST("Boolean", (TX_IMPLEMENTATION >= 3 && TX_IMPLEMENTATION <= 4))
+%assign Rx_DMA_InterruptCodeRequired = CAST("Boolean", (RX_IMPLEMENTATION == 3 ))
+%if ::isSAMx7 && (Tx_InterruptCodeRequired || Tx_DMA_InterruptCodeRequired || Rx_InterruptCodeRequired || Rx_DMA_InterruptCodeRequired)
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign nUSART = CAST("Number",block.RTWdata.nUSART)	
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMS"
+%case "SAMV"
+%if UARTRef > nUSART
+%assign Per_Type = "UART"
+%assign REG_NAME = "UART"
+%assign REG_NAME2 = ""
+%assign INTERRUPT_STATUS_REG = "SR"
+%assign UART_Index = (UARTRef-1) - nUSART
+%else
+%assign Per_Type = "USART"
+%assign REG_NAME = "US"
+%assign REG_NAME2 = "USART_"
+%assign INTERRUPT_STATUS_REG = "CSR"
+%assign UART_Index = UARTRef-1
+%endif
+%assign UART_NAME = "%<Per_Type>%<UART_Index>"
+%break
+%case "SAMRH"
+%assign Per_Type = "USART"
+%assign REG_NAME = "FLEX_US"
+%assign REG_NAME2 = ""
+%assign INTERRUPT_STATUS_REG = "CSR"
+%assign UART_Index = UARTRef-1
+%assign UART_NAME = "FLEXCOM%<UART_Index>"
+%break
+%default
+%error("Internal error with UART")
+%endswitch
+%assign armfile = "MCHP_%<UART_NAME>_Interrupt.c"
+%openfile buffer = armfile
+#include <stdlib.h>
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%if (Tx_InterruptCodeRequired)
+%<tx_prologue>
+%elseif(Tx_DMA_InterruptCodeRequired)
+%<tx_dma_prologue>
+%endif
+%if (Rx_InterruptCodeRequired)
+%<rx_prologue>
+%elseif(Rx_DMA_InterruptCodeRequired)
+%<rx_dma_prologue>
+%endif
+%closefile buffer
+%if (Tx_InterruptCodeRequired || Rx_InterruptCodeRequired)
+%openfile buffer = armfile, "a"
+void %<UART_NAME>_Handler(void)
+{
+%<MCHP_InterruptProlog()>
+%<MCHP_ProfileMCU("enter")>
+%if (Rx_InterruptCodeRequired)
+%<rx_epilogue>
+%endif
+%if (Tx_InterruptCodeRequired)
+%<tx_epilogue>
+%endif
+%<MCHP_ProfileMCU("exitUpdate")>
+%<MCHP_InterruptEpilog()>
+} /* End of %<UART_NAME> Handler */
+%closefile buffer
+%endif
+%if (Tx_DMA_InterruptCodeRequired || Rx_DMA_InterruptCodeRequired)
+%openfile buffer = armfile, "a"
+void XDMAC_Handler(void)
+{
+%<MCHP_InterruptProlog()>
+%<MCHP_ProfileMCU("enter")>
+%if (Rx_DMA_InterruptCodeRequired)
+%<rx_dma_epilogue>
+%endif
+%if (Tx_DMA_InterruptCodeRequired)
+%<tx_dma_epilogue>
+%endif
+NVIC_ClearPendingIRQ(XDMAC_IRQn); 	
+%<MCHP_ProfileMCU("exitUpdate")>
+%<MCHP_InterruptEpilog()>
+}	/* end of XDMAC interrupt handler */
+%closefile buffer
+%endif
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%endfunction 	
+%function Update(block, system) Output
+%endfunction

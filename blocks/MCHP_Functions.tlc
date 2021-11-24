@@ -1,0 +1,643 @@
+%if EXISTS("RTWGenSettings")
+%assign ::ChipId = CAST("String",RTWGenSettings.ChipId)	
+%assign ::ARCH3 =  CAST("String",RTWGenSettings.arch3)		
+%assign ::ARCH = CAST("Number",RTWGenSettings.Arch)
+%assign ::ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ::ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ::ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ::ChipIdN =  CAST("String",RTWGenSettings.ChipIdN)
+%assign ::ChipIdN = FEVAL("str2num",ChipIdN)
+%assign ::ChipIdN = FEVAL("int32",ChipIdN)		
+%assign ::isSAMx7 = 0
+%assign ::isSAMx5 = 0
+%assign ::isSAMC2 = 0
+%assign ::isSAMD2_DA1 = 0
+%assign ::isPIC32C = 0
+%assign ::isPIC32 = 0
+%assign ::isdsPIC = 0		
+%assign ::isCORTEX_M7 = 0
+%assign ::isCORTEX_M4F = 0
+%assign ::isCORTEX_M0p = 0
+%assign ::ChipIs = ""	
+%assign ::CORE = ""
+%switch ARCH
+%case 1
+%case 2
+%case 3
+%assign ::isdsPIC = 1
+%assign ::ChipIs = "dsPIC"
+%assign ::CORE = "PIC"
+%break		
+%case 4
+%assign ::isPIC32 = 1
+%assign ::ChipIs = "PIC32"				 			
+%assign ::CORE = "PIC32"
+%break		
+%case 5
+%assign ::isSAMx7 = 1
+%assign ::ChipIs = "SAMx7"					
+%assign ::CORE = "CORTEX_M7"
+%assign ::isCORTEX_M7 = 1
+%break		
+%case 6
+%assign ::isSAMx5 = 1
+%assign ::ChipIs = "SAMx5"	
+%assign ::CORE = "CORTEX_M4F"
+%assign ::isCORTEX_M4F = 1
+%break				
+%case 7						
+%assign ::isCORTEX_M0p = 1
+%assign ::CORE = "CORTEX_M0p"
+%switch ::ChipIdL1
+%case "SAMC"
+%assign ::isSAMC2 = 1
+%assign ::ChipIs = "SAMC2x"						
+%break
+%case "SAMD"
+%case "SAMDA"
+%assign ::isSAMD2_DA1 = 1
+%assign ::ChipIs = "SAMD2_DA1"
+%break
+%case "PIC"
+%assign ::isPIC32C = 1
+%assign ::ChipIs = "PIC32C"	
+%break			
+%default
+%error("Chip family for %<::ChipId> not recognized in MCHP_Functions.tlc file")
+%endswitch
+%break					
+%default
+%error("Chip family for %<::ChipId> not recognized in MCHP_Functions.tlc file")
+%endswitch
+%include "MCHP_zInclude.tlc"		
+%include "MCHP_Functions_Atomic.tlc"
+%switch ::ChipIs
+%case "PIC32"
+%include "MCHP_Functions_PIC32.tlc"	
+%break
+%case "dsPIC"
+%include "MCHP_Functions_dsPIC.tlc"		
+%break
+%case "SAMx7"			
+%include "MCHP_Functions_SAME70.tlc"		
+%break
+%case "SAMx5"
+%include "MCHP_Functions_SAME5x.tlc"		
+%break		
+%case "SAMC2x"			
+%case "PIC32C"
+%include "MCHP_Functions_SAMC2x.tlc"		
+%break
+%case "SAMD2_DA1"
+%include "MCHP_Functions_SAMD2_DA1.tlc"		
+%break
+%default
+%error("Chip not recognized in MCHP_Functions.tlc file. Script error.")
+%endswitch
+%endif
+%function MchpVector(VectInput) void
+%assign Output = CAST("String",VectInput)
+%assign Output = FEVAL("str2num",Output)
+%assign Output = FEVAL("int32",Output)		
+%return Output	
+%endfunction
+%function MchpVector64(VectInput) void
+%assign Output = CAST("String",VectInput)
+%assign Output = FEVAL("str2num",Output)
+%assign Output = FEVAL("int64",Output)		
+%return Output	
+%endfunction
+%function MchpVectorDbl(VectInput) void
+%assign Output = CAST("String",VectInput)
+%assign Output = FEVAL("str2num",Output)			
+%return Output	
+%endfunction
+%function MchpHex(value) void
+%if (value < 0)
+%assign value = CAST("Unsigned",value)
+%assign retVal = "0x" + FEVAL("dec2hex",value,8)
+%elseif (value <= 255)
+%assign retVal = "0x" + FEVAL("dec2hex",value,2)
+%elseif (value <= 65535)
+%assign retVal = "0x" + FEVAL("dec2hex",value,4)
+%else
+%assign retVal = "0x" + FEVAL("dec2hex",value,8)
+%endif
+%return retVal
+%endfunction
+%function MchpUint(value) void
+%if (value < 0)
+%assign retVal = CAST("Number",value)	
+%else
+%assign retVal = CAST("Unsigned",value)
+%endif
+%return retVal
+%endfunction
+%function MchpInt(value) void
+%assign retVal = CAST("Number",value)	
+%return retVal
+%endfunction
+%function MCHP_ProfileTaskStart(taskID) void
+%openfile tmpFcnProf
+%if EXISTS(::MCHP_TaskPinProfile)
+%if (taskID < SIZE(::MCHP_TaskPinProfile,1) )
+%assign pinRef = %<MCHP_TaskPinProfile[taskID]>
+%if pinRef != -1
+%<MCHP_SetOutputBit(pinRef,1,"Start/Continue profiling Task D%<taskID+1>")>
+%endif
+%endif
+%endif
+%closefile tmpFcnProf
+%return tmpFcnProf
+%endfunction
+%function MCHP_ProfileTaskStop(taskID) void
+%openfile tmpFcnProf
+%if EXISTS(::MCHP_TaskPinProfile)
+%if (taskID < SIZE(::MCHP_TaskPinProfile,1) )
+%assign pinRef = %<MCHP_TaskPinProfile[taskID]>
+%if pinRef != -1
+%<MCHP_SetOutputBit(pinRef,0,"Stop profiling Task D%<taskID+1>")>
+%endif
+%endif
+%endif
+%closefile tmpFcnProf
+%return tmpFcnProf
+%endfunction
+%function MCHP_ProfileMCU(value) void
+%openfile tmpMchpProfile
+%if EXISTS(::MCHP_MCULoadBlocks_TID)
+%assign TimerUnique = FEVAL("unique",::MCHP_MCULoadBlocks_Timer)
+%assign TimerUniqueLength = SIZE(TimerUnique,1)
+%assign MCHP_MCULoadBlocks_PINLength = SIZE(::MCHP_MCULoadBlocks_PIN,1)
+%if (TimerUniqueLength > 0) || (MCHP_MCULoadBlocks_PINLength > 0)
+%assign MCULoadPin = []
+%assign LoadPinNum = []
+%assign LoadPinLetter = []
+%foreach idx = SIZE(::MCHP_MCULoadBlocks_PIN,1)
+%assign MCULoadPin = MCULoadPin + ::MCHP_MCULoadBlocks_PIN[idx]
+%endforeach
+%switch value
+%case "enter"		
+%<Mchp_asm_Ainc("mcuFlagRecursion")> 		
+%foreach idx = SIZE(TimerUnique,1)
+%<MCHP_StartTimer(TimerUnique[idx])>
+%endforeach
+%foreach idx = SIZE(MCULoadPin,1)
+%if (MCULoadPin[idx] != -1)	
+%<MCHP_SetOutputBit(MCULoadPin[idx],1,"Start/Continue MCU profiling")>
+%endif
+%endforeach
+%break
+%case "exit"	
+/* ensure atomic mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */
+%<Mchp_asm_Adec("mcuFlagRecursion")>
+%break
+%case "exitUpdate"
+%<Mchp_asm_Adec("mcuFlagRecursion")>
+if(mcuFlagRecursion == 0)	{
+%foreach idx = SIZE(TimerUnique,1)
+%<MCHP_StopTimer(TimerUnique[idx])>										
+%endforeach
+%foreach idx = SIZE(MCULoadPin,1)
+%if (MCULoadPin[idx] != -1) 
+%<MCHP_SetOutputBit(MCULoadPin[idx],0,"Stop MCU profiling")>
+%endif
+%endforeach
+}
+%break
+%default
+%error Parameter value:%<value> not recognized in MchpProfileMCU function.
+%endswitch
+%endif
+%endif
+%closefile tmpMchpProfile
+%return tmpMchpProfile
+%endfunction
+%function MCHP_ProfileMCU_Compute(tid) void
+%assign nTIMERS = CAST("Number",RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",RTWGenSettings.nSCCP)		 	
+%openfile tmpMchpProfile
+%if EXISTS(::MCHP_MCULoadBlocks_TID)
+%if (SIZE(::MCHP_MCULoadBlocks_TID,1) > 0)
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+%assign flagStart = 0
+%foreach idx = SIZE(::MCHP_MCULoadBlocks_TID,1)
+%if (MCHP_MCULoadBlocks_TID[idx] == tid) 
+%if flagStart == 0
+{
+uint16_T Tmp_TMR;
+%endif
+%assign flagStart = 1
+%if ::MCHP_MCULoadBlocks_Timer[idx] <= nTIMERS	
+%assign TMRx = "TMR%<::MCHP_MCULoadBlocks_Timer[idx]>"
+%else 
+%assign TMRx = "CCP%<::MCHP_MCULoadBlocks_Timer[idx] - nTIMERS>TMRL"													
+%endif
+Tmp_TMR = %<TMRx>;			/* Read Timer value */			
+MCHP_MCULoadResult[%<idx>] = Tmp_TMR - MCHP_MCULoadPreviousTimerValue[%<idx>];
+MCHP_MCULoadPreviousTimerValue[%<idx>] = Tmp_TMR;
+%endif
+%endforeach
+%if flagStart == 1
+}
+%endif
+%else		
+%assign flagStart = 0
+%foreach idx = SIZE(::MCHP_MCULoadBlocks_TID,1)
+%if (MCHP_MCULoadBlocks_TID[idx] == tid) 
+%if flagStart == 0
+{
+uint16_T Tmp_TMR;
+%endif
+%assign flagStart = 1
+%if ::MCHP_MCULoadBlocks_Timer[idx] <= nTIMERS	
+%assign TMRx = "TMR%<::MCHP_MCULoadBlocks_Timer[idx]>"
+%else 
+%assign TMRx = "CCP%<::MCHP_MCULoadBlocks_Timer[idx] - nTIMERS>TMRL"													
+%endif
+Tmp_TMR = %<TMRx>;
+MCHP_MCULoadResult[%<idx>] += (Tmp_TMR - MCHP_MCULoadPreviousTimerValue[%<idx>]);	
+MCHP_MCULoadPreviousTimerValue[%<idx>] = Tmp_TMR;
+%endif
+%endforeach
+%if flagStart == 1
+}
+%endif
+%endif
+%endif
+%endif
+%closefile tmpMchpProfile
+%return tmpMchpProfile
+%endfunction
+%function MCHP_MCUOverload(tid) void
+%openfile tmpMchpProfile
+%if EXISTS(::MCHP_MCU_Overload)
+%if MCHP_MCU_Overload == 1
+%if TYPE(tid) == "String"		
+MCHP_MCU_Overload.val |= (1U << %<tid> );	/* Set overload bit for tid %<tid> */
+%else
+%if (tid > 15)	
+%assign tid = 15
+%endif
+MCHP_MCU_Overload.b.task%<tid> = 1U;	/* Set overload bit for tid %<tid> */
+%endif
+%endif
+%endif
+%if EXISTS(::MCHP_MCUOverLoadBlocks_PIN)
+%assign OverLoadPinNum = []
+%assign OverLoadPinLetter = []
+%assign MCUOverLoadPin = []
+%foreach idx = SIZE(::MCHP_MCUOverLoadBlocks_PIN,1)
+%assign MCUOverLoadPin = MCUOverLoadPin + ::MCHP_MCUOverLoadBlocks_PIN[idx]
+%endforeach
+%foreach idx = SIZE(MCUOverLoadPin,1)
+%if (MCUOverLoadPin[idx] != -1) 
+%<MCHP_SetOutputBit(MCUOverLoadPin[idx],1,"Overload detected. This bit must be cleared by end user (using a digital output write block)")>
+%endif
+%endforeach
+%endif
+%closefile tmpMchpProfile
+%return tmpMchpProfile
+%endfunction
+%function MCHP_ConfigTimers() void
+%openfile tmpFcnConfigTimers
+%assign TMR_PRESCALER = CAST("String",TIMER_PRESCALER)	
+%assign TMR_PRESCALER = FEVAL("str2num",TMR_PRESCALER)
+%assign TMR_PRESCALER = FEVAL("int32",TMR_PRESCALER)
+%assign TMR_PERIOD = CAST("String",TIMER_PERIOD) 
+%assign TMR_PERIOD = FEVAL("str2num",TMR_PERIOD)
+%assign TMR_PERIOD = FEVAL("int32",TMR_PERIOD)
+%assign TMR_START = CAST("String",TIMER_START) 
+%assign TMR_START = FEVAL("str2num",TMR_START)
+%assign TMR_START = FEVAL("int32",TMR_START)
+%assign TimeStep_Timer = CAST("Number",RTWGenSettings.TimeStep_Timer)
+%assign TimeStep_SyncADC = CAST("Number",RTWGenSettings.TimeStep_SyncADC)
+%assign nTIMERS = CAST("Number",RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",RTWGenSettings.nSCCP)		 	
+%foreach idx = SIZE(TMR_PRESCALER,1)
+%if (%<TMR_PRESCALER[idx]> != -1) 
+%if idx < nTIMERS	
+%assign idxT = idx+1
+%assign TimerName = "TIMER %<idxT>"
+%assign intPrefix = "T"					
+%assign TMRx = "TMR%<idxT>"	
+%else 
+%assign idxT = idx+1 - nTIMERS
+%assign TimerName = "CCP TIMER %<idxT>"
+%assign intPrefix = "CCP"
+%assign TMRx = "CCP%<idxT - nTIMERS>TMRL"	
+%endif
+%if (%<TMR_START[idx]> == 4)	
+/* %<TimerName> is reserved for custom use */
+%else						
+%switch %<TMR_START[idx]>
+%case 0	
+%assign PR = 65535
+%assign TON_OFF = "OFF"
+%assign TON_OFFnum = 0
+%break
+%case 1
+%assign PR = 65535
+%assign TON_OFF = "ON"
+%assign TON_OFFnum = 1
+%break
+%case 2
+%assign PR = %<TMR_PERIOD[idx]>
+%assign TON_OFF = "OFF"
+%assign TON_OFFnum = 0
+%break
+%case 3
+%assign PR = %<TMR_PERIOD[idx]>
+%assign TON_OFF = "ON"
+%assign TON_OFFnum = 1
+%break
+%endswitch
+%switch %<TMR_PRESCALER[idx]>  
+%case -1
+%assign TmrDivider = 0
+%warning Error with Timer prescaler definition.
+%break
+%default
+%assign TmrDivider = TMR_PRESCALER[idx]
+%endswitch
+%if idx < nTIMERS 	
+%openfile TMP_TIMER					
+%if TimeStep_SyncADC != 1
+%if (TimeStep_Timer == (idx+1))	
+%<MCHP_SFR(  intPrefix + "%<idxT>IP"  , 2 				   , "Set timer Interrupt Priority" )>
+%<MCHP_SFR(  intPrefix + "%<idxT>IF"  , 0 				   , "Reset pending Interrupt" )>
+%<MCHP_SFR(  intPrefix + "%<idxT>IE"  , 1 				   , "Enable Timer Interrupt." )>
+%endif
+%endif
+PR%<idxT> = %<MchpHex(PR)>;	/* Period */
+%closefile TMP_TIMER
+%if (TimeStep_Timer != (idxT))
+/* --- TIMER %<idxT> --- */
+T%<idxT>CON = 0;	/* Stop Timer %<idxT> and resets control register */												
+%<TMP_TIMER>	
+%if (TmrDivider << 4) != 0	
+T%<idxT>CON = %<MchpHex( (TmrDivider << 4) )>; /* Set timer Prescaler ; internal clock source */	
+%endif				
+%if TON_OFFnum
+%if ::isPIC32
+T%<idxT>CONSET = 0x8000; /* Start timer %<idxT> */
+%else
+T%<idxT>CONbits.TON = 1; /* Start timer %<idxT> */
+%endif
+%endif
+%else
+/* --- TIMER %<idxT> --- This timer is enabled at end of configuration functions. */
+T%<idxT>CON = 0;	/* Stop Timer %<idxT> and resets control register */
+%<TMP_TIMER>
+%if (TmrDivider << 4) != 0	
+T%<idxT>CON = %<MchpHex( (TmrDivider << 4) )>; /* Set timer Prescaler ; internal clock source */
+%endif
+%openfile LocalStartup_TrigTimeStepInstruction
+%<::Startup_TrigTimeStepInstruction>
+%if PR == 0
+%<TMRx> = %<MchpHex(65535)>; /* Initialize Timer Value */
+%else
+%<TMRx> = %<MchpHex(PR-1)>; /* Initialize Timer Value */
+%endif
+%if TON_OFFnum
+%if ::isPIC32
+T%<idxT>CONSET = 0x8000; /* Start timer %<idxT>. Timer %<idxT> is the source trigger for the model Time-step */
+%else
+T%<idxT>CONbits.TON = 1; /* Start timer %<idxT>. Timer %<idxT> is the source trigger for the model Time-step */
+%endif
+%endif
+%closefile LocalStartup_TrigTimeStepInstruction
+%assign ::Startup_TrigTimeStepInstruction = LocalStartup_TrigTimeStepInstruction
+%endif
+%else 
+%assign idxCCP = idx + 1 - nTIMERS
+%openfile TMP_TIMER					
+%if TimeStep_SyncADC != 1
+%if (TimeStep_Timer == (idx+1))	
+%<MCHP_SFR(  intPrefix + "%<idxCCP>IP"  , 2 				   , "Set timer Interrupt Priority" )>
+%<MCHP_SFR(  intPrefix + "%<idxCCP>IF"  , 0 				   , "Reset pending Interrupt" )>
+%<MCHP_SFR(  intPrefix + "%<idxCCP>IE"  , 1 				   , "Enable Timer Interrupt." )>
+%endif
+%endif
+CCP%<idxCCP>PRL = %<MchpHex(PR)>;	/* Period */								
+CCP%<idxCCP>RB = %<MchpHex(PR)>;	/* Trigger Event in sync with Period */															
+%closefile TMP_TIMER
+%if (TimeStep_Timer != (idx+1))
+/* --- SCC TIMER %<idxCCP> --- */
+CCP%<idxCCP>CON1L = 0;	/* Stop SCC Timer %<idxCCP> and resets control register */																			
+%<TMP_TIMER>	
+CCP%<idxCCP>CON1L = %<MchpHex( (TmrDivider << 6) + 4)>; /* Set timer Prescaler and Mode Output Capture */	
+CCP%<idxCCP>CON2H = 0;  /* Clear any output bits as we use CCP1 as a timer, not OC */
+%if TON_OFFnum
+CCP%<idxCCP>CON1Lbits.CCPON = 1; /* Start Timer CCP%<idxCCP> */;
+%endif
+%else
+/* --- TIMER %<idxT> --- This timer is enabled at end of configuration functions. */
+CCP%<idxCCP>CON1L = 0;	/* Stop SCC Timer %<idxCCP> and resets control register */																			
+%<TMP_TIMER>	
+CCP%<idxCCP>CON1L = %<MchpHex( (TmrDivider << 6) + 4)>; /* Set timer Prescaler and Mode Output Capture */	
+CCP%<idxCCP>CON2H = 0;  /* Clear any output bits as we use CCP1 as a timer, not OC */
+%openfile LocalStartup_TrigTimeStepInstruction
+%<::Startup_TrigTimeStepInstruction>
+%if PR == 0
+CCP%<idxCCP>TMRL = %<MchpHex(65535)>; /* Initialize Timer Value */
+%else
+CCP%<idxCCP>TMRL = %<MchpHex(PR-1)>; /* Initialize Timer Value */
+%endif
+%if TON_OFFnum
+CCP%<idxCCP>CON1Lbits.CCPON = 1; /* Start Timer CCP%<idxCCP> */;
+%endif
+%closefile LocalStartup_TrigTimeStepInstruction
+%assign ::Startup_TrigTimeStepInstruction = LocalStartup_TrigTimeStepInstruction
+%endif						
+%endif
+%endif
+%endif
+%endforeach
+%foreach idx = SIZE(TMR_PRESCALER,1)
+%if (%<TMR_PRESCALER[idx]> != -1) 
+%if idx < nTIMERS	
+%<HARMONY_RegisterPeripheral("TMR",idx+1,"")>	
+%else 
+%<HARMONY_RegisterPeripheral("CCP",idx+1-nTIMERS,"")>	
+%endif				
+%endif
+%endforeach
+%closefile tmpFcnConfigTimers
+%return tmpFcnConfigTimers
+%endfunction
+%function Mchp_No_auto_psv() void
+%assign AUTO_PSV = "__no_auto_psv__"
+%assign ChipRAM = CAST("Number",RTWGenSettings.ChipRAM)
+%assign ChipRAM_XBegin = CAST("Number",RTWGenSettings.ChipRAM_XBegin)
+%assign ChipRAM_dma = MchpVector(RTWGenSettings.ChipRAM_dma)
+%if (ChipRAM + ChipRAM_XBegin) > (32*1024)
+%assign AUTO_PSV = "__auto_psv__"
+%endif
+%return AUTO_PSV
+%endfunction
+%function MchpDMA_DMAxSTAB(DMACHANNEL,AB,Init,OffsetBuffer) void
+%openfile file_MchpDMA_DMAxSTAB
+%assign ChipRAM = CAST("Number",RTWGenSettings.ChipRAM)
+%assign ChipRAM_XBegin = CAST("Number",RTWGenSettings.ChipRAM_XBegin)
+%assign ChipRAM_dma = MchpVector(RTWGenSettings.ChipRAM_dma)
+%if (ChipRAM_dma[1] > 0)
+%if (ChipRAM_dma[1]> (32*1024))	
+%assign DMA_EDS = "dma"
+%else
+%assign DMA_EDS = "dma"     
+%endif
+%else
+%if (ChipRAM + ChipRAM_XBegin) > (32*1024)	
+%assign MEMORY_DMA_QUALIFIER = ""     
+%else
+%assign MEMORY_DMA_QUALIFIER = ""     
+%endif
+%endif
+%switch ::ChipIdL1
+%case "HJ"
+%case "FJ"
+%switch DMA_EDS
+%case "dma"
+%case "eds"
+DMA%<DMACHANNEL>ST%<AB> = __builtin_%<DMA_EDS>offset(%<OffsetBuffer>) ;
+%break
+%default
+DMA%<DMACHANNEL>ST%<AB> = (uint16_T) %<OffsetBuffer> ;
+%break
+%endswitch
+%break
+%case "EP"
+%case "EV"
+%switch DMA_EDS
+%case "dma"
+%case "eds"
+%switch Init
+%case "init"
+%if (ChipRAM_dma[1]> (32*1024))	
+MA%<DMACHANNEL>ST%<AB>H = __builtin_dmapage(%<OffsetBuffer>);
+%else
+DMA%<DMACHANNEL>ST%<AB>H = 0x0000;	
+%endif
+DMA%<DMACHANNEL>ST%<AB>L = __builtin_dmaoffset(%<OffsetBuffer>);
+%break
+%case "initMSB_Only"
+%if (ChipRAM_dma[1]> (32*1024))	
+MA%<DMACHANNEL>ST%<AB>H = __builtin_dmapage(%<OffsetBuffer>);
+%else
+DMA%<DMACHANNEL>ST%<AB>H = 0x0000;	
+%endif
+%break
+%default 
+%if (ChipRAM_dma[1]> (32*1024))	
+MA%<DMACHANNEL>ST%<AB>H = __builtin_dmapage(%<OffsetBuffer>);
+%else
+%endif
+DMA%<DMACHANNEL>ST%<AB>L = __builtin_dmaoffset(%<OffsetBuffer>);
+%break
+%endswitch
+%break
+%default
+%switch Init
+%case "init"
+DMA%<DMACHANNEL>ST%<AB>H = 0x0000;	
+DMA%<DMACHANNEL>ST%<AB>L = (uint16_T) %<OffsetBuffer> ; 
+%break
+%case "initMSB_Only"
+DMA%<DMACHANNEL>ST%<AB>H = 0x0000;	
+%break
+%default 
+DMA%<DMACHANNEL>ST%<AB>L = (uint16_T) %<OffsetBuffer> ; 
+%break
+%endswitch
+%break
+%endswitch
+%break
+%endswitch
+%closefile file_MchpDMA_DMAxSTAB
+%return file_MchpDMA_DMAxSTAB
+%endfunction
+%function MchpLocal2Global(block,Global,Local,FieldNameInfoForErrorRepport,FieldErrorDescription) void    	
+%if SIZE(Local,1) > SIZE(Global,1)
+%warning("Block %<block.Name> internal variable for %<FieldErrorDescription> is missing initial values")
+%assign Global2 = Local         
+%if SIZE(Global,1) == 1
+%assign Global2[0] = Global
+%else
+%foreach idx = SIZE(Global,1)
+%assign Global2[idx] = Global[idx]  
+%endforeach
+%endif
+%assign Global = Global2    
+%endif	
+%foreach idx = SIZE(Local,1)
+%if Global[idx] == -1
+%if SIZE(Local,1) == 1
+%assign Global = Local
+%else
+%assign Global[idx] = Local[idx]            
+%endif
+%elseif Local[idx] != -1
+%if Global[idx] != Local[idx]
+%if ISEMPTY(FieldErrorDescription)  
+%assign ErrorMsg = "Block %<block.Name> tro ty set shared ressources with incompatible settings. %<FieldErrorDescription> Original value for internal field %<FieldNameInfoForErrorRepport> at index %<idx> is %<Global[idx]>. New value is: %<Local[idx]>."
+%else
+%assign ErrorMsg = "Block %<block.Name> tro ty set shared ressources with incompatible settings. %<FieldErrorDescription>"
+%endif
+%<LibBlockReportError(block,ErrorMsg)>
+%endif
+%endif
+%endforeach    	
+%return Global
+%endfunction
+%function HARMONY_Initialize() void
+%openfile Harmony = "simulink.hconfig"		
+%assign HconfigFilePath = ::CompiledModel.GenUtilsPath
+%assign HconfigFilePath = FEVAL("strrep",HconfigFilePath,"\\","/")
+#
+# Application configuration file generated by
+# Microchip blockset for Simulink
+#
+# <install-dir> refers to Harmony installation-dir
+#
+# The following line should be added at the end your Harmony project root .hconfig file:
+# source "%<HconfigFilePath>/simulink.hconfig"
+#
+menu "Simulink Configuration"
+comment "This project supports Simulink Integration."
+config USE_SIMULINK
+bool "Use Simulink Modules?"
+default y
+---help---
+Select this item to integrate Simulink-generated modules into this
+Harmony project.
+---endhelp---
+%closefile Harmony
+%endfunction
+%function HARMONY_Close() void
+%openfile Harmony = "simulink.hconfig","a"		
+endmenu
+%closefile Harmony
+%endfunction
+%function HARMONY_RegisterPeripheral(Name,Id,block) void
+%assign NameLower = FEVAL("lower",Name)
+%openfile Harmony = "simulink.hconfig","a"		
+# See %<Name>_MODULE_ID enum in <install-dir>/framework/peripheral/tmr/processor/%<NameLower>_<processor>.hconfig
+# Made persistent to force user to select different timer instances for Harmony libraries.
+config SIMULINK_%<Name>_%<Id>
+string "Simulink is currently using:"
+depends on USE_SIMULINK
+depends on HAVE_%<Name>
+%if ISEQUAL(Name,"DMA")
+range %<Name>_CHANNEL
+default "%<Name>_CHANNEL_%<Id>"
+%else
+range %<Name>_MODULE_ID
+default "%<Name>_ID_%<Id>"
+%endif
+persistent
+---help---
+Select the %<NameLower> peripheral instance ID to be used by Simulink modules.
+---endhelp---
+%closefile Harmony
+%endfunction

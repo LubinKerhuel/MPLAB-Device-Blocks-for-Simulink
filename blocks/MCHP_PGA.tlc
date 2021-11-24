@@ -1,0 +1,64 @@
+%implements  MCHP_PGA  "C"
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%endfunction
+%function InitializeConditions (block, system) Output
+%endfunction
+%function Start(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign reg_PGAxCON = MchpVector(block.RTWdata.reg_PGAxCON)
+%assign SharedRessource_DACOUT1 = MchpVector(block.RTWdata.SharedRessource_DACOUT1)
+%assign SharedRessource_DACOUT2 = MchpVector(block.RTWdata.SharedRessource_DACOUT2)
+%if EXISTS(::Global_SharedRessource_DACOUT1) == 0
+%assign ::Global_SharedRessource_DACOUT1 = 0
+%assign ::Global_SharedRessource_DACOUT2 = 0
+%endif
+%foreach idx = SIZE(SharedRessource_DACOUT1,1)
+%if (::Global_SharedRessource_DACOUT1 != 0) && (SharedRessource_DACOUT1[idx] != 0)
+%<LibBlockReportError(block,"DACOUT1 output is short-circuited as it is used by at least two peripherals (might e either PGA or High Speed Comparator)")>
+%endif
+%if (::Global_SharedRessource_DACOUT2 != 0) && (SharedRessource_DACOUT2[idx] != 0)
+%<LibBlockReportError(block,"DACOUT2 output is short-circuited as it is used by at least two peripherals (might e either PGA or High Speed Comparator)")>
+%endif
+%assign ::Global_SharedRessource_DACOUT1 = ::Global_SharedRessource_DACOUT1 || SharedRessource_DACOUT1[idx]
+%assign ::Global_SharedRessource_DACOUT2 = ::Global_SharedRessource_DACOUT2 || SharedRessource_DACOUT2[idx]
+%endforeach
+%if (reg_PGAxCON[0] != -1) || (reg_PGAxCON[1] != -1)
+%foreach idx= SIZE(reg_PGAxCON,1)	
+%if reg_PGAxCON[idx] != -1	
+%if idx == 0
+%assign CALADDR = "0E48"
+%else
+%assign CALADDR = "0E4C"
+%endif
+__psv__ unsigned volatile static int PGA%<idx+1>CAL_Factory __attribute__((space(psv),address(0x80%<CALADDR>))); /* PGA %<idx+1> Calibration stored in FLASH (factory) */
+PGA%<idx+1>CAL = PGA%<idx+1>CAL_Factory; /* Set calibration for PGA  %<idx+1> */	
+PGA%<idx+1>CON = %<MchpHex(reg_PGAxCON[idx])>; /* Enable Programmable Gain Amplifier %<idx+1> */					
+%endif
+%endforeach
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN =  MchpVector(RTWGenSettings.ChipIdN)
+%assign GainBlkInput =  MchpVector(block.RTWdata.GainBlkInput)
+%assign IndexInput = 0
+%foreach idx = SIZE(GainBlkInput,1)	
+%if GainBlkInput[idx] == 1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)					
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+PGA%<idx+1>CONbits.GAIN = %<y>; /* live update of PGA Gain */
+%endif
+%assign IndexInput = IndexInput+1
+%endif
+%endforeach
+%endfunction
+%function Update(block, system) Output
+%endfunction

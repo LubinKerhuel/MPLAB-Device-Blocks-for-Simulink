@@ -1,0 +1,385 @@
+
+%function Start_ADC_SAMx2_x5_fct(block, system) Output
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign mConvPerSeq =  CAST("Number",block.RTWdata.mConvPerSeq)
+%assign mSeq =  CAST("Number",block.RTWdata.mSeq)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign PRESCALER =  CAST("Number",block.RTWdata.PRESCALER)
+%assign FADC =  CAST("Number",block.RTWdata.FADC)
+%assign ADCREF =  MchpVector64(block.RTWdata.ADCREF)
+%assign Resolution =  MchpVector64(block.RTWdata.Resolution)
+%assign SampleTime_s =  MchpVectorDbl(block.RTWdata.SampleTime_s)
+%assign TrigSource =  MchpVector64(block.RTWdata.TrigSource)
+%assign UseEventSystem = CAST("Number",block.RTWdata.UseEventSystem)
+%assign TrigTimeStep =  MchpVector64(block.RTWdata.TrigTimeStep)
+%assign ADC0_AINx =  MchpVector64(block.RTWdata.ADC0_AINx)
+%assign ADC1_AINx =  MchpVector64(block.RTWdata.ADC1_AINx)
+%assign nSeq =  CAST("Number",block.RTWdata.nSeq)
+%assign ADC0_AINx_unique =  MchpVector64(block.RTWdata.ADC0_AINx_unique)
+%assign ADC0_AINx_unique_map =  MchpVector64(block.RTWdata.ADC0_AINx_unique_map)
+%assign ADC1_AINx_unique =  MchpVector64(block.RTWdata.ADC1_AINx_unique)
+%assign ADC1_AINx_unique_map =  MchpVector64(block.RTWdata.ADC1_AINx_unique_map)
+%assign ADC0_AINx_unique_i =  MchpVector64(block.RTWdata.ADC0_AINx_unique_i)
+%assign ADC1_AINx_unique_i =  MchpVector64(block.RTWdata.ADC1_AINx_unique_i)
+%assign ADCxbuff =  MchpVector64(block.RTWdata.ADCxbuff)
+%assign SAMPLEN =  MchpVector64(block.RTWdata.SAMPLEN)
+/* ========================= ADC Peripheral setup ========================= */
+{
+const uint32_T * OTP_CAL_Ptr = (uint32_T *) 0x806020; /* NVM Software Calibration Area Mapping (@ 0x806020) */
+uint32_T tmp_reg;
+%if ADCREF[0] == 1	
+GCLK_REGS->GCLK_PCHCTRL[40] = 0x40;/* GCLK 0 used by ADC0 */
+/* ADC0 APB clock */
+%<Enable_Peripheral_Clock("ADC0")>
+%endif
+%if ADCREF[1] == 1	
+GCLK_REGS->GCLK_PCHCTRL[41] = 0x40;/* GCLK 0 used by ADC1 */
+/* ADC1 APB clock */
+%<Enable_Peripheral_Clock("ADC1")>       	
+%endif
+%if UseEventSystem 		
+/* Event Channel 0 Configuration */
+%<Enable_Peripheral_Clock("EVSYS")>		
+/* Event Channel 0 Configuration */
+EVSYS_REGS->CHANNEL[0].EVSYS_CHANNEL = EVSYS_CHANNEL_EVGEN(0x29) | EVSYS_CHANNEL_PATH_ASYNCHRONOUS | EVSYS_CHANNEL_EDGSEL_RISING_EDGE ;	
+GCLK_REGS->GCLK_PCHCTRL[11] = 0x40;         /* EVSYS0 clock used ref is 11  */	
+%if ADCREF[0] == 1		
+ADC0_REGS->ADC_EVCTRL |= ADC_EVCTRL_STARTEI_Msk;     /* Must be done before the ADC peripheral is activated */		    	
+EVSYS_REGS->EVSYS_USER[55] = EVSYS_USER_CHANNEL(0x1);   /* Channel 0 trig ADC0 START*/		
+%endif
+%if ADCREF[1] == 1	
+ADC1_REGS->ADC_EVCTRL |= ADC_EVCTRL_STARTEI_Msk;     /* Must be done before the ADC peripheral is activated */	
+EVSYS_REGS->EVSYS_USER[57] = EVSYS_USER_CHANNEL(0x1);   /* Channel 0 trig ADC1 START*/		
+%endif
+%endif
+%assign useADC_Interrupt = 0
+%if nSeq > 1
+%assign useADC_Interrupt = 1
+%endif
+%foreach idx = SIZE(TrigTimeStep,1)
+%if TrigTimeStep[idx] == 1
+%assign useADC_Interrupt = 1
+%endif
+%endforeach
+%assign ADC_InterruptRef = -1
+%if useADC_Interrupt
+%assign ADC_InterruptRef = 0	
+%if (ADCREF[0] == 0) &&  (ADCREF[1] == 1)
+%assign ADC_InterruptRef = 1
+%endif
+%endif
+/* Factory Calibration */
+%foreach iADC = 2
+%if ADCREF[iADC] == 1
+/* Calibration bias */
+%switch iADC	
+%case 0
+ADC%<iADC>_REGS->ADC_CALIB = ( ((OTP_CAL_Ptr[0] & 0x1C) >> 3) + ((OTP_CAL_Ptr[0] & 0xE0) << 3) + ((OTP_CAL_Ptr[0] & 0x700) >> 4) ); /* ADC%<iADC> factory Calibration */
+%break
+%case 1
+ADC%<iADC>_REGS->ADC_CALIB = ( ((OTP_CAL_Ptr[0] & 0x70000) >> 16) + ((OTP_CAL_Ptr[0] & 0x380000) >> 7) + ((OTP_CAL_Ptr[0] & 0x1C00000) >> 18) ); /* ADC%<iADC> factory Calibration */
+%break
+%endswitch
+%endif
+%endforeach
+/* Other ADC Settings */
+%foreach iADC = 2
+%if ADCREF[iADC] == 1	
+ADC%<iADC>_REGS->ADC_CTRLA = ADC_CTRLA_PRESCALER_DIV%<PRESCALER>; /* ADC clock divider is  %<FADC> */
+ADC%<iADC>_REGS->ADC_REFCTRL = ADC_REFCTRL_REFSEL_INTVCC1 | ADC_REFCTRL_REFCOMP_Msk;	/* Vref is VDDANA */
+%switch iADC
+%case 0
+%assign AINx = CAST("Number",ADC0_AINx[0])
+%break
+%case 1		    		
+%assign AINx = CAST("Number",ADC1_AINx[0])
+%break
+%endswitch	
+%if AINx == -1
+%<LibBlockReportError(block,"Pin for sequence 0 not set")>
+%endif
+ADC%<iADC>_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(%<CAST("Number",SAMPLEN[0])>); /* Sampling time is (%<CAST("Number",SAMPLEN[0])>+1) / %<FADC> => %<(SAMPLEN[0] + 1) / FADC>(s) */						
+ADC%<iADC>_REGS->ADC_INPUTCTRL = ADC_INPUTCTRL_MUXPOS_AIN%<AINx> | ADC_INPUTCTRL_MUXNEG_GND ;  /* positive and negative input pins */
+ADC%<iADC>_REGS->ADC_CTRLB = ADC_CTRLB_RESSEL_%<CAST("Number",Resolution[0])>BIT | ADC_CTRLB_WINMODE(0);  /* Resolution & Operation Mode */		
+%endif
+%endforeach
+%if useADC_Interrupt
+/* Interrupt Settings */
+NVIC_SetPriority(ADC%<ADC_InterruptRef>_RESRDY_IRQn, 0);
+NVIC_EnableIRQ(ADC%<ADC_InterruptRef>_RESRDY_IRQn);		
+ADC%<ADC_InterruptRef>_REGS->ADC_INTFLAG = ADC_INTFLAG_Msk; /* Clear all interrupt flags */		
+ADC%<ADC_InterruptRef>_REGS->ADC_INTENSET = ADC_INTENSET_RESRDY_Msk;	    /* Enable interrupts */
+%endif
+%foreach iADC = 2
+%if ADCREF[iADC] == 1	
+while(ADC%<iADC>_REGS->ADC_SYNCBUSY) ; /* Wait for Sync */
+ADC%<iADC>_REGS->ADC_CTRLA |= ADC_CTRLA_ENABLE_Msk; /* Enable ADC */
+%endif
+%endforeach
+%foreach iADC = 2
+%if ADCREF[iADC] == 1			
+while(ADC%<iADC>_REGS->ADC_SYNCBUSY) ; /* Wait for Sync */
+%endif
+%endforeach
+%foreach iADC = 2
+%if ADCREF[iADC] == 1	
+/* Start conversion */
+ADC%<iADC>_REGS->ADC_SWTRIG |= ADC_SWTRIG_START_Msk;
+%endif
+%endforeach
+%if useADC_Interrupt
+%openfile buffer
+%foreach iADC = 2
+%if ADCREF[iADC] == 1				
+extern volatile uint16_T MCHP_ADC%<iADC>[%<CAST("Number",ADCxbuff[iADC]-1)>];	/* Declare ADC%<iADC> buffer */
+%endif
+%endforeach
+%closefile buffer
+%<LibCacheExtern(buffer)>		
+%openfile dspicfun = "MCHP_ADC%<ADC_InterruptRef>_RESRDY_Interrupt.c"
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%foreach iADC = 2
+%if ADCREF[iADC] == 1				
+uint16_T volatile MCHP_ADC%<iADC>[%<CAST("Number",ADCxbuff[iADC]-1)>];	/* Declare ADC%<iADC> buffer */
+%endif
+%endforeach
+void ADC%<ADC_InterruptRef>_RESRDY_Handler( void )
+{
+%<MCHP_InterruptProlog()>
+%if nSeq > 1
+static uint_T iADC_Seq = 0;
+%endif
+/* Clear interrupt flag */
+ADC%<ADC_InterruptRef>_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk;
+%assign iSeq = 0	
+%if nSeq == 1
+%foreach iADC = 2
+%if ADCREF[iADC] == 1				
+MCHP_ADC%<iADC>[0] = ADC%<iADC>_REGS->ADC_RESULT;	/* Store ADC%<iADC> result */
+%endif
+%endforeach	
+%if TrigTimeStep[iSeq] == 1
+/* Trig time step */
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+NVIC_SetPendingIRQ(TC0_IRQn); /* Trig Scheduler interrupt  */
+%else
+%assign ::MCHP_srSchedulerOnInterrupt = 0       
+extern volatile uint_T ContinueTimeStep;
+ContinueTimeStep |= 1;
+%endif				    	
+%endif	
+%else
+switch (iADC_Seq) {
+%assign SAMPLEN0 = [-1,-1]
+%assign ADC_INPUTCTRL_MUXPOS_AIN0 = [-1,-1]
+%assign Resolution0 = [-1,-1]
+%foreach iSeq = mSeq
+%foreach iConv = mConvPerSeq
+%assign iAINx = iConv + iSeq*mConvPerSeq	
+%if (ADC0_AINx[iAINx] != -1) || (ADC1_AINx[iAINx] != -1)
+%if (ADC0_AINx[iAINx] != -1)			
+%assign AINx = CAST("Number",ADC0_AINx[%<iAINx>])
+%assign iADC = 0					
+%if (Resolution[iAINx] != -1)	
+%assign Resolution0[iADC] = Resolution[iAINx]												    			
+%endif
+%if (SAMPLEN[AINx] != -1)
+%assign SAMPLEN0[iADC] = SAMPLEN[iAINx]
+%endif
+%endif
+%if (ADC1_AINx[iAINx] != -1)
+%assign iADC = 1			
+%assign AINx = CAST("Number",ADC1_AINx[%<iAINx>])    					
+%if (Resolution[iAINx] != -1)	
+%assign Resolution0[iADC] = Resolution[iAINx]					    			
+%endif
+%if (SAMPLEN[AINx] != -1)
+%assign SAMPLEN0[iADC] = SAMPLEN[iAINx]
+%endif
+%endif
+%endif
+%endforeach
+%endforeach
+%assign Buffer_TrigTimeStep = ""
+%assign iCase = 0
+%foreach iSeq = mSeq
+%assign newSeq = 1
+%foreach iConv = mConvPerSeq
+%assign iAINx = iConv + iSeq*mConvPerSeq
+%if (ADC0_AINx[iAINx] != -1) || (ADC1_AINx[iAINx] != -1)
+%if iAINx == 0	    				
+%openfile FirstConversionSetup
+%endif
+%if (ADC0_AINx[iAINx] != -1)			
+%assign AINx = CAST("Number",ADC0_AINx[%<iAINx>])
+%assign iADC = 0
+ADC%<iADC>_REGS->ADC_INPUTCTRL = ADC_INPUTCTRL_MUXPOS_AIN%<AINx> | ADC_INPUTCTRL_MUXNEG_GND ;  /* positive and negative input pins */									
+%if (Resolution[iAINx] != -1)	&& 	Resolution0[iADC] != Resolution[iAINx]
+%assign Resolution0[iADC] = Resolution[iAINx]
+ADC%<iADC>_REGS->ADC_CTRLB = ADC_CTRLB_RESSEL_%<CAST("Number",Resolution[iAINx])>BIT | ADC_CTRLB_WINMODE(0);  /* Resolution & Operation Mode */													    			
+%endif
+%if (SAMPLEN[iAINx] != -1) && (SAMPLEN0[iADC] != SAMPLEN[iAINx])
+%assign SAMPLEN0[iADC] = SAMPLEN[AINx]
+ADC%<iADC>_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(%<CAST("Number",SAMPLEN[iAINx])>); /* Sampling time is (%<CAST("Number",SAMPLEN[iAINx])>+1) / %<FADC> => %<(SAMPLEN[iAINx] + 1) / FADC>(s) */													    	
+%endif
+%endif
+%if (ADC1_AINx[iAINx] != -1)
+%assign iADC = 1			
+%assign AINx = CAST("Number",ADC1_AINx[%<iAINx>])    					
+ADC%<iADC>_REGS->ADC_INPUTCTRL = ADC_INPUTCTRL_MUXPOS_AIN%<AINx> | ADC_INPUTCTRL_MUXNEG_GND ; /* positive and negative input pins */	
+%if (Resolution[iAINx] != -1)	&& 	Resolution0[iADC] != Resolution[iAINx]
+%assign Resolution0[iADC] = Resolution[iAINx]					    			
+ADC%<iADC>_REGS->ADC_CTRLB = ADC_CTRLB_RESSEL_%<CAST("Number",Resolution[iAINx])>BIT | ADC_CTRLB_WINMODE(0);  /* Resolution & Operation Mode */													    			    																    	
+%endif							
+%if (SAMPLEN[AINx] != -1) && (SAMPLEN0[iADC] != SAMPLEN[iAINx])
+%assign SAMPLEN0[iADC] = SAMPLEN[iAINx]
+ADC%<iADC>_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(%<CAST("Number",SAMPLEN[iAINx])>); /* Sampling time is (%<CAST("Number",SAMPLEN[iAINx])>+1) / %<FADC> => %<(SAMPLEN[iAINx] + 1) / FADC>(s) */													    	
+%endif
+%endif
+%switch TrigSource[iAINx]
+%case 1
+%if ADCREF[1] == 1			    					
+ADC1_REGS->ADC_SWTRIG |= ADC_SWTRIG_START_Msk; /* Convert next sample  */
+%endif
+%if ADCREF[0] == 1			    					
+ADC0_REGS->ADC_SWTRIG |= ADC_SWTRIG_START_Msk; /* Convert next sample  */
+%endif
+%break
+%case 2
+/* next ADC Trigger is done through the Event User */
+%break		    					
+%endswitch		    			
+%if iAINx == 0	
+iADC_Seq = 0;			    					
+%closefile FirstConversionSetup
+%else
+%if newSeq
+%<Buffer_TrigTimeStep>	
+%assign Buffer_TrigTimeStep = ""
+%endif
+iADC_Seq ++; 			    							    				
+break;
+%endif
+%if newSeq 			    			
+case %<iCase>:	/* SEQUENCE %<iSeq> - Conversion %<iConv> */
+%else
+case %<iCase>:	/* Conversion %<iConv> */
+%endif
+%assign newSeq = 0
+%assign iCase = iCase + 1
+%if (ADC0_AINx[iAINx] != -1)			
+MCHP_ADC0[%<CAST("Number",ADC0_AINx_unique_map[iAINx]-1)>] = ADC0_REGS->ADC_RESULT;	/* Store ADC0 result */
+%endif
+%if (ADC1_AINx[iAINx] != -1)			
+MCHP_ADC1[%<CAST("Number",ADC1_AINx_unique_map[iAINx]-1)>] = ADC1_REGS->ADC_RESULT;	/* Store ADC1 result */
+%endif
+%if TrigTimeStep[iAINx] == 1 	
+%openfile Buffer_TrigTimeStep		    						    				
+/* Trig time step */
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+NVIC_SetPendingIRQ(TC0_IRQn); /* Trig Scheduler interrupt  */
+%else
+%assign ::MCHP_srSchedulerOnInterrupt = 0       
+extern volatile uint_T ContinueTimeStep;
+ContinueTimeStep |= 1;
+%endif			
+%closefile Buffer_TrigTimeStep			
+%endif				
+%endif
+%endforeach
+%endforeach
+%<FirstConversionSetup>
+%<Buffer_TrigTimeStep>	
+%assign Buffer_TrigTimeStep = ""			    											
+} /* end switch */	 	    			
+%endif
+%<MCHP_InterruptEpilog()>
+} 	
+%closefile dspicfun
+%endif
+}
+%endfunction
+%function Outputs_ADC_SAMx2_x5_fct(block, system) Output
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign mConvPerSeq =  CAST("Number",block.RTWdata.mConvPerSeq)
+%assign mSeq =  CAST("Number",block.RTWdata.mSeq)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign PRESCALER =  CAST("Number",block.RTWdata.PRESCALER)
+%assign FADC =  CAST("Number",block.RTWdata.FADC)
+%assign ADCREF =  MchpVector64(block.RTWdata.ADCREF)
+%assign Resolution =  MchpVector64(block.RTWdata.Resolution)
+%assign SampleTime_s =  MchpVectorDbl(block.RTWdata.SampleTime_s)
+%assign TrigSource =  MchpVector64(block.RTWdata.TrigSource)
+%assign UseEventSystem = CAST("Number",block.RTWdata.UseEventSystem)
+%assign TrigTimeStep =  MchpVector64(block.RTWdata.TrigTimeStep)
+%assign ADC0_AINx =  MchpVector64(block.RTWdata.ADC0_AINx)
+%assign ADC1_AINx =  MchpVector64(block.RTWdata.ADC1_AINx)
+%assign nSeq =  CAST("Number",block.RTWdata.nSeq)
+%assign ADC0_AINx_unique =  MchpVector64(block.RTWdata.ADC0_AINx_unique)
+%assign ADC0_AINx_unique_map =  MchpVector64(block.RTWdata.ADC0_AINx_unique_map)
+%assign ADC1_AINx_unique =  MchpVector64(block.RTWdata.ADC1_AINx_unique)
+%assign ADC1_AINx_unique_map =  MchpVector64(block.RTWdata.ADC1_AINx_unique_map)
+%assign ADC0_AINx_unique_i =  MchpVector64(block.RTWdata.ADC0_AINx_unique_i)
+%assign ADC1_AINx_unique_i =  MchpVector64(block.RTWdata.ADC1_AINx_unique_i)
+%assign ADCxbuff =  MchpVector64(block.RTWdata.ADCxbuff)
+%assign SAMPLEN =  MchpVector64(block.RTWdata.SAMPLEN)
+%assign useADC_Interrupt = 0
+%assign ADC_InterruptRef = -1
+%if nSeq > 1
+%assign useADC_Interrupt = 1
+%endif
+%foreach idx = SIZE(TrigTimeStep,1)
+%if TrigTimeStep[idx] == 1
+%assign useADC_Interrupt = 1
+%endif
+%endforeach
+%if useADC_Interrupt
+%assign ADC_InterruptRef = 0	
+%if (ADCREF[0] == 0) &&  (ADCREF[1] == 1)
+%assign ADC_InterruptRef = 1
+%endif
+%endif
+%assign IndexOutput = 0
+%if useADC_Interrupt == 1
+%foreach iSeq = mConvPerSeq * mSeq
+%if ADC0_AINx_unique_i[iSeq] > 0
+%assign iADC = 0
+%if LibBlockOutputSignalConnected(IndexOutput)
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)		
+%<u> = 	MCHP_ADC%<iADC>[%<CAST("Number",ADC0_AINx_unique_i[iSeq]-1)>];	/* Read ADC%<iADC> output buffer */		
+%endif
+%assign IndexOutput = IndexOutput + 1	
+%endif
+%if ADC1_AINx_unique_i[iSeq] > 0
+%assign iADC = 1
+%if LibBlockOutputSignalConnected(IndexOutput)
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)		
+%<u> = 	MCHP_ADC%<iADC>[%<CAST("Number",ADC1_AINx_unique_i[iSeq]-1)>];	/* Read ADC%<iADC> output buffer */		
+%endif
+%assign IndexOutput = IndexOutput + 1				
+%endif
+%endforeach	
+%else
+%foreach iADC = 2
+%if ADCREF[iADC] == 1				
+ADC%<iADC>_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk;
+%if LibBlockOutputSignalConnected(IndexOutput)
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)
+%<u> = 	ADC%<iADC>_REGS->ADC_RESULT;	/* Read ADC%<iADC> output */
+%endif
+%assign IndexOutput = IndexOutput + 1	
+%endif
+%endforeach		
+%endif
+%if (TrigSource[0] == 0)	
+/* Start next conversion */
+%foreach iADC = 2	
+%if (ADCREF[iADC] == 1)
+ADC%<iADC>_REGS->ADC_SWTRIG |= ADC_SWTRIG_START_Msk; /* Trig conversion after block result read */
+%endif
+%endforeach
+%endif
+%endfunction

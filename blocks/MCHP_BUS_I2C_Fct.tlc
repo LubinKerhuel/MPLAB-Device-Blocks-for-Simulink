@@ -1,0 +1,21 @@
+%function MCHP_BUS_I2C_Initialize() void
+%assign ::MCHP_I2C_InterruptImplemented = [0,0,0,0,0,0,0,0,0,0,0,0]	
+%endfunction
+%function MCHP_BUS_I2C_CloseInterruptFile() void
+%foreach I2CRef = SIZE(::MCHP_I2C_InterruptImplemented,1)		
+%if ::MCHP_I2C_InterruptImplemented[I2CRef] == 1
+%openfile I2C_InterruptFun ="MCHP_I2C%<I2CRef>_Interrupt.c","a"	
+default: /* Sequence finished */
+MCHP_I2C%<I2CRef>_State = 0;             /* Should never happend */
+break;
+} /* End of switch case sequence*/
+%if ::MCHP_NumI2CBlocks[I2CRef] != 1	
+} while (Continue == 1); /* end do-While */		
+%endif
+%<MCHP_ProfileMCU("exitUpdate")>
+%<MCHP_InterruptEpilog()>
+} /* Enf of interrupt */
+%closefile I2C_InterruptFun
+%endif
+%endforeach
+%endfunction

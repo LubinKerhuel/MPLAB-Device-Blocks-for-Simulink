@@ -1,0 +1,148 @@
+
+%include "MCHP_UART_Rx_SAMx7_FunUtils.tlc"
+%function MCHP_UART_Rx_bare(block,system) Output
+%assign UART_NAME = UART_Rx_get_UART_NAME(block)
+/* Bare implementation for %<UART_NAME> */
+%<MCHP_UART_Rx_bare_and_interrupt(block,system)>
+%endfunction
+%function MCHP_UART_Rx_Interrupt(block,system) Output
+%assign UART_NAME = UART_Rx_get_UART_NAME(block)
+/* Circular Buffer implementation for %<UART_NAME> */	
+%<MCHP_UART_Rx_bare_and_interrupt(block,system)>
+%endfunction
+%function MCHP_UART_Rx_bare_and_interrupt(block,system) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = UART_Rx_get_UART_NAME(block)
+%assign FlagOut = CAST("Number",block.RTWdata.FlagOut)
+%assign Split = CAST("Number",block.RTWdata.Split)
+%assign FillIn = CAST("Number",block.RTWdata.FillIn)
+/% Split:
+-1 means no
+other value means stop reading buffer when this value occurence
+FillIn:
+-1: Fill in with latest value read
+-2: do nothing
+-3: Add one trailing 0 (only when output is a vector of size > 1)
+other positive value: default value for FillIn
+%/
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%if (RX_IMPLEMENTATION > 1)
+%assign RX_BufferPtrType = CAST( "String","uint_T")
+%endif
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+{ /* Start of Rx reception block */
+%if (FillIn == -1)
+static uint8_T %<UART_NAME>LastValue ;
+%endif
+%if FlagOut == 1
+unsigned int n = 0;
+%endif
+%if RX_IMPLEMENTATION == 2	
+%<UART_Rx_CircularBuffer_flushBuffer(block)>
+%endif
+%if (FlagOut == 1)	
+%assign yF = LibBlockOutputSignal(0, "", "", 0)				  	
+%endif
+%assign OutLength = LibBlockOutputSignalWidth(%<FlagOut + 0>)
+%assign ForLoop_OutLength = OutLength
+%if (FillIn == -3)
+%assign ForLoop_OutLength = OutLength - 1	
+%endif	
+%if ForLoop_OutLength > 1
+{ /* Fill-in buffer */
+int_T i1;
+%assign y0 = LibBlockOutputSignalAddr( %<FlagOut + 0>, "","", 0)
+uint8_T *y0 = %<y0> ;
+for (i1 = 0; i1 < %<ForLoop_OutLength> ; i1++) {
+%assign y = "y0[i1]"
+%else
+%assign y = LibBlockOutputSignal( %<FlagOut + 0>, "", "", 0)
+%endif
+%if RX_IMPLEMENTATION == 1			
+if %<URXNotEmpty(block)> /* Buffer not empty */
+{
+%<y> = %<UART_Rx_ReadRegister(block)>;      /* Read one received byte  */	  	
+%else								
+if(MCHP_%<UART_NAME>_Rx.tail != MCHP_%<UART_NAME>_Rx.head)	
+{
+%<y> = (uint8_T) MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.head];      /* Use only the 8 low bytes or RxReg */
+MCHP_%<UART_NAME>_Rx.head = (MCHP_%<UART_NAME>_Rx.head+1) & (Rx_BUFF_SIZE_%<UART_NAME> - 1);
+%endif
+%if (FlagOut == 1)
+n += 1; /* Number of character received */
+%endif
+%if (Split != -1) && (ForLoop_OutLength > 1)
+if (%<y> == %<Split>) {
+i1++;
+break; /* Exit loop on first occurence of %<Split> encountered */
+}
+%endif
+%if ((Split != -1) && (ForLoop_OutLength <= 1)) && ( (FillIn == -1) )
+if (%<y> != %<Split>) {	 
+%endif
+%if (FillIn == -1)
+%<UART_NAME>LastValue = %<y>;
+%endif
+%if ((Split != -1) && (ForLoop_OutLength == 1) ) && ( (FillIn == -1) )	
+} 
+%endif
+} else	{	 /* Buffer is empty */
+%<UART_Rx_TestAndClearErrors(block)>
+%if ForLoop_OutLength == 1
+%switch FillIn
+%case -1 	
+%<y> = %<UART_NAME>LastValue; /* Rx buffer empty. fill-in output vector with repeated last value */
+%break
+%case -2			
+%break
+%case -3			
+%<y> = 0; /* add one trailing 0 if nothing received */
+%break			
+%default							
+%<y> = %<FillIn>; /* Rx buffer empty. Fill-in output vector with given value */
+%break
+%endswitch		
+%else
+break;	/* Break loop if buffer is empty */
+%endif			
+}
+%if ForLoop_OutLength > 1
+} /* end for loop */
+%endif
+%if (ForLoop_OutLength > 1)
+%switch FillIn
+%case -1 
+for (; i1 < %<ForLoop_OutLength> ; i1++) {
+%<y> = %<UART_NAME>LastValue; /* Rx buffer empty. fill-in output vector with repeated last value */
+}
+%break
+%case -2			
+%break
+%case -3			
+%<y> = 0;	/* add one trailing 0 if nothing received */
+%break			
+%default							
+for (; i1 < %<ForLoop_OutLength> ; i1++) {
+%<y> = %<FillIn>; /* Rx buffer empty. Fill-in output vector with given value */
+}
+%break
+%endswitch				
+%else  
+%if ((OutLength == 2) && (FillIn == -3))	
+%assign y = LibBlockOutputSignal( %<FlagOut + 0>, "", "", 1)
+%<y> = 0;	/* add one trailing 0. It might be duplicated */
+%endif
+%endif
+%if ForLoop_OutLength > 1
+} /* end code-block to fill-in buffer */
+%endif
+%if (FlagOut == 1)
+%<yF> = n; /* Number of char received */
+%endif
+} /* end of Rx reception block */
+%endfunction

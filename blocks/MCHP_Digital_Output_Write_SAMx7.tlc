@@ -1,0 +1,97 @@
+%function DigitalOutputWrite_MCHP_Digital_Output_Write(block, system) Output
+%assign PORT = CAST("String",block.RTWdata.Port)
+%assign PortNum = CAST("Number",block.RTWdata.PortNum)
+%assign PINS = MchpVector(block.RTWdata.Pins)
+%assign nInputs = SIZE(PINS,1)
+%assign SIMULTANEOUS = CAST("Number",block.RTWdata.Simultaneous_Flag)
+%assign PACK = CAST("Number",block.RTWdata.Pack_Flag)
+%assign PinsBitewise = CAST("Unsigned",block.RTWdata.PinsBitewise)
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMV"
+%case "SAMS"
+%assign z = ""
+%assign LL = PORT
+%break
+%case "SAMRH"
+%assign z = "PIO_GROUP[%<PortNum>]."
+%assign LL = ""
+%break
+%endswitch	 	
+%switch ::ChipIdL1
+%case "SAME"
+%case "SAMV"
+%case "SAMS"
+%if PACK
+%assign y = LibBlockInputSignal(0, "", "", 0)
+{
+uint32_T tmp = PIO%<LL>_REGS->%<z>PIO_OWDR;		/* Expect not beeing modified by thread or interrupts */
+PIO%<LL>_REGS->%<z>PIO_OWDR = %<MchpHex(PinsBitewise)>;	/* Write bit mask */
+PIO%<LL>_REGS->%<z>PIO_ODSR = (uint32_T) %<y>;	/* Simultaneous output bit update */
+PIO%<LL>_REGS->%<z>PIO_OWDR = tmp;		
+}
+%else 
+%if (SIMULTANEOUS && (nInputs >1))
+{	 			
+%assign y = LibBlockInputSignal(0, "", "", 0)		
+uint32_T WritePort%<PORT> = ((uint32_T) (%<y>)) << %<PINS[0]>;	
+%foreach idx = (nInputs -1)
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx+1, "", "", 0)
+WritePort%<PORT>  = WritePort%<PORT> +  ((uint32_T) (%<y>)) << %<PINS[idx+1]>;
+%endif
+%endforeach
+{
+uint32_T tmp = PIO%<LL>_REGS->%<z>PIO_OWDR;		/* Expect not beeing modified by thread or interrupts */
+PIO%<LL>_REGS->%<z>PIO_OWDR = %<MchpHex(PinsBitewise)>;	/* Write bit mask */
+PIO%<LL>_REGS->%<z>PIO_ODSR = WritePort%<PORT>; /* simultaneous update */	 			
+PIO%<LL>_REGS->%<z>PIO_OWDR = tmp;
+}
+}
+%else 
+%foreach idx=nInputs
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx, "", "", 0)		 			
+PIO%<LL>_REGS->%<z>PIO_SODR = %< MchpHex( 1U << PINS[idx])> * (%<y> != 0U); /* Set pin %<PORT>%<PINS[idx]>*/
+PIO%<LL>_REGS->%<z>PIO_CODR = %< MchpHex( 1U << PINS[idx])> * (%<y> == 0U);  /* Clear pin %<PORT>%<PINS[idx]>*/
+%endif
+%endforeach
+%endif
+%endif
+%break
+%case "SAMRH"
+%if PACK
+%assign y = LibBlockInputSignal(0, "", "", 0)
+{
+uint32_T register WritePort%<PORT> = PIO%<LL>_REGS->%<z>PIO_ODSR;
+PIO%<LL>_REGS->%<z>PIO_ODSR = WritePort%<PORT> ^ (%<PinsBitewise> & (WritePort%<PORT> ^ %<y>)); /* Update only required pins */
+}
+%else 
+%if (SIMULTANEOUS && (nInputs >1))
+{	 			
+%assign y = LibBlockInputSignal(0, "", "", 0)		
+uint32_T register WritePort%<PORT> = PIO%<LL>_REGS->%<z>PIO_ODSR; /* Port %<PORT> should not be modified by other thread before end of this sequence */
+%foreach idx = nInputs
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx, "", "", 0)
+if (%<y>==1)                
+WritePort%<PORT> = WritePort%<PORT> | %< 1U << PINS[idx]>;			/* Set pin %<PORT>%<PINS[idx]> */
+else
+WritePort%<PORT> = WritePort%<PORT> & %< 4294967295U - ( 1U << PINS[idx])>; /* Clear pin %<PORT>%<PINS[idx]> */
+%endif
+%endforeach
+PIO%<LL>_REGS->%<z>PIO_ODSR = WritePort%<PORT>;		/* simultaneous update */
+}
+%else 
+%foreach idx=nInputs
+%if %<PINS[idx]> != -1	
+%assign y = LibBlockInputSignal(idx, "", "", 0)		 			
+PIO%<LL>_REGS->%<z>PIO_SODR = %< MchpHex( 1U << PINS[idx])> * (%<y> != 0U); /* Set pin %<PORT>%<PINS[idx]>*/
+PIO%<LL>_REGS->%<z>PIO_CODR = %< MchpHex( 1U << PINS[idx])> * (%<y> == 0U);  /* Clear pin %<PORT>%<PINS[idx]>*/
+%endif
+%endforeach
+%endif
+%endif		
+%break
+%endswitch	
+%endfunction

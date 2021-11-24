@@ -1,0 +1,277 @@
+
+%function MCHP_SetOutputBit(pinRef,Value,COMMENT) void	
+%assign L = STRINGOF([%<(pinRef / 16) + 65>])
+%assign N = %<pinRef % 16>
+%assign retVal = "LAT%<L>bits.LAT%<L>%<N> = %<Value>;	 /* pin R%<L>%<N> = %<Value> %<COMMENT> */"
+%return retVal
+%endfunction
+%function MCHP_ToggleOutputBit(pinRef,COMMENT) Output		
+%assign L = STRINGOF([%<(pinRef / 16) + 65>])
+%assign N = %<pinRef % 16>	
+LAT%<L> ^= %<MchpHex(1U << N)>;	 /* toggle pin R%<L>%<N> %<COMMENT> */	
+%endfunction
+%function MCHP_GoToSleepMode() Output
+__asm__ volatile("PWRSAV #1");	 /* Power Save mode */
+%endfunction
+%function MCHP_StartTimer(RefTimer) Output
+%assign nTIMERS = CAST("Number",::CompiledModel.RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",::CompiledModel.RTWGenSettings.nSCCP)
+%if RefTimer <= nTIMERS
+T%<CAST("Number",RefTimer)>CONbits.TON = 1; /* (re) start Timer */
+%else
+CCP%<CAST("Number",RefTimer - nTIMERS)>CON1Lbits.CCPON = 1; /* (re) start Timer */
+%endif
+%endfunction
+%function MCHP_StopTimer(RefTimer) Output
+%assign nTIMERS = CAST("Number",::CompiledModel.RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",::CompiledModel.RTWGenSettings.nSCCP)
+%if RefTimer <= nTIMERS
+T%<CAST("Number",RefTimer)>CONbits.TON = 0; /* Stop Timer */
+%else
+CCP%<CAST("Number",RefTimer - nTIMERS)>CON1Lbits.CCPON = 0; /* Stop Timer */
+%endif		
+%endfunction
+%function DSB() Output
+%endfunction
+%function ISB() Output
+%endfunction	
+%function MchpDMA_MemoryAttribute(DMASize) void
+%assign ChipRAM = CAST("Number",::CompiledModel.RTWGenSettings.ChipRAM)
+%assign ChipRAM_XBegin = CAST("Number",::CompiledModel.RTWGenSettings.ChipRAM_XBegin)
+%assign ChipRAM_dma = MchpVector(RTWGenSettings.ChipRAM_dma)
+%assign DMAMemAlign = FEVAL("int32",FEVAL("pow2",FEVAL("ceil",FEVAL("log2",%<DMASize*2>))))	
+%if DMAMemAlign < 2
+%assign DMA_Aligned = "aligned"
+%else
+%assign DMA_Aligned = "aligned(%<DMAMemAlign>)"
+%endif
+%if (ChipRAM_dma[1] > 0)
+%assign DMA_SPACEDMA = "space(dma)"
+%if (ChipRAM_dma[1]> (32*1024))	
+%assign EDS = "eds"
+%else
+%assign EDS = ""
+%endif
+%else
+%assign DMA_SPACEDMA = ""
+%if (ChipRAM + ChipRAM_XBegin) > (32*1024)	
+%assign EDS = "near"
+%else
+%assign EDS = ""
+%endif
+%endif
+%if ISEMPTY(DMA_Aligned) && ISEMPTY(DMA_SPACEDMA)	 && ISEMPTY(EDS)
+%assign MEMORY_DMA_ATTRIBUTE = ""
+%else
+%assign MEMORY_DMA_ATTRIBUTE = "__attribute__(("
+%assign comarequired = ""
+%if ISEMPTY(EDS) == 0
+%assign MEMORY_DMA_ATTRIBUTE = MEMORY_DMA_ATTRIBUTE + comarequired + EDS
+%assign comarequired = ","
+%endif
+%if ISEMPTY(DMA_SPACEDMA) == 0
+%assign MEMORY_DMA_ATTRIBUTE = MEMORY_DMA_ATTRIBUTE + comarequired + DMA_SPACEDMA
+%assign comarequired = ","
+%endif
+%if ISEMPTY(DMA_Aligned) == 0
+%assign MEMORY_DMA_ATTRIBUTE = MEMORY_DMA_ATTRIBUTE + comarequired + DMA_Aligned
+%assign comarequired = ","
+%endif
+%assign MEMORY_DMA_ATTRIBUTE = MEMORY_DMA_ATTRIBUTE + "))"
+%endif
+%return MEMORY_DMA_ATTRIBUTE
+%endfunction
+%function MchpDMA_MemoryQualifier() void
+%assign ChipRAM = CAST("Number",RTWGenSettings.ChipRAM)
+%assign ChipRAM_XBegin = CAST("Number",RTWGenSettings.ChipRAM_XBegin)
+%assign ChipRAM_dma = MchpVector(RTWGenSettings.ChipRAM_dma)
+%if (ChipRAM_dma[1] > 0)
+%if (ChipRAM_dma[1]> (32*1024))	
+%assign MEMORY_DMA_QUALIFIER = "__eds__"     
+%else
+%assign MEMORY_DMA_QUALIFIER = ""     
+%endif
+%else
+%if (ChipRAM + ChipRAM_XBegin) > (32*1024)	
+%assign MEMORY_DMA_QUALIFIER = ""     
+%else
+%assign MEMORY_DMA_QUALIFIER = ""     
+%endif
+%endif
+%return MEMORY_DMA_QUALIFIER
+%endfunction
+%function MCHP_InterruptProlog() Output
+%endfunction
+%function MCHP_InterruptEpilog() Output
+%endfunction
+%function Mchp_Interrupt16(Priority,AUTO_PSV,VectorName,blk)
+%if %<Priority> == 5
+%assign shadow = "__shadow__,"
+%else
+%assign shadow = ""
+%endif
+%assign INTERRUPT = "void __attribute__((__interrupt__,%<shadow>%<AUTO_PSV>)) _%<VectorName>(void)" 	
+%if ISEMPTY(blk)
+%assign blk = -1
+%endif
+%assign Err = ""
+%if ISFIELD(::CompiledModel.MCHP,VectorName)
+%assign Err = ::CompiledModel.MCHP.%<VectorName>		
+%else
+%createrecord INTERRUPT_toAdd { %<VectorName> blk }		
+%mergerecord ::CompiledModel.MCHP INTERRUPT_toAdd		
+%endif
+%if ISEMPTY(Err) != 1	
+%if (TYPE(blk) == "Scope") && (TYPE(Err) == "Scope")
+%assign name1 = LibGetFormattedBlockPath(blk)
+%assign nameErr = LibGetFormattedBlockPath(Err)
+%assign Msg = "Interrupt Vector %<VectorName> is used more than once in this model (see: %<name1> and %<nameErr>)"
+%warning("%<Msg>")	
+%else						
+%assign Msg = "Interrupt Vector %<VectorName> is used more than once in this model."	
+%warning("%<Msg>")		
+%endif
+%if TYPE(blk) == "Scope"		
+%<LibBlockReportError(blk,"%<Msg>")>			
+%elseif TYPE(Err) == "Scope"		
+%<LibBlockReportError(Err,"%<Msg>")>
+%else
+%<LibReportError("Msg")>
+%endif
+%endif
+%return INTERRUPT
+%endfunction
+%function Mchp_NEAR_MEM() void
+%return "__attribute__ ((near)) "
+%endfunction
+%function MCHP_SFR_direct(SFR) void
+%openfile file_SFR
+_%<SFR> \
+%closefile file_SFR
+%return file_SFR
+%endfunction
+%function MCHP_SFR(SFR,Value,Comment) void
+%openfile file_SFR
+_%<SFR> = %<Value>; /* %<Comment> */	
+%closefile file_SFR
+%return file_SFR
+%endfunction
+%function MCHP_ConfigPins() void
+%openfile tmpFcnConfigPin
+%assign ADPCFG = CAST("Unsigned",::CompiledModel.RTWGenSettings.ADPCFG)			
+%assign ANSEL_Exist = CAST("Number",::CompiledModel.RTWGenSettings.ANSEL_Exist)
+%assign ANSEL = MchpVector(RTWGenSettings.ANSEL)
+%assign AN_type2 = CAST("Number",::CompiledModel.RTWGenSettings.AN_type2)
+%if ANSEL_Exist 		
+%foreach idx = SIZE(ANSEL,1)
+%assign L = STRINGOF([%<idx> + 65]) 
+%if %<ANSEL[idx]> != -1
+ANSEL%<L> = %<MchpHex(ANSEL[idx])>;
+%endif
+%endforeach
+%else 
+%switch (::ChipIdN[0])
+%case 30 
+ADPCFG = %<MchpHex(ADPCFG & 65535)>;
+%break
+%case 24	
+/* THIS PART SHOULD BE VALIDATED for PIC24 */
+%switch ::ChipIdL1
+%case "EP"	
+%case "EV"
+%warning Problem with configuration of analog pins
+%break
+%case "F"
+%switch ChipIdL2
+%case "KA"	
+AD1PCFG = %<MchpHex(ADPCFG & 65535)>;
+%break
+%case "KL"
+%warning Problem with configuration of analog pins
+%break
+%endswitch
+%break
+%case "FJ"
+%warning Problem with configuration of analog pins
+%break
+%case "FV"
+%warning Problem with configuration of analog pins
+%break
+%case "HJ"
+AD1PCFGL = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+AD1PCFGH = %<MchpHex( (ADPCFG \>\> 16) & 65535)>;
+%endif
+%if (%<AN_type2> != 0)	
+AD2PCFGL = %<MchpHex(ADPCFG & 65535)>;	/* Chip with 2 ADC */ 	
+%endif
+%break
+%endswitch
+%case 33 
+%switch ::ChipIdL1
+%case "EP"
+%case "EV"
+%warning Problem with configuration of analog pins
+%break
+%case "FJ"
+%switch ChipIdL2
+%case "GS" 				
+ADPCFG = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+ADPCFG2 = %<MchpHex( (ADPCFG \>\> 16) & 65535 )> ;
+%endif
+%break
+%case "GP"
+%case "MC" 				
+AD1PCFGL = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+AD1PCFGH = %<MchpHex( (ADPCFG \>\> 16) & 65535 )>;
+%endif
+%if (%<AN_type2> != 0)	
+AD2PCFGL = %<MchpHex( ADPCFG & 65535 )>;	/* Chip with 2 ADC */ 	
+%endif
+%break
+%endswitch
+%break
+%endswitch
+%break
+%case 32 
+%warning Problem with configuration of analog pins
+%break
+%default
+%warning problem duging configuration of analog ins: chip not recognized
+%break
+%endswitch
+%endif	
+/* Configure Remappables Pins */
+%assign RPINR = CAST("String",::CompiledModel.RTWGenSettings.RPINR)
+%assign RPINR = FEVAL("str2num",RPINR)
+%assign RPINR = FEVAL("int32",RPINR)
+%assign RPOR = CAST("String",::CompiledModel.RTWGenSettings.RPOR)
+%assign RPOR = FEVAL("str2num",RPOR)
+%assign RPOR = FEVAL("int32",RPOR)
+%foreach idx = SIZE(RPINR,1)
+%if %<RPINR[idx]> != -1	
+RPINR%<idx> = %<MchpHex(RPINR[idx])>;
+%endif
+%endforeach
+%foreach idx = SIZE(RPOR,1)
+%if %<RPOR[idx]> != -1	
+RPOR%<idx> = %<MchpHex(RPOR[idx])>;
+%endif
+%endforeach
+%assign PORTMAPPING =  CAST("String",::CompiledModel.RTWGenSettings.PortConfigTxt)
+%<PORTMAPPING>
+/* Configure Digitals I/O directions */
+%assign TRIS = %<MchpVector(RTWGenSettings.TRIS)>
+%foreach idx = SIZE(TRIS,1)
+%if %<TRIS[idx]> != 65535 && %<TRIS[idx]> != -1	
+%assign L = STRINGOF([%<idx> + 65]) 
+TRIS%<L> = %<MchpHex(TRIS[idx])>;
+%endif
+%endforeach
+%closefile tmpFcnConfigPin
+%return tmpFcnConfigPin
+%endfunction
+%function MCHP_RemoveCauseOfInterrupt(InterruptPrefix,InterruptNumber,ChipIdN) Output
+%endfunction

@@ -1,0 +1,259 @@
+
+%function MCHP_SetOutputBit(pinRef,Value,COMMENT) void	
+%assign L = STRINGOF([%<(pinRef / 16) + 65>])
+%assign N = %<pinRef % 16>	
+%if Value == 1
+%assign retVal = "LAT%<L>SET = %<MchpHex( 1U << N)>; /* set pin R%<L>%<N> = %<Value>  %<COMMENT> */"
+%elseif Value == 0
+%assign retVal = "LAT%<L>CLR = %<MchpHex( 1U << N)>; /* clear pin R%<L>%<N> = %<Value>  %<COMMENT> */"
+%else
+%assign retVal = ""
+%error Value %<Value> different from 0 or 1 within function MCHP_SetOutputBit
+%endif
+%return retVal
+%endfunction
+%function MCHP_ToggleOutputBit(pinRef,COMMENT) Output		
+%assign L = STRINGOF([%<(pinRef / 16) + 65>])
+%assign N = %<pinRef % 16>	
+LAT%<L>INV = %<MchpHex(1U << N)>;	 /* Toggle pin R%<L>%<N>  %<COMMENT> */	
+%endfunction
+%function MCHP_GoToSleepMode() Output
+__asm__ volatile("WAIT");	 	 /* Power Save mode */
+%endfunction
+%function MCHP_StartTimer(RefTimer) Output
+T%<CAST("Number",RefTimer)>CONSET = 0x8000;	/* (re) start Timer */	
+%endfunction
+%function MCHP_StopTimer(RefTimer) Output
+T%<CAST("Number",RefTimer)>CONCLR = 0x8000;	/* Stop Timer */
+%endfunction
+%function DSB() Output
+%endfunction
+%function ISB() Output
+%endfunction	
+%function Mchp_NEAR_MEM() void
+%return ""
+%endfunction
+%function MchpDMA_MemoryAttribute(DMASize) void
+%assign MEMORY_DMA_ATTRIBUTE = "__attribute__((coherent))"
+%return MEMORY_DMA_ATTRIBUTE
+%endfunction
+%function MchpDMA_MemoryQualifier() void
+%assign MEMORY_DMA_QUALIFIER = ""
+%return MEMORY_DMA_QUALIFIER
+%endfunction
+%function MCHP_InterruptProlog() Output
+%endfunction
+%function MCHP_InterruptEpilog() Output
+%endfunction
+%function Mchp_Interrupt32(Priority,AllowShadow,fpuSave,VectorName,blk)
+%switch fpuSave
+%case 0
+%assign fpu = "no_fpu,"
+%break
+%case 1
+%assign fpu = ""
+%break
+%endswitch
+%if AllowShadow
+%switch ::MCHP_MCU_NbrShadowRegisterSet
+%case 2					
+%if %<Priority> == 5
+%assign INTERRUPT = "void __attribute__((interrupt(IPL%<Priority>SRS), %<fpu> vector(_%<VectorName>)))  %<VectorName>_Handler(void)"
+%else
+%assign INTERRUPT = "void __attribute__((interrupt(IPL%<Priority>SOFT), %<fpu> vector(_%<VectorName>)))  %<VectorName>_Handler(void)"
+%endif
+%break
+%case 8
+%default
+%assign INTERRUPT = "void __attribute__((interrupt(IPL%<Priority>SRS), %<fpu> vector(_%<VectorName>)))  %<VectorName>_Handler(void)"
+%break
+%endswitch	
+%else
+%assign INTERRUPT = "void __attribute__((interrupt(IPL%<Priority>SOFT), %<fpu> vector(_%<VectorName>)))  %<VectorName>_Handler(void)"
+%endif
+%if ISEMPTY(blk)
+%assign blk = -1
+%endif
+%assign Err = ""
+%if ISFIELD(::CompiledModel.MCHP,VectorName)
+%assign Err = ::CompiledModel.MCHP.%<VectorName>
+%else
+%createrecord INTERRUPT_toAdd { %<VectorName> blk }
+%mergerecord ::CompiledModel.MCHP INTERRUPT_toAdd		
+%endif
+%if ISEMPTY(Err) != 1	
+%assign Msg = "Interrupt Vector %<VectorName> is used more than once in this model."
+%if TYPE(blk) == "Scope"
+%<LibBlockReportError(blk,Msg)>			
+%elseif TYPE(Err) == "Scope"		
+%<LibBlockReportError(Err,Msg)>
+%else
+%<LibReportError(Msg)>
+%endif
+%endif
+%return INTERRUPT
+%endfunction
+%function MCHP_SFR_direct(SFR) void
+%with CompiledModel		
+%assign bitFieldsSFR = CAST("Number",::CompiledModel.RTWGenSettings.bitFieldsSFR)
+%endwith
+%openfile file_SFR
+%include "MCHP_Function_SFR.tlc"
+%assign SFR_regInfo = MCHP_SFR_getRegisterInfo(bitFieldsSFR,SFR)
+%<SFR_regInfo.Name>bits.%<SFR> \
+%closefile file_SFR
+%return file_SFR
+%endfunction
+%function MCHP_SFR(SFR,Value,Comment) void
+%openfile file_SFR
+%with CompiledModel		
+%assign bitFieldsSFR = CAST("Number",::CompiledModel.RTWGenSettings.bitFieldsSFR)
+%endwith
+%include "MCHP_Function_SFR.tlc"
+%assign SFR_regInfo = MCHP_SFR_getRegisterInfo(bitFieldsSFR,SFR)
+%assign mask = %<(1U << (SFR_regInfo.Length ) )-1>
+%assert (Value <= mask)
+%if (Value > mask)
+%error("Value %<Value> out of range for %<SFR> whose max possible value is %<mask>")
+%endif
+%if Value == 0
+%<SFR_regInfo.Name>CLR = %<MchpHex(mask << SFR_regInfo.Position )>; /* _%<SFR> = %<Value> %<Comment> */
+%elseif (Value == mask)
+%<SFR_regInfo.Name>SET = %<MchpHex(mask << SFR_regInfo.Position )>; /* _%<SFR> = %<Value>  %<Comment> */
+%else
+%<SFR_regInfo.Name>INV = ( %<MchpHex(mask << SFR_regInfo.Position)> & (%< MchpHex( (Value & mask) << SFR_regInfo.Position) >  ^ %<SFR_regInfo.Name>) ) ;	/* _%<SFR> = %<Value>  %<Comment> */
+%endif
+%closefile file_SFR
+%return file_SFR
+%endfunction
+%function MCHP_ConfigPins() void
+%openfile tmpFcnConfigPin
+%assign ADPCFG = CAST("Unsigned",::CompiledModel.RTWGenSettings.ADPCFG)			
+%assign ANSEL_Exist = CAST("Number",::CompiledModel.RTWGenSettings.ANSEL_Exist)
+%assign ANSEL = MchpVector(RTWGenSettings.ANSEL)
+%assign AN_type2 = CAST("Number",::CompiledModel.RTWGenSettings.AN_type2)
+%if ANSEL_Exist 		
+%foreach idx = SIZE(ANSEL,1)
+%assign L = STRINGOF([%<idx> + 65]) 
+%if %<ANSEL[idx]> != -1
+ANSEL%<L> = %<MchpHex(ANSEL[idx])>;
+%endif
+%endforeach
+%else 
+%switch (::ChipIdN[0])
+%case 30 
+ADPCFG = %<MchpHex(ADPCFG & 65535)>;
+%break
+%case 24	
+/* THIS PART SHOULD BE VALIDATED for PIC24 */
+%switch ::ChipIdL1
+%case "EP"	
+%case "EV"
+%warning Problem with configuration of analog pins
+%break
+%case "F"
+%switch ChipIdL2
+%case "KA"	
+AD1PCFG = %<MchpHex(ADPCFG & 65535)>;
+%break
+%case "KL"
+%warning Problem with configuration of analog pins
+%break
+%endswitch
+%break
+%case "FJ"
+%warning Problem with configuration of analog pins
+%break
+%case "FV"
+%warning Problem with configuration of analog pins
+%break
+%case "HJ"
+AD1PCFGL = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+AD1PCFGH = %<MchpHex( (ADPCFG \>\> 16) & 65535)>;
+%endif
+%if (%<AN_type2> != 0)	
+AD2PCFGL = %<MchpHex(ADPCFG & 65535)>;	/* Chip with 2 ADC */ 	
+%endif
+%break
+%endswitch
+%case 33 
+%switch ::ChipIdL1
+%case "EP"
+%case "EV"
+%warning Problem with configuration of analog pins
+%break
+%case "FJ"
+%switch ChipIdL2
+%case "GS" 				
+ADPCFG = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+ADPCFG2 = %<MchpHex( (ADPCFG \>\> 16) & 65535 )> ;
+%endif
+%break
+%case "GP"
+%case "MC" 				
+AD1PCFGL = %<MchpHex(ADPCFG & 65535)>;
+%if (%<ADPCFG> > 65535)
+AD1PCFGH = %<MchpHex( (ADPCFG \>\> 16) & 65535 )>;
+%endif
+%if (%<AN_type2> != 0)	
+AD2PCFGL = %<MchpHex( ADPCFG & 65535 )>;	/* Chip with 2 ADC */ 	
+%endif
+%break
+%endswitch
+%break
+%endswitch
+%break
+%case 32 
+%warning Problem with configuration of analog pins
+%break
+%default
+%warning problem duging configuration of analog ins: chip not recognized
+%break
+%endswitch
+%endif	
+/* Configure Remappables Pins */
+%assign RPINR = CAST("String",::CompiledModel.RTWGenSettings.RPINR)
+%assign RPINR = FEVAL("str2num",RPINR)
+%assign RPINR = FEVAL("int32",RPINR)
+%assign RPOR = CAST("String",::CompiledModel.RTWGenSettings.RPOR)
+%assign RPOR = FEVAL("str2num",RPOR)
+%assign RPOR = FEVAL("int32",RPOR)
+%foreach idx = SIZE(RPINR,1)
+%if %<RPINR[idx]> != -1	
+RPINR%<idx> = %<MchpHex(RPINR[idx])>;
+%endif
+%endforeach
+%foreach idx = SIZE(RPOR,1)
+%if %<RPOR[idx]> != -1	
+RPOR%<idx> = %<MchpHex(RPOR[idx])>;
+%endif
+%endforeach
+%assign PORTMAPPING =  CAST("String",::CompiledModel.RTWGenSettings.PortConfigTxt)
+%<PORTMAPPING>
+/* Configure Digitals I/O directions */
+%assign TRIS = %<MchpVector(RTWGenSettings.TRIS)>
+%foreach idx = SIZE(TRIS,1)
+%if %<TRIS[idx]> != 65535 && %<TRIS[idx]> != -1	
+%assign L = STRINGOF([%<idx> + 65]) 
+TRIS%<L> = %<MchpHex(TRIS[idx])>;
+%endif
+%endforeach
+%closefile tmpFcnConfigPin
+%return tmpFcnConfigPin
+%endfunction
+%function MCHP_RemoveCauseOfInterrupt(InterruptPrefix,InterruptNumber,ChipIdN) Output
+%switch InterruptPrefix
+%case "ADCD"	
+%case "AD1D"	
+{ unsigned int tmp __attribute__((unused)) = ADCDATA%<InterruptNumber>;}	/* Remove cause of Interrupt */
+%break
+%case "ADCDF"	
+%case "AD1DF"	
+{ unsigned int tmp __attribute__((unused)) = ADCFLTR%<InterruptNumber>;}	/* Remove cause of Interrupt */
+%case "AD1EOS"	
+{ unsigned int tmp __attribute__((unused)) = ADCCON2;}	/* Remove cause of Interrupt */
+%break
+%endswitch
+%endfunction

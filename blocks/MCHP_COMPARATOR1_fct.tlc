@@ -1,0 +1,3 @@
+%function MCHP_COMPARATOR1_Initialize() void
+%assign ::MCHP_COMPARATOR1_InterruptRequest = 0
+%endfunction

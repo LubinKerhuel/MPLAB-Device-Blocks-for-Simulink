@@ -1,0 +1,54 @@
+
+%function Mchp_asm_ABset(Variable,bit) Output
+%if bit == 0
+%<Variable> = %<Variable> | 1;	 	/* Atomic bit-set of bit 0 */
+%else	
+%<Variable> = %<Variable> | (1UL << %<bit>);	 	/* Atomic bit-set : %<Variable> |= %< 1U << bit > */
+%endif
+%endfunction
+%function Mchp_asm_ABclr(Variable,bit) Output
+%if bit == 0
+%<Variable> = %<Variable> & (~ 1UL);		/* Atomic bit-clear of %<Variable> bit 0 */
+%else
+%<Variable> = %<Variable> & (~(1UL << %<bit>));		/* Atomic bit-clear of %<Variable> bit %< 1U << bit > */
+%endif
+%endfunction
+%function Mchp_asm_Ainc(Variable) Output
+// Atomic increment operation
+{
+volatile uint32_t __MCHP_returnedVal;
+do{
+__MCHP_returnedVal = __LDREXW(((uint32_t*) &%<Variable>)) + 1;  /* ensure atomic increment of %<Variable> */
+} while(__STREXW(__MCHP_returnedVal,(uint32_t*) &%<Variable>));
+}
+%endfunction
+%function Mchp_asm_Adec(Variable) Output
+// Atomic decrement operation
+{
+volatile uint32_t __MCHP_returnedVal;
+do{
+__MCHP_returnedVal = __LDREXW(((uint32_t*) &%<Variable>)) - 1; 	/* ensure atomic decrement of %<Variable> */
+} while(__STREXW(__MCHP_returnedVal, (uint32_t*) &%<Variable>));
+}
+%endfunction
+%function Mchp_asm_DisableSchedulerInterrupt() Output
+%if ::CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+__set_BASEPRI(6 << 5); /* Disable Scheduler Interrupts; Set the BASEPRI to 6. Interrupt priority equal or higher than 6 cannot execute */ 					
+%else
+__set_BASEPRI(7 << 5); /* Disable Scheduler Interrupts; Set the BASEPRI to 7. Interrupt priority equal or higher than 7 cannot execute */
+%endif
+__ISB();	/* Ensure operation is effective */
+%endfunction
+%function Mchp_asm_EnableSchedulerInterrupt() Output
+%if ::CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+__set_BASEPRI(7 << 5); /* Re-Enable Scheduler re-entrant interrupt; Set BASEPRI to 7. Interrupt Priority equal or higher than 7 cannot execute  */
+%else
+__set_BASEPRI(0); /* Re-Enable Scheduler re-entrant interrupt; Set BASEPRI to 0. All Interrupt can execute */
+%endif
+%endfunction
+%function Mchp_asm_DisableAllInterrupt() Output
+__disable_irq(); /* Disable all interrupts */
+%endfunction
+%function Mchp_asm_EnableAllInterrupt() Output
+__enable_irq();
+%endfunction

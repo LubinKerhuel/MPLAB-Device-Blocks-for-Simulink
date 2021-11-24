@@ -1,0 +1,2 @@
+hwtool
+quit

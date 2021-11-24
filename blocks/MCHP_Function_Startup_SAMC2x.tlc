@@ -1,0 +1,618 @@
+%include "MCHP_Functions.tlc"
+%function MchpStartup(ConfigChipOnly) void
+%if ::isPIC32C
+%assign OSCCTRL_DPLLCTRLB_FILTER_DEFAULT_alias = 	"OSCCTRL_DPLLCTRLB_FILTER_Default"
+%assign OSCCTRL_DPLLCTRLB_LTIME_DEFAULT_alias = 	"OSCCTRL_DPLLCTRLB_LTIME_Default"
+%assign GCLK_GENCTRL_SRC_DPLL96M = "GCLK_GENCTRL_SRC_FDPLL96M"
+%else
+%assign OSCCTRL_DPLLCTRLB_FILTER_DEFAULT_alias = 	"OSCCTRL_DPLLCTRLB_FILTER_DEFAULT"
+%assign OSCCTRL_DPLLCTRLB_LTIME_DEFAULT_alias = 	"OSCCTRL_DPLLCTRLB_LTIME_DEFAULT"
+%assign GCLK_GENCTRL_SRC_DPLL96M = "GCLK_GENCTRL_SRC_DPLL96M"
+%endif
+%openfile tmpFcnOsc
+%assign MIPS = CAST("Real",RTWGenSettings.MIPS)    
+%assign MIPS_DESIRED = CAST("Real",RTWGenSettings.MIPS_DESIRED)    
+%assign QUARTZ = CAST("Real",RTWGenSettings.QUARTZ)
+%assign MCLK_CPUDIV = CAST("Number",RTWGenSettings.MCLK_CPUDIV) 
+%assign CPU_SRC = CAST("Number",RTWGenSettings.CPU_SRC) 
+%assign VDD_RANGE = CAST("Real",RTWGenSettings.VDD_RANGE) 
+%assign OSCULP32K_CONFIG = CAST("Number",RTWGenSettings.OSCULP32K_CONFIG) 
+%assign OSCULP32K_CALIB_ENABLE = CAST("Number",RTWGenSettings.OSCULP32K_CALIB_ENABLE) 
+%assign OSCULP32K_CALIB = CAST("Number",RTWGenSettings.OSCULP32K_CALIB) 
+/* WAIT STATES (start with 0 WS) */
+%if ::isPIC32C
+%if VDD_RANGE < 4.5
+%if %<MIPS> > 45000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(2);	/* 2 Wait State above 45MHz (VDD < 4.5V) */
+%elseif %<MIPS> > 22000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(1);	/* 1 Wait State above 22MHz (VDD < 4.5V) */	
+%else
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(0);	/* No Wait State required below 22MHz (VDD < 4.5V) */
+%endif
+%else
+%if %<MIPS> > 46000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(2);	/* 2 Wait State above 46MHz (VDD > 4.5V)*/
+%elseif %<MIPS> > 23000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(1);	/* 1 Wait State above 23MHz (VDD > 4.5V) */	
+%else
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(0); /* No Wait State required below 23MHz (VDD > 4.5V)*/
+%endif
+%endif
+%else
+%if VDD_RANGE < 4.5
+%if %<MIPS> > 38000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(2);	/* 2 Wait State above 38MHz (VDD < 4.5V) */
+%elseif %<MIPS> > 19000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(1);	/* 1 Wait State above 19MHz (VDD < 4.5V) */	
+%else
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(0);	/* No Wait State required below 19MHz (VDD < 4.5V) */
+%endif
+%else
+%if %<MIPS> > 38000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(2);	/* 2 Wait State above 38MHz (VDD > 4.5V)*/
+%elseif %<MIPS> > 20000000	
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(1);	/* 1 Wait State above 20MHz (VDD > 4.5V) */	
+%else
+NVMCTRL_REGS->NVMCTRL_CTRLB |= NVMCTRL_CTRLB_RWS(0); /* No Wait State required below 20MHz (VDD > 4.5V)*/
+%endif
+%endif
+%endif
+/* ------------- Configure Oscillator -------------------------- */
+%if MIPS != MIPS_DESIRED
+/* Targetted frequency is %<MIPS_DESIRED>. Reached frequency is %<MIPS>. */
+%else
+/* Targetted frequency is %<MIPS_DESIRED> */
+%endif
+MCLK_REGS->MCLK_CPUDIV = MCLK_CPUDIV_CPUDIV_DIV%<MCLK_CPUDIV>; /* CPU Clock is %<MIPS / MCLK_CPUDIV> : %<MIPS> / %<MCLK_CPUDIV> */
+{
+uint_T tmp_REG; /* Temp Configuration register */
+%assign OSCCTRL_OSC48MCTRL_CONFIG = CAST("Number",RTWGenSettings.OSCCTRL_OSC48MCTRL_CONFIG) 	
+%assign OSCCTRL_OSC48MCTRL_ENABLE = CAST("Number",RTWGenSettings.OSCCTRL_OSC48MCTRL_ENABLE) 	
+%assign OSCCTRL_OSC48MCTRL_RUNSTDBY = CAST("Number",RTWGenSettings.OSCCTRL_OSC48MCTRL_RUNSTDBY) 	
+%assign OSCCTRL_OSC48MCTRL_ONDEMAND = CAST("Number",RTWGenSettings.OSCCTRL_OSC48MCTRL_ONDEMAND) 	
+%assign OSC48MDIV_DIV = CAST("Number",RTWGenSettings.OSC48MDIV_DIV) 	
+%assign OSC48MSTUP_STARTUP = CAST("Number",RTWGenSettings.OSC48MSTUP_STARTUP) 	
+%if OSCCTRL_OSC48MCTRL_CONFIG
+/* DFLL48Mhz running on startup */
+/* Copy Factory Calibration parameters */
+const uint32_T * OTP5_Ptr = (uint32_T *) OTP5_ADDR; /* NVM Software Calibration Area Mapping (@ 0x806020) */
+%if VDD_RANGE < 3.6	
+OSCCTRL_REGS->OSCCTRL_CAL48M = ( OTP5_Ptr[1] >> 9U) & 0x1FFFFF ; /*  OSC48M factory Calibration for VDD < 3.6V */
+%else
+OSCCTRL_REGS->OSCCTRL_CAL48M = ( (OTP5_Ptr[0] >> 19U) + (OTP5_Ptr[1] << 13U) ) & 0x1FFFFF ; /*  OSC48M factory Calibration for VDD > 3.6V */
+%endif
+OSCCTRL_REGS->OSCCTRL_OSC48MDIV = OSCCTRL_OSC48MDIV_DIV_DIV%<OSC48MDIV_DIV>;	/* devide internal 48Mhz clock by %<OSC48MDIV_DIV> */
+OSCCTRL_REGS->OSCCTRL_OSC48MSTUP = OSCCTRL_OSC48MSTUP_STARTUP_CYCLE%<OSC48MSTUP_STARTUP>;	/* Startup time, multiple of 48Mhz period (%<OSC48MSTUP_STARTUP * 1/48000000>s) */
+tmp_REG = OSCCTRL_OSC48MCTRL_ENABLE_Msk;
+%if OSCCTRL_OSC48MCTRL_RUNSTDBY
+tmp_REG |= OSCCTRL_OSC48MCTRL_RUNSTDBY_Msk; 	/* Run in Standby Position */
+%endif
+%if OSCCTRL_OSC48MCTRL_ONDEMAND
+tmp_REG |= OSCCTRL_OSC48MCTRL_ONDEMAND_Msk; 	/* On Demand Control Position */
+%endif
+OSCCTRL_REGS->OSCCTRL_OSC48MCTRL = tmp_REG;
+while(!((OSCCTRL_REGS->OSCCTRL_OSC48MSYNCBUSY) == 0)) ; /* Wait for Synchronisation */
+%endif
+%assign OSCULP32K_CONFIG = CAST("Number",RTWGenSettings.OSCULP32K_CONFIG)
+%if OSCULP32K_CONFIG
+/* 32.768kHz Ultra Low Power Oscillator is always ON */
+%endif
+%assign OSC32KCTRL_OSC32K_CONFIG = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_CONFIG) 	
+%assign OSC32KCTRL_OSC32K_ENABLE = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_ENABLE) 	
+%assign OSC32KCTRL_OSC32K_EN32K = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_EN32K) 	
+%assign OSC32KCTRL_OSC32K_EN1K = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_EN1K) 	
+%assign OSC32KCTRL_OSC32K_RUNSTDBY = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_RUNSTDBY) 	
+%assign OSC32KCTRL_OSC32K_ONDEMAND = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_ONDEMAND) 	
+%assign OSC32KCTRL_OSC32K_WRTLOCK = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_WRTLOCK) 	
+%assign OSC32KCTRL_OSC32K_STARTUP_CYCLEx = CAST("Number",RTWGenSettings.OSC32KCTRL_OSC32K_STARTUP_CYCLEx) 	
+%if OSC32KCTRL_OSC32K_CONFIG == 1
+/* Configure OSC32K Oscillator */
+const uint32_T * OTP5_Ptr = (uint32_T *) OTP5_ADDR; /* NVM Software Calibration Area Mapping (@ 0x806020) */
+tmp_REG = OSC32KCTRL_OSC32K_ENABLE_Msk;	/* Oscillator Enable Mask */	
+%if OSC32KCTRL_OSC32K_EN32K == 1
+tmp_REG |= OSC32KCTRL_OSC32K_EN32K_Msk;	/* 32kHz Output Enable Mask */
+%endif	
+%if OSC32KCTRL_OSC32K_EN1K == 1
+tmp_REG |= OSC32KCTRL_OSC32K_EN1K_Msk;	/* 1kHz Output Enable Mask */
+%endif	
+%if OSC32KCTRL_OSC32K_RUNSTDBY == 1
+tmp_REG |= OSC32KCTRL_OSC32K_RUNSTDBY_Msk;	/*  Run in Standby Mask */
+%endif	
+%if OSC32KCTRL_OSC32K_ONDEMAND == 1
+tmp_REG |= OSC32KCTRL_OSC32K_ONDEMAND_Msk;	/* On Demand Control Mask */
+%endif	
+%if OSC32KCTRL_OSC32K_WRTLOCK == 1
+tmp_REG |= OSC32KCTRL_OSC32K_WRTLOCK_Msk;	/* Write Lock Mask */
+%endif			
+tmp_REG |= OSC32KCTRL_OSC32K_STARTUP_CYCLE%<OSC32KCTRL_OSC32K_STARTUP_CYCLEx>;	/* startup cycle, multiple of 30us */
+tmp_REG |= OSC32KCTRL_OSC32K_CALIB(( OTP5_Ptr[0] >> 12U) & 0x7F); /*  OSC32K CAL factory Calibration  */
+OSC32KCTRL_REGS->OSC32KCTRL_OSC32K = tmp_REG; /* WRITE OSC32K Oscillator configuration  */
+while ((OSC32KCTRL_REGS->OSC32KCTRL_STATUS & OSC32KCTRL_STATUS_OSC32KRDY_Msk) != OSC32KCTRL_STATUS_OSC32KRDY_Msk);  /* Wait for OSC32K ready bit */	
+%endif
+%assign OSC32KCTRL_XOSC32K_CONFIG = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_CONFIG) 	
+%assign OSC32KCTRL_XOSC32K_ENABLE = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_ENABLE) 	
+%assign OSC32KCTRL_XOSC32K_STARTUP = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_STARTUP) 	
+%assign OSC32KCTRL_XOSC32K_ONDEMAND = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_ONDEMAND) 	
+%assign OSC32KCTRL_XOSC32K_RUNSTDBY = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_RUNSTDBY) 	
+%assign OSC32KCTRL_XOSC32K_EN1K = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_EN1K) 	
+%assign OSC32KCTRL_XOSC32K_EN32K = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_EN32K) 	
+%assign OSC32KCTRL_XOSC32K_XTALEN = CAST("Number",RTWGenSettings.OSC32KCTRL_XOSC32K_XTALEN) 	
+%if OSC32KCTRL_XOSC32K_CONFIG == 1
+/* Configure XOSC32K External Oscillator */
+%if OSC32KCTRL_XOSC32K_XTALEN
+/* ---- Configure XOSC32K Crystal Oscillator source (32 Khz) on XIN32-XOUT32---- */
+%else
+/* ---- Configure XOSC32K Clock source (32 Khz) on XIN32 ---- */
+%endif
+tmp_REG = OSC32KCTRL_XOSC32K_ENABLE_Msk;  /*   Enable XOSC32K */
+tmp_REG |= OSC32KCTRL_XOSC32K_STARTUP(%<OSC32KCTRL_XOSC32K_STARTUP>);  /*  [62.5, 125,500,1000,2000,4000,8000] ms for values 0-6*/
+%if OSC32KCTRL_XOSC32K_ONDEMAND == 1
+tmp_REG |= OSC32KCTRL_XOSC32K_ONDEMAND_Msk;
+%endif
+%if OSC32KCTRL_XOSC32K_RUNSTDBY == 1
+tmp_REG |= OSC32KCTRL_XOSC32K_RUNSTDBY_Msk;
+%endif
+%if OSC32KCTRL_XOSC32K_EN1K == 1
+tmp_REG |= OSC32KCTRL_XOSC32K_EN1K_Msk;  /* 1kHz Output Enable Mask*/
+%endif
+%if OSC32KCTRL_XOSC32K_EN32K == 1
+tmp_REG |= OSC32KCTRL_XOSC32K_EN32K_Msk;  /* 32kHz Output Enable Mask*/
+%endif
+%if OSC32KCTRL_XOSC32K_XTALEN == 1
+tmp_REG |= OSC32KCTRL_XOSC32K_XTALEN_Msk;  /* Use External crystal oscillator */
+%endif
+OSC32KCTRL_REGS->OSC32KCTRL_XOSC32K = tmp_REG;
+while ((OSC32KCTRL_REGS->OSC32KCTRL_STATUS & OSC32KCTRL_STATUS_XOSC32KRDY_Msk) != OSC32KCTRL_STATUS_XOSC32KRDY_Msk);  /* Wait for XOSC32K ready bit */
+%endif
+%assign OSCCTRL_XOSCCTRL_CONFIG = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_CONFIG)			
+%assign OSCCTRL_XOSCCTRL_FREQUENCY = CAST("Real",RTWGenSettings.OSCCTRL_XOSCCTRL_FREQUENCY)			
+%assign OSCCTRL_XOSCCTRL_ENABLE = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_ENABLE)			
+%assign OSCCTRL_XOSCCTRL_STARTUP = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_STARTUP)			
+%assign OSCCTRL_XOSCCTRL_SWBEN = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_SWBEN)			
+%assign OSCCTRL_XOSCCTRL_CFDEN = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_CFDEN)			
+%assign OSCCTRL_XOSCCTRL_AMPGC = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_AMPGC)			
+%assign OSCCTRL_XOSCCTRL_GAIN = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_GAIN)			
+%assign OSCCTRL_XOSCCTRL_ONDEMAND = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_ONDEMAND)			
+%assign OSCCTRL_XOSCCTRL_RUNSTDBY = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_RUNSTDBY)			
+%assign OSCCTRL_XOSCCTRL_XTALEN = CAST("Number",RTWGenSettings.OSCCTRL_XOSCCTRL_XTALEN)			
+%if OSCCTRL_XOSCCTRL_CONFIG == 1
+%if OSCCTRL_XOSCCTRL_XTALEN
+/* ---- Configure XOSC Crystal Oscillator source (%<OSCCTRL_XOSCCTRL_FREQUENCY>Hz) on XIN XOUT---- */
+%else
+/* ---- Configure XOSCL Clock source (%<OSCCTRL_XOSCCTRL_FREQUENCY>Hz) on XIN ---- */
+%endif
+tmp_REG = OSCCTRL_XOSCCTRL_ENABLE_Msk;		/*   OSC0 external oscilator enabled */
+%if OSCCTRL_XOSCCTRL_STARTUP == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_STARTUP_Msk;	/*   [31us, 61, 122 ... 1s] from 0 to 16 */	
+%endif
+%if OSCCTRL_XOSCCTRL_SWBEN == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_SWBEN_Msk;		/*   Clock Switch back enabled or not */
+%endif
+%if OSCCTRL_XOSCCTRL_CFDEN == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_CFDEN_Msk;	/*   clock failure detector enabled  */	
+%endif
+%if OSCCTRL_XOSCCTRL_AMPGC == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_AMPGC_Msk;		/*   Automatic loop control */
+%endif
+%if OSCCTRL_XOSCCTRL_GAIN == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_GAIN_Msk;		/*   [0-5] for [2 4 8 16 30] MHz Position */
+%endif
+%if OSCCTRL_XOSCCTRL_ONDEMAND == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_ONDEMAND_Msk;		/*   on demand  enabled */
+%endif
+%if OSCCTRL_XOSCCTRL_RUNSTDBY == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_RUNSTDBY_Msk;		/*   run in standby mode */
+%endif
+%if OSCCTRL_XOSCCTRL_XTALEN == 1
+tmp_REG |= OSCCTRL_XOSCCTRL_XTALEN_Msk;		/*   Crystal connected to XIN/XOUT */
+%endif
+OSCCTRL_REGS->OSCCTRL_XOSCCTRL = tmp_REG; /* Write config XOSCCTRL */
+while ((OSCCTRL_REGS->OSCCTRL_STATUS & OSCCTRL_STATUS_XOSCRDY_Msk) != OSCCTRL_STATUS_XOSCRDY_Msk ); /* Wait for Oscillator ready bit */	
+%endif
+%openfile buffer
+%assign GCLK_PCHCTRLn = MchpVector64(RTWGenSettings.GCLK_PCHCTRLn) 	
+%foreach iP = SIZE(GCLK_PCHCTRLn,1)	
+%if GCLK_PCHCTRLn[iP] >= 0
+%switch iP		
+%case 0
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by DEPLL96M input clock source */
+%break
+%case 1
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by FDPLL96M internal clodk timer */
+%break
+%case 2
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by EIC */
+%break
+%case 3
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by FREQM Measure */
+%break
+%case 4
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by FREQM Reference */
+%break
+%case 5
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TSENS */
+%break
+%case 6
+%case 7
+%case 8
+%case 9
+%case 10
+%case 11
+%case 12
+%case 13
+%case 14
+%case 15
+%case 16
+%case 17
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by  EVSYS%<iP-6> */
+%break
+%case 18
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM[0-4] SLOW */
+%break
+%case 19
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM0 Core */
+%break
+%case 20
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM1 Core */
+%break
+%case 21
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM2 Core */
+%break
+%case 22
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM3 Core */
+%break
+%case 23
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM4 Core */
+%break
+%case 24
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM5 SLOW */
+%break
+%case 25
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM5 Core */
+%break
+%case 26
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by CAN0 */
+%break
+%case 27
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by CAN1 */
+%break
+%case 28
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TCC0, TCC1 */
+%break
+%case 29
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TCC2 */
+%break
+%case 30
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC0, TC1 */
+%break
+%case 31
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC2, TC3 */
+%break
+%case 32
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC4 */
+%break
+%case 33
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by ADC0 */
+%break
+%case 34
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by ADC1 */
+%break
+%case 35
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SDADC */
+%break
+%case 36
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by DAC */
+%break
+%case 37
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by PTC */
+%break
+%case 38
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by CCL */
+%break
+%case 39
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> RESERVED */
+%break
+%case 40
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by AC */
+%break
+%case 41
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM6 Core */
+%break
+%case 42
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by SERCOM7 Core */
+%break
+%case 43
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC5 */
+%break			
+%case 44
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC6 */
+%break
+%case 45
+GCLK_REGS->GCLK_PCHCTRL[%<iP>] = %<MchpHex(GCLK_PCHCTRLn[iP] + 64)>; /* GCLK %<CAST("Number",GCLK_PCHCTRLn[iP])> used by TC7 */
+%break
+%default
+%error("Peripheral GCLK clock assignement out of range")
+%endswitch
+%endif	
+%endforeach
+%closefile buffer
+%if !ISEMPTY(buffer)
+/* Assign Peripheral relying on GCLK clock (GCLK_PCHCTRL[0-47]) a source (GLCK0-11) */
+%<buffer>
+%endif
+%assign GCLK_GENERATOR_x_CONFIG = MchpVector64(RTWGenSettings.GCLK_GENERATOR_x_CONFIG)  
+%assign GCLK_GEN_x_SOURCE = MchpVector64(RTWGenSettings.GCLK_GEN_x_SOURCE)  
+%assign GCLK_GEN_x_RUNSTDBY = MchpVector64(RTWGenSettings.GCLK_GEN_x_RUNSTDBY)  
+%assign GCLK_GEN_x_DIVSEL = MchpVector64(RTWGenSettings.GCLK_GEN_x_DIVSEL)  
+%assign GCLK_GEN_x_OE = MchpVector64(RTWGenSettings.GCLK_GEN_x_OE)  
+%assign GCLK_GEN_x_OOV = MchpVector64(RTWGenSettings.GCLK_GEN_x_OOV)  
+%assign GCLK_GEN_x_IDC = MchpVector64(RTWGenSettings.GCLK_GEN_x_IDC)  
+%assign GCLK_GEN_x_GENEN = MchpVector64(RTWGenSettings.GCLK_GEN_x_GENEN)  
+%assign GCLK_GEN_x_DIV = MchpVector64(RTWGenSettings.GCLK_GEN_x_DIV)  
+%openfile buffer
+%foreach iGLK = SIZE(GCLK_GENERATOR_x_CONFIG,1)	
+%if GCLK_GENERATOR_x_CONFIG[iGLK] > 0		
+%if (GCLK_PCHCTRLn[0] == iGLK)	
+%switch GCLK_GEN_x_SOURCE[iGLK]
+%case 0
+tmp_REG = GCLK_GENCTRL_SRC_XOSC;        /* XOSC oscillator output  */
+%break
+%case 1
+tmp_REG = GCLK_GENCTRL_SRC_GCLKIN;      /* Generator input pad  */
+%break
+%case 2
+tmp_REG = GCLK_GENCTRL_SRC_GCLKGEN1;    /* Generic clock generator 1 output  */
+%break
+%case 3
+tmp_REG = GCLK_GENCTRL_SRC_OSCULP32K;   /* OSCULP32K oscillator output  */
+%break
+%case 4
+tmp_REG = GCLK_GENCTRL_SRC_OSC32K;      /* OSC32K oscillator output  */
+%break
+%case 5
+tmp_REG = GCLK_GENCTRL_SRC_XOSC32K;     /* XOSC32K oscillator output  */
+%break
+%case 6
+tmp_REG = GCLK_GENCTRL_SRC_OSC48M;      /* OSC48M oscillator output  */
+%break
+%case 7
+tmp_REG = %<GCLK_GENCTRL_SRC_DPLL96M>;     /* DPLL96M output  */
+%break
+%default
+%error("Internal error: Generator source not recognized")
+%endswitch		
+%if GCLK_GEN_x_RUNSTDBY[iGLK]
+tmp_REG |= GCLK_GENCTRL_RUNSTDBY_Msk; /* Run in stdby mode */
+%endif
+%if GCLK_GEN_x_DIVSEL[iGLK]
+tmp_REG |= GCLK_GENCTRL_DIVSEL_Msk; /* Divide by 2^(divider factor + 1) */
+%endif
+%if GCLK_GEN_x_OE[iGLK]
+tmp_REG |= GCLK_GENCTRL_OE_Msk; /* Output enable */
+%endif
+%if GCLK_GEN_x_OOV[iGLK]
+tmp_REG |= GCLK_GENCTRL_OOV_Msk; /* Output Off Value */
+%endif
+%if GCLK_GEN_x_IDC[iGLK]
+tmp_REG |= GCLK_GENCTRL_IDC_Msk; /* Improve Duty Cycle */
+%endif
+%if GCLK_GEN_x_GENEN[iGLK]		
+tmp_REG |= GCLK_GENCTRL_GENEN_Msk; /* Generic Clock Generator Enabled */
+%endif
+%if GCLK_GEN_x_DIV[iGLK]
+tmp_REG |= GCLK_GENCTRL_DIV(%<CAST("Number",GCLK_GEN_x_DIV[iGLK])>); /* Divider factor */
+%endif
+GCLK_REGS->GCLK_GENCTRL[%<iGLK>] = tmp_REG;	/* GCLK%<iGLK> config */	
+%endif			
+%endif
+%endforeach
+%closefile buffer
+%if !ISEMPTY(buffer)
+/* ---- Configure GCLK used as PLL source  ---- */
+%<buffer>
+tmp_REG = 0;
+%foreach iGLK = SIZE(GCLK_GENERATOR_x_CONFIG,1)
+%if GCLK_GENERATOR_x_CONFIG[iGLK] > 0
+%if (GCLK_PCHCTRLn[1] == iGLK) || (GCLK_PCHCTRLn[2] == iGLK)	
+tmp_REG |= GCLK_SYNCBUSY_GENCTRL(GCLK_SYNCBUSY_GENCTRL%<iGLK>_GCLK%<iGLK>_Val); /* GCLK%<iGLK> sync bit */
+%endif
+%endif	
+%endforeach
+while ((GCLK_REGS->GCLK_SYNCBUSY & tmp_REG) != 0) ; /* Wait Sync for GCLKs */
+%endif
+%assign OSCCTRL_DPLLCTRL_CONFIG = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRL_CONFIG) 
+%assign OSCCTRL_DPLLCTRL_INFO_Fin  = CAST("Real",RTWGenSettings.OSCCTRL_DPLLCTRL_INFO_Fin)
+%assign OSCCTRL_DPLLCTRL_INFO_PLLout  = CAST("Real",RTWGenSettings.OSCCTRL_DPLLCTRL_INFO_PLLout)
+%assign OSCCTRL_DPLLCTRLA_ENABLE = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLA_ENABLE) 
+%assign OSCCTRL_DPLLCTRLA_ONDEMAND = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLA_ONDEMAND) 
+%assign OSCCTRL_DPLLCTRLA_RUNSTDBY = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLA_RUNSTDBY) 
+%assign OSCCTRL_DPLLCTRLB_REFCLK_GCLK = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_REFCLK_GCLK) 
+%assign OSCCTRL_DPLLCTRLB_REFCLK_XOSC = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_REFCLK_XOSC) 
+%assign OSCCTRL_DPLLCTRLB_REFCLK_XOSC32K = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_REFCLK_XOSC32K) 
+%assign OSCCTRL_DPLLRATIO_LDRFRAC = CAST("Number",RTWGenSettings.OSCCTRL_DPLLRATIO_LDRFRAC) 
+%assign OSCCTRL_DPLLRATIO_LDR = CAST("Number",RTWGenSettings.OSCCTRL_DPLLRATIO_LDR) 
+%assign OSCCTRL_DPLLCTRLB_DIV = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_DIV) 
+%assign OSCCTRL_DPLLCTRLB_LBYPASS = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LBYPASS) 
+%assign OSCCTRL_DPLLCTRLB_LTIME_DEFAULT = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LTIME_DEFAULT)
+%assign OSCCTRL_DPLLCTRLB_LTIME_8MS = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LTIME_8MS)
+%assign OSCCTRL_DPLLCTRLB_LTIME_9MS = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LTIME_9MS)
+%assign OSCCTRL_DPLLCTRLB_LTIME_10MS = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LTIME_10MS)
+%assign OSCCTRL_DPLLCTRLB_LTIME_11MS = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LTIME_11MS)
+%assign OSCCTRL_DPLLCTRLB_WUF = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_WUF) 
+%assign OSCCTRL_DPLLCTRLB_LPEN = CAST("Number",RTWGenSettings.OSCCTRL_DPLLCTRLB_LPEN) 
+%assign OSCCTRL_DPLLPRESC_PRESC_DIVx = CAST("Number",RTWGenSettings.OSCCTRL_DPLLPRESC_PRESC_DIVx)
+%if OSCCTRL_DPLLCTRL_CONFIG
+/* ---- Configure PLL from %<QUARTZ>Hz to %<OSCCTRL_DPLLCTRL_INFO_PLLout>Hz ---- */
+%if OSCCTRL_DPLLPRESC_PRESC_DIVx > 0
+OSCCTRL_REGS->OSCCTRL_DPLLPRESC = OSCCTRL_DPLLPRESC_PRESC_DIV%<OSCCTRL_DPLLPRESC_PRESC_DIVx>; /* divide DPLL output */
+%endif
+tmp_REG = OSCCTRL_DPLLRATIO_LDR(%<OSCCTRL_DPLLRATIO_LDR>); /* PLL Multiplier (x%<OSCCTRL_DPLLRATIO_LDR+1>) from %<OSCCTRL_DPLLCTRL_INFO_Fin> to %<OSCCTRL_DPLLCTRL_INFO_PLLout> */
+%if OSCCTRL_DPLLRATIO_LDRFRAC > 0
+tmp_REG |= OSCCTRL_DPLLRATIO_LDRFRAC(%<OSCCTRL_DPLLRATIO_LDRFRAC>); /* PLL Multiplier Fractional (%<OSCCTRL_DPLLRATIO_LDRFRAC>/16) */
+%endif
+OSCCTRL_REGS->OSCCTRL_DPLLRATIO = tmp_REG; /* Write OSCCTRL_DPLL_RATIO config (x%<OSCCTRL_DPLLRATIO_LDR+1+OSCCTRL_DPLLRATIO_LDRFRAC/16>) */
+%if OSCCTRL_DPLLCTRLB_REFCLK_GCLK
+tmp_REG = OSCCTRL_DPLLCTRLB_REFCLK_GCLK; /* set GCLK as PLL Source Clock %<QUARTZ>Hz */
+%elseif OSCCTRL_DPLLCTRLB_REFCLK_XOSC32K
+tmp_REG = OSCCTRL_DPLLCTRLB_REFCLK_XOSC32K; /* set XOSC32K as PLL Source Clock %<QUARTZ>Hz */
+%elseif OSCCTRL_DPLLCTRLB_REFCLK_XOSC
+tmp_REG = OSCCTRL_DPLLCTRLB_REFCLK_XOSC; /* set XOSC as PLL Source Clock %<QUARTZ>Hz */
+%else
+%error("Unknown Source clock for PLL")
+%endif
+%if OSCCTRL_DPLLCTRLB_DIV == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_DIV; /* PLL Divider */
+%endif
+%if OSCCTRL_DPLLCTRLB_LBYPASS == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LBYPASS; /* Bypasse Look up test bit */
+%endif
+%if OSCCTRL_DPLLCTRLB_LTIME_DEFAULT == 1
+tmp_REG |= %<OSCCTRL_DPLLCTRLB_LTIME_DEFAULT_alias>;  /* Lookup Time Automatic */
+%endif
+%if OSCCTRL_DPLLCTRLB_LTIME_8MS == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LTIME_8MS; /* Lookup Time */
+%endif
+%if OSCCTRL_DPLLCTRLB_LTIME_9MS == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LTIME_9MS;  /* Lookup Time */
+%endif
+%if OSCCTRL_DPLLCTRLB_LTIME_10MS == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LTIME_10MS; /* Lookup Time */
+%endif
+%if OSCCTRL_DPLLCTRLB_LTIME_11MS == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LTIME_11MS; /* Lookup Time */
+%endif
+%if OSCCTRL_DPLLCTRLB_WUF == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_WUF; /* Wake Up Fast */
+%endif
+%if OSCCTRL_DPLLCTRLB_LPEN == 1
+tmp_REG |= OSCCTRL_DPLLCTRLB_LPEN; /* Low Power */
+%endif
+OSCCTRL_REGS->OSCCTRL_DPLLCTRLB = tmp_REG; /* Write OSCCTRL_DPLLCTRLB config */
+while ((OSCCTRL_REGS->OSCCTRL_DPLLSYNCBUSY & OSCCTRL_DPLLSYNCBUSY_DPLLRATIO_Msk) != 0 ); /* Wait for DPLLRATIO Sync */
+tmp_REG = OSCCTRL_DPLLCTRLA_ENABLE_Msk;    	/* Enable */	
+%if OSCCTRL_DPLLCTRLA_RUNSTDBY == 1
+tmp_REG |= OSCCTRL_DPLLCTRLA_RUNSTDBY_Msk; /* Run in Standby  */
+%endif
+%if OSCCTRL_DPLLCTRLA_ONDEMAND == 1
+tmp_REG |= OSCCTRL_DPLLCTRLA_ONDEMAND_Msk; /*  On Demand  */
+%endif
+OSCCTRL_REGS->OSCCTRL_DPLLCTRLA = tmp_REG; /* Write OSCCTRL_DPLLCTRLA config */
+while ((OSCCTRL_REGS->OSCCTRL_DPLLSYNCBUSY & OSCCTRL_DPLLSYNCBUSY_ENABLE_Msk) != 0 ); /* Wait for DPLL0CTRL1.ENABLE bit Sync */
+while ((OSCCTRL_REGS->OSCCTRL_DPLLSTATUS & OSCCTRL_DPLLSTATUS_LOCK_Msk) == 0 ); /* Wait for PLL ready bit */	
+%endif
+%openfile buffer
+%foreach iGLK = SIZE(GCLK_GENERATOR_x_CONFIG,1)
+%if GCLK_GENERATOR_x_CONFIG[iGLK] > 0	
+%if 0 == ((GCLK_PCHCTRLn[0] == iGLK) )	
+%switch GCLK_GEN_x_SOURCE[iGLK]
+%case 0
+tmp_REG = GCLK_GENCTRL_SRC_XOSC;        /* XOSC oscillator output  */
+%break
+%case 1
+tmp_REG = GCLK_GENCTRL_SRC_GCLKIN;      /* Generator input pad  */
+%break
+%case 2
+tmp_REG = GCLK_GENCTRL_SRC_GCLKGEN1;    /* Generic clock generator 1 output  */
+%break
+%case 3
+tmp_REG = GCLK_GENCTRL_SRC_OSCULP32K;   /* OSCULP32K oscillator output  */
+%break
+%case 4
+tmp_REG = GCLK_GENCTRL_SRC_OSC32K;      /* OSC32K oscillator output  */
+%break
+%case 5
+tmp_REG = GCLK_GENCTRL_SRC_XOSC32K;     /* XOSC32K oscillator output  */
+%break
+%case 6
+tmp_REG = GCLK_GENCTRL_SRC_OSC48M;      /* OSC48M oscillator output  */
+%break
+%case 7
+tmp_REG = %<GCLK_GENCTRL_SRC_DPLL96M>;     /* DPLL96M output  */
+%break
+%default
+%error("Internal error: Generator source not recognized")
+%endswitch		
+%if GCLK_GEN_x_RUNSTDBY[iGLK]
+tmp_REG |= GCLK_GENCTRL_RUNSTDBY_Msk; /* Run in stdby mode */
+%endif
+%if GCLK_GEN_x_DIVSEL[iGLK]
+tmp_REG |= GCLK_GENCTRL_DIVSEL_Msk; /* Divide by 2^(divider factor + 1) */
+%endif
+%if GCLK_GEN_x_OE[iGLK]
+tmp_REG |= GCLK_GENCTRL_OE_Msk; /* Output enable */
+%endif
+%if GCLK_GEN_x_OOV[iGLK]
+tmp_REG |= GCLK_GENCTRL_OOV_Msk; /* Output Off Value */
+%endif
+%if GCLK_GEN_x_IDC[iGLK]
+tmp_REG |= GCLK_GENCTRL_IDC_Msk; /* Improve Duty Cycle */
+%endif
+%if GCLK_GEN_x_GENEN[iGLK]		
+tmp_REG |= GCLK_GENCTRL_GENEN_Msk; /* Generic Clock Generator Enabled */
+%endif
+%if GCLK_GEN_x_DIV[iGLK]
+tmp_REG |= GCLK_GENCTRL_DIV(%<CAST("Number",GCLK_GEN_x_DIV[iGLK])>); /* Divider factor */
+%endif
+GCLK_REGS->GCLK_GENCTRL[%<iGLK>] = tmp_REG;	/* GCLK%<iGLK> config */				
+%endif
+%endif
+%endforeach
+%closefile buffer
+%if !ISEMPTY(buffer)
+/* ---- Configure GCLK used to clock CPU (GCLK0) and peripherals ---- */
+%<buffer>
+tmp_REG = 0;
+%foreach iGLK = SIZE(GCLK_GENERATOR_x_CONFIG,1)
+%if GCLK_GENERATOR_x_CONFIG[iGLK] > 0
+%if 0 == ((GCLK_PCHCTRLn[1] == iGLK) || (GCLK_PCHCTRLn[2] == iGLK))	
+tmp_REG |= GCLK_SYNCBUSY_GENCTRL%<iGLK>_Msk; /* GENCTRL%<iGLK> sync bit */ 
+%endif	
+%endif
+%endforeach
+while((GCLK_REGS->GCLK_SYNCBUSY & tmp_REG) != 0) ; /* Wait Sync for GCLKs */
+%endif
+}
+%if OSCCTRL_OSC48MCTRL_CONFIG == 0
+/* Switch off 48MHz Internal Oscillator (OSC48M) */
+OSCCTRL_REGS->OSCCTRL_OSC48MCTRL = 0;	 /* Disable OSC48M */	
+%endif
+/* ------- END of Clock Configuration ----  */
+%<MCHP_ConfigPins()>
+/* Initialize model */
+%if ConfigChipOnly == 0
+%<LibCallModelInitialize()> 	
+%endif
+/* ------- NVIC Setup ------ */
+%assign TimeStep_SyncADC = CAST("Number",RTWGenSettings.TimeStep_SyncADC)
+%if TimeStep_SyncADC == -1
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+NVIC_SetPriority(SysTick_IRQn, 3U);     /* Scheduler Priority set to 3 (left aligned is 0xC0) */
+NVIC_SetPriority(SVCall_IRQn, 0u);
+%else
+NVIC_SetPriority(SysTick_IRQn, 3U);     /* Scheduler Priority set to 3 */
+%endif
+%openfile LocalStartup_TrigTimeStepInstruction
+%<::Startup_TrigTimeStepInstruction>\		 		
+/* ------ SysTick  Init -----------  */
+%assign SYS_TICK_TS_Load = CAST("Number",RTWGenSettings.SYS_TICK_TS_Load)
+SysTick->VAL   =  1UL*8;								/*  Start value for the sys Tick counter. Execute first STEP ASAP */
+SysTick->LOAD  =  %<SYS_TICK_TS_Load>UL;                                /*  Reload value (corresponds to 1s). This value will be decremented at each CPU tick */
+SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;   /*  Enable SysTick Interrupt; start the counter; select the source for tick (MCLK)   */
+%closefile LocalStartup_TrigTimeStepInstruction
+%assign ::Startup_TrigTimeStepInstruction = LocalStartup_TrigTimeStepInstruction
+%else 
+%openfile LocalStartup_TrigTimeStepInstruction
+%<::Startup_TrigTimeStepInstruction>\		 		
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+NVIC_SetPriority(TC0_IRQn, 3U);     /* Scheduler Priority set to 3 */
+NVIC_SetPriority(SVCall_IRQn, 0u);
+%else
+%endif
+%closefile LocalStartup_TrigTimeStepInstruction
+%assign ::Startup_TrigTimeStepInstruction = LocalStartup_TrigTimeStepInstruction
+NVIC_EnableIRQ(TC0_IRQn);                               /*  Enable NVIC line for TC0_IRQn  */
+%endif    	
+__enable_irq();	/* Enable Interrupt (Clear PRIMASK) */
+%closefile tmpFcnOsc
+%return tmpFcnOsc
+%endfunction

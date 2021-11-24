@@ -1,0 +1,100 @@
+
+%switch ::CORE
+%case "PIC"
+%case "PIC32"
+%include "MCHP_Scheduler_mr_dsPIC.tlc"
+%include "MCHP_Scheduler_sr_dsPIC.tlc"	
+%break
+%case "CORTEX_M7"	
+%include "MCHP_Scheduler_mr_SAMx.tlc"
+%include "MCHP_Scheduler_sr_SAMx.tlc"		
+%break
+%case "CORTEX_M4F"
+%include "MCHP_Scheduler_mr_SAMx.tlc"
+%include "MCHP_Scheduler_sr_SAMx.tlc"			
+%break
+%case "CORTEX_M0p"
+%include "MCHP_Scheduler_mr_m0p.tlc"
+%include "MCHP_Scheduler_sr_SAMx.tlc"		
+%break			
+%default
+%error("Chip not recognized while writing Scheduler")
+%endswitch
+%function MCHP_Scheduler(InterruptPrefix,InterruptNumber,ChipIdN) void
+%assign POWERSAVE = CAST("Number",RTWGenSettings.POWERSAVE)
+%if ISFIELD(RTWGenSettings,"MCHP_IdleTask")
+%assign MCHP_IdleTask = CAST("Number",RTWGenSettings.MCHP_IdleTask)
+%else
+%assign MCHP_IdleTask = 0
+%endif
+%if (MCHP_IdleTask == 1)	
+%assign ::MCHP_srSchedulerOnInterrupt = 1		
+%else
+%assign ::MCHP_srSchedulerOnInterrupt = 0		
+%endif
+%openfile Scheduler
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+%<MCHP_mrScheduler(InterruptPrefix,InterruptNumber,ChipIdN)>
+%else		
+%<MCHP_srScheduler(InterruptPrefix,InterruptNumber,ChipIdN)>
+%endif
+%closefile Scheduler
+%return Scheduler
+%endfunction
+%function MCHP_Scheduler_Main() Output
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking" 	
+%<FcnMultiTaskingMain()>		
+%else		
+%<FcnSingleTaskingMain()>		
+%endif
+%endfunction
+%function MCHP_taskExecute(taskID,mode) void
+%openfile taskExecute
+if (Overrun.Flags%<taskID>) {
+%if (%<::MASTER_BusyFlag> != -1)
+%<Mchp_asm_Adec("BusyFlagRecursion")> 
+%endif
+%<MCHP_ProfileMCU("exit")>
+/* Priority to higher rate steps interrupted */
+%<MCHP_Scheduler_EXIT()>
+}
+%switch MCHP_SchedulerTaskOverload
+%case "Skip"
+%case "Delay"
+if (event.Flags%<taskID>) {
+Overrun.Flags%<taskID> = 1; 	/* Execute task tid %<taskID> */		
+%<MCHP_ProfileTaskStart(taskID)>
+%<MCHP_ProfileMCU_Compute(taskID)>
+%<MCHP_GetModelInput(taskID)>
+%<LibCallModelStep(taskID)>
+%<MCHP_ProfileTaskStop(taskID)>
+event.Flags%<taskID> = 0U;
+Overrun.Flags%<taskID> = 0U;
+}
+%break
+%case "Queue"
+if (event.Flags%<taskID>) {
+Overrun.Flags%<taskID> = 1;
+do { 							/* Execute task tid %<taskID> */
+%<MCHP_ProfileTaskStart(taskID)>
+%<MCHP_ProfileMCU_Compute(taskID)>
+event.Flags%<taskID> = 0U;                     	
+%<MCHP_GetModelInput(taskID)>
+%<LibCallModelStep(taskID)>
+%<MCHP_ProfileTaskStop(taskID)>
+} while (event.Flags%<taskID>);
+Overrun.Flags%<taskID> = 0U;
+}
+%break
+%endswitch
+%closefile taskExecute
+%return taskExecute
+%endfunction
+%function MCHP_GetModelInput(taskID) Output
+%assign varbuf = LibWriteModelInput(taskID,RollThreshold)
+%if !WHITE_SPACE(varbuf)			
+#if 0			/* Remove conditional and set model inputs associated with subrates %<taskID> here */
+%<varbuf>
+#endif
+%endif
+%endfunction

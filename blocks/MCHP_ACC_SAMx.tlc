@@ -1,0 +1,229 @@
+%implements MCHP_ACC_SAMx  "C"
+%include "MCHP_Functions.tlc"
+%assign ::ACC_SAMx7_nBlocks = 0		
+%assign ::ACC_SAMx7_iBlocks = 0		
+%assign ::ACC_SAMx7_DAC_ChEn = [ -1,-1 ]
+%assign ::ACC_SAMx7_DAC_Initial_Output = -1
+%assign ::ACC_SAMx7_ACC_ChEn = -1
+%assign ::ACC_SAMx7_EDGETYP = -1
+%assign ::ACC_SAMx7_INV = -1
+%assign ::ACC_SAMx7_HYST = -1
+%assign ::ACC_SAMx7_CE = -1
+%assign ::ACC_SAMx7_SELFS = -1
+%assign ::ACC_SAMx7_SELPLUS_REG_VAL = -1
+%assign ::ACC_SAMx7_SELMINUS_REG_VAL = -1
+%assign ::ACC_SAMx7_FE = -1
+%assign ::ACC_SAMx7_DACC_PRESCALER_VALUE = -1
+%assign BlockInput_VectorScalar = -1
+%assign BlockOutput_VectorScalar = -1
+%assign BlockInput_DACC_INPUT = -1
+%assign DACC_INPUT_SIGNAL_Type = -1
+%assign DACC_SAT = -1
+%assign BlockOutput_COMPARATOR_OUTPUT = -1
+%assign BlockOutput_COMPARATOR_EDGE_OUTPUT = -1
+%assign ACC_PCER_idx = -1
+%assign ACC_Peripheral_ID = -1
+%assign DACC_PCER_idx = -1
+%assign DACC_Peripheral_ID = -1
+%function BlockInstanceSetup(block, system) void
+%assign ::ACC_SAMx7_nBlocks = ::ACC_SAMx7_nBlocks + 1
+%endfunction
+%function Start(block, system) Output
+%assign ::ACC_SAMx7_DAC_ChEn = MchpLocal2Global(block,::ACC_SAMx7_DAC_ChEn ,  MchpVector64(block.RTWdata.ACC_SAMx7_DAC_ChEn),"DAC_ChEn" , "Problem with DACC: the same DAC channel is used twice. Check ACC and DACC blocks to not be used the same DAC channel. ")
+%assign ::ACC_SAMx7_DAC_Initial_Output = MchpLocal2Global(block,::ACC_SAMx7_DAC_Initial_Output ,  CAST("Real",block.RTWdata.ACC_SAMx7_DAC_Initial_Output),"DAC_Initial_Output" , "Problem with DAC Initial Output setting")
+%assign ::ACC_SAMx7_ACC_ChEn = MchpLocal2Global(block,::ACC_SAMx7_ACC_ChEn ,  CAST("Number",block.RTWdata.ACC_SAMx7_ACC_ChEn),"ACC_ChEn" , "Problem with ACC channel enabled setting")
+%assign ::ACC_SAMx7_EDGETYP = MchpLocal2Global(block,::ACC_SAMx7_EDGETYP ,  CAST("Number",block.RTWdata.ACC_SAMx7_EDGETYP),"EDGETYP" , "Problem with Comparator Output Edge Type (EDGETYP)")
+%assign ::ACC_SAMx7_INV = MchpLocal2Global(block,::ACC_SAMx7_INV ,  CAST("Number",block.RTWdata.ACC_SAMx7_INV),"INV" , "Problem with Invert Comparator Output setting (INV) ")
+%assign ::ACC_SAMx7_HYST = MchpLocal2Global(block,::ACC_SAMx7_HYST ,  CAST("Number",block.RTWdata.ACC_SAMx7_HYST),"HYST" , "Problem with Hysteresis setting (HYST) ")
+%assign ::ACC_SAMx7_CE = MchpLocal2Global(block,::ACC_SAMx7_CE ,  CAST("Number",block.RTWdata.ACC_SAMx7_CE),"CE" , "Problem with Comparator Interrupt setting (CE)")
+%assign ::ACC_SAMx7_SELFS = MchpLocal2Global(block,::ACC_SAMx7_SELFS ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELFS),"SELFS" , "Problem with PWM Fault Generation setting (SELFS)")
+%assign ::ACC_SAMx7_SELPLUS_REG_VAL = MchpLocal2Global(block,::ACC_SAMx7_SELPLUS_REG_VAL ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELPLUS_REG_VAL),"SELPLUS_REG_VAL" , "")
+%assign ::ACC_SAMx7_SELMINUS_REG_VAL = MchpLocal2Global(block,::ACC_SAMx7_SELMINUS_REG_VAL ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELMINUS_REG_VAL),"SELMINUS_REG_VAL" , "")
+%assign ::ACC_SAMx7_FE = MchpLocal2Global(block,::ACC_SAMx7_FE ,  CAST("Number",block.RTWdata.ACC_SAMx7_FE),"FE" , "Problem with PWM Fault Generation setting (FE)")
+%assign ::ACC_SAMx7_DACC_PRESCALER_VALUE = MchpLocal2Global(block,::ACC_SAMx7_DACC_PRESCALER_VALUE ,  CAST("Number",block.RTWdata.ACC_SAMx7_DACC_PRESCALER_VALUE),"DACC_PRESCALER_VALUE" , "")
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockOutput_VectorScalar =  CAST("Number",block.RTWdata.BlockOutput_VectorScalar)
+%assign BlockInput_DACC_INPUT =  CAST("Number",block.RTWdata.BlockInput_DACC_INPUT)
+%assign DACC_INPUT_SIGNAL_Type =  CAST("Number",block.RTWdata.DACC_INPUT_SIGNAL_Type)
+%assign DACC_SAT =  CAST("Number",block.RTWdata.DACC_SAT)
+%assign BlockOutput_COMPARATOR_OUTPUT =  CAST("Number",block.RTWdata.BlockOutput_COMPARATOR_OUTPUT)
+%assign BlockOutput_COMPARATOR_EDGE_OUTPUT =  CAST("Number",block.RTWdata.BlockOutput_COMPARATOR_EDGE_OUTPUT)
+%assign ACC_PCER_idx =  CAST("Number",block.RTWdata.ACC_PCER_idx)
+%assign ACC_Peripheral_ID =  CAST("Number",block.RTWdata.ACC_Peripheral_ID)
+%assign DACC_PCER_idx =  CAST("Number",block.RTWdata.DACC_PCER_idx)
+%assign DACC_Peripheral_ID =  CAST("Number",block.RTWdata.DACC_Peripheral_ID)
+%assign ::ACC_SAMx7_iBlocks = ::ACC_SAMx7_iBlocks + 1
+%if ::ACC_SAMx7_iBlocks == 1	
+{
+/* ACC Initialization */
+uint32_t MCHP_ACC_MR_reg_init = 0u;
+NVIC_ClearPendingIRQ(ACC_IRQn);
+PMC_REGS->PMC_PCER%<ACC_PCER_idx> |= PMC_PCDR%<ACC_PCER_idx>_PID%<ACC_Peripheral_ID>(1u);   /* Enable ACC peripheral clock (ACC Peripheral ID = %<ACC_Peripheral_ID>) */
+ACC_REGS->ACC_CR |= ACC_CR_SWRST(1u);       /* Reset the module */
+ACC_REGS->ACC_ACR |= ACC_ACR_ISEL(1u);      /* Enable High-speed option */
+MCHP_ACC_MR_reg_init = ACC_MR_ACEN(1u);     /* Enable ACC */
+/* Block-specific configuration */
+MCHP_ACC_MR_reg_init |= ACC_MR_SELPLUS(%<::ACC_SAMx7_SELPLUS_REG_VAL>u);                                        /* Selection For Plus Comparator Input */
+MCHP_ACC_MR_reg_init |= ACC_MR_SELMINUS(%<::ACC_SAMx7_SELMINUS_REG_VAL>u);                                      /* Selection For Plus Comparator Input */
+MCHP_ACC_MR_reg_init |= ACC_MR_EDGETYP(%<::ACC_SAMx7_EDGETYP>u);                                                /* Comparator Output Edge Type: 0 => Rising, 1 => Falling, 02 => Any Edge */
+MCHP_ACC_MR_reg_init |= ACC_MR_INV(%<::ACC_SAMx7_INV>u);                                                        /* Invert comparator output: 0 => No, 1 => Yes */
+MCHP_ACC_MR_reg_init |= ACC_MR_FE(%<::ACC_SAMx7_FE>);                                                           /* ACC FAULT generation: 1 => Enable, 0 => Disable */
+MCHP_ACC_MR_reg_init |= ACC_MR_SELFS(%<::ACC_SAMx7_SELFS>);                                                     /* ACC Selection Of Fault Source: 0 => CE (Changed Edge detection), 1 => Comparator OUTPUT */
+ACC_REGS->ACC_ACR = (ACC_REGS->ACC_ACR & (~ACC_ACR_HYST_Msk)) | ACC_ACR_HYST(%<::ACC_SAMx7_HYST>u);             /* ACC Hysteresis: 0 => None, 1 or 2 => 25mV, 3 => 45mV */
+ACC_REGS->ACC_MR = MCHP_ACC_MR_reg_init;    /* Store ACC_MR intialization value */
+/* Wait until ACC output is valid */
+while (ACC_REGS->ACC_ISR & ACC_ISR_MASK_Msk ) ;
+%if ACC_SAMx7_CE == 1
+/* Enable ACC Interrupts */
+ACC_REGS->ACC_IER = ACC_IER_CE(1u);        /* Enable ACC interrupt (behavior defined by EDGETYP) */
+%endif
+%if BlockInput_DACC_INPUT != -1
+/* DACC Initialization */
+uint32_t MCHP_DACC_MR_reg_init = 0u;
+NVIC_ClearPendingIRQ(DACC_IRQn);
+PMC_REGS->PMC_PCER%<DACC_PCER_idx> |= PMC_PCER%<DACC_PCER_idx>_PID%<DACC_Peripheral_ID>(1u);    /* Enable DACC peripheral clock (DACC Peripheral ID = %<DACC_Peripheral_ID>) */
+DACC_REGS->DACC_CR |= DACC_CR_SWRST(1);                                                         /* Reset DACC */
+%foreach idx = SIZE(ACC_SAMx7_DAC_ChEn,1)
+%if ACC_SAMx7_DAC_ChEn[idx] != -1
+MCHP_DACC_MR_reg_init |= DACC_MR_MAXS%<idx>(0u);                                                                /* 0 => Trigger or Free-running Mode, 1  => Max speed mode  */
+DACC_REGS->DACC_TRIGR = (DACC_REGS->DACC_TRIGR & (~DACC_TRIGR_TRGEN%<idx>_Msk)) | DACC_TRIGR_TRGEN%<idx>(0u);   /* Trigger mode disabled. DACC is in Free-running mode or Max speed mode  */
+DACC_REGS->DACC_ACR = (DACC_REGS->DACC_ACR &(~DACC_ACR_Msk)) | DACC_ACR_IBCTLCH%<idx>(3u);                      /* 0 => Bypass, 1 => 500 ks/s, 2 => n/a, 3 => 1 Ms/s */
+MCHP_DACC_MR_reg_init |= DACC_MR_PRESCALER(%<ACC_SAMx7_DACC_PRESCALER_VALUE>u);                                 /* PRESCALER = (MCK/DACC_DESIRED_FREQ) - 2 */
+DACC_REGS->DACC_CHER |= DACC_CHER_CH%<idx>(1u);         /* Enable DACC Channel %<idx>  */
+DACC_REGS->DACC_MR = MCHP_DACC_MR_reg_init;             /* Store DACC_MR intialization value */
+%if ::ACC_SAMx7_DAC_Initial_Output > 3.3
+%<LibBlockReportWarning(block, "DACC Initial Output Voltage is set too high (Max = 3.3v). Dafault value set to 3.3v.")>
+%assign ::ACC_SAMx7_DAC_Initial_Output = CAST("Real",3.3)
+%elseif ::ACC_SAMx7_DAC_Initial_Output < 0
+%<LibBlockReportWarning(block, "DACC Initial Output Voltage is set too low (Min = 0v). Dafault value set to 0v.")>
+%assign ::ACC_SAMx7_DAC_Initial_Output = CAST("Real",0)
+%endif
+%assign dac_data = (::ACC_SAMx7_DAC_Initial_Output * 4095) / 3.3
+%assign dac_data = CAST("Number", %<dac_data>)
+DACC_REGS->DACC_CDR[%<idx>] = (uint16_T) %<dac_data>u ;
+%endif
+%endforeach
+%endif
+}
+%endif 
+%endfunction
+%function Outputs(block, system) Output
+%assign ::ACC_SAMx7_DAC_ChEn = MchpLocal2Global(block,::ACC_SAMx7_DAC_ChEn ,  MchpVector64(block.RTWdata.ACC_SAMx7_DAC_ChEn),"DAC_ChEn" , "Problem with DACC: the same DAC channel is used twice. Check ACC and DACC blocks to not be used the same DAC channel. ")
+%assign ::ACC_SAMx7_DAC_Initial_Output = MchpLocal2Global(block,::ACC_SAMx7_DAC_Initial_Output ,  CAST("Real",block.RTWdata.ACC_SAMx7_DAC_Initial_Output),"DAC_Initial_Output" , "Problem with DAC Initial Output setting")
+%assign ::ACC_SAMx7_ACC_ChEn = MchpLocal2Global(block,::ACC_SAMx7_ACC_ChEn ,  CAST("Number",block.RTWdata.ACC_SAMx7_ACC_ChEn),"ACC_ChEn" , "Problem with ACC channel enabled setting")
+%assign ::ACC_SAMx7_EDGETYP = MchpLocal2Global(block,::ACC_SAMx7_EDGETYP ,  CAST("Number",block.RTWdata.ACC_SAMx7_EDGETYP),"EDGETYP" , "Problem with Comparator Output Edge Type (EDGETYP)")
+%assign ::ACC_SAMx7_INV = MchpLocal2Global(block,::ACC_SAMx7_INV ,  CAST("Number",block.RTWdata.ACC_SAMx7_INV),"INV" , "Problem with Invert Comparator Output setting (INV) ")
+%assign ::ACC_SAMx7_HYST = MchpLocal2Global(block,::ACC_SAMx7_HYST ,  CAST("Number",block.RTWdata.ACC_SAMx7_HYST),"HYST" , "Problem with Hysteresis setting (HYST) ")
+%assign ::ACC_SAMx7_CE = MchpLocal2Global(block,::ACC_SAMx7_CE ,  CAST("Number",block.RTWdata.ACC_SAMx7_CE),"CE" , "Problem with Comparator Interrupt setting (CE)")
+%assign ::ACC_SAMx7_SELFS = MchpLocal2Global(block,::ACC_SAMx7_SELFS ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELFS),"SELFS" , "Problem with PWM Fault Generation setting (SELFS)")
+%assign ::ACC_SAMx7_SELPLUS_REG_VAL = MchpLocal2Global(block,::ACC_SAMx7_SELPLUS_REG_VAL ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELPLUS_REG_VAL),"SELPLUS_REG_VAL" , "")
+%assign ::ACC_SAMx7_SELMINUS_REG_VAL = MchpLocal2Global(block,::ACC_SAMx7_SELMINUS_REG_VAL ,  CAST("Number",block.RTWdata.ACC_SAMx7_SELMINUS_REG_VAL),"SELMINUS_REG_VAL" , "")
+%assign ::ACC_SAMx7_FE = MchpLocal2Global(block,::ACC_SAMx7_FE ,  CAST("Number",block.RTWdata.ACC_SAMx7_FE),"FE" , "Problem with PWM Fault Generation setting (FE)")
+%assign ::ACC_SAMx7_DACC_PRESCALER_VALUE = MchpLocal2Global(block,::ACC_SAMx7_DACC_PRESCALER_VALUE ,  CAST("Number",block.RTWdata.ACC_SAMx7_DACC_PRESCALER_VALUE),"DACC_PRESCALER_VALUE" , "")
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockOutput_VectorScalar =  CAST("Number",block.RTWdata.BlockOutput_VectorScalar)
+%assign BlockInput_DACC_INPUT =  CAST("Number",block.RTWdata.BlockInput_DACC_INPUT)
+%assign DACC_INPUT_SIGNAL_Type =  CAST("Number",block.RTWdata.DACC_INPUT_SIGNAL_Type)
+%assign DACC_SAT =  CAST("Number",block.RTWdata.DACC_SAT)
+%assign BlockOutput_COMPARATOR_OUTPUT =  CAST("Number",block.RTWdata.BlockOutput_COMPARATOR_OUTPUT)
+%assign BlockOutput_COMPARATOR_EDGE_OUTPUT =  CAST("Number",block.RTWdata.BlockOutput_COMPARATOR_EDGE_OUTPUT)
+%assign ACC_PCER_idx =  CAST("Number",block.RTWdata.ACC_PCER_idx)
+%assign ACC_Peripheral_ID =  CAST("Number",block.RTWdata.ACC_Peripheral_ID)
+%assign DACC_PCER_idx =  CAST("Number",block.RTWdata.DACC_PCER_idx)
+%assign DACC_Peripheral_ID =  CAST("Number",block.RTWdata.DACC_Peripheral_ID)
+%assign IndexOutput = 0
+%assign IndexInput = 0
+/% DACC_INPUT_SIGNAL_Type codings:
+-1 => 'is not a block input';
+1 => 'is a 16 bits unsigned block input in the range [0 - 4026] [0v - 3.3v]'
+2 => 'is a Floating Point block input within the range [0 - 1] [0v - 3.3v]'
+3 => 'is a Floating Point block input with physical scaling in Volts within the range [0v - 3.3v]'
+%/
+%if BlockInput_DACC_INPUT != -1
+%assign DACC_INPUT_SIGNAL = LibBlockInputSignal(IndexInput, "", "",0)
+%assign IndexInput = IndexInput + 1
+%foreach idx = SIZE(ACC_SAMx7_DAC_ChEn,1)
+%if ACC_SAMx7_DAC_ChEn[idx] != -1
+uint16_T dac_input_val = 0u;
+%if DACC_INPUT_SIGNAL_Type == 1
+/* DAC input: is a 16 bits unsigned block input in the range [0 - 4026] [0v - 3.3v] */
+%if DACC_SAT == 1 
+if (%<DACC_INPUT_SIGNAL> > 4095u){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+}
+%else
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+%endif
+%elseif DACC_INPUT_SIGNAL_Type == 2
+/* DAC input: is a Floating Point block input within the range [0 - 1] [0v - 3.3v] */
+%if DACC_SAT == 1 
+if (%<DACC_INPUT_SIGNAL> > 1.0){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+}
+%else
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+%endif
+%elseif DACC_INPUT_SIGNAL_Type == 3
+/* DAC Input: is a Floating Point block input with physical scaling in Volts within the range [0v - 3.3v] */
+%if DACC_SAT == 1 
+if (%<DACC_INPUT_SIGNAL> > 3.3){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+}
+%else
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+%endif
+%else
+%<LibBlockReportError(block, "DACC Output Voltage for Vin- Comparator Input : INVALID OPTION ")>
+dac_input_val = 0u;
+%endif
+/* Wait until DACC is ready to receive data AND to accept new conversion requests */
+while ((DACC_REGS->DACC_CHSR & DACC_CHSR_DACRDY%<idx>_Msk) && (DACC_REGS->DACC_ISR & DACC_ISR_TXRDY%<idx>_Msk) == 0u)
+{
+__NOP();
+}
+DACC_REGS->DACC_CDR[%<idx>] = dac_input_val;      /* Set DAC output for CH%<idx> (Negative Comparator Input) */
+%endif
+%endforeach
+%endif
+%if (BlockOutput_COMPARATOR_OUTPUT != -1) || (BlockOutput_COMPARATOR_EDGE_OUTPUT != -1)
+volatile uint32_T acc_status = 0u;
+/* Poll ACC status register until CE and SCO flags become valid */
+while (( (ACC_REGS->ACC_ISR & ACC_ISR_MASK_Msk) >> ACC_ISR_MASK_Pos ) == 1u)
+{
+__NOP();
+}
+acc_status = ACC_REGS->ACC_ISR; /* Get ACC status */
+%if BlockOutput_COMPARATOR_OUTPUT != -1
+%assign COMPARATOR_OUTPUT_SIGNAL = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%<COMPARATOR_OUTPUT_SIGNAL> = (boolean_T)(acc_status & ACC_ISR_SCO_Msk) >> ACC_ISR_SCO_Pos; /* Get Comparator output state */
+%endif
+%if BlockOutput_COMPARATOR_EDGE_OUTPUT != -1
+%assign COMPARATOR_EDGE_OUTPUT_SIGNAL = LibBlockOutputSignal(IndexOutput, "", "",0)
+%assign IndexOutput = IndexOutput + 1
+%<COMPARATOR_EDGE_OUTPUT_SIGNAL> = (boolean_T)(acc_status & ACC_ISR_CE_Msk) >> ACC_ISR_CE_Pos;  /* Get Comparator edge output (change) state */
+%endif
+%endif
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function BlockTypeSetup(block, system) Output
+%endfunction

@@ -1,0 +1,405 @@
+%implements  MCHP_AFEC_SAM7x  "C"
+%include "MCHP_Functions.tlc"		
+%assign ::AFEC_SAMx7_AFEC_nBlocks = [0,0]		
+%assign ::AFEC_SAMx7_AFEC_iBlocks = [0,0]		
+%assign ::AFEC_SAMx7_CHER_CHx = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_DIFFR_DIFFx = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_SHMR_DUALx = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_SEQxR = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_MR_USEQ = [ -1,-1 ]
+%assign ::AFEC_SAMx7_seqDifferential = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_seqParallele = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_ADC_InputChannelUsed = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_ADC_Offset = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_ADC_Gain = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_Dif_parall = [ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_EMR_RES = [ -1,-1 ]
+%assign ::AFEC_SAMx7_EMR_STM = [ -1,-1 ]
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_SingleEnded = [ -1,-1 ]
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_Differential = [ -1,-1 ]
+%assign ::AFEC_SAMx7_EMR_SIGNMODE = [ -1,-1 ]
+%assign ::AFEC_SAMx7_TrigSync = [ -1,-1 ]
+%assign ::AFEC_SAMx7_TrigTimeStep = [ -1,-1 ]
+%assign ::AFEC_SAMx7_Trig = [ -1,-1 ]
+%assign ::AFEC_SAMx7_MR_TRGEN = [ -1,-1 ]
+%assign ::AFEC_SAMx7_ACR_PGAxEN = [ -1,-1,-1,-1 ]
+%assign ::AFEC_SAMx7_ACR_IBCLT = [ -1,-1 ]
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%assign AFECx =  MchpVector64(block.RTWdata.AFECx)
+%foreach idx = SIZE(AFECx,1)    	
+%assign ::AFEC_SAMx7_AFEC_nBlocks[AFECx[idx]] = ::AFEC_SAMx7_AFEC_nBlocks[AFECx[idx]] + 1
+%endforeach
+%endfunction
+%function Start(block, system) Output
+%assign ::AFEC_SAMx7_CHER_CHx = MchpLocal2Global(block,::AFEC_SAMx7_CHER_CHx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_CHER_CHx),"CHER_CHx" , "")
+%assign ::AFEC_SAMx7_DIFFR_DIFFx = MchpLocal2Global(block,::AFEC_SAMx7_DIFFR_DIFFx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_DIFFR_DIFFx),"DIFFR_DIFFx" , "")
+%assign ::AFEC_SAMx7_SHMR_DUALx = MchpLocal2Global(block,::AFEC_SAMx7_SHMR_DUALx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_SHMR_DUALx),"SHMR_DUALx" , "")
+%assign ::AFEC_SAMx7_SEQxR = MchpLocal2Global(block,::AFEC_SAMx7_SEQxR ,  MchpVector64(block.RTWdata.AFEC_SAMx7_SEQxR),"SEQxR" , "")
+%assign ::AFEC_SAMx7_MR_USEQ = MchpLocal2Global(block,::AFEC_SAMx7_MR_USEQ ,  MchpVector64(block.RTWdata.AFEC_SAMx7_MR_USEQ),"MR_USEQ" , "")
+%assign ::AFEC_SAMx7_seqDifferential = MchpLocal2Global(block,::AFEC_SAMx7_seqDifferential ,  MchpVector64(block.RTWdata.AFEC_SAMx7_seqDifferential),"seqDifferential" , "")
+%assign ::AFEC_SAMx7_seqParallele = MchpLocal2Global(block,::AFEC_SAMx7_seqParallele ,  MchpVector64(block.RTWdata.AFEC_SAMx7_seqParallele),"seqParallele" , "")
+%assign ::AFEC_SAMx7_ADC_InputChannelUsed = MchpLocal2Global(block,::AFEC_SAMx7_ADC_InputChannelUsed ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_InputChannelUsed),"ADC_InputChannelUsed" , "")
+%assign ::AFEC_SAMx7_ADC_Offset = MchpLocal2Global(block,::AFEC_SAMx7_ADC_Offset ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_Offset),"ADC_Offset" , "")
+%assign ::AFEC_SAMx7_ADC_Gain = MchpLocal2Global(block,::AFEC_SAMx7_ADC_Gain ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_Gain),"ADC_Gain" , "")
+%assign ::AFEC_SAMx7_Dif_parall = MchpLocal2Global(block,::AFEC_SAMx7_Dif_parall ,  MchpVector64(block.RTWdata.AFEC_SAMx7_Dif_parall),"Dif_parall" , "")
+%assign ::AFEC_SAMx7_EMR_RES = MchpLocal2Global(block,::AFEC_SAMx7_EMR_RES ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_RES),"EMR_RES" , "")
+%assign ::AFEC_SAMx7_EMR_STM = MchpLocal2Global(block,::AFEC_SAMx7_EMR_STM ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_STM),"EMR_STM" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_SingleEnded = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE_SingleEnded ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE_SingleEnded),"EMR_SIGNMODE_SingleEnded" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_Differential = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE_Differential ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE_Differential),"EMR_SIGNMODE_Differential" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE),"EMR_SIGNMODE" , "")
+%assign ::AFEC_SAMx7_TrigSync = MchpLocal2Global(block,::AFEC_SAMx7_TrigSync ,  MchpVector64(block.RTWdata.AFEC_SAMx7_TrigSync),"TrigSync" , "")
+%assign ::AFEC_SAMx7_TrigTimeStep = MchpLocal2Global(block,::AFEC_SAMx7_TrigTimeStep ,  MchpVector64(block.RTWdata.AFEC_SAMx7_TrigTimeStep),"TrigTimeStep" , "")
+%assign ::AFEC_SAMx7_Trig = MchpLocal2Global(block,::AFEC_SAMx7_Trig ,  MchpVector64(block.RTWdata.AFEC_SAMx7_Trig),"Trig" , "")
+%assign ::AFEC_SAMx7_MR_TRGEN = MchpLocal2Global(block,::AFEC_SAMx7_MR_TRGEN ,  MchpVector64(block.RTWdata.AFEC_SAMx7_MR_TRGEN),"MR_TRGEN" , "")
+%assign ::AFEC_SAMx7_ACR_PGAxEN = MchpLocal2Global(block,::AFEC_SAMx7_ACR_PGAxEN ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ACR_PGAxEN),"ACR_PGAxEN" , "")
+%assign ::AFEC_SAMx7_ACR_IBCLT = MchpLocal2Global(block,::AFEC_SAMx7_ACR_IBCLT ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ACR_IBCLT),"ACR_IBCLT" , "")
+%assign AFECx =  MchpVector64(block.RTWdata.AFECx)
+%assign Rin =  CAST("Number",block.RTWdata.Rin)
+%assign MR_TRGEN =  CAST("Number",block.RTWdata.MR_TRGEN)
+%assign MR_TRGSEL =  CAST("Number",block.RTWdata.MR_TRGSEL)
+%assign MR_SLEEP =  CAST("Number",block.RTWdata.MR_SLEEP)
+%assign MR_FWUP =  CAST("Number",block.RTWdata.MR_FWUP)
+%assign MR_FREERUN =  CAST("Number",block.RTWdata.MR_FREERUN)
+%assign MR_PRESCAL =  CAST("Number",block.RTWdata.MR_PRESCAL)
+%assign MR_STARTUP =  CAST("Number",block.RTWdata.MR_STARTUP)
+%assign MR_TRANSFER =  CAST("Number",block.RTWdata.MR_TRANSFER)
+%assign Peripheral_ID =  MchpVector64(block.RTWdata.Peripheral_ID)
+%assign PCER_idx =  MchpVector64(block.RTWdata.PCER_idx)
+%foreach AFECn = SIZE(AFECx,1)
+%assign AFECi = CAST("Number",AFECx[AFECn])
+%assign ::AFEC_SAMx7_AFEC_iBlocks[AFECi] = ::AFEC_SAMx7_AFEC_iBlocks[AFECi] + 1
+%endforeach
+%foreach AFECn = SIZE(AFECx,1)
+%assign AFECi = CAST("Number",AFECx[AFECn])
+%if ::AFEC_SAMx7_AFEC_iBlocks[AFECi] == 1	
+/* Configure AFEC%<AFECi> module */
+/* Enable the AFEC%<AFECi> clock in the Power Management Controller (PMC):  AFEC%<AFECi> => PID_%<int(Peripheral_ID[AFECi])> */
+PMC_REGS->PMC_PCER%<int(PCER_idx[AFECi])> |=  PMC_PCER%<int(PCER_idx[AFECi])>_PID%<int(Peripheral_ID[AFECi])>(1);
+{
+uint32_T tmp; 								/* Temporary variable to precompute values (by compiler) */
+/* Interrupt trigger time step */
+%if ::AFEC_SAMx7_TrigTimeStep[AFECi] == 1
+/* Added to trig the time stpe: ADC0 end of last sequence conversion trig the time step */
+%assign LastSeqIs = -1
+%foreach iCh = 8    
+%if ::AFEC_SAMx7_SEQxR[AFECi*12 + iCh] != -1
+%assign LastSeqIs = ::AFEC_SAMx7_SEQxR[AFECi*12 + iCh]
+%endif
+%endforeach
+%assign LastSeqIs = CAST("Number",LastSeqIs)
+AFEC%<AFECi>_REGS->AFEC_IER =  AFEC_IER_EOC%<LastSeqIs>_Msk ; /* Last sequence convert CH%<LastSeqIs> */
+NVIC_SetPriority(AFEC%<AFECi>_IRQn, 2u);  /* ADC AFEC Priority set to 2 */
+%openfile dspicfun = "MCHP_AFEC%<AFECi>_Interrupt.c"
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+void AFEC%<AFECi>_Handler( void )
+{
+%<MCHP_InterruptProlog()>
+%<MCHP_ProfileMCU("enter")>
+volatile uint32_T tmp;
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<LastSeqIs>); /* Selects channel %<LastSeqIs> to read in AFEC_CDR */
+tmp = AFEC%<AFECi>_REGS->AFEC_CDR;/* Read ADC (AFEC%<AFECi>) Converted value */
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking"
+NVIC_SetPendingIRQ(TC0_CH0_IRQn); /* Trig Scheduler interrupt  */
+%else
+%assign ::MCHP_srSchedulerOnInterrupt = 0       
+extern volatile uint_T ContinueTimeStep;
+ContinueTimeStep |= 1;
+%endif
+%<MCHP_ProfileMCU("exitUpdate")>
+%<MCHP_InterruptEpilog()>
+}
+%closefile dspicfun
+%openfile LocalStartup_TrigTimeStepInstruction
+%<::Startup_TrigTimeStepInstruction>\
+/* Enable AFEC and trig Time Step */
+{
+uint16_T tmp;
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<LastSeqIs>); /* Selects channel %<LastSeqIs> to read in AFEC_CDR */
+tmp = AFEC%<AFECi>_REGS->AFEC_CDR;/* Read ADC (AFEC%<AFECi>) Converted value */
+NVIC_ClearPendingIRQ(AFEC%<AFECi>_IRQn); /* Enable AFEC interrupt and Time Step Trigger */
+NVIC_EnableIRQ(AFEC%<AFECi>_IRQn); /* Enable AFEC interrupt and Time Step Trigger */
+}
+%closefile LocalStartup_TrigTimeStepInstruction
+%assign ::Startup_TrigTimeStepInstruction = LocalStartup_TrigTimeStepInstruction
+%endif
+/* ADC Mode Register configuration */
+tmp = AFEC_MR_PRESCAL(%<MR_PRESCAL>U);		/* Prescaler for AFEC clock. Affect sampling and conversion timing */
+tmp |= AFEC_MR_STARTUP(%<MR_STARTUP>U);		/* Startup time */
+tmp |= AFEC_MR_TRANSFER(%<MR_TRANSFER>U);	/* Transfert Period */
+tmp |= AFEC_MR_TRACKTIM(15U);   /* Value is always 15. Do not modify */
+tmp |= AFEC_MR_ONE_Msk;         /* This bit must be set to One. Do no modify */
+%if ::AFEC_SAMx7_Trig[AFECi] != -1
+tmp |= AFEC_MR_TRGEN(1);			/* 1: Enable hardware trigger (software only otherwise) */    			
+tmp |= AFEC_MR_TRGSEL(%<int(::AFEC_SAMx7_Trig[AFECi])>);		/* Trig source */
+%endif
+%if MR_SLEEP == 1
+tmp |= AFEC_MR_SLEEP(%<MR_SLEEP>);			/* 1: sleep mode when not converting */
+%endif
+%if MR_FWUP == 1
+tmp |= AFEC_MR_FWUP(%<MR_FWUP>);			/* 1: Enable fast wake-up*/
+%endif
+%if ::AFEC_SAMx7_TrigSync[AFECi] == 3    
+tmp |= AFEC_MR_FREERUN(1);		/* 1: Free running conversion */
+%endif
+%if ::AFEC_SAMx7_MR_USEQ[AFECi] == 1
+tmp |= AFEC_MR_USEQ(1);				/* 1: use User defined sequence, more freedom for conversion order */
+%endif
+AFEC%<AFECi>_REGS->AFEC_MR = tmp;		/* Write AFEC%<AFECi> Mode Register */
+%openfile buffer_tmpreg
+%assign TabRes = [-1,-1,-2,-3, -4, -5, -6, -7, -8, -9, 1, -11, 0, 2, 3, 4, 5]    
+%if TabRes[int(::AFEC_SAMx7_EMR_RES[AFECi])] > 0
+tmp |= AFEC_EMR_RES(%<TabRes[int(::AFEC_SAMx7_EMR_RES[AFECi])]>);   /* %<::AFEC_SAMx7_EMR_RES[AFECi]> bits resolution */
+tmp |= AFEC_EMR_STM(%<int(::AFEC_SAMx7_EMR_STM[AFECi])>);      /* (1) : One Single Trigger is required to get an averaged value */
+%endif
+%if ::AFEC_SAMx7_EMR_SIGNMODE[AFECi] > 0
+tmp |= AFEC_EMR_SIGNMODE(%<int(::AFEC_SAMx7_EMR_SIGNMODE[AFECi])>);   /* Signed Mode */
+%endif
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* ADC Extended Mode Register configuration */
+tmp = 0;
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_EMR = tmp;     /* Write AFEC%<AFECi> Extended Mode Register */
+%endif
+%openfile buffer_tmpreg
+%if ::AFEC_SAMx7_ACR_PGAxEN[ AFECi*2 + 0 ] > 0
+tmp |= AFEC_ACR_PGA0EN(%<int(::AFEC_SAMx7_ACR_PGAxEN[ AFECi*2 + 0 ])>);     /* Enable (1) Op-Amp (PGA1)  */
+%endif
+%if ::AFEC_SAMx7_ACR_PGAxEN[ AFECi*2 + 1 ] > 0
+tmp |= AFEC_ACR_PGA1EN(%<int(::AFEC_SAMx7_ACR_PGAxEN[ AFECi*2 + 1 ])>);     /* Enable (1) Op-Amp (PGA2)  */
+%endif
+%if ::AFEC_SAMx7_ACR_IBCLT[AFECi] > 0
+tmp |= AFEC_ACR_IBCTL(%<int(::AFEC_SAMx7_ACR_IBCLT[AFECi])>);               /* Current bias */
+%endif
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Configure analog front end */
+tmp = 0;
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_ACR = tmp;     /* Write AFEC%<AFECi> Analog Front End Control Register */
+%endif
+%openfile buffer_tmpreg	
+%foreach iCh = 12
+%if ::AFEC_SAMx7_CHER_CHx[AFECi*12 + iCh] == 1
+tmp |= AFEC_CHER_CH%<iCh>(1);	/* Enable Channel %<iCh> */    					
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Enable AFEC channels */
+tmp = 0;	
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_CHER = tmp; 	/* Write AFEC%<AFECi> CHannel Enable Register */	
+%endif
+%if ::AFEC_SAMx7_MR_USEQ[AFECi] == 1
+%openfile buffer_tmpreg	
+%foreach iCh = 8	
+%if ::AFEC_SAMx7_SEQxR[AFECi*12 + iCh] != -1
+tmp |= AFEC_SEQ1R_USCH%<iCh>(%<int(::AFEC_SAMx7_SEQxR[AFECi*12 + iCh])>);	/* sequence %<iCh> convert Channel AD%<int(::AFEC_SAMx7_SEQxR[AFECi*12 + iCh])> */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* For each enabled channel (CHER), the channel used is the one indexed by the channel sequence register (USEQ = 1) */
+/* Note that channel configuration is based on channels, not on Sequence index (one unique configuration possible for each channel) */
+/* Results storage is indexed by the channel index (not sequence index). Thus we do not allows mutiple conversion of one channel */
+/* as result would be overwritten */
+tmp = 0;	
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_SEQ1R = tmp; 	/* Write AFEC%<AFECi> Channel Sequence 1 Register */	
+%endif   	
+%openfile buffer_tmpreg	
+%foreach iChh = 4	
+%assign iCh = iChh + 8
+%if ::AFEC_SAMx7_SEQxR[AFECi*12 + iCh] != -1
+tmp |= AFEC_SEQ2R_USCH%<iCh>(%<int(::AFEC_SAMx7_SEQxR[AFECi*12 + iCh])>);	/* sequence %<iCh> convert Channel AD%<int(::AFEC_SAMx7_SEQxR[AFECi*12 + iCh])> */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg) 						
+tmp = 0;	/* Continue Enable AFEC channels */
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_SEQ2R = tmp; 	/* Write AFEC%<AFECi> Channel Sequence 2 Register */	
+%endif   											
+%endif
+/* Configure each ADx Channels used in the conversion sequence (listed in conversion order) */
+%foreach iAD = 12
+%if ::AFEC_SAMx7_SEQxR[AFECi*12 + iAD] != -1
+%if ::AFEC_SAMx7_MR_USEQ[AFECi] == 1
+%assign iAD_ch = %<int(::AFEC_SAMx7_SEQxR[AFECi*12 + iAD])>
+%else
+%assign iAD_ch = iAD
+%endif
+%if AFEC_SAMx7_DIFFR_DIFFx[AFECi*12 + iAD_ch] == 0	
+/* Set offset for channel %<iAD_ch> */
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<iAD_ch>);                          	  /* Select Channel AD%<iAD_ch> */
+AFEC%<AFECi>_REGS->AFEC_COCR = AFEC_COCR_AOFF(512 + %<int(::AFEC_SAMx7_ADC_Offset[AFECi*12+iAD_ch])>);  /* Set Offset 512 is mid point */
+%if ::AFEC_SAMx7_SHMR_DUALx[AFECi*12 + iAD_ch] == 1							
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<iAD_ch+6>); 	/* Selects channel %<iAD_ch+6> sampled in parallele to %<iAD_ch> */					
+AFEC%<AFECi>_REGS->AFEC_COCR = AFEC_COCR_AOFF(512 + %<int(::AFEC_SAMx7_ADC_Offset[AFECi*12+iAD_ch+6])>);  /* Set Offset 512 is mid point */ 	
+%endif
+%endif  		
+%endif
+%endforeach   				
+%openfile buffer_tmpreg	
+%foreach iAD = 12
+%if AFEC_SAMx7_DIFFR_DIFFx[AFECi*12 + iAD] == 1
+tmp |= AFEC_DIFFR_DIFF%<iAD>(1);	/* Enable Differential sampling:  Ch%<iAD> - Ch(%<iAD+1>) */    					
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Differential Sampling */
+tmp = 0;	
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_DIFFR = tmp; 	/* Write AFEC%<AFECi> Channel Differential Register */	
+%endif
+%openfile buffer_tmpreg	
+%foreach iAD = 12
+%if ::AFEC_SAMx7_SHMR_DUALx[AFECi*12 + iAD] == 1
+tmp |= AFEC_SHMR_DUAL%<iAD>(1);	/* Enable parallele sampling of Ch%<iAD+6> with Ch%<iAD> */    					
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Parallele Sampling */
+tmp = 0;	
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_SHMR = tmp; 	/* Write AFEC%<AFECi> Sample & Hold Mode Register */	
+%endif
+%openfile buffer_tmpreg	
+%assign TabGAIN = [-1,0,1,-1,2]
+%foreach iAD = 12
+%if ::AFEC_SAMx7_ADC_Gain[AFECi*12 + iAD] > 0     	
+%assign GAIN = int(::AFEC_SAMx7_ADC_Gain[AFECi*12 + iAD])			
+tmp |= AFEC_CGR_GAIN%<iAD>(%<TabGAIN[GAIN]>);	/* Ch%<iAD> Gain x%<GAIN> */    					
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Gain (Op-Amp) */
+tmp = 0;	
+%<buffer_tmpreg>
+AFEC%<AFECi>_REGS->AFEC_CGR = tmp; 	/* Write AFEC%<AFECi> Channel Gain  Register */	
+%endif
+}
+%endif
+%endforeach 	
+%endfunction
+%function Outputs(block, system) Output
+%assign ::AFEC_SAMx7_CHER_CHx = MchpLocal2Global(block,::AFEC_SAMx7_CHER_CHx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_CHER_CHx),"CHER_CHx" , "")
+%assign ::AFEC_SAMx7_DIFFR_DIFFx = MchpLocal2Global(block,::AFEC_SAMx7_DIFFR_DIFFx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_DIFFR_DIFFx),"DIFFR_DIFFx" , "")
+%assign ::AFEC_SAMx7_SHMR_DUALx = MchpLocal2Global(block,::AFEC_SAMx7_SHMR_DUALx ,  MchpVector64(block.RTWdata.AFEC_SAMx7_SHMR_DUALx),"SHMR_DUALx" , "")
+%assign ::AFEC_SAMx7_SEQxR = MchpLocal2Global(block,::AFEC_SAMx7_SEQxR ,  MchpVector64(block.RTWdata.AFEC_SAMx7_SEQxR),"SEQxR" , "")
+%assign ::AFEC_SAMx7_MR_USEQ = MchpLocal2Global(block,::AFEC_SAMx7_MR_USEQ ,  MchpVector64(block.RTWdata.AFEC_SAMx7_MR_USEQ),"MR_USEQ" , "")
+%assign ::AFEC_SAMx7_seqDifferential = MchpLocal2Global(block,::AFEC_SAMx7_seqDifferential ,  MchpVector64(block.RTWdata.AFEC_SAMx7_seqDifferential),"seqDifferential" , "")
+%assign ::AFEC_SAMx7_seqParallele = MchpLocal2Global(block,::AFEC_SAMx7_seqParallele ,  MchpVector64(block.RTWdata.AFEC_SAMx7_seqParallele),"seqParallele" , "")
+%assign ::AFEC_SAMx7_ADC_InputChannelUsed = MchpLocal2Global(block,::AFEC_SAMx7_ADC_InputChannelUsed ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_InputChannelUsed),"ADC_InputChannelUsed" , "")
+%assign ::AFEC_SAMx7_ADC_Offset = MchpLocal2Global(block,::AFEC_SAMx7_ADC_Offset ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_Offset),"ADC_Offset" , "")
+%assign ::AFEC_SAMx7_ADC_Gain = MchpLocal2Global(block,::AFEC_SAMx7_ADC_Gain ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ADC_Gain),"ADC_Gain" , "")
+%assign ::AFEC_SAMx7_Dif_parall = MchpLocal2Global(block,::AFEC_SAMx7_Dif_parall ,  MchpVector64(block.RTWdata.AFEC_SAMx7_Dif_parall),"Dif_parall" , "")
+%assign ::AFEC_SAMx7_EMR_RES = MchpLocal2Global(block,::AFEC_SAMx7_EMR_RES ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_RES),"EMR_RES" , "")
+%assign ::AFEC_SAMx7_EMR_STM = MchpLocal2Global(block,::AFEC_SAMx7_EMR_STM ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_STM),"EMR_STM" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_SingleEnded = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE_SingleEnded ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE_SingleEnded),"EMR_SIGNMODE_SingleEnded" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE_Differential = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE_Differential ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE_Differential),"EMR_SIGNMODE_Differential" , "")
+%assign ::AFEC_SAMx7_EMR_SIGNMODE = MchpLocal2Global(block,::AFEC_SAMx7_EMR_SIGNMODE ,  MchpVector64(block.RTWdata.AFEC_SAMx7_EMR_SIGNMODE),"EMR_SIGNMODE" , "")
+%assign ::AFEC_SAMx7_TrigSync = MchpLocal2Global(block,::AFEC_SAMx7_TrigSync ,  MchpVector64(block.RTWdata.AFEC_SAMx7_TrigSync),"TrigSync" , "")
+%assign ::AFEC_SAMx7_TrigTimeStep = MchpLocal2Global(block,::AFEC_SAMx7_TrigTimeStep ,  MchpVector64(block.RTWdata.AFEC_SAMx7_TrigTimeStep),"TrigTimeStep" , "")
+%assign ::AFEC_SAMx7_Trig = MchpLocal2Global(block,::AFEC_SAMx7_Trig ,  MchpVector64(block.RTWdata.AFEC_SAMx7_Trig),"Trig" , "")
+%assign ::AFEC_SAMx7_MR_TRGEN = MchpLocal2Global(block,::AFEC_SAMx7_MR_TRGEN ,  MchpVector64(block.RTWdata.AFEC_SAMx7_MR_TRGEN),"MR_TRGEN" , "")
+%assign ::AFEC_SAMx7_ACR_PGAxEN = MchpLocal2Global(block,::AFEC_SAMx7_ACR_PGAxEN ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ACR_PGAxEN),"ACR_PGAxEN" , "")
+%assign ::AFEC_SAMx7_ACR_IBCLT = MchpLocal2Global(block,::AFEC_SAMx7_ACR_IBCLT ,  MchpVector64(block.RTWdata.AFEC_SAMx7_ACR_IBCLT),"ACR_IBCLT" , "")
+%assign AFECx =  MchpVector64(block.RTWdata.AFECx)
+%assign Rin =  CAST("Number",block.RTWdata.Rin)
+%assign MR_TRGEN =  CAST("Number",block.RTWdata.MR_TRGEN)
+%assign MR_TRGSEL =  CAST("Number",block.RTWdata.MR_TRGSEL)
+%assign MR_SLEEP =  CAST("Number",block.RTWdata.MR_SLEEP)
+%assign MR_FWUP =  CAST("Number",block.RTWdata.MR_FWUP)
+%assign MR_FREERUN =  CAST("Number",block.RTWdata.MR_FREERUN)
+%assign MR_PRESCAL =  CAST("Number",block.RTWdata.MR_PRESCAL)
+%assign MR_STARTUP =  CAST("Number",block.RTWdata.MR_STARTUP)
+%assign MR_TRANSFER =  CAST("Number",block.RTWdata.MR_TRANSFER)
+%assign Peripheral_ID =  MchpVector64(block.RTWdata.Peripheral_ID)
+%assign PCER_idx =  MchpVector64(block.RTWdata.PCER_idx)
+%assign IndexOutput = 0
+%foreach iAD = 12
+%foreach AFECn = SIZE(AFECx,1)
+%assign AFECi = int(AFECx[AFECn])
+%if ::AFEC_SAMx7_SEQxR[AFECi*12 + iAD] != -1 				
+%assign iAD_ch = int(::AFEC_SAMx7_SEQxR[AFECi*12 + iAD])
+%if LibBlockOutputSignalConnected(IndexOutput)
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<iAD_ch>);   /* Selects channel %<iAD_ch> to read in AFEC_CDR */
+%<u> = AFEC%<AFECi>_REGS->AFEC_CDR;                        /* Read ADC (AFEC%<AFECi>) Converted value */
+%endif
+%assign IndexOutput = IndexOutput + 1		
+%if ::AFEC_SAMx7_seqParallele[AFECi*12 + iAD] == 1
+%if LibBlockOutputSignalConnected(IndexOutput)
+%assign u = LibBlockOutputSignal(IndexOutput, "", "",0)
+AFEC%<AFECi>_REGS->AFEC_CSELR = AFEC_CSELR_CSEL(%<iAD_ch+6>); 	/* Selects channel %<iAD_ch+6> sampled in parallele to %<iAD_ch> */
+%<u> = AFEC%<AFECi>_REGS->AFEC_CDR;							/* Read ADC (AFEC%<AFECi>) Converted value */
+%endif
+%assign IndexOutput = IndexOutput + 1	
+%endif						
+%endif
+%endforeach 
+%endforeach 
+%foreach AFECn = SIZE(AFECx,1)
+%assign AFECi = CAST("Number",AFECx[AFECn])
+%if (AFEC_SAMx7_TrigSync[AFECi] == 1) || (AFEC_SAMx7_TrigSync[AFECi] == 0)
+AFEC%<AFECi>_REGS->AFEC_CR = AFEC_CR_START(1);          /* trigger AFEC%<AFECi> Start of Conversion */
+%endif
+%endforeach
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function MCHP_MAX0(val) void
+%if val < 0
+%return CAST("Number",0)
+%else
+%return CAST("Number",val)
+%endif
+%endfunction	
+%function int(x) void
+%return CAST("Number",x)
+%endfunction
+%function yScaleFct(y,y_dtId,BlockInput_xx,MaxPeriod_RAW,MaxPeriod_ss,Rshift) void
+%switch y_dtId
+%case 0
+%assign y_CAST = "Real"		
+%break
+%case 1
+%assign y_CAST = "Real32"	
+%break
+%endswitch 		
+%switch Rshift
+%case 0
+%assign RshiftMult = 1
+%break
+%default
+%assign RshiftMult = 1.0/(1U << Rshift)
+%break
+%endswitch
+%switch BlockInput_xx
+%case 1		
+%if Rshift > 0
+%assign yScale = "(%<y> >> %<Rshift>)"
+%else
+%assign yScale = y
+%endif
+%break
+%case 10	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW * RshiftMult) >  ))"
+%break
+%case 11	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, 0.5*MaxPeriod_RAW * RshiftMult) >  +  %< CAST(y_CAST, 0.5*MaxPeriod_RAW*RshiftMult) >  ))"
+%break
+%case 12	
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW*RshiftMult/MaxPeriod_ss) >  ))"
+%break
+%endswitch
+%return yScale
+%endfunction

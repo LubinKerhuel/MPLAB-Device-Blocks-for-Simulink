@@ -1,0 +1,322 @@
+
+%include "MCHP_UART_Tx_SAMx5_FunUtils.tlc"
+%assign ::MCHP_UART_Pass = [0,0,0,0,0,0,0,0]
+%function MCHP_UART_Config_Tx_Interrupt(block,system) Output 	
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = UART_Tx_get_UART_NAME(block)
+%assign nUART = CAST("Number",block.RTWdata.nUART)	
+%switch UARTRef-1	
+%case 0		
+%case 1	
+%if nUART > 6	
+%assign INTERRUPT_RxTx_name = "SERCOM%<UARTRef-1>_%<UARTRef-1+6>"
+%else
+%assign INTERRUPT_RxTx_name = "SERCOM%<UARTRef-1>"	
+%endif
+%break
+%case 2
+%case 3
+%case 4
+%case 5
+%assign INTERRUPT_RxTx_name = "SERCOM%<UARTRef-1>"	
+%break
+%case 6
+%case 7
+%assign INTERRUPT_RxTx_name = "SERCOM%<UARTRef-1-6>_%<UARTRef-1>"		
+%break	
+%default
+%error("UART SERCOM%<UARTRef-1> is out of range")
+%endswitch
+%assign TX_IMPLEMENTATION_VECT = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION_VECT[UARTRef-1]		
+%if TX_IMPLEMENTATION == 2
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign TX_INT_PRIORITY = CAST("Number",block.RTWdata.TX_INT_PRIORITY)
+%assign TX_BufferSize = CAST("Number",block.RTWdata.TX_CIRCULAR_SIZE)
+%endif
+%assign RX_IMPLEMENTATION_VECT = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION_VECT[UARTRef-1]		
+%if RX_IMPLEMENTATION == 2
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign RX_INT_PRIORITY = CAST("Number",block.RTWdata.RX_INT_PRIORITY)
+%assign RX_BufferSize = CAST("Number",block.RTWdata.RX_CIRCULAR_SIZE)
+%endif
+%if nUART > 6
+%switch UARTRef-1
+%case 0
+%case 1
+%if (TX_IMPLEMENTATION_VECT[UARTRef-1+6] == 2) || (RX_IMPLEMENTATION_VECT[UARTRef-1+6] == 2)
+%assign ::MCHP_UART_Pass[UARTRef-1] = ::MCHP_UART_Pass[UARTRef-1] + 1
+%assign ::MCHP_UART_Pass[UARTRef-1+6] = ::MCHP_UART_Pass[UARTRef-1]
+%endif
+%break
+%case 6
+%case 7
+%if (TX_IMPLEMENTATION_VECT[UARTRef-1] == 2) || (RX_IMPLEMENTATION_VECT[UARTRef-1] == 2)
+%assign ::MCHP_UART_Pass[UARTRef-1] = ::MCHP_UART_Pass[UARTRef-1] + 1
+%assign ::MCHP_UART_Pass[UARTRef-1+6] = ::MCHP_UART_Pass[UARTRef-1]
+%endif
+%break
+%endswitch
+%endif
+%if (::MCHP_UART_Pass[UARTRef-1] == 0) || (::MCHP_UART_Pass[UARTRef-1] == 2)	
+%openfile dspicfun = "MCHP_%<UART_NAME>_Interrupt.c"		
+#include <stdlib.h>
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+%endif
+%if TX_IMPLEMENTATION == 2
+%openfile buffer
+/* Declare %<UART_NAME> Tx Circular Buffer Structure */
+#define Tx_BUFF_SIZE_%<UART_NAME> (%<TX_BufferSize>)    
+typedef struct MCHP_%<UART_NAME>_TxStr
+{
+volatile uint8_T buffer[Tx_BUFF_SIZE_%<UART_NAME>];			/* Size Rx_BUFF_SIZE_%<UART_NAME> is %<TX_BufferSize> */
+volatile uint_T  tail;                                          /* tail is the index for the next value to be read from the Circular buffer */				
+volatile uint_T  head;                                          /* head is the index for the next value to be written into the Circular buffer */
+} MCHP_%<UART_NAME>_TxStr;
+%closefile buffer
+%<LibCacheTypedefs(buffer)>		
+%openfile buffer
+/* Declare %<UART_NAME> Tx Circular Buffer Structure */
+extern MCHP_%<UART_NAME>_TxStr MCHP_%<UART_NAME>_Tx;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%switch ::MCHP_UART_Pass[UARTRef-1]
+%case 2			    	
+%switch UARTRef-1
+%case 0
+%case 6
+%<::SERCOM0_partialInterrupt_0>
+%assign ::SERCOM0_partialInterrupt_0 = ""
+%break
+%case 1
+%case 7
+%<::SERCOM1_partialInterrupt_0>
+%assign ::SERCOM1_partialInterrupt_0 = ""
+%break
+%endswitch		    			    	
+%case 0
+/* Declare %<UART_NAME> Tx Circular Buffer Structure */
+MCHP_%<UART_NAME>_TxStr MCHP_%<UART_NAME>_Tx = { .head = 0, .tail = 0 };	/* %<UART_NAME> Tx FIFO */
+%break
+%case 1		    	
+%openfile  buffer
+/* Declare %<UART_NAME> Tx Circular Buffer Structure */
+MCHP_%<UART_NAME>_TxStr MCHP_%<UART_NAME>_Tx = { .head = 0, .tail = 0 };	/* %<UART_NAME> Tx FIFO */
+%closefile buffer				    	
+%switch UARTRef-1
+%case 0
+%case 6
+%assign ::SERCOM0_partialInterrupt_0 = buffer
+%break
+%case 1
+%case 7
+%assign ::SERCOM1_partialInterrupt_0 = buffer
+%break
+%endswitch		    	
+%endswitch
+%endif
+%if RX_IMPLEMENTATION == 2
+%openfile buffer
+/* Declare UART%<UARTRef> Rx Circular Buffer Structure */
+#define Rx_BUFF_SIZE_%<UART_NAME> (%<RX_BufferSize>)
+typedef struct MCHP_%<UART_NAME>_RxStr{
+volatile uint8_T buffer[Rx_BUFF_SIZE_%<UART_NAME>];			/* Size Rx_BUFF_SIZE_%<UART_NAME> is %<RX_BufferSize> */
+volatile uint_T  tail;					/* tail is the index for the next value to be written into the Circular buffer */
+volatile uint_T  head;					/* head is the index for the next value to be read from the Circular buffer */ 
+}  MCHP_%<UART_NAME>_RxStr;
+/* To read the UART%<UARTRef> Rx Circular with a custom code: read the next value: buffer[head], then increment head index by 1 modulo Rx_BUFF_SIZE_%<UART_NAME> (=%<RX_BufferSize>).
+code example:			
+if %<URXNotEmpty(block)>
+if (MCHP_%<UART_NAME>_Rx.tail != MCHP_%<UART_NAME>_Rx.head)	{  		// is buffer not empty ?
+output = (uint8_T) MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.head ++];     // Read one char 	   	
+MCHP_%<UART_NAME>_Rx.head &= (Rx_BUFF_SIZE_%<UART_NAME>-1); 	// modulo : use a simple bitewise "and" operator as <Rx_BUFF_SIZE_%<UART_NAME>> is a power of 2 			
+}
+*/ 	
+%closefile buffer
+%<LibCacheTypedefs(buffer)>	
+%openfile buffer
+extern MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%switch ::MCHP_UART_Pass[UARTRef-1]
+%case 2			    	
+%switch UARTRef-1
+%case 0
+%case 6
+%<::SERCOM0_partialInterrupt_0>
+%assign ::SERCOM0_partialInterrupt_0 = ""
+%break
+%case 1
+%case 7
+%<::SERCOM1_partialInterrupt_0>
+%assign ::SERCOM1_partialInterrupt_0 = ""
+%break
+%endswitch		    			    	
+%case 0
+MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx = { .head = 0, .tail = 0}; /* %<UART_NAME> Rx FIFO */
+%break
+%case 1		    	
+%openfile  buffer
+MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx = { .head = 0, .tail = 0}; /* %<UART_NAME> Rx FIFO */
+%closefile buffer				    	
+%switch UARTRef-1
+%case 0
+%case 6
+%assign ::SERCOM0_partialInterrupt_0 = buffer
+%break
+%case 1
+%case 7
+%assign ::SERCOM1_partialInterrupt_0 = buffer
+%break
+%endswitch		    	
+%endswitch
+%endif
+%if (::MCHP_UART_Pass[UARTRef-1] == 0) || (::MCHP_UART_Pass[UARTRef-1] == 1)			
+/* The unique SERCOM interrupt implement both Rx and Tx */
+void %<INTERRUPT_RxTx_name>_Handler(void)
+{             	
+%<MCHP_InterruptProlog()>
+%<MCHP_ProfileMCU("enter")>		
+%endif
+%openfile buffer
+%if RX_IMPLEMENTATION == 2
+/* Handle Rx interrupt */	
+%if TX_IMPLEMENTATION == 2 || (::MCHP_UART_Pass[UARTRef-1] > 0)
+/* Handle UART Rx Interrupt only when it is activated, check SERCOM RXC interrupt */
+if (0U != (SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_RXC_Msk ))				
+%endif
+{
+uint_T Tmp;
+Tmp = ~(MCHP_%<UART_NAME>_Rx.tail - MCHP_%<UART_NAME>_Rx.head);		/* head - tail - 1 */ 
+Tmp &= (Rx_BUFF_SIZE_%<UART_NAME>-1);	/* Tmp =  (head - tail - 1) modulo buffersize Rx_BUFF_SIZE_%<UART_NAME>) ; tmp <~ Rx_BUFF_SIZE_%<UART_NAME> - (head - tail) - 1*/			
+while %<URXNotEmpty(block)>
+{
+if (Tmp--) {	
+MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.tail] = (uint8_T) %<UART_Rx_ReadRegister(block)>;
+MCHP_%<UART_NAME>_Rx.tail = (MCHP_%<UART_NAME>_Rx.tail+1) & (Rx_BUFF_SIZE_%<UART_NAME>-1);
+} else {
+uint8_T a;
+do a = %<UART_Rx_ReadRegister(block)>;
+while %<URXNotEmpty(block)>;
+break;
+}
+}
+%<UART_Rx_TestAndClearErrors(block)>			 				
+}	
+%endif
+%closefile buffer
+%switch ::MCHP_UART_Pass[UARTRef-1]
+%case 2			    	
+%switch UARTRef-1
+%case 0
+%case 6
+%<::SERCOM0_partialInterrupt_Rx>					
+%break
+%case 1
+%case 7
+%<::SERCOM1_partialInterrupt_Rx>
+%break
+%endswitch		    			    	
+%case 0
+%<buffer>
+%break
+%case 1		    				    	
+%switch UARTRef-1
+%case 0
+%case 6
+%assign ::SERCOM0_partialInterrupt_Rx = buffer
+%break
+%case 1
+%case 7
+%assign ::SERCOM1_partialInterrupt_Rx = buffer
+%break
+%endswitch		    	
+%endswitch			 	
+%openfile buffer
+%if TX_IMPLEMENTATION == 2
+/* Handle Tx interrupt */			
+/* Interrupt SERCOM %<UARTRef-1> 0: (DRE) when buffer has one empty space to write */
+/* Interrupt SERCOM %<UARTRef-1> 1: (TXC) when all values have been sent and buffer is empty */
+%if RX_IMPLEMENTATION == 2 	 || (::MCHP_UART_Pass[UARTRef-1] > 0)
+/* Handle UART Tx Interrupt only when it is activated, check SERCOM DRE & TXC interrupts */
+if (0U != (SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENSET & (SERCOM_USART_INT_INTENSET_DRE_Msk | SERCOM_USART_INT_INTENSET_TXC_Msk) ))
+%endif
+{
+uint_T LocalHead;
+LocalHead = MCHP_%<UART_NAME>_Tx.head;	/* Head is a volatile variable. Use local variable to speed-up execution */
+%assign ClosureUART_HALF_DUPLEX_MODE = ""
+%if UART_HALF_DUPLEX_MODE == 1
+if (MCHP_%<UART_NAME>_Tx.tail == LocalHead)
+{			
+uint32_T tmp_reg;
+tmp_reg = SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_CTRLB;
+tmp_reg &= ~(uint32_T) SERCOM_USART_INT_CTRLB_TXEN_Msk; 		/* Disable Tx */
+tmp_reg |= SERCOM_USART_INT_CTRLB_RXEN_Msk; 				/* Enable Rx */
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_CTRLB = tmp_reg; /* Write back UART setting */		
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENCLR = (SERCOM_USART_INT_INTENCLR_DRE_Msk | SERCOM_USART_INT_INTENCLR_TXC_Msk); /* Disable Tx Interrupt */																	
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTFLAG = SERCOM_USART_INT_INTFLAG_TXC_Msk; 		/* Clear interrupt flag required */					
+}
+else
+{
+%assign ClosureUART_HALF_DUPLEX_MODE = "}"
+%endif
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTFLAG = SERCOM_USART_INT_INTFLAG_TXC_Msk; 		/* Clear interrupt flag */	
+while ( ((SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTFLAG) & SERCOM_USART_INT_INTFLAG_DRE_Msk) && (MCHP_%<UART_NAME>_Tx.tail != LocalHead) ) /* while Tx buffer is not full */
+{ 												        	
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_DATA = MCHP_%<UART_NAME>_Tx.buffer[LocalHead];
+LocalHead = (LocalHead + 1) & (Tx_BUFF_SIZE_%<UART_NAME> - 1);            			
+}			
+MCHP_%<UART_NAME>_Tx.head = LocalHead; /* Push back volatile variable */		
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENCLR = SERCOM_USART_INT_INTENCLR_DRE_Msk; /* Disable Tx DRE Interrupt */
+%if UART_HALF_DUPLEX_MODE == 0
+if (MCHP_%<UART_NAME>_Tx.tail != LocalHead)			
+%endif
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENSET = SERCOM_USART_INT_INTENSET_TXC_Msk; /* Enable Tx TXC Interrupt */
+%if UART_HALF_DUPLEX_MODE == 0
+else
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTENCLR = SERCOM_USART_INT_INTENCLR_TXC_Msk; /* Disable Tx Interrupt */
+%endif
+%<ClosureUART_HALF_DUPLEX_MODE>	
+}
+%endif 
+%closefile buffer			 	
+%switch ::MCHP_UART_Pass[UARTRef-1]
+%case 2			    	
+%switch UARTRef-1
+%case 0
+%case 6
+%<::SERCOM0_partialInterrupt_Tx>					
+%break
+%case 1
+%case 7
+%<::SERCOM1_partialInterrupt_Tx>
+%break
+%endswitch		    			    	
+%case 0
+%<buffer>
+%break
+%case 1		    				    	
+%switch UARTRef-1
+%case 0
+%case 6
+%assign ::SERCOM0_partialInterrupt_Tx = buffer
+%break
+%case 1
+%case 7
+%assign ::SERCOM1_partialInterrupt_Tx = buffer
+%break
+%endswitch		    	
+%endswitch	
+%if (::MCHP_UART_Pass[UARTRef-1] == 0) || (::MCHP_UART_Pass[UARTRef-1] == 1)				
+%<MCHP_ProfileMCU("exitUpdate")> 					
+%<MCHP_InterruptEpilog()>
+} /* End of %<INTERRUPT_RxTx_name> Handler */
+%endif
+%closefile dspicfun
+%endfunction

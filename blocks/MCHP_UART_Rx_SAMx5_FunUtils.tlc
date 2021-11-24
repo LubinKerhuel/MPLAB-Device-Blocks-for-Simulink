@@ -1,0 +1,24 @@
+
+%function UART_Rx_get_UART_NAME(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "USART%<UARTRef-1>"
+%return UART_NAME
+%endfunction	
+%function URXNotEmpty(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "(0U != (SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_RXC_Msk))"
+%endfunction
+%function URXEmpty(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "(0U == (SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_RXC_Msk))"
+%endfunction
+%function UART_Rx_ReadRegister(block) void
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%return "SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_DATA"
+%endfunction
+%function UART_Rx_TestAndClearErrors(block) Output
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_STATUS = SERCOM%<UARTRef-1>_REGS->USART_INT.SERCOM_STATUS; /* Clear error flags by writing 1 on err bits */                  		 	
+%endfunction
+%function UART_Rx_CircularBuffer_flushBuffer(block) Output
+%endfunction

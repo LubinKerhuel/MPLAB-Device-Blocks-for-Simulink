@@ -1,0 +1,39 @@
+
+%if ::MCHP_NumI2CBlocks[I2CRef] == 1	
+if (MCHP_I2C%<I2CRef>_State == 0) /* Free for next sequence ?*/  
+%else 
+if (MCHP_I2C%<I2CRef>%<I2C_Id>_Request == 0)	/* Last I2C sequence from this block is finished (not in the queue ?) */
+%endif
+{
+%include "MCHP_BUS_I2C_MASTER_BlkOut.tlc"
+%include "MCHP_BUS_I2C_MASTER_BlkIn.tlc"
+%if ::MCHP_NumI2CBlocks[I2CRef] == 1	
+MCHP_I2C%<I2CRef>_Request ++;
+MCHP_I2C%<I2CRef>_State = %<StartSequenceState>;	
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+} else if (MCHP_I2C%<I2CRef>_Request > 3)
+{
+%<I2C_Reset(I2CRef)>	
+%<Set_SDA_SCL_DIT_Pin_Output(PIN_SDA,PIN_SCL)>
+MCHP_I2C%<I2CRef>_Request = 0;
+MCHP_I2C%<I2CRef>_State  = 1;	/* try to Reset I2C BUS */
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+} else 	MCHP_I2C%<I2CRef>_Request++;
+%else
+MCHP_I2C%<I2CRef>%<I2C_Id>_Request ++;
+MCHP_I2C%<I2CRef>_Queue.buffer[MCHP_I2C%<I2CRef>_Queue.head] = 	%<StartSequenceState>;
+if (MCHP_I2C%<I2CRef>_Queue.head >= %<::MCHP_NumI2CBlocks[I2CRef]>)	/* There are %<::MCHP_NumI2CBlocks[I2CRef]> blocks I2C%<I2CRef>, max idx for queue is %<::MCHP_NumI2CBlocks[I2CRef]> */
+MCHP_I2C%<I2CRef>_Queue.head = 0;
+else
+MCHP_I2C%<I2CRef>_Queue.head ++;
+if (MCHP_I2C%<I2CRef>_State == 0)
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+} else if (MCHP_I2C%<I2CRef>%<I2C_Id>_Request > 3)
+{
+%<I2C_Reset(I2CRef)>
+%<Set_SDA_SCL_DIT_Pin_Output(PIN_SDA,PIN_SCL)>
+MCHP_I2C%<I2CRef>%<I2C_Id>_Request = 0;	/* This block might still be in the queue provided another I2C block stuck the bus, Next block execution will however add another Request */
+MCHP_I2C%<I2CRef>_State  = 1;	/* try to Reset I2C BUS */
+%<I2C_Trig_Interrupt(I2CRef,"Force I2C%<I2CRef> Master Interrupt")>
+} else MCHP_I2C%<I2CRef>%<I2C_Id>_Request++;
+%endif

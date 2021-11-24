@@ -1,0 +1,298 @@
+
+%function MCHP_SetOutputBit(pinRef,Value,COMMENT) void
+%assign L = STRINGOF([%<(pinRef / 32) + 65>])
+%assign PORTidx = CAST("Number",pinRef / 32)
+%assign N = pinRef % 32	
+%if Value == 1
+%assign retVal = "PORT_REGS->GROUP[%<PORTidx>].PORT_OUTSET = %< MchpHex( 1U << N)>; /* Set pin %<L>%<N>; %<COMMENT> */"
+%elseif Value == 0
+%assign retVal = "PORT_REGS->GROUP[%<PORTidx>].PORT_OUTCLR = %< MchpHex( 1U << N)>;  /* Clear pin %<L>%<N>; %<COMMENT> */"
+%else
+%assign retVal = ""
+%error Value %<Value> different from 0 or 1 within function MCHP_SetOutputBit
+%endif
+%return retVal
+%endfunction
+%function MCHP_ToggleOutputBit(pinRef,COMMENT) Output		
+%assign L = STRINGOF([%<(pinRef / 32) + 65>])
+%assign PORTidx = CAST("Number",pinRef / 32)
+%assign N = pinRef % 32	
+PORT_REGS->GROUP[%<PORTidx>].PORT_OUTTGL = %< MchpHex( 1U << N)>;	 /* Toggle pin R%<L>%<N>  %<COMMENT> */	
+%endfunction
+%function MCHP_GoToSleepMode() Output
+/* To be completed - Power Save mode */
+%endfunction
+%function MCHP_StartTimer(RefTimer) Output
+/* To be completed -  (re) start Timer */	
+%endfunction
+%function MCHP_StopTimer(RefTimer) Output
+/* To be completed - 	/* Stop Timer */
+%endfunction
+%function DSB() Output
+__DSB(); /* Data Synchronisation Barrier */
+%endfunction
+%function ISB() Output
+__ISB(); /* Instruction Synchronisation Barrier */
+%endfunction	
+%function Mchp_NEAR_MEM() void
+%return ""
+%endfunction
+%function MchpDMA_MemoryAttribute(DMASize) void
+%assign MEMORY_DMA_ATTRIBUTE = ""
+%return MEMORY_DMA_ATTRIBUTE
+%endfunction
+%function MchpDMA_MemoryQualifier() void
+%assign MEMORY_DMA_QUALIFIER = ""
+%return MEMORY_DMA_QUALIFIER
+%endfunction
+%function MCHP_InterruptProlog() Output
+%<ISB()>
+%<DSB()>
+%endfunction
+%function MCHP_InterruptEpilog() Output
+%<DSB()>
+%endfunction
+%function Mchp_Interrupt_ARM(fpuSave,VectorName,blk)
+%assign INTERRUPT = "void %<VectorName>_Handler(void)"
+%if ISEMPTY(blk)
+%assign blk = -1
+%endif
+%assign Err = ""
+%if ISFIELD(::CompiledModel.MCHP,VectorName)
+%assign Err = ::CompiledModel.MCHP.%<VectorName>
+%else
+%createrecord INTERRUPT_toAdd { %<VectorName> blk }
+%mergerecord ::CompiledModel.MCHP INTERRUPT_toAdd		
+%endif
+%if ISEMPTY(Err) != 1	
+%assign Msg = "Interrupt Vector %<VectorName> is used more than once in this model."
+%if TYPE(blk) == "Scope"
+%<LibBlockReportError(blk,Msg)>			
+%elseif TYPE(Err) == "Scope"		
+%<LibBlockReportError(Err,Msg)>
+%else
+%<LibReportError(Msg)>
+%endif
+%endif
+%return INTERRUPT
+%endfunction
+%function MCHP_SFR_direct(SFR) void
+%error("SFR_direct should not be used with SAME5x chip")
+%endfunction
+%function MCHP_SFR(SFR,Value,Comment) void
+%error("SFR should not be used with SAME5x chip")
+/* Debug: SFR attempt to access %<SFR>, , %<Value> , %<Comment> */
+%endfunction
+%function MCHP_ConfigPins() void
+%openfile tmpFcnConfigPin
+%assign PINIO_REG_PMUX = 		MchpVector64(RTWGenSettings.PINIO_REG_PMUX)
+%assign PINIO_DIR = 		MchpVector64(RTWGenSettings.PINIO_DIR)
+%assign PINIO_DIRSET = 		MchpVector64(RTWGenSettings.PINIO_DIRSET)
+%assign PINIO_DIRCLR = 		MchpVector64(RTWGenSettings.PINIO_DIRCLR)
+%assign PINIO_OUT = 			MchpVector64(RTWGenSettings.PINIO_OUT)
+%assign PINIO_OUTSET = 			MchpVector64(RTWGenSettings.PINIO_OUTSET)
+%assign PINIO_OUTCLR = 			MchpVector64(RTWGenSettings.PINIO_OUTCLR)
+%assign PINIO_COUTINUOUS_SAMPLING = 	MchpVector64(RTWGenSettings.PINIO_COUTINUOUS_SAMPLING)
+%assign PINIO_OUT_STRENGTH = 	MchpVector64(RTWGenSettings.PINIO_OUT_STRENGTH)
+%assign PINIO_PULLEN = 			MchpVector64(RTWGenSettings.PINIO_PULLEN)
+%assign PINIO_INPUT_ENABLE = 	MchpVector64(RTWGenSettings.PINIO_INPUT_ENABLE)
+%assign PINIO_PMUX_ENABLE = 	MchpVector64(RTWGenSettings.PINIO_PMUX_ENABLE)
+%foreach iPort = 14
+%assign L = STRINGOF([%<iPort> + 65])
+%if PINIO_OUTCLR[iPort] != 0
+PORT_REGS->GROUP[%<iPort>].PORT_OUTCLR = %<MchpHex(PINIO_OUTCLR[iPort])>;
+%endif
+%if PINIO_OUTSET[iPort] != 0
+PORT_REGS->GROUP[%<iPort>].PORT_OUTSET = %<MchpHex(PINIO_OUTSET[iPort])>;
+%endif
+%endforeach
+%foreach iPort = 14
+%assign L = STRINGOF([%<iPort> + 65])
+%if PINIO_DIRCLR[iPort] != 0
+PORT_REGS->GROUP[%<iPort>].PORT_DIRCLR = %<MchpHex(PINIO_DIRCLR[iPort])>; /* Port %<L> Input Pins */
+%endif
+%endforeach
+%foreach iPort = 14
+%assign L = STRINGOF([%<iPort> + 65])
+%assign tmp = 0
+%assign txt = ""
+%foreach iPin = 32
+%if PINIO_COUTINUOUS_SAMPLING[iPort*32+iPin] == 1
+%assign tmp = tmp + (1U << iPin)
+%assign txt = txt + "%<iPin> "			
+%endif
+%endforeach
+%if tmp > 0		
+PORT_REGS->GROUP[%<iPort>].PORT_CTRL = %<MchpHex(tmp)>; /* Port %<L>[%<txt>] Sampled Pins */
+%endif
+%endforeach
+%assign flag = 0
+%openfile buffer_tmpreg
+%assign port_txt_defaultSettings = ""
+%foreach iPort = 14U
+%assign L = STRINGOF([%<iPort> + 65])
+%foreach iHL = 2U		
+%assign FlagDone = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+%foreach iPin16 = 16U
+%assign t_PMUX = 	PINIO_REG_PMUX[iPort*32+iHL*16+iPin16]
+%assign t_PMUX_EN = PINIO_PMUX_ENABLE[iPort*32+iHL*16+iPin16]
+%assign t_PINIO_OUT_STRENGTH = 	PINIO_OUT_STRENGTH[iPort*32+iHL*16+iPin16]
+%assign t_PINIO_PULLEN = 	PINIO_PULLEN[iPort*32+iHL*16+iPin16]
+%assign t_PINIO_INPUT_ENABLE = 	PINIO_INPUT_ENABLE[iPort*32+iHL*16+iPin16]
+%if (t_PINIO_INPUT_ENABLE >= 0)	
+%assign PINMASK = 0U
+%assign txt = ""
+%assign ntxt = 0
+%assign spacer = ""
+%foreach iG = 16-iPin16
+%if (FlagDone[iPin16+iG] == 0) && ...
+(t_PMUX == PINIO_REG_PMUX[iPort*32+iHL*16+iPin16+iG] ) && ...
+(t_PMUX_EN == PINIO_PMUX_ENABLE[iPort*32+iHL*16+iPin16+iG]) && ...
+(t_PINIO_OUT_STRENGTH == 	PINIO_OUT_STRENGTH[iPort*32+iHL*16+iPin16+iG]) && ...
+(t_PINIO_PULLEN == 	PINIO_PULLEN[iPort*32+iHL*16+iPin16+iG]) && ...
+(t_PINIO_INPUT_ENABLE == 	PINIO_INPUT_ENABLE[iPort*32+iHL*16+iPin16+iG])
+%assign PINMASK = PINMASK + (1U << (iPin16+iG))
+%assign FlagDone[iPin16+iG] = 1
+%assign txt = txt + spacer + "%<iHL * 16 + iPin16+iG>"	
+%assign spacer = " "
+%assign ntxt = ntxt + 1
+%endif
+%endforeach				
+%if PINMASK != 0 
+%if ntxt == 1
+%assign port_txt = "%<L>%<txt>"
+%else
+%assign port_txt = "%<L>[%<txt>]"	
+%endif				
+%if !( (t_PMUX == 0) && (t_PMUX_EN == 0 ) && (t_PINIO_OUT_STRENGTH == 0) && (t_PINIO_OUT_STRENGTH == 0) && (t_PINIO_PULLEN == 0) && (t_PINIO_INPUT_ENABLE == 0) ) 
+/* %<port_txt> settings */
+tmp_WRCONFIG = %<MchpHex(PINMASK + (iHL << 31) + (1U << 30) )>;	/* configure pins %<port_txt>  */
+%if t_PMUX_EN == 1
+%assign P = STRINGOF([%<CAST("Number",t_PMUX+65)>])
+tmp_WRCONFIG |= %<MchpHex( (1U << 16) + (1U << 28))> ;	/* enable %<port_txt> mapping (PMUXE/O)*/
+tmp_WRCONFIG |= %<MchpHex( t_PMUX )> << 24 ;	/* %<port_txt> Target Peripheral Function %<P> */
+%endif
+%if (t_PINIO_OUT_STRENGTH == 1)
+tmp_WRCONFIG |= %<MchpHex( 1U << 22)> ;	/* DRVSTR: high strenght output */
+%endif
+%if (t_PINIO_PULLEN == 1)
+tmp_WRCONFIG |= %<MchpHex( 1U << 18)> ;	/* PULLEN: Pull-up/down enabled */
+%endif
+%if (t_PINIO_INPUT_ENABLE == 1)
+tmp_WRCONFIG |= %<MchpHex( 1U << 17 )> ;	/* INEN: input enabled */
+%endif
+PORT_REGS->GROUP[%<iPort>].PORT_WRCONFIG = tmp_WRCONFIG; /* Write Config  */
+%assign flag = 1
+%else
+%assign port_txt_defaultSettings = port_txt_defaultSettings + " " + port_txt						
+%endif
+%endif
+%endif 
+%endforeach
+%endforeach
+%endforeach
+%closefile buffer_tmpreg
+/* ------- Configure pin groups ------- */
+%if !ISEMPTY(port_txt_defaultSettings)
+/* Ports%<port_txt_defaultSettings> use default settings */
+%endif	    	
+%if flag	
+{
+uint32_T tmp_WRCONFIG;
+%<buffer_tmpreg>
+}
+%endif
+/* ------- Set pin Output Direction ------- */
+%foreach iPort = 14
+%assign L = STRINGOF([%<iPort> + 65])
+%if PINIO_DIRSET[iPort] != 0
+PORT_REGS->GROUP[%<iPort>].PORT_DIRSET = %<MchpHex(PINIO_DIRSET[iPort])>; /* Port %<L> Output Pins */
+%endif
+%endforeach
+%closefile tmpFcnConfigPin
+%return tmpFcnConfigPin
+%endfunction
+%function MCHP_RemoveCauseOfInterrupt(InterruptPrefix,InterruptNumber,ChipIdN) Output
+%endfunction
+%function Enable_Peripheral_Clock(PERIPHERAL) Output
+%if ::isPIC32C
+%switch PERIPHERAL
+%case "HPB0"
+%assign PERIPHERAL = "APBA"
+%break
+%case "HPB1"
+%assign PERIPHERAL = "APBB"
+%break
+%case "HPB2"
+%assign PERIPHERAL = "APBC"
+%break
+%endswitch
+%endif
+%switch PERIPHERAL
+%case "HPB0"
+%case "APBA"
+%case "HPB1"
+%case "APBB"			
+%case "HPB2"
+%case "APBC"
+%case "DSU"
+%case "HMATRIXHS"
+%case "NVMCTRL"
+%case "HSRAM"
+%case "DMAC"
+%case "CAN0"
+%case "CAN1"
+%case "PAC"
+%case "NVMCTRL_PICACHU"
+%case "MCLK_AHBMASK_DIVAS"
+MCLK_REGS->MCLK_AHBMASK |= MCLK_AHBMASK_%<PERIPHERAL>_Msk; /* Enable peripheral clock */
+%break		
+%case "PAC"
+%case "PM"
+%case "MCLK"
+%case "RSTC"
+%case "OSCCTRL"
+%case "OSC32KCTRL"
+%case "SUPC"
+%case "GCLK"
+%case "WDT"
+%case "RTC"
+%case "EIC"
+%case "FREQM"
+%case "TSENS"
+MCLK_REGS->MCLK_APBAMASK |= MCLK_APBAMASK_%<PERIPHERAL>_Msk; /* Enable peripheral clock */
+%break				
+%case "PORT"
+%case "DSU"
+%case "NVMCTRL"
+%case "HMATRIXHS"
+MCLK_REGS->MCLK_APBBMASK |= MCLK_APBBMASK_%<PERIPHERAL>_Msk; /* Enable peripheral clock */
+%break
+%case "EVSYS"
+%case "SERCOM0"
+%case "SERCOM1"
+%case "SERCOM2"
+%case "SERCOM3"
+%case "SERCOM4"
+%case "SERCOM5"
+%case "TCC0"
+%case "TCC1"
+%case "TCC2"
+%case "TC0"
+%case "TC1"
+%case "TC2"
+%case "TC3"
+%case "TC4"
+%case "ADC0"
+%case "ADC1"
+%case "SDADC"
+%case "AC"
+%case "DAC"
+%case "PTC"
+%case "CCL"
+MCLK_REGS->MCLK_APBCMASK |= MCLK_APBCMASK_%<PERIPHERAL>_Msk; /* Enable peripheral clock */
+%break
+%default
+%error(PERIPHERAL + " peripheral clock not found (internal error).")
+%endswitch
+%endfunction

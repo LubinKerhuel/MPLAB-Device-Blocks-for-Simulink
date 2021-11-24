@@ -1,0 +1,1880 @@
+Model {
+  Name			  "Microstick_II_33EP128MC202_CustomCFunCall"
+  Version		  7.8
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.174"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1252"
+  PreLoadFcn		  "disp('Start DefineBUS_Struct.m script');\ncd clib\nDefineBUS_Struct;\ncd ..\n"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  FPTRunName		  "Run 1"
+  MaxMDLFileLineLength	  120
+  Created		  "Mon Aug 13 13:31:49 2012"
+  Creator		  "Lubin Kerhuel"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Lubin Kerhuel"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Mon Mar 21 21:25:55 2016"
+  RTWModifiedTimeStamp	  380496287
+  ModelVersionFormat	  "1.%<AutoIncrement:174>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  on
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "disabled"
+  WideLines		  on
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  on
+  ShowDesignRanges	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.11.1"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.11.1"
+	  StartTime		  "0.0"
+	  StopTime		  "1"
+	  AbsTol		  "auto"
+	  FixedStep		  "0.005"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  ConcurrentTasks	  off
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.11.1"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  off
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  off
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.11.1"
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  on
+	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  on
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode on
+	  LifeSpan		  "1"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.11.1"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "warning"
+	  MultiTaskCondExecSysMsg "none"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Enable All"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorOnBusTreatedAsVector"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "error"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.11.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    12
+	    Cell		    "ProdHWDeviceType"
+	    Cell		    "ProdEqTarget"
+	    Cell		    "ProdBitPerChar"
+	    Cell		    "ProdBitPerShort"
+	    Cell		    "ProdBitPerInt"
+	    Cell		    "ProdBitPerLong"
+	    Cell		    "ProdWordSize"
+	    Cell		    "ProdShiftRightIntArith"
+	    Cell		    "ProdEndianess"
+	    Cell		    "ProdIntDivRoundTo"
+	    Cell		    "ProdLargestAtomicInteger"
+	    Cell		    "ProdLargestAtomicFloat"
+	    PropName		    "DisabledProps"
+	  }
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  16
+	  ProdBitPerLong	  32
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  16
+	  ProdLargestAtomicInteger "Integer"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Zero"
+	  ProdEndianess		  "LittleEndian"
+	  ProdWordSize		  16
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "Generic->Custom"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.11.1"
+	  UpdateModelReferenceTargets "Force"
+	  CheckModelReferenceTargetMessage "warning"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Single"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference off
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.11.1"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.11.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "TargetLang"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "MCHP_dsPIC_stf.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "MCHP_dsPIC.tmf"
+	  Description		  "Microchip Embedded Target PIC24 dsPIC30 dsPIC33 (real-time)"
+	  GenerateReport	  on
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  on
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "MCHP_dsPIC_stf_make_rtw_hook"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  CustomInclude		  "./clib\n"
+	  CustomSource		  "myCfun.c"
+	  IncludeHyperlinkInReport on
+	  LaunchReport		  on
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  on
+	  GenerateTraceInfo	  on
+	  GenerateTraceReport	  on
+	  GenerateTraceReportSl	  on
+	  GenerateTraceReportSf	  on
+	  GenerateTraceReportEml  on
+	  GenerateCodeInfo	  off
+	  GenerateCodeMetricsReport off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.11.1"
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses off
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      255
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.STFCustomTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.11.1"
+	      Array {
+		Type			"Cell"
+		Dimension		7
+		Cell			"GenerateSampleERTMain"
+		Cell			"MatFileLogging"
+		Cell			"GRTInterface"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"UtilityFuncGeneration"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"ModelReferenceCompliant"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      "_lib.a"
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary  "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      CodeExecutionProfiling  off
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant off
+	      CompOptLevelCompliant   off
+	      ConcurrentExecutionCompliant off
+	      IncludeMdlTerminateFcn  off
+	      GeneratePreprocessorConditionals "Use local settings"
+	      CombineOutputUpdateFcns on
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     on
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    on
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   off
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      SystemTargetFile	      "MCHP_dsPIC_stf.tlc"
+	      DialogCategory	      0
+	      Array {
+		Type			"Handle"
+		Dimension		1
+		Simulink.ERTTargetCC {
+		  $BackupClass		  "Simulink.TargetCC"
+		  $ObjectID		  12
+		  Version		  "1.12.0"
+		  Array {
+		    Type		    "Cell"
+		    Dimension		    12
+		    Cell		    "GenerateSampleERTMain"
+		    Cell		    "ERTCustomFileTemplate"
+		    Cell		    "MatFileLogging"
+		    Cell		    "GRTInterface"
+		    Cell		    "SupportNonInlinedSFcns"
+		    Cell		    "UtilityFuncGeneration"
+		    Cell		    "IncludeMdlTerminateFcn"
+		    Cell		    "ERTDataHdrFileTemplate"
+		    Cell		    "ERTDataSrcFileTemplate"
+		    Cell		    "ERTHdrFileBannerTemplate"
+		    Cell		    "ERTSrcFileBannerTemplate"
+		    Cell		    "ModelReferenceCompliant"
+		    PropName		    "DisabledProps"
+		  }
+		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
+		  TargetLibSuffix	  "_lib.a"
+		  TargetPreCompLibLocation ""
+		  TargetFunctionLibrary  "ANSI_C"
+		  UtilityFuncGeneration	  "Auto"
+		  ERTMultiwordTypeDef	  "System defined"
+		  CodeExecutionProfiling  off
+		  ERTMultiwordLength	  256
+		  MultiwordLength	  2048
+		  GenerateFullHeader	  on
+		  GenerateSampleERTMain	  off
+		  GenerateTestInterfaces  off
+		  IsPILTarget		  off
+		  ModelReferenceCompliant on
+		  ParMdlRefBuildCompliant off
+		  CompOptLevelCompliant	  off
+		  ConcurrentExecutionCompliant off
+		  IncludeMdlTerminateFcn  off
+		  GeneratePreprocessorConditionals "Use local settings"
+		  CombineOutputUpdateFcns on
+		  CombineSignalStateStructs off
+		  SuppressErrorStatus	  on
+		  ERTFirstTimeCompliant	  off
+		  IncludeFileDelimiter	  "Auto"
+		  ERTCustomFileBanners	  on
+		  SupportAbsoluteTime	  on
+		  LogVarNameModifier	  "rt_"
+		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
+		  SupportNonFinite	  on
+		  SupportComplex	  on
+		  PurelyIntegerCode	  off
+		  SupportContinuousTime	  off
+		  SupportNonInlinedSFcns  on
+		  SupportVariableSizeSignals off
+		  EnableShiftOperators	  on
+		  ParenthesesLevel	  "Nominal"
+		  PortableWordSizes	  off
+		  ModelStepFunctionPrototypeControlCompliant off
+		  CPPClassGenCompliant	  off
+		  AutosarCompliant	  off
+		  GRTInterface		  off
+		  GenerateErtSFunction	  off
+		  CreateSILPILBlock	  "None"
+		  CodeExecutionProfileVariable "executionProfile"
+		  CodeProfilingSaveOptions "SummaryOnly"
+		  GenerateASAP2		  off
+		  ExtMode		  off
+		  ExtModeTransport	  0
+		  ExtModeStaticAlloc	  off
+		  ExtModeStaticAllocSize  1000000
+		  ExtModeTesting	  off
+		  ExtModeMexFile	  "ext_comm"
+		  ExtModeIntrfLevel	  "Level1"
+		  InlinedParameterPlacement "NonHierarchical"
+		  TargetOS		  "BareBoardExample"
+		  MultiInstanceErrorCode  "Error"
+		  RateGroupingCode	  on
+		  RootIOFormat		  "Individual arguments"
+		  RTWCAPISignals	  off
+		  RTWCAPIParams		  off
+		  RTWCAPIStates		  off
+		  RTWCAPIRootIO		  off
+		  ERTSrcFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTHdrFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTDataSrcFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTDataHdrFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTCustomFileTemplate	  "MCHP_main.tlc"
+		  CoverageDialogOpen	  "off"
+		  EnableDataOwnership	  off
+		  SignalDisplayLevel	  10
+		  ParamTuneLevel	  10
+		  GlobalDataDefinition	  "Auto"
+		  DataDefinitionFile	  "global.c"
+		  GlobalDataReference	  "Auto"
+		  ERTFilePackagingFormat  "Modular"
+		  DataReferenceFile	  "global.h"
+		  PreserveExpressionOrder off
+		  PreserveIfCondition	  off
+		  ConvertIfToSwitch	  off
+		  PreserveExternInFcnDecls on
+		  SuppressUnreachableDefaultCases off
+		  EnableUserReplacementTypes off
+		  Array {
+		    Type		    "Struct"
+		    Dimension		    1
+		    MATStruct {
+		    double		    ""
+		    single		    ""
+		    int32		    ""
+		    int16		    ""
+		    int8		    ""
+		    uint32		    ""
+		    uint16		    ""
+		    uint8		    ""
+		    boolean		    ""
+		    int			    ""
+		    uint		    ""
+		    char		    ""
+		    }
+		    PropName		    "ReplacementTypes"
+		  }
+		  MemSecPackage		  "--- None ---"
+		  MemSecDataConstants	  "Default"
+		  MemSecDataIO		  "Default"
+		  MemSecDataInternal	  "Default"
+		  MemSecDataParameters	  "Default"
+		  MemSecFuncInitTerm	  "Default"
+		  MemSecFuncExecute	  "Default"
+		  MemSecFuncSharedUtil	  "Default"
+		  CodeProfilingInstrumentation off
+		}
+		PropName		"Components"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_REF"
+		Value			"33EP128MC202"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"HOST_PLATFORM"
+		Value			"PC"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OPTIM_GCC"
+		Value			" -g -O3 -mconst-in-data"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LDFLAGS"
+		Value			"'-t,--report-mem,-Map=info.map,-cref,--memorysummary,memoryfile.xml'"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__M91449_MCHP_Blockset_blocks_MCHP_dsPIC_stf_1OMF"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "elf"
+		  Value			  1
+		  String		  "coff"
+		}
+		Name			"OMF"
+		Value			"elf"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"ProduceHexOutput"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"AssemblyListing"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCCPATH"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/bin"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LINKER_SCRIPT"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/gld/P3B4A2~1.GLD"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_LIB"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libm-elf.a C:/PROGRA"
+		"~2/MICROC~1/xc16/v1.26/lib/libc-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26"
+		"/lib/libq-dsp-elf.a "
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_INCLUDES"
+		Value			"-IC:/PROGRA~2/MICROC~1/xc16/v1.26/include -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h -IC:/PROGRA~"
+		"2/MICROC~1/xc16/v1.26/support/generic/h"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCC1"
+		Value			"xc16-gcc.exe"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"AR1"
+		Value			"xc16-ar"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"BIN2HEX"
+		Value			"xc16-bin2hex"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OBJDUMP"
+		Value			"xc16-objdump"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_AUTO_FLASH"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_MULTITHREAD_COMPILATION"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PRESCALER"
+		Value			"[1 -1 -1 -1 -1]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PERIOD"
+		Value			"[37507]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_START"
+		Value			"[3]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"RTWGenSettings_txt"
+		Value			"s.RefMasterBlk='Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master';s.ChipIdN='[33  128  202]';s.Ch"
+		"ipIdL1='EP';s.ChipIdL2='MC';s.ChipIdL3='';s.arch3='33E';s.ChipId='33EP128MC202';s.bitFieldsSFR='7';s.ChipRAM='16384'"
+		";s.ChipRAM_XBegin='4096';s.ChipRAM_dma='[-1 -1]';s.FuseConfigTxt='_FOSCSEL( FNOSC_FRC & PWMLOCK_OFF ) ;_FOSC( POSCMD"
+		"_EC & OSCIOFNC_ON & FCKSM_CSECMD ) ;_FWDT( FWDTEN_OFF ) ;_FICD( JTAGEN_OFF ) ;';s.TimeStep_Timer='1';s.TimeStep_Sync"
+		"ADC='-1';s.ADPCFG='1';s.ANSEL_Exist='1';s.ANSEL='[18  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1]';s.TRIS='[65534  64511"
+		"     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1    "
+		" -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1 "
+		"    -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     "
+		"-1     -1     -1     -1     -1     -1]';s.RPOR='[-1 -1 -1 -1  1]';s.RPINR='[-1]';s.PortConfigTxt='';s.CLKDIV='5';s.P"
+		"LLFBD='226';s.SWITCH_OSC='16387';s.PLLRNG='-1';s.MASTER_BusyFlag='-1';s.POWERSAVE='0';s.MIPS='60012857.1429';s.AN_ty"
+		"pe2='0';s.UART_TX_IMPLEMENTATION='[2]';s.UART_RX_IMPLEMENTATION='[0]';s.UART_TX_DMACHANNEL='[0]';"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"EXTMODE_DATA_UPLOAD"
+		Value			off
+	      }
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition     [ 496, 97, 1527, 1029 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    1
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      BusSelector
+      OutputAsBus	      off
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParamMin		      "[]"
+      ParamMax		      "[]"
+      ParamDataTypeStr	      "Inherit: Same as input"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      SFBlockType	      "NONE"
+      Variant		      off
+      GeneratePreprocessorConditionals off
+    }
+  }
+  System {
+    Name		    "Microstick_II_33EP128MC202_CustomCFunCall"
+    Location		    [282, 80, 1634, 1055]
+    Open		    off
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "121"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "120"
+    Block {
+      BlockType		      SubSystem
+      Name		      "Blinking Led A0"
+      SID		      "105"
+      Ports		      []
+      Position		      [615, 190, 695, 225]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Blinking Led A0"
+	Location		[292, 80, 1624, 1055]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"121"
+	Block {
+	  BlockType		  Reference
+	  Name			  "Counter Limited\n0-1 @ 10Hz"
+	  SID			  "102"
+	  Ports			  [0, 1]
+	  Position		  [20, 25, 50, 55]
+	  LibraryVersion	  "1.260"
+	  SourceBlock		  "simulink/Sources/Counter\nLimited"
+	  SourceType		  "Counter Limited"
+	  uplimit		  "1"
+	  tsamp			  ".1"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion"
+	  SID			  "103"
+	  Position		  [105, 23, 180, 57]
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "LED\n(Blinking @ 5Hz)"
+	  SID			  "111"
+	  Ports			  [1]
+	  Position		  [275, 23, 360, 57]
+	  LibraryVersion	  "3.38"
+	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output\nWrite"
+	  SourceType		  "Output driver for Digital Output Pins"
+	  PORT			  "Dynamic Options"
+	  PORT_TXT		  "A   [ 0 : 4 ]"
+	  PIN			  "0"
+	  PACK			  off
+	  SIMULTANEOUS		  off
+	  ORDERING		  "None"
+	  SampleTime		  "-1 "
+	  MCHP_PORT		  "{Digital Out}{DOU}1:1:A0;"
+	  MCHP_MASTERLINK	  "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion"
+	  SrcPort		  1
+	  DstBlock		  "LED\n(Blinking @ 5Hz)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Counter Limited\n0-1 @ 10Hz"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector"
+      SID		      "100"
+      Ports		      [1, 2]
+      Position		      [455, 716, 460, 754]
+      ShowName		      off
+      OutputSignals	      "Val1,Val2"
+      Port {
+	PortNumber		1
+	Name			"<Val1>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"<Val2>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "C Function Call\nCall a function from the library\n(no declaration required)\nMimic an mcu calculat"
+      "ion load"
+      SID		      "108"
+      Ports		      [1]
+      Position		      [295, 842, 455, 898]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
+      SourceType	      "C Function Call"
+      ParseFilesChkbx	      off
+      ListFunctions1	      "Custom Function"
+      Function1		      "extern void __delay_us(unsigned long t_us);"
+      AddHeaderDeclaration    off
+      Function1Type	      "when block is updated (default)"
+      Fct1BlockIn	      "t_us"
+      FctReturnBlockOut	      off
+      DataCollected	      "0"
+      ORDERING		      "None"
+      SampleTime	      "-1"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      PinDigitalInput	      "[]"
+      PinDigitalOutput	      "[]   "
+      PinAnalogInput	      "[]"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "C Function Call\nFunction output is a structure"
+      SID		      "97"
+      Ports		      [2, 1]
+      Position		      [215, 688, 390, 777]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
+      SourceType	      "C Function Call"
+      ParseFilesChkbx	      on
+      ListFunctions1	      "Custom Function"
+      Function1		      "myStruct myFct(unsigned int A, unsigned int B)"
+      AddHeaderDeclaration    on
+      Function1Type	      "when block is updated (default)"
+      Fct1BlockIn	      "A  , B"
+      FctReturnBlockOut	      on
+      DataCollected	      "s.chksm={ '47804-Jul-2014 11:07:09'};s.File1=reshape({ ' unsigned int  myAdd(unsigned int A"
+      ", unsigned int B)','  void  myAdd_ptr(unsigned int n, unsigned int* A, unsigned int* B, unsigned int* C)','  myS"
+      "truct  myFct(unsigned int A, unsigned int B)'},1,3);"
+      ORDERING		      "None"
+      SampleTime	      "-1"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      PinDigitalInput	      "[]"
+      PinDigitalOutput	      "[]   "
+      PinAnalogInput	      "[]"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "C Function Call\nInput vector length is inherited. Output vector must be fixed (in this model)"
+      SID		      "86"
+      Ports		      [3, 1]
+      Position		      [210, 410, 385, 500]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
+      SourceType	      "C Function Call"
+      ParseFilesChkbx	      on
+      ListFunctions1	      "Custom Function"
+      Function1		      "void myAdd_ptr(unsigned int n, unsigned int* A, unsigned int* B, unsigned int* C)"
+      AddHeaderDeclaration    on
+      Function1Type	      "when block is updated (default)"
+      Fct1BlockIn	      "n  , A  , B "
+      FctReturnBlockOut	      off
+      Fct1BlockOut	      "C[2]"
+      DataCollected	      "0"
+      ORDERING		      "None"
+      SampleTime	      "-1"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      PinDigitalInput	      "[]"
+      PinDigitalOutput	      "[]   "
+      PinAnalogInput	      "[]"
+      Port {
+	PortNumber		1
+	Name			"U1 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "C Function Call\nScalars"
+      SID		      "58"
+      Ports		      [2, 1]
+      Position		      [210, 278, 385, 367]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
+      SourceType	      "C Function Call"
+      ParseFilesChkbx	      on
+      ListFunctions1	      "Custom Function"
+      Function1		      "unsigned int myAdd(unsigned int A, unsigned int B)"
+      AddHeaderDeclaration    on
+      Function1Type	      "when block is updated (default)"
+      Fct1BlockIn	      "A  , B"
+      FctReturnBlockOut	      on
+      DataCollected	      "s.chksm={ '47804-Jul-2014 11:07:09'};s.File1=reshape({ ' unsigned int  myAdd(unsigned int A"
+      ", unsigned int B)','  void  myAdd_ptr(unsigned int n, unsigned int* A, unsigned int* B, unsigned int* C)','  myS"
+      "truct  myFct(unsigned int A, unsigned int B)'},1,3);"
+      ORDERING		      "None"
+      SampleTime	      "-1"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      PinDigitalInput	      "[]"
+      PinDigitalOutput	      "[]   "
+      PinAnalogInput	      "[]"
+      Port {
+	PortNumber		1
+	Name			"U1 CH1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "C Function Call\nVector Variant\nInput/Output vector length are fixed"
+      SID		      "91"
+      Ports		      [2, 1]
+      Position		      [210, 537, 385, 628]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
+      SourceType	      "C Function Call"
+      ParseFilesChkbx	      on
+      ListFunctions1	      "Custom Function"
+      Function1		      "void myAdd_ptr(unsigned int n, unsigned int* A, unsigned int* B, unsigned int* C)"
+      AddHeaderDeclaration    off
+      Function1Type	      "when block is updated (default)"
+      Fct1BlockIn	      "n=2 , A[2]  , B[2] "
+      FctReturnBlockOut	      off
+      Fct1BlockOut	      "C[2]"
+      DataCollected	      "s.chksm={ '47804-Jul-2014 11:07:09'};s.File1=reshape({ ' unsigned int  myAdd(unsigned int A"
+      ", unsigned int B)','  void  myAdd_ptr(unsigned int n, unsigned int* A, unsigned int* B, unsigned int* C)','  myS"
+      "truct  myFct(unsigned int A, unsigned int B)'},1,3);"
+      ORDERING		      "None"
+      SampleTime	      "-1"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      PinDigitalInput	      "[]"
+      PinDigitalOutput	      "[]   "
+      PinAnalogInput	      "[]"
+      Port {
+	PortNumber		1
+	Name			"U1 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Compiler Options"
+      SID		      "67"
+      Ports		      []
+      Position		      [349, 124, 444, 179]
+      Priority		      "1"
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
+      SourceType	      ""
+      LATEST_CMPLR	      on
+      COMP_LIST		      "Dynamic Options"
+      COMP_LIST_TXT	      "xc16 - v1.26"
+      USE_64BIT_DOUBLE	      off
+      MCHP_MULTITHREAD_COMPILATION on
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      OPTIMIZATION_LEVEL      "3"
+      MPLAB_LINKLIB	      "default"
+      MPLAB_LINKLIB1	      "default"
+      UNROLL_LOOPS	      off
+      OMIT_FRAME_POINTER      off
+      PROCEDURAL_ABSTRACTION  off
+      MCONST		      "in data memory"
+      MDATA		      "Use only memory below address 8192 (faster)"
+      MSCALAR		      "Use only memory below address 8192 (faster)"
+      MCODE		      "is less than 32768 (faster)"
+      HEAP_SIZE		      "0"
+      OMF		      "elf"
+      DEBUG_INFO	      on
+      AssemblyListing	      off
+      ProduceHexOutput	      off
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      "60"
+      Position		      [90, 285, 120, 315]
+      ShowName		      off
+      Value		      "5"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant1"
+      SID		      "66"
+      Position		      [90, 330, 120, 360]
+      ShowName		      off
+      Value		      "6"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant2"
+      SID		      "87"
+      Position		      [100, 417, 115, 433]
+      ShowName		      off
+      Value		      "2"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant3"
+      SID		      "88"
+      Position		      [85, 447, 150, 463]
+      ShowName		      off
+      Value		      "[5 8]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant4"
+      SID		      "98"
+      Position		      [90, 695, 120, 725]
+      ShowName		      off
+      Value		      "5"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant5"
+      SID		      "89"
+      Position		      [85, 477, 150, 493]
+      ShowName		      off
+      Value		      "[10 20] "
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant6"
+      SID		      "93"
+      Position		      [85, 552, 150, 568]
+      ShowName		      off
+      Value		      "[5 8]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant7"
+      SID		      "94"
+      Position		      [85, 597, 150, 613]
+      ShowName		      off
+      Value		      "[10 20] "
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant8"
+      SID		      "99"
+      Position		      [90, 740, 120, 770]
+      ShowName		      off
+      Value		      "6"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      SampleTime	      ".005"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Counter\nLimited"
+      SID		      "109"
+      Ports		      [0, 1]
+      Position		      [90, 855, 120, 885]
+      LibraryVersion	      "1.260"
+      SourceBlock	      "simulink/Sources/Counter\nLimited"
+      SourceType	      "Counter Limited"
+      uplimit		      "10"
+      tsamp		      ".01"
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux1"
+      SID		      "90"
+      Ports		      [1, 2]
+      Position		      [485, 434, 490, 476]
+      ShowName		      off
+      Outputs		      "2"
+      DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+	Name			"U1 CH2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"U1 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux2"
+      SID		      "95"
+      Ports		      [1, 2]
+      Position		      [475, 564, 480, 606]
+      ShowName		      off
+      Outputs		      "2"
+      DisplayOption	      "bar"
+      Port {
+	PortNumber		1
+	Name			"U1 CH4"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"U1 CH5"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain"
+      SID		      "110"
+      Position		      [210, 855, 240, 885]
+      Gain		      "10"
+      ParamDataTypeStr	      "uint32"
+      OutDataTypeStr	      "uint32"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Microchip Master"
+      SID		      "45"
+      Ports		      []
+      Position		      [98, 123, 192, 177]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Microchip Master"
+      SourceType	      ""
+      PICREF		      "33EP128MC202"
+      TIMESTEP_REF	      "Timer  ( 0.005s + [-9.5218e-05%] ==> 0.005s )"
+      BUSYFLAG		      "Dynamic Options"
+      BUSYFLAG_TXT	      "None"
+      PWRTEN		      "PWRT enabled"
+      BOREN		      "Disable"
+      BODENV		      "2.7V"
+      BORV		      "Brown-out Reset set at 2.0V"
+      FPWRT		      "128ms"
+      DSBOREN		      "Deep Sleep BOR enabled in Deep Sleep"
+      DSLPBOR		      "Deep Sleep BOR enabled in Deep Sleep"
+      MCLRE		      "RA5 input pin disabled;MCLR pin enabled"
+      SMCLR		      "MCLR pin generates a normal system Reset"
+      PMDL1WAY		      "Allow only one reconfiguration"
+      RSTPRI		      "Device will obtain reset instruction from Primary flash"
+      TEMP		      "Not used"
+      SOSCSRC		      "Analog Mode for use with crystal"
+      SOSCSEL		      "Secondary oscillator configured for high-power operation"
+      IOL1WAY		      "Allow only one reconfiguration"
+      ALTVREF		      "Voltage reference input; ADC =RA9/RA10 Comparator =RA9;RA10"
+      DISUVREG		      "Regulator is disabled"
+      DSSWEN		      "Deep Sleep is controlled by the register bit DSEN"
+      LPCFG		      "Disabled - regardless of RETEN"
+      RTCBAT		      "RTC operation is continued through VBAT"
+      VBTBOR		      "VBAT BOR enabled"
+      WUTSEL		      "Default regulator start-up time used"
+      POWERSAVE		      off
+      FNOSC		      "Internal Fast RC (FRC)"
+      FPR		      "ECIO w/ PLL 16x"
+      FOSFPR		      "HS3 w/PLL 16x"
+      FOS		      "Primary Oscillator"
+      FRANGE		      "High Range"
+      OSCILLATOR_SELECT	      "Internal Fast RC (FRC)"
+      OSCILLATOR_SELECT_spd   "Internal Fast RC (FRC)"
+      QUARTZ		      "7.37e+06"
+      QUARTZ_spd	      "7.37e+06"
+      POSCGAIN		      "2x gain setting"
+      POSCBOOST		      "Boost the kick start of the oscillator"
+      SOSCGAIN		      "2x gain setting"
+      SOSCBOOST		      "Boost the kick start of the oscillator"
+      ACTIV_PLL		      on
+      ACTIV_PLL_spd	      "on"
+      MIPS_DESIRED	      "60e6"
+      MIPS_DESIRED_spd	      "60e6"
+      FPLLMUL		      "24x Multiplier"
+      FPLLIDIV		      "12x Divider"
+      POSCFREQ		      "Primary oscillator/external clock input frequency greater than 8MHz"
+      POSCMD		      "EC (External Clock) Mode"
+      POSCMOD		      "Primary Oscillator Disabled"
+      MIPS		      "60.012857142857136 * 1e6"
+      FPLLODIV		      "PLL Divide by 256"
+      PLLKEN		      "Clock switch to PLL source will wait until the PLL lock signal is valid."
+      FCKSM		      "Clock switching is enabled;Fail-safe Clock Monitor is disabled"
+      FCKSMEN		      "Sw Disabled; Mon Disabled"
+      IESO		      "Start up with FRC; then switch"
+      DSWDTPS		      "1:2;147;483;648 (25.7 Days)"
+      FWDTEN		      "Disable"
+      FWDTWINSZ		      "Window size is 25%"
+      FWPSA		      "WDT prescaler ratio of 1:128"
+      FWPSA0		      "1:128"
+      FWPSB		      "1:16"
+      WDT		      "Disable"
+      WDTPOST		      "1:32768"
+      WDTPRE		      "1:128"
+      WDTPS		      "1:32768"
+      WINDIS		      "Watchdog Timer in Non-Window mode"
+      WWDTEN		      "Non-Window mode"
+      DSWDTEN		      "DSWDT enabled"
+      DSWDTOSC		      "DSWDT uses Low Power RC Oscillator (LPRC)"
+      FPBDIV		      "Pb_Clk is Sys_Clk/8"
+      FSOSCEN		      "Enabled"
+      LPRCSEL		      "High Power; High Accuracy Mode"
+      OSCIOFCN		      "OSCO/CLKO/RC15 functions as CLKO (FOSC/2)"
+      OSCIOFNC		      "OSC2 is general purpose digital I/O pin"
+      LVRCFG		      "Low Voltage regulator is not available"
+      PLL_96MHZ		      "Enabled"
+      PLL96MHZ		      "96 MHz PLL Startup is enabled automatically on start-up"
+      PLLDIV		      "PLL is disabled"
+      WDTCLK		      "WDT uses LPRC"
+      WDTCMX		      "WDT clock source is determined by the WDTCLK Configuration bits"
+      WDTWIN		      "WDT Window is 25% of WDT period"
+      APL		      "Aux Flash Code protect is disabled"
+      APLK		      "Aux Flash Write Protection or Code Protection is Enabled"
+      AWRP		      "Aux Flash may be written"
+      BSS		      "No boot program Flash segment"
+      BWP		      "Protection Disabled"
+      BWRP		      "Boot Segment may be written"
+      CP		      "Protection Disabled"
+      EBS		      "No Boot EEPROM"
+      ESS		      "No Segment Data EEPROM"
+      GCP		      "General Segment Code protect is disabled"
+      GSS		      "General Segment Code protect is disabled"
+      GSS0		      "No protection"
+      GSSK		      "General Segment Write Protection or Code Protection is Enabled"
+      GWRP		      "General Segment may be written"
+      PWP		      "Disable"
+      RBS		      "No Boot RAM"
+      RSS		      "No Secure RAM"
+      SSS		      "No Secure Segment"
+      SWRP		      "Secure segment may be written"
+      WPCFG		      "Disable"
+      WPDIS		      "Disable"
+      WPEND		      "Write Protect from WPFP to the last page of memory"
+      WPFP		      "Page 127 (0x1FC00)"
+      ICESEL		      "Communicate on PGEC1/PGED1"
+      ICS		      "Communicate on PGEC1 and PGED1"
+      JTAGEN		      "Disable"
+      COE		      "Reset Into Operational Mode"
+      RES		      "Not used"
+      DEBUG		      "Debugger is disabled"
+      BACKBUG		      "Not used"
+      BKBUG		      "Device resets into Operational mode"
+      ALTI2C		      "I2C mapped to SDA1/SCL1 pins"
+      ALTI2C1		      "I2C1 mapped to SDA1/SCL1 pins"
+      ALTI2C2		      "I2C2 mapped to SDA2/SCL2 pins"
+      ALTQIO		      "QEA1; QEB1; INDX1 are selected as inputs to QEI1"
+      ALTSS1		      "SS1A is selected as the I/O pin for SPI1"
+      CMPPOL0		      "Hysteresis is applied to falling edge"
+      CMPPOL1		      "Hysteresis is applied to falling edge"
+      FCANIO		      "Default CAN I/O"
+      FETHIO		      "Default Ethernet I/O"
+      FMIIEN		      "MII Enabled"
+      FSRSSEL		      "SRS Priority 7"
+      FUSBIDIO		      "Controlled by the USB Module"
+      FVBUSONIO		      "Controlled by USB Module"
+      HPOL		      "PWM module high side output pins have active-high output polarity"
+      HYST0		      "45 mV Hysteresis"
+      HYST1		      "45 mV Hysteresis"
+      I2C1SEL		      "Use Default SCL1/SDA1 Pins For I2C1"
+      LPOL		      "PWM module low side output pins have active-high output polarity"
+      PWMPIN		      "PWM module pins controlled by PORT register at device Reset"
+      RTCOSC		      "RTCC uses Secondary Oscillator (SOSC)"
+      UPLLEN		      "Disabled and bypassed"
+      UPLLIDIV		      "12x Divider"
+      ATMOD8		      "Not used"
+      ALTPMP		      "EPMP pins are in default location mode"
+      I2C2SEL		      "I2C2 is multiplexed to SDA2/RA3 and SCL2/RA2 "
+      ALTADREF		      "AVREF+/AVREF- are mapped to RA9/RA10"
+      ALTCVREF		      "CVREF+/CVREF- are mapped to RA9/RA10"
+      PWMLOCK		      "PWM registers may be written without key sequence"
+      MCHP_TIMER_REQUEST      "{Time Step}{TS}0:2:3:1:[]:300064.2857142857;"
+      MCHP_TIMER_RESULT	      "[1 37507.035714285696 ]"
+      MCHP_PLLRegisters	      "[5    226  16387     -1]"
+      MCHPVAR		      "MCHP.fcy.periph=MCHP_Fun.Hex2num('[418C9DC9C9249248]');MCHP.fcy.MIPS=MCHP_Fun.Hex2num('[418C9DC9"
+      "C9249248]');MCHP.PowerSave=0;MCHP.TimeStepFactor=MCHP_Fun.Hex2num('[3FEFFFFE00CDCD2A]');MCHP.TimeStep_Timer=1;MC"
+      "HP.NTIMERS=5;MCHP.id.name='33EP128MC202';MCHP.id.N=reshape([33 128 202],1,3);MCHP.id.L=reshape({ 'EP','MC',''},1"
+      ",3);MCHP.id.Arch=3;MCHP.periph.PPS.reg_RPINRx=reshape([-1 1 1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 -1 1 1 1 1 -1 -1 -1 -"
+      "1 -1 -1 1 1 -1 -1 1 1 1 1 -1 -1 -1 -1 1 -1 1 -1 -1 -1 -1 -1 1 1 1 -1 -1 -1 -1 -1 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 -1 1 1 1],1,80);MCHP.PPS.dsPIC.RP=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 19 20 21 22 23 24 25 26 27],1,44);MCHP"
+      ".PPS.dsPIC.RPI=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 16 17 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 28 29 30 31],1,48);MCHP.PPS.dsPIC.RPINR_list=reshape({ '1','INT1','I"
+      "NT2','INT3','INT4','T1CK','T2CK','T3CK','T4CK','T5CK','T6CK','T7CK','T8CK','T9CK','IC1','IC2','IC3','IC4','IC5',"
+      "'IC6','IC7','IC8','OCFA','OCFB','FLT1','FLT2','FLT3','FLT4','QEA1','QEB1','INDX1','HOME1','QEA2','QEB2','INDX2',"
+      "'HOME2','U1RX','U1CTS','U2RX','U2CTS','SDI1','SCK1','SS1','44','SDI2','SCK2','SS2','48','CSDIR','CSCK','COFS','5"
+      "2','C1RX','C2RX','U3RX','U3CTS','U4RX','U4CTS','SDI3','SCK3','SS3','62','SDI4','SCK4','SS4','66','IC9','IC10','I"
+      "C11','IC12','IC13','IC14','IC15','IC16','OCFC','SYNCI1','SYNCI2','DTCMP1','DTCMP2','DTCMP3','DTCMP4','DTCMP5','D"
+      "TCMP6','DTCMP7','FLT5','FLT6','FLT7','FLT8','89','SENT1','SENT2','92'},1,92);MCHP.PPS.dsPIC.RPOR_list=reshape({ "
+      "'1','U1TX','U1RTS','U2TX','U2RTS','SDO1','SCK1','SS1','SDO2','SCK2','SS2','CSDO','CSCK','COFS','C1TX','C2TX','OC"
+      "1','OC2','OC3','OC4','OC5','OC6','OC7','OC8','C1OUT','C2OUT','C3OUT','U3TX','U3RTS','U4TX','U4RTS','SDO3','SCK3'"
+      ",'SS3','SDO4','SCK4','SS4','OC9','OC10','OC11','OC12','OC13','OC14','OC15','OC16','SYNCO1','SYNCO2','QEI1CCMP','"
+      "QEI2CCMP','REFCLK','C4OUT','C5OUT','52','53','54','55','56','SENT1','SENT2'},1,59);MCHP.PPS.map_RPnR_RPORx=resha"
+      "pe([20 35 36 37 38 39 40 41 42 43],1,10);MCHP.Rx=reshape([2 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 3 5 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 9 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 10 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 12 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 14 -1"
+      " -1 -1 -1 -1 -1 -1 -1 -1 -1 15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 16 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 17 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 21 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 22 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 23 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 24 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 25 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 26 -1 -1 -1"
+      " -1 -1 -1 -1 -1 -1],11,16);MCHP.ADC.ANtype=reshape([3 0],1,2);MCHP.ADC.ADCONx=reshape([47103 59391 40959 263 0 0"
+      "],1,6);MCHP.ADC.ADCHS_0=reshape([40863 1799],1,2);MCHP.ADC.Flags=reshape([1 0],1,2);MCHP.ADC.Buffer=reshape([16 "
+      "-1],1,2);MCHP.ADC.port=reshape([0 1 16 17 18 19 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,57);MCHP.ADC.port_Vr"
+      "efP=17;MCHP.ADC.port_VrefM=16;MCHP.ADC.port_AVdd=-1;MCHP.ADC.port_AVss=-1;MCHP.memory.RAM=16384;MCHP.memory.RAM_"
+      "XBegin=4096;MCHP.memory.RAM_YBegin=12288;MCHP.memory.RAM_dma=reshape([-1 -1],1,2);MCHP.DMA.Num=4;MCHP.DMA.CNTmax"
+      "=16383;MCHP.QEI.QEICONx=reshape([49023 -1 -1 -1 -1 -1],1,6);MCHP.QEI.QEItype=1;MCHP.QEI.Port_QEI_INDX=reshape([-"
+      "1 -1],1,2);MCHP.QEI.Port_QEI_QEA=reshape([-1 -1],1,2);MCHP.QEI.Port_QEI_QEB=reshape([-1 -1],1,2);MCHP.QEI.Port_Q"
+      "EI_UPDN=reshape([-1 -1],1,2);MCHP.INT.Port=reshape([23 32767 32767 -1 -1],1,5);MCHP.PWM_HS.Flags=reshape([3 1 0]"
+      ",1,3);MCHP.PWM.port_FLT=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 20],1,33);MCHP.PWM.PWMRef=-1;MCHP.PWM.Flag=0;MCHP.PWM.Port_PWM_l=reshape([31 -1 29 -1 27 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],2,9);MCHP.PWM.Port_PWM_h=reshape([30 -1 28 -1 26 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1 -1],2,9);MCHP.IC.Port=reshape([32767 32767 32767 32767 0 0 0 0 0 0 0 0 0 0 0 0],1,16);MCHP.IC.type=1;MCHP"
+      ".OC.Port=reshape([32767 32767 32767 32767 0 0 0 0 0 0 0 0 0 0 0 0],1,16);MCHP.OC.type=1;MCHP.CN.Port=reshape([-1"
+      " -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 "
+      "-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,85);MCHP.CN.PullUp=reshape([31 65535 0 0 0 0 0 0 0 0 0],1,11);MCHP.CN.type=1;MCH"
+      "P.CN.Flag_PullDown=1;MCHP.SPI.Refs=reshape([1 2 0 0 0 0],1,6);MCHP.SPI.SPIxCON1=8191;MCHP.SPI.SPIxCON2=57347;MCH"
+      "P.SPI.Port_SDI=reshape([25 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SDO=reshape([24 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Port"
+      "_SCK=reshape([23 -1 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SS=reshape([16 -1 -1 -1 -1 -1],1,6);MCHP.I2C.Refs=reshape([1"
+      " 2 0 0 0],1,5);MCHP.I2C.I2CxCON=49151;MCHP.I2C.NewRegName=1;MCHP.I2C.Port_SDA=reshape([-1 -1 -1 -1 -1],1,5);MCHP"
+      ".I2C.Port_SCL=reshape([-1 -1 -1 -1 -1],1,5);MCHP.I2C.Port_ASDA=reshape([25 21 -1 -1 -1],1,5);MCHP.I2C.Port_ASCL="
+      "reshape([24 22 -1 -1 -1],1,5);MCHP.I2C.Fuse_Port_SCL_SDA=reshape([3 1 4 1 -1 -1 -1 -1 -1 -1],2,5);MCHP.I2C.Fuse_"
+      "Port_ASCL_ASDA=reshape([3 2 4 2 -1 -1 -1 -1 -1 -1],2,5);MCHP.Comp.Port_CVrefin=-1;MCHP.Comp.Port_CVref=-1;MCHP.C"
+      "omp.Port_CVref1O=24;MCHP.Comp.Port_CVref2O=4;MCHP.Comp.Port_CxOUT=reshape([32767 32767 32767 32767 -1],1,5);MCHP"
+      ".Comp.Port_OAxOUT=reshape([17 0 -1 -1 -1],1,5);MCHP.Comp.Port_CxINP=reshape([18 1 -1 -1 -1],1,5);MCHP.Comp.Port_"
+      "CxINM=reshape([19 -1 -1 -1 16 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],4,5);MCHP.Comp.nComp=reshape([4 0 0]"
+      ",1,3);MCHP.Comp.OpAmp=3;MCHP.Comp.CVRCON=reshape([17663 0],1,2);MCHP.UART.port_Rx=reshape([32767 32767 -1 -1 -1 "
+      "-1],1,6);MCHP.UART.port_Tx=reshape([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.port_ARx=reshape([-1 -1],1,2);MCHP.U"
+      "ART.port_ATx=reshape([-1 -1],1,2);MCHP.UART.port_RTS=reshape([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.port_CTS=r"
+      "eshape([32767 32767 -1 -1 -1 -1],1,6);MCHP.UART.reg_UxMODE=reshape([48127 48127 -1 -1 -1 -1],1,6);MCHP.UART.reg_"
+      "UxSTA=reshape([61439 61439 -1 -1 -1 -1],1,6);"
+      MCHP_CRC		      "3132789"
+      BTMODE		      "Device is in Single Boot (legacy) mode"
+      RES1		      "Not used"
+      PLLSS		      "PLL is fed by the Primary oscillator"
+      RES2		      "Not used"
+      ALTCMPI		      "C1INC is on RB13; C2INC is on RB9 and C3INC is on RA0"
+      BOREN1		      "BOR Enabled [When BOREN=1]"
+      ALTRB6		      "Append the RP6/ASCL1/PMPD6 functions of RB6 to RA1 pin functions"
+      RETCFG		      "Retention regulator is not available"
+      DFMCY		      "Not used"
+      BSS2		      "No Boot Segment"
+      BSEN		      "No Boot Segment"
+      CWRP		      "Configuration Segment may be written"
+      CSS		      "No Protection (other than CWRP)"
+      AIVTDIS		      "Disable Alternate Vector Table"
+      BSLIM		      "Not used"
+      WDTEN		      "Disable"
+      BTSWP		      "Not used"
+      DBCC		      "Not used"
+      CTXT1		      "Not Assigned"
+      CTXT2		      "Not Assigned"
+      SEQNUM		      "Not used"
+      nSEQNUM		      "Not used"
+      BOREN0		      "Enabled"
+      DMTIVT		      "Not used"
+      DMTCNT		      "2^31 (2147483648)"
+      DMTEN		      "Dead Man Timer is Enabled and cannot be disabled by software"
+      ON		      "Not used"
+      USERID		      "Not used"
+      RESERVED1		      "Not used"
+      PGL1WAY		      "Allow only one reconfiguration"
+      FPLLRNG		      "34-68 MHz Input"
+      FPLLICLK		      "FRC is input to the System PLL"
+      FPLLMULT		      "PLL Multiply by 128"
+      UPLLFSEL		      "USB PLL input is 24 MHz"
+      DMTINTV		      "Window/Interval value is 127/128 counter value"
+      WDTSPGM		      "WDT stops during Flash programming"
+      FDMTEN		      "Deadman Timer is disabled"
+      TRCEN		      "Trace features in the CPU are enabled"
+      BOOTISA		      "Boot code and Exception code is MIPS32"
+      FECCCON		      "ECC and Dynamic ECC are disabled (ECCCON bits are writable)"
+      EXTDDRSIZE	      "External DDR2 Size is 128 MB"
+      FSLEEP		      "Flash is powered down when the device is in Sleep mode"
+      DBGPER		      "Allow CPU access to all permission regions"
+      EJTAGBEN		      "Normal EJTAG functionality"
+      TSEQ		      "Not used"
+      CSEQ		      "Not used"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Configuration1"
+      SID		      "107"
+      Ports		      []
+      Position		      [220, 122, 320, 178]
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
+      SourceType	      "Configuration for UART peripheral"
+      UART_REF		      "1"
+      BAUD_Choice	      "Dynamic Options"
+      BAUD_Choice_TXT	      "  115200         [+0.18%]"
+      BAUD_Choice_IR	      "Dynamic Options"
+      BAUD_Choice_IR_TXT      "[]"
+      BAUD_Custom	      "115200"
+      IRDA		      off
+      ALT_IO		      on
+      PIN_RX		      "Dynamic Options"
+      PIN_RX_TXT	      "B11 / P43 / Pin[22]"
+      PIN_TX		      "Dynamic Options"
+      PIN_TX_TXT	      "B10 / P42 / Pin[21]"
+      FlowControl	      "None"
+      PIN_CTS		      "Dynamic Options"
+      PIN_CTS_TXT	      "A4 / P20 / Pin[12]"
+      PIN_RTS		      "Dynamic Options"
+      PIN_RTS_TXT	      "A4 / P20 / Pin[12]"
+      MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P42;"
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      MCHP_COM_ExtPil	      off
+      TX_IMPLEMENTATION	      "Circular Buffer"
+      TX_INT_PRIORITY	      "5"
+      TX_INT_WHEN	      "is empty & last char is sent"
+      TX_CIRCULAR_SIZE	      "32"
+      TX_DMA_CHANNEL	      "0   (Lowest Priority)"
+      TX_DMA_SIZE	      "[]"
+      RX_IMPLEMENTATION	      "Do not implement Rx"
+      RX_INT_PRIORITY	      "1"
+      RX_INT_WHEN	      "receive 1 character"
+      RX_CIRCULAR_SIZE	      "32"
+      InitSequence_chkbox     off
+      BAUD_Choice_InitSeq     "Dynamic Options"
+      BAUD_Choice_InitSeq_TXT "0"
+      BAUD_Choice_IR_InitSeq  "Dynamic Options"
+      BAUD_Choice_IR_InitSeq_TXT "0"
+      BAUD_Custom_InitSeq     "0"
+      InitSequence	      "'Hello World'"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Tx-Matlab"
+      SID		      "57"
+      Ports		      [7]
+      Position		      [580, 282, 730, 788]
+      ForegroundColor	      "red"
+      LibraryVersion	      "3.38"
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Tx-Matlab"
+      SourceType	      "Higl Level UART protocol"
+      UART_REF		      "1"
+      CHANNELS		      "[1 2 3 4 5 6 7]"
+      AllOrNothing	      on
+      SampleTime	      "-1 "
+      MCHP_MASTERLINK	      "Microstick_II_33EP128MC202_CustomCFunCall/Microchip Master"
+      MCHP_COMPILED_INFO      "CompiledSampleTime= [0.0050000000000000001   0 ];CompiledInportDataTypes=[  5   5   5  "
+      " 5   5   5   5 ];CompiledInportDataWidth=[1  1  1  1  1  1  1];"
+    }
+    Line {
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nScalars"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH1"
+      Labels		      [0, 0]
+      SrcBlock		      "C Function Call\nScalars"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant1"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nScalars"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Constant2"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nInput vector length is inherited. Output vector must be fixed (in this model)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant3"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nInput vector length is inherited. Output vector must be fixed (in this model)"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Constant5"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nInput vector length is inherited. Output vector must be fixed (in this model)"
+      DstPort		      3
+    }
+    Line {
+      Name		      "U1 CH3"
+      Labels		      [0, 0]
+      SrcBlock		      "C Function Call\nInput vector length is inherited. Output vector must be fixed (in this model)"
+      SrcPort		      1
+      DstBlock		      "Demux1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant7"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nVector Variant\nInput/Output vector length are fixed"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH3"
+      Labels		      [0, 0]
+      SrcBlock		      "C Function Call\nVector Variant\nInput/Output vector length are fixed"
+      SrcPort		      1
+      DstBlock		      "Demux2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant6"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nVector Variant\nInput/Output vector length are fixed"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U1 CH3"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux1"
+      SrcPort		      2
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      3
+    }
+    Line {
+      Name		      "U1 CH2"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux1"
+      SrcPort		      1
+      Points		      [40, 0; 0, -50]
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      2
+    }
+    Line {
+      Name		      "U1 CH5"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux2"
+      SrcPort		      2
+      Points		      [80, 0]
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      5
+    }
+    Line {
+      Name		      "U1 CH4"
+      Labels		      [0, 0]
+      SrcBlock		      "Demux2"
+      SrcPort		      1
+      Points		      [80, 0]
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      4
+    }
+    Line {
+      SrcBlock		      "Constant4"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nFunction output is a structure"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant8"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nFunction output is a structure"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "C Function Call\nFunction output is a structure"
+      SrcPort		      1
+      DstBlock		      "Bus\nSelector"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<Val2>"
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector"
+      SrcPort		      2
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      7
+    }
+    Line {
+      Name		      "<Val1>"
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector"
+      SrcPort		      1
+      Points		      [100, 0]
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      6
+    }
+    Line {
+      SrcBlock		      "Counter\nLimited"
+      SrcPort		      1
+      DstBlock		      "Gain"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Gain"
+      SrcPort		      1
+      DstBlock		      "C Function Call\nCall a function from the library\n(no declaration required)\nMimic an mcu calc"
+      "ulation load"
+      DstPort		      1
+    }
+    Annotation {
+      Name		      "Few usage of the C function Call block\nFile ./clib/myCfun.c must be declared within the Simulink c"
+      "onfiguration pannel (ctrl-e) for C function Call block to work.\n=> Simulation => Model Configuration Parameters"
+      " => Code Generation => Custom Code => Include list of additional"
+      Position		      [494, 140]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+    }
+    Annotation {
+      Name		      "Structure in C must have their counterpart BUS defined in the mathworks workspace (see script Defin"
+      "eBUS_Struct.m that define such bus)"
+      Position		      [412, 818]
+    }
+    Annotation {
+      Name		      "Because of constant values beeing used as input to the C function Call, \nconstants must be placed "
+      "in RAM (see option in Compiler Options block)\n\nBus definition does not work with Maltab release previous to R2"
+      "011b. Remove the\nC function call using a bus as block output if you are with a Matlab release prior to R2011b."
+      Position		      [161, 217]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+    }
+    Annotation {
+      Name		      "Results: [Ch1 Ch2 ... Ch7]\n= [11 15 28 15 28 11 30]"
+      Position		      [613, 252]
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+    }
+  }
+}

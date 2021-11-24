@@ -1,0 +1,34 @@
+%implements  MCHP_TIMER_PIL_Profiling "C"
+%function BlockInstanceSetup(block, system) void
+%assign TMR_Ref = CAST("Number",block.RTWdata.TMR_Ref)
+%if TMR_Ref != -1
+%assign nTIMERS = CAST("Number",RTWGenSettings.nTIMERS)
+%assign nSCCP = CAST("Number",RTWGenSettings.nSCCP) 		
+%if TMR_Ref <= nTIMERS 
+%assign idxT = TMR_Ref
+%assign TimerName = "TIMER %<idxT>"
+%assign intPrefix = "T"
+%assign TMRx = "TMR%<idxT>"
+%else 
+%assign idxT = TMR_Ref - nTIMERS
+%assign TimerName = "CCP TIMER %<idxT>"
+%assign intPrefix = "CCP"
+%assign TMRx = "CCP%<idxT>TMRL"
+%endif
+%openfile buffer
+/* Declare Timer used for Processor In the Loop (PIL) profiling */
+inline uint16_T MCHP_ProfilingTimer()
+{
+return %<TMRx>;	/* Return %<TimerName> counter value */
+}
+%closefile buffer
+%assign srcFile = LibGetModelDotCFile()
+%<LibSetSourceFileSection(srcFile, "Functions", buffer)>	
+%endif
+%endfunction
+%function Start(block, system) Output
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function Outputs(block, system) Output
+%endfunction

@@ -1,0 +1,4 @@
+
+%<MCHP_BUS_SPI_CloseInterruptFile()>
+%<MCHP_BUS_I2C_CloseInterruptFile()>
+%<HARMONY_Close()>

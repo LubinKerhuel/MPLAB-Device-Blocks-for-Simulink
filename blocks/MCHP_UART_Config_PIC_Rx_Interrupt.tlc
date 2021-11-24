@@ -1,0 +1,78 @@
+
+%include "MCHP_UART_Rx_PIC_FunUtils.tlc"
+%function MCHP_UART_Config_Rx_Interrupt(block,system) Output
+%assign MEMORY_DMA_QUALIFIER = MchpDMA_MemoryQualifier()	
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+%assign RX_INT_PRIORITY = CAST("Number",block.RTWdata.RX_INT_PRIORITY)
+%assign RX_BufferSize = CAST("Number",block.RTWdata.RX_CIRCULAR_SIZE)
+%openfile buffer
+/* Declare UART%<UARTRef> Rx Circular Buffer Structure */
+#define Rx_BUFF_SIZE_%<UART_NAME> (%<RX_BufferSize>)
+typedef struct MCHP_%<UART_NAME>_RxStr{
+volatile uint8_T buffer[Rx_BUFF_SIZE_%<UART_NAME>];			/* Size Rx_BUFF_SIZE_%<UART_NAME> is %<RX_BufferSize> */
+volatile uint_T  tail;					/* tail is the index for the next value to be written into the Circular buffer */
+volatile uint_T  head;							/* head is the index for the next value to be read from the Circular buffer */ 
+}  MCHP_%<UART_NAME>_RxStr;
+/* To read the UART%<UARTRef> Rx Circular with a custom code: read the next value: buffer[head], then increment head index by 1 modulo Rx_BUFF_SIZE_%<UART_NAME> (=%<RX_BufferSize>).
+code example:
+if (MCHP_%<UART_NAME>_Rx.tail != MCHP_%<UART_NAME>_Rx.head)	{  		// is buffer not empty ?
+output = (uint8_T) MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.head ++];     // Read one char 	   	
+MCHP_%<UART_NAME>_Rx.head &= (Rx_BUFF_SIZE_%<UART_NAME>-1); 	// modulo : use a simple bitewise "and" operator as <Rx_BUFF_SIZE_%<UART_NAME>> is a power of 2			
+}
+*/ 			 			 		 								
+%closefile buffer
+%<LibCacheTypedefs(buffer)>	
+/* Configure UART%<UARTRef> Rx Interruption for %<Name> */    		
+%<MCHP_SFR(  "U%<UARTRef>RXIP"  , 7 & RX_INT_PRIORITY  , "Rx Interrupt priority set to %<RX_INT_PRIORITY>")> 
+%<MCHP_SFR(  "U%<UARTRef>RXIF"  , 0 				   , "")>
+%<MCHP_SFR(  "U%<UARTRef>RXIE"  , 1 				   , "Enable Interrupt" )>  
+%openfile dspicfun = "MCHP_%<UART_NAME>_Rx_Interrupt.c"				
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"
+MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx = { .head = 0, .tail = 0}; /* UART%<UARTRef> Rx FIFO */
+%openfile buffer
+extern MCHP_%<UART_NAME>_RxStr MCHP_%<UART_NAME>_Rx;
+%closefile buffer
+%<LibCacheExtern(buffer)>
+%if ::isPIC32
+%<Mchp_Interrupt32(RX_INT_PRIORITY,1,0,"UART%<UARTRef>_RX_VECTOR",block)>  
+%else	
+%<Mchp_Interrupt16(RX_INT_PRIORITY,Mchp_No_auto_psv(),"U%<UARTRef>RXInterrupt",block)>
+%endif
+{
+uint_T Tmp;
+%<MCHP_ProfileMCU("enter")>
+Tmp = ~(MCHP_%<UART_NAME>_Rx.tail - MCHP_%<UART_NAME>_Rx.head);		/* head - tail - 1 */ 
+Tmp &= (Rx_BUFF_SIZE_%<UART_NAME>-1);	/* Tmp =  (head - tail - 1) modulo buffersize Rx_BUFF_SIZE_%<UART_NAME>) ; tmp <~ Rx_BUFF_SIZE_%<UART_NAME> - (head - tail) - 1*/
+%if ::isdsPIC
+%<MCHP_SFR(  "U%<UARTRef>RXIF"  , 0 				   , "")>	
+%endif				
+while %<URXNotEmpty(block)>
+{
+if (Tmp--) {	
+MCHP_%<UART_NAME>_Rx.buffer[MCHP_%<UART_NAME>_Rx.tail] = (uint8_T) U%<UARTRef>RXREG;
+MCHP_%<UART_NAME>_Rx.tail = (MCHP_%<UART_NAME>_Rx.tail+1) & (Rx_BUFF_SIZE_%<UART_NAME>-1);
+} else {
+unsigned int a;
+do a = U%<UARTRef>RXREG;
+while %<URXNotEmpty(block)>;
+break;
+}
+}
+%if ::isPIC32
+%<MCHP_SFR(  "U%<UARTRef>RXIF"  , 0 				   , "")>	
+%endif
+if (U%<UARTRef>STAbits.OERR == 1) 						
+U%<UARTRef>STAbits.OERR = 0;   /* Buffer Overflow cleared */			
+%<MCHP_ProfileMCU("exitUpdate")>
+}	
+%closefile dspicfun
+%endfunction

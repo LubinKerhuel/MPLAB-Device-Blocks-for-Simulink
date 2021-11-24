@@ -1,0 +1,72 @@
+%implements  MCHP_MCU_OVERLOAD "C"
+%include "MCHP_Functions.tlc"
+%assign ::MCHP_MCUOverLoadBlocks_PIN = []
+%assign ::MCHP_MCU_Overload = 0
+%function BlockInstanceSetup(block, system) void
+%assign MCUOverLoadBlockOutput = CAST("Number",block.RTWdata.MCUOverLoadBlockOutput)
+%assign MCUOverLoadPin = CAST("Number",block.RTWdata.MCUOverLoadPin)
+%assign ::MCHP_MCU_Overload = %<MCHP_MCU_Overload ||  MCUOverLoadBlockOutput>
+%if MCUOverLoadPin >= 0
+%assign MCHP_MCUOverLoadBlocks_PINLength = FEVAL("numel",::MCHP_MCUOverLoadBlocks_PIN)
+%assign MCHP_MCUOverLoadBlocks_PINLength = CAST("Number",MCHP_MCUOverLoadBlocks_PINLength)
+%assign FlagRequireToAdd = 1
+%foreach idx = MCHP_MCUOverLoadBlocks_PINLength		
+%if ::MCHP_MCUOverLoadBlocks_PIN[idx] == MCUOverLoadPin
+%assign FlagRequireToAdd = 0
+%endif
+%endforeach
+%if FlagRequireToAdd
+%assign ::MCHP_MCUOverLoadBlocks_PIN = ::MCHP_MCUOverLoadBlocks_PIN + MCUOverLoadPin		
+%endif
+%endif
+%endfunction
+%function BlockTypeSetup(block, system) void
+%openfile tmpGlobalVariable
+%assign itemUnion = LibNumSynchronousSampleTimes()
+%if itemUnion > 16
+%assign itemUnion = 16
+%endif
+#ifndef MCHP_isMainFile
+union
+{
+struct
+{
+%foreach i = itemUnion			
+unsigned int task%<i> : 1;
+%endforeach
+}b;
+unsigned int val;
+} extern volatile MCHP_MCU_Overload;
+#endif
+%closefile tmpGlobalVariable
+%<LibCacheExtern(tmpGlobalVariable)>
+%assign ::GlobalVariable = ::GlobalVariable ...
++ "union" ...
++ "{" ...
++ "struct"  ...
++ "{"
+%foreach i = itemUnion			
+%assign ::GlobalVariable = ::GlobalVariable + "unsigned int task%<i> : 1;"
+%endforeach
+%assign ::GlobalVariable = ::GlobalVariable ...
++ "}b;" ...
++ "unsigned int val;" ...
++ "} volatile MCHP_MCU_Overload;"
+%endfunction
+%function Outputs(block, system) Output
+%assign MCUOverLoadBlockOutput = CAST("Number",block.RTWdata.MCUOverLoadBlockOutput)
+%if MCUOverLoadBlockOutput == 1
+/* S-Function "MCHP_MCU_OVERLOAD" Block: %<Name> */
+%assign u = LibBlockOutputSignal(0, "", "", 0)
+%if CompiledModel.FixedStepOpts.SolverMode == "MultiTasking" 	
+{
+uint16_T tmp = MCHP_MCU_Overload.val;
+MCHP_MCU_Overload.val ^= tmp; /* Multi Tasking: potential simultaneous access ==> using xor to protect from potential miss */
+%<u> = tmp;
+}
+%else		
+%<u> = MCHP_MCU_Overload.val; /* Single Tasking: no simultanuous access possible */
+MCHP_MCU_Overload.val = 0;
+%endif
+%endif
+%endfunction

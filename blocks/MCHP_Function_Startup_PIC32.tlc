@@ -1,0 +1,233 @@
+%include "MCHP_Functions.tlc"
+%function MchpStartup(ConfigChipOnly) void
+%assign CLKDIV = CAST("Real",RTWGenSettings.CLKDIV) 
+%assign PLLFBD = CAST("Real",RTWGenSettings.PLLFBD)	
+%assign SWITCH_OSC = CAST("Number",RTWGenSettings.SWITCH_OSC)
+%assign PLLRNG = CAST("Number",RTWGenSettings.PLLRNG)
+%assign MIPS = CAST("Real",RTWGenSettings.MIPS)
+%assign FLASH_ECC = CAST("Real",RTWGenSettings.FLASH_ECC)
+%assign PBxDIV = MchpVector(RTWGenSettings.PBxDIV)	
+%openfile tmpFcnOsc
+%assign POWERSAVE = CAST("Number",RTWGenSettings.POWERSAVE)
+%if POWERSAVE == 1
+%if ::isPIC32
+SYSKEY = 0x0;	/* Ensure OSCCON is locked */
+SYSKEY = 0xAA996655;	/* write Key1 unlock sequence */
+SYSKEY = 0x556699AA;	/* write Key2 unlock sequence */			
+OSCCONCLR = 0x10;	/* WAIT instruciton enter chip in idle mode */
+SYSKEY = 0x0;	/* OSCCON is relocked */
+%endif
+%endif
+%if %<SWITCH_OSC> != -1
+/* Start Clock Switching */
+%if (%<SWITCH_OSC & ( 1 << 14) > != 0) 		
+if (OSCCONbits.COSC == 1) 		/* check not already in PLL mode (001 = SPLL) */
+{
+SYSKEY = 0x0;	/* Ensure OSCCON is locked */
+SYSKEY = 0xAA996655;	/* write Key1 unlock sequence */
+SYSKEY = 0x556699AA;	/* write Key2 unlock sequence */
+%if SWITCH_OSC == (3 + (1 << 14))   
+OSCCONSET = %<MchpHex( 7 << 8 )>;	/* switch to FRC Oscillator without PLL */	
+%else
+OSCCONCLR &= %<MchpHex(5 << 8)>;	/* switch to HS - EC Oscillator without PLL */	
+OSCCONSET = %<MchpHex(2 << 8)>;
+%endif
+OSCCONSET = 1;		/* Start clock switching */
+SYSKEY = 0x0;	/* OSCCON is relocked */
+while(OSCCONbits.OSWEN != 0); /* wait for clock stabilization */
+}
+%endif
+%endif
+%assign aOSCCONCLR = 0
+%assign aOSCCONSET = 0
+%assign LOCKREQUIRED = 0
+%if PLLFBD != -1
+/* Set FRCDIV */
+%assign aOSCCONCLR = aOSCCONCLR | (7 << 24)
+%assign aOSCCONSET = aOSCCONSET | ( CAST("Unsigned",PLLFBD) << 24   )
+%endif
+%switch ::ChipIdL1
+%case "MX"
+/* Configure PLL and peripheral bus */
+%assign aOSCCONCLR = aOSCCONCLR | ( (7 << 27) + (3 << 19) + (7 << 16) )
+%assign aOSCCONSET = aOSCCONSET | CAST("Unsigned",CLKDIV)
+%endswitch
+%if %<SWITCH_OSC> != -1
+%switch ::ChipIdL1
+%case "MZ"
+%case "MK"
+%if %<CLKDIV> != -1		
+SPLLCON = %<MchpHex(CLKDIV)>;	/* configure PLL : PLLODIV ; PLLMULT ; PLLIDIV ; PLLICLK ; PLLRANGE */
+%endif
+%break
+%case "MX"
+%endswitch
+%switch SWITCH_OSC
+%case -1 
+%break
+%case 0	
+%case 1	
+%case 2	
+/* activate PLL for FRC Oscillator */
+%assign aOSCCONCLR = aOSCCONCLR | (5 << 8)
+%assign aOSCCONSET = aOSCCONSET | (2 << 8)
+%break
+%case 3	
+/* FRC Oscillator */
+%assign aOSCCONCLR = aOSCCONCLR | (7 << 8)
+%break
+%case 4	
+/* FRCDIV Oscillator */
+%assign aOSCCONSET = aOSCCONSET | (7 << 8)
+OSCCONSET = %<MchpHex( (7 << 8) ) >;	/* activate FRC Div by N Oscillator + set FRCDIV value */	
+%break
+%case 5	
+/* activate LPRC Oscillator */
+%assign aOSCCONCLR = aOSCCONCLR | (2 << 8)
+%assign aOSCCONSET = aOSCCONSET | (5 << 8)
+%break
+%case (0 + (1 << 14 ))	
+%case (1 + (1 << 14 ))	
+%case (2 + (1 << 14 ))	
+%case (3 + (1 << 14 ))	
+/* switch to PLL input (SPLL) */
+%assign aOSCCONCLR = aOSCCONCLR | (6 << 8)
+%assign aOSCCONSET = aOSCCONSET | (1 << 8)
+%break
+%default
+%assign NOSC = -1
+%warning Problem with Oscillator Configuration.
+%endswitch
+%if (aOSCCONCLR != 0) || (aOSCCONSET != 0)
+SYSKEY = 0x0;	/* Ensure OSCCON is locked */
+SYSKEY = 0xAA996655;	/* write Key1 unlock sequence */
+SYSKEY = 0x556699AA;	/* write Key2 unlock sequence */
+%assign LOCKREQUIRED = 1
+OSCCONCLR = %<MchpHex( aOSCCONCLR )>;
+OSCCONSET = %<MchpHex( aOSCCONSET )>;
+OSCCONSET = 1;		/* Start clock switching */
+%assign aOSCCONCLR = 0
+%assign aOSCCONSET = 0
+%endif
+%endif
+%if (aOSCCONCLR != 0) || (aOSCCONSET != 0)
+SYSKEY = 0x0;	/* Ensure OSCCON is locked */
+SYSKEY = 0xAA996655;	/* write Key1 unlock sequence */
+SYSKEY = 0x556699AA;	/* write Key2 unlock sequence */
+%assign LOCKREQUIRED = 1
+OSCCONCLR = %<MchpHex( aOSCCONCLR )>;
+OSCCONSET = %<MchpHex( aOSCCONSET )>;
+%assign aOSCCONCLR = 0
+%assign aOSCCONSET = 0
+%endif
+%if LOCKREQUIRED
+SYSKEY = 0x0;	/* OSCCON is relocked */
+%assign LOCKREQUIRED = 0
+%endif
+/* Configure Pins as Analog or Digital */		
+%<MCHP_ConfigPins()>
+%if %<SWITCH_OSC> != -1
+/* Finish clock switching procedure */
+while(OSCCONbits.OSWEN != 0); /* wait for clock stabilization */
+%endif
+%switch ::ChipIdL1
+%case "MX"
+SYSTEMConfigPerformance(FCY);	/* Improve chip performances */	
+%openfile SYSTEMConfigInclude
+#include <system.h>		
+%closefile SYSTEMConfigInclude
+%<LibSetSourceFileSection(modelH,"Includes",SYSTEMConfigInclude)>
+%break
+%case "MZ"
+%case "MK"
+SYSKEY = 0x0;	/* Ensure OSCCON is locked */
+SYSKEY = 0xAA996655;	/* write Key1 unlock sequence */
+SYSKEY = 0x556699AA;	/* write Key2 unlock sequence */
+%openfile tmpBuf
+/* Peripheral Clock BUS setting (for use with custom code) */
+%closefile tmpBuf				
+%foreach idx= SIZE(PBxDIV,1)
+%if PBxDIV[idx] != -1
+PB%<idx+1>DIV = %<MchpHex( (1 << 15) + PBxDIV[idx] )>;	/* PBCLK%<idx+1> set at  %< MIPS / (PBxDIV[idx]+1) / 1000000> MHz */
+%openfile tmpBuf,"a"
+#define PBCLK%<idx+1>	(%< CAST("Unsigned",MIPS / (PBxDIV[idx]+1) )>) /* PBCLK%<idx+1> set at  %< MIPS / (PBxDIV[idx]+1) / 1000000> MHz */
+%closefile tmpBuf			    		
+%endif
+%endforeach
+%<LibSetSourceFileSection(modelH,"Includes",tmpBuf)>
+SYSKEY = 0x0;	/* OSCCON is relocked */
+%break
+%endswitch
+%switch ::ChipIdL1 			
+%case "MZ"
+%if FLASH_ECC != 0
+%assign WaitState = CAST("Number",MIPS / 66500000)	
+/* Configure Wait State : Flash PM Wait States for Flash with ECC enabled  -> %<WaitState> wait states @ %<MIPS/1000000> MHz*/	
+%else
+%assign WaitState = CAST("Number",MIPS / 83000000)	
+/* Configure Wait State : Flash PM Wait States for Flash -> %<WaitState> wait states @ %<MIPS/1000000> MHz*/
+%endif
+%if WaitState > 7
+%assign WaitState = 7
+%endif
+PRECON = %<MchpHex( (3 << 4) + WaitState )>;			/* Prefetch-cache: Enable prefetch for PFM (any PFM instructions or data) */
+%break
+%case "MK"			
+%if MIPS < 60000000
+%assign WaitState = 1
+%elseif MIPS < 80000000
+%assign WaitState = 2
+%elseif MIPS < 125000000
+%assign WaitState = 3
+%else
+%assign WaitState = 4
+%endif
+%if WaitState > 7
+%assign WaitState = 7
+%endif
+/* Configure Wait State : Flash PM Wait States for Flash -> %<WaitState> wait states @ %<MIPS/1000000> MHz*/		    														
+CHECON = %<MchpHex( (7 << 24)  + (7 << 16) + (1 << 4) + WaitState )>;	 		/* Prefetch-cache: do not Enable prefetch with PIC32MK rev A, see errata 51 */
+%break
+%endswitch
+/* Configure Interrupt */
+%switch ::MCHP_MCU_NbrShadowRegisterSet
+%case 2
+PRISS = 0x0100000;		/* Interrupt with priority 5 will benefits from the shadow register PRII5SS = 1 */
+%break
+%case 8
+PRISS = 0x76543210;		/* Each interrupt will use shadow registers ; PRIxSS = x with x in [1-7]*/
+%break
+%endswitch		
+INTCONbits.MVEC = 1;	/* Use vector table */
+%assign ACLKCON_reg = CAST("Number",RTWGenSettings.ACLKCON_reg)
+%if ::MCHP_useAuxilliaryClock_APLL > 0
+%if ACLKCON_reg == -1
+%error("Auxilliary is required by at least one peripheral but Auxilliary clock configuration is not valid. Verify Auxilliary clock setting in the Microchip MASTER block.")
+%else
+/* Enable Auxilliary clock */
+ACLKCON = %<MchpHex(ACLKCON_reg)>; /* Set Auxilliary clock (APLL)*/
+%if (ACLKCON_reg & 32768) != 0
+while(!ACLKCONbits.APLLCK); /* Wait for PLL of Auxilliary clock to lock */
+__delay_us(50);	/* Delay 50us, Errata DS80000656A */
+%endif
+%endif
+%elseif ACLKCON_reg != -1
+/* ACLKCON = %<MchpHex(ACLKCON_reg)>; Auxilliary clock is not used by any peripheral. It is not enabled. */
+%endif
+/* Initialize model */
+%if ConfigChipOnly == 0
+%<LibCallModelInitialize()> 	
+%endif
+%if ConfigChipOnly == 0
+/* Configure Timers */
+%<MCHP_ConfigTimers()>
+%else
+/* Cancel Timer configuration to avoid unexpected interruption ,might configure however timers not used for timestep*/
+/* Configure Timers */
+%<MCHP_ConfigTimers()>
+%endif
+/* Configure Interrupt */
+__asm__ volatile("ei");		/* Enable Global Interrupt */
+%closefile tmpFcnOsc
+%return tmpFcnOsc
+%endfunction

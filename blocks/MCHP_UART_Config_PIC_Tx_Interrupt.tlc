@@ -1,0 +1,86 @@
+
+%include "MCHP_UART_Tx_PIC_FunUtils.tlc"
+%function MCHP_UART_Config_Tx_Interrupt(block,system) Output 	
+%assign UARTRef = CAST("Number",block.RTWdata.UARTRef)
+%assign UART_NAME = "UART%<UARTRef>"
+%assign TX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_TX_IMPLEMENTATION)
+%assign TX_IMPLEMENTATION = TX_IMPLEMENTATION[UARTRef-1]		
+%assign RX_IMPLEMENTATION = MchpVector(RTWGenSettings.UART_RX_IMPLEMENTATION)
+%assign RX_IMPLEMENTATION = RX_IMPLEMENTATION[UARTRef-1]		
+%assign InitSequence_enable = CAST("Number",block.RTWdata.InitSequence_enable)
+%assign UART_HALF_DUPLEX_MODE = MchpVector(RTWGenSettings.UART_HALF_DUPLEX_MODE)
+%assign UART_HALF_DUPLEX_MODE = UART_HALF_DUPLEX_MODE[UARTRef-1]
+/* Configure UART%<UARTRef> using Tx Interruption */
+%assign TX_INT_PRIORITY = CAST("Number",block.RTWdata.TX_INT_PRIORITY)
+%assign TX_BufferSize = CAST("Number",block.RTWdata.TX_CIRCULAR_SIZE)
+%<MCHP_SFR(  "U%<UARTRef>TXIP"  , TX_INT_PRIORITY  , " Tx Interrupt priority set to %<TX_INT_PRIORITY >" )>  
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 0 				   , "" )>
+%if ::isPIC32
+%else
+%<MCHP_SFR(  "U%<UARTRef>TXIE"  , 1 				   , "Enable Interrupt" )>  
+%endif
+%openfile buffer
+/* Declare UART%<UARTRef> Tx Circular Buffer Structure */
+#define Tx_BUFF_SIZE_%<UART_NAME> (%<TX_BufferSize>)
+typedef struct MCHP_%<UART_NAME>_TxStr{
+volatile uint8_T buffer[Tx_BUFF_SIZE_%<UART_NAME>];			/* Size Rx_BUFF_SIZE_%<UART_NAME> is %<TX_BufferSize> */
+volatile uint_T  tail;							/* tail is the index for the next value to be read from the Circular buffer */				
+volatile uint_T  head;							/* head is the index for the next value to be written into the Circular buffer */
+}  MCHP_%<UART_NAME>_TxStr;
+%closefile buffer
+%<LibCacheTypedefs(buffer)>		
+%openfile dspicfun = "MCHP_%<UART_NAME>_Tx_Interrupt.c"				
+#include "%<LibGetMdlPubHdrBaseName()>.h"
+#include "%<LibGetMdlPubHdrBaseName()>_private.h"				
+/* Declare UART%<UARTRef> Tx Circular Buffer Structure */
+MCHP_%<UART_NAME>_TxStr MCHP_%<UART_NAME>_Tx = { .head = 0, .tail = 0 };	/* UART%<UARTRef> Tx FIFO */
+%openfile buffer
+/* Declare UART%<UARTRef> Tx Circular Buffer Structure */
+extern MCHP_%<UART_NAME>_TxStr MCHP_%<UART_NAME>_Tx;
+%closefile buffer
+%<LibCacheExtern(buffer)>	
+%if ::isPIC32				
+%<Mchp_Interrupt32(TX_INT_PRIORITY,1,0,"UART%<UARTRef>_TX_VECTOR",block)>  
+%else	
+%<Mchp_Interrupt16(TX_INT_PRIORITY,Mchp_No_auto_psv(),"U%<UARTRef>TXInterrupt",block)> 	
+%endif
+{
+register uint_T LocalHead;
+%<MCHP_ProfileMCU("enter")>		
+LocalHead = MCHP_%<UART_NAME>_Tx.head;	/* Head is a volatile variable. Use local variable to speed-up execution */
+%if ::isdsPIC	
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 0 				   , "Clear Interrupt Flag")>
+%endif
+%assign ClosureUART_HALF_DUPLEX_MODE = ""
+%if UART_HALF_DUPLEX_MODE == 1
+if (MCHP_%<UART_NAME>_Tx.tail == LocalHead)
+{
+while %<UTX_NotCompleted(block)>;   /* Wait for last transactiont to complete if any */     		
+U%<UARTRef>MODEbits.UARTEN = 0;	/* Switch off (Reset) UART peripehral */
+U%<UARTRef>STAbits.UTXEN = 0;   /* Disable Tx */
+%<MCHP_SFR(  "U%<UARTRef>RXIF"  , 0 				   , "Clear Rx Interrupt Flag")>
+%<MCHP_SFR(  "U%<UARTRef>RXIE"  , 1 				   , "Enable Rx Interrupt")>
+U%<UARTRef>MODEbits.UARTEN = 1; /* Switch on UART peripheral */
+} else {
+%assign ClosureUART_HALF_DUPLEX_MODE = "}"
+%endif
+while ( %<UTXEmpty(block)> && (MCHP_%<UART_NAME>_Tx.tail != LocalHead) ) /* while UxTXREG buffer is not full */
+{ 									
+%<UART_Tx_WriteRegister(block)>  = MCHP_%<UART_NAME>_Tx.buffer[LocalHead++];
+LocalHead &= (Tx_BUFF_SIZE_%<UART_NAME>-1);
+}				
+MCHP_%<UART_NAME>_Tx.head = LocalHead; /* Push back volatile variable */			
+%<ClosureUART_HALF_DUPLEX_MODE>	
+%if ::isPIC32
+%<MCHP_SFR(  "U%<UARTRef>TXIF"  , 0 				   , "Clear Tx Interrupt Flag")>
+%endif	
+%if ::isPIC32
+if  (MCHP_%<UART_NAME>_Tx.tail == LocalHead)
+{
+%<MCHP_SFR(  "U%<UARTRef>TXIE"  , 0 				   , "Disable Tx Interrupt Flag")>
+}	
+%endif 	
+%<MCHP_ProfileMCU("exitUpdate")> 					
+} 		
+%closefile dspicfun
+%endfunction

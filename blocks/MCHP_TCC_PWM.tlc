@@ -1,0 +1,500 @@
+%implements  MCHP_TCC_PWM  "C"
+%include "MCHP_Functions.tlc"
+%assign ::TCC_PWM_SAM2_SAM5_nBlocks = [0,0]		
+%assign ::TCC_PWM_SAM2_SAM5_iBlocks = [0,0]		
+%assign ::MCHP_TCC0_GCLK_FCY = -1
+%assign ::MCHP_TCC0_GCLK_idx = -1
+%assign ::MCHP_TCC0_WAVEGEN = -1
+%assign ::MCHP_TCC0_INV_WOx = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_POL_PWMx = [ -1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_SWAP_PWMx = [ -1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_OTMX = -1
+%assign ::MCHP_TCC0_OTMX_matrix = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_WO_used = [ -1,-1,-1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_WO_used_idx = [ -1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_ChEn = [ -1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_RAMP = -1
+%assign ::MCHP_TCC0_idx_GCLK_PCHCTRLn = -1
+%assign ::MCHP_TCC0_MaxPeriod_s = -1
+%assign ::MCHP_TCC0_InitPeriod_s = -1
+%assign ::MCHP_TCC0_InitDutyCycle_s = [ -1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_InitDeadTimeL_s = -1
+%assign ::MCHP_TCC0_InitDeadTimeH_s = -1
+%assign ::MCHP_TCC0_InitOutputOverride = [ -1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_InitOutputOverride_val = [ -1,-1,-1,-1,-1,-1 ]
+%assign ::MCHP_TCC0_PRESCALER = -1
+%assign ::MCHP_TCC0_Resolution_s = -1
+%assign ::MCHP_TCC0_PER = -1
+%assign ::MCHP_TCC0_CCx = [ -1,-1,-1 ]
+%assign ::MCHP_TCC0_DTHS = -1
+%assign ::MCHP_TCC0_DTLS = -1
+%assign ::MCHP_TCC0_MaxPeriod_RAW = -1
+%assign ::MCHP_TCC0_MaxPeriod_ss = -1
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%assign TCCREF =  CAST("Number",block.RTWdata.TCCREF)
+%assign ::TCC_PWM_SAM2_SAM5_nBlocks[TCCREF] = ::TCC_PWM_SAM2_SAM5_nBlocks[TCCREF] + 1
+%endfunction
+%function Start(block, system) Output
+%assign ::MCHP_TCC0_GCLK_FCY = MchpLocal2Global(block,::MCHP_TCC0_GCLK_FCY ,  CAST("Number",block.RTWdata.MCHP_TCC0_GCLK_FCY),"GCLK_FCY" , "TCC-PWM GCLK clock setting mismatch for this TCC setting")
+%assign ::MCHP_TCC0_GCLK_idx = MchpLocal2Global(block,::MCHP_TCC0_GCLK_idx ,  CAST("Number",block.RTWdata.MCHP_TCC0_GCLK_idx),"GCLK_idx" , "")
+%assign ::MCHP_TCC0_WAVEGEN = MchpLocal2Global(block,::MCHP_TCC0_WAVEGEN ,  CAST("Number",block.RTWdata.MCHP_TCC0_WAVEGEN),"WAVEGEN" , "TCC-PWM WAVEGEN setting mismatch for this TCC setting")
+%assign ::MCHP_TCC0_INV_WOx = MchpLocal2Global(block,::MCHP_TCC0_INV_WOx ,  MchpVector64(block.RTWdata.MCHP_TCC0_INV_WOx),"INV_WOx" , "TCC-PWM INV_WOx setting mismatch")
+%assign ::MCHP_TCC0_POL_PWMx = MchpLocal2Global(block,::MCHP_TCC0_POL_PWMx ,  MchpVector64(block.RTWdata.MCHP_TCC0_POL_PWMx),"POL_PWMx" , "TCC-PWM POL_PWMx setting mismatch")
+%assign ::MCHP_TCC0_SWAP_PWMx = MchpLocal2Global(block,::MCHP_TCC0_SWAP_PWMx ,  MchpVector64(block.RTWdata.MCHP_TCC0_SWAP_PWMx),"SWAP_PWMx" , "TCC-PWM SWAP_PWMx setting mismatch")
+%assign ::MCHP_TCC0_OTMX = MchpLocal2Global(block,::MCHP_TCC0_OTMX ,  CAST("Number",block.RTWdata.MCHP_TCC0_OTMX),"OTMX" , "TCC-PWM OTMX setting mismatch")
+%assign ::MCHP_TCC0_OTMX_matrix = MchpLocal2Global(block,::MCHP_TCC0_OTMX_matrix ,  MchpVector64(block.RTWdata.MCHP_TCC0_OTMX_matrix),"OTMX_matrix" , "TCC-PWM OTMX_matrix setting mismatch")
+%assign ::MCHP_TCC0_WO_used = MchpLocal2Global(block,::MCHP_TCC0_WO_used ,  MchpVector64(block.RTWdata.MCHP_TCC0_WO_used),"WO_used" , "TCC-PWM WO_used setting mismatch")
+%assign ::MCHP_TCC0_WO_used_idx = MchpLocal2Global(block,::MCHP_TCC0_WO_used_idx ,  MchpVector64(block.RTWdata.MCHP_TCC0_WO_used_idx),"WO_used_idx" , "TCC-PWM WO_used_idx setting mismatch")
+%assign ::MCHP_TCC0_ChEn = MchpLocal2Global(block,::MCHP_TCC0_ChEn ,  MchpVector64(block.RTWdata.MCHP_TCC0_ChEn),"ChEn" , "TCC-PWM ChEn setting mismatch")
+%assign ::MCHP_TCC0_RAMP = MchpLocal2Global(block,::MCHP_TCC0_RAMP ,  CAST("Number",block.RTWdata.MCHP_TCC0_RAMP),"RAMP" , "TCC-PWM RAMP setting mismatch")
+%assign ::MCHP_TCC0_idx_GCLK_PCHCTRLn = MchpLocal2Global(block,::MCHP_TCC0_idx_GCLK_PCHCTRLn ,  CAST("Number",block.RTWdata.MCHP_TCC0_idx_GCLK_PCHCTRLn),"idx_GCLK_PCHCTRLn" , "TCC-PWM idx_GCLK_PCHCTRLn setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_s = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_MaxPeriod_s),"MaxPeriod_s" , "TCC-PWM MaxPeriod_s setting mismatch")
+%assign ::MCHP_TCC0_InitPeriod_s = MchpLocal2Global(block,::MCHP_TCC0_InitPeriod_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitPeriod_s),"InitPeriod_s" , "TCC-PWM InitPeriod_s setting mismatch")
+%assign ::MCHP_TCC0_InitDutyCycle_s = MchpLocal2Global(block,::MCHP_TCC0_InitDutyCycle_s ,  MchpVectorDbl(block.RTWdata.MCHP_TCC0_InitDutyCycle_s),"InitDutyCycle_s" , "TCC-PWM InitDutyCycle_s setting mismatch")
+%assign ::MCHP_TCC0_InitDeadTimeL_s = MchpLocal2Global(block,::MCHP_TCC0_InitDeadTimeL_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitDeadTimeL_s),"InitDeadTimeL_s" , "TCC-PWM InitDeadTimeL_s setting mismatch")
+%assign ::MCHP_TCC0_InitDeadTimeH_s = MchpLocal2Global(block,::MCHP_TCC0_InitDeadTimeH_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitDeadTimeH_s),"InitDeadTimeH_s" , "TCC-PWM InitDeadTimeH_s setting mismatch")
+%assign ::MCHP_TCC0_InitOutputOverride = MchpLocal2Global(block,::MCHP_TCC0_InitOutputOverride ,  MchpVector64(block.RTWdata.MCHP_TCC0_InitOutputOverride),"InitOutputOverride" , "TCC-PWM InitOutputOverride setting mismatch")
+%assign ::MCHP_TCC0_InitOutputOverride_val = MchpLocal2Global(block,::MCHP_TCC0_InitOutputOverride_val ,  MchpVector64(block.RTWdata.MCHP_TCC0_InitOutputOverride_val),"InitOutputOverride_val" , "TCC-PWM InitOutputOverride_val setting mismatch")
+%assign ::MCHP_TCC0_PRESCALER = MchpLocal2Global(block,::MCHP_TCC0_PRESCALER ,  CAST("Number",block.RTWdata.MCHP_TCC0_PRESCALER),"PRESCALER" , "TCC-PWM PRESCALER setting mismatch")
+%assign ::MCHP_TCC0_Resolution_s = MchpLocal2Global(block,::MCHP_TCC0_Resolution_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_Resolution_s),"Resolution_s" , "TCC-PWM Resolution_s setting mismatch")
+%assign ::MCHP_TCC0_PER = MchpLocal2Global(block,::MCHP_TCC0_PER ,  CAST("Number",block.RTWdata.MCHP_TCC0_PER),"PER" , "TCC-PWM PER setting mismatch")
+%assign ::MCHP_TCC0_CCx = MchpLocal2Global(block,::MCHP_TCC0_CCx ,  MchpVector64(block.RTWdata.MCHP_TCC0_CCx),"CCx" , "TCC-PWM CCx setting mismatch")
+%assign ::MCHP_TCC0_DTHS = MchpLocal2Global(block,::MCHP_TCC0_DTHS ,  CAST("Number",block.RTWdata.MCHP_TCC0_DTHS),"DTHS" , "TCC-PWM DTHS setting mismatch")
+%assign ::MCHP_TCC0_DTLS = MchpLocal2Global(block,::MCHP_TCC0_DTLS ,  CAST("Number",block.RTWdata.MCHP_TCC0_DTLS),"DTLS" , "TCC-PWM DTLS setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_RAW = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_RAW ,  CAST("Number",block.RTWdata.MCHP_TCC0_MaxPeriod_RAW),"MaxPeriod_RAW" , "TCC-PWM MaxPeriod_RAW setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_ss = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_ss ,  CAST("Real",block.RTWdata.MCHP_TCC0_MaxPeriod_ss),"MaxPeriod_ss" , "TCC-PWM MaxPeriod_ss setting mismatch")
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign TCCREF =  CAST("Number",block.RTWdata.TCCREF)
+%assign WOx_isPresent =  MchpVector64(block.RTWdata.WOx_isPresent)
+%assign nWOx =  CAST("Number",block.RTWdata.nWOx)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign WAVEGEN =  CAST("Number",block.RTWdata.WAVEGEN)
+%assign INV_WOx =  MchpVector64(block.RTWdata.INV_WOx)
+%assign POL_PWMx =  MchpVector64(block.RTWdata.POL_PWMx)
+%assign SWAP_PWMx =  MchpVector64(block.RTWdata.SWAP_PWMx)
+%assign OTMX =  CAST("Number",block.RTWdata.OTMX)
+%assign OTMX_matrix =  MchpVector64(block.RTWdata.OTMX_matrix)
+%assign WO_used =  MchpVector64(block.RTWdata.WO_used)
+%assign WO_used_idx =  MchpVector64(block.RTWdata.WO_used_idx)
+%assign BlockInput_OutputOverride =  CAST("Number",block.RTWdata.BlockInput_OutputOverride)
+%assign BlockInput_OutputOverride_Immediate =  CAST("Number",block.RTWdata.BlockInput_OutputOverride_Immediate)
+%assign ChEn =  MchpVector64(block.RTWdata.ChEn)
+%assign RAMP =  CAST("Number",block.RTWdata.RAMP)
+%assign idx_GCLK_PCHCTRLn =  CAST("Number",block.RTWdata.idx_GCLK_PCHCTRLn)
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockInput_Period =  CAST("Number",block.RTWdata.BlockInput_Period)
+%assign BlockInput_DutyCycle =  MchpVector64(block.RTWdata.BlockInput_DutyCycle)
+%assign BlockInput_DeadTime =  CAST("Number",block.RTWdata.BlockInput_DeadTime)
+%assign MaxPeriod_s =  CAST("Real",block.RTWdata.MaxPeriod_s)
+%assign InitPeriod_s =  CAST("Real",block.RTWdata.InitPeriod_s)
+%assign InitDutyCycle_s =  MchpVectorDbl(block.RTWdata.InitDutyCycle_s)
+%assign InitDeadTimeL_s =  CAST("Real",block.RTWdata.InitDeadTimeL_s)
+%assign InitDeadTimeH_s =  CAST("Real",block.RTWdata.InitDeadTimeH_s)
+%assign InitOutputOverride =  MchpVector64(block.RTWdata.InitOutputOverride)
+%assign InitOutputOverride_val =  MchpVector64(block.RTWdata.InitOutputOverride_val)
+%assign PRESCALER =  CAST("Number",block.RTWdata.PRESCALER)
+%assign Resolution_s =  CAST("Real",block.RTWdata.Resolution_s)
+%assign PER =  CAST("Number",block.RTWdata.PER)
+%assign CCx =  MchpVector64(block.RTWdata.CCx)
+%assign DTHS =  CAST("Number",block.RTWdata.DTHS)
+%assign DTLS =  CAST("Number",block.RTWdata.DTLS)
+%assign MaxPeriod_RAW =  CAST("Number",block.RTWdata.MaxPeriod_RAW)
+%assign MaxPeriod_ss =  CAST("Real",block.RTWdata.MaxPeriod_ss)
+%assign ::TCC_PWM_SAM2_SAM5_iBlocks[TCCREF] = ::TCC_PWM_SAM2_SAM5_iBlocks[TCCREF] + 1
+%if ::TCC_PWM_SAM2_SAM5_iBlocks[TCCREF] == 1	
+%endif
+%if (::TCC_PWM_SAM2_SAM5_iBlocks[0] == ::TCC_PWM_SAM2_SAM5_nBlocks[0]) && (::TCC_PWM_SAM2_SAM5_iBlocks[1] == ::TCC_PWM_SAM2_SAM5_nBlocks[1])
+/* ========================= TCC Peripheral setup ========================= */
+{
+uint32_T tmp_reg;
+/* TCC%<TCCREF> APB clock */
+%<Enable_Peripheral_Clock("TCC%<TCCREF>")>
+/* Event System Output Event setting */        
+TCC0_REGS->TCC_EVCTRL |= TCC_EVCTRL_OVFEO_Msk;       /* Enabled for Overflow on TCC0 */
+/* Set TCC signal generation Mode */
+%switch WAVEGEN
+%case 0
+tmp_reg = TCC_WAVE_WAVEGEN_NFRQ;    /* 50% duty cycle with phase shift */
+%break
+%case 1
+tmp_reg = TCC_WAVE_WAVEGEN_MFRQ;    /* 50% duty cycle freq independant channels  */
+%break
+%case 2
+tmp_reg = TCC_WAVE_WAVEGEN_NPWM;    /* Left aligned PWM  */
+%break
+%case 4
+tmp_reg = TCC_WAVE_WAVEGEN_DSCRITICAL;  /* Center aligned PWM */
+%break
+%case 5
+tmp_reg = TCC_WAVE_WAVEGEN_DSBOTTOM;    /* Center aligned PWM */
+%break
+%case 6
+tmp_reg = TCC_WAVE_WAVEGEN_DSTOP;       /* Center aligned PWM */
+%break
+%case 7
+tmp_reg = TCC_WAVE_WAVEGEN_NPWM;        /* Center aligned PWM */
+%break
+%endswitch
+%foreach idx = SIZE(POL_PWMx,1)
+%if POL_PWMx[idx] == 1
+%if (WO_used[idx] == 1)
+tmp_reg |= TCC_WAVE_POL%<idx>_Msk;  /* Reverse PWM%<idx> polarity */
+%endif
+%endif
+%endforeach
+%foreach idx = SIZE(SWAP_PWMx,1)
+%if SWAP_PWMx[idx] == 1
+%if (WO_used[idx] == 1)
+tmp_reg |= TCC_WAVE_SWAP%<idx>_Msk;  /* SWAP PIN H-L of PWM%<idx> */
+%endif
+%endif
+%endforeach
+TCC%<TCCREF>_REGS->TCC_WAVE = tmp_reg;
+/* Set Initial Period and Duty Cycle */
+TCC%<TCCREF>_REGS->TCC_PER = %<PER>;	/* Initial Period: %<InitPeriod_s>(s) */
+%foreach idx = SIZE(CCx,1)
+%if ChEn[idx] && (CCx[idx] > 0)
+TCC%<TCCREF>_REGS->TCC_CC[%<idx>] = %<CAST("Unsigned",CCx[idx])>;	/* Initial Duty Cycle: %<InitDutyCycle_s[idx]>(s) */
+%endif
+%endforeach
+/* Output map and Dead Time */
+tmp_reg = TCC_WEXCTRL_OTMX(%<OTMX>); /* Output Mapping Variant */
+%foreach idx = 4
+%if ChEn[idx]
+tmp_reg |= TCC_WEXCTRL_DTIEN%<idx>_Msk;
+%endif
+%endforeach
+tmp_reg |= TCC_WEXCTRL_DTLS(%<DTLS>); /* Low Side Dead Time %<InitDeadTimeL_s>(s) */
+tmp_reg |= TCC_WEXCTRL_DTHS(%<DTHS>); /* High Side Dead Time %<InitDeadTimeH_s>(s) */
+TCC%<TCCREF>_REGS->TCC_WEXCTRL = tmp_reg; /* Write output scheme */
+%openfile buffer_tmpreg
+%foreach idx = SIZE(INV_WOx,1)
+%if INV_WOx[idx] == 1
+tmp_reg |= TCC_DRVCTRL_INVEN%<idx>_Msk;     /* Invert WO%<idx>*/
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Invert signal */
+tmp_reg = 0;
+%<buffer_tmpreg>
+TCC%<TCCREF>_REGS->TCC_DRVCTRL = tmp_reg; /* Write */
+%endif
+%openfile buffer_tmpreg
+%foreach idx = SIZE(InitOutputOverride,1)
+%if (InitOutputOverride[idx] > 0)
+tmp_reg |= TCC_PATT_PGE%<CAST("Number",WO_used_idx[idx])>_Msk; /* Override TCC output WO%<CAST("Number",WO_used_idx[idx])> */
+%if BlockInput_OutputOverride == 0
+%warning("PWM-TCC%<TCCREF> Output WO%<CAST("Number",WO_used_idx[idx])> is set at initialisation and will remains fixed upon TCC overriding is disabled")
+%endif
+%endif
+%endforeach
+%foreach idx = SIZE(InitOutputOverride_val,1)
+%if (InitOutputOverride_val[idx] > 0)
+tmp_reg |= TCC_PATT_PGE%<CAST("Number",WO_used_idx[idx])>_Msk; /* Override WO%<CAST("Number",WO_used_idx[idx])> default output value */
+%endif
+%endforeach
+%closefile buffer_tmpreg
+%if !ISEMPTY(buffer_tmpreg)
+/* Initial Overriding PWM TCC output */
+tmp_reg = 0U;
+%<buffer_tmpreg>
+TCC%<TCCREF>_REGS->TCC_PATT = tmp_reg; /* Write */
+%endif
+/* Set Prescaler & Starts */
+tmp_reg = TCC_CTRLA_ENABLE_Msk;			/* Enable TCC peripheral */
+tmp_reg |=  TCC_CTRLA_RUNSTDBY_Msk;	 	/* Run in Standby */
+tmp_reg |= TCC_CTRLA_PRESCALER_DIV%<PRESCALER>; 	/* Counter res %<Resolution_s>(s) */	
+TCC%<TCCREF>_REGS->TCC_CTRLA = tmp_reg;	/* Starts peripheral */
+while (0U != TCC%<TCCREF>_REGS->TCC_SYNCBUSY) ; /* Wait for Sync */
+}
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ::MCHP_TCC0_GCLK_FCY = MchpLocal2Global(block,::MCHP_TCC0_GCLK_FCY ,  CAST("Number",block.RTWdata.MCHP_TCC0_GCLK_FCY),"GCLK_FCY" , "TCC-PWM GCLK clock setting mismatch for this TCC setting")
+%assign ::MCHP_TCC0_GCLK_idx = MchpLocal2Global(block,::MCHP_TCC0_GCLK_idx ,  CAST("Number",block.RTWdata.MCHP_TCC0_GCLK_idx),"GCLK_idx" , "")
+%assign ::MCHP_TCC0_WAVEGEN = MchpLocal2Global(block,::MCHP_TCC0_WAVEGEN ,  CAST("Number",block.RTWdata.MCHP_TCC0_WAVEGEN),"WAVEGEN" , "TCC-PWM WAVEGEN setting mismatch for this TCC setting")
+%assign ::MCHP_TCC0_INV_WOx = MchpLocal2Global(block,::MCHP_TCC0_INV_WOx ,  MchpVector64(block.RTWdata.MCHP_TCC0_INV_WOx),"INV_WOx" , "TCC-PWM INV_WOx setting mismatch")
+%assign ::MCHP_TCC0_POL_PWMx = MchpLocal2Global(block,::MCHP_TCC0_POL_PWMx ,  MchpVector64(block.RTWdata.MCHP_TCC0_POL_PWMx),"POL_PWMx" , "TCC-PWM POL_PWMx setting mismatch")
+%assign ::MCHP_TCC0_SWAP_PWMx = MchpLocal2Global(block,::MCHP_TCC0_SWAP_PWMx ,  MchpVector64(block.RTWdata.MCHP_TCC0_SWAP_PWMx),"SWAP_PWMx" , "TCC-PWM SWAP_PWMx setting mismatch")
+%assign ::MCHP_TCC0_OTMX = MchpLocal2Global(block,::MCHP_TCC0_OTMX ,  CAST("Number",block.RTWdata.MCHP_TCC0_OTMX),"OTMX" , "TCC-PWM OTMX setting mismatch")
+%assign ::MCHP_TCC0_OTMX_matrix = MchpLocal2Global(block,::MCHP_TCC0_OTMX_matrix ,  MchpVector64(block.RTWdata.MCHP_TCC0_OTMX_matrix),"OTMX_matrix" , "TCC-PWM OTMX_matrix setting mismatch")
+%assign ::MCHP_TCC0_WO_used = MchpLocal2Global(block,::MCHP_TCC0_WO_used ,  MchpVector64(block.RTWdata.MCHP_TCC0_WO_used),"WO_used" , "TCC-PWM WO_used setting mismatch")
+%assign ::MCHP_TCC0_WO_used_idx = MchpLocal2Global(block,::MCHP_TCC0_WO_used_idx ,  MchpVector64(block.RTWdata.MCHP_TCC0_WO_used_idx),"WO_used_idx" , "TCC-PWM WO_used_idx setting mismatch")
+%assign ::MCHP_TCC0_ChEn = MchpLocal2Global(block,::MCHP_TCC0_ChEn ,  MchpVector64(block.RTWdata.MCHP_TCC0_ChEn),"ChEn" , "TCC-PWM ChEn setting mismatch")
+%assign ::MCHP_TCC0_RAMP = MchpLocal2Global(block,::MCHP_TCC0_RAMP ,  CAST("Number",block.RTWdata.MCHP_TCC0_RAMP),"RAMP" , "TCC-PWM RAMP setting mismatch")
+%assign ::MCHP_TCC0_idx_GCLK_PCHCTRLn = MchpLocal2Global(block,::MCHP_TCC0_idx_GCLK_PCHCTRLn ,  CAST("Number",block.RTWdata.MCHP_TCC0_idx_GCLK_PCHCTRLn),"idx_GCLK_PCHCTRLn" , "TCC-PWM idx_GCLK_PCHCTRLn setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_s = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_MaxPeriod_s),"MaxPeriod_s" , "TCC-PWM MaxPeriod_s setting mismatch")
+%assign ::MCHP_TCC0_InitPeriod_s = MchpLocal2Global(block,::MCHP_TCC0_InitPeriod_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitPeriod_s),"InitPeriod_s" , "TCC-PWM InitPeriod_s setting mismatch")
+%assign ::MCHP_TCC0_InitDutyCycle_s = MchpLocal2Global(block,::MCHP_TCC0_InitDutyCycle_s ,  MchpVectorDbl(block.RTWdata.MCHP_TCC0_InitDutyCycle_s),"InitDutyCycle_s" , "TCC-PWM InitDutyCycle_s setting mismatch")
+%assign ::MCHP_TCC0_InitDeadTimeL_s = MchpLocal2Global(block,::MCHP_TCC0_InitDeadTimeL_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitDeadTimeL_s),"InitDeadTimeL_s" , "TCC-PWM InitDeadTimeL_s setting mismatch")
+%assign ::MCHP_TCC0_InitDeadTimeH_s = MchpLocal2Global(block,::MCHP_TCC0_InitDeadTimeH_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_InitDeadTimeH_s),"InitDeadTimeH_s" , "TCC-PWM InitDeadTimeH_s setting mismatch")
+%assign ::MCHP_TCC0_InitOutputOverride = MchpLocal2Global(block,::MCHP_TCC0_InitOutputOverride ,  MchpVector64(block.RTWdata.MCHP_TCC0_InitOutputOverride),"InitOutputOverride" , "TCC-PWM InitOutputOverride setting mismatch")
+%assign ::MCHP_TCC0_InitOutputOverride_val = MchpLocal2Global(block,::MCHP_TCC0_InitOutputOverride_val ,  MchpVector64(block.RTWdata.MCHP_TCC0_InitOutputOverride_val),"InitOutputOverride_val" , "TCC-PWM InitOutputOverride_val setting mismatch")
+%assign ::MCHP_TCC0_PRESCALER = MchpLocal2Global(block,::MCHP_TCC0_PRESCALER ,  CAST("Number",block.RTWdata.MCHP_TCC0_PRESCALER),"PRESCALER" , "TCC-PWM PRESCALER setting mismatch")
+%assign ::MCHP_TCC0_Resolution_s = MchpLocal2Global(block,::MCHP_TCC0_Resolution_s ,  CAST("Real",block.RTWdata.MCHP_TCC0_Resolution_s),"Resolution_s" , "TCC-PWM Resolution_s setting mismatch")
+%assign ::MCHP_TCC0_PER = MchpLocal2Global(block,::MCHP_TCC0_PER ,  CAST("Number",block.RTWdata.MCHP_TCC0_PER),"PER" , "TCC-PWM PER setting mismatch")
+%assign ::MCHP_TCC0_CCx = MchpLocal2Global(block,::MCHP_TCC0_CCx ,  MchpVector64(block.RTWdata.MCHP_TCC0_CCx),"CCx" , "TCC-PWM CCx setting mismatch")
+%assign ::MCHP_TCC0_DTHS = MchpLocal2Global(block,::MCHP_TCC0_DTHS ,  CAST("Number",block.RTWdata.MCHP_TCC0_DTHS),"DTHS" , "TCC-PWM DTHS setting mismatch")
+%assign ::MCHP_TCC0_DTLS = MchpLocal2Global(block,::MCHP_TCC0_DTLS ,  CAST("Number",block.RTWdata.MCHP_TCC0_DTLS),"DTLS" , "TCC-PWM DTLS setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_RAW = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_RAW ,  CAST("Number",block.RTWdata.MCHP_TCC0_MaxPeriod_RAW),"MaxPeriod_RAW" , "TCC-PWM MaxPeriod_RAW setting mismatch")
+%assign ::MCHP_TCC0_MaxPeriod_ss = MchpLocal2Global(block,::MCHP_TCC0_MaxPeriod_ss ,  CAST("Real",block.RTWdata.MCHP_TCC0_MaxPeriod_ss),"MaxPeriod_ss" , "TCC-PWM MaxPeriod_ss setting mismatch")
+%assign isPresent =  CAST("Number",block.RTWdata.isPresent)
+%assign TCCREF =  CAST("Number",block.RTWdata.TCCREF)
+%assign WOx_isPresent =  MchpVector64(block.RTWdata.WOx_isPresent)
+%assign nWOx =  CAST("Number",block.RTWdata.nWOx)
+%assign GCLK_FCY =  CAST("Number",block.RTWdata.GCLK_FCY)
+%assign GCLK_idx =  CAST("Number",block.RTWdata.GCLK_idx)
+%assign WAVEGEN =  CAST("Number",block.RTWdata.WAVEGEN)
+%assign INV_WOx =  MchpVector64(block.RTWdata.INV_WOx)
+%assign POL_PWMx =  MchpVector64(block.RTWdata.POL_PWMx)
+%assign SWAP_PWMx =  MchpVector64(block.RTWdata.SWAP_PWMx)
+%assign OTMX =  CAST("Number",block.RTWdata.OTMX)
+%assign OTMX_matrix =  MchpVector64(block.RTWdata.OTMX_matrix)
+%assign WO_used =  MchpVector64(block.RTWdata.WO_used)
+%assign WO_used_idx =  MchpVector64(block.RTWdata.WO_used_idx)
+%assign BlockInput_OutputOverride =  CAST("Number",block.RTWdata.BlockInput_OutputOverride)
+%assign BlockInput_OutputOverride_Immediate =  CAST("Number",block.RTWdata.BlockInput_OutputOverride_Immediate)
+%assign ChEn =  MchpVector64(block.RTWdata.ChEn)
+%assign RAMP =  CAST("Number",block.RTWdata.RAMP)
+%assign idx_GCLK_PCHCTRLn =  CAST("Number",block.RTWdata.idx_GCLK_PCHCTRLn)
+%assign BlockInput_VectorScalar =  CAST("Number",block.RTWdata.BlockInput_VectorScalar)
+%assign BlockInput_Period =  CAST("Number",block.RTWdata.BlockInput_Period)
+%assign BlockInput_DutyCycle =  MchpVector64(block.RTWdata.BlockInput_DutyCycle)
+%assign BlockInput_DeadTime =  CAST("Number",block.RTWdata.BlockInput_DeadTime)
+%assign MaxPeriod_s =  CAST("Real",block.RTWdata.MaxPeriod_s)
+%assign InitPeriod_s =  CAST("Real",block.RTWdata.InitPeriod_s)
+%assign InitDutyCycle_s =  MchpVectorDbl(block.RTWdata.InitDutyCycle_s)
+%assign InitDeadTimeL_s =  CAST("Real",block.RTWdata.InitDeadTimeL_s)
+%assign InitDeadTimeH_s =  CAST("Real",block.RTWdata.InitDeadTimeH_s)
+%assign InitOutputOverride =  MchpVector64(block.RTWdata.InitOutputOverride)
+%assign InitOutputOverride_val =  MchpVector64(block.RTWdata.InitOutputOverride_val)
+%assign PRESCALER =  CAST("Number",block.RTWdata.PRESCALER)
+%assign Resolution_s =  CAST("Real",block.RTWdata.Resolution_s)
+%assign PER =  CAST("Number",block.RTWdata.PER)
+%assign CCx =  MchpVector64(block.RTWdata.CCx)
+%assign DTHS =  CAST("Number",block.RTWdata.DTHS)
+%assign DTLS =  CAST("Number",block.RTWdata.DTLS)
+%assign MaxPeriod_RAW =  CAST("Number",block.RTWdata.MaxPeriod_RAW)
+%assign MaxPeriod_ss =  CAST("Real",block.RTWdata.MaxPeriod_ss)
+%assign IndexOutput = 0
+%assign IndexInput = 0
+%assign IndexVect = 0
+%assign ChEnIndex = [-1,-1,-1,-1]
+%assign count = 0
+%foreach idx= SIZE(ChEn,1)
+%if ChEn[idx] == 1
+%assign ChEnIndex[count] = idx
+%assign count = count + 1
+%endif
+%endforeach
+%assign SomethingToUpdateforSynchronousUpdate = 0
+%assign BlockInput_xx = BlockInput_Period
+%assign idx = 0             
+%if BlockInput_xx[idx] != -1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%if yConnected
+TCC%<TCCREF>_REGS->TCC_PERBUF = %<yScale>; /* Update PWM%<TCCREF> Period */
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endif
+%assign IndexInput = IndexInput + (IndexVect != 0)
+%assign IndexVect = 0
+%assign BlockInput_xx = BlockInput_DutyCycle
+%foreach idx= SIZE(BlockInput_xx,1)
+%if BlockInput_xx[idx] != -1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%switch BlockInput_VectorScalar
+%case 0 
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%if yConnected
+%if ::isSAMD2_DA1 == 1
+TCC%<TCCREF>_REGS->TCC_CCB[%<idx>] = %<yScale>; /* Update PWM%<ChEnIndex[idx]> */
+%else 
+TCC%<TCCREF>_REGS->TCC_CCBUF[%<idx>] = %<yScale>; /* Update PWM%<ChEnIndex[idx]> */
+%endif
+%assign SomethingToUpdateforSynchronousUpdate = 1
+%endif
+%endif
+%endforeach
+%assign IndexInput = IndexInput + (IndexVect != 0)
+%assign IndexVect = 0
+%assign BlockInput_xx = BlockInput_DeadTime
+%foreach idx= SIZE(BlockInput_xx,1)
+%if BlockInput_xx[idx] != -1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%assign yConnected2 = LibBlockInputSignalConnected(IndexInput+1)
+%switch BlockInput_VectorScalar
+%case 0 
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1
+%assign y2 = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId2 = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1     
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign y2 = LibBlockInputSignal(IndexInput+1, "", "",IndexVect)
+%assign y_dtId2 = LibBlockInputSignalDataTypeId(IndexInput+1)
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign yScale = yScaleFct(y,y_dtId,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%assign yScale2 = yScaleFct(y2,y_dtId2,BlockInput_xx[idx],MaxPeriod_RAW,MaxPeriod_ss,0)
+%if (yConnected || yConnected2) 
+{
+uint32_T tmp_reg;
+tmp_reg = TCC_WEXCTRL_OTMX(%<OTMX>); /* Output Mapping Variant */
+%foreach idx = 4
+%if ChEn[idx]
+tmp_reg |= TCC_WEXCTRL_DTIEN%<idx>_Msk;
+%endif
+%endforeach
+%if yConnected2
+tmp_reg |= TCC_WEXCTRL_DTLS(%<yScale2>); /* Low Side Dead Time */
+%endif
+%if yConnected
+tmp_reg |= TCC_WEXCTRL_DTHS(%<yScale>); /* High Side Dead Time */
+%endif
+TCC%<TCCREF>_REGS->TCC_WEXCTRL = tmp_reg; /* Write output scheme */
+}
+%endif
+%endif
+%endforeach
+%assign IndexInput = IndexInput + (IndexVect != 0) + (IndexVect != 0)
+%assign IndexVect = 0
+%switch BlockInput_OutputOverride_Immediate
+%case 0
+%assign TCC_PATTx = "TCC_PATTBUF"   
+%case 1
+%assign TCC_PATTx = "TCC_PATT"  
+%endswitch
+%switch BlockInput_OutputOverride
+%case 1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+TCC%<TCCREF>_REGS->%<TCC_PATTx> = %<y>; /* Override TCC PWM output */
+%endif
+%assign IndexInput = IndexInput + 1
+%break
+%case 2 
+%case 3 
+%assign BlockInput_xx = InitOutputOverride
+%openfile buffer_PATT
+%foreach idx= SIZE(BlockInput_xx,1)
+%if BlockInput_xx[idx] != -1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%switch BlockInput_VectorScalar
+%case 0 
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign idxx = CAST("Number",WO_used_idx[idx])
+%if yConnected
+tmp_reg |= TCC_PATT_PGE%<idxx>(%<y>); /* Pattern Generator %<idxx> Output Enable Forced */
+tmp_reg &= (0xFFFF ^ TCC_PATT_PGE%<idxx>_Msk ^ TCC_PATT_PGE%<idxx>(%<y>));
+%endif
+%endif
+%endforeach
+%if BlockInput_OutputOverride == 2
+%foreach idx= SIZE(BlockInput_xx,1)
+%if BlockInput_xx[idx] != -1
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%switch BlockInput_VectorScalar
+%case 0 
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexInput = IndexInput + 1
+%break
+%case 1 
+%assign y = LibBlockInputSignal(IndexInput, "", "",IndexVect)
+%assign y_dtId = LibBlockInputSignalDataTypeId(IndexInput)
+%assign IndexVect = IndexVect + 1
+%break
+%endswitch
+%assign idxx = CAST("Number",WO_used_idx[idx])
+%if yConnected
+tmp_reg |= TCC_PATT_PGV%<idxx>(%<y>); /* Pattern Generator %<idxx> Output Value */
+tmp_reg &= (0xFFFF ^ TCC_PATT_PGV%<idxx>_Msk ^ TCC_PATT_PGV%<idxx>(%<y>)); /* Pattern Generator %<idxx> Output Value */
+%endif
+%endif
+%endforeach
+%endif
+%closefile buffer_PATT
+%if !ISEMPTY(buffer_PATT)
+{
+uint16_T tmp_reg =TCC%<TCCREF>_REGS->TCC_PATT;
+%<buffer_PATT>
+TCC%<TCCREF>_REGS->%<TCC_PATTx> = tmp_reg; /* Override TCC PWM output */
+}
+%endif
+%assign IndexInput = IndexInput + (IndexVect != 0)
+%assign IndexVect = 0
+%endswitch
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function yScaleFct(y,y_dtId,BlockInput_xx,MaxPeriod_RAW,MaxPeriod_ss,Rshift) void
+%switch y_dtId
+%case 0
+%assign y_CAST = "Real"     
+%break
+%case 1
+%assign y_CAST = "Real32"   
+%break
+%endswitch
+%switch Rshift
+%case 0
+%assign RshiftMult = 1
+%break
+%default
+%assign RshiftMult = 1.0/(1U << Rshift)
+%break
+%endswitch
+%switch BlockInput_xx
+%case 1     
+%if Rshift > 0
+%assign yScale = "(%<y> >> %<Rshift>)"
+%else
+%assign yScale = y
+%endif
+%break
+%case 10    
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW * RshiftMult) >  ))"
+%break
+%case 11    
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, 0.5*MaxPeriod_RAW * RshiftMult) >  +  %< CAST(y_CAST, 0.5*MaxPeriod_RAW*RshiftMult) >  ))"
+%break
+%case 12    
+%assign yScale = "((unsigned int)( %<y>  *  %< CAST(y_CAST, MaxPeriod_RAW*RshiftMult/MaxPeriod_ss) >  ))"
+%break
+%endswitch
+%return yScale
+%endfunction

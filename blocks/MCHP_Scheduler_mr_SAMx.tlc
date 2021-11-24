@@ -1,0 +1,263 @@
+%include "MCHP_Functions_Atomic.tlc"
+%function MCHP_taskCheckOverrun_Exit(taskID) void
+%openfile taskCheck
+if (taskCounter[%<taskID>] == 0) { 		/* no task execution dropped: overrun on lower rate task will slow down higher rate task. Keep task Synchronisation */
+if (Overrun.Flags%<taskID>) {
+%if (%<::MASTER_BusyFlag> != -1)
+%<Mchp_asm_Adec("BusyFlagRecursion")> 
+%endif
+%<MCHP_ProfileMCU("exit")>
+%<MCHP_MCUOverload(taskID)>
+%<MCHP_Scheduler_EXIT()>
+}
+event.Flags%<taskID> = 1U;
+}
+%closefile taskCheck
+%return taskCheck
+%endfunction
+%function MCHP_taskCheckOverrun_Continue(taskID) void
+%openfile taskCheck
+if (taskCounter[%<taskID>] == 0) {  /* task dropped on overload */
+event.Flags%<taskID> = 1U;
+%openfile overload
+%<MCHP_MCUOverload(taskID)>
+%closefile overload
+%if !WHITE_SPACE(overload)
+if (Overrun.Flags%<taskID>)
+{
+%<overload>
+}
+%endif
+}
+%closefile taskCheck
+%return taskCheck
+%endfunction
+%function MCHP_mrScheduler(InterruptPrefix,InterruptNumber,ChipIdN) void
+%<MCHP_writeContextSwitchForSAME70()>
+%openfile mrScheduler
+{
+uint32_T isrPri;
+__asm volatile (" MRS R0, APSR    ");         /* Move into R0 the value of APSR (status flags) */
+__asm volatile (" PUSH {R0, LR}   ");         /* PUSH APSR and LR on the stack */
+__asm volatile (" MRS R0, BASEPRI ");         /* Move the value of BASEPRI the value of R0 (The processor does not process any exception with a priority value greater than or equal to BASEPRI. If BASEPRI is zero, it has no effect) */
+__asm volatile (" PUSH {R0, R1}   ");         /* Dummy R1 for alignment */
+/* Change priority level */
+__set_BASEPRI(1 << 5); /* No Interruptions */
+/* switch from exception mode to handler mode and execute scheduler */
+#if (defined(__FPU_PRESENT) && (__FPU_PRESENT == 1)) && (defined(__FPU_USED) && (__FPU_USED == 1))
+__asm volatile ("     TST  LR, #0x10");        /* If the implementation includes the FP extension, such code must use the stacked value of xPSR[9] together with the value of EXC_RETURN bit[4] to determine whether the previous top-of-stack was at offset 0x20, 0x24, 0x68, or 0x6C (see page 533 ARMv7-M Architecture Reference Manual) */
+__asm volatile ("     IT EQ");                 /* If equal, then */
+__asm volatile ("     VMOVEQ S0, S0");      /* Touch FPU register S0 to ensure complete FPU context saving. If FPU lazy-context saving is enabled, this will force the processor registers to push FPU registers on the stack */
+#endif
+__asm volatile (" SUB SP, SP, #0x20");     /* Make room for a new stack frame (32 bytes) */
+__asm volatile (" ADR R0,Call_isr_routine_in_thread_mode"); /* Write in R0 the address value of the scheduler routine */
+__asm volatile (" STR R0,[SP, #24]");      /* Store R3 value(label value) at the address SP+24 */
+__asm volatile (" MOV R0,#0x01000000");    /* Move the constant value into R0 */
+__asm volatile (" STR R0,[SP, #28]");      /* Stor the R0 value on the stack; it will act as xPSR with "T" bit = 1 */
+__asm volatile (" MVNS R0,#0x6");          /* bitwise logical NOT on value 6 => 0xFFFF_FFF9 in R0. Bit 4 is 1 => will reset CONTROL.FCPA (reset use of FP detected in new thread) */
+__asm volatile (" MOV LR, R0");            /* Basically stores the value 0xFFFF_FFF9 into LR : EXC_RETURN value meaning here "return to Thread mode/Main Stack using Basic Frame Type" */		
+__asm volatile (" BX LR");                 /* Branch with link and exchange; return from interrupt but instead of returning from SysTick_Handler, this will "return" to the MCHP Scheduler in thread mode" */		
+__asm volatile ("Call_isr_routine_in_thread_mode:");
+__asm volatile ("     ADR R0, MCHP_Scheduler"); 	/* Place function address to call in R0 */
+__asm volatile ("     ORR R0, #1"); 			/* set LSB to 1. LSB defining instructions format. Must always be 1 otherwise exception is triggered */	
+__asm volatile ("     BLX R0");                /* At this point we are back to the stack frame created from SysTick_Handler. It's time to call SysTick_ISR */
+__asm volatile ("     ISB");                   /* At this point we are back from SysTick_ISR, scheduler code was executed. Ensure that all instructions completed and flush the instruction pipeline */
+__asm volatile ("     SVC #0");                /* Trigger SVC exception 0 to restore the stack frame as it was before SysTick exception occurred */
+__asm volatile ("Unknown_Execution:");
+__asm volatile ("     B Unknown_Execution");		
+}
+%closefile mrScheduler
+%return mrScheduler
+%endfunction
+%function MCHP_writeContextSwitchForSAME70() void
+%assign srcName = LibGetMdlSrcBaseName() + "_main"
+%assign modelC  = LibCreateSourceFile("Source", "Custom", srcName )
+%openfile tmpBuf
+/* Multitasking wrapper */
+/* SVC Interrupt service routine to restore the context: SVC_Handler */
+/* SVC_Handler is used to return from the re-entrant scheduler function */
+__attribute__ ((naked,aligned(4))) void SVCall_Handler(void) {
+#if (defined(__FPU_PRESENT) && (__FPU_PRESENT == 1)) && (defined(__FPU_USED) && (__FPU_USED == 1))
+__asm volatile (
+"   TST  LR, #0x10      \n"
+"   IT EQ               \n"
+"   VMOVEQ.F32 S0, S0   \n"
+);
+#endif
+__asm volatile ("     TST LR, #0x4");          /* Test bit 2 of LR; If LR value is 0x**** ***D,  then return from this handler to "Thread mode" using "Process return stack"(MSP) with  Basic/Extended frame type(depending on EXC_RETURN value) */
+__asm volatile ("     ITE EQ");                /* If bit 2 of LR is set */
+__asm volatile ("     MRSEQ R0, MSP");         /* Load in R0 the value MSP */
+__asm volatile ("     MRSNE R0, PSP");         /* Else Load in R0 the value PSP */
+__asm volatile ("     LDR R1, [R0, #24]");     /* Load in R1 the value of the stacked PC */
+__asm volatile ("     LDRB.W R0, [R1, #-2]");  /* Load in R0 the SVC's immediate value by locating the SVC instruction through the stacked PC, and extract the LSB from the instruction */
+__asm volatile ("     CBZ R0, svc_service_0"); /* Compare and Branch to "svc_service_0"if SVC value is 0 */
+__asm volatile ("     CMP R0, #1");            /* Compare R0 with 1 */
+__asm volatile ("     BEQ svc_service_1");     /* Branch to "svc_service_1" if SVC #1 was invoked */
+__asm volatile ("     B Unknown_SVC_Request"); /* Otherwise branch to unknown SVC value */
+__asm volatile ("svc_service_0:");
+#if (defined(__FPU_PRESENT) && (__FPU_PRESENT == 1)) && (defined(__FPU_USED) && (__FPU_USED == 1))
+__asm volatile ("     TST LR, #0x10");         /* Test bit 4 of LR; this bit will indicate whether the stack frame for this exception has space allocated for FP state information. Bit[4] is 0 if stack space is allocated (see page 535 of ARMV7-M Architecture Reference Manual). */
+__asm volatile ("     ITE EQ");                /* If equal, then next instruction. Else, the second instruction */
+__asm volatile ("     ADDEQ SP, SP, #104");    /* Increment SP to remove the current stack frame. If the current stack frame is an Extended frame(Basic frame + FP state ), remove 104 bytes from the stack  */
+__asm volatile ("     ADDNE SP, SP, #32");     /* Increment SP to remove the current stack frame. If the current stack frame is a Basic frame, remove 32 bytes from the stack  */
+#else
+__asm volatile ("     ADD SP, SP, #32");
+#endif
+/* At this point we have 4 more words on the stack before reaching the original stack of SysTick_Handler */
+/* These 4 extra words were pushed on the stack during SysTick_Handler execution, before calling "context_switch" routine */
+/* The content of these registers are (in POPPING order): BASEPRI state, Dummy value(used for alignment, but it won't be used), APSR state and LR state */
+__asm volatile ("     POP {R0, R1}");          /* Retrieve the base interrupt priority state */
+__asm volatile ("     MSR BASEPRI, R0");       /* Restore the base priority mask */
+__asm volatile ("     POP {R0, R1}");          /* Retrieve the APSR state and LR value when systick interrupt occured */
+__asm volatile ("     MSR APSR_nzcvq, R0");    /* Restore the N,Z,C,V,Q state */
+__asm volatile ("     BX R1");                 /* Return from interrupt (R1 stores the LR value when SysTick interrupt occurred) */
+__asm volatile ("Unknown_SVC_Request:");
+__asm volatile ("     B Unknown_SVC_Request"); /* If we get here something went wrong; in this case stay into an infinite loop */
+__asm volatile ("svc_service_1:");
+#if (defined(__FPU_PRESENT) && (__FPU_PRESENT == 1)) && (defined(__FPU_USED) && (__FPU_USED == 1))
+__asm volatile ("     TST  LR, #0x10");        /* Test bit 4 of LR; this bit will indicate whether the stack frame for this exception has space allocated for FP state information. Bit[4] is 0 if stack space is allocated (see page 535 of ARMV7-M Architecture Reference Manual). */
+__asm volatile ("     IT EQ");                 /* If equal, then next instruction */
+__asm volatile ("     VMOVEQ.32 S0, S0");      /* Copy the contents of one FPU register to another FPU register. This will "touch" one FPU register to save the entire FPU context */
+#endif	
+__asm volatile ("     MOVW R1, #0x0000ED14");  /* Write value 0xED14(#imm16) to R1 */
+__asm volatile ("     MOVT R1, #0xE000");      /* Write value 0xE000(top value of on #imm16) to R1. R1 now has the value 0xE000ED14 (CCR Register) */
+__asm volatile ("     LDR R2,[R1]");           /* Load in R2 the value stored in CCR register */
+__asm volatile ("     ORR R2, #1");            /* Set NONBASETHRDENA bit of CCR register so that processor can enter in Thread Mode when exceptions are active (see page 601 of ARMv7-M Architecture Reference Manual) */
+__asm volatile ("     STR R2,[R1]");           /* Store the new value in CCR */
+__asm volatile ("     BX LR");                 /* Branch indirect and Exchange: Return from function call in "Thread mode" with "Main return stack" and "Basic stack frame" */
+__asm volatile ("     B Unknown_SVC_Request"); /* If branch with link was not ok, enter into an infinite loop */
+}
+__attribute__((externally_visible))	void MCHP_Scheduler()
+%<MCHP_mrScheduler_SAME70()>
+%closefile tmpBuf
+%<LibSetSourceFileSection(modelC,"Functions",tmpBuf)>
+%endfunction
+%function MCHP_mrScheduler_SAME70() Output
+%assign ::MASTER_BusyFlag = CAST("Number",RTWGenSettings.MASTER_BusyFlag)
+%assign MASTER_BusyFlagPin = CAST("Number",%<::MASTER_BusyFlag % 32>)
+%assign MASTER_BusyFlagLetter = STRINGOF([%<::MASTER_BusyFlag / 32 + 65>])
+%assign MCHP_NEAR_MEM = Mchp_NEAR_MEM()
+%assign tid01Eq = LibGetTID01EQ()
+{ /* Scheduler */
+/* Disable Scheduler but keep others interrupts active */	
+%<Mchp_asm_DisableSchedulerInterrupt()>	 	
+%if (MASTER_BusyFlag != -1)
+extern volatile uint_T BusyFlagRecursion %<MCHP_NEAR_MEM>;		
+%endif
+struct {
+%foreach i = LibNumSynchronousSampleTimes()			
+unsigned int Flags%<i> : 1;
+%endforeach
+} static volatile Overrun = {
+%assign comma = ""
+%foreach iTID = (LibNumSynchronousSampleTimes())  	
+%<comma> .Flags%<iTID> = 0
+%assign comma = ","
+%endforeach		 		
+};	    	
+struct {
+%foreach i = LibNumSynchronousSampleTimes()				
+unsigned int Flags%<i> : 1;
+%endforeach
+} static volatile event = {
+%assign comma = ""
+%foreach iTID = (LibNumSynchronousSampleTimes())  	
+%<comma> .Flags%<iTID> = 0
+%assign comma = ","
+%endforeach		 		
+};	    	
+%if SuppressMultiTaskScheduler
+static  uint_T taskCounter[%<LibNumSynchronousSampleTimes()>] = %<FcnInitializeTaskCounter()>;
+%endif
+%if (%<::MASTER_BusyFlag> != -1)
+/* Set busy flag */
+%<Mchp_asm_Ainc("BusyFlagRecursion")> 
+%<MCHP_SetOutputBit(MASTER_BusyFlag,1,"Set Busy Flag PIN")>			
+%endif
+%<MCHP_GetModelInput(0)>
+/* Check subrate overrun, set rates that need to run this time step*/
+%foreach i = (%<LibNumSynchronousSampleTimes()-1>)			
+%switch MCHP_SchedulerTaskOverload
+%case "Queue"
+%case "Skip"
+%<MCHP_taskCheckOverrun_Continue(i+1)>
+%break
+%case "Delay"
+%<MCHP_taskCheckOverrun_Exit(i+1)>
+%break
+%default
+%error Scheduler Option %<MCHP_SchedulerTaskOverload> not recognized.
+%endswitch
+%endforeach
+%if ExtMode
+if (0U==(%<ERTStopCheck()>)) {
+rtExtModeShutdown(%<NumSynchronousSampleTimes>);
+}
+%endif
+/* Update task internal counters */
+%<ERTMainGenSchedulerCode()>
+%<::MCHP_TimeStep_BeforeExecution>
+/* ---------- Handle model base rate Task 0 ---------- */
+%<MCHP_ProfileTaskStart(0)>
+%<MCHP_ProfileMCU_Compute(0)>
+%<LibCallModelStep(0)>
+{
+%<Mchp_asm_DisableAllInterrupt()>
+uint32_T ctrl = __get_CONTROL();
+ctrl = ctrl & 0xFFFFFFFB; /* Clear FPCA (reset use of FPU registers) */
+__set_CONTROL(ctrl);
+%<Mchp_asm_EnableAllInterrupt()>
+}
+%switch MCHP_SchedulerTaskOverload
+%case "Skip"
+%<MCHP_ProfileTaskStop(0)>
+if ( SCB->ICSR & SCB_ICSR_PENDSTSET_Msk ){
+%<MCHP_MCUOverload(0)>
+SCB->ICSR |= SCB_ICSR_PENDSTCLR_Msk; /* Skip next task0 when Overloaded */ 
+}
+%break
+%case "Queue"
+%case "Delay"
+%<MCHP_ProfileTaskStop(0)>
+if ( SCB->ICSR & SCB_ICSR_PENDSTSET_Msk ){
+%if (%<::MASTER_BusyFlag> != -1)
+%<Mchp_asm_Adec("BusyFlagRecursion")> 
+%endif
+%<MCHP_ProfileMCU("exit")>
+%<MCHP_MCUOverload(0)>
+%<MCHP_Scheduler_EXIT()>
+/* Will re-enter into the interrupt */ 
+}
+%break
+%default
+%error Scheduler Option %<MCHP_SchedulerTaskOverload> not recognized.
+%endswitch
+/* Re-Enable Interrupt. IPL value is 2 at this point */
+%<Mchp_asm_EnableSchedulerInterrupt()>
+/* Step the model for any subrate */
+%foreach i = %<LibNumSynchronousSampleTimes()-1>			
+/* ---------- Handle Task %<i+1> ---------- */		
+%<MCHP_taskExecute(i+1,0)>
+{
+uint32_T ctrl = __get_CONTROL();
+ctrl = ctrl & 0xFFFFFFFB; /* Clear FPCA (reset use of FPU registers) */
+__set_CONTROL(ctrl);
+}
+%endforeach
+%if (%<::MASTER_BusyFlag> != -1)
+/* Release busy flag */
+%<Mchp_asm_Adec("BusyFlagRecursion")> 
+if (0U == BusyFlagRecursion)
+%<MCHP_SetOutputBit(MASTER_BusyFlag,0,"Release Busy Flag PIN")>	
+%endif
+/* EXIT procedure */
+MCHP_SchedulerEXIT:
+/* Disable Interrupt. IPL value is 1 at this point */
+%<Mchp_asm_DisableSchedulerInterrupt()>
+%<DSB()>
+return;
+}
+%endfunction
+%function MCHP_Scheduler_EXIT() Output
+goto MCHP_SchedulerEXIT;
+%endfunction

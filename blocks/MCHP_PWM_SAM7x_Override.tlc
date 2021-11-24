@@ -1,0 +1,81 @@
+%implements  MCHP_PWM_SAM7x_Override  "C"
+%include "MCHP_Functions.tlc"		
+%function BlockTypeSetup(block, system) Output
+%endfunction
+%function BlockInstanceSetup(block, system) void
+%endfunction
+%function Start(block, system) Output
+%assign PWMx =  CAST("Number",block.RTWdata.PWMx)
+%assign Init_PWM_OS =  CAST("Number",block.RTWdata.Init_PWM_OS)
+%assign Init_PWM_OOV =  CAST("Number",block.RTWdata.Init_PWM_OOV)
+%assign Input_PWM_OS =  CAST("Number",block.RTWdata.Input_PWM_OS)
+%assign Input_PWM_OSS =  CAST("Number",block.RTWdata.Input_PWM_OSS)
+%assign Input_PWM_OSC =  CAST("Number",block.RTWdata.Input_PWM_OSC)
+%assign Input_PWM_OSSUPD =  CAST("Number",block.RTWdata.Input_PWM_OSSUPD)
+%assign Input_PWM_OSCUPD =  CAST("Number",block.RTWdata.Input_PWM_OSCUPD)
+%assign Input_PWM_OOV =  CAST("Number",block.RTWdata.Input_PWM_OOV)
+/* PWM %<PWMx> Override Initialisation */
+%if Input_PWM_OOV >= 0	
+PWM%<PWMx>_REGS->PWM_OOV = %<MchpHex(Init_PWM_OOV)>; /* Override initial output value  */	
+%endif
+%if Init_PWM_OS > 0
+PWM%<PWMx>_REGS->PWM_OS = %<MchpHex(Init_PWM_OS)>; /* Override (1) or PWM (0) */	
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign PWMx =  CAST("Number",block.RTWdata.PWMx)
+%assign Init_PWM_OS =  CAST("Number",block.RTWdata.Init_PWM_OS)
+%assign Init_PWM_OOV =  CAST("Number",block.RTWdata.Init_PWM_OOV)
+%assign Input_PWM_OS =  CAST("Number",block.RTWdata.Input_PWM_OS)
+%assign Input_PWM_OSS =  CAST("Number",block.RTWdata.Input_PWM_OSS)
+%assign Input_PWM_OSSUPD =  CAST("Number",block.RTWdata.Input_PWM_OSSUPD)
+%assign Input_PWM_OSC =  CAST("Number",block.RTWdata.Input_PWM_OSC)
+%assign Input_PWM_OSCUPD =  CAST("Number",block.RTWdata.Input_PWM_OSCUPD)
+%assign Input_PWM_OOV =  CAST("Number",block.RTWdata.Input_PWM_OOV)
+%assign IndexInput = 0
+%openfile OverrideEnabled
+%if Input_PWM_OS
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+PWM%<PWMx>_REGS->PWM_OS = %<y>; /* output is Override (1) or PWM (0) */
+%endif
+%assign IndexInput = IndexInput + 1	
+%endif
+%if Input_PWM_OSS    	
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%if Input_PWM_OSSUPD
+PWM%<PWMx>_REGS->PWM_OSSUPD = %<y>; /* output is Override (1) from next PWM cycle */
+%else
+PWM%<PWMx>_REGS->PWM_OSS = %<y>; /* output is Override (1) */
+%endif
+%endif
+%assign IndexInput = IndexInput + 1	
+%endif	
+%if Input_PWM_OSC    	
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+%if Input_PWM_OSCUPD
+PWM%<PWMx>_REGS->PWM_OSCUPD = %<y>; /* output is set to PWM (1) from next PWM cycle */
+%else
+PWM%<PWMx>_REGS->PWM_OSC = %<y>; /* output is set to PWM (1) */
+%endif
+%endif
+%assign IndexInput = IndexInput + 1	
+%endif	
+%closefile OverrideEnabled
+%if Input_PWM_OOV    	
+%assign yConnected = LibBlockInputSignalConnected(IndexInput)
+%if yConnected
+%assign y = LibBlockInputSignal(IndexInput, "", "",0)
+PWM%<PWMx>_REGS->PWM_OOV = %<y>; /* output override value */    		
+%endif
+%assign IndexInput = IndexInput + 1	
+%endif	
+%<OverrideEnabled>
+%endfunction
+%function Update(block, system) Output
+%endfunction

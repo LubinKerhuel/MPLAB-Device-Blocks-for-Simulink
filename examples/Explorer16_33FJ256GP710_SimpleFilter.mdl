@@ -1,0 +1,3044 @@
+Model {
+  Name			  "Explorer16_33FJ256GP710_SimpleFilter"
+  Version		  7.5
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.59"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1252"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength	  120
+  CloseFcn		  "rtwprivate ssgencode ModelCloseRequest Explorer16_33FJ256GP710_SimpleFilter"
+  Created		  "Thu Jan 31 11:37:05 2013"
+  Creator		  "Lubin Kerhuel"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Lubin Kerhuel"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Jun 18 16:03:30 2019"
+  RTWModifiedTimeStamp	  482774583
+  ModelVersionFormat	  "1.%<AutoIncrement:59>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  on
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  on
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.10.0"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.10.0"
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  FixedStep		  "0.001"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "MultiTasking"
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.10.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.10.0"
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  EnforceIntegerDowncast  on
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode on
+	  LifeSpan		  "1"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.10.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Use local settings"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    10
+	    Cell		    "ProdHWDeviceType"
+	    Cell		    "ProdEqTarget"
+	    Cell		    "ProdBitPerChar"
+	    Cell		    "ProdBitPerShort"
+	    Cell		    "ProdBitPerInt"
+	    Cell		    "ProdBitPerLong"
+	    Cell		    "ProdWordSize"
+	    Cell		    "ProdShiftRightIntArith"
+	    Cell		    "ProdEndianess"
+	    Cell		    "ProdIntDivRoundTo"
+	    PropName		    "DisabledProps"
+	  }
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  16
+	  ProdBitPerLong	  32
+	  ProdIntDivRoundTo	  "Zero"
+	  ProdEndianess		  "LittleEndian"
+	  ProdWordSize		  16
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "Generic->Custom"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.10.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Single"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.10.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.10.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "TargetLang"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "MCHP_dsPIC_stf.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "MCHP_dsPIC.tmf"
+	  Description		  "Microchip Embedded Target PIC24 dsPIC30 dsPIC33 (real-time)"
+	  GenerateReport	  on
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "MCHP_dsPIC_stf_make_rtw_hook"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport on
+	  LaunchReport		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  on
+	  GenerateTraceReport	  on
+	  GenerateTraceReportSl	  on
+	  GenerateTraceReportSf	  on
+	  GenerateTraceReportEml  on
+	  GenerateCodeInfo	  off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.10.0"
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses off
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      255
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      SimulinkBlockComments   on
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.STFCustomTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.10.0"
+	      Array {
+		Type			"Cell"
+		Dimension		9
+		Cell			"LINKER_SCRIPT"
+		Cell			"PIC_LIB"
+		Cell			"PIC_INCLUDES"
+		Cell			"GenerateSampleERTMain"
+		Cell			"MatFileLogging"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"UtilityFuncGeneration"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"ModelReferenceCompliant"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      "_lib.a"
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant off
+	      CompOptLevelCompliant   off
+	      IncludeMdlTerminateFcn  off
+	      GeneratePreprocessorConditionals "Use local settings"
+	      CombineOutputUpdateFcns on
+	      SuppressErrorStatus     on
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    on
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   off
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      SystemTargetFile	      "MCHP_dsPIC_stf.tlc"
+	      DialogCategory	      0
+	      Array {
+		Type			"Handle"
+		Dimension		1
+		Simulink.ERTTargetCC {
+		  $BackupClass		  "Simulink.TargetCC"
+		  $ObjectID		  12
+		  Version		  "1.10.0"
+		  Array {
+		    Type		    "Cell"
+		    Dimension		    12
+		    Cell		    "GenerateSampleERTMain"
+		    Cell		    "ERTCustomFileTemplate"
+		    Cell		    "MatFileLogging"
+		    Cell		    "GRTInterface"
+		    Cell		    "SupportNonInlinedSFcns"
+		    Cell		    "UtilityFuncGeneration"
+		    Cell		    "IncludeMdlTerminateFcn"
+		    Cell		    "ERTDataHdrFileTemplate"
+		    Cell		    "ERTDataSrcFileTemplate"
+		    Cell		    "ERTHdrFileBannerTemplate"
+		    Cell		    "ERTSrcFileBannerTemplate"
+		    Cell		    "ModelReferenceCompliant"
+		    PropName		    "DisabledProps"
+		  }
+		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
+		  TargetLibSuffix	  "_lib.a"
+		  TargetPreCompLibLocation ""
+		  TargetFunctionLibrary	  "ANSI_C"
+		  UtilityFuncGeneration	  "Auto"
+		  ERTMultiwordTypeDef	  "System defined"
+		  ERTCodeCoverageTool	  "None"
+		  ERTMultiwordLength	  256
+		  MultiwordLength	  2048
+		  GenerateFullHeader	  on
+		  GenerateSampleERTMain	  off
+		  GenerateTestInterfaces  off
+		  IsPILTarget		  off
+		  ModelReferenceCompliant on
+		  ParMdlRefBuildCompliant off
+		  CompOptLevelCompliant	  off
+		  IncludeMdlTerminateFcn  off
+		  GeneratePreprocessorConditionals "Use local settings"
+		  CombineOutputUpdateFcns on
+		  SuppressErrorStatus	  on
+		  ERTFirstTimeCompliant	  off
+		  IncludeFileDelimiter	  "Auto"
+		  ERTCustomFileBanners	  on
+		  SupportAbsoluteTime	  on
+		  LogVarNameModifier	  "rt_"
+		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
+		  SupportNonFinite	  on
+		  SupportComplex	  on
+		  PurelyIntegerCode	  off
+		  SupportContinuousTime	  off
+		  SupportNonInlinedSFcns  on
+		  SupportVariableSizeSignals off
+		  EnableShiftOperators	  on
+		  ParenthesesLevel	  "Nominal"
+		  PortableWordSizes	  off
+		  ModelStepFunctionPrototypeControlCompliant off
+		  CPPClassGenCompliant	  off
+		  AutosarCompliant	  off
+		  GenerateErtSFunction	  off
+		  GenerateASAP2		  off
+		  ExtMode		  off
+		  ExtModeTransport	  0
+		  ExtModeStaticAlloc	  off
+		  ExtModeStaticAllocSize  1000000
+		  ExtModeTesting	  off
+		  ExtModeMexFile	  "ext_comm"
+		  ExtModeIntrfLevel	  "Level1"
+		  InlinedParameterPlacement "NonHierarchical"
+		  TargetOS		  "BareBoardExample"
+		  MultiInstanceErrorCode  "Error"
+		  RateGroupingCode	  on
+		  RootIOFormat		  "Individual arguments"
+		  RTWCAPISignals	  off
+		  RTWCAPIParams		  off
+		  RTWCAPIStates		  off
+		  ERTSrcFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTHdrFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
+		  ERTDataSrcFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTDataHdrFileTemplate  "MCHP_dsPIC_code_template.cgt"
+		  ERTCustomFileTemplate	  "MCHP_main.tlc"
+		  CoverageDialogOpen	  "off"
+		  ModuleNamingRule	  "Unspecified"
+		  SignalDisplayLevel	  10
+		  ParamTuneLevel	  10
+		  GlobalDataDefinition	  "Auto"
+		  DataDefinitionFile	  "global.c"
+		  GlobalDataReference	  "Auto"
+		  ERTFilePackagingFormat  "Modular"
+		  DataReferenceFile	  "global.h"
+		  GRTInterface		  off
+		  PreserveExpressionOrder off
+		  PreserveIfCondition	  off
+		  ConvertIfToSwitch	  off
+		  PreserveExternInFcnDecls on
+		  EnableUserReplacementTypes off
+		  Array {
+		    Type		    "Struct"
+		    Dimension		    1
+		    MATStruct {
+		    double		    ""
+		    single		    ""
+		    int32		    ""
+		    int16		    ""
+		    int8		    ""
+		    uint32		    ""
+		    uint16		    ""
+		    uint8		    ""
+		    boolean		    ""
+		    int			    ""
+		    uint		    ""
+		    char		    ""
+		    }
+		    PropName		    "ReplacementTypes"
+		  }
+		  MemSecPackage		  "--- None ---"
+		  MemSecDataConstants	  "Default"
+		  MemSecDataIO		  "Default"
+		  MemSecDataInternal	  "Default"
+		  MemSecDataParameters	  "Default"
+		  MemSecFuncInitTerm	  "Default"
+		  MemSecFuncExecute	  "Default"
+		}
+		PropName		"Components"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"PIC_REF"
+		Value			"33FJ256GP710A"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"HOST_PLATFORM"
+		Value			"PC"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OPTIM_GCC"
+		Value			" -O1 -mno-eds-warn -mconst-in-data -msmall-data -mlarge-aggregate -g"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LDFLAGS"
+		Value			"'-t,--report-mem,-Map=info.map,-cref,-lq-dsp,--memorysummary,memoryfile.xml'"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__M91449_MCHP_Blockset_blocks_MCHP_dsPIC_stf_1OMF"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "elf"
+		  Value			  1
+		  String		  "coff"
+		}
+		Name			"OMF"
+		Value			"elf"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"ProduceHexOutput"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"AssemblyListing"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCCPATH"
+		Value			"C:/PROGRA~2/MICROC~1/xc16/v1.36/bin"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LINKER_SCRIPT"
+		Value			"p33FJ256GP710A.gld"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"GCC1"
+		Value			"xc16-gcc.exe"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"AR1"
+		Value			"xc16-ar"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"BIN2HEX"
+		Value			"xc16-bin2hex"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"OBJDUMP"
+		Value			"xc16-objdump"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_AUTO_FLASH"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"MCHP_MULTITHREAD_COMPILATION"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PRESCALER"
+		Value			"[-1 -1  0 -1 -1 -1 -1 -1 -1]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_PERIOD"
+		Value			"[0      0  20199]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"TIMER_START"
+		Value			"[0  0  3]"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"MCHP_CompiledTime_ModelSampleTimes_Txt"
+		Value			"s(1).Value=reshape([0.001 0],1,2);s(1).Description='Discrete 1';s(1).ColorRGBValue=reshape([0.9 0 0],1,3);s"
+		"(1).Annotation='D1';s(1).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(2).Value=reshape([0.01 0],1,2);s(2).Descri"
+		"ption='Discrete 2';s(2).ColorRGBValue=reshape([0 0.82 0],1,3);s(2).Annotation='D2';s(2).OwnerBlock=reshape(MCHP_Fun."
+		"Hex2num('[]'),0,0);s(3).Value=reshape([0.1 0],1,2);s(3).Description='Discrete 3';s(3).ColorRGBValue=reshape([0 0 0.8"
+		"],1,3);s(3).Annotation='D3';s(3).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(4).Value=reshape([0.25 0],1,2);s(4"
+		").Description='Discrete 4';s(4).ColorRGBValue=reshape([0.38 0.74 0.99],1,3);s(4).Annotation='D4';s(4).OwnerBlock=res"
+		"hape(MCHP_Fun.Hex2num('[]'),0,0);s(5).Value=reshape([0.5 0],1,2);s(5).Description='Discrete 5';s(5).ColorRGBValue=re"
+		"shape([0.42 0.59 0.24],1,3);s(5).Annotation='D5';s(5).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(6).Value=resh"
+		"ape(MCHP_Fun.Hex2num('[]'),0,0);s(6).Description='Hybrid';s(6).ColorRGBValue=reshape([0.91 0.82 0.32],1,3);s(6).Anno"
+		"tation='H';s(6).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"RTWGenSettings_txt"
+		Value			"s.RefMasterBlk='Explorer16_33FJ256GP710_SimpleFilter/Microchip Master';s.ChipIdN='[33  256  710]';s.ChipIdL"
+		"1='FJ';s.ChipIdL2='GP';s.ChipIdL3='A';s.arch3='33F';s.ChipId='33FJ256GP710A';s.bitFieldsSFR='6';s.ChipRAM='30720';s."
+		"ChipRAM_XBegin='2048';s.ChipRAM_dma='[30720  32768]';s.FuseConfigTxt='#pragma config FNOSC = PRI\\\\n#pragma config "
+		"POSCMD = XT, OSCIOFNC = ON, FCKSM = CSECMD\\\\n#pragma config WDTPOST = PS32768, FWDTEN = OFF\\\\n#pragma config JTA"
+		"GEN = OFF\\\\n';s.TimeStep_Timer='3';s.TimeStep_SyncADC='1';s.ADPCFG='12582912';s.ANSEL_Exist='0';s.ANSEL='[-1]';s.T"
+		"RIS='[65408  65535     -1  65535     -1  65503     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1"
+		"     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1    "
+		" -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1 "
+		"    -1     -1     -1     -1     -1     -1     -1     -1]';s.RPOR='[-1]';s.RPINR='[-1]';s.PortConfigTxt='';s.CLKDIV='"
+		"67';s.PLLFBD='99';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='-1';s.POWERSAVE='0';s.MIPS='20200000';s.AN_t"
+		"ype2='1';s.ADC_PingPong='1';s.NConversionTotal='1';s.NSampleTotal='1';s.UART_TX_IMPLEMENTATION='[0  3]';s.UART_RX_IM"
+		"PLEMENTATION='[0  2]';s.UART_TX_DMACHANNEL='[-1  1]';s.UART_TX_THREAD_PROTECTION='[0  9]';s.UART_HALF_DUPLEX_MODE='["
+		"0  0]';s.FLASH_ECC='0';s.PBxDIV='[-1]';s.ACLKCON_reg='-1';s.DOS_00794='0';s.DOS_00931='0';s.DOS_00932='0';s.DOS_0094"
+		"2='0';s.DOS_00938='0';s.DOS_00996='0';s.DOS_00997='0';s.DOS_00998='0';s.DOS_00209='0';s.DOS_01555_adc='0';s.DOS_0129"
+		"3='0';s.DOS_00828='0';s.DOS_01116='0';s.DOS_01017_RPORx='0';s.DOS_01017_RPINRx='0';s.DOS_01555_nvm_tsmc18_v2_16bit='"
+		"0';s.DOS_00804='0';s.DOS_00826='0';s.DOS_01555_TLAK_PMDx='0';s.DOS_01555_TLAK_INT_='0';s.DOS_00933='0';s.DOS_01555='"
+		"0';s.DOS_01555_ptg='0';s.DOS_00929='0';s.DOS_00958='0';s.DOS_01117_PORTx='0';s.DOS_00999='0';s.DOS_01198='0';s.DOS_0"
+		"1041='0';s.DOS_00892='0';s.DOS_01287_TLAC_PMDx='0';s.DOS_01287_TLAC_INT_='0';s.DOS_01424='0';s.DOS_01332='0';s.DOS_0"
+		"1441_i2c_upb_v1_16bit_TLAH='0';s.DOS_01482='0';s.DOS_02508c11='0';s.DOS_01468_PMBA_current_source='0';s.DOS_02291_PG"
+		"A='0';s.DOS_01467_Comparator='0';s.DOS_01498_TLAY='0';s.DOS_02316_nvm_ctrl_v1_16bit='0';s.DOS_00993_PLL_120MHz='0';s"
+		".DOS_01577_cla_clc_upb_v1='0';s.DOS_01332_ptg_pc_v1='0';s.DOS_00958_pwm_TLAY='0';s.TLAY_IOPorts='0';s.DOS_00929q='0'"
+		";s.DOS_02415_spi_v5='0';s.DOS_RPINRx_16bit_2='0';s.DOS_01497_TLAH_PMDx='0';s.DOS_02550_TLAL_INT='0';s.DOS_00958_pwm_"
+		"TLAH='0';s.DOS_01287_TLAH_INT_='0';s.DOS_01113='0';s.DOS_01017_PMDx='0';s.DOS_00927='0';s.DOS_01080='0';s.DOS_00794_"
+		"cpu_16bit_v3='0';s.DOS_02359a_sent_j2716_upb_v1='0';s.DOS_01520_wdt_dmt_upb_v1_16bit='0';s.DOS_02192_TLCD_PMDx='0';s"
+		".DOS_02192_TLCD_INT_='0';s.DOS_02192_cmp='0';s.DOS_00958_pwm_TLCD='0';s.DOS_02192_PORTx_TLCD='0';s.DOS_00936='0';s.D"
+		"OS_00995='0';s.DOS_00546='0';s.DOS_00474='0';s.DOS_02481_WACJ_Config='0';s.DOS_02569_pfm_cache_ocp_v1='0';s.DOS_0281"
+		"9_pfm_ctrl_32bit_upb_v2='0';s.DOS_02674_wdt_upb_v1_32bit='0';s.DOS_01520_wdt_dmt_upb_v1='0';s.DOS_02869_icd_jtag_bvc"
+		"i_upb_v2='0';s.DOS_02823_WACJ_clk_cru_upb_v2='0';s.DOS_01423_RPINRx='0';s.DOS_02481_RPORx='0';s.DOS_02511_pwr_sib_up"
+		"b_v1_32bit='0';s.DOS_02481_WACJ_int_evic_v3='0';s.DOS_01500_dma_bvci_v2='0';s.DOS_02141_tmr_classa_pb_v2='0';s.DOS_0"
+		"2815_tmr_classb_upb_v1='0';s.DOS_00740_icap_pb_v1='0';s.DOS_00749_ocmp_pb_v1='0';s.DOS_01441_i2c_upb_v1_32bit='0';s."
+		"DOS_01329_spi_pb_v2='0';s.DOS_02478_uart_irda_upb_v1_32bit='0';s.DOS_02514_dfm_strl_sst_upb_v1='0';s.DOS_01427_cmp_c"
+		"ontrol_upb_v1_32bit='0';s.DOS_01445_dac_nbit__control_upb_v1_32bit='0';s.DOS_01461_afe_ctmu_con_upb_v1='0';s.DOS_024"
+		"72_ppi_pmp16_upb_v1='0';s.DOS_02467_gpio_ports_upb_v1='0';s.DOS_02508_adc_sar_ctrl_upb_v1_PIC32MK='0';s.DOS_02813a_u"
+		"sb_otgcore_pb_v3='0';s.DOS_01261_tmr_rtcc_pb_v2='0';s.DOS_01475_lpwr_deep_sleep_ctrl_v2='0';s.DOS_EIP_00136_ssx_v1='"
+		"0';s.DOS_01152_can_bvci_v1='0';s.DOS_02481_WACN_Config='0';s.DOS_02823_WACN_clk_cru_upb_v2='0';s.DOS_02481_WACN_int_"
+		"evic_v3='0';s.DOS_03554_cmp_control_upb_v2_32bit='0';s.DOS_01577_cla_clc_upb_v1_32bit='0';s.DOS_03247_can_fd_upb_v2="
+		"'0';s.DOS_02481_WACK_MC_Config='0';s.DOS_03247_can_fd_upb_v2_pic32mk='0';s.DOS_02481_WACJ_MC_Config='0';s.DOS_02481_"
+		"WACJ_MC_int_evic_v3='0';s.DOS_01477_pwm_mc_upb_v1='0';s.DOS_01459_ptg_pc_upb_v1_SIC='0';s.DOS_01494_qei_32b_upb_v1='"
+		"0';s.DOS_02481_WACN_MC_Config='0';s.DOS_02481_WACN_MC_int_evic_v3='0';s.DOS_02787_WACD_Config='0';s.DOS_00800_dac_4b"
+		"it_ctrl_pb_v1='0';s.DOS_01539_icd_jtag_pb_v2='0';s.DOS_02823_clk_cru_upb_v2='0';s.DOS_01423_RPORx='0';s.DOS_02907_WA"
+		"CD_int_evic_v3='0';s.DOS_00734_uart_irda_pb_v1='0';s.DOS_00687_tmr_classa_pb_v1='0';s.DOS_00745_tmr_classb_pb_v1='0'"
+		";s.DOS_02508_adc_sar_ctrl_upb_v1='0';s.DOS_00866_cmp_control_pb_v2='0';s.DOS_01114_eth_bvci_v1='0';s.DOS_02831_usb_c"
+		"lk_rst_v2='0';s.DOS_01643_pfm_cache_ahb_v2='0';s.DOS_EIP_00206r5_sqi_v2='0';s.DOS_EIP_00124_usb_hs_otgcore_v1='0';s."
+		"DOS_EIP_00218_math_rng_ahbs_v2='0';s.DOS_EIP_00109_ebi_v1='0';s.DOS_EIP_00158_crypto_v1='0';s.PLLDIV='-1';s.nTIMERS="
+		"'9';s.nSCCP='0';s.DOS_02551_cpu_16bit_v7='0';s.DOS_02672_math_progcrc_upb_v1_16bit='0';s.DOS_02915_ecc_v2='0';s.DOS_"
+		"02673_tmr_classa_upb_v1_16bit='0';s.DOS_01494_qei_32b_upb_v1_16bit='0';s.DOS_02552_msi_upb_v1_Master='0';s.DOS_03076"
+		"_uart_protocol_upb_v1_16bit='0';s.DOS_01483_pwm_16bit='0';s.DOS_03247_CAN_FD_UPB_V2_16_bit='0';s.DOS_02497_WACV='0';"
+		"s.DOS_02653_afe_current_bias_ctrl_upb_v1_16bit='0';s.DOS_01459_ptg_pc_upb_v1_16bit='0';s.DOS_01512_ccp_mccp_upb_v1_1"
+		"6bit='0';s.DOS_02519_dma_sfr_16bit_v2='0';s.DOS_02475_dac_pdm_nbit_upb_v1_16bit='0';s.DOS_02467_gpio_upb_v1_16bit='0"
+		"';s.DOS_00805_rst_integration_v4='0';s.DOS_02659_clk_sib_v12='0';s.DOS_02674_wdt_upb_v1_16bit='0';s.DOS_01407='0';s."
+		"DOS_02552_msi_upb_v1_Slave='0';s.DOS_02593_amp_pga_ctrl_pb_v2_16bit='0';s.DOS_01461_afe_ctmu_con_upb_v1_16bit='0';s."
+		"DOS_02497_WACA='0';s.DOS_02478_uart_irda_upb_v1_16bit='0';s.DOS_03029_WACH='0';s.DOS_02472_ppi_pmp16_upb_v1_16bit='0"
+		"';s.DOS_02949_WACG='0';s.DOS_03349_amp_pad_opamp_ctrl_upb_v1='0';s.DOS_02237_osc_dco_ctrl_upb_v1_16bit='0';s.DOS_036"
+		"62_WACU='0';s.DOS_03994_WAC07_Module='0';s.DOS_03088_pfm_cache_ocp_v2_WACK='0';s.DOS_02907_WACK_MC_int_evic_v3='0';"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"EXTMODE_DATA_UPLOAD"
+		Value			off
+	      }
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      ExtraOptions	      "-aGenerateTraceInfo=1 -aIgnoreTestpoints=0 "
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition    " [ 570, 150, 1467, 908 ] "
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    1
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Bias
+      Bias		      "0"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit via back propagation"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      DiscreteIntegrator
+      IntegratorMethod	      "Integration: Forward Euler"
+      gainval		      "1.0"
+      ExternalReset	      "none"
+      InitialConditionSource  "internal"
+      InitialCondition	      "0"
+      InitialConditionMode    "State and output"
+      SampleTime	      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      LimitOutput	      off
+      UpperSaturationLimit    "inf"
+      LowerSaturationLimit    "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      IgnoreLimit	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
+      BlockType		      DiscreteTransferFcn
+      Numerator		      "[1]"
+      Denominator	      "[1 0.5]"
+      InitialStates	      "0"
+      SampleTime	      "1"
+      a0EqualsOne	      off
+      NumCoefMin	      "[]"
+      NumCoefMax	      "[]"
+      DenCoefMin	      "[]"
+      DenCoefMax	      "[]"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      StateDataTypeStr	      "Inherit: Same as input"
+      NumCoefDataTypeStr      "Inherit: Inherit via internal rule"
+      DenCoefDataTypeStr      "Inherit: Inherit via internal rule"
+      NumProductDataTypeStr   "Inherit: Inherit via internal rule"
+      DenProductDataTypeStr   "Inherit: Inherit via internal rule"
+      NumAccumDataTypeStr     "Inherit: Inherit via internal rule"
+      DenAccumDataTypeStr     "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
+      BlockType		      Goto
+      IconDisplay	      "Tag"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Logic
+      Operator		      "AND"
+      Inputs		      "2"
+      IconShape		      "rectangular"
+      AllPortsSameDT	      on
+      OutDataTypeMode	      "Logical (see Configuration Parameters: Optimization)"
+      LogicDataType	      "uint(8)"
+      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      LookupNDDirect
+      NumberOfTableDimensions "2"
+      InputsSelectThisObjectFromTable "Element"
+      TableIsInput	      off
+      Table		      "[4 5 6;16 19 20;10 18 23]"
+      ActionForOutOfRangeInput "Warning"
+      SampleTime	      "-1"
+      TableMin		      "[]"
+      TableMax		      "[]"
+      TableDataTypeStr	      "Inherit: Inherit from 'Table data'"
+      LockScale		      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      RateTransition
+      Integrity		      on
+      Deterministic	      on
+      X0		      "0"
+      OutPortSampleTimeOpt    "Specify"
+      OutPortSampleTimeMultiple	"1"
+      OutPortSampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      Switch
+      Criteria		      "u2 >= Threshold"
+      Threshold		      "0"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      AllowDiffInputSizes     off
+    }
+    Block {
+      BlockType		      UnitDelay
+      X0		      "0"
+      SampleTime	      "1"
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+  }
+  System {
+    Name		    "Explorer16_33FJ256GP710_SimpleFilter"
+    Location		    [404, 80, 1381, 1010]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    157
+    Block {
+      BlockType		      Reference
+      Name		      "Compiler Options"
+      SID		      12
+      Ports		      []
+      Position		      [168, 25, 263, 80]
+      Priority		      "1"
+      LibraryVersion	      "3.4x"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
+      SourceType	      ""
+      LATEST_CMPLR	      on
+      COMP_LIST		      "Dynamic Options"
+      COMP_LIST_TXT	      "xc16 - v1.36"
+      USE_64BIT_DOUBLE	      off
+      MCHP_MULTITHREAD_COMPILATION on
+      UseCustom_LinkerScript  off
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+      OPTIMIZATION_LEVEL      "1"
+      OPTIMIZATION_FLTO	      on
+      OPTIMIZATION_REORDER    off
+      UNROLL_LOOPS	      off
+      PROCEDURAL_ABSTRACTION  off
+      MPLAB_LINKLIB	      "default"
+      MPLAB_LINKLIB1	      "default"
+      MCODE		      "is less than 32768 (faster)"
+      MCONST		      "in data memory"
+      MDATA		      "Use only memory below address 8192 (faster)"
+      MSCALAR		      "Use only memory below address 8192 (faster)"
+      MLARGEARRAY	      off
+      MAGGREGATE	      on
+      HEAP_SIZE		      "0"
+      OMF		      "elf"
+      DEBUG_INFO	      on
+      ProduceHexOutput	      on
+      AssemblyListing	      off
+      NO_EDS_WARN	      on
+      PRINT_STATISTICS	      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Counter Limited2"
+      SID		      37
+      Ports		      [0, 1]
+      Position		      [630, 145, 660, 175]
+      LibraryVersion	      "1.216"
+      SourceBlock	      "simulink/Sources/Counter\nLimited"
+      SourceType	      "Counter Limited"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      uplimit		      "1"
+      tsamp		      ".25"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Data Sheet"
+      SID		      33
+      Ports		      []
+      Position		      [294, 29, 341, 74]
+      AttributesFormatString  "%<cpy_MCHP_Id>"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
+      SourceBlock	      "MCHP_Blockset/System Info/Data Sheet"
+      SourceType	      ""
+      DOC_Type		      "datasheet"
+      DOC_MCHP_Id	      "33FJ256GP710"
+      DOC_FilePath	      "C:\\Users\\Lubin Kerhuel\\AppData\\Local\\Temp\\70286C.pdf"
+      DOC_FileLastCheckTime   "[2013              1             31             16              0          0.865]"
+      cpy_MCHP_Id	      "33FJ256GP710A"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      Name		      "Data Type Conversion1"
+      SID		      11
+      Position		      [675, 355, 730, 375]
+      ShowName		      off
+      OutDataTypeMode	      "uint16"
+      OutDataTypeStr	      "uint16"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"U2 CH3"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      Name		      "Data Type Conversion2"
+      SID		      9
+      Position		      [435, 295, 490, 315]
+      ShowName		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      Name		      "Data Type Conversion3"
+      SID		      10
+      Position		      [675, 295, 730, 315]
+      ShowName		      off
+      OutDataTypeMode	      "uint16"
+      OutDataTypeStr	      "uint16"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"U2 CH2"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      Name		      "Data Type Conversion6"
+      SID		      38
+      Position		      [710, 150, 765, 170]
+      OutDataTypeMode	      "boolean"
+      OutDataTypeStr	      "boolean"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto"
+      SID		      132
+      Position		      [255, 255, 320, 275]
+      GotoTag		      "S3_State"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Led D9"
+      SID		      52
+      Ports		      [1]
+      Position		      [810, 142, 880, 178]
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	PortNum			"0"
+	PinsBitewise		"15"
+	Pins			"[0  1  2  3]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Output"
+      SourceType	      ""
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "A   [ 0  1  2  3  4  5  6  7  9  10  12  13  14  15 ]"
+      PIN		      "6"
+      PACK		      off
+      SIMULTANEOUS	      off
+      READPREVIOUS	      off
+      ORDERING		      "None"
+      SampleTime	      "-1 "
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Led Patterns"
+      SID		      126
+      Ports		      [3, 1]
+      Position		      [395, 369, 510, 551]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Led Patterns"
+	Location		[462, 52, 1508, 989]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Pot"
+	  SID			  127
+	  Position		  [30, 177, 60, 193]
+	  NamePlacement		  "alternate"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Button 1"
+	  SID			  128
+	  Position		  [20, 263, 50, 277]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Button 2"
+	  SID			  129
+	  Position		  [20, 393, 50, 407]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  LookupNDDirect
+	  Name			  "Direct Lookup Table\nChenillard 1 "
+	  SID			  54
+	  Ports			  [1, 1]
+	  Position		  [435, 185, 505, 245]
+	  NumberOfTableDimensions "1"
+	  Table			  "[1 3 6 12 24 48 32 48 24 12 6 3 ]"
+	  TableDataTypeStr	  "uint16"
+	}
+	Block {
+	  BlockType		  LookupNDDirect
+	  Name			  "Direct Lookup Table\nChenillard 2"
+	  SID			  82
+	  Ports			  [1, 1]
+	  Position		  [435, 285, 505, 345]
+	  NumberOfTableDimensions "1"
+	  Table			  "[33  18 12 12 18 33 33  18 12 12 18 33]"
+	  TableDataTypeStr	  "uint16"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Fixed Speed Counter"
+	  SID			  35
+	  Ports			  [0, 1]
+	  Position		  [125, 330, 155, 360]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Sources/Counter\nLimited"
+	  SourceType		  "Counter Limited"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  uplimit		  "11"
+	  tsamp			  ".1"
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition"
+	  SID			  67
+	  Position		  [100, 164, 140, 206]
+	  Integrity		  off
+	  Deterministic		  off
+	  OutPortSampleTime	  ".01"
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition1"
+	  SID			  83
+	  Position		  [220, 324, 260, 366]
+	  Integrity		  off
+	  Deterministic		  off
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch1"
+	  SID			  72
+	  Position		  [325, 250, 375, 290]
+	  Criteria		  "u2 ~= 0"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch2"
+	  SID			  81
+	  Position		  [575, 240, 625, 280]
+	  Criteria		  "u2 ~= 0"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Variable Speed\nCounter"
+	  SID			  69
+	  Ports			  [1, 1]
+	  Position		  [185, 167, 275, 203]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Variable Speed\nCounter"
+	    Location		    [65, 52, 1944, 1205]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      70
+	      Position		      [20, 28, 50, 42]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Bias
+	      Name		      "Bias\nminimum\nspeed"
+	      SID		      68
+	      Position		      [85, 20, 125, 50]
+	      Bias		      "10"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Compare To Constant"
+	      SID		      64
+	      Ports		      [1, 1]
+	      Position		      [155, 122, 210, 158]
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.216"
+	      SourceBlock	      "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	      SourceType	      "Compare To Constant"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      relop		      ">="
+	      const		      "12*2^12-1"
+	      LogicOutDataTypeMode    "uint8"
+	      ZeroCross		      on
+	    }
+	    Block {
+	      BlockType		      DiscreteIntegrator
+	      Name		      "Discrete-Time Integrator"
+	      SID		      63
+	      Ports		      [2, 1]
+	      Position		      [175, 22, 235, 78]
+	      IntegratorMethod	      "Accumulation: Forward Euler"
+	      gainval		      "1"
+	      ExternalReset	      "level"
+	      InitialConditionSource  "internal"
+	      SampleTime	      "-1"
+	      OutDataTypeMode	      "uint16"
+	      OutDataTypeStr	      "uint16"
+	      UpperSaturationLimit    "11*2^8"
+	      ICPrevOutput	      "DiscIntNeverNeededParam"
+	      ICPrevScaledInput	      "DiscIntNeverNeededParam"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Shift Arithmetic"
+	      SID		      156
+	      Ports		      [1, 1]
+	      Position		      [330, 30, 445, 70]
+	      LibraryVersion	      "1.216"
+	      SourceBlock	      "simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	      SourceType	      "Shift Arithmetic"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      nBitShiftRight	      "12"
+	      nBinPtShiftRight	      "0"
+	    }
+	    Block {
+	      BlockType		      UnitDelay
+	      Name		      "Unit Delay"
+	      SID		      66
+	      Position		      [245, 123, 280, 157]
+	      BlockMirror	      on
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      71
+	      Position		      [510, 43, 540, 57]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Discrete-Time Integrator"
+	      SrcPort		      1
+	      Points		      [57, 0]
+	      Branch {
+		DstBlock		"Shift Arithmetic"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 90]
+		DstBlock		"Unit Delay"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Compare To Constant"
+	      SrcPort		      1
+	      Points		      [-9, 0; 0, -75]
+	      DstBlock		      "Discrete-Time Integrator"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Shift Arithmetic"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Unit Delay"
+	      SrcPort		      1
+	      DstBlock		      "Compare To Constant"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Bias\nminimum\nspeed"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Bias\nminimum\nspeed"
+	      SrcPort		      1
+	      DstBlock		      "Discrete-Time Integrator"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Leds [0-5]"
+	  SID			  130
+	  Position		  [710, 253, 740, 267]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Rate Transition"
+	  SrcPort		  1
+	  DstBlock		  "Variable Speed\nCounter"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Variable Speed\nCounter"
+	  SrcPort		  1
+	  Points		  [26, 0; 0, 70]
+	  DstBlock		  "Switch1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Button 1"
+	  SrcPort		  1
+	  DstBlock		  "Switch1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Fixed Speed Counter"
+	  SrcPort		  1
+	  DstBlock		  "Rate Transition1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Switch2"
+	  SrcPort		  1
+	  DstBlock		  "Leds [0-5]"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Switch1"
+	  SrcPort		  1
+	  Points		  [26, 0]
+	  Branch {
+	    Points		    [0, 45]
+	    DstBlock		    "Direct Lookup Table\nChenillard 2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -55]
+	    DstBlock		    "Direct Lookup Table\nChenillard 1 "
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Direct Lookup Table\nChenillard 1 "
+	  SrcPort		  1
+	  Points		  [50, 0]
+	  DstBlock		  "Switch2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Direct Lookup Table\nChenillard 2"
+	  SrcPort		  1
+	  Points		  [50, 0]
+	  DstBlock		  "Switch2"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Button 2"
+	  SrcPort		  1
+	  Points		  [480, 0; 0, -140]
+	  DstBlock		  "Switch2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Rate Transition1"
+	  SrcPort		  1
+	  Points		  [32, 0; 0, -60]
+	  DstBlock		  "Switch1"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Pot"
+	  SrcPort		  1
+	  DstBlock		  "Rate Transition"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Leds\n[D3 D4 D5 D6 D7 D8]"
+      SID		      152
+      Ports		      [1]
+      Position		      [785, 442, 870, 478]
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	PortNum			"0"
+	PinsBitewise		"63"
+	Pins			"[0  1  2  3  4  5]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"1"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Output\nWrite"
+      SourceType	      "Output driver for Digital Output Pins"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "A   [ 0  1  2  3  4  5  6  7  9  10  12  13  14  15 ]"
+      PIN		      "[0:5]"
+      PACK		      on
+      SIMULTANEOUS	      off
+      ORDERING		      "None"
+      SampleTime	      "-1 "
+      MCHP_PORT		      "{Digital Out}{DOU}1:1:A0;{Digital Out}{DOU}1:1:A1;{Digital Out}{DOU}1:1:A2;{Digital Out}{DOU}1"
+      ":1:A3;{Digital Out}{DOU}1:1:A4;{Digital Out}{DOU}1:1:A5;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      DiscreteTransferFcn
+      Name		      "Low Pass 10Hz"
+      SID		      7
+      Ports		      [1, 1]
+      Position		      [555, 347, 635, 383]
+      Numerator		      "[0 0.0609]"
+      Denominator	      "[1 -0.9391]"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      DiscreteTransferFcn
+      Name		      "Low Pass 1Hz"
+      SID		      6
+      Ports		      [1, 1]
+      Position		      [550, 284, 640, 326]
+      Numerator		      "[0 0.006263]"
+      Denominator	      "[1 -.9937]"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Microchip Master"
+      SID		      1
+      Ports		      []
+      Position		      [30, 23, 130, 79]
+      Priority		      "1"
+      LibraryVersion	      "3.4x"
+      SourceBlock	      "MCHP_Blockset/System Configuration/Microchip Master"
+      SourceType	      ""
+      PICREF		      "33FJ256GP710A"
+      TIMESTEP_REF	      "Timer + ADC  ( 0.001s )"
+      BUSYFLAG		      "Dynamic Options"
+      BUSYFLAG_TXT	      "None"
+      PWRTEN		      "Not used"
+      BOREN		      "Disable"
+      BODENV		      "2.7V"
+      BORV		      "Not used"
+      FPWRT		      "128ms"
+      DSBOREN		      "Enable ZPBOR during Deep Sleep Mode"
+      DSLPBOR		      "Not used"
+      MCLRE		      "Enabled"
+      SMCLR		      "MCLR pin generates a normal system Reset"
+      PMDL1WAY		      "Allow only one reconfiguration"
+      RSTPRI		      "Device will obtain reset instruction from Primary flash"
+      TEMP		      "Not used"
+      SOSCSRC		      "Not used"
+      SOSCSEL		      "Not used"
+      IOL1WAY		      "Allow Only One Re-configuration"
+      ALTVREF		      "Not used"
+      DISUVREG		      "Not used"
+      DSSWEN		      "Not used"
+      LPCFG		      "Not used"
+      RTCBAT		      "Not used"
+      VBTBOR		      "Not used"
+      WUTSEL		      "Not used"
+      POWERSAVE		      off
+      FNOSC		      "Primary Oscillator (XT; HS; EC)"
+      FPR		      "ECIO w/ PLL 16x"
+      FOSFPR		      "HS3 w/PLL 16x"
+      FOS		      "Primary Oscillator"
+      FRANGE		      "High Range"
+      OSCILLATOR_SELECT	      "Crystal / Ceramic resonator"
+      OSCILLATOR_SELECT_spd   "Crystal / Ceramic resonator"
+      QUARTZ		      "8e6"
+      QUARTZ_spd	      "8e6"
+      POSCGAIN		      "2x gain setting"
+      POSCBOOST		      "Boost the kick start of the oscillator"
+      SOSCGAIN		      "2x gain setting"
+      SOSCBOOST		      "Boost the kick start of the oscillator"
+      ACTIV_PLL		      on
+      ACTIV_PLL_spd	      "on"
+      MIPS_DESIRED	      "20.2e6"
+      MIPS_DESIRED_spd	      "20.2e6"
+      FPLLMUL		      "Not used"
+      FPLLIDIV		      "8x Divider"
+      POSCFREQ		      "Not used"
+      POSCMD		      "XT Oscillator Mode"
+      POSCMOD		      "Primary Oscillator Disabled"
+      MIPS		      "20.200000000000003 * 1e6"
+      ACLKCON		      "Optimized for PWM resolution & ADC conversion speed"
+      FPLLODIV		      "32x Divider"
+      PLLKEN		      "Clock switch to PLL source will wait until the PLL lock signal is valid."
+      FCKSM		      "Clock switching is enabled; Fail-Safe Clock Monitor is Disabled"
+      FCKSMEN		      "Sw Disabled; Mon Disabled"
+      IESO		      "Start up with FRC; then switch"
+      DSWDTPS		      "1:2^36"
+      FWDTEN		      "Disable"
+      FWDTWINSZ		      "Window size is 25%"
+      FWPSA		      "1:512"
+      FWPSA0		      "1:128"
+      FWPSB		      "1:16"
+      WDT		      "Disable"
+      WDTPOST		      "1:32768"
+      WDTPRE		      "1:128"
+      WDTPS		      "1:32768"
+      WINDIS		      "Watchdog Timer in Non-Window mode"
+      WWDTEN		      "Non-Window mode"
+      DSWDTEN		      "Enable DSWDT during Deep Sleep Mode"
+      DSWDTOSC		      "Select LPRC as DSWDT Reference clock"
+      FPBDIV		      "Not used"
+      FSOSCEN		      "Enable SOSC"
+      LPRCSEL		      "Not used"
+      OSCIOFCN		      "Not used"
+      OSCIOFNC		      "general purpose digital I/O pin"
+      LVRCFG		      "Not used"
+      PLL_96MHZ		      "Not used"
+      PLL96MHZ		      "Not used"
+      PLLDIV		      "Not used"
+      WDTCLK		      "Not used"
+      WDTCMX		      "Not used"
+      WDTWIN		      "WDT Window is 25% of WDT period"
+      XTCFG		      "24-32 MHz crystals"
+      XTBST		      "Boost the kick-start"
+      APL		      "Aux Flash Code protect is disabled"
+      APLK		      "Aux Flash Write Protection or Code Protection is Enabled"
+      AWRP		      "Aux Flash may be written"
+      BSS		      "No Boot program Flash segment"
+      BWP		      "Not used"
+      BWRP		      "Boot Segment may be written"
+      CP		      "Protection Disabled"
+      EBS		      "No Boot EEPROM"
+      ESS		      "No Segment Data EEPROM"
+      GCP		      "General Segment Code protect is Disabled"
+      GSS		      "User program memory is not code-protected"
+      GSS0		      "Not used"
+      GSSK		      "General Segment Write Protection or Code Protection is Enabled"
+      GWRP		      "General Segment may be written"
+      PWP		      "Not used"
+      RBS		      "No Boot RAM"
+      RSS		      "No Secure RAM"
+      SSS		      "No Secure Segment"
+      SWRP		      "Secure segment may be written"
+      WPCFG		      "Not used"
+      WPDIS		      "Not used"
+      WPEND		      "Not used"
+      WPFP		      "Not used"
+      ICESEL		      "Communicate on PGEC1/PGED1"
+      ICS		      "Communicate on PGEC1 and PGED1"
+      JTAGEN		      "Disable"
+      COE		      "Not used"
+      RES		      "Not used"
+      DEBUG		      "Debugger is disabled"
+      BACKBUG		      "Not used"
+      BKBUG		      "Not used"
+      ALTI2C		      "I2C mapped to SDA1/SCL1 pins"
+      ALTI2C1		      "I2C1 mapped to SDA1/SCL1 pins"
+      ALTI2C2		      "I2C2 mapped to SDA2/SCL2 pins"
+      ALTI2C3		      "I2C3 mapped to SDA3/SCL3 pins"
+      ALTQIO		      "QEA1; QEB1; INDX1 are selected as inputs to QEI1"
+      ALTSS1		      "SS1A is selected as the I/O pin for SPI1"
+      CMPPOL0		      "Hysteresis is applied to falling edge"
+      CMPPOL1		      "Hysteresis is applied to falling edge"
+      FCANIO		      "Not used"
+      FETHIO		      "Default Ethernet I/O"
+      FMIIEN		      "MII Enabled"
+      FSRSSEL		      "Not used"
+      FUSBIDIO		      "Controlled by the USB Module"
+      FVBUSONIO		      "Not used"
+      HPOL		      "PWM module high side output pins have active-high output polarity"
+      HYST0		      "45 mV Hysteresis"
+      HYST1		      "45 mV Hysteresis"
+      I2C1SEL		      "Not used"
+      LPOL		      "PWM module low side output pins have active-high output polarity"
+      PWMPIN		      "PWM module pins controlled by PORT register at device Reset"
+      RTCOSC		      "Not used"
+      UPLLEN		      "USB PLL Disabled"
+      UPLLIDIV		      "Not used"
+      ATMOD8		      "Not used"
+      ALTPMP		      "Not used"
+      I2C2SEL		      "Not used"
+      ALTADREF		      "Not used"
+      ALTCVREF		      "Not used"
+      PWMLOCK		      "PWM registers may be written without key sequence"
+      INT_PRIORITY_DMA	      "0"
+      MCHP_TIMER_REQUEST      "{Time Step}{TS}0:2:3:1:[3  5]:20200;"
+      MCHP_TIMER_RESULT	      "[3 20198.999999999993 ]"
+      MCHP_PLLRegisters	      "[67     99  16385     -1     -1]"
+      MCHPVAR		      "MCHP.fcy.MIPS=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.SYSCLK=MCHP_Fun.Hex2num('417343A4000"
+      "00001');MCHP.fcy.ADC=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.Comparator=MCHP_Fun.Hex2num('417343A400000001"
+      "');MCHP.fcy.I2C=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.SPI=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy."
+      "UART=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.Timers=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.OC=MCHP_"
+      "Fun.Hex2num('417343A400000001');MCHP.fcy.IC=MCHP_Fun.Hex2num('417343A400000001');MCHP.fcy.Ports=MCHP_Fun.Hex2num"
+      "('417343A400000001');MCHP.fcy.QEI=MCHP_Fun.Hex2num('417343A400000001');MCHP.PowerSave=0;MCHP.TimeStepFactor=MCHP"
+      "_Fun.Hex2num('3FF0000000000002');MCHP.TimeStep_Timer=3;MCHP.NTIMERS=9;MCHP.id.name='33FJ256GP710A';MCHP.id.N=res"
+      "hape([33 256 710],1,3);MCHP.id.L=reshape({ 'FJ','GP','A'},1,3);MCHP.id.Arch=3;MCHP.periph.PPS.reg_RPINRx=reshape"
+      "(MCHP_Fun.Hex2num('[]'),0,0);MCHP.PPS.dsPIC.RP=reshape(MCHP_Fun.Hex2num('[]'),0,0);MCHP.PPS.dsPIC.RPI=reshape(MC"
+      "HP_Fun.Hex2num('[]'),0,0);MCHP.PPS.dsPIC.RPINR_list=reshape({ '1','INT1','INT2','INT3','INT4','T1CK','T2CK','T3C"
+      "K','T4CK','T5CK','T6CK','T7CK','T8CK','T9CK','IC1','IC2','IC3','IC4','IC5','IC6','IC7','IC8','OCFA','OCFB','FLT1"
+      "','FLT2','FLT3','FLT4','QEIA1','QEIB1','QEINDX1','QEIHOM1','QEIA2','QEIB2','QEINDX2','QEIHOM2','U1RX','U1CTS','U"
+      "2RX','U2CTS','SDI1','SCK1_in','SS1_in','44','SDI2','SCK2_in','SS2_in','48','CSDIR','CSCK','COFS','52','C1RX','C2"
+      "RX','U3RX','U3CTS','U4RX','U4CTS','SDI3','SCK3_in','SS3_in','62','SDI4','SCK4_in','SS4_in','66','IC9','IC10','IC"
+      "11','IC12','IC13','IC14','IC15','IC16','OCFC','SYNCI1','SYNCI2','DTCMP1','DTCMP2','DTCMP3','DTCMP4','DTCMP5','DT"
+      "CMP6','DTCMP7','FLT5','FLT6','FLT7','FLT8','89','SENT1','SENT2','92'},1,92);MCHP.PPS.dsPIC.RPOR_list=reshape({ '"
+      "1','C1OUT','C2OUT','U1TX','U1RTS','U2TX','U2RTS','SDO1','SCK1_out','SS1_out','SDO2','SCK2_out','SS2_out','CSDO',"
+      "'CSCK','COFS','C1TX','17','OC1','OC2','OC3','OC4','22','23','24','25','UPDN1','UPDN2'},1,28);MCHP.PPS.map_RPnR_R"
+      "PORx=reshape(MCHP_Fun.Hex2num('[]'),0,0);MCHP.Rx=reshape([17 25 -1 72 93 87 90 -1 -1 -1 -1 38 24 6 76 94 88 89 -"
+      "1 -1 -1 -1 58 23 7 77 98 52 57 -1 -1 -1 -1 59 22 8 78 99 51 56 -1 -1 -1 -1 60 21 9 81 100 49 -1 -1 -1 -1 -1 61 2"
+      "0 -1 82 3 50 -1 -1 -1 -1 -1 91 26 -1 83 4 55 10 -1 -1 -1 -1 92 27 -1 84 5 54 11 -1 -1 -1 -1 -1 32 -1 68 -1 53 12"
+      " -1 -1 -1 -1 28 33 -1 69 -1 -1 14 -1 -1 -1 -1 29 34 -1 70 -1 -1 -1 -1 -1 -1 -1 -1 35 -1 71 -1 -1 -1 -1 -1 -1 -1 "
+      "18 41 63 79 -1 40 96 -1 -1 -1 -1 19 42 73 80 -1 39 97 -1 -1 -1 -1 66 43 74 47 -1 -1 95 -1 -1 -1 -1 67 44 64 48 -"
+      "1 -1 1 -1 -1 -1 -1],11,16);MCHP.ADC.ANtype=reshape([3 1],1,2);MCHP.ADC.ADCONx=reshape([47087 59327 40959 7 0 0],"
+      "1,6);MCHP.ADC.ADCHS_0=reshape([40863 1799],1,2);MCHP.ADC.Flags=reshape([1 0],1,2);MCHP.ADC.Buffer=reshape([1 1],"
+      "1,2);MCHP.ADC.port=reshape([16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 33 34 35 36 12 13 6 7 64 65 66 67 68"
+      " 69 70 71 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,57);MCHP.ADC.port_ALT=re"
+      "shape([-1 -1 -1 -1],1,4);MCHP.ADC.port_VrefP=10;MCHP.ADC.port_VrefM=9;MCHP.ADC.port_AVdd=-1;MCHP.ADC.port_AVss=-"
+      "1;MCHP.ADC.ADCDATA=reshape([0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0],1,57);MCHP.ADC.HS_SAR.TRGSRC=reshape([0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0],1,26);MCHP.ADC.HS_SAR.nFilters=0;MCHP.ADC.HS_SAR.nDedicatedCore=0;MCHP.ADC.HS_SAR.CALIBRATION=0;MCHP.A"
+      "DC.HS_SAR.ADCON1L=-1;MCHP.memory.RAM=30720;MCHP.memory.RAM_XBegin=2048;MCHP.memory.RAM_YBegin=18432;MCHP.memory."
+      "RAM_dma=reshape([30720 32768],1,2);MCHP.memory.FLASH_ECC=0;MCHP.DMA.Num=8;MCHP.DMA.CNTmax=65535;MCHP.QEI.QEICONx"
+      "=reshape([-1 -1 -1 -1 -1 -1],1,6);MCHP.QEI.QEItype=-1;MCHP.QEI.Port_QEI_INDX=reshape([-1 -1],1,2);MCHP.QEI.Port_"
+      "QEI_QEA=reshape([-1 -1],1,2);MCHP.QEI.Port_QEI_QEB=reshape([-1 -1],1,2);MCHP.QEI.Port_QEI_UPDN=reshape([-1 -1],1"
+      ",2);MCHP.INT.Port=reshape([86 12 13 14 15],1,5);MCHP.PWM_HS.Flags=reshape([0 0 0],1,3);MCHP.PWM.port_FLT=reshape"
+      "([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,33);MCHP"
+      ".PWM.PWMRef=-1;MCHP.PWM.Flag=0;MCHP.PWM.Port_PWM_l=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 -1],2,12);MCHP.PWM.Port_PWM_h=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1 -1 -1 -1],2,12);MCHP.PWM_HS_FEP.nEVTOUT=-1;MCHP.IC.Port=reshape([56 57 58 59 60 61 62 63 0 0 0 0 0 0 0 0]"
+      ",1,16);MCHP.IC.type=0;MCHP.OC.Port=reshape([48 49 50 51 52 53 54 55 0 0 0 0 0 0 0 0],1,16);MCHP.OC.type=0;MCHP.C"
+      "N.Port=reshape([46 45 16 17 18 19 20 21 102 103 104 105 31 52 53 54 55 84 85 61 62 63 6 7 -1 -1 -1 -1 -1 -1 -1 -"
+      "1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],1,85);MCHP.CN.PullUp=reshape([65535 255 0 0 0 0 0 0 0 0 0],1,1"
+      "1);MCHP.CN.type=0;MCHP.CN.Flag_PullDown=1;MCHP.SPI.Refs=reshape([1 2 0 0 0 0],1,6);MCHP.SPI.SPIxCON1=8191;MCHP.S"
+      "PI.SPIxCON2=57346;MCHP.SPI.Port_SDI=reshape([87 103 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SDO=reshape([88 104 -1 -1 -1"
+      " -1],1,6);MCHP.SPI.Port_SCK=reshape([86 102 -1 -1 -1 -1],1,6);MCHP.SPI.Port_SS=reshape([18 105 -1 -1 -1 -1],1,6)"
+      ";MCHP.I2C.Refs=reshape([1 2 0 0 0],1,5);MCHP.I2C.I2CxCON=49151;MCHP.I2C.NewRegName=1;MCHP.I2C.Port_SDA=reshape(["
+      "99 3 -1 -1 -1],1,5);MCHP.I2C.Port_SCL=reshape([98 2 -1 -1 -1],1,5);MCHP.I2C.Port_ASDA=reshape([-1 -1 -1 -1 -1],1"
+      ",5);MCHP.I2C.Port_ASCL=reshape([-1 -1 -1 -1 -1],1,5);MCHP.I2C.Fuse_Port_SCL_SDA=reshape([-1 -1 -1 -1 -1 -1 -1 -1"
+      " -1 -1],2,5);MCHP.I2C.Fuse_Port_ASCL_ASDA=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1],2,5);MCHP.SCCP.nSCCP=0;MCHP.SC"
+      "CP.MCCP=reshape([0 0 0 0 0 0 0 0 0],1,9);MCHP.PGA.Port_PGA1P=reshape([-1 -1 -1 -1],1,4);MCHP.PGA.Port_PGA1N=resh"
+      "ape([-1 -1 -1 -1],1,4);MCHP.PGA.Port_PGA2P=reshape([-1 -1 -1 -1],1,4);MCHP.PGA.Port_PGA2N=reshape([-1 -1 -1 -1],"
+      "1,4);MCHP.PGA.Num=0;MCHP.HS_AnalogComparator.Port_CMP1=reshape([-1 -1 -1 -1],1,4);MCHP.HS_AnalogComparator.Port_"
+      "CMP2=reshape([-1 -1 -1 -1],1,4);MCHP.HS_AnalogComparator.Port_CMP3=reshape([-1 -1 -1 -1],1,4);MCHP.HS_AnalogComp"
+      "arator.Port_CMP4=reshape([-1 -1 -1 -1],1,4);MCHP.HS_AnalogComparator.PORT_EXTREFx=reshape([-1 -1],1,2);MCHP.HS_A"
+      "nalogComparator.Port_DACOUTx=reshape([-1 -1],1,2);MCHP.HS_AnalogComparator.Num=0;MCHP.Comp.Port_CVrefin=-1;MCHP."
+      "Comp.Port_CVref=-1;MCHP.Comp.Port_CVref1O=-1;MCHP.Comp.Port_CVref2O=-1;MCHP.Comp.Port_CxOUT=reshape([32767 32767"
+      " 32767 32767 32767],1,5);MCHP.Comp.Port_OAxOUT=reshape([-1 -1 -1 -1 -1],1,5);MCHP.Comp.Port_CxINP=reshape([-1 -1"
+      " -1 -1 -1],1,5);MCHP.Comp.Port_CxINM=reshape([-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1],4,5);"
+      "MCHP.Comp.Port_OAxINP=reshape([-1 -1 -1 -1 -1],1,5);MCHP.Comp.Port_OAxINM=reshape([-1 -1 -1 -1 -1],1,5);MCHP.Com"
+      "p.nComp=reshape([5 0 0],1,3);MCHP.Comp.OpAmp=0;MCHP.Comp.CVRCON=reshape([0 0],1,2);MCHP.CDAC.Port_DACx=reshape(["
+      "-1 -1 -1],1,3);MCHP.CDAC.nCDAC=0;MCHP.UART.port_Rx=reshape([82 84 -1 -1 -1 -1],1,6);MCHP.UART.port_Tx=reshape([8"
+      "3 85 -1 -1 -1 -1],1,6);MCHP.UART.port_ARx=reshape([-1 -1],1,2);MCHP.UART.port_ATx=reshape([-1 -1],1,2);MCHP.UART"
+      ".port_RTS=reshape([63 93 -1 -1 -1 -1],1,6);MCHP.UART.port_CTS=reshape([62 92 -1 -1 -1 -1],1,6);MCHP.UART.reg_UxM"
+      "ODE=reshape([48127 48127 -1 -1 -1 -1],1,6);MCHP.UART.reg_UxSTA=reshape([61439 61439 -1 -1 -1 -1],1,6);MCHP.modsr"
+      "c.DOS_02551_cpu_16bit_v7=0;MCHP.modsrc.DOS_01520_wdt_dmt_upb_v1_16bit=0;MCHP.modsrc.DOS_02359a_sent_j2716_upb_v1"
+      "=0;MCHP.modsrc.DOS_02672_math_progcrc_upb_v1_16bit=0;MCHP.modsrc.DOS_01577_cla_clc_upb_v1=0;MCHP.modsrc.DOS_0291"
+      "5_ecc_v2=0;MCHP.modsrc.DOS_02673_tmr_classa_upb_v1_16bit=0;MCHP.modsrc.DOS_01494_qei_32b_upb_v1_16bit=0;MCHP.mod"
+      "src.DOS_02552_msi_upb_v1_Master=0;MCHP.modsrc.DOS_01441_i2c_upb_v1_16bit_TLAH=0;MCHP.modsrc.DOS_03076_uart_proto"
+      "col_upb_v1_16bit=0;MCHP.modsrc.DOS_01482=0;MCHP.modsrc.DOS_01483_pwm_16bit=0;MCHP.modsrc.DOS_03247_CAN_FD_UPB_V2"
+      "_16_bit=0;MCHP.modsrc.DOS_02497_WACV=0;MCHP.modsrc.DOS_02316_nvm_ctrl_v1_16bit=0;MCHP.modsrc.DOS_02653_afe_curre"
+      "nt_bias_ctrl_upb_v1_16bit=0;MCHP.modsrc.DOS_01459_ptg_pc_upb_v1_16bit=0;MCHP.modsrc.DOS_01512_ccp_mccp_upb_v1_16"
+      "bit=0;MCHP.modsrc.DOS_02519_dma_sfr_16bit_v2=0;MCHP.modsrc.DOS_02508c11=0;MCHP.modsrc.DOS_02475_dac_pdm_nbit_upb"
+      "_v1_16bit=0;MCHP.modsrc.DOS_02467_gpio_upb_v1_16bit=0;MCHP.modsrc.DOS_00805_rst_integration_v4=0;MCHP.modsrc.DOS"
+      "_02659_clk_sib_v12=0;MCHP.modsrc.DOS_02674_wdt_upb_v1_16bit=0;MCHP.modsrc.DOS_01407=0;MCHP.modsrc.DOS_02552_msi_"
+      "upb_v1_Slave=0;MCHP.modsrc.DOS_02593_amp_pga_ctrl_pb_v2_16bit=0;MCHP.modsrc.DOS_01461_afe_ctmu_con_upb_v1_16bit="
+      "0;MCHP.modsrc.DOS_02497_WACA=0;MCHP.modsrc.DOS_02478_uart_irda_upb_v1_16bit=0;MCHP.modsrc.DOS_00929=0;MCHP.modsr"
+      "c.DOS_01198=0;MCHP.modsrc.DOS_03029_WACH=0;MCHP.modsrc.DOS_02472_ppi_pmp16_upb_v1_16bit=0;MCHP.modsrc.DOS_02949_"
+      "WACG=0;MCHP.modsrc.DOS_03349_amp_pad_opamp_ctrl_upb_v1=0;MCHP.modsrc.DOS_02237_osc_dco_ctrl_upb_v1_16bit=0;MCHP."
+      "modsrc.DOS_03662_WACU=0;MCHP.modsrc.DOS_03994_WAC07_Module=0;MCHP.modsrc.DOS_00794=0;MCHP.modsrc.DOS_00931=0;MCH"
+      "P.modsrc.DOS_00932=0;MCHP.modsrc.DOS_00942=0;MCHP.modsrc.DOS_00938=0;MCHP.modsrc.DOS_00996=0;MCHP.modsrc.DOS_009"
+      "97=0;MCHP.modsrc.DOS_00998=0;MCHP.modsrc.DOS_00209=0;MCHP.modsrc.DOS_01555_adc=0;MCHP.modsrc.DOS_01293=0;MCHP.mo"
+      "dsrc.DOS_00828=0;MCHP.modsrc.DOS_01116=0;MCHP.modsrc.DOS_01017_RPORx=0;MCHP.modsrc.DOS_01017_RPINRx=0;MCHP.modsr"
+      "c.DOS_01555_nvm_tsmc18_v2_16bit=0;MCHP.modsrc.DOS_00804=0;MCHP.modsrc.DOS_00826=0;MCHP.modsrc.DOS_01555_TLAK_PMD"
+      "x=0;MCHP.modsrc.DOS_01555_TLAK_INT_=0;MCHP.modsrc.DOS_00933=0;MCHP.modsrc.DOS_01555=0;MCHP.modsrc.DOS_01555_ptg="
+      "0;MCHP.modsrc.DOS_00958=0;MCHP.modsrc.DOS_01117_PORTx=0;MCHP.modsrc.DOS_00999=0;MCHP.modsrc.DOS_01041=0;MCHP.mod"
+      "src.DOS_00892=0;MCHP.modsrc.DOS_01287_TLAC_PMDx=0;MCHP.modsrc.DOS_01287_TLAC_INT_=0;MCHP.modsrc.DOS_01424=0;MCHP"
+      ".modsrc.DOS_01332=0;MCHP.modsrc.DOS_01468_PMBA_current_source=0;MCHP.modsrc.DOS_02291_PGA=0;MCHP.modsrc.DOS_0146"
+      "7_Comparator=0;MCHP.modsrc.DOS_01498_TLAY=0;MCHP.modsrc.DOS_00993_PLL_120MHz=0;MCHP.modsrc.DOS_01332_ptg_pc_v1=0"
+      ";MCHP.modsrc.DOS_00958_pwm_TLAY=0;MCHP.modsrc.TLAY_IOPorts=0;MCHP.modsrc.DOS_00929q=0;MCHP.modsrc.DOS_02415_spi_"
+      "v5=0;MCHP.modsrc.DOS_RPINRx_16bit_2=0;MCHP.modsrc.DOS_01497_TLAH_PMDx=0;MCHP.modsrc.DOS_02550_TLAL_INT=0;MCHP.mo"
+      "dsrc.DOS_00958_pwm_TLAH=0;MCHP.modsrc.DOS_01287_TLAH_INT_=0;MCHP.modsrc.DOS_01113=0;MCHP.modsrc.DOS_01017_PMDx=0"
+      ";MCHP.modsrc.DOS_00927=0;MCHP.modsrc.DOS_01080=0;MCHP.modsrc.DOS_00794_cpu_16bit_v3=0;MCHP.modsrc.DOS_02192_TLCD"
+      "_PMDx=0;MCHP.modsrc.DOS_02192_TLCD_INT_=0;MCHP.modsrc.DOS_02192_cmp=0;MCHP.modsrc.DOS_00958_pwm_TLCD=0;MCHP.mods"
+      "rc.DOS_02192_PORTx_TLCD=0;MCHP.modsrc.DOS_00936=0;MCHP.modsrc.DOS_00995=0;MCHP.modsrc.DOS_00546=0;MCHP.modsrc.DO"
+      "S_00474=0;MCHP.modsrc.DOS_02481_WACJ_MC_Config=0;MCHP.modsrc.DOS_02569_pfm_cache_ocp_v1=0;MCHP.modsrc.DOS_02819_"
+      "pfm_ctrl_32bit_upb_v2=0;MCHP.modsrc.DOS_02674_wdt_upb_v1_32bit=0;MCHP.modsrc.DOS_01520_wdt_dmt_upb_v1=0;MCHP.mod"
+      "src.DOS_02869_icd_jtag_bvci_upb_v2=0;MCHP.modsrc.DOS_02823_WACJ_clk_cru_upb_v2=0;MCHP.modsrc.DOS_01423_RPINRx=0;"
+      "MCHP.modsrc.DOS_02481_RPORx=0;MCHP.modsrc.DOS_02511_pwr_sib_upb_v1_32bit=0;MCHP.modsrc.DOS_02481_WACJ_MC_int_evi"
+      "c_v3=0;MCHP.modsrc.DOS_01500_dma_bvci_v2=0;MCHP.modsrc.DOS_02141_tmr_classa_pb_v2=0;MCHP.modsrc.DOS_02815_tmr_cl"
+      "assb_upb_v1=0;MCHP.modsrc.DOS_00740_icap_pb_v1=0;MCHP.modsrc.DOS_00749_ocmp_pb_v1=0;MCHP.modsrc.DOS_01441_i2c_up"
+      "b_v1_32bit=0;MCHP.modsrc.DOS_01329_spi_pb_v2=0;MCHP.modsrc.DOS_02478_uart_irda_upb_v1_32bit=0;MCHP.modsrc.DOS_02"
+      "514_dfm_strl_sst_upb_v1=0;MCHP.modsrc.DOS_01477_pwm_mc_upb_v1=0;MCHP.modsrc.DOS_01459_ptg_pc_upb_v1_SIC=0;MCHP.m"
+      "odsrc.DOS_01494_qei_32b_upb_v1=0;MCHP.modsrc.DOS_01427_cmp_control_upb_v1_32bit=0;MCHP.modsrc.DOS_01445_dac_nbit"
+      "__control_upb_v1_32bit=0;MCHP.modsrc.DOS_01461_afe_ctmu_con_upb_v1=0;MCHP.modsrc.DOS_02472_ppi_pmp16_upb_v1=0;MC"
+      "HP.modsrc.DOS_02467_gpio_ports_upb_v1=0;MCHP.modsrc.DOS_01152_can_bvci_v1=0;MCHP.modsrc.DOS_02508_adc_sar_ctrl_u"
+      "pb_v1_PIC32MK=0;MCHP.modsrc.DOS_02813a_usb_otgcore_pb_v3=0;MCHP.modsrc.DOS_01261_tmr_rtcc_pb_v2=0;MCHP.modsrc.DO"
+      "S_01475_lpwr_deep_sleep_ctrl_v2=0;MCHP.modsrc.DOS_EIP_00136_ssx_v1=0;MCHP.modsrc.DOS_02481_WACK_MC_Config=0;MCHP"
+      ".modsrc.DOS_03088_pfm_cache_ocp_v2_WACK=0;MCHP.modsrc.DOS_02823_WACN_clk_cru_upb_v2=0;MCHP.modsrc.DOS_02907_WACK"
+      "_MC_int_evic_v3=0;MCHP.modsrc.DOS_03554_cmp_control_upb_v2_32bit=0;MCHP.modsrc.DOS_03247_can_fd_upb_v2_pic32mk=0"
+      ";MCHP.modsrc.DOS_02787_WACD_Config=0;MCHP.modsrc.DOS_00800_dac_4bit_ctrl_pb_v1=0;MCHP.modsrc.DOS_01539_icd_jtag_"
+      "pb_v2=0;MCHP.modsrc.DOS_02823_clk_cru_upb_v2=0;MCHP.modsrc.DOS_01423_RPORx=0;MCHP.modsrc.DOS_02907_WACD_int_evic"
+      "_v3=0;MCHP.modsrc.DOS_00734_uart_irda_pb_v1=0;MCHP.modsrc.DOS_00687_tmr_classa_pb_v1=0;MCHP.modsrc.DOS_00745_tmr"
+      "_classb_pb_v1=0;MCHP.modsrc.DOS_02508_adc_sar_ctrl_upb_v1=0;MCHP.modsrc.DOS_00866_cmp_control_pb_v2=0;MCHP.modsr"
+      "c.DOS_01114_eth_bvci_v1=0;MCHP.modsrc.DOS_02831_usb_clk_rst_v2=0;MCHP.modsrc.DOS_01643_pfm_cache_ahb_v2=0;MCHP.m"
+      "odsrc.DOS_EIP_00206r5_sqi_v2=0;MCHP.modsrc.DOS_EIP_00124_usb_hs_otgcore_v1=0;MCHP.modsrc.DOS_EIP_00218_math_rng_"
+      "ahbs_v2=0;MCHP.modsrc.DOS_EIP_00109_ebi_v1=0;MCHP.modsrc.DOS_EIP_00158_crypto_v1=0;MCHP.PortBase=16;MCHP.PortPre"
+      "fixe='P';MCHP.clock.PBxDIV=-1;"
+      MCHP_CRC		      "8446326"
+      BTMODE		      "Not used"
+      RES1		      "Not used"
+      PLLSS		      "Not used"
+      RES2		      "Not used"
+      ALTCMPI		      "Not used"
+      BOREN1		      "Not used"
+      ALTRB6		      "Not used"
+      RETCFG		      "Not used"
+      DFMCY		      "Not used"
+      BSS2		      "No Boot Segment"
+      BSEN		      "No Boot Segment"
+      CWRP		      "Configuration Segment may be written"
+      CSS		      "No Protection (other than CWRP)"
+      AIVTDIS		      "Disable Alternate Vector Table"
+      BSLIM		      "Not used"
+      WDTEN		      "Disable"
+      BTSWP		      "BOOTSWP instruction is disabled"
+      DBCC		      "No Cross Connection between DAC outputs"
+      CTXT1		      "Not Assigned"
+      CTXT2		      "Not Assigned"
+      SEQNUM		      "Not used"
+      nSEQNUM		      "Not used"
+      BOREN0		      "Enabled"
+      DMTIVT		      "Not used"
+      DMTCNT		      "2^31 (2147483648)"
+      DMTEN		      "Dead Man Timer is Enabled and cannot be disabled by software"
+      ON		      "Not used"
+      USERID		      "Not used"
+      RESERVED1		      "Not used"
+      PGL1WAY		      "Allow only one reconfiguration"
+      FPLLRNG		      "34-68 MHz Input"
+      FPLLICLK		      "FRC is input to the System PLL"
+      FPLLMULT		      "PLL Multiply by 128"
+      UPLLFSEL		      "USB PLL input is 24 MHz"
+      DMTINTV		      "Window/Interval value is 127/128 counter value"
+      WDTSPGM		      "WDT stops during Flash programming"
+      FDMTEN		      "Deadman Timer is disabled"
+      TRCEN		      "Trace features in the CPU are enabled"
+      BOOTISA		      "Boot code and Exception code is MIPS32"
+      FECCCON		      "ECC and Dynamic ECC are disabled (ECCCON bits are writable)"
+      EXTDDRSIZE	      "Not used"
+      FSLEEP		      "Flash is powered down when the device is in Sleep mode"
+      DBGPER		      "Allow CPU access to all permission regions"
+      EJTAGBEN		      "Normal EJTAG functionality"
+      TSEQ		      "Not used"
+      CSEQ		      "Not used"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Port Info"
+      SID		      148
+      Ports		      []
+      Position		      [767, 521, 903, 730]
+      DropShadow	      on
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
+      SourceBlock	      "MCHP_Blockset/System Info/Port Info"
+      SourceType	      ""
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Potentiometer"
+      SID		      2
+      Ports		      [0, 1]
+      Position		      [35, 328, 120, 382]
+      ForegroundColor	      "red"
+      Priority		      "5"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Continuous_PingPong	"0"
+	DMA_CNT			"0"
+	DMACHANNEL		"-1"
+	ANtype_or		"3"
+	ADCRef			"1"
+	ADCFlags		"[1  0]"
+	DMA_CNTmax		"65535"
+	BUFF_CNTmax		"1"
+	NConv			"1"
+	LengthADxCSS		"1"
+	nSampleHold		"1"
+	nSeq			"1"
+	seqRepeat		"1"
+	ADxCON			"[33860      0     13     -1     -1     -1]"
+	ADxCHS0_ADxCSS		"[5]"
+	ADxCSS_HL		"0"
+	ADxCSS_simple_Or_HL	"1"
+	ADxCHS0			"5"
+	ADxCHS123		"-1"
+	TrigAfterEachConversion	"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Analog IO/ADC"
+      SourceType	      ""
+      ADC_REF		      "1"
+      Mode		      "12 bits"
+      FORM		      "0000 dddd dddd dddd ==> Unsigned integer"
+      ADC_R		      "< 5    kOhm"
+      nSAMPLECHANNELS	      "CH0 only"
+      nSAMPLECHANNELS_12bits  "CH0 only"
+      SIMULTANEOUS	      "Simultaneously on all Channels"
+      ADxCSS		      "[5 ]"
+      MUXA_CH0N		      off
+      MUXA_CH123	      "Dynamic Options"
+      MUXA_CH123_TXT	      "AN0 : AN1 : AN2"
+      MUXB_CH0		      "AN1"
+      MUXB_CH0N		      on
+      MUXB_CH123	      "Dynamic Options"
+      MUXB_CH123_TXT	      "AN0 : AN1 : AN2"
+      SequenceRepeat	      "1"
+      SequenceTiming	      "are done as fast as possible at end of previous time step"
+      SSRC_SSRCG	      "Dynamic Options"
+      SSRC_SSRCG_TXT	      "0"
+      Update_BlockOutput      "After all trig and conversion sequence"
+      Trig_TimeStep	      "with each update of the ADC block output"
+      ADC_DMA_CHANNEL	      "use DMA Channel 0"
+      SampleTime	      "0.001"
+      Info		      "Total Time for Sample & Conversion : 9.703e-006s including 0s (x 1) sample time."
+      MCHP_PORT		      "{Analog Input 5}{AN5}15:2:B5;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+      ADC_TIMING	      "[9.7029702970297006e-006]"
+      Port {
+	PortNumber		1
+	Name			"Pot"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Pulse Generator\nSubsystem"
+      SID		      89
+      Ports		      [0, 1]
+      Position		      [40, 115, 120, 165]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      Port {
+	PortNumber		1
+	Name			"1Hz Square Wave"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      System {
+	Name			"Pulse Generator\nSubsystem"
+	Location		[462, 52, 1508, 989]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  86
+	  Position		  [20, 20, 75, 50]
+	  Value			  "2^12-1"
+	  OutDataTypeMode	  "Inherit via back propagation"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  SID			  87
+	  Position		  [20, 150, 75, 180]
+	  Value			  "0"
+	  OutDataTypeMode	  "Inherit via back propagation"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Counter\nlimited to 1"
+	  SID			  84
+	  Ports			  [0, 1]
+	  Position		  [20, 80, 50, 110]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Sources/Counter\nLimited"
+	  SourceType		  "Counter Limited"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  uplimit		  "1"
+	  tsamp			  ".5"
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition2"
+	  SID			  88
+	  Position		  [235, 74, 275, 116]
+	  Integrity		  off
+	  Deterministic		  off
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch3"
+	  SID			  85
+	  Position		  [115, 47, 165, 143]
+	  Criteria		  "u2 ~= 0"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Pulse"
+	  SID			  90
+	  Position		  [390, 88, 420, 102]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Counter\nlimited to 1"
+	  SrcPort		  1
+	  DstBlock		  "Switch3"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Switch3"
+	  SrcPort		  1
+	  DstBlock		  "Rate Transition2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  Points		  [14, 0; 0, -40]
+	  DstBlock		  "Switch3"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Rate Transition2"
+	  SrcPort		  1
+	  DstBlock		  "Pulse"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  Points		  [14, 0; 0, 30]
+	  DstBlock		  "Switch3"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "S3 Button"
+      SID		      41
+      Ports		      [0, 1]
+      Position		      [35, 223, 125, 267]
+      ForegroundColor	      "green"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"D"
+	Pins			"[6]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Input"
+      SourceType	      "Input driver for Digital Input Pins"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "D   [ 0 : 15 ]"
+      PIN		      "6"
+      PACK		      off
+      SIMULTANEOUS	      off
+      ORDERING		      "None"
+      SampleTime	      ".01"
+      MCHP_PORT		      "{Digital In}{DIN}2:0:D6;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "S5 Button"
+      SID		      73
+      Ports		      [0, 1]
+      Position		      [35, 518, 125, 562]
+      ForegroundColor	      "green"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[7]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Input"
+      SourceType	      "Input driver for Digital Input Pins"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "A   [ 0  1  2  3  4  5  6  7  9  10  12  13  14  15 ]"
+      PIN		      "7"
+      PACK		      off
+      SIMULTANEOUS	      off
+      ORDERING		      "None"
+      SampleTime	      ".01"
+      MCHP_PORT		      "{Digital In}{DIN}2:0:A7;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "S6 Button"
+      SID		      55
+      Ports		      [0, 1]
+      Position		      [35, 438, 125, 482]
+      ForegroundColor	      "green"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	Port			"D"
+	Pins			"[7]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Input"
+      SourceType	      "Input driver for Digital Input Pins"
+      PORT		      "Dynamic Options"
+      PORT_TXT		      "D   [ 0 : 15 ]"
+      PIN		      "7"
+      PACK		      off
+      SIMULTANEOUS	      off
+      ORDERING		      "None"
+      SampleTime	      ".01"
+      MCHP_PORT		      "{Digital In}{DIN}2:0:D7;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+    }
+    Block {
+      BlockType		      Switch
+      Name		      "Switch"
+      SID		      48
+      Position		      [350, 202, 405, 288]
+      Criteria		      "u2 ~= 0"
+      InputSameDT	      off
+      SaturateOnIntegerOverflow	off
+      Port {
+	PortNumber		1
+	Name			"U2 CH1"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Switch on/off\n(toggle)"
+      SID		      45
+      Ports		      [1, 1]
+      Position		      [165, 225, 225, 265]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Switch on/off\n(toggle)"
+	Location		[16, 52, 1937, 1205]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "in"
+	  SID			  46
+	  Position		  [20, 93, 50, 107]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Change when button is pressed"
+	  SID			  40
+	  Ports			  [1, 1]
+	  Position		  [105, 85, 165, 115]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\nDecrease"
+	  SourceType		  "Detect Decrease"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  vinit			  "0.0"
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  SID			  43
+	  Ports			  [2, 1]
+	  Position		  [240, 94, 270, 121]
+	  ShowName		  off
+	  Operator		  "XOR"
+	  AllPortsSameDT	  off
+	  OutDataTypeMode	  "boolean"
+	  OutDataTypeStr	  "boolean"
+	  Port {
+	    PortNumber		    1
+	    Name		    "Toggle"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition"
+	  SID			  44
+	  Position		  [350, 89, 390, 131]
+	  Integrity		  off
+	  Deterministic		  off
+	}
+	Block {
+	  BlockType		  UnitDelay
+	  Name			  "Unit Delay"
+	  SID			  149
+	  Position		  [245, 143, 280, 177]
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Toggle"
+	  SID			  47
+	  Position		  [435, 103, 465, 117]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Unit Delay"
+	  SrcPort		  1
+	  Points		  [-15, 0]
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Change when button is pressed"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "in"
+	  SrcPort		  1
+	  DstBlock		  "Change when button is pressed"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "Toggle"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  Points		  [38, 0]
+	  Branch {
+	    DstBlock		    "Rate Transition"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 50]
+	    DstBlock		    "Unit Delay"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Rate Transition"
+	  SrcPort		  1
+	  DstBlock		  "Toggle"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Switch on/off\n(toggle)1"
+      SID		      134
+      Ports		      [1, 1]
+      Position		      [165, 440, 225, 480]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Switch on/off\n(toggle)1"
+	Location		[16, 52, 1937, 1205]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "in"
+	  SID			  135
+	  Position		  [20, 93, 50, 107]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Change when button is pressed"
+	  SID			  136
+	  Ports			  [1, 1]
+	  Position		  [105, 85, 165, 115]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\nDecrease"
+	  SourceType		  "Detect Decrease"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  vinit			  "0.0"
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  SID			  138
+	  Ports			  [2, 1]
+	  Position		  [240, 94, 270, 121]
+	  ShowName		  off
+	  Operator		  "XOR"
+	  AllPortsSameDT	  off
+	  OutDataTypeMode	  "boolean"
+	  OutDataTypeStr	  "boolean"
+	  Port {
+	    PortNumber		    1
+	    Name		    "Toggle"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition"
+	  SID			  139
+	  Position		  [350, 89, 390, 131]
+	  Integrity		  off
+	  Deterministic		  off
+	}
+	Block {
+	  BlockType		  UnitDelay
+	  Name			  "Unit Delay"
+	  SID			  150
+	  Position		  [240, 153, 275, 187]
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Toggle"
+	  SID			  140
+	  Position		  [435, 103, 465, 117]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Rate Transition"
+	  SrcPort		  1
+	  DstBlock		  "Toggle"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "Toggle"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  Points		  [38, 0]
+	  Branch {
+	    DstBlock		    "Rate Transition"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 60]
+	    DstBlock		    "Unit Delay"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "in"
+	  SrcPort		  1
+	  DstBlock		  "Change when button is pressed"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Change when button is pressed"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Unit Delay"
+	  SrcPort		  1
+	  Points		  [-10, 0]
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Switch on/off\n(toggle)2"
+      SID		      141
+      Ports		      [1, 1]
+      Position		      [165, 520, 225, 560]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Switch on/off\n(toggle)2"
+	Location		[16, 52, 1937, 1205]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "in"
+	  SID			  142
+	  Position		  [20, 93, 50, 107]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Change when button is pressed"
+	  SID			  143
+	  Ports			  [1, 1]
+	  Position		  [105, 85, 165, 115]
+	  LibraryVersion	  "1.216"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\nDecrease"
+	  SourceType		  "Detect Decrease"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  vinit			  "0.0"
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  SID			  145
+	  Ports			  [2, 1]
+	  Position		  [240, 94, 270, 121]
+	  ShowName		  off
+	  Operator		  "XOR"
+	  AllPortsSameDT	  off
+	  OutDataTypeMode	  "boolean"
+	  OutDataTypeStr	  "boolean"
+	  Port {
+	    PortNumber		    1
+	    Name		    "Toggle"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition"
+	  SID			  146
+	  Position		  [350, 89, 390, 131]
+	  Integrity		  off
+	  Deterministic		  off
+	}
+	Block {
+	  BlockType		  UnitDelay
+	  Name			  "Unit Delay"
+	  SID			  151
+	  Position		  [240, 148, 275, 182]
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Toggle"
+	  SID			  147
+	  Position		  [435, 103, 465, 117]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Unit Delay"
+	  SrcPort		  1
+	  Points		  [-10, 0]
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Change when button is pressed"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "in"
+	  SrcPort		  1
+	  DstBlock		  "Change when button is pressed"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "Toggle"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  Points		  [38, 0]
+	  Branch {
+	    DstBlock		    "Rate Transition"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 55]
+	    DstBlock		    "Unit Delay"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Rate Transition"
+	  SrcPort		  1
+	  DstBlock		  "Toggle"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Configuration"
+      SID		      3
+      Ports		      []
+      Position		      [792, 32, 897, 88]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	DOS_03076_uart_protocol_upb_v1_16bit "0"
+	UARTRef			"2"
+	UxBRG			"10"
+	UxBRGH			"0"
+	DesiredBaud		"115200"
+	Error			"-0.37"
+	InitSequence_enable	"0"
+	UxBRG_InitSeq		""
+	UxBRGH_InitSeq		""
+	DesiredBaud_InitSeq	""
+	Error_InitSeq		""
+	UxMODE			"32768"
+	UxMODEH			"-1"
+	UxMODE_InitSeq		""
+	UxMODEH_InitSeq		"-1"
+	UxSTA			"9216"
+	UxSTA_InitSeq		"9216"
+	UxSTAH			"-1"
+	UxSTAH_InitSeq		"-1"
+	TX_INT_PRIORITY		"1"
+	TX_DMA_SIZE		"18"
+	RX_INT_PRIORITY		"1"
+	RX_CIRCULAR_SIZE	"32"
+	MCHP_COM_ExtPIL		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
+      SourceType	      "Configuration for UART peripheral"
+      UART_REF		      "2"
+      BAUD_Choice	      "Dynamic Options"
+      BAUD_Choice_TXT	      "  115200         [-0.37%]"
+      BAUD_Choice_IR	      "Dynamic Options"
+      BAUD_Choice_IR_TXT      "[]"
+      BAUD_Custom	      "115200"
+      INT_PRIORITY	      "0"
+      ALT_IO		      on
+      PIN_RX		      "Dynamic Options"
+      PIN_RX_TXT	      "Dynamic Options"
+      PIN_TX		      "Dynamic Options"
+      PIN_TX_TXT	      "Dynamic Options"
+      MCHP_PORT		      "{UART2  Rx}{U2RX}3:0:F4;{UART2  Tx}{U2TX}3:1:F5;"
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+      MCHP_COM_ExtPil	      off
+      TX_IMPLEMENTATION	      "DMA Ping-Pong Mode"
+      TX_IMPLEMENTATION_default	"Circular Buffer"
+      TX_INT_PRIORITY	      "1"
+      TX_INT_WHEN	      "is empty"
+      TX_INT_WHEN_default     "is empty & last char is sent"
+      TX_CIRCULAR_SIZE	      "32"
+      TX_DMA_CHANNEL	      "1"
+      TX_DMA_SIZE	      "18"
+      TX_TASK_PROTECTION      "Delay tasks (default)"
+      TX_INTERRUPT_PROTECTION "Do not send on conflict (default)"
+      TX_INTERRUPT_PROTECTION_default "Do not send on conflict (default)"
+      RX_IMPLEMENTATION	      "Circular Buffer"
+      RX_IMPLEMENTATION_default	"Circular Buffer"
+      RX_INT_PRIORITY	      "1"
+      RX_INT_WHEN	      "receive 1 character"
+      RX_CIRCULAR_SIZE	      "32"
+      RX_DMA_CHANNEL	      "0"
+      RX_DMA_SIZE	      "0"
+      DuplexMode	      "Full duplex (default)"
+      PIN_RX_Inv	      off
+      PIN_TX_Inv	      off
+      PIN_RXTX_Inv	      off
+      ParityBit		      "No parity (default)"
+      StopBit		      "1 stop bit (default)"
+      IRDA		      off
+      FlowControl	      "None"
+      PIN_CTS		      "Dynamic Options"
+      PIN_CTS_TXT	      "Dynamic Options"
+      PIN_RTS		      "Dynamic Options"
+      PIN_RTS_TXT	      "Dynamic Options"
+      InitSequence_chkbox     off
+      BAUD_Choice_InitSeq     "Dynamic Options"
+      BAUD_Choice_InitSeq_TXT "0"
+      BAUD_Choice_IR_InitSeq  "Dynamic Options"
+      BAUD_Choice_IR_InitSeq_TXT "0"
+      BAUD_Custom_InitSeq     "0"
+      InitSequence	      "'Hello World'"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "UART Tx-Matlab"
+      SID		      4
+      Ports		      [3]
+      Position		      [780, 218, 890, 392]
+      ForegroundColor	      "red"
+      LibraryVersion	      "3.4x"
+      List {
+	ListType		RTWdata
+	UARTRef			"2"
+	BytesSent		"9"
+	NbrDataBytes		"[2  2  2]"
+	ControlChar		"[5  21  37]"
+	AllOrNothing		"0"
+      }
+      SourceBlock	      "MCHP_Blockset/BUS UART/UART Tx-Matlab"
+      SourceType	      "Higl Level UART protocol"
+      UART_REF		      "2"
+      CHANNELS		      "[1  2 3]"
+      AllOrNothing	      off
+      SampleTime	      "-1 "
+      MCHP_MASTERLINK	      "Explorer16_33FJ256GP710_SimpleFilter/Microchip Master"
+      MCHP_COMPILED_INFO      "CompiledSampleTime= [0.001   0 ];CompiledInportDataTypes=[  5   5   5 ];CompiledInportD"
+      "ataWidth=[1  1  1];"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "picgui Graphical interface"
+      SID		      5
+      Ports		      []
+      Position		      [646, 37, 761, 86]
+      ForegroundColor	      "[0.901961, 0.000000, 0.000000]"
+      DropShadow	      on
+      LibraryVersion	      "3.4x"
+      SourceBlock	      "MCHP_Blockset/BUS UART/picgui\nGraphical interface"
+      SourceType	      ""
+      Nothing		      "0"
+    }
+    Line {
+      Name		      "U2 CH1"
+      SrcBlock		      "Switch"
+      SrcPort		      1
+      Points		      [8, 0]
+      Branch {
+	Labels			[-1, 0]
+	Points			[0, 60]
+	DstBlock		"Data Type Conversion2"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"UART Tx-Matlab"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Data Type Conversion2"
+      SrcPort		      1
+      Points		      [31, 0]
+      Branch {
+	DstBlock		"Low Pass 1Hz"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 60]
+	DstBlock		"Low Pass 10Hz"
+	DstPort			1
+      }
+    }
+    Line {
+      Name		      "U2 CH2"
+      Labels		      [0, 0]
+      SrcBlock		      "Data Type Conversion3"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Low Pass 1Hz"
+      SrcPort		      1
+      DstBlock		      "Data Type Conversion3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Low Pass 10Hz"
+      SrcPort		      1
+      DstBlock		      "Data Type Conversion1"
+      DstPort		      1
+    }
+    Line {
+      Name		      "U2 CH3"
+      Labels		      [0, 0]
+      SrcBlock		      "Data Type Conversion1"
+      SrcPort		      1
+      DstBlock		      "UART Tx-Matlab"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "S3 Button"
+      SrcPort		      1
+      DstBlock		      "Switch on/off\n(toggle)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Switch on/off\n(toggle)"
+      SrcPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"Switch"
+	DstPort			2
+      }
+      Branch {
+	DstBlock		"Goto"
+	DstPort			1
+      }
+    }
+    Line {
+      Name		      "Pot"
+      Labels		      [0, 0]
+      SrcBlock		      "Potentiometer"
+      SrcPort		      1
+      Points		      [203, 0]
+      Branch {
+	Points			[0, 45]
+	DstBlock		"Led Patterns"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -80]
+	DstBlock		"Switch"
+	DstPort			3
+      }
+    }
+    Line {
+      SrcBlock		      "Data Type Conversion6"
+      SrcPort		      1
+      DstBlock		      "Led D9"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Counter Limited2"
+      SrcPort		      1
+      DstBlock		      "Data Type Conversion6"
+      DstPort		      1
+    }
+    Line {
+      Name		      "1Hz Square Wave"
+      Labels		      [1, 1]
+      SrcBlock		      "Pulse Generator\nSubsystem"
+      SrcPort		      1
+      Points		      [206, 0; 0, 75]
+      DstBlock		      "Switch"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "S6 Button"
+      SrcPort		      1
+      DstBlock		      "Switch on/off\n(toggle)1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "S5 Button"
+      SrcPort		      1
+      DstBlock		      "Switch on/off\n(toggle)2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Led Patterns"
+      SrcPort		      1
+      DstBlock		      "Leds\n[D3 D4 D5 D6 D7 D8]"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Switch on/off\n(toggle)1"
+      SrcPort		      1
+      DstBlock		      "Led Patterns"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Switch on/off\n(toggle)2"
+      SrcPort		      1
+      Points		      [67, 0; 0, -20]
+      DstBlock		      "Led Patterns"
+      DstPort		      3
+    }
+    Annotation {
+      Name		      "2Hz Blinking Led"
+      Position		      [738, 135]
+    }
+    Annotation {
+      Name		      "Low Pass 1Hz : c2d(tf(1,[1/(2*pi) 1]),.001,'zoh')\nLow Pass 10Hz :  c2d(tf(1,[1/(10*2*pi) 1]),.001,"
+      "'zoh')\ntf and c2d are Matlab instructions from the Control System Toolbox"
+      Position		      [501, 598]
+    }
+    Annotation {
+      Name		      "Explorer 16 board peripherals,\nPIM 33FJ256GP710(A): \n\nLeds : A0-A7\nPush buttons : RD6, RD7, RA7"
+      ", RD13\nPotentiometer : AN5"
+      Position		      [491, 79]
+      FontSize		      14
+    }
+  }
+}

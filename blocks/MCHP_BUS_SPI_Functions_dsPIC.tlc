@@ -1,0 +1,93 @@
+
+%function DataReadRegister(NB,SPIRef,MASTER) void
+%return "SPI%<SPIRef>BUF"
+%endfunction
+%function DataWriteRegister(NB,SPIRef,MASTER) void
+%return "SPI%<SPIRef>BUF"
+%endfunction
+%function WriteDataRegister(SPIRef,MASTER,NB,value) Output
+%<DataWriteRegister(NB,SPIRef,MASTER)> = %<value>;
+%endfunction
+%function ReadDataRegister(SPIRef,MASTER,NB,writeTo) Output
+%<writeTo> = %<DataReadRegister(NB,SPIRef,MASTER)>;
+%endfunction
+%function Declare_SPI_Interrupt(SPIRef,IntPriority,MASTER,UseUserInterrupt,block) Output
+/* Implement SPI %<SPIRef> Interrupts */				
+%if (UseUserInterrupt == 1)
+%assign AUTO_PSV = "__auto_psv__"	
+%else
+%assign AUTO_PSV = Mchp_No_auto_psv()		
+%endif
+%<Mchp_Interrupt16(IntPriority,AUTO_PSV,"SPI%<SPIRef>Interrupt",block)> 			/* SPI%<SPIRef> ISR */	
+%endfunction
+%function Declare_DMA_Interrupt(intRef,IntPriority,MASTER,UseUserInterrupt,block) Output
+/* Implement DMA %<intRef> Interrupts for SPI */				
+%if (UseUserInterrupt == 1)
+%assign AUTO_PSV = "__auto_psv__"	
+%else
+%assign AUTO_PSV = Mchp_No_auto_psv()		
+%endif
+%<Mchp_Interrupt16(IntPriority,AUTO_PSV,"DMA%<intRef>Interrupt",block)> 			/* DMA%<intRef> ISR */	
+%endfunction
+%function SPI_InterruptsConfig(SPIRef,IntPriority) Output
+/* Configure SPI%<SPIRef> Tx tnterrupt */
+%<MCHP_SFR( "SPI%<SPIRef>IP" , IntPriority , "Set SPI%<SPIRef> Interrupt Priority" )>
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 0 , "Clear SPI%<SPIRef> Interrupt Flag" )>
+%<MCHP_SFR( "SPI%<SPIRef>IE" , 1 , "Enable SPI%<SPIRef> Interrupt" )>	
+%endfunction
+%function SPI_DMAREQ_TAB(SPIRef) void
+%assign DMAREQ_TAB = CAST("Vector",[-1 ,10, 33, 91, 123 ])			
+%return DMAREQ_TAB[SPIRef]
+%endfunction
+%function Configure_DMA_Rx(DMA_Rx,SPIRef,MASTER) Output
+DMA%<DMA_Rx>CON = 0x0001;
+DMA%<DMA_Rx>REQ = %<MchpHex(SPI_DMAREQ_TAB(SPIRef))>;
+DMA%<DMA_Rx>PAD = (volatile unsigned int) &%<SPIBUF>;	
+%endfunction
+%function Configure_DMA_Tx(DMA_Tx,SPIRef,SPIBUF,MASTER) Output
+DMA%<DMA_Tx>CON = 0x2001;
+DMA%<DMA_Tx>REQ = %<MchpHex(SPI_DMAREQ_TAB(SPIRef))>;
+DMA%<DMA_Tx>PAD = (volatile unsigned int) &%<SPIBUF>;	
+%endfunction
+%function SPI_DMA_Rx_InterruptsConfig(DMA_Rx,MASTER) Output
+%<MCHP_SFR( "DMA%<DMA_Rx>IP" , IntPriority , "Set DMA%<DMA_Rx> Interrupt Priority" )>				
+%<MCHP_SFR( "DMA%<DMA_Rx>IF" , 0 , "Clear DMA%<DMA_Rx> Interrupt Flag" )>				
+%<MCHP_SFR( "DMA%<DMA_Rx>IE" , 1 , "Enable DMA%<DMA_Rx> Interrupt" )>	
+%endfunction
+%function EnableAndTrig_DMA_Interrupt(intRef,MASTER) Output
+%<MCHP_SFR( "DMA%<intRef>IF" , 1 , "Force Interrupt" )>
+%endfunction
+%function Clear_DMA_Interrupt_Flag(intRef,MASTER) Output
+%<MCHP_SFR( "DMA%<intRef>IF" , 0 , "Clear DMA%<intRef> Interrupt Flag" )>  
+%endfunction
+%function DisableInterrupt_DMA_Tx(DMA_Tx,MASTER) Output
+%endfunction
+%function DisableInterrupt_DMA_Rx(DMA_Rx,MASTER) Output
+%endfunction
+%function EnableAndTrig_Interrupt(SPIRef,MASTER) Output
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 1 , "Force Interrupt" )>  
+%endfunction
+%function DisableInterrupt() Output
+%endfunction
+%function Clear_SPI_Interrupt_Flag(SPIRef,MASTER) Output
+%<MCHP_SFR( "SPI%<SPIRef>IF" , 0 , "Clear SPI%<SPIRef> Interrupt Flag" )>  
+%endfunction
+%function EnableSPI(SPIRef,MASTER) Output
+SPI%<SPIRef>STATbits.SPIROV = 0; /* Reset possible receive overflow */
+SPI%<SPIRef>STATbits.SPIEN = 1; /* Re-Enable SPI to listen for one sequence */
+%endfunction
+%function DisableSPI(SPIRef,MASTER,cmt) Output	
+SPI%<SPIRef>STAT = 0;	
+%endfunction
+%function SPIConfig(SPIRef,Exist_EnhancedSPIBuff,idx,SPISequence,useDMA,MASTER) Output
+/* Set-up SPI %<SPIRef> peripheral with Fsck = %<SPISequence[idx+5]>  (%<SPISequence[idx+4]> with  %<SPISequence[idx+5]/(0.01*SPISequence[idx+4]) - 100> % error)  */
+%assign SPIxCON2 = SPISequence[idx+2]
+%if SPIxCON2 == -1
+SPI%<SPIRef>CON =  %<MchpHex(SPISequence[idx+1])>;
+%else
+SPI%<SPIRef>CON1 =  %<MchpHex(SPISequence[idx+1])>;
+%assign SPIxCON2Value = SPIxCON2 + ( Exist_EnhancedSPIBuff & !useDMA)	
+SPI%<SPIRef>CON2 =  %<MchpHex(SPIxCON2Value)>;
+%endif
+SPI%<SPIRef>STAT = %<MchpHex(SPISequence[idx+3] + CAST("Number",Exist_EnhancedSPIBuff)*(5*4) )>;		
+%endfunction

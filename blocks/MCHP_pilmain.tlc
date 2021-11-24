@@ -1,0 +1,128 @@
+%selectfile NULL_FILE
+%include "MCHP_Functions.tlc"
+%function FcnPilTaskingMain() void
+%<LibWriteToStandardOutput("--- Processor In the Loop (PIL) implementation ---")>
+%assign MASTER_BusyFlag = CAST("Number",RTWGenSettings.MASTER_BusyFlag)
+%assign MASTER_BusyFlagPin = CAST("Number",MASTER_BusyFlag % 16)
+%assign MASTER_BusyFlagLetter = STRINGOF([%<MASTER_BusyFlag / 16 + 65>])
+%assign POWERSAVE = CAST("Number",RTWGenSettings.POWERSAVE)
+%assign TimeStep_Timer = CAST("Number",RTWGenSettings.TimeStep_Timer)
+%assign TimeStep_SyncADC = CAST("Number",RTWGenSettings.TimeStep_SyncADC)
+%assign ChipIdL1 = CAST("String",RTWGenSettings.ChipIdL1)
+%assign ChipIdL2 = CAST("String",RTWGenSettings.ChipIdL2)
+%assign ChipIdL3 = CAST("String",RTWGenSettings.ChipIdL3)
+%assign ChipIdN = MchpVector(RTWGenSettings.ChipIdN)
+%if GenerateSampleERTMain
+%assign ::CompiledModel.GenerateSampleERTMain = TLC_FALSE
+%warning Overriding example ert_main.c!
+%endif
+%openfile tmpBuf
+%<SLibDeclareFcnProtoCtlVariables()>\
+%<LibWriteModelData()>\
+%assign MCHP_NEAR_MEM = Mchp_NEAR_MEM()
+volatile uint_T ContinueTimeStep %<MCHP_NEAR_MEM> = 0;    /* Microchip Global Variable for PIL scheduler */
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_data_defn", tmpBuf)>
+%openfile tmpBuf
+#include "xil_interface_lib.h"	
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
+%openfile tmpBuf
+void %<LibGetMdlPubHdrBaseName()>_Start(void)  __attribute__ ((weak));
+void %<LibGetMdlPubHdrBaseName()>_initialization(void) __attribute__ ((weak));
+void %<LibGetMdlPubHdrBaseName()>_Init(void) __attribute__ ((weak));
+void %<LibGetMdlPubHdrBaseName()>_Start(void)  {}
+void %<LibGetMdlPubHdrBaseName()>_initialization(void) {}
+void %<LibGetMdlPubHdrBaseName()>_Init(void) {}
+%assign fcnReturns = "int"
+%assign fcnName = "pil_main"	
+%assign fcnParams = ""
+%assign fcnCategory = "main"
+%assign fcnAbstract = "Solver mode : " + "%<CompiledModel.FixedStepOpts.SolverMode>"
+%createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+Abstract fcnAbstract; Category fcnCategory; GeneratedBy "MCHP_pilmain.tlc"; ...
+Type "Main"}
+%<SLibDumpFunctionBanner(fcnRec)>
+%<fcnReturns> %<fcnName>(%<fcnParams>)
+{
+/* Initialize model */
+%include "MCHP_Function_Startup.tlc"
+%<MchpStartup(1)>	
+/* main XIL loop */
+for(;;) {
+/* XIL code */
+XIL_INTERFACE_LIB_ERROR_CODE errorCode = XIL_INTERFACE_LIB_SUCCESS;
+int errorOccurred = 0;
+/* XIL initialization */
+const int argc = 0;
+void * argv = (void *) 0;
+errorCode = xilInit(argc, argv);
+%<LibGetMdlPubHdrBaseName()>_initialization();
+%<LibGetMdlPubHdrBaseName()>_Start();       
+%<LibGetMdlPubHdrBaseName()>_Init();    
+/* main XIL loop */
+while(!errorOccurred) {
+/* Disable Interrupt below 2. IPL value is 0 at this point */
+%if ::isPIC32  
+__builtin_set_isr_state(8 + 1); /* Set IPL to 1 (interrupt priority was 0) ; keep bit ie set */
+%else
+_IPL1 = 1;    
+%endif
+%if (MASTER_BusyFlag != -1)
+/* Set busy flag */
+%<MCHP_SetOutputBit(MASTER_BusyFlag,1,"Set Bugy Flag PIN")>
+%endif
+%<MCHP_ProfileTaskStart(0)>
+%<MCHP_ProfileMCU_Compute(0)>
+errorCode = xilRun();
+%<MCHP_ProfileMCU("exitUpdate")>
+%<MCHP_ProfileTaskStop(0)>
+%if (MASTER_BusyFlag != -1)
+/* Release busy flag */
+%<MCHP_SetOutputBit(MASTER_BusyFlag,0,"Release Bugy Flag PIN")>
+%endif
+/* Re-Enable all Interrupt. IPL value is 2 at this point */
+%if ::isPIC32
+__builtin_set_isr_state(8 + 0); /* Set IPL to 0 (interrupt priority was 1) ; keep bit ei set */
+%else
+_IPL1 = 0;    
+%endif
+if (errorCode != XIL_INTERFACE_LIB_SUCCESS) {
+if (errorCode == XIL_INTERFACE_LIB_TERMINATE) {
+/* orderly shutdown of rtiostream */
+errorOccurred = (xilTerminateComms() != XIL_INTERFACE_LIB_SUCCESS);
+} else {
+errorOccurred = 1;
+}
+}
+}
+/* trap error with infinite loop */
+if (errorOccurred)
+for (;;);
+}
+return 0;  /* Never happend */
+}
+%closefile tmpBuf
+%<SLibCacheCodeToFile("mainSrc_fcn_defn", tmpBuf)>
+%openfile dspicfun = "xil_interface_lib.h"				
+/* Copyright 2006-2011 The MathWorks, Inc. */
+/*
+* File: xil_interface_lib.h
+*
+* SIL/PIL support library
+*/
+#ifndef __XIL_INTERFACE_LIB_H__
+#define __XIL_INTERFACE_LIB_H__
+/* define some error codes */
+typedef enum {XIL_INTERFACE_LIB_SUCCESS=0,
+XIL_INTERFACE_LIB_ERROR,
+XIL_INTERFACE_LIB_TERMINATE} XIL_INTERFACE_LIB_ERROR_CODE;
+/* xil interface functions to be called from main */
+extern XIL_INTERFACE_LIB_ERROR_CODE xilInit(const int argc,
+void *argv[]);
+extern XIL_INTERFACE_LIB_ERROR_CODE xilRun(void);
+/* terminate XIL communications */
+extern XIL_INTERFACE_LIB_ERROR_CODE xilTerminateComms(void);
+#endif
+%closefile dspicfun
+%endfunction

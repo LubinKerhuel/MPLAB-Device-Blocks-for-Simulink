@@ -1,0 +1,250 @@
+%implements MCHP_DACC_SAMx  "C"
+%include "MCHP_Functions.tlc"
+%assign ::DACC_SAMx7_DACC_MODE = -1
+%assign ::DACC_SAMx7_DAC_ChEn = [ -1,-1 ]
+%assign ::DACC_SAMx7_DAC0_Initial_Output = -1
+%assign ::DACC_SAMx7_DAC1_Initial_Output = -1
+%assign ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT = -1
+%assign ::DACC_SAMx7_DACC_PRESCALER_VALUE = -1
+%assign BlockInputDatatype = [ -1,-1,-1 ]
+%assign BlockInputsUsed = [ -1,-1,-1 ]
+%assign SATURATION = [ -1,-1,-1 ]
+%assign DACC_PCER_idx = -1
+%assign DACC_Peripheral_ID = -1
+%assign ::DACC_SAMx7_nBlocks = 0		
+%assign ::DACC_SAMx7_iBlocks = 0		
+%function BlockInstanceSetup(block, system) void
+%assign ::DACC_SAMx7_nBlocks = ::DACC_SAMx7_nBlocks + 1
+%endfunction
+%function Start(block, system) Output
+%assign ::DACC_SAMx7_DACC_MODE = MchpLocal2Global(block,::DACC_SAMx7_DACC_MODE ,  CAST("Number",block.RTWdata.DACC_SAMx7_DACC_MODE),"DACC_MODE" , "")
+%assign ::DACC_SAMx7_DAC_ChEn = MchpLocal2Global(block,::DACC_SAMx7_DAC_ChEn ,  MchpVector64(block.RTWdata.DACC_SAMx7_DAC_ChEn),"DAC_ChEn" , "Problem with DACC block configuration: DACC Channels")
+%assign ::DACC_SAMx7_DAC0_Initial_Output = MchpLocal2Global(block,::DACC_SAMx7_DAC0_Initial_Output ,  CAST("Real",block.RTWdata.DACC_SAMx7_DAC0_Initial_Output),"DAC0_Initial_Output" , "Problem with DACC block configuration: DAC0 Initial Output")
+%assign ::DACC_SAMx7_DAC1_Initial_Output = MchpLocal2Global(block,::DACC_SAMx7_DAC1_Initial_Output ,  CAST("Real",block.RTWdata.DACC_SAMx7_DAC1_Initial_Output),"DAC1_Initial_Output" , "Problem with DACC block configuration: DAC1 Initial Output ")
+%assign ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT = MchpLocal2Global(block,::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT ,  CAST("Real",block.RTWdata.DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT),"DACC_DIFF_INITIAL_OUTPUT" , "Problem with DACC block configuration: DACC Initial Output (Differential Mode) ")
+%assign ::DACC_SAMx7_DACC_PRESCALER_VALUE = MchpLocal2Global(block,::DACC_SAMx7_DACC_PRESCALER_VALUE ,  CAST("Number",block.RTWdata.DACC_SAMx7_DACC_PRESCALER_VALUE),"DACC_PRESCALER_VALUE" , "Problem with DACC block configuration: DACC Prescaler ")
+%assign BlockInputDatatype =  MchpVector64(block.RTWdata.BlockInputDatatype)
+%assign BlockInputsUsed =  MchpVector64(block.RTWdata.BlockInputsUsed)
+%assign SATURATION =  MchpVector64(block.RTWdata.SATURATION)
+%assign DACC_PCER_idx =  CAST("Number",block.RTWdata.DACC_PCER_idx)
+%assign DACC_Peripheral_ID =  CAST("Number",block.RTWdata.DACC_Peripheral_ID)
+%assign ::DACC_SAMx7_iBlocks = ::DACC_SAMx7_iBlocks + 1
+%if ::DACC_SAMx7_iBlocks == 1	
+{
+/* DACC Initialization */
+uint32_t MCHP_DACC_MR_reg_init = 0u;
+uint32_t MCHP_DACC_CHER_reg_init = 0u;
+uint32_t MCHP_DACC_TRIGR_reg_init = 0u;
+uint32_t MCHP_DACC_ACR_reg_init = 0u;
+NVIC_ClearPendingIRQ(DACC_IRQn);
+PMC_REGS->PMC_PCER%<DACC_PCER_idx> |= PMC_PCER%<DACC_PCER_idx>_PID%<DACC_Peripheral_ID>(1u);    /* Enable DACC peripheral clock (DACC Peripheral ID = %<DACC_Peripheral_ID>) */
+DACC_REGS->DACC_CR |= DACC_CR_SWRST(1);                                                         /* Reset DACC */
+MCHP_DACC_MR_reg_init |= DACC_MR_PRESCALER(%<DACC_SAMx7_DACC_PRESCALER_VALUE>u);                 /* PRESCALER = (MCK/DACC_DESIRED_FREQ) - 2 */
+MCHP_DACC_MR_reg_init |= DACC_MR_DIFF(%<::DACC_SAMx7_DACC_MODE>u); /* DACC Mode: 0=> DAC0 and DAC1 are single-ended outputs; 1=> DACP and DACN are differential outputs */
+%foreach idx = SIZE(DACC_SAMx7_DAC_ChEn,1)
+%if DACC_SAMx7_DAC_ChEn[idx] != -1
+/* DAC%<idx> setup */
+MCHP_DACC_CHER_reg_init |= DACC_CHER_CH%<idx>(1u);      /* Enable DACC Channel %<idx>  */
+MCHP_DACC_MR_reg_init |= DACC_MR_MAXS%<idx>(0u);        /* 0 => Trigger or Free-running Mode, 1  => Max speed mode  */
+MCHP_DACC_TRIGR_reg_init |= DACC_TRIGR_TRGEN%<idx>(0u); /* Trigger mode disabled. DACC is in Free-running mode or Max speed mode  */
+MCHP_DACC_ACR_reg_init |= DACC_ACR_IBCTLCH%<idx>(3u);   /* 0 => Bypass, 1 => 500 ks/s, 2 => n/a, 3 => 1 Ms/s */
+%endif
+%endforeach
+/* Store intialization values */
+DACC_REGS->DACC_MR = MCHP_DACC_MR_reg_init;
+DACC_REGS->DACC_CHER = MCHP_DACC_CHER_reg_init;
+DACC_REGS->DACC_TRIGR = MCHP_DACC_TRIGR_reg_init;
+DACC_REGS->DACC_ACR = MCHP_DACC_ACR_reg_init;
+%foreach idx = SIZE(DACC_SAMx7_DAC_ChEn,1)
+%if DACC_SAMx7_DAC_ChEn[idx] != -1
+%if ::DACC_SAMx7_DACC_MODE == 0
+%if ::DACC_SAMx7_DAC%<idx>_Initial_Output > 3.3
+%<LibBlockReportWarning(block, "DAC%<idx> Initial Output Voltage is set too high (Max = 3.3v). Default value set to 3.3v.")>
+%assign ::DACC_SAMx7_DAC%<idx>_Initial_Output = CAST("Real",3.3)
+%elseif ::DACC_SAMx7_DAC%<idx>_Initial_Output < 0
+%<LibBlockReportWarning(block, "DACC Initial Output Voltage is set too low (Min = 0v). Dafault value set to 0v.")>
+%assign ::DACC_SAMx7_DAC%<idx>_Initial_Output = CAST("Real",0)
+%endif
+%assign dac_data = (::DACC_SAMx7_DAC%<idx>_Initial_Output * 4095) / 3.3
+%assign dac_data = CAST("Number", %<dac_data>)
+/* Wait until DAC%<idx> is ready to receive data AND to accept new conversion requests */
+while ( (DACC_REGS->DACC_CHSR & DACC_CHSR_DACRDY%<idx>_Msk) && (DACC_REGS->DACC_ISR & DACC_ISR_TXRDY%<idx>_Msk) == 0u)
+{
+__NOP();
+}
+DACC_REGS->DACC_CDR[%<idx>] = (uint16_T) %<dac_data>u ; /* DAC%<idx> Initialization Value (Single-Ended Mode) */
+%else
+%if idx == 1 
+%if ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT > 3.3
+%<LibBlockReportWarning(block, "Initial Output Voltage (Differential-Mode) is set too high (Max = 3.3v). Default value set to 3.3v.")>
+%assign ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT = CAST("Real",3.3)
+%elseif ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT < 0
+%<LibBlockReportWarning(block, "Initial Output Voltage (Differential-Mode) too low (Min = 0v). Dafault value set to 0v.")>
+%assign ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT = CAST("Real",0)
+%endif
+%assign dac_data = (::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT * 4095) / 3.3
+%assign dac_data = CAST("Number", %<dac_data>)
+/* Wait until DAC0 is ready to receive data AND to accept new conversion requests */
+while ( (DACC_REGS->DACC_CHSR & DACC_CHSR_DACRDY0_Msk) &&  (DACC_REGS->DACC_ISR & DACC_ISR_TXRDY0_Msk ) == 0u)
+{
+__NOP();
+}
+DACC_REGS->DACC_CDR[0] = (uint16_T) %<dac_data>u; /* Conversions in Differential-Mode are driven by channel 0 */
+%endif
+%endif
+%endif
+%endforeach
+}
+%endif
+%endfunction
+%function Outputs(block, system) Output
+%assign ::DACC_SAMx7_DACC_MODE = MchpLocal2Global(block,::DACC_SAMx7_DACC_MODE ,  CAST("Number",block.RTWdata.DACC_SAMx7_DACC_MODE),"DACC_MODE" , "")
+%assign ::DACC_SAMx7_DAC_ChEn = MchpLocal2Global(block,::DACC_SAMx7_DAC_ChEn ,  MchpVector64(block.RTWdata.DACC_SAMx7_DAC_ChEn),"DAC_ChEn" , "Problem with DACC block configuration: DACC Channels")
+%assign ::DACC_SAMx7_DAC0_Initial_Output = MchpLocal2Global(block,::DACC_SAMx7_DAC0_Initial_Output ,  CAST("Real",block.RTWdata.DACC_SAMx7_DAC0_Initial_Output),"DAC0_Initial_Output" , "Problem with DACC block configuration: DAC0 Initial Output")
+%assign ::DACC_SAMx7_DAC1_Initial_Output = MchpLocal2Global(block,::DACC_SAMx7_DAC1_Initial_Output ,  CAST("Real",block.RTWdata.DACC_SAMx7_DAC1_Initial_Output),"DAC1_Initial_Output" , "Problem with DACC block configuration: DAC1 Initial Output ")
+%assign ::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT = MchpLocal2Global(block,::DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT ,  CAST("Real",block.RTWdata.DACC_SAMx7_DACC_DIFF_INITIAL_OUTPUT),"DACC_DIFF_INITIAL_OUTPUT" , "Problem with DACC block configuration: DACC Initial Output (Differential Mode) ")
+%assign ::DACC_SAMx7_DACC_PRESCALER_VALUE = MchpLocal2Global(block,::DACC_SAMx7_DACC_PRESCALER_VALUE ,  CAST("Number",block.RTWdata.DACC_SAMx7_DACC_PRESCALER_VALUE),"DACC_PRESCALER_VALUE" , "Problem with DACC block configuration: DACC Prescaler ")
+%assign BlockInputDatatype =  MchpVector64(block.RTWdata.BlockInputDatatype)
+%assign BlockInputsUsed =  MchpVector64(block.RTWdata.BlockInputsUsed)
+%assign SATURATION =  MchpVector64(block.RTWdata.SATURATION)
+%assign DACC_PCER_idx =  CAST("Number",block.RTWdata.DACC_PCER_idx)
+%assign DACC_Peripheral_ID =  CAST("Number",block.RTWdata.DACC_Peripheral_ID)
+%assign IndexInput = 0
+/% BlockInputDatatype codings:
+-1 => 'is not a block input'
+1 => 'is a 16 bits unsigned block input in the range [0 - 4026] [0v - 3.3v]'
+10 => 'is a Floating Point block input within the range [0 - 1] [0v - 3.3v]'
+12 => 'is a Floating Point block input with physical scaling in Volts within the range [0v - 3.3v]'
+%/
+%assign atLeastOneInputUsed = 0
+%foreach idx = SIZE(BlockInputsUsed,1)
+%if BlockInputsUsed[idx] == 1
+%assign atLeastOneInputUsed = 1
+%endif
+%endforeach
+%if atLeastOneInputUsed == 1
+uint16_T dac_input_val = 0u;
+%endif
+%if ::DACC_SAMx7_DACC_MODE == 0
+%foreach idx = SIZE(DACC_SAMx7_DAC_ChEn,1)
+%if BlockInputsUsed[idx] != -1
+%assign DACC_INPUT_SIGNAL = LibBlockInputSignal(IndexInput, "", "",0)
+%assign IndexInput = IndexInput + 1
+%if BlockInputDatatype[idx] == 1
+/* DAC%<idx> Input: is a 16 bits unsigned block input in the range [0 - 4026] [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 4095u){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+}
+%else
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+%endif
+%elseif BlockInputDatatype[idx] == 10
+/* DAC%<idx> input: is a Floating Point block input within the range [0 - 1] [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 1.0){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+}
+%else
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+%endif
+%elseif BlockInputDatatype[idx] == 12
+/* DAC%<idx> Input: is a Floating Point block input with physical scaling in Volts within the range [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 3.3){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+}
+%else
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+%endif
+%endif
+/* Wait until DACC is ready to receive data AND to accept new conversion requests */
+while ((DACC_REGS->DACC_CHSR & DACC_CHSR_DACRDY%<idx>_Msk) && (DACC_REGS->DACC_ISR & DACC_ISR_TXRDY%<idx>_Msk) == 0u)
+{
+__NOP();
+}
+DACC_REGS->DACC_CDR[%<idx>] = dac_input_val;      /* Set DAC output for CH%<idx> (Differential Mode Output) */
+%endif
+%endforeach
+%else
+%assign idx = 2
+%assign ch = 0
+%if BlockInputsUsed[idx] != -1
+%assign DACC_INPUT_SIGNAL = LibBlockInputSignal(IndexInput, "", "",0)
+%if BlockInputDatatype[idx] == 1
+/* DAC%<ch> Input: is a 16 bits unsigned block input in the range [0 - 4026] [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 4095u){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+}
+%else
+dac_input_val = %<DACC_INPUT_SIGNAL>;
+%endif
+%elseif BlockInputDatatype[idx] == 10
+/* DAC%<ch> input: is a Floating Point block input within the range [0 - 1] [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 1.0){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+}
+%else
+dac_input_val = (uint16_T) (%<DACC_INPUT_SIGNAL> * 4095.0);
+%endif
+%elseif BlockInputDatatype[idx] == 12
+/* DAC%<ch> Input: is a Floating Point block input with physical scaling in Volts within the range [0v - 3.3v] */
+%if SATURATION[idx] == 1 
+if (%<DACC_INPUT_SIGNAL> > 3.3){
+dac_input_val = 4095u; /* Saturate DAC input to MAX (2^12) */
+}
+else if (%<DACC_INPUT_SIGNAL> < 0u){
+dac_input_val = 0u; /* Saturate DAC input to MIN (0) */
+}
+else{
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+}
+%else
+dac_input_val = (uint16_T) ((%<DACC_INPUT_SIGNAL> * (4095.0/3.3)));
+%endif
+%endif
+/* Wait until DACC is ready to receive data AND to accept new conversion requests */
+while ((DACC_REGS->DACC_CHSR & DACC_CHSR_DACRDY%<ch>_Msk) && (DACC_REGS->DACC_ISR & DACC_ISR_TXRDY%<ch>_Msk) == 0u)
+{
+__NOP();
+}
+DACC_REGS->DACC_CDR[%<ch>] = dac_input_val; /* Set DAC output for CH%<ch> */
+%endif
+%endif
+%endfunction
+%function Update(block, system) Output
+%endfunction
+%function BlockTypeSetup(block, system) Output
+%endfunction
