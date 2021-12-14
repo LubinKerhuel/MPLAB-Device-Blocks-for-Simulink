@@ -1,3 +1,0 @@
-
-%function MCHP_UART_Config_Tx_DMA(block,system) Output
-%endfunction

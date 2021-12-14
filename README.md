@@ -1,24 +1,26 @@
 # MPLAB Device Blocks for Simulink
 
-MPLAB Device Blocks for Simulink enables Embedded Coder to target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
+MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
 
-This support package is functional from Matlab R2015a and beyond.
+This support package is functional from Matlab R2015a up to current version (R2021b).
 
 ## Installation / Update
 
 [![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
+### clean previous installation
+You might want to clean previous installation: type picclean at matlab prompt.
 
 ### as an add-on 
-1. With Matlab add-on feature, search MPLAB Device Block for Simulink. Use "download and add to path".
-Type picInfo and follow links to copy example in your current working directlry.
+1. With Matlab add-on feature, search MPLAB Device Block for Simulink. Use "Download Toolbox".
+Open the doc at the end of the installation process to check compiler and MPLAB IDE installation (mlx script).
 
 If you used download only, go to the mchp subfolder and run picsetup to set-up matlab path.
 
 ### as an independant package
 
-1. Download the add on from mathWorks website, or alternatively from the [github repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip)
-2. unzip and execute the .p installer script available in the subfolder "installer_old". From matlab, right clink on the install.p file and execute.  
+1. Download the zip from mathWorks website, or alternatively from the [github repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip)
+2. unzip and execute the .p installer script. From matlab, right clik on the install.p file and execute.  
 The MCHP\_example folder is created in the current folder with a copy of simple examples.
 
 ### commands
@@ -80,6 +82,15 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Contact: simulink_support@microchip.com
 
 ## Release notes
+- v5.50.18
+  - SAMx7: Fixed USART generated code typo with interrupt implementation
+  - dsPIC CK: Fixed Change Notification User Interrupt triggered twice
+  - Improved UART block User Interface 
+  - SAMx7: Add Fuse configuration ensuring Fuse get programmed
+  - SAMx7:  Disable ICE functions on PORT B when pin is used for another purpose
+  - SAMx: Add compilation of intermediate model (library)
+  - Add PIL and External Mode example for Xplained Ultra board
+  - Update Installer
 - v3.50.17:
   - Fixed programming not working form Linux (issue from 3.50.16)
   - Update installer. Simplify installation as an add-on.
