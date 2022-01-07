@@ -83,8 +83,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Release notes
 - v5.50.19
-  - Programming interface update. Extend number of kit programmed directly from matlab (always try using latest MPLAB X version. current release is 6.0.0)
-  - PIL target initialisation code improved. Fixed possible code issue with initialisation function signature mismatch.
+  - Programming interface updated. Extend number of kit programmed from matlab (use latest MPLAB X version. current release is 6.0.0)
+  - PIL target initialisation code improved. Fixed possible code issue with initialisation function signature mismatch
   - PIL UART interface compatible with USB-COM port available on kits. Enabling host data flow control
 - v5.50.18
   - SAMx7: Fixed USART generated code typo with interrupt implementation
