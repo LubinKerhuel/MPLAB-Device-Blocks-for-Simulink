@@ -2,7 +2,7 @@
 
 MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
 
-This support package is functional from Matlab R2015a up to current version (R2021b).
+This support package is functional from Matlab R2015a up to current version (R2022a).
 
 ## Installation / Update
 
@@ -82,6 +82,13 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.22
+  - Improved PIL on Linux
+  - Fixed issue on SAMx7 when analog port is used and no othet peripheral used the same port (Letter)
+  - Fixed SPI & I2C peripheral block, broken with SAMx2 and SAMX5.
+  - Complete support for dsPIC CK MC
+  - dsPIC Improved Code Replacement accuracy. Fix one typo preventing compilation in rare cases
+  - dsPIC, Code replaced (sin, cos, atan2) works with revolution unit, not limited to radian.
 - v3.50.20
   - Updated datasheet block to locate pdf from Microchip website
   - Fixed dsPIC Optimized assembly code issue resulting in wrong output with XC16 v2.00 set with -Ox optimization enabled.
@@ -266,7 +273,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (521)
+### Supported MCUs (527)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -431,6 +438,13 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CK64MP505
   - 33CK64MP506
   - 33CK64MP508
+- **dsPIC33CK MC**
+  - 33CK32MC102
+  - 33CK32MC103
+  - 33CK32MC105
+  - 33CK64MC102
+  - 33CK64MC103
+  - 33CK64MC105
 - **dsPIC33EP GM**
   - 33EP128GM304
   - 33EP128GM306
