@@ -82,6 +82,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.23
+  - missing file for Code Replacement for the dsPIC atan2 function 
 - v3.50.22
   - Improved PIL on Linux
   - Fixed issue on SAMx7 when analog port is used and no othet peripheral used the same port (Letter)
