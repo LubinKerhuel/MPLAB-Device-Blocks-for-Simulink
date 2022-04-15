@@ -82,6 +82,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.24
+  - Added dsPIC CK 128 & 256
+  - Fixed code Replacement for dsPIC not compiling in debug mode -O0 option
+  - PIC32 ADC High Speed SAR fixed channel of class 3 below 32 were handled as class 2 (break compilation)
 - v3.50.23
   - missing file for Code Replacement for the dsPIC atan2 function 
 - v3.50.22
@@ -275,7 +279,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (527)
+### Supported MCUs (543)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -383,6 +387,29 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CH64MP505
   - 33CH64MP506
   - 33CH64MP508
+- **dsPIC33CK MC**
+  - 33CK128MC102
+  - 33CK128MC103
+  - 33CK128MC105
+  - 33CK128MC106
+  - 33CK128MC502
+  - 33CK128MC503
+  - 33CK128MC505
+  - 33CK128MC506
+  - 33CK256MC102
+  - 33CK256MC103
+  - 33CK256MC105
+  - 33CK256MC106
+  - 33CK256MC502
+  - 33CK256MC503
+  - 33CK256MC505
+  - 33CK256MC506
+  - 33CK32MC102
+  - 33CK32MC103
+  - 33CK32MC105
+  - 33CK64MC102
+  - 33CK64MC103
+  - 33CK64MC105
 - **dsPIC33CK MP**
   - 33CK128MP202
   - 33CK128MP203
@@ -440,13 +467,6 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CK64MP505
   - 33CK64MP506
   - 33CK64MP508
-- **dsPIC33CK MC**
-  - 33CK32MC102
-  - 33CK32MC103
-  - 33CK32MC105
-  - 33CK64MC102
-  - 33CK64MC103
-  - 33CK64MC105
 - **dsPIC33EP GM**
   - 33EP128GM304
   - 33EP128GM306
@@ -836,3 +856,4 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - SAMV71Q19B
   - SAMV71Q20B
   - SAMV71Q21B
+  
