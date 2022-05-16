@@ -82,6 +82,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.25
+  - PIL: Added support for PIL Top-Model and PIL Referenced Model approach  
 - v3.50.24
   - Added dsPIC CK 128 & 256
   - Fixed code Replacement for dsPIC not compiling in debug mode -O0 option
