@@ -82,6 +82,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.26
+  - fixed SPI code not generated with PIC32
 - v3.50.25
   - PIL: Added support for PIL Top-Model and PIL Referenced Model approach  
 - v3.50.24
