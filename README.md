@@ -91,6 +91,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - added example using custom code to write SAMx FLASH (EEPROM emulator)
   - Add Timers functionality on SAMx chips
   - Improved PIL support with Test Harness
+  - Fixed Low priority interrupt with PIC32MZ that might trig an exception
 - v3.50.26
   - fixed SPI code not generated with PIC32
 - v3.50.25
