@@ -82,6 +82,14 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.29
+  - Added Microchip toolstirp 
+  - Added CAN support for SAME7
+  - Updated QDEC quadrature function block for SAMx
+  - added UART Circular buffer with DMA on dsPIC
+  - Fixed PIC32 SPI SCK2 missing mapping
+  - Fixed pin mapping errors with dsPIC / PIC32
+  - Upated External mode XCP support on dsPIC
 - v3.50.27
   - added support for dsPIC32MK EFE/EFF/EFK family
   - support SPI on SAMx7 
