@@ -82,6 +82,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.32
+  - fixed one typo within package causing issue with SAM new CAN block and dsPIC UART Circular buffer DMA driver.
 - v3.50.31
   - revert using programmer in debug mode to force starts of the program (MPLAB X 6.05 should get fixed instead)
   - minor improvements on toolstrip and programming functions (upated IPE)
