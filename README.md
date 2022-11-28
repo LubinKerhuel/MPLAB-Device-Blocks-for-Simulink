@@ -2,7 +2,7 @@
 
 MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
 
-This support package is functional from Matlab R2015a up to current version (R2022a).
+This support package is functional from Matlab R2015a up to current version (R2022b).
 
 ## Installation / Update
 
@@ -82,6 +82,12 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.31
+  - revert using programmer in debug mode to force starts of the program (MPLAB X 6.05 should get fixed instead)
+  - minor improvements on toolstrip and programming functions (upated IPE)
+- v3.50.30
+  - Fixed program not starting until disconnecting programmer / press reset button if available
+  - various fixes on XCP and UART DMA driver for dsPIC
 - v3.50.29
   - Added Microchip toolstirp 
   - Added CAN support for SAME7
