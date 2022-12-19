@@ -19,7 +19,7 @@ If you used download only, go to the mchp subfolder and run picsetup to set-up m
 
 ### as an independant package
 
-1. Download the zip from mathWorks website, or alternatively from the [github repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/archive/master.zip)
+1. Download the zip from mathWorks website, or alternatively from the [github repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/releases)
 2. unzip and execute the .p installer script. From matlab, right clik on the install.p file and execute.  
 The MCHP\_example folder is created in the current folder with a copy of simple examples.
 
