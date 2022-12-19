@@ -82,6 +82,15 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.33
+  - External mode:
+    - Fixed single tasking implementation with XCP
+    - clean dsPIC CK PWM start and stop 
+    - improved interface when Host UART is not set prior to start external mode 
+  - Remove MPLAB X 6.05 MDB interface used to program chip. The MDB v6.05 command line chip programming  is broken. System will use either IPE v6.05, or another MDB version if available.
+  - Fixed dsPIC Matrix replacement memory leak when output is a vector transposed
+  - fixed linux issue when toolbox was installed in a path containing parenthesis like "(1)"  
+  - improved custom linker script path issue in specifics conditions
 - v3.50.32
   - fixed one typo within package causing issue with SAM new CAN block and dsPIC UART Circular buffer DMA driver.
 - v3.50.31
