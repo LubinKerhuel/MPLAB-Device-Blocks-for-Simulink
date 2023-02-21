@@ -12,7 +12,7 @@ This support package is functional from Matlab R2015a up to current version (R20
 You might want to clean previous installation: type picclean at MATLAB prompt, or remove the add-on with MATLAB menu.
 
 ### Installation 
-1. With the MATLAB add-on menu, search for "**MPLAB**" or "**MPLAB Device Block for Simulink**". Push the add button on top left to download and install.
+1. With the MATLAB add-on menu, search for "**MPLAB**" or "**MPLAB Device Block for Simulink**". Push the add button on top right to download and install.
 The script that open ad end of installation allows to check compiler and MPLAB IDE (programming interface) installation. Link to download these tools are provided otherwise.
 
 #### for old MATLAB release
