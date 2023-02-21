@@ -9,19 +9,14 @@ This support package is functional from Matlab R2015a up to current version (R20
 [![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
 ### clean previous installation
-You might want to clean previous installation: type picclean at matlab prompt.
+You might want to clean previous installation: type picclean at MATLAB prompt, or remove the add-on with MATLAB menu.
 
-### as an add-on 
-1. With Matlab add-on feature, search MPLAB Device Block for Simulink. Use "Download Toolbox".
-Open the doc at the end of the installation process to check compiler and MPLAB IDE installation (mlx script).
+### Installation 
+1. With the MATLAB add-on menu, search for "**MPLAB**" or "**MPLAB Device Block for Simulink**". Push the add button on top left to download and install.
+The script that open ad end of installation allows to check compiler and MPLAB IDE (programming interface) installation. Link to download these tools are provided otherwise.
 
-If you used download only, go to the mchp subfolder and run picsetup to set-up matlab path.
-
-### as an independant package
-
-1. Download the zip from mathWorks website, or alternatively from the [github repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/releases)
-2. unzip and execute the .p installer script. From matlab, right clik on the install.p file and execute.  
-The MCHP\_example folder is created in the current folder with a copy of simple examples.
+#### for old MATLAB release
+The toolbox is not be referenced as a support package on old MATLAB release. Go to the MATLAB add-on menu, select "Get more apps", search for MPLAB and download the toolbox with the top right blue download button. Depending on MATLAB release, you might either run the .p script (universal), or the .mltbx installer package.
 
 ### commands
 - picclean: clean-up matlab path from previous installations.
@@ -57,7 +52,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Requirements
 
-- MathWorks (from R2015a to R2020b)   
+- MathWorks (from R2015a to R2022b)   
   - Matlab
   - Simulink
   - Embedded Coder
