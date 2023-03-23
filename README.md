@@ -77,6 +77,28 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 ## Forum: https://www.microchip.com/forums/f192.aspx
 
 ## Release notes
+- v3.50.35
+  - Added board templates for
+    - LVMC (dsPIC33CK256MP508)
+    - MCLV-48V-300W
+      - dsPIC33CK256MP508 DIM (internal & external Op-Amp)
+      - dsPIC33CK64MC105 DIM (internal & external Op-Amp)
+    - MCLV2
+      - dsPIC33CK256MP508 PIM (internal & external Op-Amp)
+      - dsPIC33CK64MC105 PIM (internal & external Op-Amp)
+      - dsPIC33EP256MC506 (external Op-Amp)
+    - Power Tool reference design (dsPIC33CK64MP105)    
+  - improved linux compatibility 
+    - added UART linux compatible baudrates
+    - fixed UxV third part tool with blocks for GPS, Receiver, Telemetry, Mavlink...
+  - bugfixes (dsPIC):
+    - QEI: error on first block GUI opening
+    - Fixed blocks behaviour when placec in a masked subsystem
+    - fixed DOC block to download & access MCU datasheet
+    - UART: GUI provide number of internal chip buffer size
+    - removed some warning related to fast Memcpy function
+    - ADC for dsPIC CK/CH: fixed missing alternative pins when two ANx shared a same pin. Provide accurate name for internal channels (IVref, Temp, Vbat, CTMU...)
+  - some updates on the UART Circular buffer DMA based driver
 - v3.50.33
   - External mode:
     - Fixed single tasking implementation with XCP
@@ -313,7 +335,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (568)
+### Supported MCUs (596)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -416,6 +438,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 32MZ2048EFM124
   - 32MZ2048EFM144
 - **dsPIC33CH MP**
+  - 33CH1024MP608
+  - 33CH1024MP712
   - 33CH128MP202
   - 33CH128MP203
   - 33CH128MP205
@@ -449,6 +473,87 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CH64MP505
   - 33CH64MP506
   - 33CH64MP508
+- **dsPIC33CK MP**
+  - 33CK1024MP405
+  - 33CK1024MP406
+  - 33CK1024MP408
+  - 33CK1024MP410
+  - 33CK1024MP705
+  - 33CK1024MP706
+  - 33CK1024MP708
+  - 33CK1024MP710
+  - 33CK128MP202
+  - 33CK128MP203
+  - 33CK128MP205
+  - 33CK128MP206
+  - 33CK128MP208
+  - 33CK128MP502
+  - 33CK128MP503
+  - 33CK128MP505
+  - 33CK128MP506
+  - 33CK128MP508
+  - 33CK256MP202
+  - 33CK256MP203
+  - 33CK256MP205
+  - 33CK256MP206
+  - 33CK256MP208
+  - 33CK256MP305
+  - 33CK256MP306
+  - 33CK256MP308
+  - 33CK256MP405
+  - 33CK256MP406
+  - 33CK256MP408
+  - 33CK256MP410
+  - 33CK256MP502
+  - 33CK256MP503
+  - 33CK256MP505
+  - 33CK256MP506
+  - 33CK256MP508
+  - 33CK256MP605
+  - 33CK256MP606
+  - 33CK256MP608
+  - 33CK256MP705
+  - 33CK256MP706
+  - 33CK256MP708
+  - 33CK256MP710
+  - 33CK32MP102
+  - 33CK32MP103
+  - 33CK32MP105
+  - 33CK32MP202
+  - 33CK32MP203
+  - 33CK32MP205
+  - 33CK32MP206
+  - 33CK32MP502
+  - 33CK32MP503
+  - 33CK32MP505
+  - 33CK32MP506
+  - 33CK512MP305
+  - 33CK512MP306
+  - 33CK512MP308
+  - 33CK512MP405
+  - 33CK512MP406
+  - 33CK512MP408
+  - 33CK512MP410
+  - 33CK512MP605
+  - 33CK512MP606
+  - 33CK512MP608
+  - 33CK512MP705
+  - 33CK512MP706
+  - 33CK512MP708
+  - 33CK512MP710
+  - 33CK64MP102
+  - 33CK64MP103
+  - 33CK64MP105
+  - 33CK64MP202
+  - 33CK64MP203
+  - 33CK64MP205
+  - 33CK64MP206
+  - 33CK64MP208
+  - 33CK64MP502
+  - 33CK64MP503
+  - 33CK64MP505
+  - 33CK64MP506
+  - 33CK64MP508
 - **dsPIC33CK MC**
   - 33CK128MC102
   - 33CK128MC103
@@ -472,63 +577,9 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CK64MC102
   - 33CK64MC103
   - 33CK64MC105
-- **dsPIC33CK MP**
-  - 33CK128MP202
-  - 33CK128MP203
-  - 33CK128MP205
-  - 33CK128MP206
-  - 33CK128MP208
-  - 33CK128MP502
-  - 33CK128MP503
-  - 33CK128MP505
-  - 33CK128MP506
-  - 33CK128MP508
-  - 33CK256MP202
-  - 33CK256MP203
-  - 33CK256MP205
-  - 33CK256MP206
-  - 33CK256MP208
-  - 33CK256MP305
-  - 33CK256MP306
-  - 33CK256MP308
-  - 33CK256MP502
-  - 33CK256MP503
-  - 33CK256MP505
-  - 33CK256MP506
-  - 33CK256MP508
-  - 33CK256MP605
-  - 33CK256MP606
-  - 33CK256MP608
-  - 33CK32MP102
-  - 33CK32MP103
-  - 33CK32MP105
-  - 33CK32MP202
-  - 33CK32MP203
-  - 33CK32MP205
-  - 33CK32MP206
-  - 33CK32MP502
-  - 33CK32MP503
-  - 33CK32MP505
-  - 33CK32MP506
-  - 33CK512MP305
-  - 33CK512MP306
-  - 33CK512MP308
-  - 33CK512MP605
-  - 33CK512MP606
-  - 33CK512MP608
-  - 33CK64MP102
-  - 33CK64MP103
-  - 33CK64MP105
-  - 33CK64MP202
-  - 33CK64MP203
-  - 33CK64MP205
-  - 33CK64MP206
-  - 33CK64MP208
-  - 33CK64MP502
-  - 33CK64MP503
-  - 33CK64MP505
-  - 33CK64MP506
-  - 33CK64MP508
+- **dsPIC33CK MPT**
+  - 33CK256MPT608
+  - 33CK512MPT608
 - **dsPIC33EP GM**
   - 33EP128GM304
   - 33EP128GM306
