@@ -2,23 +2,24 @@
 
 MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
 
-This support package is functional from Matlab R2015a up to current version (R2022b).
+This support package is functional from Matlab R2015a up to current version (R2023b).
 
 ## Installation / Update
 
 [![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
 ### clean previous installation
-You might want to clean previous installation: type picclean at MATLAB prompt, or remove the add-on with MATLAB menu.
+- **picclean** at MATLAB prompt or
+- using the add-on menu.
 
 ### Installation 
-1. With the MATLAB add-on menu, search for "**MPLAB**" or "**MPLAB Device Block for Simulink**". Push the add button on top right to download and install.
-The script that open ad end of installation allows to check compiler and MPLAB IDE (programming interface) installation. Link to download these tools are provided otherwise.
+1. Add-on menu: earch for "**MPLAB**" or "**MPLAB Device Block for Simulink**".
+The live script opening at end of installation allows to check system configuration: Compiler and programming interface (MPLAB X IDE). Link to download theses tools from Microchip are provided.
 
-#### for old MATLAB release
-The toolbox is not be referenced as a support package on old MATLAB release. Go to the MATLAB add-on menu, select "Get more apps", search for MPLAB and download the toolbox with the top right blue download button. Depending on MATLAB release, you might either run the .p script (universal), or the .mltbx installer package.
+2. With older matleb release, download from github and run install.p script.
 
-### commands
+
+### Commands
 - picclean: clean-up matlab path from previous installations.
 - picsetup: from the mchp sub-folder, re-configure the matlab path if required.
 
@@ -26,23 +27,23 @@ The toolbox is not be referenced as a support package on old MATLAB release. Go 
 - picInfo('examples'): copy example in current working folder
 - picInfo('cmd'): list command 
 
-Visit the Microchip [blockset forum](https://www.microchip.com/forums/f192.aspx)
+Visit the Microchip [blockset forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
 
 <img src="https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/raw/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
 ## Presentation
 
-Library blocks configure peripherals and inserts code in the MathWorks generated code by embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
-No embedded programming knowledge is required. The toolbox transforms any board equipped with a supported MCU into a rapid control prototyping tool and enable a model-based design development scheme.
+Library blocks provide easy interface to set-up DSP/MCU peripherals and interface peripheral generated code to code from embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
+No embedded programming knowledge is required. The blockset enable rapid prototyping on boards equipped with one Supported MCU.
 
 ## Features
 
-- Built-in scheduler including single-tasking and multi-tasking option for multi-rate models.
+- Built-in scheduler including multi-tasking or single-tasking option for multi-rate models implementation.
 - Advanced configuration of ADC / PWM peripheral enable PMSM motor algorithm where ADC sample time is triggered precisely within a PWM duty-cycle. The time step might also be triggered by end of ADC conversion minimizing delays.
 - A custom protocol allows visualizing and recording data through the UART. The custom picgui interface allows plotting using your own matlab script incoming data in real-time. Data log enable further analysis or offline identification and allow to feed a simulation with real data.
 - The custom "C function" block allows including your own code if required.
 
-The blockset also support MathWorks features:
+The blockset support advanced MathWorks features:
 
 - Processor in the loop (PIL)
 - External mode.
@@ -52,7 +53,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 
 ## Requirements
 
-- MathWorks (from R2015a to R2022b)   
+- MathWorks (from R2015a to R2023b)   
   - Matlab
   - Simulink
   - Embedded Coder
@@ -74,9 +75,15 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - Microchip kit Embedded programmer (EDBG)
   -  ...
 
-## Forum: https://www.microchip.com/forums/f192.aspx
-
 ## Release notes
+- v3.51 
+  - Added some options on UART driver (dsPIC)
+  - Added virtual pin connection (dsPIC)
+  - SAMC21: bugfix for UART, SPI and I2C
+  - Support for SAMRH707    
+  - Fixed compatibility issue with Matlab R2023b
+  - Improved support for external mode with older release
+  - Fixed external mode UART driver using a DMA circular buffer on dsPIC
 - v3.50.35
   - Added board templates for
     - LVMC (dsPIC33CK256MP508)
@@ -310,7 +317,6 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - Installer script propose old installation method (might fix add-ons issues related to user permissions in classroom/lab configuration)
 - v3.46.00:
   - Added support for dual core dsPIC CH
-
 - v3.45.05:
   - Fixed QEI typo in generated code (PIC32MK)
   - fixed SPI typo affecting slave mode (PIC32)
@@ -335,7 +341,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (596)
+### Supported MCUs (597)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -939,6 +945,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - SAME70Q19B
   - SAME70Q20B
   - SAME70Q21B
+- **SAMRH707**
+  - SAMRH707F18A
 - **SAMRH71**
   - SAMRH71F20B
   - SAMRH71F20C
@@ -969,3 +977,4 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - SAMV71Q19B
   - SAMV71Q20B
   - SAMV71Q21B
+  
