@@ -76,6 +76,18 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.52
+  - Added xc-dsc compiler suport for dsPIC. xc16 suport will continue
+  - Added unused code removal option taking place at linker stage
+  - Added motor control examples from INSA Lyon University (France)
+  - added ADC block for SAMRH707
+  - Refactor dsPIC scheduler code enabling further compiler optimization efficiency
+  - Improved DFP automatic path update
+  - Fixed virtual pin not showing up
+  - Fixed code for SPI on dsPIC with 4 byte internal SPI buffer instead of 8
+  - Fixed scheduler issue on dsPIC for single tasking implementation with at least one asynchronous task (user interrupt) set
+  - Fixed UART issue with rtiostream when using DMA implementation
+  - Other minor fixes
 - v3.51 
   - Added some options on UART driver (dsPIC)
   - Added virtual pin connection (dsPIC)
@@ -341,7 +353,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (597)
+### Supported MCUs (627)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -444,7 +456,21 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 32MZ2048EFM124
   - 32MZ2048EFM144
 - **dsPIC33CH MP**
+  - 33CH1024MP305
+  - 33CH1024MP306
+  - 33CH1024MP308
+  - 33CH1024MP405
+  - 33CH1024MP406
+  - 33CH1024MP408
+  - 33CH1024MP410
+  - 33CH1024MP412
+  - 33CH1024MP605
+  - 33CH1024MP606
   - 33CH1024MP608
+  - 33CH1024MP705
+  - 33CH1024MP706
+  - 33CH1024MP708
+  - 33CH1024MP710
   - 33CH1024MP712
   - 33CH128MP202
   - 33CH128MP203
@@ -466,9 +492,25 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 33CH512MP205
   - 33CH512MP206
   - 33CH512MP208
+  - 33CH512MP305
+  - 33CH512MP306
+  - 33CH512MP308
+  - 33CH512MP405
+  - 33CH512MP406
+  - 33CH512MP408
+  - 33CH512MP410
+  - 33CH512MP412
   - 33CH512MP505
   - 33CH512MP506
   - 33CH512MP508
+  - 33CH512MP605
+  - 33CH512MP606
+  - 33CH512MP608
+  - 33CH512MP705
+  - 33CH512MP706
+  - 33CH512MP708
+  - 33CH512MP710
+  - 33CH512MP712
   - 33CH64MP202
   - 33CH64MP203
   - 33CH64MP205
@@ -977,4 +1019,3 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - SAMV71Q19B
   - SAMV71Q20B
   - SAMV71Q21B
-  
