@@ -76,6 +76,10 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.53  
+  - Early support for dsPIC33CK64CDVL106 
+  - Fixed dsPIC UART Half duplex driver issue with some chip
+  - Fixed one error with external mode  
 - v3.52
   - Added xc-dsc compiler suport for dsPIC. xc16 suport will continue
   - Added unused code removal option taking place at linker stage
