@@ -76,6 +76,9 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.54
+  - fixed: xc-dsc not found on linux
+  - fixed: MPLAB blocks might not show-up in the simulink library
 - v3.53  
   - Early support for dsPIC33CK64CDVL106 
   - Fixed dsPIC UART Half duplex driver issue with some chip
