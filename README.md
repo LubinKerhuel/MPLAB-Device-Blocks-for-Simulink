@@ -2,7 +2,7 @@
 
 MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
 
-This support package is functional from Matlab R2015a up to current version (R2023b).
+This support package is functional from Matlab R2015a up to current version (R2024a).
 
 ## Installation / Update
 
@@ -10,13 +10,15 @@ This support package is functional from Matlab R2015a up to current version (R20
 
 ### clean previous installation
 - **picclean** at MATLAB prompt or
-- using the add-on menu.
+- MathWorks toolstrip: Add-ons => Manage Add-ons => remove
 
 ### Installation 
-1. Add-on menu: earch for "**MPLAB**" or "**MPLAB Device Block for Simulink**".
-The live script opening at end of installation allows to check system configuration: Compiler and programming interface (MPLAB X IDE). Link to download theses tools from Microchip are provided.
+- MathWorks toolstrip: Add-ons => Manage Add-ons => search for "**MPLAB**" or "**MPLAB Device Block for Simulink**".
+The live script opening at end of installation helps validating setup for installed compiler (xc-32, xc-dsc) and programming interface (MPLAB X IDE). Link to download theses tools are provided.
 
-2. With older matleb release, download from github and run install.p script.
+- With older matlab release without Add-ons toolstrim: Download from github and run install.p script.
+
+The install.p script might be used in university or system with limited rights to install the tools in a user defined folder.
 
 
 ### Commands
@@ -38,22 +40,22 @@ No embedded programming knowledge is required. The blockset enable rapid prototy
 
 ## Features
 
-- Built-in scheduler including multi-tasking or single-tasking option for multi-rate models implementation.
-- Advanced configuration of ADC / PWM peripheral enable PMSM motor algorithm where ADC sample time is triggered precisely within a PWM duty-cycle. The time step might also be triggered by end of ADC conversion minimizing delays.
-- A custom protocol allows visualizing and recording data through the UART. The custom picgui interface allows plotting using your own matlab script incoming data in real-time. Data log enable further analysis or offline identification and allow to feed a simulation with real data.
+- Built-in scheduler implemented with multi-tasking or single-tasking option for multi-rate models.
+- Advanced configuration for ADC / PWM peripheral enable ADC sampling beeing triggered in sync with PWM signal. Typical for motor or power applications. And of ADC conversion might trig the calculation time step minimizing delays. 
+- A lightweight custom protocol allows visualizing and recording data through the UART. The built-in picgui interface allows plotting incoming data using your own matlab script. Data log enable further analysis or offline identification and allow to feed a simulation with real data.
 - The custom "C function" block allows including your own code if required.
 
-The blockset support advanced MathWorks features:
+The blockset support MathWorks features:
 
 - Processor in the loop (PIL)
 - External mode.
-- Code replacement to benefit from DSP architecture of dsPIC
+- Code replacement to benefit from DSP architecture of our dsPIC, or CMSIS library for SAM chips based on ARM core.
 
 This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLink, Receiver S.BUS, S.Port and F.Port blocks for dsPIC). Type picInfo to find out how to install the UxV blocks.
 
 ## Requirements
 
-- MathWorks (from R2015a to R2023b)   
+- MathWorks (from R2015a to R2024a)   
   - Matlab
   - Simulink
   - Embedded Coder
@@ -62,8 +64,8 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
 - Microchip Ide
   - MPLAB X IDE [download](https://www.microchip.com/MPLABX)
 - Microchip Compiler: 
-  - xc16 compiler for 16 bits devices [download](https://www.microchip.com/xc16) (dsPIC)
-  - xc32 compiler for 32 bits devices [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
+  - xc-dsc compiler for Digital Signa Controllers (DSCs) [download](https://www.microchip.com/xcdsc) (dsPIC)
+  - xc32 compiler for 32 bits MCU [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
 - Microchip programmer:
   - PicKit4
   - ICD4
@@ -76,6 +78,12 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.55
+  - added picgui.log2mat script decoding picgui log without using the GUI
+  - Added pin configurations (dsPICs & PIC32): initial state, pull-up, pull-down and open drain.
+  - Fixed variables set in text fields when peripheral blocks were in a masked subsystem (did not get access to mask variables)
+  - User functions in Simulink user custom code are now listed in C function block
+  - Various improvements/fixes for Matlab R2024a
 - v3.54
   - fixed: xc-dsc not found on linux
   - fixed: MPLAB blocks might not show-up in the simulink library
