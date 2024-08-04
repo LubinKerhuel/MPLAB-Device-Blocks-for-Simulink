@@ -78,6 +78,11 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.57
+  - Added [dsPIC33A](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/dspic-dscs/dspic33a) family support, 32-bit CPU, 200MHz, 72-bit DSP accumulators and Floating Point Unit (FPU)
+  - Enabled option to use standard C datatype with integer width, or custom user definition
+  - Fixed external mode not functional with single tasking model
+  - Other improvement on programming interface and minor bugfixes
 - v3.55
   - added picgui.log2mat script decoding picgui log without using the GUI
   - Added pin configurations (dsPICs & PIC32): initial state, pull-up, pull-down and open drain.
@@ -368,7 +373,7 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (627)
+### Supported MCUs (647)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -470,6 +475,31 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - 32MZ2048EFM100
   - 32MZ2048EFM124
   - 32MZ2048EFM144
+- **dsPIC33AK MC**
+  - 33AK128MC102
+  - 33AK128MC103
+  - 33AK128MC105
+  - 33AK128MC106
+  - 33AK32MC102
+  - 33AK32MC103
+  - 33AK32MC105
+  - 33AK32MC106
+  - 33AK64MC102
+  - 33AK64MC103
+  - 33AK64MC105
+  - 33AK64MC106
+- **dsPIC33CDV MP**
+  - 33CDV128MP206
+  - 33CDV128MP506
+  - 33CDV256MP206
+  - 33CDV256MP506
+- **dsPIC33CDV MC**
+  - 33CDV64MC106
+- **dsPIC33CDVC MP**
+  - 33CDVC128MP506
+  - 33CDVC256MP506
+- **dsPIC33CDVL MC**
+  - 33CDVL64MC106
 - **dsPIC33CH MP**
   - 33CH1024MP305
   - 33CH1024MP306
@@ -1034,3 +1064,4 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - SAMV71Q19B
   - SAMV71Q20B
   - SAMV71Q21B
+  
