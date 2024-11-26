@@ -31,12 +31,15 @@ The install.p script might be used in university or system with limited rights t
 
 Visit the Microchip [blockset forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
 
-<img src="https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink/raw/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
+<img src="mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
 ## Presentation
 
 Library blocks provide easy interface to set-up DSP/MCU peripherals and interface peripheral generated code to code from embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
 No embedded programming knowledge is required. The blockset enable rapid prototyping on boards equipped with one Supported MCU.
+
+Templates for various boards
+<img src="Templates.png" width="500">
 
 ## Features
 
@@ -78,6 +81,20 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   -  ...
 
 ## Release notes
+- v3.58
+  - Added board template for dsPIC A curiosity developpment board - dsPIC33AK128MC106
+  - Added board template for Motor Control Development Board - dsPIC33CDV(L)64MC106
+  - Added DMA to SPI in Slave mode (dsPIC)
+  - Fixed integration issues with Matlab R2024b
+  - Fixed bug with older matlab release (R2022 and prior)
+  - Fixed peripehral blocks: CN, ADC GUI, SPI GUI
+  - Fixed COM port list on Ubuntu 24.04
+  - Fixed SPI driver for SAM deivces
+  - Fixed External mode not stopping when representing time with integers ticks
+  - Improved template for MCLV2, LVMC and MCLV 300W, config ready for external mode
+  - Improved default simulink settings when selecting a dsPIC as target
+  - Improve MPLAB X project creation
+  - Improved Programming script: could force programming chip with incorrect Id    
 - v3.57
   - Added [dsPIC33A](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/dspic-dscs/dspic33a) family support, 32-bit CPU, 200MHz, 72-bit DSP accumulators and Floating Point Unit (FPU)
   - Enabled option to use standard C datatype with integer width, or custom user definition
