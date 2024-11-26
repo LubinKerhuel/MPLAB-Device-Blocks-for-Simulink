@@ -31,7 +31,7 @@ The install.p script might be used in university or system with limited rights t
 
 Visit the Microchip [blockset forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
 
-<img src="mplab-deviceblocksforsimulink-whitebackground.png" width="150">
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
 ## Presentation
 
@@ -39,7 +39,7 @@ Library blocks provide easy interface to set-up DSP/MCU peripherals and interfac
 No embedded programming knowledge is required. The blockset enable rapid prototyping on boards equipped with one Supported MCU.
 
 Templates for various boards
-<img src="Templates.png" width="500">
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="500">
 
 ## Features
 
