@@ -38,7 +38,7 @@ Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&sub
 
 ## Presentation
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="400">
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="450">
 
 
 Library blocks provides a graphical interface to configure (ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
@@ -46,13 +46,13 @@ No specific programming knowledge is required. The blockset enable rapid prototy
 
 We also provide templates for various boards with preconfigured peripheral blocks.
 
-<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="350">
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="450">
 
 
 
 ## Features
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Scheduler_MultiTasking_Scope.png" width="400">
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Scheduler_MultiTasking_Scope.png" width="500">
 
 - Single Tasking scheduler. 
 - Multitasking scheduler with pre-emptive rate monotonic scheduling for mixing fast and slow control loops, adding complex computation running as a background task (typically, system health monitoring, or online parameters corrections). 
@@ -71,7 +71,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
 
 ## Requirements
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_MBD_Overview.png" width="400">
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_MBD_Overview.png" width="450">
 
 - MathWorks (from R2015a to R2024b)   
   - Matlab
