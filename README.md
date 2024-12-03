@@ -1,64 +1,73 @@
 # MPLAB Device Blocks for Simulink
 
-MPLAB Device Blocks for Simulink target boards equipped with a dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7.
-
-This support package is functional from Matlab R2015a up to current version (R2024a).
+MPLAB Device Blocks for Simulink.
+- Target dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7
+- Support Matlab R2015a to R2024b
 
 ## Installation / Update
 
 [![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
-### clean previous installation
-- **picclean** at MATLAB prompt or
-- MathWorks toolstrip: Add-ons => Manage Add-ons => remove
+### clean previous installation (optional)
+- Matlab toolstrip: Add-ons => Manage Add-ons => remove or
+- **picclean** at MATLAB prompt
 
-### Installation 
-- MathWorks toolstrip: Add-ons => Manage Add-ons => search for "**MPLAB**" or "**MPLAB Device Block for Simulink**".
-The live script opening at end of installation helps validating setup for installed compiler (xc-32, xc-dsc) and programming interface (MPLAB X IDE). Link to download theses tools are provided.
+### Installation
+- Matlab toolstrip: Add-ons => Manage Add-ons => search "**MPLAB Device Block for Simulink**". 
+- With older matlab release without Add-ons toolstrim: Download the package from [github](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases) and run install.p script.
 
-- With older matlab release without Add-ons toolstrim: Download from github and run install.p script.
-
-The install.p script might be used in university or system with limited rights to install the tools in a user defined folder.
-
+The install.p script is more flexible to pick the destination folder on systems with limited administration rights.
 
 ### Commands
-- picclean: clean-up matlab path from previous installations.
-- picsetup: from the mchp sub-folder, re-configure the matlab path if required.
 
-- picInfo('check'): Verify installation of compilers and tool to program chips
-- picInfo('examples'): copy example in current working folder
-- picInfo('cmd'): list command 
+| Command             |                         Description                        |
+|---------------------|:----------------------------------------------------------:|
+| picclean            | clean-up matlab path from previous installations           |
+| picsetup            | from the mchp folder, re-configure the toolbox path        |
+| picInfo('check')    | Verify installation of compilers and tool to program chips |
+| picInfo('examples') | copy example in current working folder                     |
+| picInfo('cmd')      | list command                                               |
 
-Visit the Microchip [blockset forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
+### Support, Questions:
 
-<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
+
+Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
+
+
 
 ## Presentation
 
-Library blocks provide easy interface to set-up DSP/MCU peripherals and interface peripheral generated code to code from embedded coder. (non-exhaustive peripheral block list: ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
-No embedded programming knowledge is required. The blockset enable rapid prototyping on boards equipped with one Supported MCU.
+Library blocks provides a graphical interface to configure (ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
+No specific programming knowledge is required. The blockset enable rapid prototyping on boards equipped with a supported dsPIC or MCU.
 
-Templates for various boards
-<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="500">
+We also provide templates for various boards with preconfigured peripheral blocks:
+
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="800">
 
 ## Features
 
-- Built-in scheduler implemented with multi-tasking or single-tasking option for multi-rate models.
-- Advanced configuration for ADC / PWM peripheral enable ADC sampling beeing triggered in sync with PWM signal. Typical for motor or power applications. And of ADC conversion might trig the calculation time step minimizing delays. 
-- A lightweight custom protocol allows visualizing and recording data through the UART. The built-in picgui interface allows plotting incoming data using your own matlab script. Data log enable further analysis or offline identification and allow to feed a simulation with real data.
-- The custom "C function" block allows including your own code if required.
+- Single Tasking scheduler. 
+- Multitasking scheduler with pre-emptive rate monotonic scheduling for mixing fast and slow control loops, adding complex computation running as a background task (typically, system health monitoring, or online parameters corrections). 
+- Advanced configuration for ADC / PWM peripheral. PWM can trig the ADC sampling at any specified place. End of ADC conversion trig the model base rate (no delay from ADC sampling & conversion)
+- Our built-in picgui interface enable flexible visualisation and computation on incoming data using user's own matlab script. 
+- The custom "C function" block allows including your any user defined C code.
 
-The blockset support MathWorks features:
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="600">
 
-- Processor in the loop (PIL)
-- External mode.
-- Code replacement to benefit from DSP architecture of our dsPIC, or CMSIS library for SAM chips based on ARM core.
+The blockset support Simulink features as:
 
-This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLink, Receiver S.BUS, S.Port and F.Port blocks for dsPIC). Type picInfo to find out how to install the UxV blocks.
+- Code replacement to benefit from the DSP architecture of our dsPIC, or CMSIS library for SAM chips based on ARM Cortex (M0+, M4, M7) core.
+- Processor In the Loop (PIL)
+- External mode
+
+This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVLink, Receiver S.BUS, S.Port and F.Port blocks for dsPIC). Type picInfo to find out how to install the UxV blocks.
 
 ## Requirements
 
-- MathWorks (from R2015a to R2024a)   
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_MBD_Overview.png" width="400">
+
+- MathWorks (from R2015a to R2024b)   
   - Matlab
   - Simulink
   - Embedded Coder
@@ -70,17 +79,19 @@ This version embed a third part tool adding blocks for UAVs projects (GPS, MAVLi
   - xc-dsc compiler for Digital Signa Controllers (DSCs) [download](https://www.microchip.com/xcdsc) (dsPIC)
   - xc32 compiler for 32 bits MCU [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
 - Microchip programmer:
-  - PicKit4
-  - ICD4
+  - PicKit5, Pickit4, Pickit3
+  - ICD5, ICD4, ICD3
+  - Snap
   - J-32
-  - Snap programmer
   - Real-Ice
-  - PicKit3
-  - ICD3
   - Microchip kit Embedded programmer (EDBG)
+  - Embedded Programmer (PKOB4)
   -  ...
 
 ## Release notes
+- v3.58a
+  - Fixed MPLAB X project with dual core dsPIC
+  - Fixed dsPIC dual core setting for pin used by the secondary core
 - v3.58
   - Added board template for dsPIC A curiosity developpment board - dsPIC33AK128MC106
   - Added board template for Motor Control Development Board - dsPIC33CDV(L)64MC106
