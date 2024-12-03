@@ -1,5 +1,7 @@
 # MPLAB Device Blocks for Simulink
 
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
+
 MPLAB Device Blocks for Simulink.
 - Target dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7
 - Support Matlab R2015a to R2024b
@@ -20,8 +22,8 @@ The install.p script is more flexible to pick the destination folder on systems 
 
 ### Commands
 
-| Command             |                         Description                        |
-|---------------------|:----------------------------------------------------------:|
+| Matlab Command      |                         Description                        |
+|---------------------|------------------------------------------------------------|
 | picclean            | clean-up matlab path from previous installations           |
 | picsetup            | from the mchp folder, re-configure the toolbox path        |
 | picInfo('check')    | Verify installation of compilers and tool to program chips |
@@ -30,20 +32,23 @@ The install.p script is more flexible to pick the destination folder on systems 
 
 ### Support, Questions:
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
-
 Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
 
 
 
 ## Presentation
 
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="600">
+
+
 Library blocks provides a graphical interface to configure (ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
 No specific programming knowledge is required. The blockset enable rapid prototyping on boards equipped with a supported dsPIC or MCU.
 
 We also provide templates for various boards with preconfigured peripheral blocks:
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="800">
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="800">
+
+
 
 ## Features
 
@@ -53,7 +58,6 @@ We also provide templates for various boards with preconfigured peripheral block
 - Our built-in picgui interface enable flexible visualisation and computation on incoming data using user's own matlab script. 
 - The custom "C function" block allows including your any user defined C code.
 
-<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="600">
 
 The blockset support Simulink features as:
 
