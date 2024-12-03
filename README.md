@@ -38,19 +38,21 @@ Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&sub
 
 ## Presentation
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="600">
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="400">
 
 
 Library blocks provides a graphical interface to configure (ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
 No specific programming knowledge is required. The blockset enable rapid prototyping on boards equipped with a supported dsPIC or MCU.
 
-We also provide templates for various boards with preconfigured peripheral blocks:
+We also provide templates for various boards with preconfigured peripheral blocks.
 
-<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="800">
+<img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="350">
 
 
 
 ## Features
+
+<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Scheduler_MultiTasking_Scope.png" width="400">
 
 - Single Tasking scheduler. 
 - Multitasking scheduler with pre-emptive rate monotonic scheduling for mixing fast and slow control loops, adding complex computation running as a background task (typically, system health monitoring, or online parameters corrections). 
