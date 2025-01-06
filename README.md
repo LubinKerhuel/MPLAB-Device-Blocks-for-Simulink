@@ -10,15 +10,12 @@ MPLAB Device Blocks for Simulink.
 
 [![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
-### clean previous installation (optional)
-- Matlab toolstrip: Add-ons => Manage Add-ons => remove or
-- **picclean** at MATLAB prompt
 
 ### Installation
 - Matlab toolstrip: Add-ons => Manage Add-ons => search "**MPLAB Device Block for Simulink**". 
 - With older matlab release without Add-ons toolstrim: Download the package from [github](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases) and run install.p script.
 
-The install.p script is more flexible to pick the destination folder on systems with limited administration rights.
+The install.p script provides flexibility to set the installation destination for systems with administration rights limitations.
 
 ### Commands
 
@@ -30,7 +27,13 @@ The install.p script is more flexible to pick the destination folder on systems 
 | picInfo('examples') | copy example in current working folder                     |
 | picInfo('cmd')      | list command                                               |
 
-### Support, Questions:
+### Ressources, Support, Questions:
+
+Videos (webinars):
+- [Implementing Power Factor Correction on a Microchip dsPIC33A Digital Signal Controller (2023)](https://www.mathworks.com/videos/implementing-power-factor-correction-on-a-microchip-dspic33a-digital-signal-controller-1734709897715.html)
+- [Deploying Motor Control Algorithms on Microchip dsPIC, PIC32, and SAM Controllers (2023)](https://www.mathworks.com/videos/motor-control-with-embedded-coder-for-microchip-mcus-1488570451176.html)
+- [Position Control of a PMSM with Simulink and Microchip 32-bit MCUs (2021)](https://www.mathworks.com/videos/position-control-of-a-pmsm-with-simulink-and-microchip-32-bit-mcus-1679516692608.html)
+- [Using Simulink® External Mode XM with Microchip dsPIC® MCUs and Blocks for Simulink (2016)](https://www.microchip.com/en-us/about/media-center/videos/wuzLmORk1M0)
 
 Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
 
@@ -95,7 +98,12 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   -  ...
 
 ## Release notes
-- v3.58a
+- v3.59
+  - Fixed template external/internal op amp setting not working properly
+  - Fixed PWH L pin settings always configure as PWM output on dsPIC A and dsPIC C
+  - Added compiler option to minimize stack usage
+  - Updated dsPIC A DFP using compiler v3.20 version
+  - Updated dsPIC A interrupt contex saving 
   - Fixed MPLAB X project with dual core dsPIC
   - Fixed dsPIC dual core setting for pin used by the secondary core
 - v3.58
