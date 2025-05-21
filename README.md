@@ -3,25 +3,25 @@
 <img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
 MPLAB Device Blocks for Simulink.
-- Target dsPIC :registered:, PIC32 :registered:, SAMx2, SAMx5 or SAMx7
-- Support Matlab R2015a to R2024b
+- Target dsPIC :registered: DSCs, PIC32, SAMx2, SAMx5 or SAMx7 MCUs
+- Support MATLAB :registered: R2015a to R204b
 
 ## Installation / Update
 
-[![View MPLAB Device Blocks for Simulink :dsPIC, PIC32 and SAM mcu on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
+[![View MPLAB :registered: Device Blocks for Simulink :registered: :dsPIC :registered: DSCs, PIC32 and SAM MCUs on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
 
 
 ### Installation
-- Matlab toolstrip: Add-ons => Manage Add-ons => search "**MPLAB Device Block for Simulink**". 
-- With older matlab release without Add-ons toolstrim: Download the package from [github](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases) and run install.p script.
+- MATLAB :registered: toolstrip: Add-ons => Manage Add-ons => search "**MPLAB Device Block for Simulink**". 
+- With older MATLAB :registered: release without Add-ons toolstrip: Download the package from [github](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases) and run install.p script.
 
 The install.p script provides flexibility to set the installation destination for systems with administration rights limitations.
 
 ### Commands
 
-| Matlab Command      |                         Description                        |
+| MATLAB :registered: Command      |                         Description                        |
 |---------------------|------------------------------------------------------------|
-| picclean            | clean-up matlab path from previous installations           |
+| picclean            | clean-up MATLAB :registered: path from previous installations           |
 | picsetup            | from the mchp folder, re-configure the toolbox path        |
 | picInfo('check')    | Verify installation of compilers and tool to program chips |
 | picInfo('examples') | copy example in current working folder                     |
@@ -60,13 +60,13 @@ We also provide templates for various boards with preconfigured peripheral block
 - Single Tasking scheduler. 
 - Multitasking scheduler with pre-emptive rate monotonic scheduling for mixing fast and slow control loops, adding complex computation running as a background task (typically, system health monitoring, or online parameters corrections). 
 - Advanced configuration for ADC / PWM peripheral. PWM can trig the ADC sampling at any specified place. End of ADC conversion trig the model base rate (no delay from ADC sampling & conversion)
-- Our built-in picgui interface enable flexible visualisation and computation on incoming data using user's own matlab script. 
+- Our built-in picgui interface enable flexible visualisation and computation on incoming data using user's own MATLAB :registered: script. 
 - The custom "C function" block allows including your any user defined C code.
 
 
 The blockset support Simulink features as:
 
-- Code replacement to benefit from the DSP architecture of our dsPIC, or CMSIS library for SAM chips based on ARM Cortex (M0+, M4, M7) core.
+- Code replacement to benefit from the DSP architecture of our dsPIC, or CMSIS library for SAM chips based on  Arm :registered:  Cortex :registered:  (M0+, M4, M7) core.
 - Processor In the Loop (PIL)
 - External mode
 
@@ -80,21 +80,20 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Matlab
   - Simulink
   - Embedded Coder
-  - Matlab Coder
+  - MATLAB :registered: Coder
   - Simulink Coder  
-- Microchip Ide
+- Microchip IDE
   - MPLAB X IDE [download](https://www.microchip.com/MPLABX)
-- Microchip Compiler: 
+- Microchip Compilers: 
   - xc-dsc compiler for Digital Signa Controllers (DSCs) [download](https://www.microchip.com/xcdsc) (dsPIC)
   - xc32 compiler for 32 bits MCU [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
-- Microchip programmer:
-  - PicKit5, Pickit4, Pickit3
-  - ICD5, ICD4, ICD3
-  - Snap
-  - J-32
-  - Real-Ice
-  - Microchip kit Embedded programmer (EDBG)
-  - Embedded Programmer (PKOB4)
+- Microchip programmers:
+  - PICkit :tm: 5, PICkit :tm: 4, PICkit :tm: 3 programmer/debugger
+  - MPLAB ICD 5, ICD 4, ICD 3 in-circuit debuggers
+  - Snap in-circuit debugger
+  - J-32 Debug Probe debugger/programmer
+  - MPLAB REAL-ICE :tm: in-circuit emulator
+  - PICkit On-Board (PKOB4) embedded programmer
   -  ...
 
 ## Release notes
@@ -110,8 +109,8 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Added board template for dsPIC A curiosity developpment board - dsPIC33AK128MC106
   - Added board template for Motor Control Development Board - dsPIC33CDV(L)64MC106
   - Added DMA to SPI in Slave mode (dsPIC)
-  - Fixed integration issues with Matlab R2024b
-  - Fixed bug with older matlab release (R2022 and prior)
+  - Fixed integration issues with MATLAB :registered: R2024b
+  - Fixed bug with older MATLAB :registered: release (R2022 and prior)
   - Fixed peripehral blocks: CN, ADC GUI, SPI GUI
   - Fixed COM port list on Ubuntu 24.04
   - Fixed SPI driver for SAM deivces
@@ -130,7 +129,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Added pin configurations (dsPICs & PIC32): initial state, pull-up, pull-down and open drain.
   - Fixed variables set in text fields when peripheral blocks were in a masked subsystem (did not get access to mask variables)
   - User functions in Simulink user custom code are now listed in C function block
-  - Various improvements/fixes for Matlab R2024a
+  - Various improvements/fixes for MATLAB :registered: R2024a
 - v3.54
   - fixed: xc-dsc not found on linux
   - fixed: MPLAB blocks might not show-up in the simulink library
@@ -155,7 +154,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Added virtual pin connection (dsPIC)
   - SAMC21: bugfix for UART, SPI and I2C
   - Support for SAMRH707    
-  - Fixed compatibility issue with Matlab R2023b
+  - Fixed compatibility issue with MATLAB :registered: R2023b
   - Improved support for external mode with older release
   - Fixed external mode UART driver using a DMA circular buffer on dsPIC
 - v3.50.35
@@ -241,7 +240,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Improved PIl support
   - Experimental support for dsPIC CK MC
 - v5.50.19
-  - Programming interface updated. Extend number of kit programmed from matlab (use latest MPLAB X version. current release is 6.0.0)
+  - Programming interface updated. Extend number of kit programmed from MATLAB :registered: (use latest MPLAB X version. current release is 6.0.0)
   - PIL target initialisation code improved. Fixed possible code issue with initialisation function signature mismatch
   - PIL UART interface compatible with USB-COM port available on kits. Enabling host data flow control
 - v5.50.18
@@ -258,7 +257,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - Update installer. Simplify installation as an add-on.
 - v3.50.16:  
   - C Function Call: fixed issue breaking simulink datatype class settings
-  - Matlab R2021b: code generator report not showing-up. Renamed compilation from .X to _X
+  - MATLAB :registered: R2021b: code generator report not showing-up. Renamed compilation from .X to _X
   - Improving DFP & CMSIS search script
   - SAMx7 ADC: remove pull-up on analog chanels
   - SAMx5 UART: add distinct priority for Tx & Rx
@@ -297,7 +296,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - dsPIC ADC HS SAR Fractional mode : typo prevent compilation.
 - v3.50.07:
 	- SAMx5 & SAMx7 Busy flag (for CPU load measurement ) stuck to 1 after short period of time
-	- SAMx chip: Add CMSIS DSP librar to MPLAB X project when using CRL (Required Mathworks Support Package for ARM Cortex-M)
+	- SAMx chip: Add CMSIS DSP librar to MPLAB X project when using CRL (Required Mathworks Support Package for  Arm :registered:  Cortex :registered: -M)
 	- SAMx7 PWM event set to instant 0 had no effect
 	- SAMx7 ADC: Fixes on AFEC 1 behaviour (not working when used without AFEC0, Issue with triggering time step when used with AFEC 0)
 - v3.50.06:
@@ -358,14 +357,14 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
 - v3.48: 
   - Added SPI & I2C for SAMx5 family  
   - ADC for SAMx5: fixed AIN0 channel input not working 
-  - Added support for 64 bit MPLAB X Ide (v5.45 and above)
+  - Added support for 64 bit MPLAB X IDE (v5.45 and above)
   - Fixed I2C & SPI register names for some dsPICs (EV, FJ)  
   - dsPIC Change Notification / Input Capture: Fixed GUI Error when copy-past block to a model with a different chip
   - Relaxed conditions triggering SINCOS Code Replacement.    
 - v3.47.00:
   - Added SPI support for dsPIC GS, CH, CK
   - Fixed pin mapping inconsistency on dualcore dsPIC for Secondary Core
-  - Fixed generic issue with former Matlab release 
+  - Fixed generic issue with former MATLAB :registered: release 
   - Fixed MPLAB X project creation with R2019a
 - v3.46.064:
   - Improved SAMx5 support. Added SPI support
@@ -404,13 +403,13 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
 - v3.45.02: 
   - Added IPE or MDB choice for programming (previously automatically selected)
   - Added support for comparator for dsPIC33FJxxMC 02/06
-  - Added support for SNAP and PICKIT 4 programmer with MDB interface
+  - Added support for SNAP and PICkit :tm: 4 programmer with MDB interface
   - Removed files generated by programmer interface (MDB or IPE) in working folder.
   - Fixed some issue with SAMx70 and SAMx71 family
   - Reduced Wait State for SAMV
   - Updated motor example for SAME70 PIM with MCLV2 board
   - Added missing dsPIC33CK
-  - Improved compatibility with Matlab R2010a
+  - Improved compatibility with MATLAB :registered: R2010a
   - Extended block GUI text fields which can evaluate workspace variables
   - UxV toolbox: improved compatibility with R2010a
 
