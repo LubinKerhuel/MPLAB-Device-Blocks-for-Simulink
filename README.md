@@ -97,6 +97,20 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   -  ...
 
 ## Release notes
+-v3.60
+  - SAMx7 added DMA support on SPI communication block
+  - Fixed SAMx7 UART DMA issue
+  - SAMx index for SPI and I2C peripheral starts at 0
+  - Improved throughput of rtiostream driver for dsPIC
+  - dsPIC 33A fixed PWM HS FEP when set with very low PWM frequency (~seconds)
+  - Added support for PIC32CZ_MC70
+  - Added support for PIC32CZ_CA70
+  - Added support for PIC32M_MCA
+  - Added support for PIC32A
+  - Added support for PIC33AK MPS
+  - Added motor control examples for PIC32MK & SAME54
+  - Added support for VScode project with the MPLAB VScode Extension
+  - Added PIL support for stack profiling with dsPIC
 - v3.59
   - Fixed template external/internal op amp setting not working properly
   - Fixed PWH L pin settings always configure as PWM output on dsPIC A and dsPIC C
@@ -414,7 +428,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - UxV toolbox: improved compatibility with R2010a
 
 
-### Supported MCUs (647)
+### Supported MCUs (710)
 - **dsPIC30F**
   - 30F2010
   - 30F2011
@@ -437,6 +451,20 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - 30F6013
   - 30F6014
   - 30F6015
+- **PIC32AK GC**
+  - 32AK1216GC41036
+  - 32AK1216GC41048
+  - 32AK1216GC41064
+  - 32AK3208GC41036
+  - 32AK3208GC41048
+  - 32AK3208GC41064
+  - 32AK6416GC41036
+  - 32AK6416GC41048
+  - 32AK6416GC41064
+- **PIC32MK MCA**
+  - 32MK0128MCA028
+  - 32MK0128MCA032
+  - 32MK0128MCA048
 - **PIC32MK GPG**
   - 32MK0256GPG048
   - 32MK0256GPG064
@@ -521,14 +549,51 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - 33AK128MC103
   - 33AK128MC105
   - 33AK128MC106
+  - 33AK256MC205
+  - 33AK256MC206
+  - 33AK256MC208
+  - 33AK256MC210
+  - 33AK256MC505
+  - 33AK256MC506
+  - 33AK256MC508
+  - 33AK256MC510
   - 33AK32MC102
   - 33AK32MC103
   - 33AK32MC105
   - 33AK32MC106
+  - 33AK512MC205
+  - 33AK512MC206
+  - 33AK512MC208
+  - 33AK512MC210
+  - 33AK512MC505
+  - 33AK512MC506
+  - 33AK512MC508
+  - 33AK512MC510
   - 33AK64MC102
   - 33AK64MC103
   - 33AK64MC105
   - 33AK64MC106
+- **dsPIC33AK MPS**
+  - 33AK256MPS205
+  - 33AK256MPS206
+  - 33AK256MPS208
+  - 33AK256MPS210
+  - 33AK256MPS212
+  - 33AK256MPS505
+  - 33AK256MPS506
+  - 33AK256MPS508
+  - 33AK256MPS510
+  - 33AK256MPS512
+  - 33AK512MPS205
+  - 33AK512MPS206
+  - 33AK512MPS208
+  - 33AK512MPS210
+  - 33AK512MPS212
+  - 33AK512MPS505
+  - 33AK512MPS506
+  - 33AK512MPS508
+  - 33AK512MPS510
+  - 33AK512MPS512
 - **dsPIC33CDV MP**
   - 33CDV128MP206
   - 33CDV128MP506
@@ -944,6 +1009,21 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - PIC32CM1216MC00048
   - PIC32CM6408MC00032
   - PIC32CM6408MC00048
+  - PIC32CZ1038CA70064
+  - PIC32CZ1038CA70100
+  - PIC32CZ1038CA70144
+  - PIC32CZ1038MC70064
+  - PIC32CZ1038MC70100
+  - PIC32CZ2051CA70064
+  - PIC32CZ2051CA70100
+  - PIC32CZ2051CA70144
+  - PIC32CZ2051MC70064
+  - PIC32CZ2051MC70100
+  - PIC32CZ5125CA70064
+  - PIC32CZ5125CA70100
+  - PIC32CZ5125CA70144
+  - PIC32CZ5125MC70064
+  - PIC32CZ5125MC70100
 - **SAMC20**
   - SAMC20E15A
   - SAMC20E16A
@@ -1105,4 +1185,3 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   - SAMV71Q19B
   - SAMV71Q20B
   - SAMV71Q21B
-  
