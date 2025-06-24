@@ -76,7 +76,7 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
 
 <img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_MBD_Overview.png" width="450">
 
-- MathWorks (from R2015a to R2024b)   
+- MathWorks (from R2017b to R2025a)   
   - Matlab
   - Simulink
   - Embedded Coder
@@ -97,7 +97,16 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   -  ...
 
 ## Release notes
--v3.60
+- v3.61
+  - Added DMA support on UART for SAMx54
+  - Added SAME54 motor control FOC examples
+  - Renamed target registered compiler on SAMx chip
+  - Fixed typo on generated code for some UART settings for dsPIC 33C  
+  - dsPIC: Removed some optimisation added with R2025a which breaks code for previous versions
+  - dsPIC 33C/A: Fixed trigger settings for PWM HS set with center aligned mode. Trig on 2nd half were not set appropriately.
+  - dsPIC 33C/A: Added comparator with slope  
+  - drop support for R2017a and versions below
+- v3.60
   - SAMx7 added DMA support on SPI communication block
   - Fixed SAMx7 UART DMA issue
   - SAMx index for SPI and I2C peripheral starts at 0
