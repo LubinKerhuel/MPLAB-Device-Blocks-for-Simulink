@@ -97,6 +97,10 @@ This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVL
   -  ...
 
 ## Release notes
+- v3.62
+  - removed superfluous 'debug' messages.
+  - Fixed external mode for model using a single tasking scheduler (or single rate model)
+  - Fixed mid point trigger for PWM in center aligned mode for dsPIC 33A/33C
 - v3.61
   - Added DMA support on UART for SAMx54
   - Added SAME54 motor control FOC examples
