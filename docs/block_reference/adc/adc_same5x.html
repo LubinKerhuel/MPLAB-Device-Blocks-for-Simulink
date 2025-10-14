@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_ADC_SAME5x - ADC for SAM E5x/D5x/C2x Families</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>MCHP_ADC_SAME5x - ADC for SAM E5x/D5x/C2x</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.svg"
+             alt="ADC_SAMx5_SAMC2x Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.png';">
+        <div class="block-image-caption">
+            ADC_SAMx5_SAMC2x Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+        <p>The <strong>MCHP_ADC_SAME5x</strong> block implements the ADC peripheral for Arm Cortex-M4 based SAM E5x, SAM D5x, and SAM C2x families. Features software-programmable sequencing with up to 6 sequences and 6 conversions per sequence, providing flexible multi-channel acquisition.</p>
+
+        <h2>Supported Devices</h2>
+        <ul>
+            <li><strong>SAM E5x</strong> - High-performance Cortex-M4F (SAME51, SAME53, SAME54)</li>
+            <li><strong>SAM D5x</strong> - Cost-optimized Cortex-M4F (SAMD51)</li>
+            <li><strong>SAM C2x</strong> - Motor control focused (SAMC20, SAMC21)</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Resolution</td>
+                <td>12-bit SAR ADC</td>
+            </tr>
+            <tr>
+                <td>Cores</td>
+                <td>Dual ADC (ADC0, ADC1) on SAMC2x, single ADC on SAMD</td>
+            </tr>
+            <tr>
+                <td>Sequencing</td>
+                <td>6 sequences × 6 conversions = 36 programmable slots</td>
+            </tr>
+            <tr>
+                <td>Channels</td>
+                <td>Up to 20 single-ended or 10 differential inputs</td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td>Up to 1 Msps</td>
+            </tr>
+        </table>
+
+        <h2>Configuration</h2>
+
+        <h3>Sequence-Based Configuration</h3>
+        <ul>
+            <li><strong>ADC0_seq0 through ADC0_seq5</strong> - Primary ADC sequences</li>
+            <li><strong>ADC1_seq0 through ADC1_seq5</strong> - Secondary ADC sequences (SAMC2x only)</li>
+            <li><strong>Each sequence:</strong> Configure up to 6 channel conversions</li>
+            <li><strong>Pin selection:</strong> Dropdown shows available ANx pins with port mapping</li>
+        </ul>
+
+        <div class="note">
+            <strong>Note:</strong> Pin availability and ADC core count varies by device. The block automatically detects chip capabilities and shows only valid options.
+        </div>
+
+        <h2>Applications</h2>
+        <ul>
+            <li>Motor control feedback (position, current, voltage)</li>
+            <li>Multi-channel sensor acquisition</li>
+            <li>Power supply monitoring</li>
+            <li>Industrial automation</li>
+        </ul>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="afec_sam7x.html">MCHP_AFEC_SAM7x</a> - For SAM E7x/S7x/V7x families</li>
+            <li><a href="adc_samrh707x.html">MCHP_ADC_SAMRH707x</a> - For radiation-hardened SAM RH707x</li>
+        </ul>
+
+        <p><a href="../adc_blocks.html">Back to ADC Blocks</a></p>
+    </div>
+    </div>
+</body>
+</html>

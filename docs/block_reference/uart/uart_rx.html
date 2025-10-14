@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UART Rx Block - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>UART Rx Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/bus_uart/UART_Rx.svg"
+             alt="UART_Rx Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/bus_uart/UART_Rx.png';">
+        <div class="block-image-caption">
+            UART_Rx Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+    <p>The <strong>UART Rx</strong> block receives data from a configured UART module. This block outputs 8-bit data (uint8 type) with flexible size configuration including inherited sizing, user-defined vectors, and automatic buffer sizing based on baud rate and sample time. It works in conjunction with the <strong>UART Config</strong> block to provide efficient serial reception.</p>
+
+    <h2>Supported Device Families</h2>
+
+    <table>
+        <tr>
+            <th>Family</th>
+            <th>Series</th>
+            <th>Architecture ID</th>
+            <th>Implementation Files</th>
+        </tr>
+        <tr>
+            <td><strong>dsPIC</strong></td>
+            <td>30F, 24F, 33F, 33E, 33C, 33A</td>
+            <td>1, 2, 3, 4, 8</td>
+            <td>PIC bare, Interrupt (Circular Buffer)</td>
+        </tr>
+        <tr>
+            <td><strong>PIC32</strong></td>
+            <td>MK, MZ, MX, PIC32A</td>
+            <td>Included in dsPIC arch</td>
+            <td>Same as dsPIC (PIC implementations)</td>
+        </tr>
+        <tr>
+            <td><strong>SAM E7x/S7x</strong></td>
+            <td>SAME70, SAMS70, V71, PIC32CZ MC70</td>
+            <td>5</td>
+            <td>SAMx7 bare, Interrupt, DMA ping-pong</td>
+        </tr>
+        <tr>
+            <td><strong>SAM E5x/D5x</strong></td>
+            <td>SAME5x, SAMD5x</td>
+            <td>6</td>
+            <td>SAMx5 bare, Interrupt, DMA ping-pong</td>
+        </tr>
+        <tr>
+            <td><strong>SAM C2x/D2x</strong></td>
+            <td>SAMC2x, SAMD2x, SAMDA1</td>
+            <td>7</td>
+            <td>SAMx5 implementations (shared)</td>
+        </tr>
+    </table>
+
+    <h2>Block Outputs</h2>
+
+    <table>
+        <tr>
+            <th>Port Name</th>
+            <th>Data Type</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>Optional</th>
+        </tr>
+        <tr>
+            <td><strong>Nbr</strong></td>
+            <td>uint8/uint16</td>
+            <td>Scalar</td>
+            <td>Number of bytes received (buffer fill level)</td>
+            <td>Yes (enable via Flag_Out parameter)</td>
+        </tr>
+        <tr>
+            <td><strong>Rx</strong></td>
+            <td>uint8</td>
+            <td>Scalar or Vector [N]</td>
+            <td>Received data (configurable size)</td>
+            <td>No (always present)</td>
+        </tr>
+    </table>
+
+    <h2>Configuration Parameters</h2>
+
+    <h3>UART Selection</h3>
+    <ul>
+        <li><strong>UART Module</strong> - Select UART/USART number (must match UART Config block)</li>
+        <li>Dropdown automatically populated with available UARTs from selected chip</li>
+    </ul>
+
+    <h3>Output Size Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Options</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Rx_Size_popup</td>
+            <td>User defined<br>Inherited via back propagation<br>Inherited via internal rule</td>
+            <td>How to determine Rx output port size</td>
+        </tr>
+        <tr>
+            <td>Rx_Size</td>
+            <td>Positive integer or []</td>
+            <td>User-defined size (when Rx_Size_popup = "User defined")<br>
+                [] = inherited via back propagation</td>
+        </tr>
+    </table>
+
+    <h3>Size Determination Methods</h3>
+
+    <h4>1. User Defined</h4>
+    <p>Explicitly set output vector size:</p>
+    <ul>
+        <li><code>Rx_Size = 1</code>: Scalar output (single byte)</li>
+        <li><code>Rx_Size = N</code>: Vector output [N x 1]</li>
+        <li><code>Rx_Size = []</code>: Treated as "Inherited via back propagation"</li>
+    </ul>
+
+    <h4>2. Inherited via Back Propagation</h4>
+    <p>Output size determined by connected downstream block requirements. Simulink propagates size backward from output port connection.</p>
+
+    <h4>3. Inherited via Internal Rule</h4>
+    <p>Automatically calculate optimal buffer size based on:</p>
+    <ul>
+        <li><strong>Baud Rate</strong>: From UART Config block</li>
+        <li><strong>Sample Time</strong>: Block execution rate</li>
+        <li><strong>Implementation Mode</strong>: Hardware FIFO or Circular Buffer size</li>
+    </ul>
+    <p><strong>Formula</strong>:</p>
+    <code>
+        Rx_Size = ceil((Baud_Rate / 10) * Sample_Time) + Buffer_Margin
+    </code>
+    <ul>
+        <li><strong>Buffer_Margin</strong>: Hardware FIFO size
+            <ul>
+                <li>PIC32: 8 bytes (8-deep FIFO)</li>
+                <li>dsPIC 30F/33F: 4 bytes (4-byte buffer)</li>
+                <li>dsPIC 33A (DOS_03076): 8 bytes (8-deep FIFO)</li>
+                <li>Circular Buffer: User-defined buffer size</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Output Handling Options</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Options</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Flag_Out</td>
+            <td>On/Off checkbox</td>
+            <td>Enable 'Nbr' output port (number of bytes received)</td>
+        </tr>
+        <tr>
+            <td>OutputDefault_popup</td>
+            <td>Fill-in output vector with specified value<br>
+                Add one trailing 0<br>
+                do nothing (end of output vector will be undefined)</td>
+            <td>Behavior when received bytes < output size</td>
+        </tr>
+        <tr>
+            <td>OutputDefault</td>
+            <td>Numeric value (e.g., 0, 255)</td>
+            <td>Fill value when OutputDefault_popup = "Fill-in"</td>
+        </tr>
+    </table>
+
+    <h3>Output Fill Behavior</h3>
+    <ul>
+        <li><strong>Fill-in with value</strong>: Remaining bytes set to <code>OutputDefault</code></li>
+        <li><strong>Add one trailing 0</strong>: Append null terminator (string mode)</li>
+        <li><strong>Do nothing</strong>: Remaining bytes undefined (fastest, no overhead)</li>
+    </ul>
+
+    <h2>Implementation Modes</h2>
+
+    <p>Reception behavior depends on the implementation mode selected in the <strong>UART Config</strong> block:</p>
+
+    <table>
+        <tr>
+            <th>Mode ID</th>
+            <th>Implementation</th>
+            <th>Description</th>
+            <th>Hardware FIFO</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td><strong>Not Configured</strong></td>
+            <td>RX disabled in UART Config</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><strong>Bare (Simplest)</strong></td>
+            <td>Direct read from hardware FIFO/buffer</td>
+            <td>1/4/8 bytes (device dependent)</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>Circular Buffer</strong></td>
+            <td>Software buffer with interrupt-driven reception</td>
+            <td>Plus user-defined circular buffer</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>DMA Ping-Pong</strong></td>
+            <td>Two DMA buffers alternating (SAM only)</td>
+            <td>DMA with ping-pong buffers</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><strong>DMA Single Buffer</strong></td>
+            <td>Not implemented for RX</td>
+            <td>N/A</td>
+        </tr>
+    </table>
+
+    <div class="warning">
+        <strong>Device Limitation:</strong> DMA Ping-Pong mode (mode 3) is only available for SAM E7x/E5x devices. dsPIC/PIC32 devices do not support DMA for UART Rx.
+    </div>
+
+    <h2>Usage Examples</h2>
+
+    <h3>Example 1: Fixed-Size Reception (10 bytes)</h3>
+    <ol>
+        <li>Add <strong>UART Config</strong> block (configure for UART 1, Circular Buffer Rx)</li>
+        <li>Add <strong>UART Rx</strong> block</li>
+        <li>Configure UART Rx:
+            <ul>
+                <li>UART Module: 1</li>
+                <li>Rx_Size_popup: "User defined"</li>
+                <li>Rx_Size: 10</li>
+                <li>Flag_Out: On (monitor bytes received)</li>
+                <li>OutputDefault_popup: "Fill-in output vector with specified value"</li>
+                <li>OutputDefault: 0</li>
+            </ul>
+        </li>
+        <li>Connect Rx output [10x1] to downstream processing</li>
+        <li>Monitor Nbr output to see actual bytes received (0-10)</li>
+    </ol>
+
+    <h3>Example 2: Automatic Sizing (Internal Rule)</h3>
+    <ol>
+        <li>UART Config: UART 1, 115200 baud, Circular Buffer (256 bytes)</li>
+        <li>UART Rx block:
+            <ul>
+                <li>UART Module: 1</li>
+                <li>Rx_Size_popup: "Inherited via internal rule"</li>
+                <li>SampleTime: 0.01 (10 ms)</li>
+            </ul>
+        </li>
+        <li>Block automatically calculates:
+            <ul>
+                <li>Baud throughput: 115200 / 10 = 11520 bps</li>
+                <li>Bytes per sample: (11520 * 0.01) / 8 ≈ 144 bytes</li>
+                <li>Buffer margin: +256 (circular buffer size)</li>
+                <li>Final Rx_Size: ~400 bytes (ensures no overflow)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Example 3: String Reception with Null Terminator</h3>
+    <ol>
+        <li>Configure UART Rx:
+            <ul>
+                <li>Rx_Size_popup: "User defined"</li>
+                <li>Rx_Size: 64 (max string length)</li>
+                <li>Flag_Out: On</li>
+                <li>OutputDefault_popup: "Add one trailing 0"</li>
+            </ul>
+        </li>
+        <li>Received string automatically null-terminated</li>
+        <li>Use Nbr output to find actual string length</li>
+        <li>Compatible with C string functions</li>
+    </ol>
+
+    <h3>Example 4: Back Propagation Sizing</h3>
+    <ol>
+        <li>UART Rx configuration:
+            <ul>
+                <li>Rx_Size_popup: "Inherited via back propagation"</li>
+                <li>Rx_Size: [] (or any value, ignored)</li>
+            </ul>
+        </li>
+        <li>Connect Rx output to a block requiring [20x1] input</li>
+        <li>Simulink automatically sets Rx port size to [20x1]</li>
+        <li>No manual sizing needed</li>
+    </ol>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Bare Mode (Mode 1)</h3>
+    <p>Reads directly from hardware FIFO:</p>
+    <code>
+        data[i] = U%<UARTRef>RXREG;  /* Direct read from receive register */
+    </code>
+    <ul>
+        <li>Polled operation (no interrupts)</li>
+        <li>Limited to hardware FIFO depth</li>
+        <li>Fastest response, lowest latency</li>
+        <li>Risk of data loss if not read frequently</li>
+    </ul>
+
+    <h3>Circular Buffer (Mode 2)</h3>
+    <ul>
+        <li>Software buffer with head/tail pointers</li>
+        <li>Interrupt-driven: RX interrupt stores each byte</li>
+        <li>Buffer size configurable in UART Config block</li>
+        <li>Thread-safe with critical section protection</li>
+        <li>Recommended for most applications</li>
+    </ul>
+
+    <h3>DMA Ping-Pong (Mode 3 - SAM only)</h3>
+    <ul>
+        <li>Two DMA buffers alternate (buffer A → DMA → buffer B → DMA...)</li>
+        <li>DMA channel automatically configured</li>
+        <li>Minimal CPU overhead during reception</li>
+        <li>No data loss during buffer processing</li>
+        <li><strong>Only available on SAM E7x/E5x devices</strong></li>
+    </ul>
+
+    <h2>Error Handling</h2>
+
+    <h3>Missing UART Config Block</h3>
+    <p>If no UART Config block is found for the selected UART:</p>
+    <ul>
+        <li>Block display shows "MISSING UART X Config"</li>
+        <li>Warning printed to console</li>
+        <li>Compilation warning: "RX is not implemented"</li>
+    </ul>
+
+    <h3>Buffer Overrun</h3>
+    <ul>
+        <li><strong>Hardware FIFO</strong>: Oldest data lost (FIFO overflow error)</li>
+        <li><strong>Circular Buffer</strong>: Newest data discarded if buffer full</li>
+        <li><strong>DMA Ping-Pong</strong>: Data loss if both buffers full</li>
+        <li><strong>Mitigation</strong>: Use "Inherited via internal rule" for automatic sizing</li>
+    </ul>
+
+    <h3>Size Mismatch</h3>
+    <p><strong>Problem:</strong> Rx output size doesn't match downstream block requirements.<br>
+    <strong>Solutions:</strong></p>
+    <ul>
+        <li>Use "Inherited via back propagation" for automatic matching</li>
+        <li>Manually adjust Rx_Size to match downstream needs</li>
+        <li>Use buffer/reshape blocks to adapt size</li>
+    </ul>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="uart_config.html">UART Config</a> - Configure UART module (required)</li>
+        <li><a href="uart_tx.html">UART Tx</a> - Transmit data</li>
+        <li><a href="uart_txmatlab.html">UART TxMatlab</a> - MATLAB interface for testing</li>
+        <li><a href="uart_brk_autobaud.html">UART Brk/Autobaud</a> - Break detection and autobaud</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>No Data Received</h3>
+    <p><strong>Problem:</strong> UART Rx block present but Rx output always zero/empty.<br>
+    <strong>Solutions:</strong></p>
+    <ul>
+        <li>Verify UART Config block exists for same UART number</li>
+        <li>Check RX pin configuration in UART Config block</li>
+        <li>Verify UART enable and RX enable bits</li>
+        <li>Check baud rate matches transmitter</li>
+        <li>Verify wire connections (TX → RX crossover)</li>
+    </ul>
+
+    <h3>Partial Data Loss</h3>
+    <p><strong>Problem:</strong> Some bytes missing from received data.<br>
+    <strong>Solutions:</strong></p>
+    <ul>
+        <li>Increase buffer size in UART Config (Circular Buffer mode)</li>
+        <li>Reduce sample time (read more frequently)</li>
+        <li>Use "Inherited via internal rule" for automatic sizing</li>
+        <li>Switch to DMA Ping-Pong mode (SAM devices only)</li>
+    </ul>
+
+    <h3>Output Vector Not Filling Correctly</h3>
+    <p><strong>Problem:</strong> Rx output vector has unexpected values in unused positions.<br>
+    <strong>Solutions:</strong></p>
+    <ul>
+        <li>Check OutputDefault_popup setting</li>
+        <li>Use "Fill-in output vector with specified value" for predictable behavior</li>
+        <li>Enable Flag_Out to monitor actual bytes received</li>
+        <li>Use "Add one trailing 0" for string reception</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="../communication.html">Communication Blocks</a> |
+        <a href="uart_config.html">UART Config</a> |
+        <a href="uart_tx.html">UART Tx</a> |
+        <a href="../../user_guide/code_generation.html">Code Generation</a>
+    </p>
+
+    </div>
+</body>
+</html>

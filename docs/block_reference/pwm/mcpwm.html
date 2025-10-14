@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_MCPWM - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>MCHP_MCPWM - Motor Control PWM Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/pwm/MCPWM.svg"
+             alt="MCPWM Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/pwm/MCPWM.png';">
+        <div class="block-image-caption">
+            MCPWM Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+    <p>The MCHP_MCPWM block provides comprehensive motor control PWM functionality with advanced fault handling, dead-time compensation, and flexible trigger configuration. This block is specifically designed for demanding motor control applications requiring sophisticated protection mechanisms and precise timing control.</p>
+
+    <p>MCPWM (Motor Control PWM) offers enhanced features beyond standard PWM blocks, including programmable fault sources with digital comparator inputs, leading-edge blanking, dead-time compensation modes, and extensive trigger output capabilities for ADC synchronization.</p>
+
+    <h2>Supported Device Families</h2>
+    <table>
+        <tr>
+            <th>Family</th>
+            <th>Representative Devices</th>
+            <th>Key Features</th>
+        </tr>
+        <tr>
+            <td><strong>PIC32MK</strong></td>
+            <td>PIC32MK MCJ/MCM/MCA families</td>
+            <td>Full MCPWM with digital comparators, advanced fault handling</td>
+        </tr>
+        <tr>
+            <td><strong>dsPIC33C (selected)</strong></td>
+            <td>33CH, 33CK families with MCPWM</td>
+            <td>High-speed MCPWM, multiple fault sources</td>
+        </tr>
+        <tr>
+            <td><strong>dsPIC33A</strong></td>
+            <td>Latest 33A families</td>
+            <td>Enhanced MCPWM with fine edge placement</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> The MCPWM block requires specific peripheral support. Not all dsPIC33 devices include MCPWM; use <strong>MCHP_PWM_HS_FEP</strong> or <strong>MCHP_PWM_HighSpeed</strong> for devices without MCPWM.
+    </div>
+
+    <h2>Key Features</h2>
+    <ul class="feature-list">
+        <li>Up to 12 PWM generators (device dependent)</li>
+        <li>Multiple output modes: Complementary, Redundant, Push-Pull, Independent</li>
+        <li>Advanced dead-time control with compensation mode</li>
+        <li>Programmable fault inputs with digital comparator integration</li>
+        <li>Leading-edge blanking (LEB) for noise immunity</li>
+        <li>Multiple trigger outputs per generator (up to 3)</li>
+        <li>Center-aligned modes: Symmetric, Asymmetric with double update</li>
+        <li>Independent or master time base operation</li>
+        <li>Clock source selection with divider/scaling circuits</li>
+        <li>Chop mode for transformer applications</li>
+    </ul>
+
+    <h2>Configuration Parameters</h2>
+
+    <h3>Time Base and Alignment</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+        <tr>
+            <td><code>PWMx_ECAM_ITB</code></td>
+            <td>PWM mode selection</td>
+            <td>
+                • Edge aligned<br>
+                • Edge aligned - Independent time base<br>
+                • Center aligned - Symmetric<br>
+                • Center aligned - Symmetric - Independent time base<br>
+                • Center aligned - Asymmetric with double update<br>
+                • Center aligned - Asymmetric with simultaneous update
+            </td>
+        </tr>
+    </table>
+
+    <h3>Dead Time Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+        <tr>
+            <td><code>DTC</code></td>
+            <td>Dead Time Control mode</td>
+            <td>
+                • Disabled<br>
+                • Positive dead time (ensure H/L both off period)<br>
+                • Negative dead time (edge aligned only)<br>
+                • Positive dead time with compensation mode
+            </td>
+        </tr>
+        <tr>
+            <td><code>DTH_xxx</code></td>
+            <td>Dead-time high-side (per PWM)</td>
+            <td>Time in seconds</td>
+        </tr>
+        <tr>
+            <td><code>DTL_xxx</code></td>
+            <td>Dead-time low-side (per PWM)</td>
+            <td>Time in seconds</td>
+        </tr>
+        <tr>
+            <td><code>DTCMPSEL</code></td>
+            <td>Dead-time compensation select</td>
+            <td>Comparator source for compensation mode</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Dead-Time Compensation Mode:</strong> Automatically adjusts dead-time based on current direction (detected via comparator). Increases efficiency by minimizing dead-time losses while maintaining shoot-through protection.
+    </div>
+
+    <h3>Fault Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>FLTSRCx</code></td>
+            <td>Fault source selection for each PWM generator:<br>
+                • Fault pin inputs<br>
+                • Digital comparator outputs<br>
+                • Software fault (via block input)<br>
+                • Combination (OR/AND logic)
+            </td>
+        </tr>
+        <tr>
+            <td><code>FLTSRC1..12_DTCMP</code></td>
+            <td>Digital comparator assignment for dead-time compensation per PWM</td>
+        </tr>
+        <tr>
+            <td><code>FaultMode</code></td>
+            <td>Fault response mode:<br>
+                • Latched (requires manual clear)<br>
+                • Cycle-by-cycle (auto-restart when fault clears)
+            </td>
+        </tr>
+        <tr>
+            <td><code>FaultState</code></td>
+            <td>Output state during fault: All Low, All High, High-Z, or custom</td>
+        </tr>
+    </table>
+
+    <h3>Leading-Edge Blanking (LEB)</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>LEB_Enable</code></td>
+            <td>Enable leading-edge blanking for fault inputs</td>
+        </tr>
+        <tr>
+            <td><code>LEB_Duration</code></td>
+            <td>Blanking time after PWM edge transition (ignores fault during switching noise)</td>
+        </tr>
+        <tr>
+            <td><code>LEB_Trigger</code></td>
+            <td>Trigger source: Rising edge PWMxH, Falling edge PWMxH, or PWMxL edges</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Leading-Edge Blanking:</strong> Prevents false fault triggers caused by switching noise. The LEB circuit ignores fault inputs for a programmable duration after each PWM edge, significantly improving noise immunity in harsh electrical environments.
+    </div>
+
+    <h3>Trigger Outputs</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>TRIG1..3</code></td>
+            <td>Up to 3 trigger outputs per PWM generator for ADC/DAC synchronization</td>
+        </tr>
+        <tr>
+            <td><code>SEVTCMP</code></td>
+            <td>Special event compare for primary ADC trigger</td>
+        </tr>
+        <tr>
+            <td><code>TriggerInterrupt</code></td>
+            <td>Enable interrupt on trigger events</td>
+        </tr>
+    </table>
+
+    <h2>PWM-ADC Synchronization</h2>
+
+    <p>Proper synchronization between PWM generation and ADC sampling is critical for motor control and power conversion applications. The MCPWM block provides multiple trigger outputs (<code>TRIG1..3</code>, <code>SEVTCMP</code>) to precisely coordinate ADC conversions with PWM waveform timing.</p>
+
+    <h3>Synchronization Strategies</h3>
+
+    <p>The MCHP Blockset supports four synchronization strategies, each optimized for different application requirements:</p>
+
+    <h4>Option 1: Timer-Based Trigger (Simple Periodic Sampling)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.png"
+                 alt="Timer-Based Trigger Strategy"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> General-purpose control with independent sampling rate.</p>
+
+    <p><strong>Configuration:</strong></p>
+    <ul>
+        <li>PWM runs asynchronously with respect to control task</li>
+        <li>Timer triggers ADC at fixed intervals</li>
+        <li>Control task executes after ADC completion</li>
+    </ul>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Simple configuration</li>
+        <li>Flexible sampling rate independent of PWM frequency</li>
+        <li>Suitable for multi-loop systems with different rates</li>
+    </ul>
+
+    <p><strong>Limitations:</strong></p>
+    <ul>
+        <li>ADC sampling phase not synchronized with PWM switching</li>
+        <li>May sample during switching transients</li>
+        <li>Not ideal for current-mode control or phase current sensing</li>
+    </ul>
+
+    <h4>Option 2: Timer → ADC → Task (Synchronized Data Acquisition)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.png"
+                 alt="Timer-ADC-Task Synchronization"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> Guaranteed fresh ADC data before control task execution.</p>
+
+    <p><strong>Configuration:</strong></p>
+    <ul>
+        <li>Timer triggers ADC conversion</li>
+        <li>ADC completion triggers control task</li>
+        <li>Ensures ADC data is ready when task starts</li>
+    </ul>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Zero latency - control algorithm uses freshest data</li>
+        <li>Predictable timing - task execution synchronized with ADC</li>
+        <li>Eliminates stale data issues</li>
+    </ul>
+
+    <p><strong>Typical Applications:</strong></p>
+    <ul>
+        <li>Data logging systems</li>
+        <li>Sensor monitoring applications</li>
+        <li>General feedback control (non-motor)</li>
+    </ul>
+
+    <h4>Option 3: PWM → ADC → Task (Motor Control Standard)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.png"
+                 alt="PWM-ADC-Task Synchronization for Motor Control"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> Standard approach for motor control and power conversion.</p>
+
+    <p><strong>Key Benefits for Motor Control:</strong></p>
+    <ul>
+        <li><strong>Optimal sampling timing:</strong> Sample when PWM low-side FET is ON (shunt current flows)</li>
+        <li><strong>Synchronized to PWM period:</strong> Control rate automatically matches PWM frequency</li>
+        <li><strong>Phase current sensing:</strong> Sample during stable current flow through shunt resistor</li>
+        <li><strong>Noise immunity:</strong> Avoid sampling during switching transients</li>
+    </ul>
+
+    <p><strong>MCPWM Configuration Example (Center-Aligned PWM):</strong></p>
+    <pre><code>% In MCPWM block:
+PWMx_ECAM_ITB = 'Center aligned - Symmetric';
+Period = 1/20e3;  % 20 kHz PWM frequency
+
+% Trigger ADC at PWM valley (center point - all low-side FETs ON):
+SEVTCMP = 0;  % Valley trigger
+% OR use TRIG1:
+TRIG1 = 0;    % Valley trigger
+
+% In ADC block:
+Trigger_Source = 'PWM1 Special Event';  % or 'PWM1 TRIG1'
+Sample_Time = 'Inherited';  % ADC rate follows PWM (20 kHz)
+</code></pre>
+
+    <p><strong>Edge-Aligned PWM Configuration:</strong></p>
+    <pre><code>% For edge-aligned PWM, trigger before period end:
+PWMx_ECAM_ITB = 'Edge aligned';
+Period_Ticks = 4000;  % Example period register value
+
+% Trigger 10% before end of period (low-side ON time):
+SEVTCMP = Period_Ticks * 0.9;
+</code></pre>
+
+    <div class="note">
+        <strong>💡 Why Sample at PWM Valley?</strong>
+        <p>In center-aligned PWM for 3-phase motor control, the valley (center) is when all three low-side FETs are simultaneously ON. This is the <strong>only time</strong> when phase currents flow through shunt resistors, making it essential for accurate current measurement.</p>
+    </div>
+
+    <h4>Option 4: Multiple Triggers per PWM Period (Advanced Control)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.png"
+                 alt="Multiple ADC Triggers per PWM Period"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> High-performance control requiring multiple measurements per PWM cycle.</p>
+
+    <p><strong>Key Applications:</strong></p>
+    <ul>
+        <li><strong>Dual current sampling:</strong> Measure phase currents at both peak and valley</li>
+        <li><strong>Sensorless FOC:</strong> Sample back-EMF at multiple PWM positions</li>
+        <li><strong>Digital power:</strong> Input and output voltage/current at different switching states</li>
+        <li><strong>Oversampling:</strong> Multiple ADC conversions for noise reduction</li>
+    </ul>
+
+    <p><strong>MCPWM Configuration (3 Triggers per Period):</strong></p>
+    <pre><code>% Center-aligned PWM with 3 trigger points:
+PWMx_ECAM_ITB = 'Center aligned - Symmetric';
+
+% Trigger 1: Before valley (rising edge phase currents)
+TRIG1 = Period * 0.4;
+
+% Trigger 2: At valley (all low-side ON)
+SEVTCMP = 0;
+
+% Trigger 3: After valley (falling edge phase currents)
+TRIG2 = Period * 0.6;
+
+% In ADC block:
+% Configure 3 separate ADC channels or use ADC sequencer
+% Trigger_Source_1 = 'PWM1 TRIG1';
+% Trigger_Source_2 = 'PWM1 Special Event';
+% Trigger_Source_3 = 'PWM1 TRIG2';
+</code></pre>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Maximum information extraction per PWM cycle</li>
+        <li>Improved state estimation for sensorless control</li>
+        <li>Better noise rejection through oversampling</li>
+        <li>Faster transient response (higher effective bandwidth)</li>
+    </ul>
+
+    <p><strong>Considerations:</strong></p>
+    <ul>
+        <li>Increased CPU load (multiple ADC ISRs or faster control task)</li>
+        <li>Requires careful timing analysis to avoid ADC overrun</li>
+        <li>May need DMA for efficient data transfer</li>
+    </ul>
+
+    <h3>Fault Integration with Triggers</h3>
+
+    <p>MCPWM's advanced fault handling can interact with trigger outputs to ensure safe operation:</p>
+
+    <table>
+        <tr>
+            <th>Fault Scenario</th>
+            <th>Trigger Behavior</th>
+            <th>Configuration</th>
+        </tr>
+        <tr>
+            <td><strong>Overcurrent Fault</strong></td>
+            <td>Triggers stopped during fault</td>
+            <td>Prevents control task from executing with invalid PWM state</td>
+        </tr>
+        <tr>
+            <td><strong>Latched Fault</strong></td>
+            <td>Triggers remain disabled until fault cleared</td>
+            <td>Use Fault_Clear input to restart triggers</td>
+        </tr>
+        <tr>
+            <td><strong>Cycle-by-Cycle Fault</strong></td>
+            <td>Triggers resume when fault clears</td>
+            <td>Automatic restart for transient faults</td>
+        </tr>
+        <tr>
+            <td><strong>Software Fault</strong></td>
+            <td>Can disable triggers via Fault_SW input</td>
+            <td>Emergency stop with software trigger inhibit</td>
+        </tr>
+    </table>
+
+    <div class="warning">
+        <strong>⚠️ Critical for Safety:</strong>
+        <p>When using cycle-by-cycle faults with ADC triggers, ensure your control algorithm handles potentially missing ADC samples. Implement timeout detection and safe fallback behavior.</p>
+    </div>
+
+    <h3>Best Practices</h3>
+
+    <table>
+        <tr>
+            <th>Application</th>
+            <th>Recommended Strategy</th>
+            <th>Key Settings</th>
+        </tr>
+        <tr>
+            <td><strong>3-Phase Motor FOC</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Center-aligned PWM<br>
+                • SEVTCMP = 0 (valley)<br>
+                • Single trigger per period
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Single Shunt FOC</strong></td>
+            <td>Multiple Triggers (Option 4)</td>
+            <td>
+                • Center-aligned PWM<br>
+                • TRIG1, TRIG2 at sector transitions<br>
+                • Fast ADC sequencing
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PFC Boost Converter</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Edge-aligned PWM<br>
+                • SEVTCMP at 90% period<br>
+                • Sample during FET ON time
+            </td>
+        </tr>
+        <tr>
+            <td><strong>DC-DC Buck</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Edge-aligned PWM<br>
+                • SEVTCMP before period end<br>
+                • Sample output voltage
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Interleaved Converters</strong></td>
+            <td>Multiple Triggers (Option 4)</td>
+            <td>
+                • Independent time bases<br>
+                • Phase-shifted triggers<br>
+                • Per-phase current sensing
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Data Acquisition</strong></td>
+            <td>Timer → ADC → Task (Option 2)</td>
+            <td>
+                • Fixed sampling rate<br>
+                • Independent of PWM<br>
+                • Flexible timing
+            </td>
+        </tr>
+    </table>
+
+    <h3>Troubleshooting Synchronization Issues</h3>
+
+    <table>
+        <tr>
+            <th>Problem</th>
+            <th>Likely Cause</th>
+            <th>Solution</th>
+        </tr>
+        <tr>
+            <td>ADC samples during switching noise</td>
+            <td>Incorrect SEVTCMP/TRIG value</td>
+            <td>For center-aligned: Use SEVTCMP=0 (valley)<br>
+                For edge-aligned: Use SEVTCMP = Period * 0.9</td>
+        </tr>
+        <tr>
+            <td>Control task runs before ADC ready</td>
+            <td>Task triggered by timer, not ADC</td>
+            <td>Configure ADC interrupt to trigger task, not timer</td>
+        </tr>
+        <tr>
+            <td>Phase currents read as zero</td>
+            <td>Sampling when low-side FETs OFF</td>
+            <td>Verify SEVTCMP = 0 for center-aligned PWM<br>
+                Check low-side FET on-time for edge-aligned</td>
+        </tr>
+        <tr>
+            <td>Missing ADC triggers</td>
+            <td>PWM fault active (triggers inhibited)</td>
+            <td>Check Fault_Status output<br>
+                Clear latched fault or fix fault source</td>
+        </tr>
+        <tr>
+            <td>Inconsistent trigger timing</td>
+            <td>Independent time base drift</td>
+            <td>Use master time base for phase synchronization<br>
+                Or implement software time base sync</td>
+        </tr>
+        <tr>
+            <td>Multiple triggers overlap</td>
+            <td>TRIG1/2/3 too close together</td>
+            <td>Ensure ADC conversion time + safety margin between triggers<br>
+                Example: 3 µs ADC time → 5 µs spacing minimum</td>
+        </tr>
+    </table>
+
+    <h3>Related Blocks for Synchronization</h3>
+    <ul>
+        <li><a href="../adc/adc_hs_12b.html"><strong>MCHP_ADC_HS_12b</strong></a> - High-speed 12-bit ADC for dsPIC33A (software sequencing, PWM triggers)</li>
+        <li><a href="../adc/adc_hs_sar.html"><strong>MCHP_ADC_HighSpeed_SAR</strong></a> - High-speed SAR ADC for dsPIC33C/CH/CK</li>
+        <li><a href="../adc/adc_standard.html"><strong>MCHP_ADC</strong></a> - Standard ADC with PWM trigger support</li>
+        <li><strong>MCHP_Interrupt</strong> - Configure interrupt priorities for ADC and control tasks</li>
+        <li><strong>MCHP_Scheduler_Options</strong> - Configure multitasking for synchronized control loops</li>
+    </ul>
+
+    <h3>Clock Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>PWM_ClockResolution</code></td>
+            <td>Clock source selection:<br>
+                • Direct (no scaling)<br>
+                • Divider circuit<br>
+                • Scaling circuit<br>
+                • Auto (optimal selection)
+            </td>
+        </tr>
+    </table>
+
+    <h2>Block Inputs</h2>
+
+    <table>
+        <tr>
+            <th>Input</th>
+            <th>Type</th>
+            <th>Condition</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>Period</code></td>
+            <td>uint16/uint32</td>
+            <td>Variable period mode</td>
+            <td>PWM period value (scalar for master, vector for independent)</td>
+        </tr>
+        <tr>
+            <td><code>DutyCycle 1..N</code></td>
+            <td>uint16/uint32</td>
+            <td>Per enabled PWM</td>
+            <td>Duty cycle value. Can be [single] or [val1 val2] for asymmetric mode</td>
+        </tr>
+        <tr>
+            <td><code>PhaseShift 1..N</code></td>
+            <td>uint16/uint32</td>
+            <td>If enabled</td>
+            <td>Phase shift value for interleaved operation</td>
+        </tr>
+        <tr>
+            <td><code>TRIG1..3 1..N</code></td>
+            <td>uint16/uint32</td>
+            <td>Dynamic trigger</td>
+            <td>Runtime trigger point modification</td>
+        </tr>
+        <tr>
+            <td><code>DeadTimeH/L 1..N</code></td>
+            <td>uint16</td>
+            <td>Dynamic dead-time</td>
+            <td>Runtime dead-time adjustment</td>
+        </tr>
+        <tr>
+            <td><code>Fault_SW</code></td>
+            <td>boolean</td>
+            <td>If software fault enabled</td>
+            <td>Software-triggered fault input</td>
+        </tr>
+        <tr>
+            <td><code>Fault_Clear</code></td>
+            <td>boolean</td>
+            <td>Latched fault mode</td>
+            <td>Clear latched fault condition</td>
+        </tr>
+    </table>
+
+    <h2>Block Outputs</h2>
+
+    <table>
+        <tr>
+            <th>Output</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>Fault_Status</code></td>
+            <td>uint16</td>
+            <td>Current fault status register (bitfield of active faults)</td>
+        </tr>
+        <tr>
+            <td><code>Trigger 1..N</code></td>
+            <td>boolean</td>
+            <td>Trigger output signals for external synchronization</td>
+        </tr>
+        <tr>
+            <td><code>PWM_Status</code></td>
+            <td>uint16</td>
+            <td>Overall PWM status (enable state, mode, etc.)</td>
+        </tr>
+    </table>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Hardware Registers</h3>
+    <table>
+        <tr>
+            <th>Register Type</th>
+            <th>Examples</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><strong>Generator Control</strong></td>
+            <td>PGxCONL, PGxCONH, PGxSTAT</td>
+            <td>PWM mode, enable, status</td>
+        </tr>
+        <tr>
+            <td><strong>Timing</strong></td>
+            <td>PGxPER, PGxDC, PGxPHASE, PGxDTH, PGxDTL</td>
+            <td>Period, duty cycle, phase shift, dead-time</td>
+        </tr>
+        <tr>
+            <td><strong>Triggers</strong></td>
+            <td>PGxTRIGA, PGxTRIGB, PGxTRIGC</td>
+            <td>ADC/DAC trigger points</td>
+        </tr>
+        <tr>
+            <td><strong>Fault</strong></td>
+            <td>PGxFPCIL, PGxFPCIH, PGxCLPCIL, PGxCLPCIH</td>
+            <td>Fault configuration, current limit</td>
+        </tr>
+        <tr>
+            <td><strong>Leading-Edge Blanking</strong></td>
+            <td>PGxLEBCON, PGxLEBDLY</td>
+            <td>LEB configuration and delay</td>
+        </tr>
+    </table>
+
+    <h3>Fault Source Configuration</h3>
+    <p>MCPWM provides flexible fault input mapping:</p>
+    <pre><code>% Fault sources (configurable per PWM):
+% - Hardware fault pins (FLT1, FLT2, etc.)
+% - Digital comparator outputs (CMP1, CMP2, etc.)
+% - Software fault (via block input)
+% - Combinational logic (AND/OR of multiple sources)
+
+% Example: Overcurrent protection
+% FLTSRCx = "CMP1 OR CMP2"  % Either phase overcurrent triggers fault
+% DTCMPSEL = "CMP1"          % Use CMP1 for dead-time compensation
+</code></pre>
+
+    <h2>Usage Examples</h2>
+
+    <h3>Example 1: 3-Phase Motor with Dead-Time Compensation</h3>
+    <pre><code>% Configuration:
+PWM_Channels = [1 2 3];
+PWMx_ECAM_ITB = 'Center aligned - Symmetric';
+DTC = 'Positive dead time with compensation mode';
+
+% Dead-time settings:
+DTH_1 = 1.2e-6;  % 1.2 µs high-side
+DTL_1 = 1.0e-6;  % 1.0 µs low-side (asymmetric for IGBT vs. diode)
+
+% Compensation comparator (current sensing):
+FLTSRC1_DTCMP = 'CMP1';  % Phase A current
+FLTSRC2_DTCMP = 'CMP2';  % Phase B current
+FLTSRC3_DTCMP = 'CMP3';  % Phase C current
+
+% Benefit: Dead-time automatically adjusted based on current direction
+% Reduces dead-time losses, improves efficiency
+</code></pre>
+
+    <h3>Example 2: Overcurrent Protection with LEB</h3>
+    <pre><code>% Fast overcurrent shutdown with noise immunity:
+
+% Fault configuration:
+FLTSRCx = 'CMP1 OR CMP2 OR CMP3';  % Any phase overcurrent
+FaultMode = 'Cycle-by-cycle';       % Auto-restart when fault clears
+FaultState = 'All Low';             % Safe state
+
+% Leading-Edge Blanking:
+LEB_Enable = 'on';
+LEB_Duration = 500e-9;              % 500 ns blanking
+LEB_Trigger = 'Rising edge PWMxH';  % Blank after high-side turn-on
+
+% Prevents false trips from switching noise
+% Allows genuine overcurrent detection within same cycle
+</code></pre>
+
+    <h3>Example 3: Interleaved PFC with Phase Management</h3>
+    <pre><code>% 4-phase interleaved PFC boost converter:
+
+% Configuration:
+PWM_Channels = [1 2 3 4];
+PWMx_ECAM_ITB = 'Edge aligned - Independent time base';
+Period = 1/100e3;  % 100 kHz per phase
+
+% 90° phase shift for 400 kHz effective ripple frequency:
+PhaseShift_1 = 0;
+PhaseShift_2 = Period/4;
+PhaseShift_3 = Period/2;
+PhaseShift_4 = 3*Period/4;
+
+% Trigger ADC at valley of each phase for current sensing:
+TRIG1_1 = Period;  % Phase 1 valley
+TRIG1_2 = Period;  % Phase 2 valley
+TRIG1_3 = Period;  % Phase 3 valley
+TRIG1_4 = Period;  % Phase 4 valley
+</code></pre>
+
+    <h3>Example 4: Asymmetric Center-Aligned for THD Reduction</h3>
+    <pre><code>% Reduce harmonic distortion using asymmetric PWM:
+
+% Configuration:
+PWMx_ECAM_ITB = 'Center aligned - Asymmetric with double update';
+
+% Different duty cycles for up-count and down-count:
+DutyCycle_1_Up = 0.48;
+DutyCycle_1_Down = 0.52;
+
+DutyCycle_2_Up = 0.485;
+DutyCycle_2_Down = 0.515;
+
+DutyCycle_3_Up = 0.49;
+DutyCycle_3_Down = 0.51;
+
+% Creates spread-spectrum effect
+% Reduces peak harmonics, improves EMI performance
+</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Fault Lockout</h3>
+    <div class="warning">
+        <strong>Symptom:</strong> PWM disabled, Fault_Status shows active fault but fault input is clear
+    </div>
+    <p><strong>Cause:</strong> Latched fault mode requires manual clear.</p>
+    <p><strong>Solution:</strong> Send pulse to <code>Fault_Clear</code> input, or change to cycle-by-cycle mode for auto-restart.</p>
+
+    <h3>False Fault Triggers</h3>
+    <div class="warning">
+        <strong>Symptom:</strong> Frequent fault events during normal operation
+    </div>
+    <p><strong>Solutions:</strong></p>
+    <ul>
+        <li>Enable Leading-Edge Blanking with appropriate duration (typically 200-1000 ns)</li>
+        <li>Adjust LEB trigger source to match noise characteristic</li>
+        <li>Filter fault comparator inputs in hardware (RC filter)</li>
+        <li>Increase fault comparator threshold if margin exists</li>
+    </ul>
+
+    <h3>Dead-Time Compensation Not Working</h3>
+    <div class="warning">
+        <strong>Symptom:</strong> Dead-time compensation enabled but no efficiency improvement
+    </div>
+    <p><strong>Checklist:</strong></p>
+    <ul>
+        <li>✅ DTC mode set to "Positive dead time with compensation mode"</li>
+        <li>✅ DTCMPSEL comparator configured and connected to current sensor</li>
+        <li>✅ Comparator threshold properly set for zero-crossing detection</li>
+        <li>✅ Comparator polarity matches current direction (positive = into motor)</li>
+    </ul>
+
+    <h3>Trigger Output Timing Issues</h3>
+    <div class="warning">
+        <strong>Symptom:</strong> ADC samples at incorrect time
+    </div>
+    <p><strong>Solutions:</strong></p>
+    <ul>
+        <li>Verify trigger value is within PWM period range</li>
+        <li>Account for center-aligned mode (trigger occurs twice per period)</li>
+        <li>Check for trigger synchronization with master time base</li>
+        <li>Use scope to verify actual trigger output timing</li>
+    </ul>
+
+    <h2>Performance Considerations</h2>
+
+    <h3>Interrupt Latency</h3>
+    <p>MCPWM fault response is hardware-based (< 50 ns typical). Software fault inputs have latency equal to task execution time plus interrupt response.</p>
+
+    <h3>CPU Overhead</h3>
+    <ul>
+        <li><strong>Static configuration:</strong> Zero CPU overhead (hardware runs autonomously)</li>
+        <li><strong>Dynamic inputs:</strong> CPU cycles only for duty cycle updates (typically < 1% at 20 kHz PWM)</li>
+        <li><strong>Fault handling:</strong> Interrupt service routine overhead if fault interrupts enabled</li>
+    </ul>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="pwm_hs_fep.html"><strong>MCHP_PWM_HS_FEP</strong></a> - High-resolution PWM for dsPIC33A</li>
+        <li><a href="pwm_high_speed.html"><strong>MCHP_PWM_HighSpeed</strong></a> - High-speed PWM for dsPIC33C/CH/CK</li>
+        <li><a href="pwm_standard.html"><strong>MCHP_PWM</strong></a> - Standard PWM for dsPIC30F/33F/33E</li>
+        <li><strong>MCHP_Comparator</strong> - Digital comparator for fault detection</li>
+        <li><strong>MCHP_ADC</strong> - ADC with PWM trigger synchronization</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../peripheral_overview.html">Peripheral Block Overview</a></li>
+        <li><a href="../motor_control_guide.html">Motor Control Application Guide</a></li>
+        <li><a href="../fault_handling.html">Fault Protection and Safety Guide</a></li>
+        <li><a href="https://www.microchip.com/DS60001307">PIC32MK Family Reference Manual</a> - Motor Control PWM Module (DS60001307)</li>
+        <li>dsPIC33C Family Reference Manual - High-Speed PWM with Enhanced Fault Handling</li>
+        <li>dsPIC33A Family Reference Manual - Motor Control PWM with Fine Edge Placement</li>
+    </ul>
+
+    <hr>
+    <p><small>Last updated: January 2025 | MCHP Blockset Documentation</small></p>
+    </div>
+</body>
+</html>

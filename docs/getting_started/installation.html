@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP Blockset Installation</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Installation Guide</h1>
+
+    <h2>System Requirements</h2>
+
+    <h3>MATLAB Requirements</h3>
+    <ul>
+        <li><strong>MATLAB</strong> - R2010a or later (R2020b+ recommended)</li>
+        <li><strong>Simulink</strong> - Required for model-based design</li>
+        <li><strong>Embedded Coder</strong> - Required for code generation</li>
+        <li><strong>MATLAB Coder</strong> - Required for code generation</li>
+        <li><strong>Simulink Coder</strong> - Required for code generation</li>
+    </ul>
+
+    <h3>Compiler Requirements</h3>
+    <ul>
+        <li><strong>XC16</strong> - For dsPIC 30F, 33F, 33E devices</li>
+        <li><strong>XC-DSC</strong> - For dsPIC 33C, 33A devices (v3.30+ recommended)</li>
+        <li><strong>XC32</strong> - For PIC32 and SAM devices (ARM-based)</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> Compilers can be downloaded from <a href="https://www.microchip.com/compilers">Microchip Developer Tools</a>
+    </div>
+
+    <h3>Hardware Requirements</h3>
+    <ul>
+        <li><strong>Programmer/Debugger</strong> - ICD4, ICD5, PICkit4, or compatible</li>
+        <li><strong>Development Board</strong> - (Optional) MCLV-2, Curiosity, Explorer 16/32, etc.</li>
+    </ul>
+
+    <h2>Installation Steps</h2>
+
+    <h3>1. Install MATLAB Toolboxes</h3>
+    <ol>
+        <li>Launch MATLAB</li>
+        <li>Open Add-Ons manager (Home → Add-Ons → Get Add-Ons)</li>
+        <li>Install required toolboxes:
+            <ul>
+                <li>Embedded Coder</li>
+                <li>MATLAB Coder</li>
+                <li>Simulink Coder</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>2. Install Microchip Compilers</h3>
+    <ol>
+        <li>Download compilers from <a href="https://www.microchip.com/compilers">Microchip website</a></li>
+        <li>Install XC16 (for dsPIC 30F/33F/33E) to default location:
+            <ul>
+                <li>Windows: <code>C:\Program Files\Microchip\xc16\</code></li>
+                <li>Linux: <code>/opt/microchip/xc16/</code></li>
+            </ul>
+        </li>
+        <li>Install XC-DSC (for dsPIC 33C/33A) to default location:
+            <ul>
+                <li>Windows: <code>C:\Program Files\Microchip\xc-dsc\</code></li>
+            </ul>
+        </li>
+        <li>Install XC32 (for PIC32) if needed</li>
+    </ol>
+
+    <div class="warning">
+        <strong>Important:</strong> Install compilers to default paths for automatic detection by the blockset.
+    </div>
+
+    <h3>3. Install MPLAB X IDE (Optional but Recommended)</h3>
+    <ol>
+        <li>Download MPLAB X IDE from <a href="https://www.microchip.com/mplab">Microchip website</a></li>
+        <li>Install to default location</li>
+        <li>Launch and configure for your hardware programmer</li>
+    </ol>
+
+    <h3>4. Install MCHP Blockset</h3>
+    <ol>
+        <li>Download MCHP Blockset installer package (.mltbx file)</li>
+        <li>Double-click the .mltbx file to install</li>
+        <li>MATLAB will automatically:
+            <ul>
+                <li>Extract files to toolbox directory</li>
+                <li>Add blockset to MATLAB path</li>
+                <li>Register block library</li>
+            </ul>
+        </li>
+        <li>Restart MATLAB to complete installation</li>
+    </ol>
+
+    <h2>Verify Installation</h2>
+
+    <h3>Check Blockset Installation</h3>
+    <p>In MATLAB command window, run:</p>
+    <code>which mchp_pic_set_target</code>
+    <p>You should see the path to the blockset installation.</p>
+
+    <h3>Check Compiler Detection</h3>
+    <ol>
+        <li>Open Simulink Library Browser</li>
+        <li>Find "MCHP Blockset" in library list</li>
+        <li>Open any example model</li>
+        <li>Check Configuration Parameters → Code Generation → System target file</li>
+        <li>Verify compiler paths are detected automatically</li>
+    </ol>
+
+    <h3>Test with Example Model</h3>
+    <ol>
+        <li>Open an example model from the blockset</li>
+        <li>Click "Build Model" (Ctrl+B)</li>
+        <li>Check for successful code generation and compilation</li>
+        <li>Verify .hex/.elf files are created</li>
+    </ol>
+
+    <div class="note">
+        <strong>Tip:</strong> If compilers are not auto-detected, manually set compiler paths in MATLAB preferences or model configuration.
+    </div>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Compiler Not Found</h3>
+    <ul>
+        <li>Verify compiler is installed to default path</li>
+        <li>Check Windows PATH environment variable includes compiler bin folder</li>
+        <li>Manually set compiler path in model configuration parameters</li>
+    </ul>
+
+    <h3>Build Errors</h3>
+    <ul>
+        <li>Ensure all required MATLAB toolboxes are installed</li>
+        <li>Verify compiler version compatibility (XC-DSC v3.30+ for dsPIC33A)</li>
+        <li>Check MATLAB version compatibility</li>
+    </ul>
+
+    <h3>Path Issues</h3>
+    <ul>
+        <li>Run <code>rehash toolboxcache</code> in MATLAB</li>
+        <li>Restart MATLAB</li>
+        <li>Check for conflicts with other installed toolboxes</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <p>
+        <a href="quick_start.html">Quick Start Guide</a> |
+        <a href="supported_devices.html">Supported Devices</a> |
+        <a href="../user_guide/compiler_setup.html">Detailed Compiler Setup</a>
+    </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analog Signal Conditioning Blocks - MCHP Blockset Documentation</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>Analog Signal Conditioning Blocks</h1>
+        <p>Integrated analog peripherals for signal amplification, buffering, and voltage generation</p>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>›</span>
+        <a href="index.html">Block Reference</a>
+        <span>›</span>
+        <span>Analog Blocks</span>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+            <h2>Overview</h2>
+            <p>
+                Analog signal conditioning blocks provide access to integrated analog peripherals in Microchip microcontrollers,
+                enabling precision signal processing without external components. These blocks eliminate the need for discrete
+                amplifiers, comparators, and DACs in many applications, reducing BOM cost, board space, and improving signal integrity.
+            </p>
+
+            <div class="note">
+                <strong>Key Benefits:</strong>
+                <ul>
+                    <li>Integrated signal chain reduces external component count</li>
+                    <li>Direct connection to ADC for optimized analog front-end</li>
+                    <li>Software-configurable gain and operating modes</li>
+                    <li>Low noise and high precision for measurement applications</li>
+                    <li>Calibration capabilities for enhanced accuracy</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Available Blocks</h2>
+
+            <div class="block-grid">
+                <a href="analog/MCHP_HighSpeed_AnalogComparator.html" class="block-card">
+                    <h3>High-Speed Analog Comparator</h3>
+                    <p>Ultra-fast voltage comparison with configurable thresholds and hysteresis</p>
+                    <ul class="block-features">
+                        <li>Response time: 10-50 ns</li>
+                        <li>Internal DAC reference</li>
+                        <li>Window comparison mode</li>
+                        <li>PWM blanking support</li>
+                    </ul>
+                    <div>
+                        <span class="chip-badge">dsPIC33C</span>
+                        <span class="chip-badge">dsPIC33CH</span>
+                        <span class="chip-badge">dsPIC33CK</span>
+                    </div>
+                </a>
+
+                <a href="analog/MCHP_HighSpeed_AnalogComparator_wSlope.html" class="block-card">
+                    <h3>Analog Comparator with Slope</h3>
+                    <p>Enhanced comparator with slope compensation for current-mode control</p>
+                    <ul class="block-features">
+                        <li>Built-in slope generator</li>
+                        <li>Peak current mode control</li>
+                        <li>Integrated with PWM</li>
+                        <li>Power supply applications</li>
+                    </ul>
+                    <div>
+                        <span class="chip-badge">dsPIC33C</span>
+                        <span class="chip-badge">dsPIC33CH</span>
+                        <span class="chip-badge">dsPIC33CK</span>
+                    </div>
+                </a>
+
+                <a href="analog/op_amp.html" class="block-card">
+                    <h3>Operational Amplifier</h3>
+                    <p>Integrated op-amps for signal buffering and amplification</p>
+                    <ul class="block-features">
+                        <li>Unity gain buffer mode</li>
+                        <li>Non-inverting amplifier</li>
+                        <li>Differential input support</li>
+                        <li>Rail-to-rail operation</li>
+                    </ul>
+                    <div>
+                        <span class="chip-badge">dsPIC33C</span>
+                        <span class="chip-badge">dsPIC33CH</span>
+                        <span class="chip-badge">dsPIC33CK</span>
+                        <span class="chip-badge">dsPIC33A</span>
+                    </div>
+                </a>
+
+                <a href="analog/pga.html" class="block-card">
+                    <h3>Programmable Gain Amplifier</h3>
+                    <p>Digitally-controlled gain amplifier with calibration</p>
+                    <ul class="block-features">
+                        <li>Gains: 1×, 2×, 4×, 8×, 16×, 32×</li>
+                        <li>Runtime gain adjustment</li>
+                        <li>Single-ended/differential</li>
+                        <li>Offset/gain calibration</li>
+                    </ul>
+                    <div>
+                        <span class="chip-badge">dsPIC33C</span>
+                        <span class="chip-badge">dsPIC33CH</span>
+                        <span class="chip-badge">dsPIC33CK</span>
+                    </div>
+                </a>
+
+                <a href="analog/dac_samx.html" class="block-card">
+                    <h3>Digital-to-Analog Converter</h3>
+                    <p>High-performance DAC for waveform generation and voltage output</p>
+                    <ul class="block-features">
+                        <li>10-bit or 12-bit resolution</li>
+                        <li>Dual-channel output</li>
+                        <li>Differential mode support</li>
+                        <li>Up to 1 MSPS update rate</li>
+                    </ul>
+                    <div>
+                        <span class="chip-badge">SAM E5x</span>
+                        <span class="chip-badge">SAM E7x</span>
+                        <span class="chip-badge">SAM C2x</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Block Selection Guide</h2>
+
+            <h3>By Application Type</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Application</th>
+                    <th>Recommended Block</th>
+                    <th>Key Features</th>
+                </tr>
+                <tr>
+                    <td><strong>Overcurrent Protection</strong></td>
+                    <td>High-Speed Analog Comparator</td>
+                    <td>Ultra-fast response (10-50 ns), PWM shutdown capability</td>
+                </tr>
+                <tr>
+                    <td><strong>Peak Current Mode Control</strong></td>
+                    <td>Analog Comparator with Slope</td>
+                    <td>Built-in slope compensation, power supply optimization</td>
+                </tr>
+                <tr>
+                    <td><strong>Sensor Signal Buffering</strong></td>
+                    <td>Operational Amplifier</td>
+                    <td>High input impedance, unity gain buffer, low noise</td>
+                </tr>
+                <tr>
+                    <td><strong>Variable Gain Amplification</strong></td>
+                    <td>Programmable Gain Amplifier</td>
+                    <td>Digital gain control (1-32×), automatic ranging</td>
+                </tr>
+                <tr>
+                    <td><strong>Precision Voltage Reference</strong></td>
+                    <td>DAC SAMx</td>
+                    <td>12-bit resolution, stable DC output, calibration</td>
+                </tr>
+                <tr>
+                    <td><strong>Waveform Generation</strong></td>
+                    <td>DAC SAMx</td>
+                    <td>Up to 1 MSPS, arbitrary waveforms, DMA support</td>
+                </tr>
+                <tr>
+                    <td><strong>Differential Current Sensing</strong></td>
+                    <td>PGA or Op-Amp</td>
+                    <td>Common-mode noise rejection, high gain options</td>
+                </tr>
+                <tr>
+                    <td><strong>Window Comparison</strong></td>
+                    <td>High-Speed Analog Comparator</td>
+                    <td>Dual threshold detection, hysteresis control</td>
+                </tr>
+            </table>
+
+            <h3>By Device Family</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Device Family</th>
+                    <th>Available Blocks</th>
+                    <th>Typical Applications</th>
+                </tr>
+                <tr>
+                    <td><strong>dsPIC33C/CH/CK</strong></td>
+                    <td>
+                        • High-Speed Comparator<br>
+                        • Comparator with Slope<br>
+                        • Op-Amp<br>
+                        • PGA
+                    </td>
+                    <td>
+                        Motor control, power conversion, current sensing,
+                        overcurrent protection, signal conditioning
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>dsPIC33A</strong></td>
+                    <td>
+                        • Op-Amp (enhanced version)<br>
+                    </td>
+                    <td>
+                        Advanced motor control, multi-channel signal processing,
+                        precision instrumentation
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>SAM E5x/E7x/C2x</strong></td>
+                    <td>
+                        • DAC (10/12-bit)<br>
+                    </td>
+                    <td>
+                        Audio generation, precision voltage references,
+                        waveform synthesis, test equipment
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content-card">
+            <h2>Signal Chain Integration</h2>
+
+            <h3>Typical Analog Signal Chains</h3>
+
+            <h4>1. Sensor to ADC Chain (Amplification)</h4>
+            <div class="info">
+                <strong>Signal Path:</strong> Sensor → Op-Amp/PGA → ADC<br>
+                <strong>Purpose:</strong> Amplify weak sensor signals to ADC input range<br>
+                <strong>Blocks Used:</strong>
+                <ul>
+                    <li><strong>Op-Amp:</strong> Fixed gain buffer or amplifier (unity to ~100×)</li>
+                    <li><strong>PGA:</strong> Variable gain (1-32×) with runtime adjustment</li>
+                    <li><strong>ADC:</strong> High-speed SAR or Sigma-Delta converter</li>
+                </ul>
+                <strong>Example:</strong> Thermocouple (5mV) → Op-Amp (20×) → 100mV → ADC
+            </div>
+
+            <h4>2. Current Sensing Chain (Protection)</h4>
+            <div class="info">
+                <strong>Signal Path:</strong> Shunt Resistor → PGA/Op-Amp → Comparator → PWM Shutdown<br>
+                <strong>Purpose:</strong> Motor overcurrent protection with fast response<br>
+                <strong>Blocks Used:</strong>
+                <ul>
+                    <li><strong>PGA/Op-Amp:</strong> Amplify shunt voltage (10-50×)</li>
+                    <li><strong>Comparator:</strong> Fast threshold detection (10-50 ns)</li>
+                    <li><strong>PWM:</strong> Automatic shutdown on fault</li>
+                </ul>
+                <strong>Example:</strong> 10A motor → 0.01Ω shunt → 100mV → PGA (32×) → 3.2V → Comparator (3V threshold) → PWM shutdown
+            </div>
+
+            <h4>3. DAC to Analog Output Chain</h4>
+            <div class="info">
+                <strong>Signal Path:</strong> DAC → Op-Amp Buffer → External Load<br>
+                <strong>Purpose:</strong> Drive low-impedance loads or extend voltage range<br>
+                <strong>Blocks Used:</strong>
+                <ul>
+                    <li><strong>DAC:</strong> Generate precision voltage (0-3.3V, 12-bit)</li>
+                    <li><strong>Op-Amp:</strong> Buffer DAC output for current drive capability</li>
+                    <li><strong>External:</strong> Optional scaling or offset circuitry</li>
+                </ul>
+                <strong>Example:</strong> DAC (0-3.3V) → Op-Amp buffer → ±10V driver circuit → Actuator control
+            </div>
+
+            <h4>4. Differential Measurement Chain</h4>
+            <div class="info">
+                <strong>Signal Path:</strong> Differential Sensor → PGA (Diff) → ADC<br>
+                <strong>Purpose:</strong> High common-mode noise rejection<br>
+                <strong>Blocks Used:</strong>
+                <ul>
+                    <li><strong>PGA:</strong> Differential input mode for noise rejection</li>
+                    <li><strong>ADC:</strong> Single-ended input referenced to ground</li>
+                </ul>
+                <strong>Example:</strong> Load cell (±10mV differential + 2V common-mode) → PGA (16×, differential) → 160mV (common-mode rejected) → ADC
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Design Considerations</h2>
+
+            <h3>Precision and Accuracy</h3>
+            <ul>
+                <li><strong>Offset Voltage:</strong> Op-Amp/PGA input offset typically ±1-5 mV (varies by device)</li>
+                <li><strong>Gain Error:</strong> PGA gain accuracy typically ±1-3% (calibration improves to ±0.1%)</li>
+                <li><strong>Temperature Drift:</strong> Consider offset/gain drift over operating temperature range</li>
+                <li><strong>Calibration:</strong> Use software calibration for critical accuracy requirements</li>
+                <li><strong>Reference Stability:</strong> DAC/Comparator accuracy depends on reference voltage stability</li>
+            </ul>
+
+            <h3>Noise Performance</h3>
+            <ul>
+                <li><strong>Input Noise:</strong> Op-Amp/PGA typically 10-50 nV/√Hz noise density</li>
+                <li><strong>PSRR:</strong> Power supply rejection ratio -40 to -80 dB (frequency-dependent)</li>
+                <li><strong>CMRR:</strong> Common-mode rejection ratio 60-100 dB for differential inputs</li>
+                <li><strong>Filtering:</strong> Add RC input filters to reduce high-frequency noise</li>
+                <li><strong>Layout:</strong> Proper PCB layout critical for low-noise performance</li>
+            </ul>
+
+            <h3>Speed and Bandwidth</h3>
+            <ul>
+                <li><strong>Comparator:</strong> 10-50 ns response time for overcurrent protection</li>
+                <li><strong>Op-Amp:</strong> 1-10 MHz bandwidth (gain-bandwidth product limits high-frequency gain)</li>
+                <li><strong>PGA:</strong> Similar to op-amp bandwidth, varies with gain setting</li>
+                <li><strong>DAC:</strong> 1 MSPS max update rate (SAM E5x/E7x), 350 kSPS (SAM C2x)</li>
+                <li><strong>Settling Time:</strong> Allow 1-10 μs settling time after gain/output changes</li>
+            </ul>
+
+            <h3>PCB Layout Best Practices</h3>
+            <ul>
+                <li><strong>Ground Plane:</strong> Use solid analog ground plane under analog circuitry</li>
+                <li><strong>Separation:</strong> Separate analog and digital sections, single-point ground connection</li>
+                <li><strong>Short Traces:</strong> Keep analog signal traces as short as possible (&lt;1 inch preferred)</li>
+                <li><strong>Decoupling:</strong> 100nF ceramic capacitor close to each analog VDD pin (&lt;5mm)</li>
+                <li><strong>Guard Traces:</strong> Surround sensitive inputs with grounded guard traces</li>
+                <li><strong>Shielding:</strong> Route analog signals away from switching noise (PWM, clocks, digital I/O)</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Application Examples</h2>
+
+            <h3>Motor Control Signal Chain</h3>
+            <ul>
+                <li><strong>Phase Current Sensing:</strong> Shunt resistor → PGA (32×) → ADC (synchronized with PWM)</li>
+                <li><strong>Overcurrent Protection:</strong> PGA output → Comparator (threshold) → PWM fault shutdown</li>
+                <li><strong>DC Bus Voltage:</strong> Resistor divider → Op-Amp buffer → ADC</li>
+                <li><strong>Command Input:</strong> External analog → Op-Amp buffer → ADC (speed/torque setpoint)</li>
+            </ul>
+
+            <h3>Power Supply Applications</h3>
+            <ul>
+                <li><strong>Peak Current Mode:</strong> Current sense → Comparator with Slope → PWM modulation</li>
+                <li><strong>Voltage Regulation:</strong> Output voltage → ADC → PID controller → DAC → Error amplifier</li>
+                <li><strong>Load Monitoring:</strong> Current/voltage → Op-Amp/PGA → ADC → Protection logic</li>
+            </ul>
+
+            <h3>Data Acquisition Systems</h3>
+            <ul>
+                <li><strong>Multi-Channel Input:</strong> Sensors → PGA (auto-ranging) → Multiplexed ADC</li>
+                <li><strong>Differential Inputs:</strong> Bridge sensors → PGA (differential) → ADC</li>
+                <li><strong>Calibration DAC:</strong> DAC → Known voltage → ADC (offset/gain calibration)</li>
+            </ul>
+
+            <h3>Audio and Waveform Generation</h3>
+            <ul>
+                <li><strong>Audio Output:</strong> DAC (1 kHz-20 kHz) → Op-Amp buffer → Speaker/Line out</li>
+                <li><strong>Function Generator:</strong> DAC (DMA-based) → Op-Amp amplifier → Arbitrary waveforms</li>
+                <li><strong>Tone Generation:</strong> DAC (sine table) → RC filter → Audio tone</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Block Reference</a>
+    </div>
+    </div>
+</body>
+</html>

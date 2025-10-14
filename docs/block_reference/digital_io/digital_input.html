@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Digital_Input - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./digital_io.html">Digital I/O Blocks</a> &gt;
+        MCHP_Digital_Input
+    </div>
+
+    <h1>MCHP_Digital_Input - Digital Input Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/DigitalInput.svg"
+             alt="DigitalInput Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/DigitalInput.png';">
+        <div class="block-image-caption">
+            DigitalInput Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Digital_Input</strong> block reads the state of digital input pins from any available GPIO port on Microchip microcontrollers. The block supports configurable electrical characteristics including pull-up and pull-down resistors, and provides flexible output formats for easy integration into Simulink models.</p>
+
+    <p><strong>Key Features:</strong></p>
+    <ul>
+        <li>Read from any available GPIO port (A through K, device-dependent)</li>
+        <li>Select individual pins or groups of pins from the chosen port</li>
+        <li>Configure electrical characteristics: pull-up, pull-down, or floating (dsPIC33C/33A)</li>
+        <li>Output data as individual boolean signals or packed uint16/uint32</li>
+        <li>Automatic pin availability checking based on selected chip</li>
+        <li>Support for 16-bit (dsPIC/PIC24) and 32-bit (PIC32/ARM) port widths</li>
+    </ul>
+
+    <h2>Device Support</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Family</th>
+                <th>Basic GPIO</th>
+                <th>Pull-up/Pull-down</th>
+                <th>Port Width</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dsPIC30F</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+                <td>Basic TRIS/PORT registers</td>
+            </tr>
+            <tr>
+                <td>dsPIC33F</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+                <td>Standard GPIO operation</td>
+            </tr>
+            <tr>
+                <td>dsPIC33E</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+                <td>PPS support for remappable pins</td>
+            </tr>
+            <tr>
+                <td>dsPIC33C/CH/CK</td>
+                <td>✓</td>
+                <td>✓ CNPU/CNPD</td>
+                <td>16-bit</td>
+                <td>Full electrical configuration</td>
+            </tr>
+            <tr>
+                <td>dsPIC33A</td>
+                <td>✓</td>
+                <td>✓ CNPU/CNPD</td>
+                <td>16-bit</td>
+                <td>Latest family, full features</td>
+            </tr>
+            <tr>
+                <td>PIC24F/H</td>
+                <td>✓</td>
+                <td>Device-dependent</td>
+                <td>16-bit</td>
+                <td>Similar to dsPIC33F</td>
+            </tr>
+            <tr>
+                <td>PIC32MK/MZ/MX</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>32-bit</td>
+                <td>32-bit wide ports</td>
+            </tr>
+            <tr>
+                <td>SAM (ARM)</td>
+                <td>✓</td>
+                <td>Device-dependent</td>
+                <td>32-bit</td>
+                <td>PIO controller</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Port Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PORT</strong></td>
+                <td>GPIO port selection. Dynamic popup shows only available ports for selected chip with pin ranges.</td>
+                <td>A, B, C, D, E, F, G, H, J, K<br>(device-dependent)</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td><strong>PIN</strong></td>
+                <td>Pin index selection within the port. Accepts individual pins or arrays. Invalid pins are automatically removed with warnings.</td>
+                <td>[0:15] for 16-bit<br>[0:31] for 32-bit</td>
+                <td>[0]</td>
+            </tr>
+            <tr>
+                <td><strong>PACK</strong></td>
+                <td>Output data format selection.</td>
+                <td>'on' - Packed uint16/uint32<br>'off' - Individual booleans</td>
+                <td>'off'</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Electrical Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>INPUT_PIN_MODE</strong></td>
+                <td>Electrical characteristics of input pins. Controls internal pull-up/pull-down resistors.</td>
+                <td>'Floating'<br>'Pull-up'<br>'Pull-down'</td>
+                <td>dsPIC33C/33A only<br>(MCHP.CN.type == 2)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> The INPUT_PIN_MODE parameter is only visible for newer chip families (dsPIC33C/33A) that support CNPU/CNPD registers. For older families, pins are always floating unless configured externally.
+    </div>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Register Configuration (dsPIC/PIC24)</h3>
+    <pre><code>// Configure pins as inputs (TRIS register)
+// Bit = 1 configures pin as input
+TRISA |= (1 &lt;&lt; pin_number);
+
+// Optional: Configure pull-up resistor (dsPIC33C/A only)
+// CNPU = Change Notification Pull-Up register
+CNPUA |= (1 &lt;&lt; pin_number);  // Enable pull-up
+
+// Optional: Configure pull-down resistor (dsPIC33C/A only)
+// CNPD = Change Notification Pull-Down register
+CNPDA |= (1 &lt;&lt; pin_number);  // Enable pull-down
+
+// Read port state
+value = PORTA;  // Read PORT register (not LAT)</code></pre>
+
+    <h3>Register Configuration (PIC32)</h3>
+    <pre><code>// Configure pins as inputs (TRIS register)
+TRISASET = (1 &lt;&lt; pin_number);  // Atomic set operation
+
+// Read port state
+value = PORTA;  // Read PORT register</code></pre>
+
+    <h3>MCHP_PORT Format String</h3>
+    <p>The block generates an internal MCHP_PORT descriptor for pin management:</p>
+    <pre><code>// Format: {Description}{ShortCode}BlockType:PortType:PortCode;Modifiers
+{Digital In}{DIN}2:0:A5;         // Input pin A5, floating
+{Digital In}{DIN}2:0:B3;,PU      // Input pin B3, pull-up enabled
+{Digital In}{DIN}2:0:C7;,PD      // Input pin C7, pull-down enabled
+
+// BlockType: 2 = Digital Input
+// PortType: 0 = Digital Input
+// PortCode: Port letter + pin number (e.g., A5, B3)
+// Modifiers: PU (pull-up), PD (pull-down)</code></pre>
+
+    <h3>RTWdata Structure for TLC Code Generation</h3>
+    <pre><code>// Data passed to TLC for embedded code generation
+RTWdata.Port = 'A';              // Port letter
+RTWdata.PortNum = '0';           // Port number (A=0, B=1, ...)
+RTWdata.Pins = '[0 1 2]';        // Array of pin indices
+RTWdata.Pack_Flag = '1';         // 1 = packed, 0 = individual
+RTWdata.Simultaneous_Flag = '0'; // Not used for input
+RTWdata.PID = '10';              // Peripheral ID (ARM only)</code></pre>
+
+    <h2>Block Output Configuration</h2>
+
+    <h3>Individual Output Mode (PACK = 'off')</h3>
+    <p>Each selected pin creates a separate boolean output port. Port labels use the format: <code>PortPin</code> (e.g., A0, A1, B5).</p>
+    <pre><code>// Example: PIN = [0 1 2 3]
+// Creates 4 boolean outputs:
+Output 1: A0 (boolean)
+Output 2: A1 (boolean)
+Output 3: A2 (boolean)
+Output 4: A3 (boolean)</code></pre>
+
+    <h3>Packed Output Mode (PACK = 'on')</h3>
+    <p>All selected pins are combined into a single uint16 (16-bit ports) or uint32 (32-bit ports) output. Bit positions correspond to pin numbers.</p>
+    <pre><code>// Example: PORT = 'A', PIN = [0 2 4 6]
+// Creates 1 uint16 output:
+Output: A (uint16)
+// Bit 0 = PA0 state
+// Bit 2 = PA2 state
+// Bit 4 = PA4 state
+// Bit 6 = PA6 state</code></pre>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: Button Inputs with Pull-up Resistors</h3>
+    <pre><code>// Application: Three pushbuttons with internal pull-ups
+// Hardware: Buttons connected between pins and GND
+
+Block Parameters:
+PORT: 'B'
+PIN: [0 1 2]
+PACK: 'off'
+INPUT_PIN_MODE: 'Pull-up'
+
+Result:
+- 3 boolean outputs: B0, B1, B2
+- Logic '1' when button not pressed (pulled high)
+- Logic '0' when button pressed (grounded)
+- No external resistors required</code></pre>
+
+    <h3>Example 2: Parallel 8-bit Bus Reading</h3>
+    <pre><code>// Application: Read 8-bit data bus
+// Hardware: External device driving 8 data lines
+
+Block Parameters:
+PORT: 'C'
+PIN: [0 1 2 3 4 5 6 7]
+PACK: 'on'
+INPUT_PIN_MODE: 'Floating'
+
+Result:
+- Single uint16 output 'C'
+- Bits [7:0] contain bus data
+- Read entire bus in single operation
+- Efficient for parallel communication</code></pre>
+
+    <h3>Example 3: Sensor Interfacing with Pull-down</h3>
+    <pre><code>// Application: Digital sensors with open-collector outputs
+// Hardware: Sensors pull output low when active
+
+Block Parameters:
+PORT: 'D'
+PIN: [4 5 6]
+PACK: 'off'
+INPUT_PIN_MODE: 'Pull-down'
+
+Result:
+- 3 boolean outputs: D4, D5, D6
+- Logic '0' when sensor inactive (pulled down)
+- Logic '1' when sensor active (driven high)
+- Internal pull-downs ensure defined state</code></pre>
+
+    <h3>Example 4: Multi-port Reading for Complex Systems</h3>
+    <pre><code>// Application: Read encoder signals and limit switches
+// Hardware: Various digital inputs on different ports
+
+// Block 1: Encoder A/B signals
+PORT: 'E', PIN: [0 1], PACK: 'off'
+// Outputs: E0 (Encoder A), E1 (Encoder B)
+
+// Block 2: Limit switches with pull-up
+PORT: 'F', PIN: [0 1 2 3], PACK: 'on', INPUT_PIN_MODE: 'Pull-up'
+// Output: F (uint16, bits [3:0] = switch states)
+
+// Block 3: Emergency stop button
+PORT: 'G', PIN: [15], PACK: 'off', INPUT_PIN_MODE: 'Pull-up'
+// Output: G15 (boolean)</code></pre>
+
+    <h2>Pin Availability and Validation</h2>
+
+    <div class="note">
+        <strong>Automatic Pin Validation:</strong> The block automatically checks pin availability against the selected chip's capabilities. Unavailable pins are removed with console warnings.
+    </div>
+
+    <h3>Example Console Output</h3>
+    <pre><code>Port B Infos:
+   Indx (B)  ==> 0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
+   Chip Pins ==> 4   5   6   7  14  15  16  17  18  21  22  23  24  25  26  27
+
+Warning: Pin B10 is not available on chip dsPIC33EP128MC504.
+Warning: 2 Pins: B [ 10 13 ] are not available on chip dsPIC33EP128MC504.</code></pre>
+
+    <h3>Port Prompt Updates</h3>
+    <p>The PORT parameter dynamically updates its prompt to show available pins:</p>
+    <pre><code>// For dsPIC33AK128MC106:
+PORT options:
+"A   [ 0 : 15 ]"  → All 16 pins available
+"B   [ 0  2  3  4  5  6  7  8  9  10  11 ]"  → Sparse availability
+"C   [ 0 : 15 ]"  → All 16 pins available</code></pre>
+
+    <h2>Electrical Characteristics</h2>
+
+    <h3>Input Specifications (dsPIC33C/33A)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Symbol</th>
+                <th>Min</th>
+                <th>Typ</th>
+                <th>Max</th>
+                <th>Units</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Input High Voltage</td>
+                <td>V<sub>IH</sub></td>
+                <td>0.8 × V<sub>DD</sub></td>
+                <td>-</td>
+                <td>V<sub>DD</sub></td>
+                <td>V</td>
+            </tr>
+            <tr>
+                <td>Input Low Voltage</td>
+                <td>V<sub>IL</sub></td>
+                <td>V<sub>SS</sub></td>
+                <td>-</td>
+                <td>0.15 × V<sub>DD</sub></td>
+                <td>V</td>
+            </tr>
+            <tr>
+                <td>Pull-up Resistance</td>
+                <td>R<sub>PU</sub></td>
+                <td>10</td>
+                <td>50</td>
+                <td>400</td>
+                <td>kΩ</td>
+            </tr>
+            <tr>
+                <td>Pull-down Resistance</td>
+                <td>R<sub>PD</sub></td>
+                <td>10</td>
+                <td>50</td>
+                <td>400</td>
+                <td>kΩ</td>
+            </tr>
+            <tr>
+                <td>Input Leakage Current</td>
+                <td>I<sub>IL</sub></td>
+                <td>-</td>
+                <td>-</td>
+                <td>±5</td>
+                <td>μA</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Warning:</strong> Pull-up/pull-down resistors are weak (typically 50kΩ). For noisy environments or long cable runs, use external resistors with lower values (1-10kΩ) for better noise immunity.
+    </div>
+
+    <h2>Timing Considerations</h2>
+
+    <h3>Sampling Rate</h3>
+    <p>The block samples input pins at the Simulink sample time specified in the model. For accurate signal capture:</p>
+    <ul>
+        <li><strong>Nyquist Criterion:</strong> Sample rate must be at least 2× the highest input frequency</li>
+        <li><strong>Recommended:</strong> 5-10× oversampling for reliable edge detection</li>
+        <li><strong>Debouncing:</strong> Implement software debouncing for mechanical switches (typically 10-50ms delay)</li>
+    </ul>
+
+    <h3>Input Synchronization</h3>
+    <pre><code>// Reading occurs during task execution
+// Synchronous to base sample time
+// No asynchronous interrupt capture
+
+// For time-critical inputs, use Input Capture (IC) block instead</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues and Solutions</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Possible Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Floating/unstable readings</td>
+                <td>No pull-up/pull-down configured</td>
+                <td>Enable INPUT_PIN_MODE or add external resistors</td>
+            </tr>
+            <tr>
+                <td>Pin not reading expected value</td>
+                <td>Pin configured as analog or peripheral</td>
+                <td>Check ANSEL/peripheral registers, ensure digital I/O mode</td>
+            </tr>
+            <tr>
+                <td>"Pin not available" warning</td>
+                <td>Selected pin doesn't exist on chip</td>
+                <td>Verify chip pinout, select valid pins only</td>
+            </tr>
+            <tr>
+                <td>INPUT_PIN_MODE not visible</td>
+                <td>Older chip family (30F/33F/33E)</td>
+                <td>Use external pull-up/pull-down resistors</td>
+            </tr>
+            <tr>
+                <td>Packed output shows wrong bits</td>
+                <td>Endianness or bit position confusion</td>
+                <td>Verify bit position = pin number in uint16/uint32</td>
+            </tr>
+            <tr>
+                <td>Missing some pin states</td>
+                <td>Pins removed due to unavailability</td>
+                <td>Check console warnings, select available pins only</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Debugging Tips</h3>
+    <div class="note">
+        <strong>Port Information Display:</strong> When opening the block GUI with simulation stopped, port availability information is displayed in the MATLAB console:
+        <pre><code>Port A Infos:
+   Indx (A)  ==>   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
+   Chip Pins ==>   4   5   6   7  14  15  16  17  18  21  22  23  24  25  26  27</code></pre>
+        This helps identify available pins and their physical pin numbers.
+    </div>
+
+    <h2>Advanced Usage</h2>
+
+    <h3>Mixed Input/Output on Same Port</h3>
+    <pre><code>// Scenario: PORT A used for both input and output
+// Safe practice: Different pins for I/O
+
+Digital_Input Block:
+PORT: 'A', PIN: [0 1 2 3]  // Lower nibble as inputs
+
+Digital_Output Block:
+PORT: 'A', PIN: [8 9 10 11]  // Upper nibble as outputs
+
+// TRIS register will be configured correctly:
+// TRISA = 0x0F0F (bits [3:0] = 1 for input, bits [11:8] = 0 for output)</code></pre>
+
+    <h3>Integration with State Machines</h3>
+    <pre><code>// Use packed mode for efficient state machine inputs
+Digital_Input Block:
+PORT: 'B', PIN: [0 1 2 3], PACK: 'on'
+
+// In Stateflow chart:
+// Input: sensor_state (uint16)
+// Decode bits for multiple conditions:
+if bitand(sensor_state, 0x0001)  % Bit 0: Sensor 1
+if bitand(sensor_state, 0x0002)  % Bit 1: Sensor 2
+if bitand(sensor_state, 0x0004)  % Bit 2: Sensor 3
+if bitand(sensor_state, 0x0008)  % Bit 3: Sensor 4</code></pre>
+
+    <h2>Code Generation Details</h2>
+
+    <h3>Generated Initialization Code</h3>
+    <pre><code>// In model_initialize() function:
+
+// Configure TRIS (input direction)
+TRISA |= 0x0007;  // Pins A0, A1, A2 as inputs (bits 0,1,2 = 1)
+
+// Configure pull-ups (if enabled)
+#if defined(_CNPUA_CNPUA0_MASK)  // dsPIC33C/A only
+CNPUA |= 0x0007;  // Enable pull-ups on A0, A1, A2
+#endif</code></pre>
+
+    <h3>Generated Runtime Code</h3>
+    <pre><code>// In task execution function:
+
+// Individual output mode
+rtB.A0 = (PORTA >> 0) & 0x01;  // Extract bit 0
+rtB.A1 = (PORTA >> 1) & 0x01;  // Extract bit 1
+rtB.A2 = (PORTA >> 2) & 0x01;  // Extract bit 2
+
+// Packed output mode
+rtB.A = PORTA & 0x0007;  // Mask bits [2:0]</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="digital_output.html">MCHP_Digital_Output</a> - Master digital output block with optional read-back</li>
+        <li><a href="digital_output_write.html">MCHP_Digital_Output_Write</a> - Direct digital output writing</li>
+        <li><a href="digital_output_read.html">MCHP_Digital_Output_Read</a> - Read LAT register state</li>
+        <li><a href="../timers/input_capture.html">MCHP_IC - Input Capture</a> - Time-stamped edge detection</li>
+        <li><a href="../interrupts/change_notification.html">MCHP_CN - Change Notification</a> - Interrupt-driven input monitoring</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../../getting_started/gpio_tutorial.html">GPIO Configuration Tutorial</a></li>
+        <li><a href="../../application_notes/debouncing.html">Software Debouncing Techniques</a></li>
+        <li><a href="../../hardware_reference/pin_mapping.html">Pin Mapping and PPS Guide</a></li>
+        <li>Microchip Device Datasheet - GPIO/PORT section</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p>Part of the <strong>MCHP Blockset</strong> for Model-Based Design with dsPIC, PIC32, and SAM microcontrollers.</p>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_PWM - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>MCHP_PWM - Standard PWM Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/pwm/PWM.svg"
+             alt="PWM Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/pwm/PWM.png';">
+        <div class="block-image-caption">
+            PWM Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+    <p>The MCHP_PWM block provides a standard Pulse Width Modulation (PWM) peripheral interface for dsPIC microcontrollers. This block configures and controls the basic PWM module found in dsPIC30F, dsPIC33F, and dsPIC33E families.</p>
+
+    <p>The PWM block supports up to 4 complementary PWM channel pairs with independent duty cycle control, dead-time insertion, fault protection, and special event triggers for ADC synchronization.</p>
+
+    <h2>Supported Device Families</h2>
+    <table>
+        <tr>
+            <th>Family</th>
+            <th>Devices</th>
+            <th>Features</th>
+        </tr>
+        <tr>
+            <td><strong>dsPIC30F</strong></td>
+            <td>All dsPIC30F devices with PWM module</td>
+            <td>Basic PWM, Dead-time A, Fault A</td>
+        </tr>
+        <tr>
+            <td><strong>dsPIC33F</strong></td>
+            <td>All dsPIC33F devices with PWM module</td>
+            <td>Basic PWM, Dead-time A, Fault A</td>
+        </tr>
+        <tr>
+            <td><strong>dsPIC33E</strong></td>
+            <td>dsPIC33EP devices with standard PWM</td>
+            <td>Enhanced PWM, Dead-time A/B, Fault A/B</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> For dsPIC33C/CH/CK families, use the <strong>MCHP_PWM_HighSpeed</strong> block instead. For dsPIC33A family, use the <strong>MCHP_PWM_HS_FEP</strong> block.
+    </div>
+
+    <h2>Key Features</h2>
+    <ul class="feature-list">
+        <li>Up to 4 complementary PWM channel pairs (PWM1H/L, PWM2H/L, PWM3H/L, PWM4H/L)</li>
+        <li>Edge-aligned or center-aligned (symmetric) PWM modes</li>
+        <li>Independent or master duty cycle control</li>
+        <li>Dead-time insertion with dual prescalers (A and B)</li>
+        <li>Dual fault inputs (Fault A and Fault B) with configurable pin states</li>
+        <li>Special event trigger for ADC synchronization</li>
+        <li>PWM override capability for direct output control</li>
+        <li>Support for duplicate port blocks (multiple duty cycle inputs for same PWM)</li>
+        <li>Immediate or synchronized update modes</li>
+    </ul>
+
+    <h2>Configuration Parameters</h2>
+
+    <h3>PWM Reference</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Values</th>
+        </tr>
+        <tr>
+            <td><code>PWM_REF</code></td>
+            <td>PWM peripheral reference (visible only if multiple PWM modules available)</td>
+            <td>1, 2, or Duplicate Ports for PWM x</td>
+        </tr>
+    </table>
+
+    <h3>Basic Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Default</th>
+        </tr>
+        <tr>
+            <td><code>InitialPeriod</code></td>
+            <td>PWM period in seconds (max depends on prescaler and clock)</td>
+            <td>100e-6 (100 µs)</td>
+        </tr>
+        <tr>
+            <td><code>CAM</code></td>
+            <td>Center Aligned Mode (on/off)</td>
+            <td>off</td>
+        </tr>
+        <tr>
+            <td><code>IUE</code></td>
+            <td>Immediate Update Enable (on/off)</td>
+            <td>off</td>
+        </tr>
+        <tr>
+            <td><code>Channel</code></td>
+            <td>Enabled PWM channels (Low side)</td>
+            <td>[1 2 3 4]</td>
+        </tr>
+        <tr>
+            <td><code>ChannelHigh</code></td>
+            <td>Enabled PWM channels (High side, if separate control)</td>
+            <td>[1 2 3 4]</td>
+        </tr>
+    </table>
+
+    <h3>Dead Time Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Range</th>
+        </tr>
+        <tr>
+            <td><code>DeadTimePrescaleA</code></td>
+            <td>Dead-time duration for Prescaler A in seconds</td>
+            <td>0 to max (depends on clock)</td>
+        </tr>
+        <tr>
+            <td><code>DeadTimePrescaleB</code></td>
+            <td>Dead-time duration for Prescaler B in seconds (dsPIC33E only)</td>
+            <td>0 to max (depends on clock)</td>
+        </tr>
+        <tr>
+            <td><code>DTPWMxa/i</code></td>
+            <td>Select Prescaler A or B for each PWM channel (active/inactive side)</td>
+            <td>Prescaler A / Prescaler B</td>
+        </tr>
+    </table>
+
+    <h3>Fault Protection</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+        <tr>
+            <td><code>FAULTA_FLATM</code></td>
+            <td>Fault A mode</td>
+            <td>
+                • Fault cleared automatically<br>
+                • Use Re-Enable block input after Fault
+            </td>
+        </tr>
+        <tr>
+            <td><code>FaultA_PWMx_State</code></td>
+            <td>PWM output state during Fault A</td>
+            <td>
+                • Disabled<br>
+                • H/L ==> 00<br>
+                • H/L ==> 01<br>
+                • H/L ==> 10<br>
+                • H/L ==> 11
+            </td>
+        </tr>
+        <tr>
+            <td><code>PIN_FaultA</code></td>
+            <td>Fault A input pin (for remappable devices)</td>
+            <td>Pin selection popup</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> Fault B configuration is identical to Fault A but only available on dsPIC33E devices with extended PWM features.
+    </div>
+
+    <h3>Special Event Trigger</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>PxSECMP</code></td>
+            <td>Special event trigger time in seconds (typically for ADC sampling point)<br>
+                Set to -1 to disable</td>
+        </tr>
+        <tr>
+            <td><code>PxSECMPBlkInChk</code></td>
+            <td>Enable block input for dynamic event trigger control (on/off)</td>
+        </tr>
+    </table>
+
+    <h2>PWM-ADC Synchronization</h2>
+
+    <p>The standard PWM block provides a Special Event Trigger (<code>PxSECMP</code> / <code>SEVTCMP</code>) to synchronize ADC sampling with PWM generation. This is essential for accurate current and voltage sensing in motor control and power conversion applications.</p>
+
+    <h3>Synchronization Strategies</h3>
+
+    <p>While the standard PWM block offers simpler trigger capabilities compared to newer PWM variants, it supports the fundamental synchronization strategies required for motor control:</p>
+
+    <h4>Option 1: Timer-Based Trigger (Independent Sampling)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.png"
+                 alt="Timer-Based Trigger Strategy"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> General-purpose control with PWM-independent sampling.</p>
+
+    <p><strong>Configuration:</strong></p>
+    <ul>
+        <li>PWM runs autonomously</li>
+        <li>Timer triggers ADC at fixed rate</li>
+        <li>Control task executes after ADC completion</li>
+    </ul>
+
+    <p><strong>Limitations:</strong></p>
+    <ul>
+        <li>ADC may sample during switching transients</li>
+        <li>Not synchronized with PWM edges</li>
+        <li>Less accurate for current-mode control</li>
+    </ul>
+
+    <h4>Option 2: Timer → ADC → Task (Synchronized Acquisition)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.png"
+                 alt="Timer-ADC-Task Synchronization"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> Guaranteed fresh ADC data before control task.</p>
+
+    <p><strong>Configuration:</strong></p>
+    <ul>
+        <li>Timer triggers ADC conversion</li>
+        <li>ADC completion triggers control task</li>
+        <li>Zero-latency data acquisition</li>
+    </ul>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Control algorithm uses freshest possible data</li>
+        <li>Predictable timing</li>
+        <li>Suitable for non-motor feedback control</li>
+    </ul>
+
+    <h4>Option 3: PWM → ADC → Task (Motor Control Standard)</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.png"
+                 alt="PWM-ADC-Task Synchronization for Motor Control"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <p><strong>Use Case:</strong> Standard approach for motor control and power conversion - <strong>recommended for most applications</strong>.</p>
+
+    <p><strong>Key Benefits:</strong></p>
+    <ul>
+        <li><strong>Optimal sampling timing:</strong> Sample when low-side FET is ON</li>
+        <li><strong>Synchronized control rate:</strong> Matches PWM frequency automatically</li>
+        <li><strong>Accurate phase current sensing:</strong> Sample during shunt current flow</li>
+        <li><strong>Noise immunity:</strong> Avoid switching transients</li>
+    </ul>
+
+    <p><strong>Configuration Example (Center-Aligned PWM):</strong></p>
+    <pre><code>% In PWM block:
+InitialPeriod = 1/20e3;  % 20 kHz PWM frequency
+CAM = 'on';              % Center-aligned mode
+
+% Trigger ADC at PWM valley (center point - low-side FETs ON):
+PxSECMP = InitialPeriod / 2;  % Valley = 50% of period
+
+% In ADC block:
+Trigger_Source = 'PWM Special Event';
+Sample_Time = 'Inherited';  % ADC rate follows PWM (20 kHz)
+</code></pre>
+
+    <p><strong>Configuration Example (Edge-Aligned PWM):</strong></p>
+    <pre><code>% In PWM block:
+InitialPeriod = 1/20e3;  % 20 kHz PWM frequency
+CAM = 'off';             % Edge-aligned mode
+
+% Trigger ADC before period end (during low-side ON time):
+PxSECMP = InitialPeriod * 0.9;  % 90% of period
+
+% In ADC block:
+Trigger_Source = 'PWM Special Event';
+Sample_Time = 'Inherited';  % ADC rate follows PWM
+</code></pre>
+
+    <div class="note">
+        <strong>💡 Why Sample at PWM Valley?</strong>
+        <p>For center-aligned PWM in 3-phase motor control, the valley (center) is when all three low-side FETs are simultaneously ON. This is the <strong>only time</strong> when phase currents flow through shunt resistors, making it essential for accurate current measurement.</p>
+    </div>
+
+    <h4>Option 4: Multiple Triggers per PWM Period</h4>
+    <div style="text-align: center; margin: 20px 0;">
+        <picture>
+            <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.svg" type="image/svg+xml">
+            <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.png"
+                 alt="Multiple ADC Triggers per PWM Period"
+                 style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+        </picture>
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ Limited Support in Standard PWM:</strong>
+        <p>The standard PWM block provides only <strong>one special event trigger</strong> per PWM period. For applications requiring multiple ADC samples per PWM cycle (e.g., single shunt FOC), consider upgrading to:</p>
+        <ul>
+            <li><strong>MCHP_PWM_HighSpeed</strong> (dsPIC33C/CH/CK) - Multiple trigger outputs</li>
+            <li><strong>MCHP_PWM_HS_FEP</strong> (dsPIC33A) - Multiple triggers with fine edge positioning</li>
+            <li><strong>MCHP_MCPWM</strong> (PIC32MK) - Up to 3 triggers per PWM generator</li>
+        </ul>
+    </div>
+
+    <h3>Best Practices for Standard PWM</h3>
+
+    <table>
+        <tr>
+            <th>Application</th>
+            <th>Recommended Strategy</th>
+            <th>Key Settings</th>
+        </tr>
+        <tr>
+            <td><strong>3-Phase Motor FOC</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Center-aligned mode (CAM=on)<br>
+                • PxSECMP = InitialPeriod / 2<br>
+                • ADC Trigger = PWM Special Event
+            </td>
+        </tr>
+        <tr>
+            <td><strong>BLDC Motor Control</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Edge-aligned mode (CAM=off)<br>
+                • PxSECMP = InitialPeriod * 0.9<br>
+                • Sample during low-side conduction
+            </td>
+        </tr>
+        <tr>
+            <td><strong>DC-DC Buck Converter</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Edge-aligned mode<br>
+                • PxSECMP before period end<br>
+                • Sample output voltage
+            </td>
+        </tr>
+        <tr>
+            <td><strong>PFC Boost Converter</strong></td>
+            <td>PWM → ADC → Task (Option 3)</td>
+            <td>
+                • Edge-aligned mode<br>
+                • PxSECMP = InitialPeriod * 0.85<br>
+                • Sample during FET ON time
+            </td>
+        </tr>
+        <tr>
+            <td><strong>General Data Acquisition</strong></td>
+            <td>Timer → ADC → Task (Option 2)</td>
+            <td>
+                • Fixed sampling rate<br>
+                • Independent of PWM<br>
+                • Flexible timing
+            </td>
+        </tr>
+    </table>
+
+    <h3>Dynamic Event Trigger Control</h3>
+
+    <p>The standard PWM block supports runtime adjustment of the special event trigger point via the <code>EventTrig</code> block input (if <code>PxSECMPBlkInChk = on</code>):</p>
+
+    <pre><code>% Enable dynamic trigger control:
+PxSECMPBlkInChk = 'on';
+
+% In Simulink model:
+% Connect runtime trigger value to 'EventTrig' input
+% EventTrig value range: 0 to (PTPER * 2 - 1)
+
+% Example: Adaptive trigger for variable speed motor control
+EventTrig = max(0, min(PWM1max, round(BaseTime + SpeedCorrection)));
+</code></pre>
+
+    <p><strong>Use Cases:</strong></p>
+    <ul>
+        <li>Adaptive sampling point for variable PWM frequency</li>
+        <li>Sensorless FOC back-EMF sampling at optimal rotor position</li>
+        <li>Power converter sampling during specific switching states</li>
+    </ul>
+
+    <h3>Troubleshooting Synchronization Issues</h3>
+
+    <table>
+        <tr>
+            <th>Problem</th>
+            <th>Likely Cause</th>
+            <th>Solution</th>
+        </tr>
+        <tr>
+            <td>ADC samples during switching noise</td>
+            <td>Incorrect PxSECMP value</td>
+            <td>
+                • Center-aligned: Use PxSECMP = InitialPeriod / 2<br>
+                • Edge-aligned: Use PxSECMP = InitialPeriod * 0.85 to 0.95
+            </td>
+        </tr>
+        <tr>
+            <td>Phase currents read as zero</td>
+            <td>Sampling when low-side FETs OFF</td>
+            <td>
+                • Verify PxSECMP timing with oscilloscope<br>
+                • Ensure sufficient low-side on-time for shunt settling<br>
+                • Minimum duty cycle may be limited by shunt RC time constant
+            </td>
+        </tr>
+        <tr>
+            <td>Control task runs before ADC ready</td>
+            <td>Task triggered by timer, not ADC</td>
+            <td>Configure ADC interrupt to trigger task, not separate timer</td>
+        </tr>
+        <tr>
+            <td>Special event trigger not firing</td>
+            <td>PxSECMP = -1 (disabled)</td>
+            <td>Set PxSECMP to valid time value within PWM period</td>
+        </tr>
+        <tr>
+            <td>Erratic ADC timing</td>
+            <td>Dynamic EventTrig out of range</td>
+            <td>Clamp EventTrig value: 0 ≤ EventTrig ≤ (PTPER × 2 - 1)</td>
+        </tr>
+        <tr>
+            <td>Fault disables ADC trigger</td>
+            <td>PWM disabled during fault</td>
+            <td>
+                • Check Flt A/B outputs<br>
+                • Use latched fault with manual re-enable<br>
+                • Implement fallback timer trigger during fault
+            </td>
+        </tr>
+    </table>
+
+    <h3>Limitations Compared to Advanced PWM Blocks</h3>
+
+    <p>The standard PWM block has the following limitations for complex applications:</p>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Standard PWM (MCHP_PWM)</th>
+            <th>Advanced PWM (HS/FEP/MCPWM)</th>
+        </tr>
+        <tr>
+            <td><strong>Trigger Outputs</strong></td>
+            <td>1 per PWM module (shared)</td>
+            <td>Multiple independent triggers (3+ per channel)</td>
+        </tr>
+        <tr>
+            <td><strong>Single Shunt FOC</strong></td>
+            <td>Not supported (needs 2+ triggers)</td>
+            <td>Fully supported with precise timing</td>
+        </tr>
+        <tr>
+            <td><strong>Trigger Resolution</strong></td>
+            <td>Same as PWM resolution</td>
+            <td>Fine Edge Positioning (sub-cycle resolution)</td>
+        </tr>
+        <tr>
+            <td><strong>Fault Integration</strong></td>
+            <td>Basic (output state control)</td>
+            <td>Advanced (trigger inhibit, comparator integration)</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>💡 When to Upgrade:</strong>
+        <p>If your application requires multiple ADC samples per PWM cycle, consider migrating to <strong>MCHP_PWM_HighSpeed</strong> or <strong>MCHP_PWM_HS_FEP</strong>. These blocks offer significantly enhanced trigger capabilities while maintaining similar configuration interfaces.</p>
+    </div>
+
+    <h3>Related Blocks for Synchronization</h3>
+    <ul>
+        <li><a href="../adc/adc_standard.html"><strong>MCHP_ADC</strong></a> - Standard ADC with PWM special event trigger support</li>
+        <li><a href="../adc/adc_hs_sar.html"><strong>MCHP_ADC_HighSpeed_SAR</strong></a> - High-speed SAR ADC (dsPIC33E)</li>
+        <li><strong>MCHP_Interrupt</strong> - Configure interrupt priorities for ADC and control tasks</li>
+        <li><strong>MCHP_Scheduler_Options</strong> - Configure multitasking for synchronized control loops</li>
+    </ul>
+
+    <h2>Block Inputs</h2>
+    <table>
+        <tr>
+            <th>Input</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>Period *1/2</code></td>
+            <td>uint16</td>
+            <td>Optional global period input (if enabled). Value = PWM timer period × 2</td>
+        </tr>
+        <tr>
+            <td><code>DutyCycle 1..4</code></td>
+            <td>uint16</td>
+            <td>Duty cycle values for enabled channels (0 to Period*2-1)</td>
+        </tr>
+        <tr>
+            <td><code>EventTrig</code></td>
+            <td>uint16</td>
+            <td>Optional dynamic special event trigger value</td>
+        </tr>
+        <tr>
+            <td><code>OVDCON</code></td>
+            <td>uint16</td>
+            <td>Optional PWM override control register value</td>
+        </tr>
+        <tr>
+            <td><code>Fault A Re-Enable</code></td>
+            <td>boolean</td>
+            <td>Re-enable PWM after latched Fault A (if Fault A mode = latched)</td>
+        </tr>
+        <tr>
+            <td><code>Fault B Re-Enable</code></td>
+            <td>boolean</td>
+            <td>Re-enable PWM after latched Fault B (if Fault B mode = latched)</td>
+        </tr>
+    </table>
+
+    <h2>Block Outputs</h2>
+    <table>
+        <tr>
+            <th>Output</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>Flt A</code></td>
+            <td>boolean</td>
+            <td>Fault A status (1 = fault active)</td>
+        </tr>
+        <tr>
+            <td><code>Flt B</code></td>
+            <td>boolean</td>
+            <td>Fault B status (1 = fault active, dsPIC33E only)</td>
+        </tr>
+    </table>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Register Configuration</h3>
+    <p>The PWM block configures the following hardware registers:</p>
+
+    <table>
+        <tr>
+            <th>Register</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><code>PWMxCON1</code></td>
+            <td>PWM control register 1 (channel enable, output mode)</td>
+        </tr>
+        <tr>
+            <td><code>PWMxCON2</code></td>
+            <td>PWM control register 2 (update mode, OSYNC)</td>
+        </tr>
+        <tr>
+            <td><code>PxTCON</code></td>
+            <td>PWM time base control (enable, prescaler, mode)</td>
+        </tr>
+        <tr>
+            <td><code>PxTPER</code></td>
+            <td>PWM time base period register</td>
+        </tr>
+        <tr>
+            <td><code>PxDC1..PxDC4</code></td>
+            <td>PWM duty cycle registers (updated from block inputs)</td>
+        </tr>
+        <tr>
+            <td><code>PxDTCON1</code></td>
+            <td>Dead-time control register 1 (prescalers and values)</td>
+        </tr>
+        <tr>
+            <td><code>PxDTCON2</code></td>
+            <td>Dead-time control register 2 (prescaler selection per channel)</td>
+        </tr>
+        <tr>
+            <td><code>PxFLTACON</code></td>
+            <td>Fault A control register</td>
+        </tr>
+        <tr>
+            <td><code>PxFLTBCON</code></td>
+            <td>Fault B control register (dsPIC33E only)</td>
+        </tr>
+        <tr>
+            <td><code>PxSECMP / SEVTCMP</code></td>
+            <td>Special event compare value (ADC trigger point)</td>
+        </tr>
+        <tr>
+            <td><code>PxOVDCON</code></td>
+            <td>PWM override control (if OVDCON input enabled)</td>
+        </tr>
+    </table>
+
+    <h3>PWM Resolution</h3>
+    <p>The PWM block automatically calculates the optimal prescaler based on the requested period. The workspace variable <code>PWMxmax</code> is created to indicate the maximum duty cycle value:</p>
+
+    <pre><code>% For PWM1:
+PWM1max = (PTPER * 2 - 1);  % Maximum duty cycle value
+
+% Effective PWM frequency:
+f_PWM = FCY / (Prescaler * (PTPER + 1) * CAM_factor);
+% where CAM_factor = 1 for edge-aligned, 2 for center-aligned
+</code></pre>
+
+    <h3>Center Aligned Mode</h3>
+    <p>In center-aligned mode:</p>
+    <ul>
+        <li>The timer counts up to PTPER, then down to 0</li>
+        <li>Effective period is doubled: Period = 2 × PTPER × Prescaler / FCY</li>
+        <li>Special event trigger can occur during up-count or down-count phase</li>
+        <li>Enhanced PWM resolution for motor control applications</li>
+    </ul>
+
+    <h2>Usage Examples</h2>
+
+    <h3>Example 1: Basic 3-Phase Inverter Control</h3>
+    <pre><code>% Model setup:
+% - 3 PWM channels enabled (1, 2, 3)
+% - 20 kHz switching frequency
+% - Dead-time: 1 µs
+% - Center-aligned mode for reduced EMI
+
+InitialPeriod = 1/20000;  % 50 µs (20 kHz)
+CAM = 'on';               % Center-aligned
+DeadTimePrescaleA = 1e-6; % 1 µs dead-time
+
+% Block inputs:
+% DutyCycle 1..3: Connect to FOC algorithm outputs (0 to PWM1max)
+</code></pre>
+
+    <h3>Example 2: ADC Synchronized Sampling</h3>
+    <pre><code>% Sample ADC at PWM valley (50% of period):
+PxSECMP = InitialPeriod / 2;
+
+% In ADC block:
+% - Set trigger source to "PWM Special Event"
+% - ADC samples precisely at PWM valley for accurate current measurement
+</code></pre>
+
+    <h3>Example 3: Fault Protection</h3>
+    <pre><code>% Configure overcurrent protection:
+% FAULTA_FLATM = 'Use Re-Enable block input after Fault'
+% FaultA_PWM1_State = 'H/L ==> 00'  % All outputs low
+% FaultA_PWM2_State = 'H/L ==> 00'
+% FaultA_PWM3_State = 'H/L ==> 00'
+
+% Connect:
+% - Comparator output -> Fault A pin
+% - Fault clear logic -> 'Fault A Re-Enable' input
+% - 'Flt A' output -> LED or diagnostic logger
+</code></pre>
+
+    <h3>Example 4: Duplicate Port Block</h3>
+    <pre><code>% Use case: Different duty cycle update rates
+% 1. Place main PWM block with PWM_REF = 1
+% 2. Place duplicate PWM block, set PWM_REF = "Duplicate Ports for PWM 1"
+% 3. Configure different sample times:
+%    - Main block: Ts = 50e-6 (fast control loop)
+%    - Duplicate block: Ts = 1e-3 (slow modulation)
+</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Period Out of Range Warning</h3>
+    <div class="warning">
+        <strong>Warning:</strong> "Max Periode allowed is X using normal mode and Y using Center Aligned mode"
+    </div>
+    <p><strong>Cause:</strong> Requested period exceeds maximum achievable with available prescalers.</p>
+    <p><strong>Solution:</strong> Reduce the period or use center-aligned mode for 2× range extension.</p>
+
+    <h3>Dead-time Limitation</h3>
+    <div class="warning">
+        <strong>Warning:</strong> "PWM Max DeadTime A is set to X but the max possible value is Y"
+    </div>
+    <p><strong>Cause:</strong> Requested dead-time exceeds hardware limits.</p>
+    <p><strong>Solution:</strong> Reduce dead-time value or check FCY (instruction cycle frequency).</p>
+
+    <h3>No PWM Available Error</h3>
+    <div class="important">
+        <strong>Error:</strong> "Chip XXXXX does not have this type of PWM peripheral"
+    </div>
+    <p><strong>Cause:</strong> Selected chip has different PWM architecture.</p>
+    <p><strong>Solution:</strong> Use appropriate PWM block variant:
+        <ul>
+            <li><strong>MCHP_PWM_HighSpeed:</strong> for dsPIC33C/CH/CK</li>
+            <li><strong>MCHP_PWM_HS_FEP:</strong> for dsPIC33A</li>
+            <li><strong>MCHP_MCPWM:</strong> for Motor Control PWM (PIC32/dsPIC33C advanced)</li>
+        </ul>
+    </p>
+
+    <h3>Fault Pin Remapping</h3>
+    <p>For devices with Peripheral Pin Select (PPS), Fault A/B pins can be remapped to any available RPx pin. The popup shows "Dynamic Options" until initialized - this is normal behavior.</p>
+
+    <h2>Performance Considerations</h2>
+
+    <h3>Update Timing</h3>
+    <ul>
+        <li><strong>Immediate Update (IUE=on):</strong> Duty cycle changes take effect immediately. Use for fast transient response but may cause glitches.</li>
+        <li><strong>Synchronized Update (IUE=off):</strong> Changes take effect at PWM period boundary. Preferred for motor control to avoid current spikes.</li>
+    </ul>
+
+    <h3>Interrupt Latency</h3>
+    <p>Special event trigger occurs before PWM period end. Ensure ADC interrupt priority allows completion before next PWM cycle:</p>
+    <pre><code>% Recommended: Set ADC interrupt priority higher than PWM tasks
+% In Master block: Configure interrupt priorities accordingly
+</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="pwm_high_speed.html"><strong>MCHP_PWM_HighSpeed</strong></a> - High-speed PWM for dsPIC33C/CH/CK</li>
+        <li><a href="pwm_hs_override.html"><strong>MCHP_PWM_HighSpeed_Override</strong></a> - Override control for MCHP_PWM_HighSpeed</li>
+        <li><a href="pwm_hs_fep.html"><strong>MCHP_PWM_HS_FEP</strong></a> - PWM with Fine Edge Positioning (dsPIC33A)</li>
+        <li><a href="mcpwm.html"><strong>MCHP_MCPWM</strong></a> - Motor Control PWM (advanced features)</li>
+        <li><strong>MCHP_ADC</strong> - ADC block (use with PWM special event trigger)</li>
+        <li><strong>MCHP_Comparator</strong> - Comparator for fault detection</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../peripheral_overview.html">Peripheral Block Overview</a></li>
+        <li><a href="../motor_control_guide.html">Motor Control Application Guide</a></li>
+        <li><a href="../../../examples/pwm_examples.html">PWM Examples</a></li>
+        <li>dsPIC30F/33F Family Reference Manual - PWM Module</li>
+        <li>dsPIC33E Family Reference Manual - High-Resolution PWM</li>
+    </ul>
+
+    <hr>
+    <p><small>Last updated: January 2025 | MCHP Blockset Documentation</small></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_ADC_SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>MCHP_ADC_SAMRH707x - Radiation-Hardened ADC</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/ADC_SAMRH707x.svg"
+             alt="ADC_SAMRH707x Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/ADC_SAMRH707x.png';">
+        <div class="block-image-caption">
+            ADC_SAMRH707x Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+        <p>The <strong>MCHP_ADC_SAMRH707x</strong> block implements the ADC peripheral for the <strong>SAM RH707x</strong> radiation-hardened Arm Cortex-M7 microcontroller family. Designed for aerospace, satellite, and high-reliability applications requiring fault tolerance and radiation immunity.</p>
+
+        <div class="highlight">
+            <strong>Radiation-Hardened:</strong> This ADC is designed to operate reliably in high-radiation environments with built-in error detection and correction mechanisms.
+        </div>
+
+        <h2>Supported Devices</h2>
+        <ul>
+            <li><strong>SAMRH707</strong> - 300 MHz Arm Cortex-M7 with radiation hardening</li>
+            <li><strong>SAMRH70</strong> - Radiation-tolerant variant</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Resolution</td>
+                <td>12-bit SAR ADC</td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td>Up to 1 Msps</td>
+            </tr>
+            <tr>
+                <td>Channels</td>
+                <td>Multiple analog inputs (device dependent)</td>
+            </tr>
+            <tr>
+                <td>Reliability</td>
+                <td>Radiation hardening, ECC, fault detection</td>
+            </tr>
+            <tr>
+                <td>Operating Temperature</td>
+                <td>Extended range for space applications</td>
+            </tr>
+        </table>
+
+        <h2>Configuration</h2>
+        <p>Similar sequence-based configuration to SAM E5x ADC block, with additional reliability features and radiation-aware timing parameters.</p>
+
+        <h2>Applications</h2>
+        <ul>
+            <li>Satellite telemetry and control</li>
+            <li>Space instrumentation</li>
+            <li>Nuclear facility monitoring</li>
+            <li>High-altitude aviation systems</li>
+            <li>Military/defense applications</li>
+        </ul>
+
+        <div class="note">
+            <strong>Design Consideration:</strong> When using this ADC in radiation environments, follow device-specific guidelines for redundancy, error checking, and periodic recalibration to maintain accuracy.
+        </div>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="adc_same5x.html">MCHP_ADC_SAME5x</a> - For commercial SAM E5x devices</li>
+            <li><a href="afec_sam7x.html">MCHP_AFEC_SAM7x</a> - For SAM E7x/S7x/V7x families</li>
+        </ul>
+
+        <p><a href="../adc_blocks.html">Back to ADC Blocks</a></p>
+    </div>
+    </div>
+</body>
+</html>

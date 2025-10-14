@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPLAB Device Blocks for Simulink - Documentation</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #0076A8;
+            border-bottom: 3px solid #0076A8;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #0076A8;
+            margin-top: 30px;
+        }
+        .nav-section {
+            background-color: #f5f5f5;
+            
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .nav-section li {
+            margin: 8px 0;
+        }
+        .nav-section a {
+            color: #0076A8;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .nav-section a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #0076A8;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+
+    <!-- Navigation Panel Styles -->
+    <link rel="stylesheet" href="./assets/css/navigation.css">
+    <script src="./assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="./index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="./index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="./getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="./getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="./getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="./getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="./getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                    <li><a href="./getting_started/external_mode_pil.html" class="nav-link">External Mode & PIL</a></li>
+                    <li><a href="./getting_started/troubleshooting.html" class="nav-link">Troubleshooting</a></li>
+                    <li><a href="./getting_started/faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="./getting_started/support.html" class="nav-link">Support</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="./user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="./user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="./user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                    <li><a href="./user_guide/pil_testing.html" class="nav-link">PIL Testing</a></li>
+                    <li><a href="./user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="./block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+
+                    <!-- ADC Blocks -->
+                    <li>
+                        <div class="nav-subcategory">ADC Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/adc.html" class="nav-link">ADC Overview</a></li>
+                            <li><a href="./block_reference/adc/adc_hs_12b.html" class="nav-link">ADC HS 12b</a></li>
+                            <li><a href="./block_reference/adc/adc_hs_sar.html" class="nav-link">ADC HS SAR</a></li>
+                            <li><a href="./block_reference/adc/adc_standard.html" class="nav-link">ADC Standard</a></li>
+                            <li><a href="./block_reference/adc/adc_dedicated.html" class="nav-link">ADC Dedicated Core</a></li>
+                            <li><a href="./block_reference/adc/adc_shared.html" class="nav-link">ADC Shared Core</a></li>
+                            <li><a href="./block_reference/adc/adc_afec.html" class="nav-link">AFEC (SAM)</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Analog Blocks -->
+                    <li>
+                        <div class="nav-subcategory">Analog Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/analog.html" class="nav-link">Analog Overview</a></li>
+                            <li><a href="./block_reference/analog/dac.html" class="nav-link">DAC</a></li>
+                            <li><a href="./block_reference/analog/opamp.html" class="nav-link">Op-Amp</a></li>
+                            <li><a href="./block_reference/analog/comparator.html" class="nav-link">Comparator</a></li>
+                            <li><a href="./block_reference/analog/vref.html" class="nav-link">Voltage Reference</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- CAN Blocks -->
+                    <li>
+                        <div class="nav-subcategory">CAN Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/can.html" class="nav-link">CAN Overview</a></li>
+                            <li><a href="./block_reference/can/can_config.html" class="nav-link">CAN Config</a></li>
+                            <li><a href="./block_reference/can/can_transmit.html" class="nav-link">CAN Transmit</a></li>
+                            <li><a href="./block_reference/can/can_receive.html" class="nav-link">CAN Receive</a></li>
+                            <li><a href="./block_reference/can/can_fd.html" class="nav-link">CAN FD</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Digital I/O Blocks -->
+                    <li>
+                        <div class="nav-subcategory">Digital I/O <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/digital_io.html" class="nav-link">Digital I/O Overview</a></li>
+                            <li><a href="./block_reference/digital_io/digital_input.html" class="nav-link">Digital Input</a></li>
+                            <li><a href="./block_reference/digital_io/digital_output.html" class="nav-link">Digital Output</a></li>
+                            <li><a href="./block_reference/digital_io/change_notification.html" class="nav-link">Change Notification</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Encoder Blocks -->
+                    <li>
+                        <div class="nav-subcategory">Encoders <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/encoders.html" class="nav-link">Encoders Overview</a></li>
+                            <li><a href="./block_reference/encoders/qei.html" class="nav-link">QEI</a></li>
+                            <li><a href="./block_reference/encoders/pdec.html" class="nav-link">PDEC (SAM)</a></li>
+                            <li><a href="./block_reference/encoders/hall_sensors.html" class="nav-link">Hall Sensors</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- PWM Blocks -->
+                    <li>
+                        <div class="nav-subcategory">PWM Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/pwm_blocks.html" class="nav-link">PWM Overview</a></li>
+                            <li><a href="./block_reference/pwm/pwm_hs_fep.html" class="nav-link">PWM HS with FEP</a></li>
+                            <li><a href="./block_reference/pwm/pwm_hs.html" class="nav-link">PWM HS</a></li>
+                            <li><a href="./block_reference/pwm/pwm_standard.html" class="nav-link">PWM Standard</a></li>
+                            <li><a href="./block_reference/pwm/pwm_mc.html" class="nav-link">PWM MC</a></li>
+                            <li><a href="./block_reference/pwm/pwm_sam.html" class="nav-link">PWM (SAM)</a></li>
+                            <li><a href="./block_reference/pwm/pwm_pic32mk.html" class="nav-link">PWM (PIC32MK)</a></li>
+                            <li><a href="./block_reference/pwm/pwm_secondary_trigger.html" class="nav-link">PWM Secondary Trigger</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- System Blocks -->
+                    <li>
+                        <div class="nav-subcategory">System Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/system.html" class="nav-link">System Overview</a></li>
+                            <li><a href="./block_reference/system/master.html" class="nav-link">Master</a></li>
+                            <li><a href="./block_reference/system/clock_config.html" class="nav-link">Clock Config</a></li>
+                            <li><a href="./block_reference/system/mcu_load.html" class="nav-link">MCU Load</a></li>
+                            <li><a href="./block_reference/system/task_state.html" class="nav-link">Task State</a></li>
+                            <li><a href="./block_reference/system/idle_task.html" class="nav-link">Idle Task</a></li>
+                            <li><a href="./block_reference/system/interrupt.html" class="nav-link">Interrupt</a></li>
+                            <li><a href="./block_reference/system/secondary_core.html" class="nav-link">Secondary Core</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Timer Blocks -->
+                    <li>
+                        <div class="nav-subcategory">Timers <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/timers.html" class="nav-link">Timers Overview</a></li>
+                            <li><a href="./block_reference/timers/timer.html" class="nav-link">Timer</a></li>
+                            <li><a href="./block_reference/timers/timer_input_capture.html" class="nav-link">Timer Input Capture</a></li>
+                            <li><a href="./block_reference/timers/timer_output_compare.html" class="nav-link">Timer Output Compare</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- UART Blocks -->
+                    <li>
+                        <div class="nav-subcategory">UART Blocks <span class="nav-category-icon">▼</span></div>
+                        <ul class="nav-sublist">
+                            <li><a href="./block_reference/communication.html" class="nav-link">Communication Overview</a></li>
+                            <li><a href="./block_reference/uart/uart_config.html" class="nav-link">UART Config</a></li>
+                            <li><a href="./block_reference/uart/uart_tx.html" class="nav-link">UART Tx</a></li>
+                            <li><a href="
+    <div class="doc-content-wrapper">
+        <h1>MPLAB Device Blocks for Simulink</h1>
+    <p>Comprehensive documentation for the MCHP Blockset - enabling Model-Based Design for dsPIC, PIC32, and SAM microcontrollers.</p>
+
+    <div class="highlight">
+        <strong>Quick Links:</strong>
+        <ul>
+            <li><a href="getting_started/overview.html">Getting Started</a> - Installation and first steps</li>
+            <li><a href="block_reference/index.html">Block Reference</a> - Complete peripheral block documentation</li>
+            <li><a href="user_guide/index.html">User Guide</a> - Code generation, external mode, and PIL testing</li>
+        </ul>
+    </div>
+
+    <h2>Documentation Sections</h2>
+
+    <div class="nav-section">
+        <h3>Getting Started</h3>
+        <ul>
+            <li><a href="getting_started/overview.html">Overview</a> - Introduction to MCHP Blockset</li>
+            <li><a href="getting_started/installation.html">Installation</a> - Setup and requirements</li>
+            <li><a href="getting_started/quick_start.html">Quick Start Guide</a> - Your first project</li>
+            <li><a href="getting_started/supported_devices.html">Supported Devices</a> - Compatible microcontrollers</li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <h3>User Guide</h3>
+        <ul>
+            <li><a href="user_guide/code_generation.html">Code Generation</a> - Generating embedded C code</li>
+            <li><a href="user_guide/external_mode.html">External Mode</a> - Real-time debugging</li>
+            <li><a href="user_guide/pil_testing.html">PIL Testing</a> - Processor-in-the-Loop validation</li>
+            <li><a href="user_guide/compiler_setup.html">Compiler Setup</a> - Configuring XC16/XC32/XC-DSC compilers</li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <h3>Block Reference</h3>
+        <ul>
+            <li><a href="block_reference/pwm.html">PWM Blocks</a> - PWM configuration and generation</li>
+            <li><a href="block_reference/adc.html">ADC Blocks</a> - Analog-to-digital conversion</li>
+            <li><a href="block_reference/communication.html">Communication Blocks</a> - UART, SPI, I2C, CAN</li>
+            <li><a href="block_reference/timers.html">Timer Blocks</a> - Timer and counter peripherals</li>
+            <li><a href="block_reference/digital.html">Digital I/O Blocks</a> - GPIO configuration</li>
+        </ul>
+    </div>
+
+    <div class="nav-section">
+        <h3>Examples</h3>
+        <ul>
+            <li><a href="examples/field_weakening.html">Field Weakening Example</a> - Advanced motor control</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p><strong>MPLAB Device Blocks for Simulink</strong></p>
+        <p>For support and updates, visit the <a href="https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink">GitHub repository</a>.</p>
+    </div>
+    </div>
+    </body>
+</html>

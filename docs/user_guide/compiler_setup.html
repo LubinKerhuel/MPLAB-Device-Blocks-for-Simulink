@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compiler Setup - User Guide</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Compiler Setup</h1>
+    <p>Detailed instructions for installing and configuring Microchip compilers for code generation.</p>
+
+    <h2>Compiler Selection by Family</h2>
+    <table>
+        <tr><th>Device Family</th><th>Compiler</th><th>Min Version</th></tr>
+        <tr><td>dsPIC 30F/33F/33E</td><td>XC16</td><td>v1.26+</td></tr>
+        <tr><td>dsPIC 33C/33A</td><td>XC-DSC</td><td>v3.20+</td></tr>
+        <tr><td>PIC32</td><td>XC32</td><td>v2.40+</td></tr>
+        <tr><td>SAM (ARM)</td><td>XC32</td><td>v2.40+</td></tr>
+    </table>
+
+    <div style="background-color: #e7f3fe; border-left: 4px solid #2196F3; padding: 10px; margin: 15px 0;">
+        <strong>Note:</strong> XC32 is based on ARM GCC and supports both PIC32 (MIPS-based) and SAM (ARM Cortex-M) devices. The compiler automatically adapts to the target architecture.
+    </div>
+
+    <h2>Installation Paths</h2>
+    <p><strong>Windows (Default):</strong></p>
+    <ul>
+        <li>XC16: <code>C:\Program Files\Microchip\xc16\</code></li>
+        <li>XC-DSC: <code>C:\Program Files\Microchip\xc-dsc\</code></li>
+        <li>XC32: <code>C:\Program Files\Microchip\xc32\</code></li>
+    </ul>
+
+    <h2>Manual Configuration</h2>
+    <p>If auto-detection fails, set compiler path in:</p>
+    <ol>
+        <li>Model Configuration Parameters (Ctrl+E)</li>
+        <li>Code Generation → MCHP Target</li>
+        <li>Compiler Version → Browse to bin folder</li>
+    </ol>
+
+    <h2>See Also</h2>
+    <p><a href="index.html">User Guide</a> | <a href="../getting_started/installation.html">Installation</a></p>
+    </div>
+</body>
+</html>

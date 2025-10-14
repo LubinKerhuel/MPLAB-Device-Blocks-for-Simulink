@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADC Blocks - Analog-to-Digital Converter Reference</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>ADC Blocks - Analog-to-Digital Converter Reference</h1>
+
+        <p>The MCHP Blockset provides comprehensive ADC support for all Microchip microcontroller families. Each family has optimized ADC blocks tailored to the specific peripheral architecture and capabilities.</p>
+
+        <div class="note">
+            <strong>Block Selection Guide:</strong> Choose the ADC block that matches your microcontroller family. The blockset automatically validates compatibility when you select a chip in the Master block.
+        </div>
+
+        <h2>dsPIC & PIC24 Family ADC Blocks</h2>
+
+        <div class="block-grid">
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_standard.html">MCHP_ADC</a>
+                </div>
+                <div class="block-description">
+                    Standard ADC for dsPIC30F, dsPIC33F, dsPIC33E, dsPIC33C, and PIC24 families.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 10/12-bit<br>
+                    <strong>Features:</strong> Scan mode, simultaneous sampling, DMA support<br>
+                    <strong>Best for:</strong> General-purpose acquisition, motor control
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_hs_sar_dspic.html">MCHP_ADC_HighSpeed_SAR_dsPIC</a>
+                </div>
+                <div class="block-description">
+                    High-speed SAR ADC for dsPIC33C with dedicated cores and shared ADC7.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 6/8/10/12-bit<br>
+                    <strong>Cores:</strong> 3-6 dedicated + shared ADC7<br>
+                    <strong>Speed:</strong> Up to 3.25 Msps per core<br>
+                    <strong>Best for:</strong> High-speed multi-channel, simultaneous sampling
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_hs_12b.html">MCHP_ADC_HS_12b</a>
+                </div>
+                <div class="block-description">
+                    12-bit high-speed ADC with software sequencing for dsPIC33A family.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 12-bit fixed<br>
+                    <strong>Cores:</strong> 2-5 (variant dependent)<br>
+                    <strong>Sequencing:</strong> 6 sequences × 6 conversions<br>
+                    <strong>Devices:</strong> Perseus, Pegasus, Blue Ridge, Serpens (33AK series)<br>
+                    <strong>Best for:</strong> Advanced FOC motor control, flexible multi-channel
+                </div>
+            </div>
+        </div>
+
+        <h2>PIC32 Family ADC Blocks</h2>
+
+        <div class="block-grid">
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_hs_sar.html">MCHP_ADC_HighSpeed_SAR</a>
+                </div>
+                <div class="block-description">
+                    High-speed SAR ADC for PIC32MK, PIC32MZ, and dsPIC33C families.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 6/8/10/12-bit<br>
+                    <strong>Cores:</strong> 3-6 dedicated + ADC7<br>
+                    <strong>Speed:</strong> Up to 3.25 Msps<br>
+                    <strong>Features:</strong> VBat, IVref, Temperature, CTMU inputs<br>
+                    <strong>Best for:</strong> PIC32 high-performance applications
+                </div>
+            </div>
+        </div>
+
+        <h2>SAM Arm Cortex-M Family ADC Blocks</h2>
+
+        <div class="block-grid">
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_same5x.html">MCHP_ADC_SAME5x</a>
+                </div>
+                <div class="block-description">
+                    ADC for SAM E5x, SAM D5x, and SAM C2x Cortex-M4 devices.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 12-bit<br>
+                    <strong>Cores:</strong> Dual ADC (ADC0, ADC1) on SAMC2x<br>
+                    <strong>Sequencing:</strong> 6 sequences × 6 conversions<br>
+                    <strong>Best for:</strong> Motor control, industrial, cost-optimized designs
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/afec_sam7x.html">MCHP_AFEC_SAM7x</a>
+                </div>
+                <div class="block-description">
+                    Analog Front-End Controller for SAM E7x/S7x/V7x Cortex-M7 devices.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 12-bit with 16-bit oversampling<br>
+                    <strong>Cores:</strong> Dual AFEC (AFEC0, AFEC1)<br>
+                    <strong>Analog Front-End:</strong> Programmable gain (1x/2x/4x), offset compensation<br>
+                    <strong>Features:</strong> Temperature sensor, differential mode<br>
+                    <strong>Best for:</strong> Precision measurements, automotive, medical
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-title">
+                    <a href="adc/adc_samrh707x.html">MCHP_ADC_SAMRH707x</a>
+                </div>
+                <div class="block-description">
+                    Radiation-hardened ADC for SAM RH707x space-grade Cortex-M7.
+                </div>
+                <div class="block-details">
+                    <strong>Resolution:</strong> 12-bit<br>
+                    <strong>Reliability:</strong> Radiation hardening, ECC, fault detection<br>
+                    <strong>Best for:</strong> Aerospace, satellite, nuclear, high-reliability
+                </div>
+            </div>
+        </div>
+
+        <h2>Feature Comparison Table</h2>
+
+        <table class="comparison-table">
+            <tr>
+                <th>ADC Block</th>
+                <th>Target Families</th>
+                <th>Resolution</th>
+                <th>Max Speed</th>
+                <th>Key Features</th>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC</strong></td>
+                <td>dsPIC30F, 33F, 33E, 33C, PIC24</td>
+                <td>10/12-bit</td>
+                <td>Varies by family</td>
+                <td>Scan, simultaneous, DMA</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC_HS_SAR_dsPIC</strong></td>
+                <td>dsPIC33C</td>
+                <td>6-12-bit</td>
+                <td>3.25 Msps</td>
+                <td>Dedicated cores, ADC7, dsPIC interface</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC_HS_12b</strong></td>
+                <td>dsPIC33A (33AK)</td>
+                <td>12-bit</td>
+                <td>High-speed</td>
+                <td>Software sequencing, 2-5 cores</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC_HS_SAR</strong></td>
+                <td>PIC32MK, MZ, dsPIC33C</td>
+                <td>6-12-bit</td>
+                <td>3.25 Msps</td>
+                <td>Dedicated cores, VBat/Temp/CTMU</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC_SAME5x</strong></td>
+                <td>SAM E5x, D5x, C2x</td>
+                <td>12-bit</td>
+                <td>1 Msps</td>
+                <td>Dual ADC, software sequencing</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_AFEC_SAM7x</strong></td>
+                <td>SAM E7x, S7x, V7x</td>
+                <td>12-bit (16-bit OS)</td>
+                <td>1 Msps</td>
+                <td>PGA, offset comp, temp sensor</td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_ADC_SAMRH707x</strong></td>
+                <td>SAM RH707x</td>
+                <td>12-bit</td>
+                <td>1 Msps</td>
+                <td>Radiation hardened, ECC</td>
+            </tr>
+        </table>
+
+        <h2>Application Guidelines</h2>
+
+        <div class="family-section">
+            <h3>Motor Control Applications</h3>
+            <ul>
+                <li><strong>3-Phase FOC (dsPIC33A):</strong> Use MCHP_ADC_HS_12b with software sequencing for flexible current/voltage sampling</li>
+                <li><strong>3-Phase FOC (dsPIC33C):</strong> Use MCHP_ADC_HS_SAR_dsPIC with dedicated cores for simultaneous sampling</li>
+                <li><strong>3-Phase FOC (dsPIC33E/F):</strong> Use MCHP_ADC in 10-bit mode with simultaneous sampling</li>
+                <li><strong>Dual Motor:</strong> Use devices with multiple ADC cores or dual AFEC</li>
+            </ul>
+        </div>
+
+        <div class="family-section">
+            <h3>Industrial Sensing</h3>
+            <ul>
+                <li><strong>Precision measurement:</strong> Use MCHP_AFEC_SAM7x with programmable gain and offset compensation</li>
+                <li><strong>Multi-channel DAQ:</strong> Use high-speed SAR blocks with scan/sequence modes</li>
+                <li><strong>High-impedance sources:</strong> Configure extended sample times (SAMC parameter)</li>
+            </ul>
+        </div>
+
+        <div class="family-section">
+            <h3>Trigger Synchronization</h3>
+            <ul>
+                <li><strong>PWM-synchronized:</strong> All blocks support PWM special event triggers</li>
+                <li><strong>Timer-based:</strong> Periodic sampling with timer compare events</li>
+                <li><strong>External trigger:</strong> Hardware trigger from external sources</li>
+                <li><strong>Software control:</strong> Manual trigger for on-demand conversion</li>
+            </ul>
+        </div>
+
+        <h2>Selection Flowchart</h2>
+
+        <div class="note">
+            <strong>Quick Selection Guide:</strong>
+            <ol>
+                <li>Identify your microcontroller family (dsPIC, PIC32, SAM)</li>
+                <li>Check device-specific ADC capabilities in datasheet</li>
+                <li>Select matching ADC block from table above</li>
+                <li>Configure resolution, channels, and trigger sources</li>
+                <li>Optimize sample time based on source impedance</li>
+            </ol>
+        </div>
+
+        <h2>Common Configuration Patterns</h2>
+
+        <h3>Pattern 1: PWM-Synchronized Current Sensing</h3>
+        <ul>
+            <li>Enable dedicated ADC cores for phase currents (U, V, W)</li>
+            <li>Set resolution to 12-bit for precision</li>
+            <li>Configure trigger: PWM1 Special Event (valley sampling)</li>
+            <li>Set SAMC for low-impedance current sensors (3-10 TAD)</li>
+        </ul>
+
+        <h3>Pattern 2: Multi-Channel Scan with DMA</h3>
+        <ul>
+            <li>Enable scan mode with channel list (e.g., [0 1 2 5 6 7])</li>
+            <li>Configure DMA channel for automatic transfer</li>
+            <li>Set trigger: Timer compare for periodic sampling</li>
+            <li>Adjust sequence repeat for averaging</li>
+        </ul>
+
+        <h3>Pattern 3: Precision Measurement with AFEC</h3>
+        <ul>
+            <li>Enable AFEC channels with programmable gain (2x or 4x)</li>
+            <li>Turn on offset compensation</li>
+            <li>Use differential mode for noise rejection</li>
+            <li>Enable hardware averaging</li>
+        </ul>
+
+        <h2>Related Documentation</h2>
+        <ul>
+            <li><a href="pwm_blocks.html">PWM Blocks</a> - PWM trigger sources for ADC synchronization</li>
+            <li><a href="timer_blocks.html">Timer Blocks</a> - Timer-based ADC triggering</li>
+            <li><a href="dma_blocks.html">DMA Blocks</a> - DMA configuration for ADC data transfer</li>
+            <li><a href="index.html">Block Reference Home</a> - Complete block library reference</li>
+        </ul>
+
+        <h2>Additional Resources</h2>
+        <ul>
+            <li><a href="../getting_started.html">Getting Started Guide</a> - ADC block tutorial</li>
+            <li><a href="../motor_control_guide.html">Motor Control Guide</a> - ADC in FOC applications</li>
+            <li><a href="../troubleshooting.html">Troubleshooting Guide</a> - Common ADC issues and solutions</li>
+        </ul>
+
+        <hr>
+        <p style="font-size: 0.9em; color: #666;">
+            <strong>MCHP Blockset Documentation</strong> |
+            Last updated: 2025 |
+            <a href="../index.html">Documentation Home</a>
+        </p>
+    </div>
+    </div>
+</body>
+</html>

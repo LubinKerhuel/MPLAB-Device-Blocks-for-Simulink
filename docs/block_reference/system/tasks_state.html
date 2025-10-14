@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Tasks_State - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./system.html">System Blocks</a> &gt;
+        MCHP_Tasks_State
+    </div>
+
+    <h1>MCHP_Tasks_State - Task Execution Monitoring</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/system_configuration/TasksState.svg"
+             alt="TasksState Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/system_configuration/TasksState.png';">
+        <div class="block-image-caption">
+            TasksState Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Tasks_State</strong> block outputs the current execution state of all scheduled tasks, providing real-time visibility into the multitasking scheduler behavior. Essential for debugging timing issues and verifying task preemption.</p>
+
+    <h2>Output Signals</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Output</th>
+                <th>Data Type</th>
+                <th>Description</th>
+                <th>Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>TaskID</strong></td>
+                <td>uint8</td>
+                <td>Currently executing task identifier</td>
+                <td>0 = Idle<br>1 = Base rate<br>2-N = Subrate tasks</td>
+            </tr>
+            <tr>
+                <td><strong>TaskState</strong></td>
+                <td>uint8 vector</td>
+                <td>State of each task (length = number of tasks)</td>
+                <td>0 = Idle<br>1 = Ready<br>2 = Running</td>
+            </tr>
+            <tr>
+                <td><strong>Overload</strong></td>
+                <td>boolean</td>
+                <td>Overload condition detected</td>
+                <td>0 = Normal<br>1 = Overload</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Example Usage</h2>
+    <pre><code>% Monitor task execution and detect preemption
+
+% Connect outputs:
+TaskID     → Display or scope
+TaskState  → Vector scope (multi-line)
+Overload   → Alert/LED
+
+% Interpretation:
+TaskID = 1  → Base rate task executing
+TaskID = 2  → First subrate task executing
+TaskID = 0  → Idle task (no scheduled work)
+
+% TaskState example for 3-task system:
+[2 1 0]  → Task 1 running, Task 2 ready, Task 3 idle
+[1 2 0]  → Task 1 ready, Task 2 running (preempted Task 1)
+</code></pre>
+
+    <h2>Debugging Scenarios</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Observation</th>
+                <th>Diagnosis</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TaskID always 1</td>
+                <td>Base rate never completes</td>
+                <td>Reduce base rate execution time</td>
+            </tr>
+            <tr>
+                <td>TaskID never changes</td>
+                <td>Single task consuming all CPU</td>
+                <td>Check for infinite loops</td>
+            </tr>
+            <tr>
+                <td>Overload = 1 frequently</td>
+                <td>Tasks missing deadlines</td>
+                <td>Lower sample rates or optimize code</td>
+            </tr>
+            <tr>
+                <td>TaskState shows [2 2 2]</td>
+                <td>Multiple tasks trying to run simultaneously (impossible)</td>
+                <td>Check scheduler configuration</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Performance Impact:</strong> Minimal - state variables updated by scheduler automatically. Reading them has negligible overhead.
+    </div>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="scheduler_options.html">MCHP_Scheduler_Options</a> - Scheduler configuration</li>
+        <li><a href="mcu_load.html">MCHP_MCU_LOAD</a> - CPU load measurement</li>
+        <li><a href="mcu_overload.html">MCHP_MCU_OVERLOAD</a> - Overload detection</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p>
+    </footer>
+    </div>
+</body>
+</html>

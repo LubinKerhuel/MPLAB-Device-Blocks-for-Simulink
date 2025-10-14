@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Digital_Output_Write - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./digital_io.html">Digital I/O Blocks</a> &gt;
+        MCHP_Digital_Output_Write
+    </div>
+
+    <h1>MCHP_Digital_Output_Write - Digital Output Write Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/DigitalOutput_Write.svg"
+             alt="DigitalOutput_Write Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/DigitalOutput_Write.png';">
+        <div class="block-image-caption">
+            DigitalOutput_Write Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Digital_Output_Write</strong> block is the core digital output writing block that directly controls GPIO pins via LAT register writes. This block configures pins as outputs, sets initial values, and provides options for atomic multi-pin updates and electrical characteristics configuration.</p>
+
+    <p><strong>Key Features:</strong></p>
+    <ul>
+        <li>Direct LAT register control for output pin state</li>
+        <li>Automatic TRIS configuration (pins set as outputs)</li>
+        <li>Configurable initial values at startup</li>
+        <li>Simultaneous (atomic) write mode for glitch-free multi-pin updates</li>
+        <li>Electrical configuration: push-pull or open-drain modes (dsPIC33C/33A, PIC32)</li>
+        <li>Flexible input formats: individual booleans or packed uint16/uint32</li>
+        <li>Automatic pin availability validation</li>
+    </ul>
+
+    <div class="note">
+        <strong>Primary Usage:</strong> This block is typically used within the <a href="digital_output.html">MCHP_Digital_Output</a> master block, but can be used standalone for direct output control without read-back overhead.
+    </div>
+
+    <h2>Device Support</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Family</th>
+                <th>Basic Output</th>
+                <th>Init Value</th>
+                <th>Open-Drain (ODC)</th>
+                <th>Port Width</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dsPIC30F</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33F</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33E</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33C/CH/CK</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33A</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC24F/H</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Device-dependent</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC32MK/MZ/MX</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>32-bit</td>
+            </tr>
+            <tr>
+                <td>SAM (ARM)</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>-</td>
+                <td>32-bit</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Port Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PORT</strong></td>
+                <td>GPIO port selection. Dynamic popup shows available ports with pin ranges.</td>
+                <td>A, B, C, D, E, F, G, H, J, K<br>(device-dependent)</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td><strong>PIN</strong></td>
+                <td>Pin index selection within the port. Invalid pins are automatically removed with warnings.</td>
+                <td>[0:15] for 16-bit<br>[0:31] for 32-bit</td>
+                <td>[0]</td>
+            </tr>
+            <tr>
+                <td><strong>PACK</strong></td>
+                <td>Input data format selection.</td>
+                <td>'on' - Packed uint16/uint32<br>'off' - Individual booleans</td>
+                <td>'off'</td>
+            </tr>
+            <tr>
+                <td><strong>SIMULTANEOUS</strong></td>
+                <td>Atomic write mode. Visible only when PACK='off' and multiple pins selected. Ensures all pins update in single operation.</td>
+                <td>'on' - Atomic update<br>'off' - Sequential writes</td>
+                <td>'off'</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Electrical Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>INIT_VALUE</strong></td>
+                <td>Initial output state at startup. Can be scalar (all pins same value), vector (per-pin values), or hexadecimal (packed mode).</td>
+                <td>Scalar: 0 or 1<br>Vector: [0 1 0 1 ...]<br>Hex: 0x00FF</td>
+                <td>All dsPIC/PIC32<br>(Arch 1,2,3,4,8)</td>
+            </tr>
+            <tr>
+                <td><strong>OUTPUT_PIN_MODE</strong></td>
+                <td>Output driver type. Push-pull drives both high and low. Open-drain only pulls low, requires external pull-up.</td>
+                <td>'Push-pull' (default)<br>'Open-drain'</td>
+                <td>dsPIC33C/33A (Arch 3,4)<br>PIC32 (Arch 8)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Register Configuration (dsPIC/PIC24)</h3>
+    <pre><code>// 1. Configure pins as outputs (TRIS register)
+// TRIS bit = 0 configures pin as output
+TRISA &= ~(1 &lt;&lt; pin);  // Clear bit to set as output
+
+// 2. Set initial output value (LAT register)
+// LAT controls actual output state
+if (init_value == 1)
+    LATA |= (1 &lt;&lt; pin);   // Set output high
+else
+    LATA &= ~(1 &lt;&lt; pin);  // Set output low
+
+// 3. Configure output mode (ODC register - dsPIC33C/A only)
+// Open-drain configuration
+#if defined(_ODCA_ODCA0_MASK)
+if (open_drain_mode)
+    ODCA |= (1 &lt;&lt; pin);   // Enable open-drain
+else
+    ODCA &= ~(1 &lt;&lt; pin);  // Disable open-drain (push-pull)
+#endif
+
+// 4. Runtime output control
+LATA = output_value;  // Direct write (packed mode)
+// OR
+LATAbits.LATA5 = value;  // Individual pin write</code></pre>
+
+    <h3>Register Configuration (PIC32)</h3>
+    <pre><code>// 1. Configure pins as outputs (TRIS register)
+// Use atomic SET/CLR/INV registers for safety
+TRISACLR = (1 &lt;&lt; pin);  // Clear TRIS bit → output
+
+// 2. Set initial output value (LAT register)
+if (init_value == 1)
+    LATASET = (1 &lt;&lt; pin);   // Atomic set
+else
+    LATACLR = (1 &lt;&lt; pin);   // Atomic clear
+
+// 3. Configure output mode (ODC register)
+if (open_drain_mode)
+    ODCASET = (1 &lt;&lt; pin);   // Enable open-drain
+else
+    ODCACLR = (1 &lt;&lt; pin);   // Disable open-drain
+
+// 4. Runtime output control
+LATA = output_value;  // Direct write
+// OR
+LATASET = mask;   // Atomic set bits
+LATACLR = mask;   // Atomic clear bits</code></pre>
+
+    <h3>MCHP_PORT Format String</h3>
+    <pre><code>// Format: {Description}{ShortCode}BlockType:PortType:PortCode;Modifiers
+{Digital Out}{DOU}1:1:A5;              // Output pin A5, push-pull
+{Digital Out}{DOU}1:1:B3;,INIT1        // Output pin B3, init high
+{Digital Out}{DOU}1:1:C7;,OD           // Output pin C7, open-drain
+{Digital Out}{DOU}1:1:D2;,INIT1,OD     // Output pin D2, init high, open-drain
+
+// BlockType: 1 = Digital Output
+// PortType: 1 = Digital Output
+// PortCode: Port letter + pin number
+// Modifiers:
+//   INIT1    - Initialize to logic high (default: low)
+//   OD       - Open-drain mode (default: push-pull)</code></pre>
+
+    <h3>RTWdata Structure</h3>
+    <pre><code>// Data passed to TLC for code generation
+RTWdata.Port = 'A';                    // Port letter
+RTWdata.PortNum = '0';                 // Port number (A=0, B=1, ...)
+RTWdata.Pins = '[0 1 2]';              // Array of pin indices
+RTWdata.Pack_Flag = '0';               // 1 = packed, 0 = individual
+RTWdata.Simultaneous_Flag = '1';       // 1 = atomic, 0 = sequential
+RTWdata.InitValue = '[1 0 1]';         // Per-pin initial values
+RTWdata.OpenDrain = '0';               // 1 = OD mode, 0 = push-pull</code></pre>
+
+    <h2>Simultaneous Write Mode</h2>
+
+    <h3>Why Simultaneous Writes?</h3>
+    <p>When SIMULTANEOUS='on', all selected pins update atomically in a single instruction. This prevents glitches and intermediate states.</p>
+
+    <h3>Sequential Write (SIMULTANEOUS='off')</h3>
+    <pre><code>// Individual pin writes - NOT atomic
+// Intermediate states visible between writes
+
+LATAbits.LATA0 = input0;  // Step 1: Update pin 0
+LATAbits.LATA1 = input1;  // Step 2: Update pin 1 (pin 0 already changed!)
+LATAbits.LATA2 = input2;  // Step 3: Update pin 2 (pins 0,1 already changed!)
+
+// Problem: Pins change at different times
+// Critical for: stepper motors, parallel buses, synchronized outputs</code></pre>
+
+    <h3>Simultaneous Write (SIMULTANEOUS='on')</h3>
+    <pre><code>// Read-modify-write for atomic update
+// All pins change simultaneously
+
+// Step 1: Read current LAT state
+temp = LATA;
+
+// Step 2: Clear bits for controlled pins
+temp &= ~0x0007;  // Clear bits [2:0]
+
+// Step 3: Set new values
+temp |= (input0 &lt;&lt; 0) | (input1 &lt;&lt; 1) | (input2 &lt;&lt; 2);
+
+// Step 4: Atomic write - all pins update together
+LATA = temp;
+
+// Result: Pins 0, 1, 2 change at exactly the same time
+// No intermediate states visible</code></pre>
+
+    <div class="warning">
+        <strong>Critical for:</strong> Stepper motor control, parallel communication, LED matrix control, and any application where intermediate output states could cause malfunction or damage.
+    </div>
+
+    <h2>Initial Value Configuration</h2>
+
+    <h3>Scalar Initial Value</h3>
+    <pre><code>// INIT_VALUE = 1 (scalar)
+// All pins initialize to same value
+
+Pins [0 1 2] with INIT_VALUE = 1
+→ PA0 = 1, PA1 = 1, PA2 = 1 (all high at startup)</code></pre>
+
+    <h3>Vector Initial Value</h3>
+    <pre><code>// INIT_VALUE = [1 0 1] (vector)
+// Per-pin initialization
+
+Pins [0 1 2] with INIT_VALUE = [1 0 1]
+→ PA0 = 1, PA1 = 0, PA2 = 1 (mixed state at startup)</code></pre>
+
+    <h3>Packed Hexadecimal Initial Value</h3>
+    <pre><code>// INIT_VALUE = 0x00A5 (hexadecimal)
+// For PACK='on' mode
+
+Pins [0:7] with INIT_VALUE = 0x00A5
+→ Binary: 10100101
+→ PA0=1, PA1=0, PA2=1, PA3=0, PA4=0, PA5=1, PA6=0, PA7=1</code></pre>
+
+    <h3>Generated Initialization Code</h3>
+    <pre><code>// In model_initialize() function:
+
+// Configure TRIS (output direction)
+TRISA &= ~0x0007;  // Pins A[2:0] as outputs (clear bits)
+
+// Set initial values
+LATA &= ~0x0007;   // Clear all controlled bits
+LATA |= 0x0005;    // Set initial pattern (0x05 = binary 101)
+// Result: PA0=1, PA1=0, PA2=1
+
+// Configure open-drain (if enabled)
+#if defined(_ODCA_ODCA0_MASK)
+ODCA |= 0x0007;  // Enable open-drain on pins A[2:0]
+#endif</code></pre>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: Simple LED Control</h3>
+    <pre><code>// Application: Control 3 LEDs independently
+// Hardware: LEDs on PA0, PA1, PA2 with series resistors
+
+Block Parameters:
+PORT: 'A'
+PIN: [0 1 2]
+PACK: 'off'
+SIMULTANEOUS: 'off'  // LEDs don't need atomic update
+INIT_VALUE: [0 0 0]  // All LEDs off at startup
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Input 1 (A0): led1_cmd (boolean)
+Input 2 (A1): led2_cmd (boolean)
+Input 3 (A2): led3_cmd (boolean)
+
+Result:
+- Independent LED control
+- No output glitches needed
+- Clean initialization (all off)</code></pre>
+
+    <h3>Example 2: Stepper Motor Phase Control (Atomic Updates)</h3>
+    <pre><code>// Application: 4-phase unipolar stepper motor
+// Hardware: ULN2003 driver on PORT B [0:3]
+
+Block Parameters:
+PORT: 'B'
+PIN: [0 1 2 3]
+PACK: 'off'
+SIMULTANEOUS: 'on'  // CRITICAL: Atomic phase updates!
+INIT_VALUE: [0 0 0 0]  // All phases off (motor de-energized)
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Full-Step Sequence:
+Step 1: [1 0 0 0] → Phase A energized
+Step 2: [0 1 0 0] → Phase B energized
+Step 3: [0 0 1 0] → Phase C energized
+Step 4: [0 0 0 1] → Phase D energized
+
+// SIMULTANEOUS='on' ensures smooth motion
+// Without atomic update: motor jitter and position errors</code></pre>
+
+    <h3>Example 3: Parallel Port Communication</h3>
+    <pre><code>// Application: 8-bit parallel data output
+// Hardware: LCD data bus on PORT C
+
+Block Parameters:
+PORT: 'C'
+PIN: [0 1 2 3 4 5 6 7]
+PACK: 'on'
+INIT_VALUE: 0x00  // Bus idle state
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Input: data_byte (uint16)
+
+Simulink Usage:
+% Send ASCII 'A' (0x41) to LCD
+data_byte = uint16(65);  // 0x41 = 'A'
+
+% Generated code:
+LATC = (uint8_t)(data_byte & 0xFF);  // Write all 8 bits atomically</code></pre>
+
+    <h3>Example 4: Open-Drain I2C Bit-Banging</h3>
+    <pre><code>// Application: Software I2C (bit-bang)
+// Hardware: SDA on PD0, SCL on PD1
+
+Block Parameters:
+PORT: 'D'
+PIN: [0 1]  // [SDA, SCL]
+PACK: 'off'
+SIMULTANEOUS: 'on'  // Atomic updates for clean I2C timing
+INIT_VALUE: [1 1]   // Both idle high (pulled up externally)
+OUTPUT_PIN_MODE: 'Open-drain'  // Required for I2C
+
+External Hardware:
+- 4.7kΩ pull-up on SDA
+- 4.7kΩ pull-up on SCL
+
+I2C States:
+SDA=1, SCL=1 → Idle (both released, pulled high)
+SDA=0, SCL=1 → Data low
+SDA=1, SCL=0 → Clock low (data valid)
+// Open-drain allows multiple devices to share bus</code></pre>
+
+    <h3>Example 5: LED Matrix Column Drive</h3>
+    <pre><code>// Application: 8×8 LED matrix column driver
+// Hardware: 8 columns on PORT E
+
+Block Parameters:
+PORT: 'E'
+PIN: [0 1 2 3 4 5 6 7]
+PACK: 'on'
+INIT_VALUE: 0x00  // All columns off
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Matrix Scanning:
+% Column 0 active:
+column_data = uint16(0x01);  // 0b00000001
+
+% Column 3 active:
+column_data = uint16(0x08);  // 0b00001000
+
+% Multiple columns (for patterns):
+column_data = uint16(0xAA);  // 0b10101010 (checkerboard)</code></pre>
+
+    <h3>Example 6: Relay Bank Control with Initial Safe State</h3>
+    <pre><code>// Application: Control 6 power relays
+// Hardware: Relay drivers on PORT F [0:5]
+
+Block Parameters:
+PORT: 'F'
+PIN: [0 1 2 3 4 5]
+PACK: 'off'
+SIMULTANEOUS: 'on'  // Power-on sequence safety
+INIT_VALUE: [0 0 0 0 0 0]  // All relays off (safe state)
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Safety Features:
+- All relays guaranteed off at startup
+- Simultaneous mode prevents partial activation
+- Controlled power-on sequencing possible
+
+Power-On Sequence:
+t=0ms:   [0 0 0 0 0 0]  // Startup (from INIT_VALUE)
+t=100ms: [1 0 0 0 0 0]  // Relay 0 on
+t=200ms: [1 1 0 0 0 0]  // Relay 1 on
+// Gradual power-up to limit inrush current</code></pre>
+
+    <h2>Output Driver Modes</h2>
+
+    <h3>Push-Pull Mode (Default)</h3>
+    <pre><code>// Push-pull output (CMOS driver)
+// Actively drives both HIGH and LOW
+
+Output = 1: Pin driven to VDD (strong high)
+Output = 0: Pin driven to VSS (strong low)
+
+Advantages:
+- Fast switching
+- Strong drive capability
+- No external components needed
+
+Use Cases:
+- LEDs, relays, general digital signals
+- Point-to-point connections
+- High-speed interfaces</code></pre>
+
+    <h3>Open-Drain Mode (dsPIC33C/A, PIC32)</h3>
+    <pre><code>// Open-drain output (requires external pull-up)
+// Can only pull LOW, releases to high-impedance
+
+Output = 0: Pin driven LOW (strong pull to VSS)
+Output = 1: Pin high-impedance (external pull-up pulls HIGH)
+
+Advantages:
+- Multi-device bus sharing (I2C, 1-Wire)
+- Level shifting (3.3V MCU → 5V bus with 5V pull-up)
+- Wired-OR logic
+
+Requirements:
+- External pull-up resistor (1kΩ - 10kΩ typical)
+- Pull-up voltage can differ from VDD
+
+Use Cases:
+- I2C communication (SDA, SCL)
+- 1-Wire protocols
+- Multi-master buses
+- Interrupt lines (multiple sources)</code></pre>
+
+    <h3>Open-Drain Circuit Example</h3>
+    <pre><code>           VDD_BUS (3.3V or 5V)
+              │
+              ├─── 4.7kΩ (pull-up)
+              │
+    MCU Pin ──┤
+   (open-drain)
+              │
+             GND
+
+MCU Output = 1: Pin released → Pull-up → VDD_BUS
+MCU Output = 0: Pin driven LOW → VSS
+
+// Enables level shifting:
+// 3.3V MCU can safely communicate on 5V bus</code></pre>
+
+    <h2>Electrical Characteristics</h2>
+
+    <h3>Output Specifications (dsPIC33C/33A)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Symbol</th>
+                <th>Min</th>
+                <th>Typ</th>
+                <th>Max</th>
+                <th>Units</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Output High Voltage</td>
+                <td>V<sub>OH</sub></td>
+                <td>V<sub>DD</sub> - 0.7</td>
+                <td>-</td>
+                <td>V<sub>DD</sub></td>
+                <td>V</td>
+            </tr>
+            <tr>
+                <td>Output Low Voltage</td>
+                <td>V<sub>OL</sub></td>
+                <td>V<sub>SS</sub></td>
+                <td>-</td>
+                <td>0.6</td>
+                <td>V</td>
+            </tr>
+            <tr>
+                <td>Source Current (high)</td>
+                <td>I<sub>OH</sub></td>
+                <td>-</td>
+                <td>-</td>
+                <td>4</td>
+                <td>mA</td>
+            </tr>
+            <tr>
+                <td>Sink Current (low)</td>
+                <td>I<sub>OL</sub></td>
+                <td>-</td>
+                <td>-</td>
+                <td>8</td>
+                <td>mA</td>
+            </tr>
+            <tr>
+                <td>Rise Time (15pF load)</td>
+                <td>t<sub>R</sub></td>
+                <td>-</td>
+                <td>5</td>
+                <td>10</td>
+                <td>ns</td>
+            </tr>
+            <tr>
+                <td>Fall Time (15pF load)</td>
+                <td>t<sub>F</sub></td>
+                <td>-</td>
+                <td>5</td>
+                <td>10</td>
+                <td>ns</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Current Limits:</strong> Total port current (sum of all pins) must not exceed 200mA. Individual pin current limited to 8mA sink / 4mA source. Use external drivers for higher current loads (relays, motors, high-power LEDs).
+    </div>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues and Solutions</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Possible Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Output not changing</td>
+                <td>Pin configured as peripheral or analog</td>
+                <td>Check ANSEL register, ensure digital I/O mode. Verify no PPS conflict.</td>
+            </tr>
+            <tr>
+                <td>Weak output / wrong voltage</td>
+                <td>Open-drain mode without pull-up</td>
+                <td>Add external pull-up resistor or change to push-pull mode</td>
+            </tr>
+            <tr>
+                <td>Stepper motor jittering</td>
+                <td>Non-atomic phase updates</td>
+                <td>Enable SIMULTANEOUS='on' for atomic writes</td>
+            </tr>
+            <tr>
+                <td>Wrong initial state at power-on</td>
+                <td>INIT_VALUE not configured</td>
+                <td>Set INIT_VALUE to desired startup state (safety critical!)</td>
+            </tr>
+            <tr>
+                <td>Open-drain not working</td>
+                <td>Older chip family without ODC</td>
+                <td>Use external open-drain buffer (74LVC1G07) for older chips</td>
+            </tr>
+            <tr>
+                <td>Glitches on multi-pin update</td>
+                <td>Sequential writes (SIMULTANEOUS='off')</td>
+                <td>Enable SIMULTANEOUS='on' for glitch-free updates</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Debugging Procedure</h3>
+    <pre><code>// Step 1: Verify pin availability
+// Check console output when opening block
+Port A Infos:
+   Indx (A)  ==>   0   1   2   3 ...
+   Chip Pins ==>   4   5   6   7 ...
+
+// Step 2: Check generated TRIS configuration
+// In model_initialize():
+TRISA &= ~0x0007;  // Should clear bits for output pins
+
+// Step 3: Verify LAT write in task
+// In step function:
+LATA = value;  // Or individual bit writes
+
+// Step 4: Test with simple toggle
+// Create test model that toggles output every sample
+// Measure with oscilloscope or LED
+
+// Step 5: Check electrical load
+// Verify current draw within limits (4mA source / 8mA sink)
+// Use external driver if needed</code></pre>
+
+    <h2>Advanced Usage</h2>
+
+    <h3>Mixed I/O on Same Port</h3>
+    <pre><code>// Safe practice: Use different pins for input/output on same port
+
+Digital_Output_Write:
+PORT: 'A', PIN: [0 1 2 3]  // Lower nibble as outputs
+
+Digital_Input:
+PORT: 'A', PIN: [8 9 10 11]  // Upper nibble as inputs
+
+// Result:
+// TRISA = 0x0F0F
+//   Bits [3:0]   = 0 (outputs)
+//   Bits [11:8]  = 1 (inputs)
+//   Bits [15:12] and [7:4] = unchanged
+
+// IMPORTANT: Master block ensures correct TRIS configuration</code></pre>
+
+    <h3>Dynamic Pin Reconfiguration</h3>
+    <pre><code>// Advanced: Change pin direction at runtime
+// Use enabled subsystems with different configurations
+
+// Subsystem 1: Pins as outputs (enabled during TX)
+Digital_Output_Write: PORT='B', PIN=[0:7]
+
+// Subsystem 2: Pins as inputs (enabled during RX)
+Digital_Input: PORT='B', PIN=[0:7]
+
+// Control with Stateflow or logic:
+if (mode == TX)
+    enable(Subsystem1);  // Configure as outputs
+else
+    enable(Subsystem2);  // Configure as inputs
+end
+
+// Half-duplex communication, bidirectional data bus, etc.</code></pre>
+
+    <h2>Code Generation Details</h2>
+
+    <h3>Optimization for Packed Mode</h3>
+    <pre><code>// PACK='on' generates efficient single-instruction write
+// Example: 8 pins packed
+
+// Simulink input: data_bus (uint16) = 0x00A5
+
+// Generated code (optimized):
+LATA = (uint8_t)(data_bus & 0xFF);
+
+// vs. Individual mode (8 separate instructions):
+LATAbits.LATA0 = (data_bus >> 0) & 1;
+LATAbits.LATA1 = (data_bus >> 1) & 1;
+// ... 6 more instructions
+
+// Packed mode:
+// - 1 instruction (8× faster)
+// - Atomic by nature
+// - Smaller code size</code></pre>
+
+    <h3>Simultaneous Write Implementation</h3>
+    <pre><code>// Generated code for SIMULTANEOUS='on'
+// Example: 3 pins (A0, A1, A2)
+
+// Inputs: in_A0, in_A1, in_A2 (boolean)
+
+// Code generation:
+{
+    uint16_t temp;
+    uint16_t mask = 0x0007;  // Controlled pin mask
+
+    temp = LATA;             // Read current state
+    temp &= ~mask;           // Clear controlled bits
+    temp |= (in_A0 << 0);    // Set new values
+    temp |= (in_A1 << 1);
+    temp |= (in_A2 << 2);
+    LATA = temp;             // Atomic write
+}
+
+// Single LAT write ensures all pins update simultaneously</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="digital_output.html">MCHP_Digital_Output</a> - Master block (contains this block + optional read-back)</li>
+        <li><a href="digital_output_read.html">MCHP_Digital_Output_Read</a> - LAT register read-back for verification</li>
+        <li><a href="digital_input.html">MCHP_Digital_Input</a> - Digital input reading with pull-up/pull-down</li>
+        <li><a href="../pwm/pwm_output.html">MCHP_PWM</a> - Hardware PWM for motor control (alternative to GPIO toggling)</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../../getting_started/gpio_tutorial.html">GPIO Configuration Tutorial</a></li>
+        <li><a href="../../application_notes/atomic_updates.html">Atomic Updates and Glitch Prevention</a></li>
+        <li><a href="../../application_notes/open_drain.html">Open-Drain Outputs and Level Shifting</a></li>
+        <li><a href="../../hardware_reference/electrical_specs.html">Electrical Specifications and Current Limits</a></li>
+        <li>Microchip Device Datasheet - GPIO/LAT/TRIS/ODC sections</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p>Part of the <strong>MCHP Blockset</strong> for Model-Based Design with dsPIC, PIC32, and SAM microcontrollers.</p>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motor Control Examples - MPLAB Device Blocks for Simulink</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Motor Control Examples</h1>
+
+    <!-- Third-Party Attribution Box -->
+    <div class="attribution-box">
+        <h3>⚠️ Third-Party Educational Content</h3>
+        <p><strong>The motor control examples and algorithms presented in this guide are provided by the ctrl-elec project, an educational initiative from INSA Lyon (France).</strong></p>
+        <p><strong>Attribution:</strong></p>
+        <ul>
+            <li><strong>Project:</strong> ctrl-elec - Real-time Control & Embedded Systems Education</li>
+            <li><strong>Institution:</strong> Institut National des Sciences Appliquées de Lyon (INSA Lyon)</li>
+            <li><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a></li>
+            <li><strong>GitHub Repository:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a></li>
+            <li><strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a></li>
+        </ul>
+        <p><strong>License:</strong> Educational use - Please refer to the ctrl-elec website for specific licensing terms.</p>
+        <p><em>This content is included in the MPLAB Device Blocks for Simulink documentation to demonstrate real-world motor control applications. Microchip Technology and the MPLAB Device Blocks toolbox are separate from the ctrl-elec project.</em></p>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>This guide demonstrates how to use the MPLAB Device Blocks for Simulink toolbox for motor control applications, using examples and educational materials from the ctrl-elec project (INSA Lyon).</p>
+
+    <p>The examples showcase:</p>
+    <ul>
+        <li><strong>Field-Oriented Control (FOC)</strong> for Permanent Magnet Synchronous Motors (PMSM)</li>
+        <li><strong>Sensorless control</strong> using position and speed observers</li>
+        <li><strong>Field weakening</strong> for extended speed range operation</li>
+        <li><strong>Real-time parameter tuning</strong> using External Mode</li>
+        <li><strong>Hardware-in-the-loop testing</strong> with dsPIC33 and PIC32 devices</li>
+    </ul>
+
+    <div class="note">
+        <strong>Prerequisites:</strong>
+        <ul>
+            <li>Understanding of motor control theory (vector control, Park/Clarke transforms)</li>
+            <li>Familiarity with Simulink and Model-Based Design</li>
+            <li>MPLAB Device Blocks for Simulink installed</li>
+            <li>Microchip development hardware (e.g., MCLV-2, dsPICDEM MCLV)</li>
+        </ul>
+    </div>
+
+    <h2>Example 1: Field-Oriented Control (FOC) for PMSM</h2>
+
+    <div class="example-box">
+        <h3>Overview</h3>
+        <p>Field-Oriented Control (FOC) provides precise control of PMSM torque and speed by independently controlling flux and torque-producing currents in the rotating reference frame (d-q frame).</p>
+    </div>
+
+    <h3>Control Algorithm Components</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Function</th>
+                <th>MPLAB Blocks Used</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Clarke Transform</strong></td>
+                <td>Converts 3-phase currents (a,b,c) to stationary frame (α,β)</td>
+                <td>Math blocks (Simulink standard)</td>
+            </tr>
+            <tr>
+                <td><strong>Park Transform</strong></td>
+                <td>Converts stationary frame (α,β) to rotating frame (d,q)</td>
+                <td>Math blocks with rotor position input</td>
+            </tr>
+            <tr>
+                <td><strong>PI Controllers</strong></td>
+                <td>Regulate d-axis and q-axis currents independently</td>
+                <td>Discrete PID blocks with anti-windup</td>
+            </tr>
+            <tr>
+                <td><strong>Inverse Park</strong></td>
+                <td>Converts voltage commands (Vd, Vq) to stationary frame</td>
+                <td>Math blocks with angle input</td>
+            </tr>
+            <tr>
+                <td><strong>Space Vector Modulation</strong></td>
+                <td>Generates 3-phase PWM duty cycles</td>
+                <td><code>MCHP_PWM_HS</code> or <code>MCHP_PWM_HS_FEP</code></td>
+            </tr>
+            <tr>
+                <td><strong>Current Sensing</strong></td>
+                <td>Measures motor phase currents</td>
+                <td><code>MCHP_ADC</code> with PWM-synchronized sampling</td>
+            </tr>
+            <tr>
+                <td><strong>Position/Speed Estimation</strong></td>
+                <td>Encoder or sensorless observer</td>
+                <td><code>MCHP_QEI</code> (encoder) or observer algorithm</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Implementation Steps</h3>
+    <ol>
+        <li><strong>Hardware Configuration</strong>
+            <ul>
+                <li>Configure PWM outputs using <code>MCHP_PWM_HS_FEP</code> block</li>
+                <li>Set PWM frequency (typically 10-20 kHz)</li>
+                <li>Enable complementary mode with dead-time insertion</li>
+                <li>Configure center-aligned PWM for reduced harmonics</li>
+            </ul>
+        </li>
+        <li><strong>ADC Setup</strong>
+            <ul>
+                <li>Use <code>MCHP_ADC</code> block for current sensing</li>
+                <li>Trigger ADC from PWM for synchronous sampling</li>
+                <li>Sample at PWM valley or peak for accurate measurements</li>
+                <li>Enable ADC interrupt for time-critical control loop</li>
+            </ul>
+        </li>
+        <li><strong>Control Loop Structure</strong>
+            <ul>
+                <li>Outer loop: Speed controller (lower rate, e.g., 1 kHz)</li>
+                <li>Inner loop: Current controller (higher rate, e.g., 10 kHz)</li>
+                <li>Use multi-rate model with appropriate task priorities</li>
+            </ul>
+        </li>
+        <li><strong>Parameter Tuning</strong>
+            <ul>
+                <li>Enable External Mode for real-time tuning</li>
+                <li>Use picgui for lightweight data visualization</li>
+                <li>Adjust PI gains using Ziegler-Nichols or model-based methods</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Key Peripheral Blocks</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Block Name</th>
+                <th>Configuration</th>
+                <th>Purpose in FOC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>MCHP_Master</code></td>
+                <td>Select target device, enable multi-tasking</td>
+                <td>System configuration and scheduler</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_PWM_HS_FEP</code></td>
+                <td>3-phase complementary, center-aligned, 10 kHz</td>
+                <td>Drive motor inverter (6 IGBTs/MOSFETs)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_ADC</code></td>
+                <td>2 channels (phase currents), PWM-triggered</td>
+                <td>Measure Ia, Ib (Ic calculated)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_QEI</code></td>
+                <td>Quadrature encoder interface, 1024 PPR</td>
+                <td>Rotor position and speed feedback</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_UART_Config</code></td>
+                <td>115200 baud, XCP protocol</td>
+                <td>External Mode communication</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_Interrupt</code></td>
+                <td>Timer or ADC interrupt, highest priority</td>
+                <td>Trigger fast current control loop</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Safety Considerations:</strong>
+        <ul>
+            <li>Implement overcurrent protection using ADC limits and emergency shutdown</li>
+            <li>Add dead-time compensation to prevent shoot-through</li>
+            <li>Test control algorithm in simulation before hardware deployment</li>
+            <li>Use current limiting during startup and parameter tuning</li>
+            <li>Monitor MCU load to prevent scheduler overruns</li>
+        </ul>
+    </div>
+
+    <h2>Example 2: Sensorless Control with Sliding Mode Observer</h2>
+
+    <div class="example-box">
+        <h3>Overview</h3>
+        <p>Sensorless control eliminates the need for mechanical position sensors by estimating rotor position and speed from electrical measurements (voltages and currents). This example uses a Sliding Mode Observer (SMO) for robust position estimation.</p>
+    </div>
+
+    <h3>Observer Algorithm Components</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Function</th>
+                <th>Implementation Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Current Observer</strong></td>
+                <td>Estimates stator currents using motor model</td>
+                <td>Uses measured voltages and motor parameters (Rs, Ls)</td>
+            </tr>
+            <tr>
+                <td><strong>Back-EMF Estimation</strong></td>
+                <td>Extracts back-EMF from current error</td>
+                <td>Sliding mode function with adaptive gain</td>
+            </tr>
+            <tr>
+                <td><strong>Position Calculation</strong></td>
+                <td>Computes rotor angle from back-EMF (α,β)</td>
+                <td>Arctangent function with phase compensation</td>
+            </tr>
+            <tr>
+                <td><strong>Speed Estimation</strong></td>
+                <td>Differentiates position or uses PLL</td>
+                <td>Low-pass filter to reduce noise</td>
+            </tr>
+            <tr>
+                <td><strong>Startup Strategy</strong></td>
+                <td>Open-loop alignment then transition to sensorless</td>
+                <td>Forced angle ramp until sufficient back-EMF</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>MPLAB Blocks Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Block Name</th>
+                <th>Configuration</th>
+                <th>Purpose in Sensorless Control</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>MCHP_ADC</code></td>
+                <td>4 channels: Ia, Ib, Vdc, temperature</td>
+                <td>Measure currents and DC bus voltage</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_PWM_HS_FEP</code></td>
+                <td>Same as FOC example</td>
+                <td>Motor drive PWM generation</td>
+            </tr>
+            <tr>
+                <td><strong>Observer Subsystem</strong></td>
+                <td>Fixed-point or floating-point math</td>
+                <td>Sliding mode observer implementation</td>
+            </tr>
+            <tr>
+                <td><code>MCHP_Interrupt</code></td>
+                <td>ADC interrupt at PWM frequency</td>
+                <td>Execute observer at high rate (10-20 kHz)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Key Tuning Parameters</h3>
+    <ul>
+        <li><strong>Observer Gain (k_smo):</strong> Trade-off between convergence speed and noise sensitivity</li>
+        <li><strong>Low-Pass Filter Cutoff:</strong> Filter back-EMF signals without excessive phase delay</li>
+        <li><strong>Transition Speed:</strong> Minimum speed for sensorless operation (typically 5-10% rated speed)</li>
+        <li><strong>Startup Ramp Rate:</strong> Balance between fast startup and smooth transition</li>
+    </ul>
+
+    <div class="note">
+        <strong>Advantages of Sensorless Control:</strong>
+        <ul>
+            <li>Reduced hardware cost (no encoder)</li>
+            <li>Higher reliability (no mechanical sensor to fail)</li>
+            <li>Simplified wiring and installation</li>
+            <li>Suitable for harsh environments</li>
+        </ul>
+        <strong>Limitations:</strong>
+        <ul>
+            <li>Poor performance at zero/low speed</li>
+            <li>Requires accurate motor parameters</li>
+            <li>Sensitive to parameter variations (temperature, saturation)</li>
+            <li>More complex tuning process</li>
+        </ul>
+    </div>
+
+    <h2>Example 3: Field Weakening Control</h2>
+
+    <div class="example-box">
+        <h3>Overview</h3>
+        <p>Field weakening extends the speed range of PMSM beyond the base speed by injecting negative d-axis current. This reduces the flux linkage, allowing higher speeds while maintaining voltage within DC bus limits.</p>
+    </div>
+
+    <h3>Field Weakening Strategy</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Operating Region</th>
+                <th>Control Strategy</th>
+                <th>Id Command</th>
+                <th>Iq Command</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Constant Torque</strong><br>(ω &lt; ωbase)</td>
+                <td>Maximum torque per ampere (MTPA)</td>
+                <td>0 A (or slightly negative)</td>
+                <td>Limited by max current</td>
+            </tr>
+            <tr>
+                <td><strong>Field Weakening</strong><br>(ωbase &lt; ω &lt; ωmax)</td>
+                <td>Voltage-limited operation</td>
+                <td>Negative (increases with speed)</td>
+                <td>Adjusted to maintain voltage limit</td>
+            </tr>
+            <tr>
+                <td><strong>Constant Power</strong><br>(ω ≈ ωmax)</td>
+                <td>Maximum speed operation</td>
+                <td>Maximum negative Id</td>
+                <td>Reduced for voltage constraint</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Implementation with MPLAB Blocks</h3>
+    <ol>
+        <li><strong>Voltage Limit Calculation</strong>
+            <ul>
+                <li>Measure DC bus voltage using <code>MCHP_ADC</code></li>
+                <li>Calculate maximum voltage: Vmax = Vdc / √3 (for SVPWM)</li>
+                <li>Account for voltage drops and modulation overhead</li>
+            </ul>
+        </li>
+        <li><strong>Field Weakening Controller</strong>
+            <ul>
+                <li>Input: Speed feedback, voltage magnitude, current limits</li>
+                <li>Output: Id_ref (d-axis current command)</li>
+                <li>Algorithm: PI controller on voltage error or lookup table</li>
+            </ul>
+        </li>
+        <li><strong>Current Limiting</strong>
+            <ul>
+                <li>Enforce circular current limit: √(Id² + Iq²) ≤ Imax</li>
+                <li>Priority given to Id (flux control) at high speeds</li>
+                <li>Reduce Iq if total current exceeds limit</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Tuning Guidelines</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Typical Range</th>
+                <th>Effect</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Base Speed (ωbase)</strong></td>
+                <td>Rated speed or design speed</td>
+                <td>Transition point to field weakening</td>
+            </tr>
+            <tr>
+                <td><strong>Max Id Current</strong></td>
+                <td>50-80% of rated current</td>
+                <td>Maximum field weakening capability</td>
+            </tr>
+            <tr>
+                <td><strong>Voltage Margin</strong></td>
+                <td>5-10% below Vmax</td>
+                <td>Safety buffer for control headroom</td>
+            </tr>
+            <tr>
+                <td><strong>FW Controller Gain</strong></td>
+                <td>Tuned for stability</td>
+                <td>Response speed vs. oscillations</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Field Weakening Considerations:</strong>
+        <ul>
+            <li>Increased copper losses due to higher total current</li>
+            <li>Reduced efficiency at high speeds</li>
+            <li>Risk of demagnetization with excessive negative Id</li>
+            <li>Requires precise voltage and current limiting</li>
+            <li>Test carefully with thermal monitoring</li>
+        </ul>
+    </div>
+
+    <h2>Development Workflow with MPLAB Blocks</h2>
+
+    <h3>Step 1: Model Development</h3>
+    <ol>
+        <li>Start from MCHP template for target device (e.g., dsPIC33CK Curiosity Board)</li>
+        <li>Add peripheral blocks: PWM, ADC, QEI, UART</li>
+        <li>Implement control algorithm using Simulink blocks</li>
+        <li>Configure multi-rate model: Fast loop (current) + Slow loop (speed)</li>
+    </ol>
+
+    <h3>Step 2: Simulation and Validation</h3>
+    <ol>
+        <li>Test algorithm with motor model in Simulink</li>
+        <li>Verify control stability and transient response</li>
+        <li>Check for numerical issues (saturation, overflow)</li>
+        <li>Optimize fixed-point data types for embedded implementation</li>
+    </ol>
+
+    <h3>Step 3: Code Generation and Deployment</h3>
+    <ol>
+        <li>Configure Embedded Coder settings in MCHP Master block</li>
+        <li>Generate C code and compile for target device</li>
+        <li>Program device using MPLAB X IPE or ICD</li>
+        <li>Use picgui or MPLAB Data Visualizer for initial debugging</li>
+    </ol>
+
+    <h3>Step 4: Real-Time Tuning</h3>
+    <ol>
+        <li>Enable External Mode in MCHP Master block</li>
+        <li>Connect via UART or USB to development PC</li>
+        <li>Adjust controller gains and parameters in real-time</li>
+        <li>Log data for post-processing and analysis</li>
+    </ol>
+
+    <h3>Step 5: Performance Optimization</h3>
+    <ol>
+        <li>Run PIL (Processor-in-the-Loop) test for execution time analysis</li>
+        <li>Optimize code with dsPIC assembly replacements (if needed)</li>
+        <li>Monitor CPU load using MCHP_MCULoad block</li>
+        <li>Verify scheduler timing with MCHP_TasksState block</li>
+    </ol>
+
+    <h2>Accessing ctrl-elec Resources</h2>
+
+    <h3>Educational Materials</h3>
+    <ul>
+        <li><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a>
+            <ul>
+                <li>Comprehensive tutorials on motor control theory</li>
+                <li>Detailed explanations of FOC, sensorless control, and field weakening</li>
+                <li>Step-by-step lab exercises with MATLAB/Simulink</li>
+            </ul>
+        </li>
+        <li><strong>GitHub Repository:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a>
+            <ul>
+                <li>Complete Simulink models for motor control examples</li>
+                <li>Reference implementations and test cases</li>
+                <li>Documentation and supplementary materials</li>
+            </ul>
+        </li>
+        <li><strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a>
+            <ul>
+                <li>Rapid Control Prototyping platform documentation</li>
+                <li>Hardware setup guides for various development boards</li>
+                <li>Application notes and best practices</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Adapting ctrl-elec Examples for MPLAB Blocks</h3>
+    <p>The ctrl-elec examples can be adapted to use MPLAB Device Blocks by:</p>
+    <ol>
+        <li><strong>Replace generic peripheral blocks</strong> with MCHP-specific blocks:
+            <ul>
+                <li>Generic PWM → <code>MCHP_PWM_HS_FEP</code></li>
+                <li>Generic ADC → <code>MCHP_ADC</code></li>
+                <li>Generic encoder → <code>MCHP_QEI</code></li>
+            </ul>
+        </li>
+        <li><strong>Configure MCHP Master block</strong> for target device and enable multi-tasking</li>
+        <li><strong>Adjust sample times</strong> to match MCHP scheduler rates</li>
+        <li><strong>Enable External Mode</strong> using MCHP UART blocks for real-time tuning</li>
+        <li><strong>Leverage MCHP-specific features</strong>:
+            <ul>
+                <li>PWM-triggered ADC for precise current sampling</li>
+                <li>DMA transfers for high-performance data movement</li>
+                <li>Assembly code replacement for optimized math operations</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="note">
+        <strong>Integration Tip:</strong> The control algorithms (Clarke/Park transforms, PI controllers, observers) remain identical. Only the peripheral interface blocks need to be replaced with MPLAB-specific blocks. The ctrl-elec documentation provides excellent theoretical background that complements the MPLAB blocks hardware implementation.
+    </div>
+
+    <h2>Additional Resources</h2>
+
+    <h3>MPLAB Blockset Documentation</h3>
+    <ul>
+        <li><a href="scheduler_multitasking.html">Scheduler and Multitasking</a> - Configure multi-rate control loops</li>
+        <li><a href="external_mode_pil.html">External Mode and PIL Testing</a> - Real-time tuning and verification</li>
+        <li><a href="../block_reference/pwm.html">PWM Block Reference</a> - Motor drive PWM configuration</li>
+        <li><a href="../block_reference/adc.html">ADC Block Reference</a> - Current and voltage sensing setup</li>
+        <li><a href="../block_reference/qei.html">QEI Block Reference</a> - Encoder interface for position feedback</li>
+    </ul>
+
+    <h3>Microchip Application Notes</h3>
+    <ul>
+        <li><a href="https://www.microchip.com/AN1078">AN1078</a> - Sensorless Field-Oriented Control (FOC) for PMSM</li>
+        <li><a href="https://www.microchip.com/AN1292">AN1292</a> - Sensorless Field-Oriented Control of Three-Phase PMSMs</li>
+        <li><a href="https://www.microchip.com/AN1160">AN1160</a> - Sensorless Field-Oriented Control of PMSM Motors</li>
+        <li><a href="https://www.microchip.com/AN2520">AN2520</a> - Field Weakening for PMSM Motor Control</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>This guide demonstrated how to implement advanced motor control algorithms using the MPLAB Device Blocks for Simulink, leveraging educational resources from the ctrl-elec project (INSA Lyon).</p>
+
+    <p><strong>Key Takeaways:</strong></p>
+    <ul>
+        <li>MPLAB blocks provide hardware-optimized peripheral interfaces for motor control</li>
+        <li>Field-Oriented Control (FOC) can be implemented using standard Simulink blocks + MCHP PWM/ADC</li>
+        <li>Sensorless control eliminates encoders using observers, with trade-offs in low-speed performance</li>
+        <li>Field weakening extends speed range beyond base speed using negative d-axis current</li>
+        <li>External Mode and PIL testing enable efficient tuning and verification</li>
+        <li>Multi-rate scheduling optimizes CPU usage for nested control loops</li>
+    </ul>
+
+    <p><strong>Next Steps:</strong></p>
+    <ol>
+        <li>Visit <a href="https://www.ctrl-elec.fr/" target="_blank">ctrl-elec website</a> for motor control theory tutorials</li>
+        <li>Download example models from <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">ctrl-elec GitHub</a></li>
+        <li>Adapt examples using MCHP peripheral blocks for your target device</li>
+        <li>Use picgui and External Mode for real-time development</li>
+        <li>Refer to MPLAB blockset documentation for block-specific configuration details</li>
+    </ol>
+
+    <!-- Footer with Attribution -->
+    <div class="footer">
+        <h3>Attribution</h3>
+        <p><strong>Motor control algorithms, theory, and examples presented in this guide are provided by:</strong></p>
+        <p><strong>ctrl-elec project</strong> - Real-time Control &amp; Embedded Systems Education<br>
+        <strong>INSA Lyon</strong> (Institut National des Sciences Appliquées de Lyon), France</p>
+        <p><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a><br>
+        <strong>GitHub:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a><br>
+        <strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a></p>
+
+        <p><em>This documentation is part of the MPLAB Device Blocks for Simulink toolbox. The ctrl-elec project and INSA Lyon are independent educational initiatives. Microchip Technology provides the MPLAB blocks hardware interface, while ctrl-elec provides motor control algorithms and educational materials.</em></p>
+
+        <p><strong>MPLAB Device Blocks for Simulink</strong><br>
+        © Microchip Technology Inc. All rights reserved.</p>
+    </div>
+
+    </div>
+</body>
+</html>

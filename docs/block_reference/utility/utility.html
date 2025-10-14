@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Utility Blocks - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+<div class="breadcrumb"><a href="../index.html">Block Reference</a> &gt; Utility Blocks</div>
+<h1>Utility and Development Support Blocks</h1>
+<p>Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.</p>
+<h2>Compiler and Build Tools</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><strong><a href="compiler_optimisation.html">MCHP_CompilerOptimisation</a></strong></td><td>Compiler selection, optimization levels, DFP configuration, linker options</td><td>Control code size, speed, and build behavior</td></tr>
+</tbody></table>
+<h2>Resource Monitoring and Visualization</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><strong><a href="port_info.html">MCHP_PortInfo</a></strong></td><td>GPIO port assignment display with conflict detection</td><td>Verify pin usage, detect conflicts</td></tr>
+<tr><td><strong><a href="timer_info.html">MCHP_TimerInfo</a></strong></td><td>Timer resource allocation visualization</td><td>Track timer usage, prevent conflicts</td></tr>
+</tbody></table>
+<h2>Configuration and Setup</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><strong><a href="reset_config.html">MCHP_Simulink_Reset_Config</a></strong></td><td>Reset behavior and watchdog timer configuration</td><td>Configure startup initialization</td></tr>
+<tr><td><strong><a href="doc.html">MCHP_Doc</a></strong></td><td>Quick access to documentation and help resources</td><td>One-click access to user guide, examples, support</td></tr>
+</tbody></table>
+<h2>Dual-Core Communication (dsPIC33CH)</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Applicability</th></tr></thead><tbody>
+<tr><td><strong><a href="msi.html">MCHP_MSI</a></strong></td><td>Master Secondary Interface for inter-core data exchange</td><td>dsPIC33CH dual-core only</td></tr>
+</tbody></table>
+<div class="note"><strong>Development Workflow:</strong> Start with MCHP_CompilerOptimisation to configure build settings, then use PortInfo and TimerInfo blocks to verify resource allocation during development.</div>
+<h2>Typical Usage</h2>
+<ol><li><strong>Initial Setup:</strong> Configure compiler in MCHP_CompilerOptimisation block</li>
+<li><strong>Development:</strong> Add MCHP_PortInfo and MCHP_TimerInfo to monitor resources</li>
+<li><strong>Debugging:</strong> Use MCHP_Doc for quick access to block help</li>
+<li><strong>Production:</strong> Configure reset behavior with MCHP_Simulink_Reset_Config</li>
+<li><strong>Dual-Core (33CH):</strong> Add MCHP_MSI blocks for master-secondary communication</li></ol>
+<h2>Important Compiler Settings</h2>
+<table><thead><tr><th>Setting</th><th>Debug Build</th><th>Production Build</th></tr></thead><tbody>
+<tr><td><strong>Optimization</strong></td><td>-O0 (none)</td><td>-O2 (balanced) or -Os (size)</td></tr>
+<tr><td><strong>Debug Info</strong></td><td>On</td><td>Off (unless field debugging needed)</td></tr>
+<tr><td><strong>GC_SECTIONS</strong></td><td>Off (easier debug)</td><td>On (remove unused code)</td></tr>
+<tr><td><strong>DFP</strong></td><td>Latest available</td><td>Validated version</td></tr>
+</tbody></table>
+<h2>See Also</h2>
+<ul><li><a href="../index.html">Block Reference Home</a></li>
+<li><a href="../system/system.html">System Blocks</a> - Core configuration and monitoring</li>
+<li><a href="../pwm/pwm_blocks.html">PWM Blocks</a> - Pulse-width modulation</li>
+<li><a href="../adc/adc_blocks.html">ADC Blocks</a> - Analog-to-digital conversion</li></ul>
+<footer><p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p></footer>
+    </div>
+</body>
+</html>

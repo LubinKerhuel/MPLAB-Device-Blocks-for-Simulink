@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP Blockset Overview</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>MCHP Blockset for MATLAB/Simulink</h1>
+
+    <h2>Overview</h2>
+    <p>The MCHP Blockset enables Model-Based Design for Microchip microcontrollers, providing a comprehensive library of peripheral blocks for embedded code generation from Simulink models.</p>
+
+    <div class="note">
+        <strong>Key Benefit:</strong> Design, simulate, and deploy control algorithms directly to Microchip hardware without hand-coding peripheral drivers.
+    </div>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li><strong>Automatic C Code Generation</strong> - Generate optimized embedded C code for dsPIC, PIC32, and SAM devices</li>
+        <li><strong>Comprehensive Peripheral Library</strong> - PWM, ADC, UART, SPI, I2C, CAN, Timers, and more</li>
+        <li><strong>External Mode</strong> - Real-time parameter tuning and signal monitoring</li>
+        <li><strong>Processor-in-the-Loop (PIL)</strong> - Validate generated code on actual hardware</li>
+        <li><strong>Hardware Optimizations</strong> - Assembly code replacement for dsPIC families</li>
+        <li><strong>Multitasking Scheduler</strong> - Rate monotonic scheduler for multi-rate applications</li>
+    </ul>
+
+    <h2>Supported Device Families</h2>
+    <table>
+        <tr>
+            <th>Family</th>
+            <th>Architecture</th>
+            <th>Series</th>
+            <th>Typical Applications</th>
+        </tr>
+        <tr>
+            <td><strong>dsPIC33A</strong></td>
+            <td><strong>32-bit DSC with FPU</strong></td>
+            <td>33AK</td>
+            <td>Advanced Motor Control, Digital Power, Floating-Point DSP</td>
+        </tr>
+        <tr>
+            <td><strong>dsPIC</strong></td>
+            <td>16-bit DSC</td>
+            <td>30F, 33F, 33E, 33CH, 33CK, 33CDV</td>
+            <td>Motor Control, Power Conversion, Digital Power</td>
+        </tr>
+        <tr>
+            <td><strong>PIC32</strong></td>
+            <td>32-bit MCU</td>
+            <td>MK, MZ, MX</td>
+            <td>IoT, Industrial Control, Audio Processing</td>
+        </tr>
+        <tr>
+            <td><strong>SAM</strong></td>
+            <td>ARM Cortex-M</td>
+            <td>E5x, E7x, C2x, D2x</td>
+            <td>Industrial Automation, Motor Control</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note on dsPIC33A:</strong> The dsPIC33A family represents a significant architectural advancement with its <strong>32-bit core and hardware FPU</strong>, offering 10-100x faster floating-point performance compared to 16-bit dsPIC families. See <a href="supported_devices.html">Supported Devices</a> for details.
+    </div>
+
+    <h2>Model-Based Design Workflow</h2>
+
+    <p>The MCHP Blockset implements a complete Model-Based Design (MBD) workflow, enabling seamless transition from algorithm simulation to embedded code execution. The workflow follows three main phases:</p>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/MCHP_MBD_Overview.png" alt="Model-Based Design Complete Workflow" class="workflow-figure">
+
+    <h3>1. Simulation Phase</h3>
+    <p>Develop and validate your control algorithm in the Simulink environment:</p>
+    <ul>
+        <li><strong>Plant Modeling</strong> - Create mathematical models of your physical system (motor, power converter, etc.)</li>
+        <li><strong>Controller Design</strong> - Implement control algorithms using standard Simulink blocks</li>
+        <li><strong>Closed-Loop Simulation</strong> - Test controller performance with simulated plant dynamics</li>
+        <li><strong>Parameter Tuning</strong> - Optimize gains and parameters in fast simulation cycles</li>
+    </ul>
+
+    <h3>2. Code Generation Phase</h3>
+    <p>Transform your validated algorithm into embedded C code:</p>
+    <ul>
+        <li><strong>Add Peripheral Blocks</strong> - Replace simulated inputs/outputs with MCHP hardware blocks (ADC, PWM, UART, etc.)</li>
+        <li><strong>Configure Target</strong> - Select Microchip device, set clock frequency, choose compiler</li>
+        <li><strong>Automatic Code Generation</strong> - Embedded Coder generates optimized C code including peripheral drivers and scheduler</li>
+        <li><strong>One-Click Build</strong> - Press "Build" button to compile and program your hardware</li>
+    </ul>
+
+    <div class="note">
+        <strong>Key Advantage:</strong> The same Simulink model serves both simulation and embedded code generation. No manual code translation required - drastically reduces development time and eliminates human errors in code conversion.
+    </div>
+
+    <h3>3. Verification & Testing Phase</h3>
+    <p>Validate that your embedded implementation matches simulation expectations:</p>
+    <ul>
+        <li><strong>Hardware Testing</strong> - Run algorithm on actual microcontroller with real sensors/actuators</li>
+        <li><strong>External Mode</strong> - Monitor signals and tune parameters in real-time using XCP protocol</li>
+        <li><strong>Processor-in-the-Loop (PIL)</strong> - Compare simulation results with actual execution on target hardware</li>
+        <li><strong>Timing Analysis</strong> - Measure CPU load and verify real-time constraints are met</li>
+        <li><strong>Data Logging</strong> - Stream runtime data to MATLAB for analysis using picgui interface</li>
+    </ul>
+
+    <h2>Typical Development Steps</h2>
+    <ol>
+        <li><strong>Start from Template</strong> - Load pre-configured board template (see <a href="board_templates.html">Board Templates</a>)</li>
+        <li><strong>Model Design</strong> - Create or import control algorithm in Simulink</li>
+        <li><strong>Add Peripherals</strong> - Drag and drop MCHP blocks for hardware interfaces (PWM, ADC, UART, etc.)</li>
+        <li><strong>Configure Target</strong> - Select device, set clock, configure peripherals</li>
+        <li><strong>Simulate</strong> - Verify algorithm behavior in simulation with plant model</li>
+        <li><strong>Generate Code</strong> - Automatic C code generation with Embedded Coder</li>
+        <li><strong>Build & Deploy</strong> - Compile and program target device (single button press)</li>
+        <li><strong>Test & Tune</strong> - Use External Mode or picgui for real-time optimization</li>
+        <li><strong>Validate</strong> - Run PIL tests to verify numerical accuracy and timing performance</li>
+    </ol>
+
+    <h2>MCHP Block Library</h2>
+
+    <p>The blockset provides a comprehensive library of peripheral blocks for Microchip microcontrollers, enabling graphical configuration of hardware resources without writing driver code:</p>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/mbd_workflow/MCHP_BlockLibrary.png" alt="MCHP Block Library Overview" style="max-width: 800px;">
+
+    <p>The library includes blocks for all major peripheral categories:</p>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Blocks</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><strong>System</strong></td>
+            <td>Master, Clock Configuration, MCU Load, Task State</td>
+            <td>Chip selection, timing configuration, performance monitoring</td>
+        </tr>
+        <tr>
+            <td><strong>PWM</strong></td>
+            <td>High-Speed PWM, PWM with FEP, Standard PWM, MC PWM</td>
+            <td>Motor drive, power conversion, precise waveform generation</td>
+        </tr>
+        <tr>
+            <td><strong>ADC</strong></td>
+            <td>High-Speed 12-bit, SAR ADC, Standard ADC, AFEC</td>
+            <td>Analog-to-digital conversion for sensors and measurements</td>
+        </tr>
+        <tr>
+            <td><strong>Communication</strong></td>
+            <td>UART, SPI, I2C, CAN</td>
+            <td>Serial communication with peripherals and host systems</td>
+        </tr>
+        <tr>
+            <td><strong>Encoders</strong></td>
+            <td>QEI, PDEC, Hall Sensors</td>
+            <td>Motor position and speed measurement</td>
+        </tr>
+        <tr>
+            <td><strong>Digital I/O</strong></td>
+            <td>Digital Input, Digital Output, Change Notification</td>
+            <td>GPIO control, button inputs, LED outputs</td>
+        </tr>
+        <tr>
+            <td><strong>Timers</strong></td>
+            <td>Timer, Timer Input Capture, Timer Output Compare</td>
+            <td>Periodic interrupts, event capture, pulse generation</td>
+        </tr>
+        <tr>
+            <td><strong>Analog</strong></td>
+            <td>DAC, Op-Amp, Comparator, Voltage Reference</td>
+            <td>Analog output, signal conditioning, threshold detection</td>
+        </tr>
+        <tr>
+            <td><strong>Utility</strong></td>
+            <td>Data Visualization (picgui), External Mode, PIL</td>
+            <td>Real-time debugging, parameter tuning, code verification</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Graphical Configuration:</strong> Each peripheral block provides a user-friendly dialog box for configuration - no need to read datasheets or calculate register values manually. The blockset automatically generates correct initialization code based on your high-level settings.
+    </div>
+
+    <h2>Target Applications</h2>
+    <ul>
+        <li><strong>Motor Control</strong> - FOC, BLDC, PMSM, Stepper motors</li>
+        <li><strong>Power Conversion</strong> - SMPS, PFC, DC-DC converters, inverters</li>
+        <li><strong>Digital Power</strong> - Advanced control loops, adaptive algorithms</li>
+        <li><strong>Signal Processing</strong> - Filters, FFT, sensor fusion</li>
+        <li><strong>Communication</strong> - CAN, LIN, Ethernet, USB</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="installation.html">Installation</a> |
+        <a href="quick_start.html">Quick Start Guide</a> |
+        <a href="board_templates.html">Board Templates</a> |
+        <a href="supported_devices.html">Supported Devices</a> |
+        <a href="external_mode_pil.html">External Mode & PIL</a> |
+        <a href="../user_guide/index.html">User Guide</a>
+    </p>
+    </div>
+</body>
+</html>

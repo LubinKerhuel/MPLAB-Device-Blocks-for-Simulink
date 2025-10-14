@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Guide - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>MCHP Blockset User Guide</h1>
+
+    <p>Comprehensive guide to using the MCHP Blockset for embedded code generation and deployment.</p>
+
+    <h2>User Guide Topics</h2>
+
+    <div class="card">
+        <h3><a href="code_generation.html">Code Generation</a></h3>
+        <p>Learn how to configure Simulink models for automatic C code generation targeting Microchip devices.</p>
+        <ul>
+            <li>Model configuration parameters</li>
+            <li>Code generation workflow</li>
+            <li>Optimization settings</li>
+            <li>Custom code integration</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3><a href="external_mode.html">External Mode</a></h3>
+        <p>Real-time parameter tuning and signal monitoring on running hardware.</p>
+        <ul>
+            <li>Setting up External Mode</li>
+            <li>Communication interface configuration</li>
+            <li>Real-time parameter tuning</li>
+            <li>Live signal monitoring and visualization</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3><a href="pil_testing.html">Processor-in-the-Loop (PIL) Testing</a></h3>
+        <p>Verify generated code on actual hardware with automated testing.</p>
+        <ul>
+            <li>PIL configuration and setup</li>
+            <li>Test harness creation</li>
+            <li>Code verification workflow</li>
+            <li>Performance profiling</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3><a href="compiler_setup.html">Compiler Setup</a></h3>
+        <p>Detailed compiler installation and configuration for all supported devices.</p>
+        <ul>
+            <li>XC16 compiler setup (dsPIC 30F/33F/33E)</li>
+            <li>XC-DSC compiler setup (dsPIC 33C/33A)</li>
+            <li>XC32 compiler setup (PIC32 and SAM devices)</li>
+            <li>Compiler optimization levels</li>
+        </ul>
+    </div>
+
+    <h2>Advanced Topics</h2>
+
+    <ul>
+        <li><strong>Multitasking</strong> - Rate monotonic scheduler configuration</li>
+        <li><strong>Interrupt Handling</strong> - Configuring and using interrupts</li>
+        <li><strong>DMA Configuration</strong> - Direct Memory Access optimization</li>
+        <li><strong>Memory Management</strong> - RAM and Flash optimization</li>
+        <li><strong>Fixed-Point Code</strong> - Optimized fixed-point arithmetic</li>
+        <li><strong>Assembly Integration</strong> - Using assembly code replacements (dsPIC)</li>
+    </ul>
+
+    <h2>Workflow Guides</h2>
+
+    <ul>
+        <li><strong>Motor Control Design</strong> - FOC, BLDC, and PMSM applications</li>
+        <li><strong>Power Conversion</strong> - SMPS, PFC, and inverter design</li>
+        <li><strong>Signal Processing</strong> - Filters, FFT, and DSP algorithms</li>
+        <li><strong>Communication Systems</strong> - CAN, UART, SPI, I2C integration</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="../getting_started/overview.html">Getting Started</a> |
+        <a href="../block_reference/index.html">Block Reference</a> |
+        <a href="../examples/field_weakening.html">Examples</a>
+    </p>
+    </div>
+</body>
+</html>

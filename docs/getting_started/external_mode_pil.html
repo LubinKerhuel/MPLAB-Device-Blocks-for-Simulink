@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>External Mode & PIL Testing - MPLAB Device Blocks for Simulink</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>External Mode & Processor-in-the-Loop (PIL) Testing</h1>
+
+    <p>The MPLAB Device Blocks for Simulink provides two powerful tools for testing and validating embedded algorithms:</p>
+    <ul>
+        <li><strong>External Mode</strong>: Real-time parameter tuning and data visualization during code execution</li>
+        <li><strong>PIL (Processor-in-the-Loop)</strong>: Verification of code generation accuracy and performance analysis</li>
+    </ul>
+
+    <p>This guide explains both tools, their use cases, setup procedures, and best practices.</p>
+
+    <h2>External Mode: Real-Time Parameter Tuning</h2>
+
+    <h3>What is External Mode?</h3>
+
+    <p>External Mode creates a bidirectional communication link between Simulink and your embedded target while the code is running. This enables:</p>
+
+    <ul>
+        <li><strong>Upload parameters</strong> to running code without rebuilding (e.g., tune PID gains in real-time)</li>
+        <li><strong>Download signals</strong> from embedded hardware for real-time plotting in Simulink</li>
+        <li><strong>Start/stop execution</strong> from Simulink interface</li>
+        <li><strong>Trigger data capture</strong> based on signal conditions</li>
+    </ul>
+
+    <div class="note">
+        <strong>💡 Typical Use Case:</strong>
+        <p>A motor control engineer uses External Mode to tune PID controller gains while the motor is running, observing the effect of each change immediately on Simulink scopes without stopping the motor or rebuilding code.</p>
+    </div>
+
+    <h3>External Mode Variants</h3>
+
+    <p>The toolbox supports two External Mode implementations:</p>
+
+    <div class="note">
+        <strong>💡 Related Tool - PIC GUI:</strong>
+        <p>For simplified data visualization without parameter tuning capabilities, see <a href="data_visualization.html">Data Visualization with PIC GUI</a>. PIC GUI provides lightweight data logging over UART with custom MATLAB visualization scripts.</p>
+    </div>
+
+    <h2>MathWorks External Mode</h2>
+
+    <h3>Overview</h3>
+
+    <p>MathWorks External Mode provides tight integration with Simulink, enabling parameter tuning and signal monitoring directly from the Simulink model interface.</p>
+
+    <h3>Protocol: XCP (Universal Measurement and Calibration Protocol)</h3>
+
+    <p>External Mode uses the industry-standard XCP protocol, which provides:</p>
+    <ul>
+        <li>Standardized communication protocol</li>
+        <li>Support for multiple transport layers (Serial, TCP/IP, CAN)</li>
+        <li>Efficient binary data format</li>
+        <li>Synchronization with model execution</li>
+    </ul>
+
+    <h3>External Mode Setup Procedure</h3>
+
+    <h4>Step 1: Enable External Mode in Model</h4>
+
+    <pre><code>1. Open Model Configuration Parameters (Ctrl+E)
+2. Navigate to: Code Generation → Interface
+3. Check "External mode"
+4. Configure transport layer:
+   - Transport: "XCP on Serial" (for UART)
+   - Transport: "XCP on TCP/IP" (for Ethernet)
+5. Set baud rate (serial) or IP address (TCP/IP)</code></pre>
+
+    <h4>Step 2: Configure Communication Parameters</h4>
+
+    <pre><code>For Serial (UART):
+  - Baud rate: 115200 (or higher)
+  - COM port: Detected automatically or set manually
+  - Data bits: 8
+  - Stop bits: 1
+  - Parity: None
+
+For TCP/IP (Ethernet):
+  - Target IP address: e.g., 192.168.1.100
+  - Port: 17725 (default XCP port)</code></pre>
+
+    <h4>Step 3: Build and Program with External Mode</h4>
+
+    <pre><code>1. Build model (Ctrl+B)
+   - External Mode code is automatically included
+2. Program microcontroller via ICD/PICkit
+3. In Simulink:
+   - Click "Connect to Target" button (or Ctrl+K)
+   - Wait for connection confirmation
+4. Click "Start Real-Time Code" (or Ctrl+T)
+5. Observe signals in Simulink scopes
+6. Modify tunable parameters in real-time</code></pre>
+
+    <h3>Making Parameters Tunable</h3>
+
+    <p>To allow real-time tuning of a parameter:</p>
+
+    <pre><code>1. Right-click the block parameter or constant block
+2. Select "Tune Parameter..."
+3. Check "Tunable" checkbox
+4. Optional: Set min/max limits for safety
+5. Rebuild model
+
+During External Mode:
+  - Double-click parameter to open slider
+  - Adjust value while code runs
+  - Observe effect immediately</code></pre>
+
+    <div class="warning">
+        <strong>⚠️ Safety Warning:</strong>
+        <p>When tuning parameters in real-time for motor control or other safety-critical applications:</p>
+        <ul>
+            <li>Set appropriate min/max limits on tunable parameters</li>
+            <li>Have emergency stop mechanism ready</li>
+            <li>Start with safe operating conditions</li>
+            <li>Monitor system behavior continuously</li>
+        </ul>
+    </div>
+
+    <h3>External Mode Performance Considerations</h3>
+
+    <table>
+        <tr>
+            <th>Aspect</th>
+            <th>Impact</th>
+            <th>Recommendation</th>
+        </tr>
+        <tr>
+            <td><strong>CPU Overhead</strong></td>
+            <td>5-15% depending on logged signals</td>
+            <td>Minimize number of logged signals</td>
+        </tr>
+        <tr>
+            <td><strong>Communication Latency</strong></td>
+            <td>10-100ms depending on transport</td>
+            <td>Use TCP/IP for lower latency than Serial</td>
+        </tr>
+        <tr>
+            <td><strong>Maximum Sample Rate</strong></td>
+            <td>Limited by baud rate / network speed</td>
+            <td>Serial: ~10 kHz max, Ethernet: ~100 kHz max</td>
+        </tr>
+        <tr>
+            <td><strong>Buffer Size</strong></td>
+            <td>Limits burst logging capability</td>
+            <td>Configure in External Mode settings</td>
+        </tr>
+    </table>
+
+    <h2>Processor-in-the-Loop (PIL) Testing</h2>
+
+    <h3>What is PIL?</h3>
+
+    <p>PIL runs your generated code on the actual target hardware and compares the results to a reference simulation. This provides two critical types of verification:</p>
+
+    <ol>
+        <li><strong>Numerical Verification</strong>: Confirms code generation produces bit-accurate results</li>
+        <li><strong>Timing Analysis</strong>: Measures actual execution time and resource usage on hardware</li>
+    </ol>
+
+    <div class="note">
+        <strong>💡 Why PIL is Important:</strong>
+        <p>PIL catches errors that simulation alone cannot detect:</p>
+        <ul>
+            <li>Fixed-point quantization errors</li>
+            <li>Compiler optimization side effects</li>
+            <li>Hardware-specific behavior</li>
+            <li>Performance bottlenecks</li>
+        </ul>
+    </div>
+
+    <h3>PIL Test Model Structure</h3>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_Model.PNG"
+             alt="PIL test model structure">
+        <p><strong>Figure 2:</strong> PIL test model structure. The algorithm under test runs on hardware (PIL block), while a reference model runs in simulation. Results are compared to verify correctness.</p>
+    </div>
+
+    <p><strong>Model components:</strong></p>
+    <ul>
+        <li><strong>Test Inputs</strong>: Signal sources (sine waves, steps, ramps)</li>
+        <li><strong>PIL Block</strong>: Algorithm running on hardware</li>
+        <li><strong>Reference Model</strong>: Same algorithm in Simulink</li>
+        <li><strong>Comparison</strong>: Subtract outputs to check for differences</li>
+        <li><strong>Assertion</strong>: Fail test if error exceeds threshold</li>
+    </ul>
+
+    <h3>PIL Numerical Verification</h3>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_Out_Simu_Vs_Exec.PNG"
+             alt="PIL numerical comparison results">
+        <p><strong>Figure 3:</strong> PIL numerical verification results. Blue line (simulation) vs. Orange line (hardware execution). In this test, the outputs match exactly, confirming code generation accuracy.</p>
+    </div>
+
+    <p><strong>What to verify:</strong></p>
+    <ul>
+        <li><strong>Floating-point algorithms</strong>: Should match simulation exactly (within rounding tolerance)</li>
+        <li><strong>Fixed-point algorithms</strong>: May have quantization differences - verify they're acceptable</li>
+        <li><strong>Lookup tables</strong>: Check interpolation accuracy</li>
+        <li><strong>State machines</strong>: Verify state transitions</li>
+    </ul>
+
+    <h3>PIL Timing Analysis</h3>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_TimingAnalysis.PNG"
+             alt="PIL timing analysis results">
+        <p><strong>Figure 4:</strong> PIL timing analysis results showing actual execution time on target hardware. Statistics include minimum, maximum, and average execution times in CPU cycles and microseconds.</p>
+    </div>
+
+    <p><strong>Timing metrics provided:</strong></p>
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Description</th>
+            <th>Use</th>
+        </tr>
+        <tr>
+            <td><strong>Minimum Time</strong></td>
+            <td>Fastest execution (best-case path)</td>
+            <td>Understand base performance</td>
+        </tr>
+        <tr>
+            <td><strong>Maximum Time</strong></td>
+            <td>Slowest execution (worst-case path)</td>
+            <td>Verify meets deadline</td>
+        </tr>
+        <tr>
+            <td><strong>Average Time</strong></td>
+            <td>Typical execution time</td>
+            <td>Calculate CPU utilization</td>
+        </tr>
+        <tr>
+            <td><strong>Stack Usage</strong></td>
+            <td>Peak stack depth</td>
+            <td>Ensure no stack overflow</td>
+        </tr>
+        <tr>
+            <td><strong>Code Size</strong></td>
+            <td>Flash memory used</td>
+            <td>Check fits in device</td>
+        </tr>
+    </table>
+
+    <h3>PIL Setup Procedure</h3>
+
+    <h4>Step 1: Create PIL Test Model</h4>
+
+    <pre><code>1. Create new Simulink model
+2. Add test signal sources (sine, step, etc.)
+3. Add your algorithm as a subsystem or reference model
+4. Add reference implementation for comparison
+5. Add comparison logic (subtraction + assertion)</code></pre>
+
+    <h4>Step 2: Configure Subsystem for PIL</h4>
+
+    <pre><code>1. Right-click subsystem/model block
+2. Select "C/C++ Code" → "Build"
+3. In build dialog:
+   - Set "Build action" to "Software-in-the-Loop (SIL)"
+     or "Processor-in-the-Loop (PIL)"
+   - Select PIL for hardware testing
+4. Choose hardware connection:
+   - ICD3/ICD4/ICD5
+   - PICkit 3/4/5
+   - MPLAB SNAP
+5. Click "Build"</code></pre>
+
+    <h4>Step 3: Run PIL Test</h4>
+
+    <pre><code>1. Click "Run" in Simulink (Ctrl+T)
+2. Code is automatically:
+   - Generated
+   - Compiled
+   - Programmed to hardware
+   - Executed with test inputs
+3. Results compared to reference
+4. Report generated with timing data</code></pre>
+
+    <h3>Interpreting PIL Results</h3>
+
+    <h4>Numerical Verification Pass Criteria</h4>
+
+    <table>
+        <tr>
+            <th>Data Type</th>
+            <th>Acceptable Error</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td><strong>double (64-bit)</strong></td>
+            <td>&lt; 1e-14 (rounding)</td>
+            <td>Should match exactly</td>
+        </tr>
+        <tr>
+            <td><strong>single (32-bit)</strong></td>
+            <td>&lt; 1e-6 (rounding)</td>
+            <td>Should match exactly</td>
+        </tr>
+        <tr>
+            <td><strong>int32 / uint32</strong></td>
+            <td>0 (exact)</td>
+            <td>Must match exactly</td>
+        </tr>
+        <tr>
+            <td><strong>int16 / uint16</strong></td>
+            <td>0 or ±1 (rounding)</td>
+            <td>Check quantization</td>
+        </tr>
+        <tr>
+            <td><strong>Fixed-point</strong></td>
+            <td>Application-dependent</td>
+            <td>Verify against requirements</td>
+        </tr>
+    </table>
+
+    <h4>Timing Analysis Guidelines</h4>
+
+    <pre><code>Example Timing Report:
+  Function: ControlLoop
+  Min time:  45 μs  (2,250 cycles @ 50 MHz)
+  Max time:  67 μs  (3,350 cycles @ 50 MHz)
+  Avg time:  52 μs  (2,600 cycles @ 50 MHz)
+
+Analysis:
+  • Sample period: 100 μs (10 kHz control loop)
+  • Worst case: 67 μs < 100 μs ✅ PASS
+  • CPU load: 52 / 100 = 52% average
+  • Safety margin: 100 - 67 = 33 μs (33% margin) ✅ GOOD</code></pre>
+
+    <div class="important">
+        <strong>🔴 Timing Failure:</strong>
+        <p>If maximum execution time exceeds sample period:</p>
+        <ol>
+            <li><strong>Optimize code</strong>: Use PIL profiling to find bottlenecks</li>
+            <li><strong>Enable optimizations</strong>: Check compiler settings (-O1/-O2/-O3)</li>
+            <li><strong>Use code replacement</strong>: Enable assembly optimizations for dsPIC</li>
+            <li><strong>Reduce sample rate</strong>: Increase sample period if possible</li>
+            <li><strong>Upgrade hardware</strong>: Consider faster microcontroller</li>
+        </ol>
+    </div>
+
+    <h2>External Mode vs PIL Comparison</h2>
+
+    <table>
+        <tr>
+            <th>Aspect</th>
+            <th>External Mode</th>
+            <th>PIL</th>
+        </tr>
+        <tr>
+            <td><strong>Purpose</strong></td>
+            <td>Real-time tuning & debugging</td>
+            <td>Verification & performance analysis</td>
+        </tr>
+        <tr>
+            <td><strong>When to use</strong></td>
+            <td>During development & commissioning</td>
+            <td>Before production release</td>
+        </tr>
+        <tr>
+            <td><strong>Code modification</strong></td>
+            <td>Adds communication code</td>
+            <td>No modification (tests production code)</td>
+        </tr>
+        <tr>
+            <td><strong>Performance impact</strong></td>
+            <td>5-15% overhead</td>
+            <td>None (measured without overhead)</td>
+        </tr>
+        <tr>
+            <td><strong>Hardware connection</strong></td>
+            <td>Serial/Ethernet required during run</td>
+            <td>Programmer (ICD/PICkit) required</td>
+        </tr>
+        <tr>
+            <td><strong>Results</strong></td>
+            <td>Real-time plots, tuned parameters</td>
+            <td>Pass/fail verification, timing data</td>
+        </tr>
+        <tr>
+            <td><strong>Automation</strong></td>
+            <td>Manual interaction</td>
+            <td>Fully automated test</td>
+        </tr>
+    </table>
+
+    <h2>Best Practices</h2>
+
+    <h3>External Mode Best Practices</h3>
+
+    <ol>
+        <li><strong>Minimize logged signals</strong>: Only log signals you need to observe</li>
+        <li><strong>Use appropriate sample rates</strong>: Don't oversample slow signals</li>
+        <li><strong>Set parameter limits</strong>: Prevent accidental unsafe values</li>
+        <li><strong>Document tuned values</strong>: Record final parameter values in model</li>
+        <li><strong>Test without External Mode</strong>: Verify performance without communication overhead</li>
+    </ol>
+
+    <h3>PIL Best Practices</h3>
+
+    <ol>
+        <li><strong>Test early and often</strong>: Run PIL after major algorithm changes</li>
+        <li><strong>Use realistic test inputs</strong>: Cover full operating range</li>
+        <li><strong>Check worst-case timing</strong>: Verify maximum execution time</li>
+        <li><strong>Test with optimizations</strong>: PIL with same settings as production</li>
+        <li><strong>Automate PIL tests</strong>: Integrate into CI/CD pipeline</li>
+        <li><strong>Document results</strong>: Keep timing reports for reference</li>
+    </ol>
+
+    <h3>Workflow Recommendation</h3>
+
+    <pre><code>Development Phase:
+  1. Develop algorithm in Simulink (pure simulation)
+  2. Test with PIL for numerical verification
+  3. Optimize if timing fails
+  4. Deploy to hardware
+  5. Use External Mode for tuning
+  6. Final PIL test with tuned parameters
+
+Production Phase:
+  7. Disable External Mode (remove overhead)
+  8. Build production code
+  9. Final verification with PIL
+  10. Program production units</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>External Mode Connection Issues</h3>
+
+    <p><strong>Problem:</strong> Cannot connect to target</p>
+    <p><strong>Solutions:</strong></p>
+    <ul>
+        <li>Verify COM port or IP address is correct</li>
+        <li>Check baud rate matches between model and hardware</li>
+        <li>Ensure target code is running (toggle LED test)</li>
+        <li>Check cable connections</li>
+        <li>Disable Windows firewall (for TCP/IP mode)</li>
+        <li>Try different USB port (for Serial mode)</li>
+    </ul>
+
+    <h3>PIL Test Failures</h3>
+
+    <p><strong>Problem:</strong> Numerical mismatch between simulation and hardware</p>
+    <p><strong>Possible causes:</strong></p>
+    <ul>
+        <li><strong>Fixed-point quantization</strong>: Check word lengths and scaling</li>
+        <li><strong>Compiler optimization</strong>: May reorder operations (usually safe)</li>
+        <li><strong>Uninitialized variables</strong>: Hardware vs simulation default values differ</li>
+        <li><strong>Timing-dependent logic</strong>: Sample time mismatch</li>
+    </ul>
+
+    <p><strong>Problem:</strong> Timing exceeds sample period</p>
+    <p><strong>Solutions:</strong></p>
+    <ol>
+        <li>Enable compiler optimizations (-O2 or -O3)</li>
+        <li>Enable code replacement library (assembly optimizations)</li>
+        <li>Profile code to find bottleneck functions</li>
+        <li>Simplify algorithm or increase sample period</li>
+    </ol>
+
+    <h2>Related Documentation</h2>
+
+    <ul>
+        <li><a href="../block_reference/communication.html">Communication Blocks</a> (UART for External Mode)</li>
+        <li><a href="../block_reference/system/mcu_load.html">MCHP_MCU_Load Block</a></li>
+        <li><a href="scheduler_multitasking.html">Scheduler & Multitasking Guide</a></li>
+        <li><a href="../block_reference/utility/compiler_optimisation.html">Compiler Optimization Block</a></li>
+    </ul>
+
+    <hr>
+
+    <p style="text-align: center; color: #666; font-size: 0.9em;">
+        <strong>MPLAB Device Blocks for Simulink</strong> | Microchip Technology Inc.<br>
+        For technical support, visit <a href="https://www.microchip.com/support">www.microchip.com/support</a>
+    </p>
+    </div>
+</body>
+</html>

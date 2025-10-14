@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_OC_SW - Software Output Compare - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./timers.html">Timer Blocks</a> &gt;
+        MCHP_OC_SW
+    </div>
+
+    <h1>MCHP_OC_SW - Software Output Compare</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/timers/OutputCompare_SW.svg"
+             alt="OutputCompare_SW Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/timers/OutputCompare_SW.png';">
+        <div class="block-image-caption">
+            OutputCompare_SW Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>
+        The <strong>MCHP_OC_SW</strong> block provides <strong>interrupt-driven software output compare</strong> functionality.
+        Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes,
+        offering <strong>greater flexibility</strong> at the cost of CPU overhead.
+    </p>
+
+    <div class="note">
+        <strong>Key Advantage:</strong> Software OC provides more operational modes and dynamic timing changes compared to
+        hardware OC. Ideal when you need runtime flexibility or modes not supported by the OC peripheral.
+    </div>
+
+    <h3>Key Features</h3>
+    <ul>
+        <li><strong>Interrupt-driven timing</strong> - Software updates output pins via timer interrupts</li>
+        <li><strong>Multiple operational modes</strong> - Up/Down edges, Period control, Toggle</li>
+        <li><strong>Dynamic timing changes</strong> - Frequency and duty cycle adjustable at runtime</li>
+        <li><strong>Automatic timer allocation</strong> - Uses MCHP_Fun.TimerConfig() for resource management</li>
+        <li><strong>Flexible pin mapping</strong> - Works with any GPIO pin (not limited to OC pins)</li>
+        <li><strong>Period input support</strong> - Dynamic frequency control via Simulink signal</li>
+    </ul>
+
+    <h3>Comparison: OC_HW vs OC_SW</h3>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>MCHP_OC_HW</th>
+            <th>MCHP_OC_SW</th>
+        </tr>
+        <tr>
+            <td><strong>CPU Overhead</strong></td>
+            <td>None (autonomous)</td>
+            <td>Interrupt per edge transition</td>
+        </tr>
+        <tr>
+            <td><strong>Flexibility</strong></td>
+            <td>Fixed modes (3, 5, 6, 7)</td>
+            <td>More modes (3, 5, 10, 32)</td>
+        </tr>
+        <tr>
+            <td><strong>Pin Assignment</strong></td>
+            <td>OC pins only (or PPS)</td>
+            <td>Any GPIO pin</td>
+        </tr>
+        <tr>
+            <td><strong>Dynamic Changes</strong></td>
+            <td>Glitch-free duty cycle</td>
+            <td>Full runtime reconfiguration</td>
+        </tr>
+        <tr>
+            <td><strong>Best For</strong></td>
+            <td>High-frequency PWM, motor control</td>
+            <td>Flexible timing, variable frequency</td>
+        </tr>
+    </table>
+
+    <h2>Device Support</h2>
+    <table>
+        <tr>
+            <th>Device Family</th>
+            <th>Timer Resources</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>dsPIC30F/33F</td>
+            <td>Type A/B timers</td>
+            <td>Automatic allocation</td>
+        </tr>
+        <tr>
+            <td>dsPIC33E</td>
+            <td>Type A/B/C timers</td>
+            <td>Enhanced timer features</td>
+        </tr>
+        <tr>
+            <td>dsPIC33C/CH/CK</td>
+            <td>Type A/B timers</td>
+            <td>High-speed timer option</td>
+        </tr>
+        <tr>
+            <td>dsPIC33A</td>
+            <td>Type A/B timers</td>
+            <td>Modern timer architecture</td>
+        </tr>
+        <tr>
+            <td>PIC24</td>
+            <td>Type A/B/C timers</td>
+            <td>Standard operation</td>
+        </tr>
+        <tr>
+            <td>PIC32</td>
+            <td>32-bit timers</td>
+            <td>Higher resolution available</td>
+        </tr>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Channel Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Values</th>
+        </tr>
+        <tr>
+            <td><strong>Channel</strong></td>
+            <td>OC channel identifiers to use</td>
+            <td>1-9 (logical channels, not hardware OC)</td>
+        </tr>
+        <tr>
+            <td><strong>Channel_UP_Down_Periode</strong></td>
+            <td>Operation mode per channel</td>
+            <td>3 (Up & Down)<br>5 (Up & Period)<br>10 (Down & Period)<br>32 (Toggle)</td>
+        </tr>
+        <tr>
+            <td><strong>InputPeriod</strong></td>
+            <td>Period source</td>
+            <td>'is a block input' - Dynamic via Simulink<br>'is a parameter' - Fixed in mask</td>
+        </tr>
+        <tr>
+            <td><strong>PIN_OCx</strong></td>
+            <td>GPIO pin assignment</td>
+            <td>Any available GPIO (e.g., 'RA0', 'RB5')</td>
+        </tr>
+        <tr>
+            <td><strong>Timer Configuration</strong></td>
+            <td>Automatic timer allocation</td>
+            <td>Handled by MCHP_Fun.TimerConfig()</td>
+        </tr>
+    </table>
+
+    <h3>Operational Modes</h3>
+    <table>
+        <tr>
+            <th>Mode</th>
+            <th>Description</th>
+            <th>Block Inputs</th>
+            <th>Use Case</th>
+        </tr>
+        <tr>
+            <td><strong>3</strong></td>
+            <td>Up & Down edges</td>
+            <td>OC1_Up (rising time)<br>OC1_Down (falling time)</td>
+            <td>Asymmetric PWM, variable duty and phase</td>
+        </tr>
+        <tr>
+            <td><strong>5</strong></td>
+            <td>Up edge & Period</td>
+            <td>OC1_Up (pulse width)<br>OC1_Per (period, optional)</td>
+            <td>Pulse generation with variable frequency</td>
+        </tr>
+        <tr>
+            <td><strong>10</strong></td>
+            <td>Down edge & Period</td>
+            <td>OC1_Down (pulse width)<br>OC1_Per (period, optional)</td>
+            <td>Inverted pulse, trailing edge control</td>
+        </tr>
+        <tr>
+            <td><strong>32</strong></td>
+            <td>Toggle mode</td>
+            <td>OC1_Toggle (half period)</td>
+            <td>Square wave generation, clock output</td>
+        </tr>
+    </table>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Software Algorithm</h3>
+    <pre><code>// Interrupt-driven output compare (Mode 3 example)
+void __attribute__((__interrupt__, no_auto_psv)) _T2Interrupt(void)
+{
+    static uint8_t state = 0;
+
+    if (state == 0) {
+        // Rising edge: set output high
+        LATAbits.LATA0 = 1;
+        PR2 = OC1_Down;  // Load down-edge timing
+        state = 1;
+    } else {
+        // Falling edge: set output low
+        LATAbits.LATA0 = 0;
+        PR2 = OC1_Up;    // Load up-edge timing
+        state = 0;
+    }
+
+    TMR2 = 0;            // Reset timer for next event
+    IFS0bits.T2IF = 0;   // Clear interrupt flag
+}
+</code></pre>
+
+    <h3>Timer Allocation</h3>
+    <p>The block automatically allocates timers using <code>MCHP_Fun.TimerConfig()</code>:</p>
+    <pre><code>% Timer allocation example (from callback)
+[TimerNbr, TimerName] = MCHP_Fun.TimerConfig(...
+    blk, ...              % Block handle
+    'OC_SW', ...          % Resource type
+    Channel, ...          % Channel number
+    MCHP ...              % MCHP structure
+);
+
+% Returns:
+%   TimerNbr: Timer number allocated (2, 3, 4, 5, etc.)
+%   TimerName: String identifier ('Timer2', 'Timer3', etc.)
+</code></pre>
+
+    <h3>Register Configuration</h3>
+    <pre><code>// Timer setup (example for Timer2)
+T2CONbits.TON = 0;         // Stop timer during configuration
+T2CONbits.TCS = 0;         // Internal clock (FCY)
+T2CONbits.TCKPS = prescaler; // Set prescaler
+
+PR2 = period_value;        // Set period
+TMR2 = 0;                  // Clear timer count
+
+IFS0bits.T2IF = 0;         // Clear interrupt flag
+IEC0bits.T2IE = 1;         // Enable timer interrupt
+T2CONbits.TON = 1;         // Start timer
+
+// GPIO configuration
+TRISAbits.TRISA0 = 0;      // Set as output
+LATAbits.LATA0 = 0;        // Initialize low
+</code></pre>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: Variable Frequency Square Wave</h3>
+    <p><strong>Application:</strong> Generate square wave with dynamically adjustable frequency</p>
+    <pre><code>% Block parameters
+Channel: 1
+Mode: 32                   % Toggle mode
+InputPeriod: 'is a block input'
+PIN_OC1: 'RA0'
+
+% Simulink model
+[Frequency Command] → [1/f Calculator] → [Gain: FCY/2]
+                   → [OC1_Toggle input]
+
+% Example: For 1 kHz output at 60 MHz FCY
+% Toggle period = 60,000,000 / (2 × 1000) = 30,000 counts
+% This creates 1 kHz square wave (toggle every 500 µs)
+</code></pre>
+
+    <h3>Example 2: Precise Pulse Width Modulation</h3>
+    <p><strong>Application:</strong> Servo motor control with microsecond precision</p>
+    <pre><code>% Block parameters
+Channel: 1
+Mode: 5                    % Up + Period
+InputPeriod: 'is a parameter'
+Period: 20000              % 20 ms for servo (50 Hz)
+PIN_OC1: 'RB3'
+
+% Simulink model
+[Servo Angle -90 to +90] → [Gain & Offset: 1000-2000 µs]
+                        → [OC1_Up input]
+
+% Creates 1-2 ms pulses at 50 Hz for standard servo control
+% Pulse width determines servo angle
+</code></pre>
+
+    <h3>Example 3: Asymmetric PWM for Power Supplies</h3>
+    <p><strong>Application:</strong> Buck converter with independent rise/fall timing</p>
+    <pre><code>% Block parameters
+Channel: 1
+Mode: 3                    % Up & Down (independent control)
+PIN_OC1: 'RC2'
+
+% Simulink model
+[Voltage Controller] → [Dead-time Compensator]
+                    → [OC1_Up: Rising edge timing]
+                    → [OC1_Down: Falling edge timing]
+
+% Allows precise control of both edges for:
+% - Dead-time insertion
+% - Resonant switching optimization
+% - Frequency modulation
+</code></pre>
+
+    <h3>Example 4: Multi-Channel Synchronized Outputs</h3>
+    <p><strong>Application:</strong> Three-phase waveform generation</p>
+    <pre><code>% Block parameters
+Channel: [1 2 3]
+Mode: [32 32 32]           % Toggle mode for all
+InputPeriod: 'is a parameter'
+Period: 1000               % Base frequency
+
+% Simulink configuration
+% Three separate OC_SW blocks with phase-shifted initialization:
+% Block 1: Initial state HIGH, starts at t=0
+% Block 2: Initial state HIGH, starts at t=T/3
+% Block 3: Initial state HIGH, starts at t=2T/3
+
+% Creates 120° phase-shifted square waves
+</code></pre>
+
+    <h2>Timing Considerations</h2>
+
+    <h3>Interrupt Latency</h3>
+    <div class="warning">
+        <strong>Important:</strong> Software OC timing accuracy depends on interrupt latency:
+        <ul>
+            <li><strong>Typical latency:</strong> 10-50 instruction cycles</li>
+            <li><strong>Jitter sources:</strong> Other interrupts, CPU priority, cache misses</li>
+            <li><strong>Mitigation:</strong> Use high interrupt priority, minimize concurrent interrupts</li>
+        </ul>
+    </div>
+
+    <h3>CPU Overhead Estimation</h3>
+    <table>
+        <tr>
+            <th>Mode</th>
+            <th>Interrupts per Cycle</th>
+            <th>Overhead @ 10 kHz</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>Toggle (32)</td>
+            <td>2</td>
+            <td>~0.1% @ 60 MHz</td>
+            <td>Lowest overhead</td>
+        </tr>
+        <tr>
+            <td>Up & Down (3)</td>
+            <td>2</td>
+            <td>~0.1% @ 60 MHz</td>
+            <td>Two state transitions</td>
+        </tr>
+        <tr>
+            <td>Up & Period (5)</td>
+            <td>2-3</td>
+            <td>~0.15% @ 60 MHz</td>
+            <td>Period reload overhead</td>
+        </tr>
+    </table>
+
+    <h3>Resolution and Limits</h3>
+    <p><strong>Maximum frequency:</strong> Limited by interrupt service time</p>
+    <ul>
+        <li><strong>Practical limit:</strong> ~100 kHz (with 1:1 prescaler @ 60 MHz)</li>
+        <li><strong>Recommended range:</strong> 1 Hz - 50 kHz for stable operation</li>
+        <li><strong>For higher frequencies:</strong> Use MCHP_OC_HW or MCHP_PWM instead</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues</h3>
+
+    <h4>Output Frequency Incorrect</h4>
+    <ul>
+        <li><strong>Timer prescaler:</strong> Verify automatic prescaler calculation</li>
+        <li><strong>Period calculation:</strong> Check FCY (instruction frequency) setting</li>
+        <li><strong>Timer overflow:</strong> Period value must fit in 16-bit PR register (0-65535)</li>
+        <li><strong>Mode confusion:</strong> Toggle mode frequency = 1/(2 × toggle_period)</li>
+    </ul>
+
+    <h4>Timing Jitter or Instability</h4>
+    <ul>
+        <li><strong>Interrupt conflicts:</strong> Check for higher-priority interrupts delaying service</li>
+        <li><strong>CPU load:</strong> Reduce background task complexity</li>
+        <li><strong>Timer sharing:</strong> Ensure timer not used by multiple peripherals</li>
+        <li><strong>Cache effects:</strong> Code located in slow memory (PIC32)</li>
+    </ul>
+
+    <h4>No Output Signal</h4>
+    <ul>
+        <li><strong>Pin configuration:</strong> Verify GPIO pin is available and not used elsewhere</li>
+        <li><strong>Timer allocation:</strong> Check MCHP_Fun.TimerConfig() succeeded</li>
+        <li><strong>Interrupt enable:</strong> Verify timer interrupt is enabled in IEC register</li>
+        <li><strong>Model execution:</strong> Ensure Simulink model is running (External Mode or deployed)</li>
+    </ul>
+
+    <h2>Performance Optimization</h2>
+
+    <h3>Reducing Interrupt Overhead</h3>
+    <pre><code>// Optimize ISR for minimal latency
+void __attribute__((__interrupt__, no_auto_psv)) _T2Interrupt(void)
+    __attribute__((section(".critical_code")));  // Place in fast RAM
+
+// Use inline assembly for time-critical sections (dsPIC)
+void __attribute__((__interrupt__, no_auto_psv)) _T2Interrupt(void)
+{
+    // Minimal ISR - only toggle and reset
+    __asm__ volatile ("bset LATA, #0");  // Faster than LATAbits
+    PR2 = next_period;
+    TMR2 = 0;
+    IFS0bits.T2IF = 0;
+}
+</code></pre>
+
+    <h3>Best Practices</h3>
+    <ul>
+        <li><strong>Use toggle mode (32)</strong> when possible - simplest and fastest</li>
+        <li><strong>Minimize ISR complexity</strong> - only update timer and output pin</li>
+        <li><strong>Pre-calculate values</strong> - avoid math in interrupt handlers</li>
+        <li><strong>Choose appropriate prescaler</strong> - balance resolution vs overflow risk</li>
+        <li><strong>Consider hardware alternatives</strong> - use OC_HW if CPU overhead is concern</li>
+    </ul>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="output_compare_hw.html"><strong>MCHP_OC_HW</strong></a> - Hardware output compare (lower CPU overhead)</li>
+        <li><a href="timer_config.html"><strong>MCHP_TIMER_Config</strong></a> - Timer resource management</li>
+        <li><a href="input_capture.html"><strong>MCHP_IC</strong></a> - Measure external pulse timing</li>
+        <li><a href="../pwm/pwm_standard.html"><strong>MCHP_PWM</strong></a> - Dedicated PWM peripheral</li>
+        <li><a href="../digital_io/digital_output.html"><strong>MCHP_Digital_Output</strong></a> - Basic GPIO output control</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><strong>Timer Block Documentation:</strong> Understanding timer configuration and prescalers</li>
+        <li><strong>Interrupt Priority:</strong> Configure interrupt levels for deterministic timing</li>
+        <li><strong>MCHP_Fun.TimerConfig():</strong> Automatic timer resource allocation algorithm</li>
+        <li><strong>Application Notes:</strong>
+            <ul>
+                <li><a href="https://www.microchip.com/AN1156">AN1156</a> - "Software Timer Implementations"</li>
+                <li><a href="https://www.microchip.com/AN580">AN580</a> - "Understanding Interrupt Latency"</li>
+            </ul>
+        </li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p><a href="../index.html">Block Reference Home</a> | <a href="../../getting_started/overview.html">Getting Started</a></p>
+    </footer>
+    </div>
+</body>
+</html>

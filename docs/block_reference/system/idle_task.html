@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_IdleTask - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./system.html">System Blocks</a> &gt;
+        MCHP_IdleTask
+    </div>
+
+    <h1>MCHP_IdleTask - Background Task Execution</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/system_functions/IdleTask.svg"
+             alt="IdleTask Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/system_functions/IdleTask.png';">
+        <div class="block-image-caption">
+            IdleTask Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_IdleTask</strong> block defines code to execute in the **idle loop** when no scheduled tasks are running. This is the lowest-priority execution context, ideal for non-critical background operations, sleep modes, and system monitoring.</p>
+
+    <p><strong>Idle Task Characteristics:</strong></p>
+    <ul>
+        <li><strong>Lowest priority</strong> - Preempted by any scheduled task or interrupt</li>
+        <li><strong>Non-deterministic timing</strong> - Execution time varies with CPU load</li>
+        <li><strong>Continuous loop</strong> - Runs whenever CPU is idle</li>
+        <li><strong>Single instance</strong> - Only one idle task per model</li>
+        <li><strong>Power management</strong> - Ideal location for sleep/idle instructions</li>
+    </ul>
+
+    <h2>Usage Scenarios</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Application</th>
+                <th>Description</th>
+                <th>Example Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Power Saving</strong></td>
+                <td>Enter low-power mode when idle</td>
+                <td><code>Idle();</code> (dsPIC)<br><code>__WFI();</code> (ARM)</td>
+            </tr>
+            <tr>
+                <td><strong>Watchdog Refresh</strong></td>
+                <td>Service watchdog timer in idle loop</td>
+                <td><code>ClrWdt();</code></td>
+            </tr>
+            <tr>
+                <td><strong>Background Communication</strong></td>
+                <td>Process non-critical messages</td>
+                <td>Parse low-priority UART data</td>
+            </tr>
+            <tr>
+                <td><strong>Diagnostics</strong></td>
+                <td>Monitor system health</td>
+                <td>Check stack usage, temperature</td>
+            </tr>
+            <tr>
+                <td><strong>LED Blinking</strong></td>
+                <td>Visual heartbeat indicator</td>
+                <td>Toggle status LED</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Configuration</h2>
+
+    <p>The idle task is implemented using a Simulink Function-Call Subsystem:</p>
+
+    <ol>
+        <li><strong>Add MCHP_IdleTask block</strong> to your model</li>
+        <li><strong>Create Function-Call Subsystem</strong> and connect to idle task output</li>
+        <li><strong>Add background logic</strong> inside subsystem</li>
+        <li><strong>Keep execution fast</strong> - avoid blocking operations</li>
+    </ol>
+
+    <div class="note">
+        <strong>No Parameters:</strong> The MCHP_IdleTask block has no configurable parameters. It simply provides a function-call signal that triggers whenever the CPU is idle.
+    </div>
+
+    <h2>Examples</h2>
+
+    <h3>Example 1: Power-Saving Idle Mode</h3>
+    <pre><code>// Idle Task Subsystem content
+// Put CPU to sleep when idle - wakes on any interrupt
+
+function IdleTask()
+    % dsPIC family
+    Idle();  % Enter idle mode (CPU stops, peripherals run)
+
+    % ARM Cortex-M (alternative)
+    % __WFI();  % Wait For Interrupt
+end
+
+% Power savings: ~50% reduction in idle current
+% Wakeup latency: <10 instruction cycles
+</code></pre>
+
+    <h3>Example 2: Watchdog Service</h3>
+    <pre><code>// Keep watchdog from resetting system
+
+function IdleTask()
+    persistent counter;
+    if isempty(counter)
+        counter = 0;
+    end
+
+    % Service watchdog every Nth idle loop iteration
+    counter = counter + 1;
+    if counter >= 1000
+        ClrWdt();  % Clear watchdog timer
+        counter = 0;
+    end
+end
+</code></pre>
+
+    <h3>Example 3: Background Communication</h3>
+    <pre><code>// Process non-critical diagnostic messages
+
+function IdleTask()
+    global DiagBuffer;
+
+    % Check if diagnostic data available
+    if ~isempty(DiagBuffer)
+        % Process one message per idle iteration
+        ProcessDiagnosticMessage(DiagBuffer(1));
+        DiagBuffer(1) = [];  % Remove from queue
+    end
+end
+</code></pre>
+
+    <h3>Example 4: Heartbeat LED</h3>
+    <pre><code>// Visual indication of system running
+
+function IdleTask()
+    persistent ledCounter;
+    if isempty(ledCounter)
+        ledCounter = 0;
+    end
+
+    % Toggle LED every 500000 idle iterations (~1 Hz at typical load)
+    ledCounter = ledCounter + 1;
+    if ledCounter >= 500000
+        % Toggle status LED
+        LATB = xor(LATB, 0x0001);
+        ledCounter = 0;
+    end
+end
+</code></pre>
+
+    <h2>Best Practices</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Guideline</th>
+                <th>Reason</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Keep it short</strong></td>
+                <td>Idle task should execute in <1ms to allow task scheduling</td>
+                <td>✓ Increment counter<br>✗ Complex calculations</td>
+            </tr>
+            <tr>
+                <td><strong>No blocking</strong></td>
+                <td>While loops or delays will prevent task scheduling</td>
+                <td>✓ State machine<br>✗ <code>while(flag) wait();</code></td>
+            </tr>
+            <tr>
+                <td><strong>Use persistent variables</strong></td>
+                <td>Maintain state across idle executions</td>
+                <td><code>persistent counter;</code></td>
+            </tr>
+            <tr>
+                <td><strong>Avoid critical code</strong></td>
+                <td>Idle task can be interrupted at any time</td>
+                <td>✓ LED toggle<br>✗ Safety shutdown</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>CPU Load Impact</h2>
+
+    <pre><code>// Idle task execution frequency varies with system load
+
+CPU Load | Idle Executions/sec | Use Case
+---------|---------------------|----------
+   0%    | ~millions/sec       | Full idle utilization
+  50%    | ~500k/sec           | Moderate background work
+  90%    | ~100k/sec           | Limited idle time
+  >95%   | Sporadic            | Avoid complex idle operations
+</code></pre>
+
+    <div class="warning">
+        <strong>Performance Note:</strong> At high CPU loads (>90%), idle task may execute very infrequently. Design idle operations to handle variable execution rates.
+    </div>
+
+    <h2>Power Management Integration</h2>
+
+    <h3>dsPIC Low-Power Modes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Instruction</th>
+                <th>Mode</th>
+                <th>Power Savings</th>
+                <th>Wakeup Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Idle()</code></td>
+                <td>CPU halted, peripherals run</td>
+                <td>~50%</td>
+                <td>Any interrupt</td>
+            </tr>
+            <tr>
+                <td><code>Sleep()</code></td>
+                <td>CPU + peripherals halted</td>
+                <td>~90%</td>
+                <td>External interrupt, WDT</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>ARM Cortex-M Low-Power Modes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Instruction</th>
+                <th>Mode</th>
+                <th>Power Savings</th>
+                <th>Wakeup Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>__WFI()</code></td>
+                <td>Wait For Interrupt</td>
+                <td>~40%</td>
+                <td>Any interrupt</td>
+            </tr>
+            <tr>
+                <td><code>__WFE()</code></td>
+                <td>Wait For Event</td>
+                <td>~40%</td>
+                <td>Event or interrupt</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Troubleshooting</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Problem</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Idle task never executes</td>
+                <td>CPU always busy with scheduled tasks</td>
+                <td>Reduce task execution time or lower sample rates</td>
+            </tr>
+            <tr>
+                <td>System unresponsive</td>
+                <td>Blocking code in idle task (while loop, delay)</td>
+                <td>Remove blocking operations, use state machine</td>
+            </tr>
+            <tr>
+                <td>Watchdog reset</td>
+                <td>ClrWdt() not called frequently enough</td>
+                <td>Increase watchdog period or ensure idle executes more often</td>
+            </tr>
+            <tr>
+                <td>LED blink rate varies</td>
+                <td>Normal - idle frequency depends on CPU load</td>
+                <td>Use hardware timer if precise timing needed</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="scheduler_options.html">MCHP_Scheduler_Options</a> - Task scheduling configuration</li>
+        <li><a href="mcu_load.html">MCHP_MCU_LOAD</a> - Monitor CPU utilization</li>
+        <li><a href="tasks_state.html">MCHP_Tasks_State</a> - Task execution monitoring</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p>
+    </footer>
+    </div>
+</body>
+</html>

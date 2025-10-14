@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer Blocks - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="index.html">Block Reference</a> &gt; Timer Blocks
+    </div>
+
+    <h1>Timer and Timing Blocks</h1>
+
+    <h2>Overview</h2>
+    <p>
+        Timer blocks provide precise time-based control and event management for Microchip microcontrollers. These blocks
+        enable <strong>resource allocation</strong>, <strong>input capture</strong>, <strong>output compare</strong>, and
+        <strong>performance profiling</strong> capabilities essential for real-time embedded systems.
+    </p>
+
+    <div class="note">
+        <strong>Key Capabilities:</strong>
+        <ul>
+            <li><strong>Automatic resource management:</strong> MCHP_Fun.TimerConfig() handles timer allocation</li>
+            <li><strong>Hardware precision:</strong> Timer-based events with instruction-cycle accuracy</li>
+            <li><strong>Flexible modes:</strong> Input capture, output compare, profiling, interrupts</li>
+            <li><strong>All device families:</strong> dsPIC30F/33F/33E/33C/33A, PIC24, PIC32, SAM</li>
+        </ul>
+    </div>
+
+    <h2>Available Blocks</h2>
+
+    <h3>Timer Configuration and Management</h3>
+    <ul>
+        <li>
+            <a href="timers/timer_config.html" class="block-link">MCHP_TIMER_Config</a> - Timer resource configuration and allocation
+            <ul>
+                <li>Named timer management (allocate/free timer resources)</li>
+                <li>Prescaler selection (1:1 to 1:256)</li>
+                <li>16-bit and 32-bit timer modes</li>
+                <li>Period register (PR) configuration</li>
+                <li><strong>Use for:</strong> Creating time bases for control loops, scheduling tasks</li>
+            </ul>
+        </li>
+        <li>
+            <a href="timers/timer_pil_profiling.html" class="block-link">MCHP_TIMER_PIL_Profiling</a> - PIL execution time measurement
+            <ul>
+                <li>Hardware-based profiling using timer counts</li>
+                <li>Measure function/block execution time</li>
+                <li>Processor-in-the-Loop (PIL) testing support</li>
+                <li><strong>Use for:</strong> Performance optimization, real-time analysis</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Input Capture</h3>
+    <ul>
+        <li>
+            <a href="timers/input_capture.html" class="block-link">MCHP_IC - Input Capture</a> - External event timestamping
+            <ul>
+                <li>Capture timer value on rising/falling/both edges</li>
+                <li>Pulse width and period measurement</li>
+                <li>Encoder interface support (X2/X4 modes)</li>
+                <li>DMA support for high-frequency events</li>
+                <li><strong>Use for:</strong> Frequency measurement, encoder counting, PPM decoding</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Output Compare</h3>
+    <ul>
+        <li>
+            <a href="timers/output_compare_hw.html" class="block-link">MCHP_OC_HW - Output Compare (Hardware)</a> - Autonomous output generation
+            <ul>
+                <li>Hardware PWM generation (no CPU overhead)</li>
+                <li>Toggle, set high, set low, dual compare modes</li>
+                <li>Timer-based output control</li>
+                <li>Up to 9 OC channels (device dependent)</li>
+                <li><strong>Use for:</strong> PWM generation, precise pulse timing, motor control</li>
+            </ul>
+        </li>
+        <li>
+            <a href="timers/output_compare_sw.html" class="block-link">MCHP_OC_SW - Output Compare (Software)</a> - Interrupt-driven output control
+            <ul>
+                <li>Software-managed output via timer interrupts</li>
+                <li>More operational modes than hardware OC</li>
+                <li>Dynamic timing changes at runtime</li>
+                <li>Any GPIO pin (not limited to OC pins)</li>
+                <li><strong>Use for:</strong> Variable frequency outputs, flexible pulse generation</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Block Selection Guide</h2>
+    <table>
+        <tr>
+            <th>Your Need</th>
+            <th>Recommended Block</th>
+            <th>Key Features</th>
+        </tr>
+        <tr>
+            <td>Allocate timer resources</td>
+            <td><a href="timers/timer_config.html">MCHP_TIMER_Config</a></td>
+            <td>Named timers, automatic allocation</td>
+        </tr>
+        <tr>
+            <td>Measure execution time</td>
+            <td><a href="timers/timer_pil_profiling.html">MCHP_TIMER_PIL_Profiling</a></td>
+            <td>Hardware timing, PIL support</td>
+        </tr>
+        <tr>
+            <td>Measure input frequency</td>
+            <td><a href="timers/input_capture.html">MCHP_IC</a></td>
+            <td>Period/pulse width measurement</td>
+        </tr>
+        <tr>
+            <td>Read encoder position</td>
+            <td><a href="timers/input_capture.html">MCHP_IC</a> (X2/X4 mode)</td>
+            <td>Quadrature decoder</td>
+        </tr>
+        <tr>
+            <td>Generate high-speed PWM</td>
+            <td><a href="timers/output_compare_hw.html">MCHP_OC_HW</a></td>
+            <td>No CPU overhead, autonomous</td>
+        </tr>
+        <tr>
+            <td>Variable frequency output</td>
+            <td><a href="timers/output_compare_sw.html">MCHP_OC_SW</a></td>
+            <td>Dynamic period changes</td>
+        </tr>
+    </table>
+
+    <h2>Timer Architecture by Device Family</h2>
+    <table>
+        <tr>
+            <th>Device Family</th>
+            <th>Timer Types</th>
+            <th>Max Timers</th>
+            <th>Special Features</th>
+        </tr>
+        <tr>
+            <td>dsPIC30F</td>
+            <td>Type A/B</td>
+            <td>5 (16-bit)</td>
+            <td>Basic timers, can pair for 32-bit</td>
+        </tr>
+        <tr>
+            <td>dsPIC33F, PIC24H</td>
+            <td>Type A/B</td>
+            <td>9 (16-bit)</td>
+            <td>32-bit pairing, external clock</td>
+        </tr>
+        <tr>
+            <td>dsPIC33E, PIC24E</td>
+            <td>Type A/B/C</td>
+            <td>9 (16-bit)</td>
+            <td>Enhanced features, more sources</td>
+        </tr>
+        <tr>
+            <td>dsPIC33C/CH/CK</td>
+            <td>Type A/B</td>
+            <td>1-2 (16-bit)</td>
+            <td>High-speed option (500 MHz counts)</td>
+        </tr>
+        <tr>
+            <td>dsPIC33A</td>
+            <td>Type A/B</td>
+            <td>1-2 (16-bit)</td>
+            <td>Modern architecture</td>
+        </tr>
+        <tr>
+            <td>PIC32MX/MZ/MK</td>
+            <td>32-bit</td>
+            <td>Up to 9</td>
+            <td>Native 32-bit, higher resolution</td>
+        </tr>
+        <tr>
+            <td>SAM E5x/E7x</td>
+            <td>TC (Timer/Counter)</td>
+            <td>Multiple</td>
+            <td>ARM timer subsystem</td>
+        </tr>
+    </table>
+
+    <h2>Common Timer Features</h2>
+
+    <h3>Prescaler Options</h3>
+    <table>
+        <tr>
+            <th>Prescaler</th>
+            <th>Resolution @ 60 MHz FCY</th>
+            <th>Max Period</th>
+            <th>Typical Use</th>
+        </tr>
+        <tr>
+            <td>1:1</td>
+            <td>16.67 ns</td>
+            <td>1.09 ms</td>
+            <td>High-speed capture, fast PWM</td>
+        </tr>
+        <tr>
+            <td>1:8</td>
+            <td>133.3 ns</td>
+            <td>8.74 ms</td>
+            <td>Standard PWM (10-100 kHz)</td>
+        </tr>
+        <tr>
+            <td>1:64</td>
+            <td>1.067 µs</td>
+            <td>69.9 ms</td>
+            <td>Low-frequency timing, servo</td>
+        </tr>
+        <tr>
+            <td>1:256</td>
+            <td>4.267 µs</td>
+            <td>279.6 ms</td>
+            <td>Slow events, scheduling</td>
+        </tr>
+    </table>
+
+    <h3>Timer Clock Sources</h3>
+    <ul>
+        <li><strong>FCY (Instruction Cycle):</strong> Most common, derived from system clock</li>
+        <li><strong>External Clock:</strong> T1CK pin for external timebase</li>
+        <li><strong>Secondary Oscillator:</strong> 32.768 kHz for RTC applications</li>
+        <li><strong>LPRC:</strong> Low-power RC oscillator (~31 kHz)</li>
+    </ul>
+
+    <h2>Timer Resource Management</h2>
+
+    <h3>Automatic Allocation with MCHP_Fun.TimerConfig()</h3>
+    <p>
+        The MCHP Blockset includes an automatic timer allocation system that prevents conflicts when multiple blocks need timer resources.
+    </p>
+
+    <pre><code>% Example: OC_SW block requests timer
+[TimerNbr, TimerName] = MCHP_Fun.TimerConfig(...
+    blk, ...              % Block handle
+    'OC_SW', ...          % Resource type
+    Channel, ...          % Channel identifier
+    MCHP ...              % MCHP structure
+);
+
+% Returns:
+%   TimerNbr: Allocated timer number (2, 3, 4, 5, ...)
+%   TimerName: String identifier ('Timer2', 'Timer3', ...)
+</code></pre>
+
+    <h3>Named Timer Management</h3>
+    <p>Use <a href="timers/timer_config.html">MCHP_TIMER_Config</a> to create named timers for shared use:</p>
+    <pre><code>% Create named timer 'ControlLoop_20kHz'
+MCHP_TIMER_Config:
+  Name: 'ControlLoop_20kHz'
+  Frequency: 20000 Hz
+  → Automatically calculates prescaler and PR value
+
+% Other blocks can reference this timer by name
+% System ensures no conflicts or double-allocation
+</code></pre>
+
+    <h2>Implementation Patterns</h2>
+
+    <h3>Pattern 1: High-Frequency PWM with Hardware OC</h3>
+    <pre><code>% Step 1: Configure timer for PWM frequency
+[MCHP_TIMER_Config]
+  Name: 'PWM_Timer'
+  Frequency: 50000  % 50 kHz
+
+% Step 2: Use hardware OC for autonomous operation
+[MCHP_OC_HW]
+  Channel: 1
+  Mode: 7  % Dual compare PWM
+  Timer: 'PWM_Timer'
+  % No CPU overhead during operation
+</code></pre>
+
+    <h3>Pattern 2: Input Frequency Measurement</h3>
+    <pre><code>% Input Capture in period measurement mode
+[MCHP_IC]
+  Channel: 1
+  Mode: 'Period (1 event)'
+  Timer: Auto-allocated
+  → Outputs frequency in Hz or period in seconds
+</code></pre>
+
+    <h3>Pattern 3: Synchronized Multi-Output</h3>
+    <pre><code>% Multiple OC channels sharing timer for synchronization
+[MCHP_TIMER_Config] → Timer2 @ 10 kHz
+
+[MCHP_OC_HW #1] → Channel 1, Mode 3 (Toggle), Timer2
+[MCHP_OC_HW #2] → Channel 2, Mode 3 (Toggle), Timer2
+[MCHP_OC_HW #3] → Channel 3, Mode 3 (Toggle), Timer2
+
+% All outputs synchronized to same timebase
+% Phase offset controlled via OCxR values
+</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="pwm_blocks.html"><strong>PWM Blocks</strong></a> - Dedicated PWM peripherals with advanced features</li>
+        <li><a href="adc_blocks.html"><strong>ADC Blocks</strong></a> - Often use timers for sampling triggers</li>
+        <li><a href="digital_io.html"><strong>Digital I/O Blocks</strong></a> - Basic GPIO for non-timed outputs</li>
+        <li><strong>MCHP_Interrupt</strong> - Timer interrupt configuration (System Blocks)</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><strong>Device Datasheet:</strong> Timers chapter for register details</li>
+        <li><strong>Getting Started Guide:</strong> Timer configuration examples</li>
+        <li><strong>Application Notes:</strong>
+            <ul>
+                <li><a href="https://www.microchip.com/AN1157">AN1157</a> - "Measuring Pulse Width Using Input Capture"</li>
+                <li><a href="https://www.microchip.com/AN1156">AN1156</a> - "Software Timer Library for Microchip Devices"</li>
+                <li><a href="https://www.microchip.com/AN580">AN580</a> - "Understanding Interrupt Latency"</li>
+            </ul>
+        </li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p><a href="index.html">Block Reference Home</a> | <a href="../getting_started/overview.html">Getting Started</a></p>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Scheduler_Options - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./system.html">System Blocks</a> &gt;
+        MCHP_Scheduler_Options
+    </div>
+
+    <h1>MCHP_Scheduler_Options - Multitasking Scheduler Configuration</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/system_configuration/SchedulerOptions.svg"
+             alt="SchedulerOptions Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/system_configuration/SchedulerOptions.png';">
+        <div class="block-image-caption">
+            SchedulerOptions Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Scheduler_Options</strong> block configures the behavior of the built-in **Rate Monotonic Scheduler** used for multitasking in MCHP Blockset models. The scheduler manages execution of multiple tasks at different sample rates with **preemptive priority-based scheduling**.</p>
+
+    <p><strong>Rate Monotonic Scheduling Principle:</strong></p>
+    <ul>
+        <li><strong>Highest rate = Highest priority</strong> - Faster tasks automatically get higher priority</li>
+        <li><strong>Preemptive execution</strong> - Higher priority tasks interrupt lower priority tasks</li>
+        <li><strong>Deterministic behavior</strong> - Guaranteed timing if schedulability conditions are met</li>
+        <li><strong>Automatic priority assignment</strong> - No manual priority configuration needed</li>
+    </ul>
+
+    <h2>Rate Monotonic Scheduler Architecture</h2>
+
+    <h3>Task Priority Assignment</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Sample Time</th>
+                <th>Priority Level</th>
+                <th>Can Preempt</th>
+                <th>Example Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Base rate (fastest)</td>
+                <td>40 (highest)</td>
+                <td>All slower tasks</td>
+                <td>Fast current loop (50 µs)</td>
+            </tr>
+            <tr>
+                <td>2× base rate</td>
+                <td>30</td>
+                <td>Slower tasks</td>
+                <td>Speed controller (100 µs)</td>
+            </tr>
+            <tr>
+                <td>10× base rate</td>
+                <td>20</td>
+                <td>Even slower tasks</td>
+                <td>Position controller (500 µs)</td>
+            </tr>
+            <tr>
+                <td>100× base rate</td>
+                <td>10</td>
+                <td>Background tasks</td>
+                <td>Communication (5 ms)</td>
+            </tr>
+            <tr>
+                <td>Triggered subsystems</td>
+                <td>Configurable</td>
+                <td>Based on config</td>
+                <td>Interrupt-driven tasks</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Priority Calculation:</strong> Task priority = 40 - (10 × log₁₀(rate_multiplier))<br>
+        Example: Base rate = priority 40, 10× slower = priority 30, 100× slower = priority 20
+    </div>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Task Overload Behavior</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Behavior</th>
+                <th>Use Case</th>
+                <th>Risk</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Queue the task<br>(queue length is 1)</strong></td>
+                <td>• If task is still running when next trigger occurs, queue ONE additional execution<br>• Task executes twice back-to-back when current run completes<br>• Further triggers are lost</td>
+                <td>• Occasional overloads acceptable<br>• Important to catch up after brief overload</td>
+                <td>⚠️ May cause timing jitter</td>
+            </tr>
+            <tr>
+                <td><strong>Skip this task execution once</strong></td>
+                <td>• If task is running, skip the triggered execution<br>• Resume normal execution at next trigger<br>• Overload does not accumulate</td>
+                <td>• Non-critical periodic tasks<br>• Data logging, monitoring<br>• Tasks that can tolerate missed samples</td>
+                <td>⚠️ Data loss on overload</td>
+            </tr>
+            <tr>
+                <td><strong>Delay all new tasks<br>until end of overload</strong></td>
+                <td>• All task triggers are blocked during overload<br>• Tasks resume when overloaded task completes<br>• Timing shifts but no execution is skipped</td>
+                <td>• Critical tasks that must complete<br>• Safety-related operations<br>• Tasks where every execution matters</td>
+                <td>⚠️ Can cause cascading delays</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Overload Behavior Comparison</h3>
+    <pre><code>// Task with 10 ms period, execution takes 12 ms (overload)
+
+Option 1: Queue (queue length = 1)
+t=0ms:   Task starts
+t=10ms:  Trigger → QUEUED (1 pending)
+t=12ms:  Task ends → immediately starts queued execution
+t=20ms:  Trigger → LOST (queue full)
+t=24ms:  Task ends
+t=30ms:  Normal execution resumes
+
+Option 2: Skip once
+t=0ms:   Task starts
+t=10ms:  Trigger → SKIPPED
+t=12ms:  Task ends
+t=20ms:  Normal execution
+t=30ms:  Normal execution
+
+Option 3: Delay all
+t=0ms:   Task starts
+t=10ms:  Trigger → DELAYED
+t=12ms:  Task ends → delayed trigger executes immediately
+t=24ms:  Task ends (ran at t=12)
+t=30ms:  Back to normal (with 2ms delay accumulated)
+</code></pre>
+
+    <h2>Multitasking Configuration</h2>
+
+    <h3>Simulink Configuration Requirements</h3>
+    <ol>
+        <li><strong>Solver Type:</strong> Fixed-step (required for code generation)
+            <pre><code>Configuration Parameters → Solver
+Type: Fixed-step
+Solver: discrete (no continuous states)</code></pre>
+        </li>
+        <li><strong>Sample Times:</strong> Define task rates as integer multiples
+            <pre><code>Base rate: 50e-6     % 50 µs (20 kHz)
+Task 1:    100e-6    % 2× base rate
+Task 2:    500e-6    % 10× base rate
+Task 3:    5e-3      % 100× base rate</code></pre>
+        </li>
+        <li><strong>Tasking Mode:</strong> Enable multitasking in configuration
+            <pre><code>Configuration Parameters → Code Generation → Interface
+Multi-instance code: off
+Single output/update function: off
+⚠️ Let MCHP blockset manage tasking automatically</code></pre>
+        </li>
+    </ol>
+
+    <h3>Scheduling Algorithm</h3>
+    <pre><code>// Simplified scheduler pseudocode
+
+void ISR_BaseRate(void) {
+    ready_tasks = check_triggered_tasks();
+
+    while (ready_tasks) {
+        highest = find_highest_priority(ready_tasks);
+
+        if (highest.priority > current_task.priority) {
+            context_switch(current_task, highest);  // Preempt
+        }
+
+        execute_task(highest);
+        mark_complete(highest);
+        ready_tasks = check_triggered_tasks();
+    }
+}
+</code></pre>
+
+    <h2>Examples</h2>
+
+    <h3>Example 1: Motor Control Application</h3>
+    <pre><code>% Three-level motor control hierarchy
+% Base rate: 50 µs, Overload: Queue
+
+Sample times:
+- Current loop:    50e-6    (Priority 40 - highest)
+- Speed loop:      500e-6   (Priority 30)
+- Position loop:   5e-3     (Priority 20)
+- Communication:   100e-3   (Priority 10 - lowest)
+
+Scheduler Options:
+TaskOverloadBehaviour: 'Queue the task (queue length is 1)'
+
+% Result: Current loop can preempt all others
+% Brief overloads are queued and caught up
+</code></pre>
+
+    <h3>Example 2: Data Acquisition System</h3>
+    <pre><code>% Robust data logging with guaranteed timing
+% Base rate: 100 µs, Overload: Delay all
+
+Sample times:
+- Fast ADC:       100e-6   (Priority 40)
+- Slow sensors:   10e-3    (Priority 30)
+- Data logging:   100e-3   (Priority 20)
+- Display update: 500e-3   (Priority 10)
+
+Scheduler Options:
+TaskOverloadBehaviour: 'Delay all new tasks until end of overload'
+
+% Result: No samples lost, timing may shift temporarily
+</code></pre>
+
+    <h3>Example 3: Communication System</h3>
+    <pre><code>% Non-critical monitoring allows missed samples
+% Base rate: 1 ms, Overload: Skip
+
+Sample times:
+- Protocol handler: 1e-3   (Priority 40)
+- Data processing:  10e-3  (Priority 30)
+- Status update:    100e-3 (Priority 20)
+
+Scheduler Options:
+TaskOverloadBehaviour: 'Skip this task execution once'
+
+% Result: Skipped status updates acceptable
+</code></pre>
+
+    <h2>Schedulability Analysis</h2>
+
+    <h3>Liu & Layland Utilization Bound</h3>
+    <p>For Rate Monotonic Scheduling, the system is schedulable if:</p>
+    <pre><code>U = Σ(Cᵢ/Tᵢ) ≤ n(2^(1/n) - 1)
+
+Where:
+  U  = Total CPU utilization
+  Cᵢ = Execution time of task i
+  Tᵢ = Period of task i
+  n  = Number of tasks
+
+For n tasks:
+  n=1: U ≤ 100%
+  n=2: U ≤ 82.8%
+  n=3: U ≤ 78.0%
+  n→∞: U ≤ 69.3%
+</code></pre>
+
+    <h3>Example Calculation</h3>
+    <pre><code>Task 1: C₁=20µs, T₁=50µs   → U₁ = 20/50 = 0.40 (40%)
+Task 2: C₂=80µs, T₂=500µs  → U₂ = 80/500 = 0.16 (16%)
+Task 3: C₃=1ms,  T₃=10ms   → U₃ = 1/10 = 0.10 (10%)
+
+Total: U = 0.66 (66%)
+Bound for n=3: 0.78 (78%)
+
+✓ System is schedulable (66% < 78%)
+</code></pre>
+
+    <div class="warning">
+        <strong>Performance Monitoring:</strong> Use <a href="mcu_load.html">MCHP_MCU_LOAD</a> and <a href="mcu_overload.html">MCHP_MCU_OVERLOAD</a> blocks to monitor actual CPU utilization and detect overload conditions.
+    </div>
+
+    <h2>Advanced Topics</h2>
+
+    <h3>Interrupt-Driven Tasks</h3>
+    <p>Tasks triggered by hardware interrupts (using <a href="interrupt.html">MCHP_Interrupt</a> block) have configurable priorities independent of sample time:</p>
+    <pre><code>// Interrupt priority can override rate monotonic assignment
+Interrupt priority: 1-7 (device-dependent)
+Multiplied by -100 for scheduler priority
+
+Example: Priority 7 interrupt → scheduler priority -700
+         (higher than any rate monotonic task)
+</code></pre>
+
+    <h3>Context Switching Overhead</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Family</th>
+                <th>Context Switch Time</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dsPIC30F/33F</td>
+                <td>~100 cycles</td>
+                <td>Register save/restore</td>
+            </tr>
+            <tr>
+                <td>dsPIC33E/C/A</td>
+                <td>~80 cycles</td>
+                <td>Optimized context save</td>
+            </tr>
+            <tr>
+                <td>PIC32 (MIPS)</td>
+                <td>~150 cycles</td>
+                <td>Shadow register set available</td>
+            </tr>
+            <tr>
+                <td>SAM (ARM)</td>
+                <td>~20 cycles</td>
+                <td>Hardware-assisted context switch</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Troubleshooting</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Problem</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tasks executing out of order</td>
+                <td>Incorrect sample time configuration</td>
+                <td>Verify all sample times are integer multiples of base rate</td>
+            </tr>
+            <tr>
+                <td>Timing jitter observed</td>
+                <td>Overload with Queue option</td>
+                <td>Change to Skip or reduce task execution time</td>
+            </tr>
+            <tr>
+                <td>System becomes unresponsive</td>
+                <td>Overload with Delay option causing cascade</td>
+                <td>Reduce CPU load or change to Skip option</td>
+            </tr>
+            <tr>
+                <td>Data loss in logging</td>
+                <td>Skip option losing samples</td>
+                <td>Change to Queue or reduce overload frequency</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="master.html">MCHP_Master</a> - Main configuration block</li>
+        <li><a href="interrupt.html">MCHP_Interrupt</a> - Interrupt-driven task configuration</li>
+        <li><a href="mcu_load.html">MCHP_MCU_LOAD</a> - CPU utilization monitoring</li>
+        <li><a href="mcu_overload.html">MCHP_MCU_OVERLOAD</a> - Overload detection</li>
+        <li><a href="idle_task.html">MCHP_IdleTask</a> - Background task execution</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p>
+    </footer>
+    </div>
+</body>
+</html>

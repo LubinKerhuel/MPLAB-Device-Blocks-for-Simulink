@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supported Devices</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Supported Devices</h1>
+
+    <p>The MCHP Blockset supports a wide range of Microchip microcontrollers and digital signal controllers across multiple families.</p>
+
+    <h2>dsPIC33A Family (32-bit Digital Signal Controller with FPU)</h2>
+
+    <h3>dsPIC33A (Latest Generation - 32-bit Architecture)</h3>
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Architecture</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>dsPIC33AK</td>
+            <td><strong>32-bit with FPU</strong></td>
+            <td>33AK128MC106, 33AK512MPS512, 33AKV512GMS510</td>
+            <td>Hardware FPU, Advanced PWM with FEP, 12-bit ADC, Enhanced Security, ISA v3</td>
+            <td>XC-DSC v3.30+</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Important:</strong> dsPIC33A is fundamentally different from other dsPIC families - it features a <strong>32-bit architecture with hardware floating-point unit (FPU)</strong>, providing 10-100x faster performance for floating-point operations compared to traditional 16-bit dsPICs. This makes it ideal for advanced motor control and digital power applications requiring real-time floating-point computation.
+    </div>
+
+    <h2>dsPIC Family (16-bit Digital Signal Controllers)</h2>
+
+    <h3>dsPIC33C Family</h3>
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>dsPIC33CK</td>
+            <td>33CK64MC105, 33CK256MP305, 33CK1024MP405</td>
+            <td>Dual-core options, Advanced PWM, 12-bit SAR ADC</td>
+            <td>XC-DSC v3.20+</td>
+        </tr>
+        <tr>
+            <td>dsPIC33CH</td>
+            <td>33CH128MP205, 33CH512MP305</td>
+            <td>Dual-core master/slave architecture</td>
+            <td>XC-DSC v3.20+</td>
+        </tr>
+        <tr>
+            <td>dsPIC33CDV</td>
+            <td>33CDV128MP206, 33CDV256MP206</td>
+            <td>Variable Frequency Drive (VFD) optimized</td>
+            <td>XC-DSC v3.20+</td>
+        </tr>
+    </table>
+
+    <h3>dsPIC33E Family</h3>
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>dsPIC33EP</td>
+            <td>33EP64MC504, 33EP256MC710, 33EP512MU810</td>
+            <td>High-resolution PWM, 10/12-bit ADC, Motor Control</td>
+            <td>XC16 v1.70+</td>
+        </tr>
+        <tr>
+            <td>dsPIC33EV</td>
+            <td>33EV32GM104, 33EV256GM106</td>
+            <td>Enhanced motor control peripherals</td>
+            <td>XC16 v1.70+</td>
+        </tr>
+    </table>
+
+    <h3>dsPIC33F Family (Legacy)</h3>
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>dsPIC33FJ</td>
+            <td>33FJ128MC804, 33FJ256MC710</td>
+            <td>General purpose DSC, Motor Control PWM</td>
+            <td>XC16 v1.26+</td>
+        </tr>
+    </table>
+
+    <h3>dsPIC30F Family (Legacy)</h3>
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>dsPIC30F</td>
+            <td>30F4011, 30F6015</td>
+            <td>Entry-level DSC, Basic PWM and ADC</td>
+            <td>XC16 v1.26+</td>
+        </tr>
+    </table>
+
+    <h2>PIC32 Family (32-bit Microcontrollers)</h2>
+
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Architecture</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>PIC32MK</td>
+            <td>MIPS M-Class</td>
+            <td>PIC32MK0512GPE100</td>
+            <td>Motor Control, Op-Amps, 12-bit ADC</td>
+            <td>XC32 v2.40+</td>
+        </tr>
+        <tr>
+            <td>PIC32MZ</td>
+            <td>MIPS M-Class</td>
+            <td>PIC32MZ2048EFM</td>
+            <td>High performance, FPU, Ethernet, USB</td>
+            <td>XC32 v2.40+</td>
+        </tr>
+        <tr>
+            <td>PIC32MX</td>
+            <td>MIPS M4K</td>
+            <td>PIC32MX795F512L</td>
+            <td>General purpose, USB, CAN, Ethernet</td>
+            <td>XC32 v2.40+</td>
+        </tr>
+    </table>
+
+    <h2>SAM Family (ARM Cortex-M)</h2>
+
+    <table>
+        <tr>
+            <th>Series</th>
+            <th>Core</th>
+            <th>Example Devices</th>
+            <th>Key Features</th>
+            <th>Compiler</th>
+        </tr>
+        <tr>
+            <td>SAME70</td>
+            <td>Cortex-M7</td>
+            <td>SAME70Q21, SAME70N21</td>
+            <td>300MHz, FPU, Ethernet, USB, CAN-FD</td>
+            <td>XC32</td>
+        </tr>
+        <tr>
+            <td>SAME54</td>
+            <td>Cortex-M4F</td>
+            <td>SAME54P20A</td>
+            <td>120MHz, FPU, TCC, ADC, DAC</td>
+            <td>XC32</td>
+        </tr>
+        <tr>
+            <td>SAMC21</td>
+            <td>Cortex-M0+</td>
+            <td>SAMC21J18A</td>
+            <td>48MHz, Motor Control optimized</td>
+            <td>XC32</td>
+        </tr>
+        <tr>
+            <td>SAMD21</td>
+            <td>Cortex-M0+</td>
+            <td>SAMD21G18A</td>
+            <td>48MHz, Low power, USB</td>
+            <td>XC32</td>
+        </tr>
+    </table>
+
+    <h2>Peripheral Support by Family</h2>
+
+    <h3>Common Peripherals (All Families)</h3>
+    <ul>
+        <li><strong>GPIO</strong> - Digital I/O with configurable pins</li>
+        <li><strong>Timers</strong> - 16-bit/32-bit timers with interrupts</li>
+        <li><strong>UART</strong> - Serial communication</li>
+        <li><strong>SPI</strong> - Serial Peripheral Interface</li>
+        <li><strong>I2C</strong> - Inter-Integrated Circuit</li>
+    </ul>
+
+    <h3>Motor Control Peripherals</h3>
+    <ul>
+        <li><strong>PWM</strong> - High-resolution PWM modules (dsPIC, PIC32MK)</li>
+        <li><strong>PWM HS</strong> - High-speed PWM with fault protection (dsPIC33C/A)</li>
+        <li><strong>QEI</strong> - Quadrature Encoder Interface (dsPIC, PIC32MK)</li>
+        <li><strong>ADC</strong> - 10/12-bit with motor control triggers</li>
+        <li><strong>Comparator</strong> - Analog comparators for fault detection</li>
+    </ul>
+
+    <h3>Communication Peripherals</h3>
+    <ul>
+        <li><strong>CAN</strong> - Controller Area Network (dsPIC, PIC32)</li>
+        <li><strong>CAN-FD</strong> - CAN with Flexible Data-rate (dsPIC33C, SAME70)</li>
+        <li><strong>Ethernet</strong> - 10/100 Ethernet MAC (PIC32MZ, SAME70)</li>
+        <li><strong>USB</strong> - Full-speed/High-speed USB (PIC32, SAM)</li>
+    </ul>
+
+    <h3>Advanced Features</h3>
+    <ul>
+        <li><strong>DMA</strong> - Direct Memory Access (dsPIC33E/C/A, PIC32, SAM)</li>
+        <li><strong>Op-Amps</strong> - Integrated operational amplifiers (PIC32MK, dsPIC33C)</li>
+        <li><strong>DAC</strong> - Digital-to-Analog Converter (dsPIC33E/C/A, SAM)</li>
+        <li><strong>Crypto</strong> - Hardware cryptographic engines (SAME70)</li>
+    </ul>
+
+    <h2>Device Selection Guide</h2>
+
+    <div class="note">
+        <strong>For Motor Control Applications:</strong>
+        <ul>
+            <li><strong>Entry Level</strong> → dsPIC33CK (standard PWM, 12-bit ADC)</li>
+            <li><strong>Advanced</strong> → dsPIC33AK (PWM with FEP, enhanced protection)</li>
+            <li><strong>Dual Motor</strong> → dsPIC33CH (dual-core architecture)</li>
+            <li><strong>32-bit</strong> → PIC32MK (motor control + connectivity)</li>
+        </ul>
+    </div>
+
+    <div class="note">
+        <strong>For Power Conversion:</strong>
+        <ul>
+            <li><strong>SMPS/PFC</strong> → dsPIC33C/A (high-resolution PWM, fast ADC)</li>
+            <li><strong>Digital Power</strong> → dsPIC33A (advanced PWM features)</li>
+            <li><strong>Variable Frequency Drive</strong> → dsPIC33CDV (VFD optimized)</li>
+        </ul>
+    </div>
+
+    <div class="note">
+        <strong>For Industrial IoT:</strong>
+        <ul>
+            <li><strong>Connectivity Focus</strong> → PIC32MZ (Ethernet, USB, CAN)</li>
+            <li><strong>High Performance</strong> → SAME70 (Cortex-M7, 300MHz)</li>
+            <li><strong>Low Power</strong> → SAMD21 (Cortex-M0+, ultra-low power)</li>
+        </ul>
+    </div>
+
+    <h2>Checking Device Support</h2>
+
+    <h3>In MATLAB/Simulink</h3>
+    <ol>
+        <li>Open Model Configuration Parameters (Ctrl+E)</li>
+        <li>Go to <strong>Code Generation → MCHP Target</strong></li>
+        <li>Click device selection dropdown to see all supported devices</li>
+        <li>Use search box to filter by part number</li>
+    </ol>
+
+    <h3>Device Family Packs (DFP)</h3>
+    <p>Device support requires appropriate DFP installation:</p>
+    <ul>
+        <li><strong>dsPIC</strong> → dsPIC33A-MP_DFP, dsPIC33C-MP_DFP, dsPIC33E-GP/MC_DFP</li>
+        <li><strong>PIC32</strong> → PIC32MK-MC/GP_DFP, PIC32MZ-EF_DFP</li>
+        <li><strong>SAM</strong> → SAME5x_DFP, SAME7x_DFP, SAMC2x_DFP</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> DFPs are automatically installed with MPLAB X IDE or can be downloaded separately from Microchip Packs Repository.
+    </div>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="overview.html">Overview</a> |
+        <a href="installation.html">Installation</a> |
+        <a href="quick_start.html">Quick Start Guide</a> |
+        <a href="../user_guide/compiler_setup.html">Compiler Setup</a>
+    </p>
+    </div>
+</body>
+</html>

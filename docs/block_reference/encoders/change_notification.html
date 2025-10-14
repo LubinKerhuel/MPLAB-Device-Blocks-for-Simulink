@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_CN - Change Notification (Pin Interrupt)</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">MCHP Blockset</a> &gt;
+        <a href="encoders.html">Encoder & Counter Blocks</a> &gt;
+        <strong>Change Notification</strong>
+    </div>
+
+    <div class="header">
+        <h1>MCHP_CN</h1>
+        <p>Change Notification - Pin State Change Interrupts and Timing</p>
+    </div>
+
+    <div class="content-section">
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/ChangeNotification.svg"
+             alt="ChangeNotification Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/ChangeNotification.png';">
+        <div class="block-image-caption">
+            ChangeNotification Block Icon
+        </div>
+    </div>
+<h2>Overview</h2>
+        <p>The MCHP_CN block provides an interface to the Change Notification (CN) peripheral, which detects pin state changes and measures transition timing. While primarily used for GPIO interrupts (buttons, switches), CN can also serve as a simple encoder interface or pulse counter.</p>
+
+        <div class="note-box">
+            <strong>Key Features:</strong>
+            <ul>
+                <li>Multi-pin state change detection (up to 32 CN pins)</li>
+                <li>Edge detection: rising, falling, or both</li>
+                <li>Transition timing measurement (time between edges)</li>
+                <li>Period measurement (rising-to-rising or falling-to-falling)</li>
+                <li>Programmable pull-up/pull-down resistors</li>
+                <li>Interrupt generation on pin change</li>
+                <li>Wake from sleep on pin change</li>
+                <li>Can be used for simple rotary encoders or pulse counting</li>
+            </ul>
+        </div>
+
+        <h3>Device Support</h3>
+        <div class="device-table">
+            <table class="parameter-table">
+                <tr>
+                    <th>Family</th>
+                    <th>CN Type</th>
+                    <th>CN Pins</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>dsPIC30F</td>
+                    <td>Type 0</td>
+                    <td>CN0-CN15</td>
+                    <td>Dedicated CN peripheral</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33F</td>
+                    <td>Type 0</td>
+                    <td>CN0-CN23</td>
+                    <td>Dedicated CN peripheral</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33E</td>
+                    <td>Type 1</td>
+                    <td>All GPIO pins</td>
+                    <td>All ports have CN capability</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33C</td>
+                    <td>Type 1</td>
+                    <td>All GPIO pins</td>
+                    <td>All ports have CN capability</td>
+                </tr>
+                <tr>
+                    <td>PIC32MK</td>
+                    <td>Type 2</td>
+                    <td>Port-based</td>
+                    <td>One interrupt per port</td>
+                </tr>
+                <tr>
+                    <td>PIC24F</td>
+                    <td>Type 0/1</td>
+                    <td>Varies</td>
+                    <td>Family dependent</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Block Parameters</h2>
+
+        <h3>Channel Selection</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>CN Channels (dsPIC30F/33F)</td>
+                <td>Vector of CN channel numbers, e.g., [0 1 2] for CN0, CN1, CN2</td>
+            </tr>
+            <tr>
+                <td>CN Port (dsPIC33E/C, PIC32MK)</td>
+                <td>Port pin list, e.g., [A0 A1 B5] for PA0, PA1, PB5</td>
+            </tr>
+        </table>
+
+        <h3>Measurement Configuration (per channel)</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Mode Value</th>
+                <th>Measurement</th>
+                <th>Output Ports</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>Change detect only</td>
+                <td>Change detected flag only</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Measure time UP (rising edge to falling edge)</td>
+                <td>T_Up (pulse width high)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Measure time DOWN (falling edge to rising edge)</td>
+                <td>T_Down (pulse width low)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Measure UP & DOWN</td>
+                <td>T_Up, T_Down</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Period on rising edge</td>
+                <td>P_Rising (time between rising edges)</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Period on falling edge</td>
+                <td>P_Falling (time between falling edges)</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>UP + Period on rising</td>
+                <td>T_Up, P_Rising</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>DOWN + Period on falling</td>
+                <td>T_Down, P_Falling</td>
+            </tr>
+        </table>
+
+        <h3>Change Detection (per channel)</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Value</th>
+                <th>Detection Mode</th>
+                <th>Output</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>No change detection</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Rising edge</td>
+                <td>CNx_Rise (timestamp)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Falling edge</td>
+                <td>CNx_Fall (timestamp)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Both edges</td>
+                <td>CNx_Rise&Fall (timestamp)</td>
+            </tr>
+        </table>
+
+        <h3>Advanced Configuration</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Output Port Value</td>
+                <td>Enable current pin state output (boolean per channel)</td>
+            </tr>
+            <tr>
+                <td>Max Channel</td>
+                <td>Maximum expected time for measurements (seconds, per channel)</td>
+            </tr>
+            <tr>
+                <td>Safe Margin</td>
+                <td>Percentage margin for timer overflow protection (per channel)</td>
+            </tr>
+            <tr>
+                <td>Interrupt Priority</td>
+                <td>CN interrupt priority level (1-7)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>CN Peripheral Registers</h2>
+
+        <h3>dsPIC30F/33F (Type 0)</h3>
+        <div class="code-block">
+<span class="comment">// Enable CN module</span>
+CNCONbits.ON = 1;
+
+<span class="comment">// Enable specific CN pins</span>
+CNEN1bits.CN0IE = 1;  <span class="comment">// Enable CN0</span>
+CNEN1bits.CN1IE = 1;  <span class="comment">// Enable CN1</span>
+
+<span class="comment">// Enable pull-ups</span>
+CNPU1bits.CN0PUE = 1; <span class="comment">// Pull-up on CN0</span>
+
+<span class="comment">// Interrupt configuration</span>
+IFS1bits.CNIF = 0;    <span class="comment">// Clear interrupt flag</span>
+IEC1bits.CNIE = 1;    <span class="comment">// Enable CN interrupt</span>
+IPC4bits.CNIP = 5;    <span class="comment">// Priority level</span>
+
+<span class="comment">// Read current state</span>
+state = PORTBbits.RB0; <span class="comment">// Read pin state (if CN0 is on RB0)</span>
+        </div>
+
+        <h3>dsPIC33E/33C (Type 1)</h3>
+        <div class="code-block">
+<span class="comment">// All GPIO pins have CN capability</span>
+<span class="comment">// Enable change notification on specific pins</span>
+
+<span class="comment">// For port A, pin 0 (PA0/RA0):</span>
+CNENAbits.CNIEA0 = 1;   <span class="comment">// Enable CN on RA0</span>
+CNPUAbits.CNPUA0 = 1;   <span class="comment">// Pull-up on RA0</span>
+
+<span class="comment">// Interrupt per port</span>
+IFS3bits.CNAIF = 0;     <span class="comment">// Clear Port A CN interrupt</span>
+IEC3bits.CNAIE = 1;     <span class="comment">// Enable Port A CN interrupt</span>
+        </div>
+
+        <h3>PIC32MK (Type 2)</h3>
+        <div class="code-block">
+<span class="comment">// One CN interrupt per port</span>
+CNENAbits.CNIEA0 = 1;   <span class="comment">// Enable CN on RA0</span>
+
+<span class="comment">// Edge select (positive/negative/both)</span>
+CNNEAbits.CNNEA0 = 0;   <span class="comment">// 0 = positive edge, 1 = negative edge</span>
+
+<span class="comment">// Interrupt control</span>
+IFS3bits.CNAIF = 0;
+IEC3bits.CNAIE = 1;
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Examples</h2>
+
+        <h3>Example 1: Button Interface with Debouncing</h3>
+        <div class="example-box">
+            <h4>Application: 4-Button User Interface</h4>
+            <p><strong>Hardware:</strong> 4 push buttons on CN0-CN3 with pull-ups</p>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>Channels: [0 1 2 3]</li>
+                <li>Measurement: [0 0 0 0] (change detect only)</li>
+                <li>Change Detection: [1 1 1 1] (rising edge = button press)</li>
+                <li>Output Port Value: [1 1 1 1] (read button state)</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// In Simulink model:</span>
+<span class="comment">// CN0_Rise → Edge detector → Button_0_Pressed (boolean)</span>
+<span class="comment">// CN0 → Current state → Button_0_State (0=pressed, 1=released with pull-up)</span>
+
+<span class="comment">// Software debouncing:</span>
+<span class="keyword">if</span> (CN0_Rise && !Button_Debounce_Timer) {
+    Button_Pressed = <span class="keyword">true</span>;
+    Button_Debounce_Timer = 50;  <span class="comment">// 50 ms debounce</span>
+}
+
+<span class="comment">// Decrement timer each 1ms</span>
+<span class="keyword">if</span> (Button_Debounce_Timer > 0) {
+    Button_Debounce_Timer--;
+}
+            </div>
+        </div>
+
+        <h3>Example 2: Rotary Encoder (Simple, No Quadrature Decoding)</h3>
+        <div class="example-box">
+            <h4>Application: Rotary Switch Position Detection</h4>
+            <p><strong>Hardware:</strong> Mechanical rotary encoder on CN0 (A) and CN1 (B)</p>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>Channels: [0 1]</li>
+                <li>Measurement: [0 0]</li>
+                <li>Change Detection: [3 3] (both edges)</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Simple rotary decoder (counts on A edges, B indicates direction)</span>
+persistent_var Position = 0;
+persistent_var Last_A = 0;
+
+<span class="keyword">if</span> (CN0_Rise_Fall) {  <span class="comment">// A changed</span>
+    A_state = CN0_value;
+    B_state = CN1_value;
+
+    <span class="comment">// Determine direction from B state when A changes</span>
+    <span class="keyword">if</span> (A_state == 1 && Last_A == 0) {  <span class="comment">// A rising</span>
+        <span class="keyword">if</span> (B_state == 0) {
+            Position++;  <span class="comment">// CW</span>
+        } <span class="keyword">else</span> {
+            Position--;  <span class="comment">// CCW</span>
+        }
+    }
+    Last_A = A_state;
+}
+
+<span class="comment">// Note: For precise quadrature decoding, use QEI or QDEC blocks</span>
+            </div>
+
+            <div class="warning-box">
+                <strong>Note:</strong> This is a simplified encoder implementation. For high-resolution or high-speed encoders, use dedicated QEI/QDEC blocks which provide hardware quadrature decoding.
+            </div>
+        </div>
+
+        <h3>Example 3: Pulse Width and Period Measurement</h3>
+        <div class="example-box">
+            <h4>Application: External PWM Signal Analysis</h4>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>Channels: [0]</li>
+                <li>Measurement: [5] (UP + Period on rising)</li>
+                <li>Max Channel: [0.1] (100 ms max)</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Measure external PWM duty cycle and frequency</span>
+Pulse_Width_High = CN0_Up;        <span class="comment">// Time high (timer counts)</span>
+Period = CN0_Per;                  <span class="comment">// Time between rising edges</span>
+
+<span class="comment">// Convert to physical units (CNxmax variable set by block)</span>
+Time_Resolution = Max_Channel / CN0max;
+Pulse_Width_seconds = Pulse_Width_High * Time_Resolution;
+Period_seconds = Period * Time_Resolution;
+
+<span class="comment">// Calculate duty cycle and frequency</span>
+Duty_Cycle_percent = (Pulse_Width_seconds / Period_seconds) * 100;
+Frequency_Hz = 1 / Period_seconds;
+
+<span class="comment">// Example: CN0max=65535, Max_Channel=0.1s</span>
+<span class="comment">// Resolution = 0.1/65535 = 1.53 µs</span>
+<span class="comment">// If CN0_Up=32768, Pulse_High=50ms</span>
+<span class="comment">// If CN0_Per=65535, Period=100ms → 10 Hz, 50% duty</span>
+            </div>
+        </div>
+
+        <h3>Example 4: Wake from Sleep on Button Press</h3>
+        <div class="example-box">
+            <h4>Application: Low-Power Wakeup</h4>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>Channels: [0] (wakeup button)</li>
+                <li>Change Detection: [1] (rising edge)</li>
+                <li>Enable pull-down (button connects to VDD)</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Main loop</span>
+<span class="keyword">while</span>(1) {
+    <span class="comment">// Perform tasks...</span>
+
+    <span class="comment">// Enter sleep mode</span>
+    Sleep();  <span class="comment">// CN interrupt will wake MCU</span>
+
+    <span class="comment">// Execution continues here after wakeup</span>
+    <span class="keyword">if</span> (CN0_Rise) {
+        <span class="comment">// Process button press that caused wakeup</span>
+        Handle_Button_Press();
+    }
+}
+
+<span class="comment">// CN interrupt configuration (in block):</span>
+<span class="comment">// - Interrupt priority: 4</span>
+<span class="comment">// - Wakes MCU from sleep automatically</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Troubleshooting</h2>
+
+        <div class="warning-box">
+            <h4>Issue: Multiple False Triggers (Button Bounce)</h4>
+            <p><strong>Cause:</strong> Mechanical switch contacts bounce</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Implement software debouncing (ignore edges for 10-50ms after first edge)</li>
+                <li>Add external RC filter (e.g., 10kΩ + 100nF)</li>
+                <li>Use hardware Schmitt trigger inputs</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Missed Events at High Frequency</h4>
+            <p><strong>Cause:</strong> CN interrupt rate too high or interrupt latency</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Use dedicated counter peripheral (QEI, Input Capture) for high-speed signals</li>
+                <li>Increase interrupt priority</li>
+                <li>Reduce other interrupt sources</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Timer Overflow (CNxmax exceeded)</h4>
+            <p><strong>Cause:</strong> Signal period exceeds Max Channel setting</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Increase "Max Channel" parameter</li>
+                <li>Increase "Safe Margin" for more headroom</li>
+                <li>Use larger timer prescaler (block automatically selects best timer)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Performance Considerations</h2>
+
+        <h3>Timing Resolution</h3>
+        <div class="code-block">
+<span class="comment">// Timer resolution depends on Max_Channel and timer selection</span>
+<span class="comment">// Block automatically chooses best timer to meet requirements</span>
+
+<span class="comment">// Example: Max_Channel = 1ms, CNxmax = 65535</span>
+Time_Resolution = 1e-3 / 65535 = 15.3 ns;
+
+<span class="comment">// For pulse width measurement accuracy:</span>
+<span class="comment">// ±1 count error = ±15.3 ns</span>
+
+<span class="comment">// For longer periods, resolution decreases:</span>
+<span class="comment">// Max_Channel = 1s → Resolution = 15.3 µs</span>
+        </div>
+
+        <h3>Interrupt Overhead</h3>
+        <div class="note-box">
+            <strong>Typical CN Interrupt Overhead:</strong>
+            <ul>
+                <li>Interrupt latency: 10-20 instruction cycles</li>
+                <li>Handler execution: 50-100 cycles (depends on measurements enabled)</li>
+                <li>At 70 MIPS: ~1-2 µs total per CN event</li>
+                <li>For high-frequency signals (>100 kHz), consider Input Capture or QEI</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="qei.html"><strong>MCHP_QEI</strong></a> - Hardware quadrature decoder for precise encoder counting</li>
+            <li><strong>MCHP_IC</strong> - Input Capture for high-speed pulse/period measurement</li>
+            <li><strong>MCHP_DIO</strong> - Digital I/O for reading/writing GPIO pins</li>
+            <li><strong>MCHP_INT</strong> - External interrupt blocks</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>References</h2>
+        <ul>
+            <li><strong>dsPIC30F/33F Family Reference Manual</strong> - Section: Change Notification Module</li>
+            <li><strong>dsPIC33E/33C Family Reference Manual</strong> - Change Notice (CN) peripheral</li>
+            <li><strong>PIC32 Family Reference Manual</strong> - Change Notice/Interrupt-on-Change</li>
+            <li><strong>dsPIC33A Family Reference Manual</strong> - CN peripheral</li>
+        </ul>
+    </div>
+
+    <div class="content-section" style="background-color: #f8f9fa; border-top: 3px solid #667eea; margin-top: 40px;">
+        <p><strong>See Also:</strong> <a href="encoders.html">Encoder & Counter Blocks Overview</a> | <a href="../index.html">MCHP Blockset Documentation</a></p>
+        <p style="color: #666; font-size: 0.9em;">Last Updated: 2024 | MCHP Blockset for MATLAB/Simulink</p>
+    </div>
+    </div>
+</body>
+</html>

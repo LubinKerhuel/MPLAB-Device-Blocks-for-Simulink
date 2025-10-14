@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Digital_Output - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./digital_io.html">Digital I/O Blocks</a> &gt;
+        MCHP_Digital_Output
+    </div>
+
+    <h1>MCHP_Digital_Output - Digital Output Master Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/DigitalOutput.svg"
+             alt="DigitalOutput Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/DigitalOutput.png';">
+        <div class="block-image-caption">
+            DigitalOutput Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Digital_Output</strong> block is a high-level composite subsystem block that provides digital output functionality with optional read-back capability. This master block automatically manages internal sub-blocks to provide a clean, user-friendly interface for controlling GPIO output pins.</p>
+
+    <p><strong>Key Features:</strong></p>
+    <ul>
+        <li>Composite subsystem architecture - contains Digital_Output_Write (always) and Digital_Output_Read (optional)</li>
+        <li>Dynamic subsystem management - automatically adds/removes read-back capability</li>
+        <li>Unified parameter interface - configure all options from single block dialog</li>
+        <li>Parameter synchronization - automatically propagates settings to internal blocks</li>
+        <li>Optional 1-sample delayed feedback - read previous output state when READPREVIOUS enabled</li>
+        <li>Flexible input/output formats - individual booleans or packed uint16/uint32</li>
+        <li>Full electrical configuration - initial values and output modes (push-pull/open-drain)</li>
+    </ul>
+
+    <h2>Block Architecture</h2>
+
+    <div class="diagram">
+<pre>
+┌─────────────────────────────────────────────────────────┐
+│         MCHP_Digital_Output (Master Block)             │
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  Internal Subsystem Structure:                  │   │
+│  │                                                 │   │
+│  │  ┌──────────────────────────────────────┐      │   │
+│  │  │  MCHP_Digital_Output_Write           │      │   │
+│  │  │  (Always Present)                    │      │   │
+│  │  │                                      │      │   │
+│  │  │  • Writes to LAT register           │      │   │
+│  │  │  • Configures TRIS (output)         │      │   │
+│  │  │  • Sets initial values              │      │   │
+│  │  │  • Configures ODC (open-drain)      │      │   │
+│  │  └──────────────────────────────────────┘      │   │
+│  │                                                 │   │
+│  │  ┌──────────────────────────────────────┐      │   │
+│  │  │  MCHP_Digital_Output_Read            │      │   │
+│  │  │  (Added when READPREVIOUS = 'on')    │      │   │
+│  │  │                                      │      │   │
+│  │  │  • Reads LAT register               │      │   │
+│  │  │  • Provides 1/z delayed feedback    │      │   │
+│  │  │  • Same format as inputs            │      │   │
+│  │  └──────────────────────────────────────┘      │   │
+│  │                                                 │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+
+Input Flow:  User Inputs → Inport → Write Block → GPIO Pins
+Output Flow: LAT Register → Read Block → Outport → User Outputs (1/z delay)
+</pre>
+    </div>
+
+    <h2>Device Support</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Family</th>
+                <th>Basic Output</th>
+                <th>Init Value</th>
+                <th>Open-Drain</th>
+                <th>Read-back</th>
+                <th>Port Width</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dsPIC30F</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33F</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33E</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33C/CH/CK</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓ ODC</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33A</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓ ODC</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC24F/H</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>Device-dependent</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC32MK/MZ/MX</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓ ODC</td>
+                <td>✓</td>
+                <td>32-bit</td>
+            </tr>
+            <tr>
+                <td>SAM (ARM)</td>
+                <td>✓</td>
+                <td>-</td>
+                <td>-</td>
+                <td>✓</td>
+                <td>32-bit</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Port Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PORT</strong></td>
+                <td>GPIO port selection. Dynamic popup shows available ports with pin ranges.</td>
+                <td>A, B, C, D, E, F, G, H, J, K<br>(device-dependent)</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td><strong>PIN</strong></td>
+                <td>Pin index selection within the port. Accepts individual pins or arrays.</td>
+                <td>[0:15] for 16-bit<br>[0:31] for 32-bit</td>
+                <td>[0]</td>
+            </tr>
+            <tr>
+                <td><strong>PACK</strong></td>
+                <td>Input data format selection.</td>
+                <td>'on' - Packed uint16/uint32<br>'off' - Individual booleans</td>
+                <td>'off'</td>
+            </tr>
+            <tr>
+                <td><strong>SIMULTANEOUS</strong></td>
+                <td>Atomic write mode for multiple pins (visible when PACK='off' and multiple pins selected).</td>
+                <td>'on' - Atomic update<br>'off' - Sequential writes</td>
+                <td>'off'</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Read-back Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>READPREVIOUS</strong></td>
+                <td>Enable LAT register read-back with 1-sample delay. When enabled, block adds Digital_Output_Read internally.</td>
+                <td>'on' - Enable read-back<br>'off' - Disable read-back</td>
+                <td>Controls subsystem structure:<br>• 'on': Adds output ports<br>• 'off': Input-only block</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Electrical Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>INIT_VALUE</strong></td>
+                <td>Initial output state at startup. Can be scalar (all pins same) or vector (per-pin values).</td>
+                <td>0 or 1 (scalar)<br>[0 1 0 ...] (vector)<br>0xHEX (packed)</td>
+                <td>All dsPIC/PIC32 families</td>
+            </tr>
+            <tr>
+                <td><strong>OUTPUT_PIN_MODE</strong></td>
+                <td>Output driver configuration. Open-drain mode requires external pull-up resistor.</td>
+                <td>'Push-pull' (default)<br>'Open-drain'</td>
+                <td>dsPIC33C/33A, PIC32</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Parameter Synchronization:</strong> The master block automatically synchronizes PORT, PIN, PACK, and electrical parameters to internal Digital_Output_Write and Digital_Output_Read sub-blocks. Users only configure the master block - internal blocks update automatically.
+    </div>
+
+    <h2>Dynamic Subsystem Management</h2>
+
+    <h3>READPREVIOUS = 'off' (Default)</h3>
+    <div class="diagram">
+<pre>
+┌────────────────────────────────────┐
+│  MCHP_Digital_Output               │
+│                                    │
+│  ┌──────────────────────────────┐  │
+│  │  Inport ($ ordering)         │  │
+│  └────────────┬─────────────────┘  │
+│               │                    │
+│  ┌────────────▼─────────────────┐  │
+│  │  Digital_Output_Write        │  │
+│  │  • Writes to LAT             │  │
+│  │  • No outputs                │  │
+│  └──────────────────────────────┘  │
+│                                    │
+│  No Outport block present          │
+└────────────────────────────────────┘
+
+Block Ports:
+  Inputs:  A0, A1, A2 (or packed 'A')
+  Outputs: None
+</pre>
+    </div>
+
+    <h3>READPREVIOUS = 'on'</h3>
+    <div class="diagram">
+<pre>
+┌────────────────────────────────────┐
+│  MCHP_Digital_Output               │
+│                                    │
+│  ┌──────────────────────────────┐  │
+│  │  Inport ($ ordering)         │  │
+│  └────────────┬─────────────────┘  │
+│               │                    │
+│  ┌────────────▼─────────────────┐  │
+│  │  Digital_Output_Write        │  │
+│  │  • Writes to LAT             │  │
+│  └──────────────────────────────┘  │
+│               │                    │
+│  ┌────────────▼─────────────────┐  │
+│  │  Digital_Output_Read         │  │
+│  │  • Reads LAT (1/z delay)     │  │
+│  └────────────┬─────────────────┘  │
+│               │                    │
+│  ┌────────────▼─────────────────┐  │
+│  │  Outport ($ ordering)        │  │
+│  └──────────────────────────────┘  │
+└────────────────────────────────────┘
+
+Block Ports:
+  Inputs:  A0, A1, A2 (or packed 'A')
+  Outputs: A0_prev, A1_prev, A2_prev (or packed 'A_prev')
+           1-sample delayed feedback
+</pre>
+    </div>
+
+    <h3>Automatic Subsystem Updates</h3>
+    <p>When READPREVIOUS parameter changes, the callback performs:</p>
+    <pre><code>% Pseudo-code for subsystem management
+if strcmp(READPREVIOUS, 'on')
+    % Add Digital_Output_Read block
+    add_block('mchp_lib/Digital_Output_Read', [blk '/Read']);
+
+    % Add Outport for feedback
+    add_block('simulink/Sinks/Out1', [blk '/Outport']);
+
+    % Connect: Read → Outport
+    add_line(blk, 'Read/1', 'Outport/1');
+else
+    % Remove Digital_Output_Read block
+    delete_block([blk '/Read']);
+
+    % Remove Outport
+    delete_block([blk '/Outport']);
+end
+
+% Update signal ordering ($) for proper port arrangement
+MCHP_OrderInOut(blk);</code></pre>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: LED Control with State Feedback</h3>
+    <pre><code>// Application: Three LEDs with read-back for diagnostics
+// Hardware: LEDs on PA0, PA1, PA2 with current-limiting resistors
+
+Block Parameters:
+PORT: 'A'
+PIN: [0 1 2]
+PACK: 'off'
+READPREVIOUS: 'on'
+INIT_VALUE: [0 0 0]  % All LEDs off at startup
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Inputs:  led1_cmd, led2_cmd, led3_cmd (boolean)
+Outputs: led1_state, led2_state, led3_state (boolean, 1 sample delayed)
+
+Result:
+- Control 3 LEDs independently
+- Read back actual output state for diagnostics
+- Use feedback for closed-loop LED sequencing
+- 1-sample delay acceptable for LED applications</code></pre>
+
+    <h3>Example 2: Motor Direction Control (No Read-back)</h3>
+    <pre><code>// Application: H-bridge motor driver control
+// Hardware: DIR1, DIR2 pins control motor direction
+
+Block Parameters:
+PORT: 'D'
+PIN: [4 5]
+PACK: 'off'
+READPREVIOUS: 'off'  % No read-back needed
+INIT_VALUE: [0 0]    % Safe state: motor off
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Inputs: dir1, dir2 (boolean)
+Outputs: None
+
+Control Logic:
+dir1=0, dir2=0 → Motor brake
+dir1=1, dir2=0 → Forward
+dir1=0, dir2=1 → Reverse
+dir1=1, dir2=1 → Invalid (avoid!)</code></pre>
+
+    <h3>Example 3: Relay Control with Packed Format</h3>
+    <pre><code>// Application: Control 8 relays as a bank
+// Hardware: 8 relay drivers on PORT B
+
+Block Parameters:
+PORT: 'B'
+PIN: [0 1 2 3 4 5 6 7]
+PACK: 'on'
+READPREVIOUS: 'on'
+INIT_VALUE: 0x00  % All relays off
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Input:  relay_states (uint16)
+Output: relay_feedback (uint16, 1/z delayed)
+
+Simulink Usage:
+% Set relay pattern using bitwise operations
+relay_cmd = bitor(0x01, 0x04);  % Turn on relays 0 and 2
+% relay_cmd = 0x05 (binary: 00000101)</code></pre>
+
+    <h3>Example 4: Stepper Motor Phase Control with Simultaneous Update</h3>
+    <pre><code>// Application: 4-phase stepper motor control
+// Hardware: Stepper driver on PORT C [0:3]
+
+Block Parameters:
+PORT: 'C'
+PIN: [0 1 2 3]
+PACK: 'off'
+SIMULTANEOUS: 'on'  % Atomic phase updates (critical!)
+READPREVIOUS: 'off'
+INIT_VALUE: [0 0 0 0]
+OUTPUT_PIN_MODE: 'Push-pull'
+
+Block Connectivity:
+Inputs: phase_A, phase_B, phase_C, phase_D (boolean)
+
+Step Sequence (full-step):
+Step 1: [1 0 0 0]
+Step 2: [0 1 0 0]
+Step 3: [0 0 1 0]
+Step 4: [0 0 0 1]
+
+// SIMULTANEOUS='on' ensures all 4 pins update atomically
+// Prevents glitches that could cause motor jitter</code></pre>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Internal Block Communication</h3>
+    <p>The master block propagates parameters to sub-blocks using these mechanisms:</p>
+
+    <h4>1. Parameter Synchronization</h4>
+    <pre><code>% In MCHP_Digital_Output_Callback.m
+% Copy parameters to Write sub-block
+write_block = [blk '/Digital_Output_Write'];
+set_param(write_block, 'PORT', NewMask.Values.PORT);
+set_param(write_block, 'PIN', NewMask.Values.PIN);
+set_param(write_block, 'PACK', NewMask.Values.PACK);
+set_param(write_block, 'INIT_VALUE', NewMask.Values.INIT_VALUE);
+set_param(write_block, 'OUTPUT_PIN_MODE', NewMask.Values.OUTPUT_PIN_MODE);
+
+% Copy parameters to Read sub-block (if exists)
+if strcmp(NewMask.Values.READPREVIOUS, 'on')
+    read_block = [blk '/Digital_Output_Read'];
+    set_param(read_block, 'PORT', NewMask.Values.PORT);
+    set_param(read_block, 'PIN', NewMask.Values.PIN);
+    set_param(read_block, 'PACK', NewMask.Values.PACK);
+end</code></pre>
+
+    <h4>2. Port Ordering ($)</h4>
+    <pre><code>% Signal ordering function ensures proper Inport/Outport arrangement
+% Called after subsystem modifications
+MCHP_OrderInOut(blk);
+
+% This function:
+% - Orders input ports by signal name ($)
+% - Orders output ports by signal name ($)
+% - Maintains consistent port indices across model updates</code></pre>
+
+    <h3>Register Configuration (Delegated to Sub-blocks)</h3>
+    <p>The master block doesn't directly configure registers - it delegates to internal blocks:</p>
+
+    <ul>
+        <li><strong>Digital_Output_Write:</strong> Configures TRIS (output direction), LAT (output state), ODC (open-drain), and initial values</li>
+        <li><strong>Digital_Output_Read:</strong> Reads LAT register to provide feedback</li>
+    </ul>
+
+    <p>See <a href="digital_output_write.html">Digital_Output_Write</a> and <a href="digital_output_read.html">Digital_Output_Read</a> documentation for register-level details.</p>
+
+    <h2>1-Sample Delay Explanation</h2>
+
+    <div class="note">
+        <strong>Why 1-Sample Delay?</strong> The read-back output represents the LAT register state from the <em>previous</em> execution cycle, not the current cycle. This is inherent to the execution order:
+        <ol>
+            <li>Current cycle: Write block updates LAT register with new values</li>
+            <li>Current cycle: Read block reads LAT register (sees previous values)</li>
+            <li>Next cycle: Read block output updates with current cycle's written values</li>
+        </ol>
+        This 1/z delay is acceptable for most applications (LED feedback, diagnostics, state machines) but should be considered in timing-critical feedback loops.
+    </div>
+
+    <h3>Timing Diagram</h3>
+    <div class="diagram">
+<pre>
+Sample Time:    k-1         k           k+1         k+2
+                │           │           │           │
+Input Signal:   │  0x01     │  0x02     │  0x04     │  0x08
+                │           │           │           │
+LAT Write:      │  0x01     │  0x02     │  0x04     │  0x08
+                │           │           │           │
+LAT Read:       │  0x00     │  0x01     │  0x02     │  0x04
+                │  (init)   │  (k-1)    │  (k)      │  (k+1)
+                │           │           │           │
+Output:         │  0x00     │  0x01     │  0x02     │  0x04
+                └───────────┴───────────┴───────────┴──────
+                   1-sample delay between write and read-back
+</pre>
+    </div>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues and Solutions</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Possible Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Read-back output not updating</td>
+                <td>READPREVIOUS = 'off'</td>
+                <td>Enable READPREVIOUS parameter to add output ports</td>
+            </tr>
+            <tr>
+                <td>Read-back shows wrong values</td>
+                <td>Expecting instantaneous feedback</td>
+                <td>Remember 1-sample delay - read-back is LAT(k-1)</td>
+            </tr>
+            <tr>
+                <td>Outputs don't match inputs</td>
+                <td>Pin configured as peripheral or analog</td>
+                <td>Verify pin configuration, check ANSEL/RP registers</td>
+            </tr>
+            <tr>
+                <td>Open-drain mode not working</td>
+                <td>Older chip family</td>
+                <td>ODC only available on 33C/33A/PIC32. Use external circuit for older chips.</td>
+            </tr>
+            <tr>
+                <td>Parameters not updating sub-blocks</td>
+                <td>Subsystem library link issue</td>
+                <td>Break library link, update parameters, test again</td>
+            </tr>
+            <tr>
+                <td>Port arrangement changed</td>
+                <td>Signal ordering after modification</td>
+                <td>Normal - MCHP_OrderInOut() reorders ports by name</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Subsystem Troubleshooting</h3>
+    <div class="warning">
+        <strong>Warning:</strong> Do not manually modify internal blocks (Digital_Output_Write, Digital_Output_Read) within the MCHP_Digital_Output subsystem. Always configure the master block - it will update internal blocks automatically. Manual changes may be overwritten during initialization.
+    </div>
+
+    <h2>Advanced Usage</h2>
+
+    <h3>Custom Subsystem Variants</h3>
+    <p>For advanced users, the master block architecture can be extended:</p>
+
+    <pre><code>% Create custom variant with additional functionality
+% Example: Add error checking or diagnostics
+
+% 1. Copy MCHP_Digital_Output to custom library
+% 2. Add custom blocks inside subsystem
+% 3. Modify callback to configure custom blocks
+% 4. Maintain parameter synchronization
+
+% Custom block structure:
+%   Inport → Write → Custom_Logic → Read → Outport
+%                       ↓
+%                  Error_Detection</code></pre>
+
+    <h3>Integration with Model Reference</h3>
+    <pre><code>% Use in model reference for component-based design
+% Master block simplifies interface - hides internal complexity
+
+% Top-level model:
+MCHP_Digital_Output block configured as actuator interface
+
+% Referenced model:
+Contains control logic, outputs to master block inputs
+
+% Benefits:
+- Clean interface (master block parameters)
+- Reusable subsystems
+- PIL testing support (automatic handling in callback)</code></pre>
+
+    <h2>Performance Considerations</h2>
+
+    <h3>Execution Overhead</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Configuration</th>
+                <th>Execution Time</th>
+                <th>Code Size</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Write only (READPREVIOUS=off)</td>
+                <td>~5-10 cycles</td>
+                <td>10-20 instructions</td>
+                <td>Minimal overhead</td>
+            </tr>
+            <tr>
+                <td>Write + Read (READPREVIOUS=on)</td>
+                <td>~10-20 cycles</td>
+                <td>20-40 instructions</td>
+                <td>Additional LAT read</td>
+            </tr>
+            <tr>
+                <td>Simultaneous write (atomic)</td>
+                <td>~15-25 cycles</td>
+                <td>30-50 instructions</td>
+                <td>Read-modify-write sequence</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Optimization Tip:</strong> For maximum performance, use READPREVIOUS='off' when feedback is not needed. This eliminates the LAT read operation and reduces code size.
+    </div>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="digital_output_write.html">MCHP_Digital_Output_Write</a> - Core output writing block (internal)</li>
+        <li><a href="digital_output_read.html">MCHP_Digital_Output_Read</a> - LAT register reading block (internal)</li>
+        <li><a href="digital_input.html">MCHP_Digital_Input</a> - Digital input reading with pull-up/pull-down</li>
+        <li><a href="../pwm/pwm_output.html">MCHP_PWM</a> - Hardware PWM generation for motor control</li>
+        <li><a href="../timers/output_compare_sw.html">MCHP_OC_SW</a> - Software-based output timing control</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../../getting_started/gpio_tutorial.html">GPIO Configuration Tutorial</a></li>
+        <li><a href="../../application_notes/subsystem_design.html">Composite Subsystem Design Patterns</a></li>
+        <li><a href="../../application_notes/signal_ordering.html">Signal Ordering and Port Management</a></li>
+        <li><a href="../../hardware_reference/electrical_specs.html">Electrical Specifications and Ratings</a></li>
+        <li>Microchip Device Datasheet - GPIO/LAT/ODC sections</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p>Part of the <strong>MCHP Blockset</strong> for Model-Based Design with dsPIC, PIC32, and SAM microcontrollers.</p>
+    </footer>
+    </div>
+</body>
+</html>

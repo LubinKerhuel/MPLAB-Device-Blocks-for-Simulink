@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler & Multitasking - MPLAB Device Blocks for Simulink</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Understanding Scheduler & Multitasking</h1>
+
+    <p>The MPLAB Device Blocks for Simulink includes a sophisticated scheduler that enables efficient execution of multi-rate Simulink models on resource-constrained microcontrollers. This guide explains the scheduler concepts, configuration options, and best practices for optimal performance.</p>
+
+    <h2>Single-Rate vs Multi-Rate Models</h2>
+
+    <p>Simulink models can be designed with blocks executing at the same rate (single-rate) or at different rates (multi-rate):</p>
+
+    <table>
+        <tr>
+            <th>Model Type</th>
+            <th>Description</th>
+            <th>Example</th>
+            <th>Use Case</th>
+        </tr>
+        <tr>
+            <td><strong>Single-Rate</strong></td>
+            <td>All blocks execute at the same sample time</td>
+            <td>All blocks at 1ms</td>
+            <td>Simple control loops, data acquisition</td>
+        </tr>
+        <tr>
+            <td><strong>Multi-Rate</strong></td>
+            <td>Blocks execute at different sample times</td>
+            <td>1ms, 10ms, 100ms tasks</td>
+            <td>Motor control (fast current loop, slow speed loop, UI)</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>💡 Why Multi-Rate?</strong>
+        <p>Multi-rate models reduce CPU load by executing slow tasks (e.g., temperature monitoring, UI updates) less frequently than fast critical tasks (e.g., current control loops).</p>
+    </div>
+
+    <h2>Single-Tasking vs Multi-Tasking Implementation</h2>
+
+    <p>For multi-rate models, the MPLAB Device Blocks toolbox offers two execution modes:</p>
+
+    <h3>Single-Tasking Mode</h3>
+
+    <p>In single-tasking mode, all tasks execute sequentially in a single loop. Fast tasks and slow tasks are called in order without preemption.</p>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/Scope_SingleTasking_70MIPS.png"
+             alt="Single-tasking execution on 70 MIPS chip">
+        <p><strong>Figure 1:</strong> Single-tasking execution on a 70 MIPS dsPIC33. Tasks execute sequentially: fast 1ms task, then slow 10ms task when scheduled. No preemption occurs.</p>
+    </div>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Simple and predictable execution</li>
+        <li>No priority management needed</li>
+        <li>Easy to debug (linear execution flow)</li>
+        <li>No context switching overhead</li>
+    </ul>
+
+    <p><strong>Disadvantages:</strong></p>
+    <ul>
+        <li>CPU overload if total execution time exceeds base rate period</li>
+        <li>Slow tasks delay fast tasks</li>
+        <li>Not suitable for slow microcontrollers with tight timing requirements</li>
+    </ul>
+
+    <div class="warning">
+        <h4>⚠️ Overload Scenario - Single-Tasking</h4>
+        <p>On slower chips or with computationally intensive algorithms, single-tasking can cause missed deadlines and timing violations:</p>
+
+        <div class="figure">
+            <img src="../block_reference/assets/images/toolbox_concepts/Scope_SingleTasking_20MIPS.png"
+                 alt="Single-tasking overload on 20 MIPS chip">
+            <p><strong>Figure 2:</strong> Single-tasking overload on a 20 MIPS dsPIC33. The slow task (10ms) execution time extends beyond the 1ms base rate period, causing the fast task to miss its deadline. This results in <strong>timing violations</strong> and <strong>incorrect control behavior</strong>.</p>
+        </div>
+
+        <p><strong>Consequences of overload:</strong></p>
+        <ul>
+            <li>Fast control loops execute at incorrect rate</li>
+            <li>System instability (motor oscillations, overshoot)</li>
+            <li>Unpredictable behavior</li>
+        </ul>
+    </div>
+
+    <h3>Multi-Tasking Mode (Rate-Monotonic Scheduler)</h3>
+
+    <p>In multi-tasking mode, tasks execute with priorities based on their execution rate. The scheduler implements the <strong>Rate-Monotonic Scheduling</strong> algorithm, where higher-rate tasks have higher priority.</p>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/Scheduler_MultiTasking_Scope.png"
+             alt="Rate-monotonic scheduler diagram">
+        <p><strong>Figure 3:</strong> Rate-Monotonic Scheduler operation. <strong>Key principle</strong>: Higher rate tasks (faster execution frequency) have higher priority and can <strong>preempt</strong> slower tasks.</p>
+    </div>
+
+    <p><strong>How it works:</strong></p>
+    <ol>
+        <li>Each task is assigned a priority based on its rate (1ms > 10ms > 100ms)</li>
+        <li>When a high-priority task needs to execute, it preempts any running low-priority task</li>
+        <li>The preempted task resumes after the high-priority task completes</li>
+        <li>This ensures fast critical tasks always meet their deadlines</li>
+    </ol>
+
+    <div class="figure">
+        <img src="../block_reference/assets/images/toolbox_concepts/Scope_MultiTasking_70MIPS.png"
+             alt="Multi-tasking execution on 70 MIPS chip">
+        <p><strong>Figure 4:</strong> Multi-tasking execution on a 70 MIPS dsPIC33. The fast 1ms task (high priority) preempts the slow 10ms task (low priority) to meet its deadline. After completion, the 10ms task resumes execution.</p>
+    </div>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>Better CPU utilization</li>
+        <li>Fast tasks always meet deadlines even when slow tasks run long</li>
+        <li>Prevents overload scenarios</li>
+        <li>Optimal fixed-priority scheduling (proven by Liu & Layland, 1973)</li>
+    </ul>
+
+    <p><strong>Disadvantages:</strong></p>
+    <ul>
+        <li>Slightly more complex than single-tasking</li>
+        <li>Small overhead from context switching (typically &lt;1%)</li>
+        <li>Requires understanding of task priorities</li>
+    </ul>
+
+    <div class="note">
+        <h4>💡 Overload Prevention with Multi-Tasking</h4>
+        <p>Multi-tasking mode prevents the overload scenario seen in single-tasking mode:</p>
+
+        <div class="figure">
+            <img src="../block_reference/assets/images/toolbox_concepts/Scope_MultiTasking_20MIPS.png"
+                 alt="Multi-tasking on 20 MIPS chip">
+            <p><strong>Figure 5:</strong> Multi-tasking on a 20 MIPS dsPIC33. Even on this slower chip, the fast 1ms task executes on time by preempting the slow 10ms task. The system remains stable and all deadlines are met.</p>
+        </div>
+
+        <p><strong>Result:</strong> Fast control loops maintain correct execution rate, ensuring system stability.</p>
+    </div>
+
+    <h2>Rate-Monotonic Scheduling Theory</h2>
+
+    <p>The Rate-Monotonic Scheduling (RMS) algorithm is a mathematically proven optimal fixed-priority scheduling algorithm for periodic tasks.</p>
+
+    <h3>Priority Assignment Rule</h3>
+
+    <p>Tasks are assigned priorities inversely proportional to their period:</p>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Period (Sample Time)</th>
+            <th>Rate (Frequency)</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>Fast Control Loop</td>
+            <td>1 ms</td>
+            <td>1000 Hz</td>
+            <td>Highest (1)</td>
+        </tr>
+        <tr>
+            <td>Speed Loop</td>
+            <td>10 ms</td>
+            <td>100 Hz</td>
+            <td>Medium (2)</td>
+        </tr>
+        <tr>
+            <td>UI Update</td>
+            <td>100 ms</td>
+            <td>10 Hz</td>
+            <td>Low (3)</td>
+        </tr>
+        <tr>
+            <td>Background Task</td>
+            <td>1000 ms</td>
+            <td>1 Hz</td>
+            <td>Lowest (4)</td>
+        </tr>
+    </table>
+
+    <h3>Schedulability Analysis</h3>
+
+    <p>The RMS algorithm guarantees that all tasks will meet their deadlines if the following condition is met:</p>
+
+    <pre><code>U = Σ(Ci / Ti) ≤ n(2^(1/n) - 1)
+
+Where:
+  U  = Total CPU utilization
+  Ci = Execution time of task i
+  Ti = Period of task i
+  n  = Number of tasks
+
+For 3 tasks: U ≤ 0.78 (78% CPU utilization)
+For ∞ tasks: U ≤ 0.69 (69% CPU utilization - conservative limit)</code></pre>
+
+    <div class="note">
+        <strong>💡 Practical Note:</strong>
+        <p>The theoretical limit (69-78%) is conservative. In practice, many task sets are schedulable even above 90% CPU utilization. Use the <strong>MCU Load</strong> block to monitor actual CPU usage.</p>
+    </div>
+
+    <h2>When to Use Single-Tasking vs Multi-Tasking</h2>
+
+    <table>
+        <tr>
+            <th>Scenario</th>
+            <th>Single-Tasking</th>
+            <th>Multi-Tasking</th>
+            <th>Recommendation</th>
+        </tr>
+        <tr>
+            <td>Simple single-rate control loop</td>
+            <td>✅ Yes</td>
+            <td>Optional</td>
+            <td>Single-tasking for simplicity</td>
+        </tr>
+        <tr>
+            <td>Motor control (fast current + slow speed)</td>
+            <td>⚠️ Maybe</td>
+            <td>✅ Yes</td>
+            <td>Multi-tasking recommended</td>
+        </tr>
+        <tr>
+            <td>Slow chip (20-40 MIPS)</td>
+            <td>❌ No</td>
+            <td>✅ Required</td>
+            <td>Multi-tasking required</td>
+        </tr>
+        <tr>
+            <td>Fast chip (70+ MIPS) with margin</td>
+            <td>✅ OK</td>
+            <td>✅ Better</td>
+            <td>Either works, multi-tasking safer</td>
+        </tr>
+        <tr>
+            <td>Tight timing requirements</td>
+            <td>❌ Risky</td>
+            <td>✅ Yes</td>
+            <td>Multi-tasking for determinism</td>
+        </tr>
+        <tr>
+            <td>CPU utilization &gt; 50%</td>
+            <td>⚠️ Caution</td>
+            <td>✅ Yes</td>
+            <td>Multi-tasking to prevent overload</td>
+        </tr>
+    </table>
+
+    <h2>Configuration in MCHP Master Block</h2>
+
+    <p>The scheduler mode is configured in the <strong>MCHP Master</strong> block:</p>
+
+    <h3>Step 1: Open Master Block Configuration</h3>
+    <pre><code>1. Double-click the MCHP_Master block in your model
+2. Navigate to the "Scheduler Options" tab
+3. Locate the "Solver mode" parameter</code></pre>
+
+    <h3>Step 2: Select Scheduler Mode</h3>
+
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Description</th>
+            <th>When to Use</th>
+        </tr>
+        <tr>
+            <td><code>MultiTasking</code></td>
+            <td>Rate-monotonic scheduler with preemption</td>
+            <td><strong>Default and recommended</strong> for multi-rate models</td>
+        </tr>
+        <tr>
+            <td><code>SingleTasking</code></td>
+            <td>Sequential execution without preemption</td>
+            <td>Single-rate models or when preemption is not desired</td>
+        </tr>
+        <tr>
+            <td><code>Auto</code></td>
+            <td>Automatically selects based on model rates</td>
+            <td>Let toolbox choose optimal mode</td>
+        </tr>
+    </table>
+
+    <h3>Step 3: Verify Configuration</h3>
+
+    <p>After building your model, check the generated code to verify the scheduler configuration:</p>
+
+    <pre><code>/* In [ModelName].c */
+
+/* Multi-tasking mode: Task functions with priorities */
+void Task_1ms(void)   /* Priority 1 (highest) */
+void Task_10ms(void)  /* Priority 2 */
+void Task_100ms(void) /* Priority 3 */
+
+/* Scheduler interrupt service routine */
+void __attribute__((__interrupt__, no_auto_psv)) _T1Interrupt(void)
+{
+    /* Check which tasks need to execute */
+    if (counter_1ms >= 1) {
+        counter_1ms = 0;
+        Task_1ms();  /* Execute highest priority task */
+    }
+
+    if (counter_10ms >= 10) {
+        counter_10ms = 0;
+        Task_10ms();  /* May be preempted by Task_1ms */
+    }
+}</code></pre>
+
+    <h2>Monitoring CPU Load and Task Execution</h2>
+
+    <p>The MPLAB Device Blocks toolbox provides several blocks to monitor scheduler performance:</p>
+
+    <h3>MCU Load Block</h3>
+
+    <p>The <strong>MCU Load</strong> block measures actual CPU utilization:</p>
+    <ul>
+        <li>Outputs percentage of CPU time spent executing tasks</li>
+        <li>Updates in real-time during execution</li>
+        <li>Helps identify overload conditions before they occur</li>
+    </ul>
+
+    <p><strong>Usage:</strong></p>
+    <pre><code>1. Add MCHP_MCU_Load block to your model
+2. Connect output to scope or data logging
+3. Monitor during testing to ensure load &lt; 80%</code></pre>
+
+    <h3>Tasks State Block</h3>
+
+    <p>The <strong>Tasks State</strong> block provides detailed task execution information:</p>
+    <ul>
+        <li>Toggles output pin when each task executes</li>
+        <li>Allows oscilloscope measurement of actual task timing</li>
+        <li>Useful for verifying preemption behavior</li>
+    </ul>
+
+    <p>See the timing diagrams in Figures 3-5 above - these were captured using the Tasks State block with an oscilloscope.</p>
+
+    <h3>MCU Overload Block</h3>
+
+    <p>The <strong>MCU Overload</strong> block detects timing violations:</p>
+    <ul>
+        <li>Triggers when a task exceeds its allocated time</li>
+        <li>Can halt execution or trigger error handling</li>
+        <li>Essential safety feature for production systems</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <h3>1. Design for Determinism</h3>
+    <ul>
+        <li>Use <strong>multi-tasking mode</strong> for multi-rate models</li>
+        <li>Keep fast tasks short and predictable</li>
+        <li>Move complex calculations to slower tasks when possible</li>
+    </ul>
+
+    <h3>2. Monitor CPU Load</h3>
+    <ul>
+        <li>Target <strong>&lt;70% CPU utilization</strong> for production systems</li>
+        <li>Use MCU Load block during development to track usage</li>
+        <li>Test worst-case scenarios (all tasks coinciding)</li>
+    </ul>
+
+    <h3>3. Task Execution Time Guidelines</h3>
+
+    <table>
+        <tr>
+            <th>Task Priority</th>
+            <th>Maximum Execution Time</th>
+            <th>Guideline</th>
+        </tr>
+        <tr>
+            <td>Highest (fastest rate)</td>
+            <td>&lt;50% of period</td>
+            <td>1ms task should execute in &lt;500μs</td>
+        </tr>
+        <tr>
+            <td>Medium</td>
+            <td>&lt;70% of period</td>
+            <td>10ms task should execute in &lt;7ms</td>
+        </tr>
+        <tr>
+            <td>Lowest (background)</td>
+            <td>&lt;90% of period</td>
+            <td>100ms task can use up to 90ms</td>
+        </tr>
+    </table>
+
+    <h3>4. Handle Priority Inversion</h3>
+
+    <p>Avoid shared resources between tasks of different priorities. If necessary, use:</p>
+    <ul>
+        <li>Atomic operations for simple variables</li>
+        <li>Disable interrupts briefly for critical sections</li>
+        <li>Design tasks to be independent when possible</li>
+    </ul>
+
+    <h3>5. Testing Strategy</h3>
+
+    <ol>
+        <li><strong>Simulation</strong>: Verify algorithm correctness</li>
+        <li><strong>Single-rate test</strong>: Test all blocks at base rate first</li>
+        <li><strong>Multi-rate test</strong>: Enable different task rates</li>
+        <li><strong>Stress test</strong>: Add artificial load to verify overload handling</li>
+        <li><strong>Long-duration test</strong>: Run for hours to catch edge cases</li>
+    </ol>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Problem: Model execution is unstable</h3>
+
+    <p><strong>Possible causes:</strong></p>
+    <ul>
+        <li>CPU overload (utilization &gt; 100%)</li>
+        <li>Task execution time exceeds period</li>
+        <li>Timing violations in single-tasking mode</li>
+    </ul>
+
+    <p><strong>Solutions:</strong></p>
+    <ol>
+        <li>Switch to <strong>multi-tasking mode</strong></li>
+        <li>Use MCU Load block to measure utilization</li>
+        <li>Optimize slow code sections (use PIL for profiling)</li>
+        <li>Move non-critical code to slower tasks</li>
+        <li>Consider faster microcontroller</li>
+    </ol>
+
+    <h3>Problem: Fast task misses deadlines</h3>
+
+    <p><strong>In single-tasking mode:</strong></p>
+    <ul>
+        <li>Slow task is blocking fast task execution</li>
+        <li>Total execution time exceeds base rate period</li>
+    </ul>
+
+    <p><strong>Solution:</strong> Switch to multi-tasking mode to enable preemption</p>
+
+    <p><strong>In multi-tasking mode:</strong></p>
+    <ul>
+        <li>Fast task execution time is too long</li>
+        <li>Higher-priority interrupts are blocking task</li>
+    </ul>
+
+    <p><strong>Solution:</strong> Optimize fast task or increase base rate period</p>
+
+    <h3>Problem: Context switching overhead is high</h3>
+
+    <p>If multi-tasking overhead is significant (rare, typically &lt;1%):</p>
+    <ul>
+        <li>Reduce number of task rates</li>
+        <li>Combine tasks with similar periods</li>
+        <li>Consider if multi-tasking is actually needed</li>
+    </ul>
+
+    <h2>Related Documentation</h2>
+
+    <ul>
+        <li><a href="../block_reference/system/scheduler_options.html">MCHP_Scheduler_Options Block Reference</a></li>
+        <li><a href="../block_reference/system/master.html">MCHP_Master Block Reference</a></li>
+        <li><a href="../block_reference/system/mcu_load.html">MCHP_MCU_Load Block Reference</a></li>
+        <li><a href="../block_reference/system/mcu_overload.html">MCHP_MCU_Overload Block Reference</a></li>
+        <li><a href="../block_reference/system/tasks_state.html">MCHP_Tasks_State Block Reference</a></li>
+        <li><a href="external_mode_pil.html">External Mode & PIL Testing Guide</a></li>
+    </ul>
+
+    <h2>References</h2>
+
+    <ul>
+        <li>Liu, C. L., & Layland, J. W. (1973). "Scheduling Algorithms for Multiprogramming in a Hard-Real-Time Environment". <em>Journal of the ACM</em>, 20(1), 46-61.</li>
+        <li>Buttazzo, G. C. (2011). <em>Hard Real-Time Computing Systems: Predictable Scheduling Algorithms and Applications</em> (3rd ed.). Springer.</li>
+    </ul>
+
+    <hr>
+
+    <p style="text-align: center; color: #666; font-size: 0.9em;">
+        <strong>MPLAB Device Blocks for Simulink</strong> | Microchip Technology Inc.<br>
+        For technical support, visit <a href="https://www.microchip.com/support">www.microchip.com/support</a>
+    </p>
+    </div>
+</body>
+</html>

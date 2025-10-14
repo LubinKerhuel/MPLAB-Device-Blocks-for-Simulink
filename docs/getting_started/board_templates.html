@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Board Templates - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Board Templates</h1>
+
+    <h2>Overview</h2>
+    <p>Board templates provide pre-configured Simulink models optimized for popular Microchip development boards. These templates include:</p>
+    <ul>
+        <li><strong>Pre-configured Master block</strong> with correct chip selection and clock settings</li>
+        <li><strong>Peripheral blocks</strong> configured for board-specific hardware (PWM, ADC, UART, QEI, etc.)</li>
+        <li><strong>Pin assignments</strong> matching the physical board layout</li>
+        <li><strong>Example algorithms</strong> demonstrating typical use cases (motor control, sensor interfaces)</li>
+        <li><strong>Validated configurations</strong> tested on actual hardware</li>
+    </ul>
+
+    <div class="note">
+        <strong>Key Benefit:</strong> Templates eliminate hours of configuration work, allowing you to start developing control algorithms immediately. Simply select your board template, customize the algorithm, and build.
+    </div>
+
+    <h2>Why Use Board Templates?</h2>
+    <table>
+        <tr>
+            <th>Benefit</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Fast Prototyping</strong></td>
+            <td>Start coding control algorithms in minutes instead of hours spent on peripheral configuration</td>
+        </tr>
+        <tr>
+            <td><strong>Validated Hardware</strong></td>
+            <td>All pin assignments and peripheral settings verified on actual hardware - reduces debugging time</td>
+        </tr>
+        <tr>
+            <td><strong>Best Practices</strong></td>
+            <td>Templates follow Microchip recommended configurations for optimal performance</td>
+        </tr>
+        <tr>
+            <td><strong>Learning Tool</strong></td>
+            <td>Study working examples to understand peripheral configuration patterns</td>
+        </tr>
+        <tr>
+            <td><strong>Easy Portability</strong></td>
+            <td>Switch between boards by simply loading a different template - same algorithm, different hardware</td>
+        </tr>
+    </table>
+
+    <h2>Available Board Templates</h2>
+
+    <div class="board-gallery">
+        <div class="board-card">
+            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_MCLV_2.png" alt="MCLV-2 Development Board">
+            <h4>MCLV-2 (Motor Control Low Voltage)</h4>
+            <p><strong>Target Applications:</strong> Low-voltage motor control, BLDC/PMSM development</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>24V max, 8A continuous motor drive</li>
+                <li>Integrated current sensing with op-amps</li>
+                <li>QEI encoder interface</li>
+                <li>Push buttons and LEDs for user interface</li>
+                <li>Compatible with dsPIC33E, 33C, 33A families</li>
+            </ul>
+            <p><strong>Template Models:</strong> FOC control, six-step commutation, sensor interfaces</p>
+        </div>
+
+        <div class="board-card">
+            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_LVMC.png" alt="LVMC Development Board">
+            <h4>LVMC (Low Voltage Motor Control)</h4>
+            <p><strong>Target Applications:</strong> Entry-level motor control prototyping</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Compact form factor</li>
+                <li>Integrated H-bridge driver</li>
+                <li>On-board current sensing</li>
+                <li>Plug-in module (PIM) socket for easy chip swapping</li>
+                <li>USB programmer interface</li>
+            </ul>
+            <p><strong>Template Models:</strong> Basic PWM control, ADC sampling, UART communication</p>
+        </div>
+
+        <div class="board-card">
+            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_MCLV_300W48V.png" alt="MCLV 300W-48V Board">
+            <h4>MCLV 300W-48V</h4>
+            <p><strong>Target Applications:</strong> Higher power motor control, industrial applications</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>48V DC bus, 300W continuous power</li>
+                <li>Optimized for dsPIC33A (32-bit DSC with FPU)</li>
+                <li>Three-phase current sensing</li>
+                <li>High-speed PWM with dead-time control</li>
+                <li>CAN communication interface</li>
+            </ul>
+            <p><strong>Template Models:</strong> Advanced FOC, floating-point control, high-resolution PWM</p>
+        </div>
+
+        <div class="board-card">
+            <h4>Motor Control Dev Board (33CDV64MC106)</h4>
+            <p><strong>Target Applications:</strong> Dual-core motor control applications</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>dsPIC33CDV dual-core architecture</li>
+                <li>Independent PWM modules per core</li>
+                <li>Multi-motor control capability</li>
+                <li>Integrated communication peripherals</li>
+                <li>Flexible I/O configuration</li>
+            </ul>
+            <p><strong>Template Models:</strong> Dual-motor control, master-slave coordination</p>
+        </div>
+    </div>
+
+    <h2>How to Use Board Templates</h2>
+
+    <h3>Method 1: Creating New Model from Template</h3>
+    <img src="../block_reference/assets/images/toolbox_concepts/Simulink_New_FromMicrochipTemplate.PNG" alt="Create from Microchip Template">
+
+    <ol>
+        <li><strong>Open Simulink</strong>: Launch MATLAB and open the Simulink Start Page</li>
+        <li><strong>Browse Templates</strong>: Navigate to <em>Simulink Start Page → Templates → Microchip</em></li>
+        <li><strong>Select Board</strong>: Choose your target development board from the list</li>
+        <li><strong>Create Model</strong>: Click "Create Model" to generate a new model with pre-configured peripherals</li>
+        <li><strong>Customize Algorithm</strong>: Replace the placeholder algorithm with your control logic</li>
+        <li><strong>Build</strong>: Click the Build button (Ctrl+B) to generate code and program the board</li>
+    </ol>
+
+    <div class="note">
+        <strong>Tip:</strong> Save the template-based model with a new name immediately to preserve the original template for future use.
+    </div>
+
+    <h3>Method 2: Loading Template Example</h3>
+    <ol>
+        <li>In MATLAB command window, type: <code>mchp</code> to open the block library</li>
+        <li>Navigate to <em>MCHP Blockset → Examples → [Board Name]</em></li>
+        <li>Double-click the desired example model</li>
+        <li>Study the configuration and modify as needed</li>
+        <li>Save as new model for your project</li>
+    </ol>
+
+    <h2>Template Structure</h2>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/CodeGeneration_Template.png" alt="Template Structure Overview" style="max-width: 800px;">
+
+    <p>A typical board template includes the following components:</p>
+
+    <h3>1. Master Block Configuration</h3>
+    <ul>
+        <li><strong>Target Device</strong>: Pre-selected chip matching the board (e.g., dsPIC33CK256MP508)</li>
+        <li><strong>Clock Configuration</strong>: Oscillator settings for maximum performance</li>
+        <li><strong>Compiler Settings</strong>: Optimization level, memory model, code replacement</li>
+        <li><strong>Programmer Selection</strong>: ICD4/ICD5/PICkit configuration</li>
+    </ul>
+
+    <h3>2. Peripheral Blocks</h3>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/CodeGeneration_Template_details.png" alt="Template Detailed Structure" style="max-width: 800px;">
+
+    <p>Templates include commonly-used peripherals pre-configured for the board hardware:</p>
+
+    <table>
+        <tr>
+            <th>Peripheral</th>
+            <th>Typical Configuration</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><strong>PWM</strong></td>
+            <td>Center-aligned, complementary outputs with dead-time</td>
+            <td>Motor drive, power conversion</td>
+        </tr>
+        <tr>
+            <td><strong>ADC</strong></td>
+            <td>Synchronized with PWM, parallel sampling, multiple channels</td>
+            <td>Current/voltage sensing</td>
+        </tr>
+        <tr>
+            <td><strong>QEI</strong></td>
+            <td>Quadrature decoding with index, configurable resolution</td>
+            <td>Motor position/speed measurement</td>
+        </tr>
+        <tr>
+            <td><strong>UART</strong></td>
+            <td>115200 baud (upgradeable to 2Mbaud with FTDI)</td>
+            <td>Data logging, parameter tuning (picgui)</td>
+        </tr>
+        <tr>
+            <td><strong>Digital I/O</strong></td>
+            <td>Buttons (input), LEDs (output), fault signals</td>
+            <td>User interface, status indication</td>
+        </tr>
+        <tr>
+            <td><strong>Op-Amps</strong></td>
+            <td>Configured for current sensing with appropriate gain</td>
+            <td>Analog signal conditioning</td>
+        </tr>
+    </table>
+
+    <h3>3. Sample Algorithm</h3>
+    <p>Templates include a working control algorithm demonstrating:</p>
+    <ul>
+        <li>Multi-rate execution (fast current loop, slower speed loop)</li>
+        <li>Proper scaling and fixed-point data types</li>
+        <li>Real-time constraint management</li>
+        <li>Best practices for embedded code generation</li>
+    </ul>
+
+    <h3>4. Visualization & Debug Tools</h3>
+    <ul>
+        <li><strong>Task State blocks</strong>: Monitor task execution on scope/LEDs</li>
+        <li><strong>MCU Load block</strong>: Measure CPU utilization</li>
+        <li><strong>UART Tx-Matlab</strong>: Stream data to picgui for real-time plotting</li>
+        <li><strong>Scope trigger points</strong>: Pre-configured measurement points</li>
+    </ul>
+
+    <h2>Switching Between Boards</h2>
+
+    <p>One of the key advantages of templates is easy portability. To migrate an algorithm from one board to another:</p>
+
+    <ol>
+        <li><strong>Save Current Model</strong>: Backup your algorithm implementation</li>
+        <li><strong>Extract Algorithm</strong>: Copy your control algorithm subsystem (without peripheral blocks)</li>
+        <li><strong>Open Target Template</strong>: Load the template for your new target board</li>
+        <li><strong>Paste Algorithm</strong>: Insert your control algorithm into the new template</li>
+        <li><strong>Verify Connections</strong>: Ensure algorithm inputs/outputs connect to peripheral blocks</li>
+        <li><strong>Adjust Parameters</strong>: Update scaling factors, sample times if board specs differ</li>
+        <li><strong>Build & Test</strong>: Compile for new target and verify functionality</li>
+    </ol>
+
+    <div class="note">
+        <strong>Example:</strong> Moving a FOC algorithm from MCLV-2 (dsPIC33CK) to MCLV-300W48V (dsPIC33A) requires only:
+        <ul>
+            <li>Updating current sensor scaling (different op-amp gains)</li>
+            <li>Adjusting PWM frequency (different board power stage limits)</li>
+            <li>Optionally switching from fixed-point to floating-point (utilizing dsPIC33A's FPU)</li>
+        </ul>
+        The core control algorithm remains unchanged!
+    </div>
+
+    <h2>Template Customization</h2>
+
+    <h3>Common Customization Tasks</h3>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Steps</th>
+        </tr>
+        <tr>
+            <td><strong>Change PWM Frequency</strong></td>
+            <td>
+                <ol>
+                    <li>Double-click PWM block</li>
+                    <li>Modify "Period" parameter (e.g., 50µs for 20kHz)</li>
+                    <li>Update ADC trigger timing if synchronized</li>
+                    <li>Verify base time step in Configuration Parameters matches</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Add ADC Channel</strong></td>
+            <td>
+                <ol>
+                    <li>Double-click ADC block</li>
+                    <li>Add channel to conversion list (e.g., AN13 for potentiometer)</li>
+                    <li>Configure sampling time and trigger source</li>
+                    <li>Add output port to ADC block for new channel</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Enable CAN Communication</strong></td>
+            <td>
+                <ol>
+                    <li>Add "CAN Config" block from MCHP library</li>
+                    <li>Configure bit rate and identifier acceptance filter</li>
+                    <li>Add "CAN Tx" and "CAN Rx" blocks as needed</li>
+                    <li>Verify pins assigned correctly for board CAN transceiver</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Change Clock Speed</strong></td>
+            <td>
+                <ol>
+                    <li>Double-click Master block</li>
+                    <li>Navigate to "Clock" tab</li>
+                    <li>Adjust PLL settings for desired MIPS</li>
+                    <li>Verify peripheral frequencies remain within spec</li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Advanced Customization</h3>
+    <ul>
+        <li><strong>Multi-rate Scheduling</strong>: Add subsystems with different sample times to implement multi-tasking</li>
+        <li><strong>Fixed-Point Optimization</strong>: Use Fixed-Point Tool to convert floating-point to fixed-point for faster execution</li>
+        <li><strong>Code Replacement</strong>: Enable hardware-optimized functions in Configuration Parameters → Code Generation</li>
+        <li><strong>External Mode</strong>: Add XCP-on-Serial support for real-time parameter tuning from Simulink</li>
+        <li><strong>PIL Testing</strong>: Configure Processor-in-the-Loop to verify generated code behavior</li>
+    </ul>
+
+    <h2>Template Best Practices</h2>
+
+    <div class="note">
+        <strong>Best Practices:</strong>
+        <ul>
+            <li><strong>Start with Template</strong>: Always begin with a board template rather than blank model - saves configuration time</li>
+            <li><strong>Preserve Original</strong>: Save template-based models with new names to keep clean templates available</li>
+            <li><strong>Match Time Steps</strong>: Ensure Simulink base time step matches PWM period (if using PWM-triggered ADC)</li>
+            <li><strong>Verify Pin Assignments</strong>: Check physical board pinout matches template configuration before hardware testing</li>
+            <li><strong>Test Incrementally</strong>: Start with simple algorithm, verify peripherals work, then add complexity</li>
+            <li><strong>Use Task State Blocks</strong>: Monitor real-time execution with Task State and MCU Load blocks</li>
+            <li><strong>Document Changes</strong>: Add comments to model explaining customizations from original template</li>
+        </ul>
+    </div>
+
+    <h2>Troubleshooting Template Issues</h2>
+
+    <h3>Model Won't Build</h3>
+    <ul>
+        <li><strong>Compiler Path</strong>: Verify compiler installation in Configuration Parameters → Code Generation → System target file</li>
+        <li><strong>MATLAB Version</strong>: Ensure MATLAB version matches template requirements (R2020b+ recommended)</li>
+        <li><strong>Toolbox Dependencies</strong>: Check Embedded Coder, MATLAB Coder, Simulink Coder installed</li>
+        <li><strong>Path Issues</strong>: Run <code>rehash toolboxcache</code> if blockset not found</li>
+    </ul>
+
+    <h3>Hardware Not Responding</h3>
+    <ul>
+        <li><strong>Programmer Connection</strong>: Verify ICD/PICkit connected and powered</li>
+        <li><strong>Board Power</strong>: Ensure development board has power supply connected</li>
+        <li><strong>Chip Selection</strong>: Verify Master block targets correct chip for your board version</li>
+        <li><strong>Fuse Settings</strong>: Check configuration bits match hardware (oscillator type, debug pins)</li>
+    </ul>
+
+    <h3>Incorrect Peripheral Behavior</h3>
+    <ul>
+        <li><strong>Pin Mismatch</strong>: Verify template pin assignments match your board revision</li>
+        <li><strong>Scaling Errors</strong>: Check ADC/PWM scaling factors match your hardware (sensor gains, voltage levels)</li>
+        <li><strong>Timing Issues</strong>: Verify sample times and peripheral frequencies are correctly configured</li>
+        <li><strong>Real-time Violations</strong>: Use MCU Load block to check for overload conditions</li>
+    </ul>
+
+    <h2>Creating Custom Templates</h2>
+
+    <p>Once you've configured a model for a custom board, you can save it as a template for reuse:</p>
+
+    <ol>
+        <li><strong>Configure Model</strong>: Set up all peripherals and verify working on hardware</li>
+        <li><strong>Clean Algorithm</strong>: Replace specific control logic with generic placeholder algorithm</li>
+        <li><strong>Add Documentation</strong>: Include block comments explaining peripheral configuration</li>
+        <li><strong>Create Template File</strong>: Save as .sltx template file (File → Save As → Simulink Template)</li>
+        <li><strong>Add Metadata</strong>: Fill in template description, tags, and preview image</li>
+        <li><strong>Share</strong>: Distribute template to team or organization</li>
+    </ol>
+
+    <div class="warning">
+        <strong>Custom Board Note:</strong> When creating templates for custom hardware, thoroughly document:
+        <ul>
+            <li>Pin assignments and their mapping to board connectors</li>
+            <li>Clock configuration rationale and limitations</li>
+            <li>Scaling factors for analog inputs (sensor gains, voltage dividers)</li>
+            <li>Known hardware limitations or errata workarounds</li>
+        </ul>
+    </div>
+
+    <h2>Example Use Case: DC Motor Control</h2>
+
+    <p>Using the MCLV-2 template, you can implement a cascaded PI controller for DC motor speed control in under 30 minutes:</p>
+
+    <ol>
+        <li><strong>Load Template</strong>: Open "MCLV2_dsPIC33CK_MotorControl_Template"</li>
+        <li><strong>Pre-configured Peripherals</strong>:
+            <ul>
+                <li>PWM: 20kHz, center-aligned, 1µs dead-time</li>
+                <li>ADC: Synchronized to PWM, measuring motor current (AN0) and potentiometer (AN13)</li>
+                <li>QEI: 1000-line encoder, speed measurement at 2ms rate</li>
+                <li>UART: 115200 baud for picgui data logging</li>
+            </ul>
+        </li>
+        <li><strong>Add Control Algorithm</strong>:
+            <ul>
+                <li>Inner current loop: PI controller at 50µs (20kHz)</li>
+                <li>Outer speed loop: PI controller at 1ms (1kHz)</li>
+                <li>Speed reference from potentiometer</li>
+            </ul>
+        </li>
+        <li><strong>Build & Deploy</strong>: Press Ctrl+B to generate code and program board</li>
+        <li><strong>Tune & Visualize</strong>: Use picgui to monitor speed/current in real-time and adjust PI gains</li>
+    </ol>
+
+    <p><strong>Result:</strong> Working motor control system in 30 minutes instead of several hours of manual configuration!</p>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="overview.html">MCHP Blockset Overview</a> |
+        <a href="quick_start.html">Quick Start Guide</a> |
+        <a href="motor_control_examples.html">Motor Control Examples</a> |
+        <a href="external_mode_pil.html">External Mode & PIL</a> |
+        <a href="../user_guide/index.html">User Guide</a>
+    </p>
+    </div>
+</body>
+</html>

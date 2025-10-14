@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP High-Speed Analog Comparator with Slope Compensation - MCHP Blockset Documentation</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>MCHP High-Speed Analog Comparator with Slope Compensation</h1>
+        <p>Advanced peak current mode control with programmable slope compensation</p>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span>›</span>
+        <a href="../index.html">Block Reference</a>
+        <span>›</span>
+        <a href="analog.html">Analog Blocks</a>
+        <span>›</span>
+        <span>High-Speed Analog Comparator with Slope</span>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+            
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.svg"
+             alt="HighSpeed_AnalogComparator_wSlope Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.png';">
+        <div class="block-image-caption">
+            HighSpeed_AnalogComparator_wSlope Block Icon
+        </div>
+    </div>
+<h2>Overview</h2>
+            <p>The <strong>MCHP High-Speed Analog Comparator with Slope Compensation</strong> block extends the standard comparator with integrated slope compensation capabilities for peak current mode control applications. This advanced feature prevents sub-harmonic oscillation in current-mode DC-DC converters and motor drives operating at duty cycles above 50%.</p>
+
+            <div class="note">
+                <strong>Key Features:</strong>
+                <ul>
+                    <li>All standard comparator features plus slope compensation</li>
+                    <li>Programmable compensation ramp generation</li>
+                    <li>Automatic ramp synchronization with PWM</li>
+                    <li>Variable slope adjustment for optimal stability</li>
+                    <li>Sub-microsecond response for high-frequency switching</li>
+                    <li>Integrated peak current mode control logic</li>
+                </ul>
+            </div>
+
+            <h3>Peak Current Mode Control</h3>
+            <p>Peak current mode control regulates output by controlling the peak inductor current in each switching cycle. Slope compensation stabilizes the control loop when duty cycle exceeds 50%, preventing period-doubling oscillations.</p>
+
+            <div class="info">
+                <strong>Why Slope Compensation?</strong>
+                <p>In peak current mode control with D > 50%, the inductor current slope creates a positive feedback loop leading to sub-harmonic oscillation. Adding a compensation ramp to the current sense signal stabilizes the loop.</p>
+            </div>
+
+            <h3>Typical Applications</h3>
+            <ul>
+                <li><strong>Buck Converters:</strong> DC-DC step-down with peak current control</li>
+                <li><strong>Boost Converters:</strong> DC-DC step-up with current limiting</li>
+                <li><strong>Flyback Converters:</strong> Isolated power supplies</li>
+                <li><strong>Motor Drives:</strong> Peak current regulation for torque control</li>
+                <li><strong>LED Drivers:</strong> Constant current regulation</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Device Family Support</h2>
+            <div class="device-support">
+                <div class="device-card">
+                    <h4>dsPIC33EP</h4>
+                    <p>With Slope DAC</p>
+                </div>
+                <div class="device-card">
+                    <h4>dsPIC33EV</h4>
+                    <p>With Slope DAC</p>
+                </div>
+                <div class="device-card">
+                    <h4>dsPIC33CK</h4>
+                    <p>With Slope DAC</p>
+                </div>
+                <div class="device-card">
+                    <h4>dsPIC33CH</h4>
+                    <p>With Slope DAC</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>Device Requirement:</strong> This block requires comparator modules with integrated slope DAC hardware. Check device datasheet to verify slope compensation support.
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Block Parameters</h2>
+
+            <h3>Standard Comparator Configuration</h3>
+            <p>All parameters from the standard <a href="MCHP_HighSpeed_AnalogComparator.html">High-Speed Analog Comparator</a> block are available, plus the following slope compensation parameters:</p>
+
+            <h3>Slope Compensation Configuration</h3>
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Range/Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Slope Enable</strong></td>
+                        <td>Enable slope compensation ramp generation</td>
+                        <td>Enabled, Disabled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slope DAC Start Value</strong></td>
+                        <td>Starting value of compensation ramp</td>
+                        <td>0 to 4095 (12-bit)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slope Rate</strong></td>
+                        <td>Ramp slope in DAC units per PWM period</td>
+                        <td>0 to 255</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slope Trigger Source</strong></td>
+                        <td>PWM generator for ramp synchronization</td>
+                        <td>PWM1-PWM12 (device-dependent)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slope Polarity</strong></td>
+                        <td>Ramp direction</td>
+                        <td>Positive (rising), Negative (falling)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Slope Calculation</h3>
+            <div class="code-block">
+Slope Compensation Design:
+1. Required slope = 0.5 × Inductor current downslope
+2. Downslope = (Vout / L) × Tsw
+3. Sense voltage slope = Downslope × Rsense
+4. DAC slope = (Sense_Slope / Vref) × 4095 × Fsw
+
+Example for 100kHz Buck, L=10µH, Vout=12V, Rsense=0.1Ω:
+- Downslope = (12 / 10µH) × 10µs = 12 A/µs
+- Sense slope = 12 × 0.1 = 1.2 V/µs
+- Required comp = 0.5 × 1.2 = 0.6 V/µs
+- DAC slope = (0.6 / 3.3) × 4095 × 100kHz = 74 units/period
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Practical Examples</h2>
+
+            <h3>Example 1: Buck Converter Peak Current Mode</h3>
+            <div class="example">
+                <h4>Objective:</h4>
+                <p>Implement 100kHz buck converter (24V→12V, 5A max) with peak current mode control and slope compensation.</p>
+
+                <h4>Hardware:</h4>
+                <ul>
+                    <li>Input voltage: 24V</li>
+                    <li>Output voltage: 12V (D = 50%)</li>
+                    <li>Switching frequency: 100kHz</li>
+                    <li>Inductor: 22µH</li>
+                    <li>Current sense: 0.05Ω (Rsense)</li>
+                    <li>Max current: 5A (250mV sense voltage)</li>
+                </ul>
+
+                <h4>Configuration:</h4>
+                <ul>
+                    <li><strong>Comparator 1 Enable:</strong> on</li>
+                    <li><strong>Comparator 1 Pin:</strong> AN0 (current sense input)</li>
+                    <li><strong>Reference:</strong> Internal DAC (current setpoint)</li>
+                    <li><strong>CMREF:</strong> Dynamic (from voltage loop controller)</li>
+                    <li><strong>Slope Enable:</strong> Enabled</li>
+                    <li><strong>Slope Start Value:</strong> 0</li>
+                    <li><strong>Slope Rate:</strong> 62 (calculated below)</li>
+                    <li><strong>Slope Trigger:</strong> PWM1 (main converter PWM)</li>
+                    <li><strong>Slope Polarity:</strong> Positive (rising)</li>
+                </ul>
+
+                <h4>Slope Calculation:</h4>
+                <div class="code-block">
+// Buck downslope:
+m_down = (Vin - Vout) / L = (24 - 12) / 22µH = 0.545 A/µs
+
+// Sense voltage downslope:
+V_down = m_down × Rsense = 0.545 × 0.05 = 27.3 mV/µs
+
+// Required compensation (50% of downslope):
+V_comp = 0.5 × V_down = 13.65 mV/µs
+
+// At 100kHz (10µs period):
+V_comp_period = 13.65 × 10 = 136.5 mV per period
+
+// DAC units per period (Vref = 3.3V):
+Slope_Rate = (136.5mV / 3.3V) × 4095 = 169 units/period
+
+// Practical value (accounting for circuit delays):
+Slope_Rate = 62 (empirically tuned)
+                </div>
+
+                <h4>Results:</h4>
+                <ul>
+                    <li>Stable operation at all duty cycles (0-95%)</li>
+                    <li>No sub-harmonic oscillation</li>
+                    <li>Fast transient response (< 3 switching cycles)</li>
+                    <li>Accurate current regulation (±2% error)</li>
+                </ul>
+            </div>
+
+            <h3>Example 2: Flyback Converter with Discontinuous Mode</h3>
+            <div class="example">
+                <h4>Objective:</h4>
+                <p>Design 50kHz flyback converter (12V→48V isolated) with peak current control in discontinuous conduction mode (DCM).</p>
+
+                <h4>Specifications:</h4>
+                <ul>
+                    <li>Input: 9-15V (12V nominal)</li>
+                    <li>Output: 48V @ 1A (48W)</li>
+                    <li>Flyback transformer: Lp=100µH, n=1:4</li>
+                    <li>DCM operation (inductor current reaches zero)</li>
+                    <li>Current sense: 0.1Ω primary side</li>
+                </ul>
+
+                <h4>Configuration:</h4>
+                <ul>
+                    <li><strong>Comparator 2 Enable:</strong> on</li>
+                    <li><strong>Comparator 2 Pin:</strong> AN1 (primary current sense)</li>
+                    <li><strong>Reference:</strong> Internal DAC</li>
+                    <li><strong>CMREF:</strong> From outer voltage loop (typically 1.5-2.0V)</li>
+                    <li><strong>Slope Enable:</strong> Enabled (critical for DCM stability)</li>
+                    <li><strong>Slope Start Value:</strong> 100 (offset for DCM)</li>
+                    <li><strong>Slope Rate:</strong> 85</li>
+                    <li><strong>Slope Trigger:</strong> PWM2</li>
+                    <li><strong>HYSSEL:</strong> 15mV (noise immunity)</li>
+                </ul>
+
+                <h4>DCM Slope Compensation:</h4>
+                <div class="code-block">
+// DCM requires different compensation approach:
+// Peak current varies with input voltage
+// Slope compensation stabilizes against input variations
+
+// Primary current ramp-up slope:
+m_up = Vin / Lp = 12V / 100µH = 0.12 A/µs = 12 mV/µs (at Rsense=0.1Ω)
+
+// DCM compensation (0.5-0.75 × upslope):
+V_comp = 0.6 × 12 = 7.2 mV/µs
+
+// At 50kHz (20µs period):
+V_comp_period = 7.2 × 20 = 144 mV
+
+// DAC slope:
+Slope_Rate = (144mV / 3.3V) × 4095 = 179 → Use 85 (tuned)
+
+// Start value offsets ramp for DCM detection
+Slope_Start = 100  // Prevents false triggers at DCM start
+                </div>
+            </div>
+
+            <h3>Example 3: Interleaved Buck with Multiple Phases</h3>
+            <div class="example">
+                <h4>Objective:</h4>
+                <p>2-phase interleaved buck converter with independent slope compensation for each phase.</p>
+
+                <h4>System:</h4>
+                <ul>
+                    <li>Input: 48V</li>
+                    <li>Output: 12V @ 20A (10A per phase)</li>
+                    <li>Frequency: 200kHz per phase (400kHz effective)</li>
+                    <li>Phase shift: 180°</li>
+                    <li>Inductors: 4.7µH per phase</li>
+                </ul>
+
+                <h4>Phase 1 Configuration:</h4>
+                <ul>
+                    <li><strong>Comparator 1:</strong> Phase 1 current sense (AN0)</li>
+                    <li><strong>Slope Trigger:</strong> PWM1</li>
+                    <li><strong>Slope Rate:</strong> 145</li>
+                </ul>
+
+                <h4>Phase 2 Configuration:</h4>
+                <ul>
+                    <li><strong>Comparator 2:</strong> Phase 2 current sense (AN1)</li>
+                    <li><strong>Slope Trigger:</strong> PWM2 (180° phase shifted)</li>
+                    <li><strong>Slope Rate:</strong> 145 (matched to Phase 1)</li>
+                </ul>
+
+                <h4>Interleaving Benefits:</h4>
+                <div class="code-block">
+// Interleaved advantages:
+// 1. Reduced input/output ripple (400kHz effective)
+// 2. Lower per-phase current stress (10A vs 20A)
+// 3. Better thermal distribution
+// 4. Smaller passive components
+
+// Slope compensation per phase:
+m_down = (48 - 12) / 4.7µH = 7.66 A/µs
+V_comp = 0.5 × 7.66 × 0.025Ω = 95.7 mV/µs
+Slope_Rate = (95.7mV × 5µs / 3.3V) × 4095 = 145
+
+// Phase synchronization ensures:
+// - Independent current control per phase
+// - Automatic current sharing
+// - Fault protection per phase
+                </div>
+            </div>
+
+            <h3>Example 4: LED Driver with Current Regulation</h3>
+            <div class="example">
+                <h4>Objective:</h4>
+                <p>High-brightness LED driver with peak current mode control and dimming support.</p>
+
+                <h4>Specifications:</h4>
+                <ul>
+                    <li>LED string: 10 LEDs × 3.3V = 33V forward voltage</li>
+                    <li>LED current: 1A constant</li>
+                    <li>Input: 12-42V automotive</li>
+                    <li>Boost topology with current feedback</li>
+                    <li>PWM dimming: 1kHz</li>
+                </ul>
+
+                <h4>Configuration:</h4>
+                <ul>
+                    <li><strong>Comparator 3 Enable:</strong> on</li>
+                    <li><strong>Comparator 3 Pin:</strong> AN2 (LED current sense)</li>
+                    <li><strong>Reference:</strong> 1.0V (for 1A @ 1Ω sense)</li>
+                    <li><strong>Slope Enable:</strong> Enabled</li>
+                    <li><strong>Slope Rate:</strong> 55 (for 150kHz switching)</li>
+                    <li><strong>Dimming:</strong> AND gate with 1kHz PWM signal</li>
+                </ul>
+
+                <h4>Current Regulation:</h4>
+                <div class="code-block">
+// Peak current mode for LED driver:
+// 1. Comparator trips at peak inductor current
+// 2. Slope compensation prevents oscillation
+// 3. Average current = Peak - (ΔI/2)
+
+// For 1A average LED current:
+Peak_Current = 1A + (ΔI/2)
+ΔI = (Vout - Vin) / (L × Fsw) × D
+
+// At worst case (Vin = 12V, Vout = 36V):
+ΔI = (36 - 12) / (22µH × 150kHz) × 0.67 = 0.48A
+Peak_Current = 1A + 0.24A = 1.24A
+
+// Comparator reference for 1.24A peak:
+CMREF = 1.24V @ 1Ω sense resistor
+
+// Dimming implementation:
+// Comparator output AND 1kHz PWM → Drive MOSFET
+// Result: Regulated 1A during ON time, 0A during OFF
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Slope Compensation Theory</h2>
+
+            <h3>Sub-Harmonic Oscillation Prevention</h3>
+            <p>Understanding why slope compensation is necessary:</p>
+
+            <div class="code-block">
+Without Slope Compensation (D > 50%):
+- Cycle N: Current peak = Ipeak
+- Perturbation causes small increase → Ipeak + ΔI
+- Duty cycle increases to maintain voltage
+- Cycle N+1: Peak becomes Ipeak + 2×ΔI
+- Oscillation grows exponentially → System unstable
+
+With Slope Compensation:
+- Compensation ramp added to current sense
+- Effective downslope increased
+- Perturbations decay instead of grow
+- System stable at all duty cycles
+            </div>
+
+            <h3>Optimal Slope Selection</h3>
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Compensation Level</th>
+                        <th>Stability</th>
+                        <th>Dynamic Response</th>
+                        <th>Recommendation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>< 0.5 × Downslope</td>
+                        <td>Marginal</td>
+                        <td>Fast</td>
+                        <td>Unstable above D=50%</td>
+                    </tr>
+                    <tr>
+                        <td>0.5 × Downslope</td>
+                        <td>Good</td>
+                        <td>Good</td>
+                        <td>Minimum for stability</td>
+                    </tr>
+                    <tr>
+                        <td>1.0 × Downslope</td>
+                        <td>Excellent</td>
+                        <td>Slower</td>
+                        <td>Optimal compromise</td>
+                    </tr>
+                    <tr>
+                        <td>> 1.5 × Downslope</td>
+                        <td>Excellent</td>
+                        <td>Very slow</td>
+                        <td>Over-compensated</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning">
+                <strong>Tuning Tip:</strong> Start with 0.5× downslope compensation and increase if instability persists. Excessive compensation slows transient response.
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Troubleshooting</h2>
+
+            <h3>Common Issues and Solutions</h3>
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Issue</th>
+                        <th>Possible Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sub-harmonic oscillation at D>50%</td>
+                        <td>Insufficient slope compensation</td>
+                        <td>Increase Slope Rate to 0.75-1.0× downslope</td>
+                    </tr>
+                    <tr>
+                        <td>Slow transient response</td>
+                        <td>Excessive slope compensation</td>
+                        <td>Reduce Slope Rate, ensure not > 1.5× downslope</td>
+                    </tr>
+                    <tr>
+                        <td>Ramp not synchronized with PWM</td>
+                        <td>Wrong slope trigger source</td>
+                        <td>Verify Slope Trigger matches PWM generator</td>
+                    </tr>
+                    <tr>
+                        <td>Current limit varies with duty cycle</td>
+                        <td>Slope polarity incorrect</td>
+                        <td>Check Slope Polarity matches current sense</td>
+                    </tr>
+                    <tr>
+                        <td>Unstable at light load</td>
+                        <td>Slope start value too high</td>
+                        <td>Reduce Slope Start Value or add DCM detection</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Measurement and Tuning</h3>
+            <div class="info">
+                <strong>Oscilloscope Setup for Tuning:</strong>
+                <ol>
+                    <li><strong>CH1:</strong> Current sense signal (before comparator)</li>
+                    <li><strong>CH2:</strong> Comparator output (trip signal)</li>
+                    <li><strong>CH3:</strong> PWM output (gate drive)</li>
+                    <li><strong>CH4:</strong> Output voltage or current</li>
+                    <li><strong>Trigger:</strong> PWM rising edge</li>
+                    <li><strong>Look for:</strong> Consistent peak current, no period doubling</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Related Blocks</h2>
+            <ul>
+                <li><a href="MCHP_HighSpeed_AnalogComparator.html">MCHP High-Speed Analog Comparator</a> - Basic comparator without slope compensation</li>
+                <li><a href="../pwm/MCHP_PWM_HS.html">MCHP PWM High-Speed</a> - PWM generator for synchronization</li>
+                <li><a href="MCHP_OP_AMP.html">MCHP Operational Amplifier</a> - Current sense amplification</li>
+                <li><a href="MCHP_PGA.html">MCHP Programmable Gain Amplifier</a> - Variable gain current sensing</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>References</h2>
+            <ul>
+                <li><strong>Application Notes:</strong>
+                    <ul>
+                        <li><a href="https://www.microchip.com/AN2743">AN2743</a> - Peak Current Mode Control with Slope Compensation</li>
+                        <li><a href="https://www.microchip.com/AN1106">AN1106</a> - Current Mode Control for DC-DC Converters</li>
+                        <li><a href="https://www.microchip.com/AN1467">AN1467</a> - Interleaved Buck Converter Design</li>
+                    </ul>
+                </li>
+                <li><strong>Theory:</strong>
+                    <ul>
+                        <li>"Slope Compensation for Current Mode Control" - Unitrode (TI)</li>
+                        <li>"Stability Analysis of Peak Current Mode Control" - IEEE Papers</li>
+                    </ul>
+                </li>
+                <li><strong>Design Tools:</strong> MCHP Power Supply Designer (slope compensation calculator)</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

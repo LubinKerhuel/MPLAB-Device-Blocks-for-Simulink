@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_TIMER_Config - Timer Configuration Block</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>MCHP_TIMER_Config - Timer Configuration Block</h1>
+        <p class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="../index.html">Block Reference</a> &gt;
+            <a href="../timers.html">Timer Blocks</a> &gt;
+            MCHP_TIMER_Config
+        </p>
+    </div>
+
+    <div class="container">
+        <section id="description">
+            
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/timers/Timer.svg"
+             alt="Timer Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/timers/Timer.png';">
+        <div class="block-image-caption">
+            Timer Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+            <p>
+                The <strong>MCHP_TIMER_Config</strong> block provides a high-level interface for configuring hardware timers on Microchip microcontrollers. This block creates and manages named timer resources that can be shared across multiple peripherals in the model, providing automatic timer allocation and optimal prescaler selection.
+            </p>
+            <p>
+                Unlike direct timer register access, this block manages the complete timer lifecycle including resource allocation, conflict resolution, and automatic prescaler calculation based on desired resolution and period requirements.
+            </p>
+            <div class="note">
+                <strong>Key Feature:</strong> The block automatically selects optimal prescaler values and timer resources, simplifying timer configuration for complex applications.
+            </div>
+        </section>
+
+        <section id="device-support">
+            <h2>Supported Device Families</h2>
+            <table class="device-table">
+                <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>Support Level</th>
+                        <th>Available Timers</th>
+                        <th>Prescaler Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>dsPIC30F/33F/33E/33C/33A</td>
+                        <td>Full</td>
+                        <td>Timer1-Timer9 (device dependent)</td>
+                        <td>1:1, 1:8, 1:64, 1:256</td>
+                    </tr>
+                    <tr>
+                        <td>PIC24F</td>
+                        <td>Full</td>
+                        <td>Timer1-Timer5 (device dependent)</td>
+                        <td>1:1, 1:8, 1:64, 1:256</td>
+                    </tr>
+                    <tr>
+                        <td>PIC32 (MIPS)</td>
+                        <td>Full</td>
+                        <td>Timer1-Timer5</td>
+                        <td>1:1, 1:2, 1:4, 1:8, 1:16, 1:32, 1:64, 1:256</td>
+                    </tr>
+                    <tr>
+                        <td>PIC32A</td>
+                        <td>Full</td>
+                        <td>Timer1-Timer9 (device dependent)</td>
+                        <td>1:1, 1:8, 1:64, 1:256</td>
+                    </tr>
+                    <tr>
+                        <td>SAMx7 (ARM M7)</td>
+                        <td>Full</td>
+                        <td>TC0-TC11 (3 channels each)</td>
+                        <td>1:8, 1:32, 1:128</td>
+                    </tr>
+                    <tr>
+                        <td>SAMx2/x5 (ARM M0+/M4)</td>
+                        <td>Full</td>
+                        <td>TC0-TC7</td>
+                        <td>1:1, 1:2, 1:4, 1:8, 1:16, 1:64, 1:256, 1:1024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="parameters">
+            <h2>Configuration Parameters</h2>
+
+            <h3>Timer Identification</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Options/Range</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>TIMER_Name</code></td>
+                        <td>Named timer resource identifier</td>
+                        <td>TimerA-TimerF, Custom Name</td>
+                        <td>TimerA</td>
+                    </tr>
+                    <tr>
+                        <td><code>TIMER_CustomName</code></td>
+                        <td>User-defined timer name (when Custom Name selected)</td>
+                        <td>Valid MATLAB identifier</td>
+                        <td>TimerG</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Timer Resource Selection</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>TIMER_Ressource</code></td>
+                        <td>Hardware timer allocation constraint</td>
+                        <td>
+                            <ul>
+                                <li><strong>No constraints [Preferred]</strong> - Automatic selection from all available timers</li>
+                                <li><strong>Timer 1-9</strong> - Force specific hardware timer</li>
+                                <li><strong>Pick one from user list</strong> - Custom timer list</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>TIMER_Ressource_Custom</code></td>
+                        <td>Custom timer list (e.g., [1 3 5])</td>
+                        <td>Array of timer indices</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Timer Resolution and Period</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>TIMER_Resolution</code></td>
+                        <td>Timer tick resolution and maximum period</td>
+                        <td>Dropdown shows: "Resol: X.XXµs - MaxPer: Y.YYms" for each prescaler option</td>
+                    </tr>
+                    <tr>
+                        <td><code>TIMER_PeriodChk</code></td>
+                        <td>Use maximum period (65535 ticks)</td>
+                        <td>When ON: PR register = 65535</td>
+                    </tr>
+                    <tr>
+                        <td><code>TIMER_Period</code></td>
+                        <td>Desired timer period (seconds)</td>
+                        <td>Active when TIMER_PeriodChk is OFF. Can be MATLAB variable or numeric value</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Timer Sharing Configuration</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>TIMER_ShareChk</code></td>
+                        <td>Enable timer sharing between blocks</td>
+                        <td>ON = Shared, OFF = Exclusive use</td>
+                    </tr>
+                    <tr>
+                        <td><code>TIMER_Use</code></td>
+                        <td>Sharing permission level</td>
+                        <td>
+                            <ul>
+                                <li><strong>Read only</strong> - Timer value read-only, PR fixed</li>
+                                <li><strong>Read / Write</strong> - Allow PR register modification</li>
+                                <li><strong>Read / Write / Start-Stop / Period update</strong> - Full control</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>DoNotSetupChk</code></td>
+                        <td>Reserve timer for custom C code</td>
+                        <td>When ON: No timer initialization, manual setup required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation Details</h2>
+
+            <h3>Register Configuration</h3>
+            <p>The block configures the following timer registers based on device family:</p>
+
+            <h4>dsPIC/PIC24/PIC32A (TxCON register)</h4>
+            <ul>
+                <li><strong>TON</strong> - Timer ON bit (controlled by startup mode)</li>
+                <li><strong>TCKPS</strong> - Timer Input Clock Prescale Select (1:1, 1:8, 1:64, 1:256)</li>
+                <li><strong>TCS</strong> - Timer Clock Source (internal peripheral clock)</li>
+                <li><strong>TGATE</strong> - Timer Gated Time Accumulation Enable (disabled)</li>
+                <li><strong>PRx</strong> - Period register (calculated from desired period)</li>
+            </ul>
+
+            <h4>PIC32 MIPS (TxCON register)</h4>
+            <ul>
+                <li><strong>ON</strong> - Timer Enable bit</li>
+                <li><strong>TCKPS</strong> - Clock Prescale (3 bits: 1:1 to 1:256)</li>
+                <li><strong>TCS</strong> - Clock Source (PBCLK)</li>
+                <li><strong>PRx</strong> - Period register</li>
+            </ul>
+
+            <h4>SAMx (ARM) - TC Module</h4>
+            <ul>
+                <li><strong>TCCLKSx</strong> - Clock Selection (MCK/8, MCK/32, MCK/128)</li>
+                <li><strong>WAVE</strong> - Waveform mode (enabled for timer operation)</li>
+                <li><strong>RC</strong> - Register C (period value)</li>
+                <li><strong>CMR</strong> - Channel Mode Register configuration</li>
+            </ul>
+
+            <h3>Timer Type Classification</h3>
+            <p>The block manages timers using an internal type system:</p>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Ticks only (no register access)</td>
+                        <td>Time base reference only</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Read with PR = 65535</td>
+                        <td>Maximum period, read-only</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Read with fixed PR ≠ 65535</td>
+                        <td>Specific period, read-only</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Read/Write with PR modification</td>
+                        <td>Shared timer with PR updates</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Full control (Read/Write/Start/Stop)</td>
+                        <td>Exclusive timer ownership</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Automatic Timer Allocation</h3>
+            <p>The block uses the <code>MCHP_Fun.TimerConfig()</code> function for intelligent timer assignment:</p>
+            <ol>
+                <li><strong>Conflict Detection</strong> - Scans all Timer Config blocks for duplicate names</li>
+                <li><strong>Resource Pooling</strong> - Builds available timer list based on constraints</li>
+                <li><strong>Optimal Selection</strong> - Chooses timer that best matches requirements</li>
+                <li><strong>Prescaler Calculation</strong> - Automatically selects prescaler for desired resolution</li>
+                <li><strong>Period Register</strong> - Calculates PR value to achieve target period</li>
+            </ol>
+        </section>
+
+        <section id="examples">
+            <h2>Usage Examples</h2>
+
+            <h3>Example 1: Basic Timer for Periodic Interrupt</h3>
+            <pre><code>% Configure 1ms periodic timer
+Timer Name: TimerA
+Timer Resource: No constraints [Preferred]
+Timer Period: 0.001  % 1ms
+Use Maximum Period: OFF
+Share Timer: OFF (exclusive use)
+</code></pre>
+            <p><strong>Result:</strong> Automatically selects optimal prescaler and timer peripheral for 1ms period, exclusive ownership.</p>
+
+            <h3>Example 2: Shared Timer for Multiple Peripherals</h3>
+            <pre><code>% High-resolution timer shared between PWM and OC
+Timer Name: TimerPWM
+Timer Resource: Timer 2  % Force use of Timer2
+Use Maximum Period: ON  % PR = 65535
+Share Timer: ON
+Timer Use: Read only  % Allow other blocks to read
+</code></pre>
+            <p><strong>Result:</strong> Timer2 configured at maximum resolution, other blocks can reference "TimerPWM" for synchronization.</p>
+
+            <h3>Example 3: Custom C Code Timer Reservation</h3>
+            <pre><code>% Reserve Timer3 for manual configuration
+Timer Name: CustomTimer
+Timer Resource: Timer 3
+Do Not Setup This Timer: ON  % Reserve only
+</code></pre>
+            <p><strong>Result:</strong> Timer3 reserved but not initialized. User can configure in custom C code using the reserved resource.</p>
+
+            <h3>Example 4: Variable Period Control</h3>
+            <pre><code>% MATLAB workspace variable control
+samplingPeriod = 0.0001;  % 100µs base period
+
+Timer Name: TimerControl
+Timer Period: samplingPeriod
+Share Timer: ON
+Timer Use: Read / Write / Start-Stop / Period update
+</code></pre>
+            <p><strong>Result:</strong> Timer configured for 100µs, can be modified at runtime by other blocks.</p>
+        </section>
+
+        <section id="timing">
+            <h2>Timing Considerations</h2>
+
+            <h3>Resolution vs. Range Trade-off</h3>
+            <p>Timer resolution and maximum period are inversely related through the prescaler:</p>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Prescaler</th>
+                        <th>Resolution @ 60MHz</th>
+                        <th>Max Period (16-bit)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1:1</td>
+                        <td>16.67 ns</td>
+                        <td>1.09 ms</td>
+                    </tr>
+                    <tr>
+                        <td>1:8</td>
+                        <td>133 ns</td>
+                        <td>8.74 ms</td>
+                    </tr>
+                    <tr>
+                        <td>1:64</td>
+                        <td>1.07 µs</td>
+                        <td>69.9 ms</td>
+                    </tr>
+                    <tr>
+                        <td>1:256</td>
+                        <td>4.27 µs</td>
+                        <td>280 ms</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Period Calculation Accuracy</h3>
+            <ul>
+                <li>Period register is integer only (0-65535)</li>
+                <li>Actual period may differ slightly from requested value</li>
+                <li>Block automatically rounds to nearest achievable period</li>
+                <li>Check model compilation output for actual achieved period</li>
+            </ul>
+
+            <h3>Clock Source Dependencies</h3>
+            <ul>
+                <li><strong>dsPIC/PIC24:</strong> Uses instruction cycle clock (Fcy = Fosc/2)</li>
+                <li><strong>PIC32:</strong> Uses peripheral bus clock (PBCLK)</li>
+                <li><strong>SAMx:</strong> Uses master clock (MCK) or GCLK</li>
+                <li>Ensure clock configuration in Master Block matches hardware setup</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+
+            <h3>Common Issues and Solutions</h3>
+
+            <h4>Error: "Timer [Name] already defined"</h4>
+            <p><strong>Cause:</strong> Duplicate timer names in model.</p>
+            <p><strong>Solution:</strong> Use unique names (TimerA, TimerB, etc.) or custom names. Block automatically suggests alternative names.</p>
+
+            <h4>Warning: "Cannot achieve exact period"</h4>
+            <p><strong>Cause:</strong> Requested period not achievable with integer PR value.</p>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Accept nearest achievable period (shown in compilation output)</li>
+                <li>Try different prescaler setting</li>
+                <li>Adjust requested period to align with clock frequency</li>
+            </ul>
+
+            <h4>Timer Conflict with Other Peripherals</h4>
+            <p><strong>Cause:</strong> Multiple peripherals requesting same timer with incompatible settings.</p>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Use "Share Timer: ON" with compatible Timer Use settings</li>
+                <li>Use "No constraints" to allow automatic timer selection</li>
+                <li>Manually assign different timers to each peripheral</li>
+            </ul>
+
+            <h4>No Available Timers</h4>
+            <p><strong>Cause:</strong> All timers allocated to exclusive-use blocks.</p>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Enable timer sharing where possible</li>
+                <li>Reduce number of Timer Config blocks</li>
+                <li>Use single shared timer for multiple peripherals</li>
+            </ul>
+        </section>
+
+        <section id="related">
+            <h2>Related Blocks</h2>
+            <ul class="related-blocks">
+                <li><a href="input_capture.html">MCHP_IC - Input Capture</a> - Uses configured timers for event timestamping</li>
+                <li><a href="output_compare_hw.html">MCHP_OC_HW - Output Compare (Hardware)</a> - Requires timer timebase</li>
+                <li><a href="output_compare_sw.html">MCHP_OC_SW - Output Compare (Software)</a> - Uses timer for software compare</li>
+                <li><a href="timer_pil_profiling.html">MCHP_TIMER_PIL_Profiling</a> - Uses timers for code execution profiling</li>
+                <li><a href="../interrupts.html">MCHP Interrupt Blocks</a> - Timer interrupts for periodic tasks</li>
+                <li><a href="../pwm.html">MCHP_PWM Blocks</a> - PWM blocks use timers for frequency control</li>
+            </ul>
+        </section>
+
+        <section id="see-also">
+            <h2>See Also</h2>
+            <ul>
+                <li><a href="../../getting_started/timer_configuration.html">Getting Started: Timer Configuration</a></li>
+                <li><a href="../../user_guide/resource_management.html">User Guide: Resource Management</a></li>
+                <li><a href="../../examples/timer_examples.html">Timer Configuration Examples</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Microchip Technology Inc. All rights reserved.</p>
+        <p>MPLAB Blockset for Simulink</p>
+    </div>
+    </div>
+</body>
+</html>

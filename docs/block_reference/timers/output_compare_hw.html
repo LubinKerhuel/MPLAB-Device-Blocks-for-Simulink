@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_OC_HW - Output Compare (Hardware) - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./timers.html">Timer Blocks</a> &gt;
+        MCHP_OC_HW
+    </div>
+
+    <h1>MCHP_OC_HW - Output Compare (Hardware)</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/timers/OutputCompare_HW.svg"
+             alt="OutputCompare_HW Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/timers/OutputCompare_HW.png';">
+        <div class="block-image-caption">
+            OutputCompare_HW Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>
+        The <strong>MCHP_OC_HW</strong> block provides hardware-based output generation using the Output Compare (OC)
+        peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons
+        with <strong>no CPU overhead</strong> during normal operation.
+    </p>
+
+    <div class="note">
+        <strong>Key Advantage:</strong> Hardware OC operates completely independently after configuration, allowing the
+        CPU to focus on control algorithms while precise waveforms are generated automatically.
+    </div>
+
+    <h3>Key Features</h3>
+    <ul>
+        <li><strong>Hardware PWM generation</strong> - Automatic waveform generation without CPU intervention</li>
+        <li><strong>Multiple OC modes</strong> - Toggle, set high, set low, dual compare PWM</li>
+        <li><strong>Timer-based control</strong> - Rising/falling edges at specific timer counts</li>
+        <li><strong>Remappable pins</strong> - PPS support for flexible pin assignment (device dependent)</li>
+        <li><strong>Low latency</strong> - Direct hardware comparison, no interrupt overhead</li>
+        <li><strong>Multiple channels</strong> - Up to 9 OC channels (device dependent)</li>
+    </ul>
+
+    <h2>Device Support</h2>
+    <table>
+        <tr>
+            <th>Device Family</th>
+            <th>OC Channels</th>
+            <th>PPS Support</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>dsPIC30F</td>
+            <td>1-2</td>
+            <td>Fixed pins</td>
+            <td>Basic OC functionality</td>
+        </tr>
+        <tr>
+            <td>dsPIC33F, PIC24H</td>
+            <td>1-8</td>
+            <td>Fixed pins</td>
+            <td>Standard OC peripheral</td>
+        </tr>
+        <tr>
+            <td>dsPIC33E, PIC24E</td>
+            <td>1-9</td>
+            <td>PPS remappable</td>
+            <td>Enhanced features, flexible routing</td>
+        </tr>
+        <tr>
+            <td>dsPIC33C/CH/CK</td>
+            <td>1-9</td>
+            <td>PPS remappable</td>
+            <td>High-speed timers available</td>
+        </tr>
+        <tr>
+            <td>dsPIC33A</td>
+            <td>1-9</td>
+            <td>PPS remappable</td>
+            <td>Use PWM_HS_FEP for advanced PWM</td>
+        </tr>
+        <tr>
+            <td>PIC32MX/MZ/MK</td>
+            <td>1-9</td>
+            <td>PPS (32MK/MZ)</td>
+            <td>32-bit timer support</td>
+        </tr>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Channel Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Values</th>
+        </tr>
+        <tr>
+            <td><strong>Channel</strong></td>
+            <td>OC channel numbers to use</td>
+            <td>1-9 (device dependent)<br>Vector for multiple channels</td>
+        </tr>
+        <tr>
+            <td><strong>Mode</strong></td>
+            <td>Operating mode per channel</td>
+            <td>See OC Modes table below</td>
+        </tr>
+        <tr>
+            <td><strong>Timer Assignment</strong></td>
+            <td>Which timer drives each OC channel</td>
+            <td>Timer 2, 3, 4, 5 (device dependent)</td>
+        </tr>
+        <tr>
+            <td><strong>PIN_OCx</strong></td>
+            <td>Output pin mapping (PPS devices)</td>
+            <td>Remappable pin selection</td>
+        </tr>
+    </table>
+
+    <h3>OC Operating Modes</h3>
+    <table>
+        <tr>
+            <th>Mode</th>
+            <th>OCM Bits</th>
+            <th>Description</th>
+            <th>Compare Registers Used</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>000</td>
+            <td>OC disabled</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>011</td>
+            <td>Toggle output on compare match</td>
+            <td>OCxR</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>101</td>
+            <td>Set output high on compare, PR clears</td>
+            <td>OCxR</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>110</td>
+            <td>Set output low on compare, PR clears</td>
+            <td>OCxR</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>111</td>
+            <td>Dual compare (PWM mode)</td>
+            <td>OCxR (rising), OCxRS (falling)</td>
+        </tr>
+    </table>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Register Configuration (dsPIC)</h3>
+    <pre><code>// OCxCON1 register - Control register 1
+OCxCON1bits.OCM = mode;        // 0-7 (operating mode)
+OCxCON1bits.OCTSEL = timer_sel; // Timer source selection (0-3)
+OCxCON1bits.OCSIDL = 0;        // Continue in idle mode
+
+// Compare registers
+OCxR  = rising_edge_count;     // Primary compare (rising edge in PWM)
+OCxRS = falling_edge_count;    // Secondary compare (duty cycle in PWM)
+
+// Timer selection encoding
+// 0: Timer2, 1: Timer3, 2: Timer4, 3: Timer5
+</code></pre>
+
+    <h3>PWM Generation (Mode 7)</h3>
+    <p>In PWM mode (Mode 7), the OC peripheral operates as follows:</p>
+    <ul>
+        <li><strong>OCxR</strong> sets the <em>rising edge</em> of the PWM pulse</li>
+        <li><strong>OCxRS</strong> sets the <em>falling edge</em> (determines duty cycle)</li>
+        <li>Timer PR register sets the PWM period</li>
+        <li>Resolution depends on timer prescaler and frequency</li>
+    </ul>
+
+    <pre><code>// PWM Mode 7 timing diagram
+Timer Count:  0 -----> OCxR -----> OCxRS -----> PR -----> 0
+Output:       |        ↑            ↓            |
+              LOW      HIGH         LOW          LOW
+
+Duty Cycle = (OCxRS - OCxR) / PR
+Frequency = FCY / (Prescaler × PR)
+</code></pre>
+
+    <h3>Pin Mapping</h3>
+    <p><strong>For remappable (PPS) devices:</strong></p>
+    <pre><code>// Example PPS configuration for OC1 on RP6 (dsPIC33E)
+_RP6R = 0b010010;  // Route OC1 to RP6
+// Block handles PPS automatically based on PIN_OCx parameter
+</code></pre>
+
+    <p><strong>For fixed-pin devices:</strong></p>
+    <ul>
+        <li>OC1 → Fixed pin (e.g., RC2 on dsPIC33F)</li>
+        <li>OC2 → Fixed pin (e.g., RC1 on dsPIC33F)</li>
+        <li>Refer to device datasheet for pin assignments</li>
+    </ul>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: Simple PWM Generation</h3>
+    <p><strong>Application:</strong> Generate 20 kHz PWM with 50% duty cycle</p>
+    <pre><code>% Block parameters
+Channel: 1
+Mode: 7              % PWM mode
+Timer: Timer2 configured for 20 kHz period
+
+% Timer configuration (assuming 60 MHz FCY)
+% PR2 = 60,000,000 / (1 × 20,000) - 1 = 2999
+% OCxR = 0 (PWM starts at timer reset)
+% OCxRS = 1500 (50% duty cycle)
+
+% Simulink model
+[20kHz Clock] → [MCHP_TIMER_Config: Timer2, PR=2999]
+[Duty Cycle Input: 1500] → [MCHP_OC_HW: Channel 1, Mode 7]
+</code></pre>
+
+    <h3>Example 2: Synchronized Multi-Phase Outputs</h3>
+    <p><strong>Application:</strong> Three-phase inverter control with 120° phase shifts</p>
+    <pre><code>% Block parameters
+Channel: [1 2 3]
+Mode: [3 3 3]        % Toggle mode for all channels
+Timer: [2 2 2]       % All use Timer2 for synchronization
+
+% Timer configuration for 60 Hz output
+% PR2 configured for 60 Hz base frequency
+% OCxR values set for 120° phase offsets:
+OC1R = 0             % Phase A at 0°
+OC2R = PR2/3         % Phase B at 120°
+OC3R = 2*PR2/3       % Phase C at 240°
+
+% This creates 3 square waves with 120° spacing
+</code></pre>
+
+    <h3>Example 3: Precise One-Shot Pulse</h3>
+    <p><strong>Application:</strong> Generate a 10 µs pulse for trigger signal</p>
+    <pre><code>% Block parameters
+Channel: 1
+Mode: 5              % Set high on compare, PR clears
+Timer: Timer3 with 1:1 prescaler (16.67 ns resolution @ 60 MHz)
+
+% For 10 µs pulse:
+% OCxR = 600 (10 µs / 16.67 ns)
+% PR3 = 1200 (20 µs period, allowing for 10 µs high + 10 µs low)
+
+% Connect enable signal to start/stop pulse generation
+</code></pre>
+
+    <h3>Example 4: Variable Duty Cycle PWM</h3>
+    <p><strong>Application:</strong> Motor speed control with duty cycle input</p>
+    <pre><code>% Block setup
+Channel: 1
+Mode: 7              % Dual compare PWM
+Timer: Timer2 @ 20 kHz
+
+% Simulink model structure
+[Speed Command 0-100%] → [Gain: PR2/100] → [Data Type: uint16]
+                       → [MCHP_OC_HW Channel 1 RS input]
+
+% OCxR = 0 (fixed rising edge)
+% OCxRS = dynamic (0 to PR2 based on speed command)
+% This creates 0-100% duty cycle PWM
+</code></pre>
+
+    <h2>Timing and Synchronization</h2>
+
+    <h3>Resolution and Frequency Limits</h3>
+    <table>
+        <tr>
+            <th>Timer Prescaler</th>
+            <th>Resolution @ 60 MHz</th>
+            <th>Max Frequency</th>
+            <th>Typical Use Case</th>
+        </tr>
+        <tr>
+            <td>1:1</td>
+            <td>16.67 ns</td>
+            <td>30 MHz</td>
+            <td>High-speed PWM, precise timing</td>
+        </tr>
+        <tr>
+            <td>1:8</td>
+            <td>133.3 ns</td>
+            <td>3.75 MHz</td>
+            <td>Standard PWM (10-100 kHz)</td>
+        </tr>
+        <tr>
+            <td>1:64</td>
+            <td>1.067 µs</td>
+            <td>468 kHz</td>
+            <td>Low-frequency PWM, servo control</td>
+        </tr>
+        <tr>
+            <td>1:256</td>
+            <td>4.267 µs</td>
+            <td>117 kHz</td>
+            <td>Very low frequency applications</td>
+        </tr>
+    </table>
+
+    <h3>Synchronization with Other Peripherals</h3>
+    <div class="note">
+        <strong>Timer Sharing:</strong> Multiple OC channels can share the same timer for synchronization:
+        <ul>
+            <li>Phase-shifted waveforms use same timer with different OCxR values</li>
+            <li>Complementary outputs for bridge drivers</li>
+            <li>Coordinated multi-axis motion control</li>
+        </ul>
+    </div>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues</h3>
+
+    <h4>No Output Signal</h4>
+    <ul>
+        <li><strong>Check pin configuration:</strong> Verify PPS routing or fixed pin assignment</li>
+        <li><strong>Verify timer operation:</strong> Ensure timer is running and not held in reset</li>
+        <li><strong>Check OCM bits:</strong> Mode must be non-zero</li>
+        <li><strong>TRIS register:</strong> Pin must be configured as output (block handles this)</li>
+    </ul>
+
+    <h4>Incorrect Frequency/Duty Cycle</h4>
+    <ul>
+        <li><strong>Timer PR value:</strong> Verify timer period register calculation</li>
+        <li><strong>OCxR/OCxRS values:</strong> Check compare register values are within 0 to PR</li>
+        <li><strong>Timer prescaler:</strong> Confirm prescaler setting matches calculations</li>
+        <li><strong>Clock source:</strong> Verify FCY (instruction cycle frequency)</li>
+    </ul>
+
+    <h4>Glitches or Irregular Output</h4>
+    <ul>
+        <li><strong>Register update timing:</strong> In PWM mode, update OCxRS (not OCxR) for glitch-free changes</li>
+        <li><strong>Shadow register:</strong> OCxRS is double-buffered, updates occur at period boundary</li>
+        <li><strong>Simultaneous changes:</strong> Disable interrupts if updating multiple registers</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Important:</strong> When changing duty cycle in PWM mode (Mode 7), always write to <code>OCxRS</code>,
+        not <code>OCxR</code>. The RS register is double-buffered and updates at the period boundary, preventing glitches.
+    </div>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="timer_config.html"><strong>MCHP_TIMER_Config</strong></a> - Configure timers used by OC modules</li>
+        <li><a href="output_compare_sw.html"><strong>MCHP_OC_SW</strong></a> - Software-based output compare with more flexibility</li>
+        <li><a href="input_capture.html"><strong>MCHP_IC</strong></a> - Input Capture for measuring pulse widths</li>
+        <li><a href="../pwm/pwm_standard.html"><strong>MCHP_PWM</strong></a> - Dedicated PWM peripheral (higher performance)</li>
+        <li><a href="../pwm/pwm_hs_fep.html"><strong>MCHP_PWM_HS_FEP</strong></a> - Advanced PWM with fine edge positioning (dsPIC33A)</li>
+        <li><a href="../digital_io/digital_output.html"><strong>MCHP_Digital_Output</strong></a> - General-purpose digital output control</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><strong>Device Datasheet:</strong> Output Compare (OC) module chapter</li>
+        <li><strong>Timer Block Documentation:</strong> Timer configuration and operation</li>
+        <li><strong>PPS Configuration:</strong> Peripheral Pin Select (for remappable devices)</li>
+        <li><strong>Application Notes:</strong>
+            <ul>
+                <li><a href="https://www.microchip.com/AN1137">AN1137</a> - "dsPIC30F/33F PWM Implementation"</li>
+                <li><a href="https://www.microchip.com/AN857">AN857</a> - "Brushless DC Motor Control Using dsPIC30F"</li>
+            </ul>
+        </li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p><a href="../index.html">Block Reference Home</a> | <a href="../../getting_started/overview.html">Getting Started</a></p>
+    </footer>
+    </div>
+</body>
+</html>

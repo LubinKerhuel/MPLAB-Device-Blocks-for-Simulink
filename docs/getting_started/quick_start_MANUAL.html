@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Start Guide</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="doc-content-wrapper">
+    <h1>Quick Start Guide</h1>
+
+    <p>This guide will walk you through creating your first MCHP Blockset project in 10 minutes.</p>
+
+    <h2>Step 1: Open Simulink Library Browser</h2>
+    <div class="step">
+        <ol>
+            <li>Launch MATLAB</li>
+            <li>Type <code>simulink</code> in the command window and press Enter</li>
+            <li>In the Library Browser, find <strong>MCHP Blockset</strong></li>
+        </ol>
+    </div>
+
+    <h2>Step 2: Create a New Model</h2>
+    <div class="step">
+        <ol>
+            <li>Click <strong>File → New → Model</strong> (or Ctrl+N)</li>
+            <li>Save the model as <code>my_first_mchp_project.slx</code></li>
+        </ol>
+    </div>
+
+    <h2>Step 3: Configure Target Hardware</h2>
+    <div class="step">
+        <ol>
+            <li>Open <strong>Model Configuration Parameters</strong> (Ctrl+E)</li>
+            <li>Navigate to <strong>Code Generation → System target file</strong></li>
+            <li>Select one of the MCHP target files:
+                <ul>
+                    <li><code>MCHP_dsPIC_PIC24.tlc</code> - For dsPIC/PIC24 devices</li>
+                    <li><code>MCHP_PIC32.tlc</code> - For PIC32 devices</li>
+                    <li><code>MCHP_SAM.tlc</code> - For SAM devices</li>
+                </ul>
+            </li>
+            <li>Click <strong>Apply</strong></li>
+        </ol>
+    </div>
+
+    <h2>Step 4: Select Device and Compiler</h2>
+    <div class="step">
+        <ol>
+            <li>In Configuration Parameters, go to <strong>Code Generation → MCHP Target</strong></li>
+            <li>Select your target device (e.g., dsPIC33AK128MC106)</li>
+            <li>Select compiler version (auto-detected if installed correctly)</li>
+            <li>Click <strong>OK</strong></li>
+        </ol>
+        <div class="note">
+            <strong>Tip:</strong> Use the search box to quickly find your device in the list.
+        </div>
+    </div>
+
+    <h2>Step 5: Add Master Block</h2>
+    <div class="step">
+        <ol>
+            <li>From MCHP Blockset library, drag <strong>Master</strong> block to your model</li>
+            <li>Double-click to configure:
+                <ul>
+                    <li>Set system clock frequency</li>
+                    <li>Configure oscillator settings</li>
+                    <li>Set sample time (e.g., 0.0001 for 100μs)</li>
+                </ul>
+            </li>
+        </ol>
+        <div class="note">
+            <strong>Important:</strong> The Master block is required in every MCHP Blockset model. It initializes the device and configures the system clock.
+        </div>
+    </div>
+
+    <h2>Step 6: Add Peripheral Blocks</h2>
+    <div class="step">
+        <p><strong>Example: Toggle a Digital Output</strong></p>
+        <ol>
+            <li>Add <strong>Digital Output</strong> block from MCHP Blockset → GPIO</li>
+            <li>Double-click the block:
+                <ul>
+                    <li>Select output pin (e.g., RB0)</li>
+                    <li>Set initial value (0 or 1)</li>
+                </ul>
+            </li>
+            <li>Add a <strong>Pulse Generator</strong> from Simulink → Sources</li>
+            <li>Connect Pulse Generator output to Digital Output input</li>
+            <li>Configure Pulse Generator:
+                <ul>
+                    <li>Period: 2 (toggle every second)</li>
+                    <li>Sample time: Inherited (-1)</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h2>Step 7: Build the Model</h2>
+    <div class="step">
+        <ol>
+            <li>Click the <strong>Build</strong> button (or press Ctrl+B)</li>
+            <li>Wait for code generation and compilation</li>
+            <li>Check for successful build in the Diagnostic Viewer</li>
+            <li>Verify output files are created:
+                <ul>
+                    <li><code>*.hex</code> - Programming file</li>
+                    <li><code>*.elf</code> - Executable with debug symbols</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h2>Step 8: Program the Device</h2>
+    <div class="step">
+        <ol>
+            <li><strong>Option A: Using MPLAB X IPE</strong>
+                <ul>
+                    <li>Open MPLAB X IPE</li>
+                    <li>Select device and programmer</li>
+                    <li>Browse to .hex file in model folder</li>
+                    <li>Click "Program"</li>
+                </ul>
+            </li>
+            <li><strong>Option B: From Simulink (if configured)</strong>
+                <ul>
+                    <li>In model configuration, enable auto-programming</li>
+                    <li>Click "Build Model" - device will be programmed automatically</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h2>Example Models</h2>
+    <p>The blockset includes example models to help you get started:</p>
+    <ul>
+        <li><strong>Basic Examples</strong> - GPIO, timers, interrupts</li>
+        <li><strong>Motor Control</strong> - FOC, BLDC, sensor interfaces</li>
+        <li><strong>Communication</strong> - UART, SPI, I2C, CAN</li>
+        <li><strong>Power Conversion</strong> - SMPS, inverters, PFC</li>
+    </ul>
+
+    <div class="note">
+        <strong>How to Access Examples:</strong>
+        <ol>
+            <li>In MATLAB, click <strong>Home → Open</strong></li>
+            <li>Navigate to blockset installation folder → <code>examples</code></li>
+            <li>Copy example to your working directory before modifying</li>
+        </ol>
+    </div>
+
+    <h2>Common First Projects</h2>
+
+    <h3>1. LED Blink</h3>
+    <p>Digital output + pulse generator (as shown in Step 6)</p>
+
+    <h3>2. PWM Output</h3>
+    <ol>
+        <li>Add <strong>PWM</strong> block from MCHP Blockset</li>
+        <li>Configure frequency and duty cycle</li>
+        <li>Add <strong>Constant</strong> block for duty cycle input</li>
+        <li>Build and test on hardware</li>
+    </ol>
+
+    <h3>3. ADC Read and Serial Output</h3>
+    <ol>
+        <li>Add <strong>ADC</strong> block to read analog input</li>
+        <li>Add <strong>UART Tx</strong> block for serial output</li>
+        <li>Add <strong>Display</strong> block for simulation</li>
+        <li>Monitor ADC values via serial terminal</li>
+    </ol>
+
+    <h2>Next Steps</h2>
+    <ul>
+        <li><a href="../user_guide/external_mode.html">Learn External Mode</a> - Real-time parameter tuning</li>
+        <li><a href="../user_guide/pil_testing.html">Learn PIL Testing</a> - Code verification on hardware</li>
+        <li><a href="../block_reference/index.html">Explore Block Reference</a> - Detailed block documentation</li>
+        <li><a href="../examples/field_weakening.html">Advanced Examples</a> - Complex motor control applications</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+        <li><strong>Build fails</strong> - Check compiler installation and paths</li>
+        <li><strong>Device not found</strong> - Verify Device Family Pack (DFP) is installed</li>
+        <li><strong>Code doesn't run</strong> - Check oscillator configuration matches hardware</li>
+        <li><strong>Simulation error</strong> - Set proper sample times for all blocks</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="overview.html">Overview</a> |
+        <a href="supported_devices.html">Supported Devices</a> |
+        <a href="../user_guide/index.html">User Guide</a>
+    </p>
+    </div>
+</body>
+</html>

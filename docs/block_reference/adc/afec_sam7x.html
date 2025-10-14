@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_AFEC_SAM7x - Analog Front-End Controller for SAM 7x</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>MCHP_AFEC_SAM7x - Analog Front-End Controller</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/ADC_SAMx7.svg"
+             alt="ADC_SAMx7 Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/ADC_SAMx7.png';">
+        <div class="block-image-caption">
+            ADC_SAMx7 Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+        <p>The <strong>MCHP_AFEC_SAM7x</strong> block implements the Analog Front-End Controller (AFEC) peripheral for SAM E7x, SAM S7x, and SAM V7x Arm Cortex-M7 microcontrollers. The AFEC is an advanced 12-bit ADC with integrated signal conditioning, programmable gain, and offset compensation.</p>
+
+        <div class="highlight">
+            <strong>AFEC Advantage:</strong> Unlike standard ADCs, the AFEC includes built-in analog front-end features like programmable gain amplifiers (PGA), offset correction, and enhanced noise filtering for precision measurements without external conditioning circuits.
+        </div>
+
+        <h2>Supported Devices</h2>
+        <ul>
+            <li><strong>SAM E70</strong> - High-performance Cortex-M7 (up to 300 MHz)</li>
+            <li><strong>SAM S70</strong> - Secure Cortex-M7 with TrustZone</li>
+            <li><strong>SAM V70/V71</strong> - Automotive-qualified Cortex-M7</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Dual AFEC</td>
+                <td>AFEC0 and AFEC1 (12 channels each)</td>
+            </tr>
+            <tr>
+                <td>Resolution</td>
+                <td>12-bit with up to 16-bit oversampling</td>
+            </tr>
+            <tr>
+                <td>Programmable Gain</td>
+                <td>1x, 2x, 4x amplification per channel</td>
+            </tr>
+            <tr>
+                <td>Offset Compensation</td>
+                <td>Automatic offset cancellation</td>
+            </tr>
+            <tr>
+                <td>Temperature Sensor</td>
+                <td>Integrated temperature measurement (AD11)</td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td>Up to 1 Msps per AFEC</td>
+            </tr>
+        </table>
+
+        <h2>AFEC Architecture</h2>
+
+        <h3>Dual AFEC Configuration</h3>
+        <ul>
+            <li><strong>AFEC0:</strong> Channels AD0-AD11 (AD11 = Temperature sensor)</li>
+            <li><strong>AFEC1:</strong> Channels AD0-AD11</li>
+            <li><strong>Independent operation:</strong> Each AFEC can sample simultaneously</li>
+            <li><strong>Pin mapping:</strong> ADx channels map to specific port pins (e.g., AD0 → PE5)</li>
+        </ul>
+
+        <h3>Analog Front-End Features</h3>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Configuration</th>
+            </tr>
+            <tr>
+                <td>Single-ended/Differential</td>
+                <td>Configurable per channel</td>
+            </tr>
+            <tr>
+                <td>Gain</td>
+                <td>1x, 2x, 4x (programmable per channel)</td>
+            </tr>
+            <tr>
+                <td>Offset</td>
+                <td>Automatic offset correction</td>
+            </tr>
+            <tr>
+                <td>Averaging</td>
+                <td>Hardware averaging for noise reduction</td>
+            </tr>
+        </table>
+
+        <h2>Configuration Parameters</h2>
+
+        <h3>Channel Selection</h3>
+        <ul>
+            <li><strong>AFEC0_ADx checkboxes:</strong> Enable individual channels on AFEC0</li>
+            <li><strong>AFEC1_ADx checkboxes:</strong> Enable individual channels on AFEC1</li>
+            <li><strong>Temperature sensor:</strong> AD11 on AFEC0 (special handling)</li>
+        </ul>
+
+        <h3>Per-Channel Settings</h3>
+        <ul>
+            <li><strong>Gain:</strong> Select 1x, 2x, or 4x amplification</li>
+            <li><strong>Differential mode:</strong> Enable differential measurement</li>
+            <li><strong>Offset compensation:</strong> Enable automatic offset correction</li>
+        </ul>
+
+        <h3>Trigger Sources</h3>
+        <ul>
+            <li>Software trigger (manual conversion)</li>
+            <li>TC (Timer Counter) output</li>
+            <li>PWM events</li>
+            <li>External trigger pins</li>
+        </ul>
+
+        <h2>Pin Mapping</h2>
+        <p>The block automatically displays pin assignments for enabled channels (e.g., "AD0 / PE5 / Pin[X]").</p>
+
+        <div class="note">
+            <strong>Temperature Sensor:</strong> AD11 on AFEC0 is internally connected to the junction temperature sensor. Enable this channel to monitor chip temperature for thermal management.
+        </div>
+
+        <h2>Applications</h2>
+        <ul>
+            <li><strong>Industrial automation:</strong> High-precision sensor measurements with programmable gain</li>
+            <li><strong>Motor control:</strong> Current and voltage feedback with offset compensation</li>
+            <li><strong>Power management:</strong> Multi-channel voltage/current monitoring</li>
+            <li><strong>Automotive:</strong> Temperature-compensated analog measurements</li>
+            <li><strong>Medical devices:</strong> Low-noise signal acquisition with averaging</li>
+        </ul>
+
+        <h2>Usage Example</h2>
+
+        <div class="note">
+            <strong>Multi-Channel Precision Measurement:</strong>
+            <ul>
+                <li><strong>AFEC0:</strong> Enable AD0-AD5 (6 sensor channels), Gain=2x, Offset compensation ON</li>
+                <li><strong>AFEC0 AD11:</strong> Enable temperature sensor for thermal monitoring</li>
+                <li><strong>AFEC1:</strong> Enable AD0-AD3 (4 additional channels), Gain=1x</li>
+                <li><strong>Trigger:</strong> TC0 output at 10kHz</li>
+            </ul>
+            <strong>Result:</strong> 10 precision analog measurements + temperature, all synchronized with hardware averaging.
+        </div>
+
+        <h2>Performance Features</h2>
+
+        <h3>Enhanced Accuracy</h3>
+        <ul>
+            <li><strong>Programmable Gain:</strong> Amplify small signals (μV-mV range) without external op-amps</li>
+            <li><strong>Offset Compensation:</strong> Eliminate DC offset errors automatically</li>
+            <li><strong>Hardware Averaging:</strong> Reduce noise through multi-sample averaging</li>
+            <li><strong>Differential Mode:</strong> Reject common-mode noise</li>
+        </ul>
+
+        <h3>Conversion Speed</h3>
+        <ul>
+            <li>Up to 1 Msps per AFEC (2 Msps total with AFEC0+AFEC1)</li>
+            <li>Configurable conversion time vs accuracy trade-off</li>
+            <li>DMA support for high-throughput applications</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+
+        <div class="note">
+            <strong>Issue:</strong> AD11 shows as "Temperature" instead of port pin<br>
+            <strong>Solution:</strong> This is normal. AD11 on AFEC0 is the internal temperature sensor (no external pin).
+        </div>
+
+        <div class="note">
+            <strong>Issue:</strong> Gain settings not taking effect<br>
+            <strong>Solution:</strong> Ensure offset compensation is enabled when using gain >1x. Check device datasheet for gain range limitations.
+        </div>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="adc_same5x.html">MCHP_ADC_SAME5x</a> - Standard ADC for SAM E5x/D5x</li>
+            <li><a href="adc_samrh707x.html">MCHP_ADC_SAMRH707x</a> - Radiation-hardened ADC</li>
+            <li><a href="../pwm_blocks.html">MCHP_PWM</a> - PWM blocks for trigger generation</li>
+        </ul>
+
+        <h2>See Also</h2>
+        <p>
+            <a href="../adc_blocks.html">ADC Blocks Overview</a> |
+            <a href="../index.html">Block Reference</a> |
+            <a href="../../sam7x_guide.html">SAM 7x Family Guide</a>
+        </p>
+
+        <hr>
+        <p style="font-size: 0.9em; color: #666;">
+            <strong>MCHP Blockset Documentation</strong> | Last updated: 2025 | <a href="../../index.html">Documentation Home</a>
+        </p>
+    </div>
+    </div>
+</body>
+</html>

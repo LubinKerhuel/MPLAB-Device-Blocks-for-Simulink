@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_MCU_OVERLOAD - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./system.html">System Blocks</a> &gt;
+        MCHP_MCU_OVERLOAD
+    </div>
+
+    <h1>MCHP_MCU_OVERLOAD - Task Overload Detection</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/system_configuration/MCU_Overload.svg"
+             alt="MCU_Overload Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/system_configuration/MCU_Overload.png';">
+        <div class="block-image-caption">
+            MCU_Overload Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_MCU_OVERLOAD</strong> block detects when scheduled tasks miss their deadlines and provides diagnostic information for identifying the cause of overload conditions.</p>
+
+    <h2>Output Signals</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Output</th>
+                <th>Data Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Overload_Flag</strong></td>
+                <td>boolean</td>
+                <td>1 = Task missed deadline, 0 = Normal operation</td>
+            </tr>
+            <tr>
+                <td><strong>Overload_TaskID</strong></td>
+                <td>uint8</td>
+                <td>ID of task that caused overload (if known)</td>
+            </tr>
+            <tr>
+                <td><strong>Overload_Count</strong></td>
+                <td>uint32</td>
+                <td>Cumulative count of overload events</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Overload Conditions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Condition</th>
+                <th>Detection Method</th>
+                <th>Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Task execution exceeds period</td>
+                <td>Compare execution time vs sample time</td>
+                <td>Set flag, log task ID</td>
+            </tr>
+            <tr>
+                <td>Queue overflow</td>
+                <td>Task triggered while already queued</td>
+                <td>Set flag, increment counter</td>
+            </tr>
+            <tr>
+                <td>Preemption cascade</td>
+                <td>Multiple nested preemptions</td>
+                <td>Set flag, identify root task</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Example Usage</h2>
+    <pre><code>% Overload detection and safe shutdown
+
+Overload_Flag → LED (visual warning)
+Overload_Flag → Switch
+             → if (1): Enter safe mode
+                        Disable non-critical tasks
+                        Log diagnostics
+
+% Recovery strategy:
+if Overload_Count > 10
+    % Persistent overload - reduce functionality
+    Disable_MotorControl();
+    Enable_SafeShutdown();
+end
+</code></pre>
+
+    <h2>Debugging with Overload Block</h2>
+    <pre><code>% Analysis workflow:
+1. Connect outputs to scopes/displays
+2. Run model and observe overload events
+3. Identify TaskID causing overload
+4. Use MCHP_Tasks_State to see task interactions
+5. Optimize identified task or reduce sample rate
+
+% Common overload patterns:
+TaskID=1, Count growing → Base rate task too slow
+TaskID varies randomly → Interrupt storms
+TaskID=0 (idle) → Should never happen (check config)
+</code></pre>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="mcu_load.html">MCHP_MCU_LOAD</a> - CPU utilization monitoring</li>
+        <li><a href="tasks_state.html">MCHP_Tasks_State</a> - Task state visibility</li>
+        <li><a href="scheduler_options.html">MCHP_Scheduler_Options</a> - Overload behavior config</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p>
+    </footer>
+    </div>
+</body>
+</html>

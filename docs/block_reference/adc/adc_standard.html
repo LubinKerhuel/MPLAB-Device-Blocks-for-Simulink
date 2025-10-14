@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_ADC - Standard ADC Block</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>MCHP_ADC - Standard ADC Block</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/ADC.svg"
+             alt="ADC Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/ADC.png';">
+        <div class="block-image-caption">
+            ADC Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+        <p>The <strong>MCHP_ADC</strong> block implements the standard Analog-to-Digital Converter peripheral for dsPIC and PIC24 families. This versatile ADC block supports multiple sampling modes, scan mode operation, and both interrupt and DMA-based data acquisition. It is ideal for motor control applications requiring synchronized PWM triggering and multi-channel acquisition.</p>
+
+        <h2>Supported Device Families</h2>
+        <ul>
+            <li><strong>dsPIC30F</strong> - 16-bit DSCs with 10-bit ADC</li>
+            <li><strong>dsPIC33F</strong> - Digital Signal Controllers with 10-bit ADC</li>
+            <li><strong>dsPIC33E</strong> - Enhanced DSCs with 10/12-bit ADC</li>
+            <li><strong>dsPIC33C</strong> - Dual-core DSCs with 12-bit ADC</li>
+            <li><strong>PIC24F/H</strong> - 16-bit microcontrollers with 10/12-bit ADC</li>
+        </ul>
+
+        <div class="note">
+            <strong>Note:</strong> This block is <strong>NOT</strong> compatible with PIC32 MIPS devices. For PIC32, use the <a href="adc_hs_sar.html">MCHP_ADC_HighSpeed_SAR</a> block instead.
+        </div>
+
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>Resolution</strong><br>
+                10-bit or 12-bit selectable (chip dependent)
+            </div>
+            <div class="feature-item">
+                <strong>Sampling</strong><br>
+                Simultaneous or sequential sampling modes
+            </div>
+            <div class="feature-item">
+                <strong>Channels</strong><br>
+                Up to 32 analog inputs (chip dependent)
+            </div>
+            <div class="feature-item">
+                <strong>Scan Mode</strong><br>
+                Automatic multi-channel scanning
+            </div>
+            <div class="feature-item">
+                <strong>DMA Support</strong><br>
+                Optional DMA for high-speed transfers
+            </div>
+            <div class="feature-item">
+                <strong>Triggers</strong><br>
+                PWM, Timer, External, Manual triggers
+            </div>
+        </div>
+
+        <h2>Configuration Parameters</h2>
+
+        <h3>Core Settings</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Options/Range</th>
+            </tr>
+            <tr>
+                <td><strong>ADC_REF</strong></td>
+                <td>ADC module selection (if multiple ADCs available)</td>
+                <td>ADC 1 or ADC 2 (chip dependent)</td>
+            </tr>
+            <tr>
+                <td><strong>Mode</strong></td>
+                <td>ADC resolution</td>
+                <td>
+                    • 10 bits (allows exact simultaneous sampling)<br>
+                    • 12 bits
+                </td>
+            </tr>
+            <tr>
+                <td><strong>FORM</strong></td>
+                <td>Output data format</td>
+                <td>
+                    • Unsigned integer (0000 dddd dddd dddd)<br>
+                    • Signed integer (ssss sddd dddd dddd)<br>
+                    • Unsigned fractional (dddd dddd dddd 0000)<br>
+                    • Signed fractional (sddd dddd dddd 0000)
+                </td>
+            </tr>
+        </table>
+
+        <h3>Channel Configuration</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>ADxCSS</strong></td>
+                <td>Channel 0 scan list</td>
+                <td>MATLAB vector (e.g., <code>[0 1 2 5]</code>) specifying ANx channels to scan</td>
+            </tr>
+            <tr>
+                <td><strong>nSAMPLECHANNELS</strong></td>
+                <td>Number of sample & hold channels (10-bit mode)</td>
+                <td>
+                    • CH0 only<br>
+                    • CH0:CH1:CH2:CH3<br>
+                    • CH0:CH1:CH2:CH3 + Seq A<br>
+                    • CH0:CH1:CH2:CH3 + Seq A & B
+                </td>
+            </tr>
+            <tr>
+                <td><strong>nSAMPLECHANNELS_12bits</strong></td>
+                <td>Sampling configuration (12-bit mode)</td>
+                <td>
+                    • Seq A (1 channel only)<br>
+                    • Seq A & B (2 channels)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>MUXA_CH123</strong></td>
+                <td>MUX A channels 1:2:3 assignment</td>
+                <td>
+                    • AN0:AN1:AN2<br>
+                    • AN3:AN4:AN5<br>
+                    • Differential modes (AN0-AN6:AN1-AN7:AN2-AN8)<br>
+                    • OpAmp outputs if configured
+                </td>
+            </tr>
+            <tr>
+                <td><strong>MUXA_CH0N</strong></td>
+                <td>Enable CH0 negative input (differential mode)</td>
+                <td>on/off</td>
+            </tr>
+            <tr>
+                <td><strong>MUXB_CH0</strong></td>
+                <td>MUX B channel 0 (when using Seq B)</td>
+                <td>ANx selection</td>
+            </tr>
+            <tr>
+                <td><strong>MUXB_CH123</strong></td>
+                <td>MUX B channels 1:2:3 (when using Seq B)</td>
+                <td>Same options as MUXA_CH123</td>
+            </tr>
+        </table>
+
+        <h3>Timing & Triggering</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Options</th>
+            </tr>
+            <tr>
+                <td><strong>SequenceTiming</strong></td>
+                <td>When conversion sequences are triggered</td>
+                <td>
+                    • At end of previous time step (Timer sync)<br>
+                    • Triggered by user-defined source<br>
+                    • Stretched to fit time step<br>
+                    • Continuously as fast as possible
+                </td>
+            </tr>
+            <tr>
+                <td><strong>SSRC_SSRCG</strong></td>
+                <td>Conversion trigger source (when user-defined)</td>
+                <td>Dynamic list from PWM/Timer blocks in model</td>
+            </tr>
+            <tr>
+                <td><strong>SequenceRepeat</strong></td>
+                <td>Number of sequence repetitions per trigger</td>
+                <td>Integer ≥ 1</td>
+            </tr>
+            <tr>
+                <td><strong>SIMULTANEOUS</strong></td>
+                <td>Sampling mode (10-bit, multi-S&H only)</td>
+                <td>
+                    • Simultaneous sampling<br>
+                    • Sequential sampling
+                </td>
+            </tr>
+        </table>
+
+        <h3>Sampling Time Configuration</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+            </tr>
+            <tr>
+                <td><strong>ADC_R</strong></td>
+                <td>Input source impedance (determines min sample time)</td>
+                <td>
+                    &lt;100Ω, &lt;200Ω, &lt;500Ω, &lt;1kΩ, &lt;2kΩ, &lt;5kΩ,<br>
+                    &lt;10kΩ, &lt;20kΩ, &lt;50kΩ, &lt;100kΩ, &lt;200kΩ,<br>
+                    &lt;500kΩ, &lt;1MΩ, max sampling time
+                </td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Sampling Time Calculation:</strong> The block automatically calculates the minimum required sampling time based on source impedance using the formula:
+            <br><code>Tc = -Chold × (Ric + Rss + Rs) × ln(1/2^(bits+1))</code>
+            <br>where Chold=4.4pF, Ric=250Ω, Rss=3kΩ, and temperature compensation is applied.
+        </div>
+
+        <h3>DMA Configuration</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Options</th>
+            </tr>
+            <tr>
+                <td><strong>ADC_DMA_CHANNEL</strong></td>
+                <td>DMA channel assignment (if supported by chip)</td>
+                <td>
+                    • Use Interrupt instead of DMA<br>
+                    • use DMA Channel 0<br>
+                    • use DMA Channel 1<br>
+                    • ... (up to available DMA channels)
+                </td>
+            </tr>
+        </table>
+
+        <h2>Trigger Sources</h2>
+        <p>The ADC can be triggered from various sources depending on the <strong>SequenceTiming</strong> setting:</p>
+
+        <table>
+            <tr>
+                <th>Trigger Mode</th>
+                <th>Trigger Source</th>
+                <th>Use Case</th>
+            </tr>
+            <tr>
+                <td><strong>End of time step</strong></td>
+                <td>Timer 3 or Timer 5 (Master Timer)</td>
+                <td>Periodic sampling synchronized with model time step</td>
+            </tr>
+            <tr>
+                <td><strong>User-defined</strong></td>
+                <td>PWM special event, Timer compare, External pin</td>
+                <td>Motor control - sample at specific PWM phase</td>
+            </tr>
+            <tr>
+                <td><strong>Stretched to time step</strong></td>
+                <td>Auto-conversion (SSRC=7)</td>
+                <td>Maximum resolution timing synchronized to time step</td>
+            </tr>
+            <tr>
+                <td><strong>Continuous</strong></td>
+                <td>Auto-conversion (SSRC=7)</td>
+                <td>Free-running acquisition at maximum speed</td>
+            </tr>
+        </table>
+
+        <div class="example">
+            <strong>Example - PWM Synchronized Acquisition:</strong>
+            <ol>
+                <li>Add a PWM block with "ADC Trigger" enabled</li>
+                <li>Set ADC SequenceTiming to "triggered by user-defined source"</li>
+                <li>Select the PWM trigger from SSRC_SSRCG dropdown</li>
+                <li>ADC will sample at the PWM special event timing</li>
+            </ol>
+        </div>
+
+        <h2>PWM-ADC Synchronization Strategies</h2>
+
+        <p>Proper synchronization between PWM generation and ADC sampling is fundamental for motor control and power conversion applications. The standard ADC block supports multiple trigger modes through the <strong>SequenceTiming</strong> parameter, enabling flexible synchronization strategies. Understanding when and how to trigger ADC conversions directly impacts control accuracy and performance.</p>
+
+        <h3>Synchronization Strategy Overview</h3>
+
+        <p>The MCHP_ADC block supports four fundamental synchronization strategies:</p>
+
+        <h4>Strategy 1: Timer-Based Trigger (Independent Sampling)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.png"
+                     alt="Timer-Based ADC Trigger"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>ADC Configuration:</strong></p>
+        <ul>
+            <li>Set <code>SequenceTiming = 'at end of previous time step'</code></li>
+            <li>Master timer (Timer3 or Timer5) triggers ADC at fixed rate</li>
+            <li>Control task executes after ADC completion</li>
+        </ul>
+
+        <p><strong>When to Use:</strong></p>
+        <ul>
+            <li>General-purpose data acquisition</li>
+            <li>Sensor monitoring at fixed intervals</li>
+            <li>Multi-rate control (different loops at different speeds)</li>
+            <li>Applications where PWM synchronization is not critical</li>
+        </ul>
+
+        <p><strong>Limitations:</strong></p>
+        <ul>
+            <li>❌ Not synchronized with PWM switching</li>
+            <li>❌ May sample during switching transients</li>
+            <li>❌ Not suitable for phase current sensing</li>
+        </ul>
+
+        <h4>Strategy 2: Timer → ADC → Task (Synchronized Acquisition)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.png"
+                     alt="Timer-ADC-Task Synchronization"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>ADC Configuration:</strong></p>
+        <ul>
+            <li>Timer triggers ADC conversion</li>
+            <li>ADC interrupt triggers control task</li>
+            <li>Ensures fresh data before control algorithm runs</li>
+        </ul>
+
+        <p><strong>Key Benefit:</strong> Zero latency - control task always uses most recent ADC data (no stale samples).</p>
+
+        <p><strong>Configuration Example:</strong></p>
+        <div class="example">
+<pre><code>% ADC Block Configuration:
+Mode = '12 bits';
+ADxCSS = [0 1];  % AN0, AN1
+SequenceTiming = 'at end of previous time step';
+
+% Master Timer (configured in Master block):
+Timer = 'Timer3';
+Period = 1/10e3;  % 10 kHz sampling rate
+
+% Result: ADC samples at 10 kHz, control task triggered by ADC interrupt
+</code></pre>
+        </div>
+
+        <p><strong>Best For:</strong></p>
+        <ul>
+            <li>Feedback control requiring minimum latency</li>
+            <li>Data logging applications</li>
+            <li>Sensor monitoring with immediate processing</li>
+        </ul>
+
+        <h4>Strategy 3: PWM → ADC → Task (Motor Control Standard) ⭐ RECOMMENDED</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.png"
+                     alt="PWM-ADC-Task Synchronization"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>⭐ This is the STANDARD approach for motor control and power conversion applications.</strong></p>
+
+        <p><strong>Key Benefits:</strong></p>
+        <ul>
+            <li>✅ <strong>Optimal sampling timing:</strong> Sample when PWM low-side FET is ON</li>
+            <li>✅ <strong>Noise immunity:</strong> Avoid switching transients</li>
+            <li>✅ <strong>Accurate current sensing:</strong> Sample during shunt current flow</li>
+            <li>✅ <strong>Automatic synchronization:</strong> Control rate matches PWM frequency</li>
+            <li>✅ <strong>Simultaneous sampling:</strong> 10-bit mode allows true simultaneous 3-phase measurement</li>
+        </ul>
+
+        <p><strong>ADC Configuration Example (3-Phase FOC with Simultaneous Sampling):</strong></p>
+        <div class="example">
+<pre><code>% PWM Block Configuration (MCHP_PWM):
+InitialPeriod = 1/20e3;  % 20 kHz
+CAM = 'on';  % Center-aligned mode
+PxSECMP = InitialPeriod / 2;  % Trigger at PWM valley
+
+% ADC Block Configuration:
+Mode = '10 bits';  % Required for simultaneous sampling
+ADxCSS = [0];  % CH0 not used (currents on CH1:CH2:CH3)
+nSAMPLECHANNELS = 'CH0:CH1:CH2:CH3';
+MUXA_CH123 = 'AN0:AN1:AN2';  % 3 phase currents
+SIMULTANEOUS = 'Simultaneous sampling';  % Critical for FOC
+SequenceTiming = 'triggered by user-defined source';
+SSRC_SSRCG = 'PWM Special Event Trigger';  % PWM valley
+FORM = 'Signed integer';
+
+% Result: All 3 phase currents sampled simultaneously at PWM valley (20 kHz)
+% Control task triggered by ADC interrupt
+</code></pre>
+        </div>
+
+        <div class="note">
+            <strong>💡 Why Simultaneous Sampling?</strong><br>
+            In center-aligned PWM for 3-phase motor control, the valley (center) is when <strong>all three low-side FETs are simultaneously ON</strong>. This is the <strong>only time</strong> when phase currents flow through shunt resistors. The standard ADC's simultaneous sampling mode (10-bit, 4 S&H capacitors) captures all three phase currents at the exact same instant, which is critical for accurate Field-Oriented Control.
+        </div>
+
+        <p><strong>Configuration Example (12-bit Sequential Sampling):</strong></p>
+        <div class="example">
+<pre><code>% When 12-bit resolution required (no simultaneous mode):
+Mode = '12 bits';
+ADxCSS = [0 1 2];  % Scan AN0, AN1, AN2 sequentially
+nSAMPLECHANNELS_12bits = 'Seq A';
+SequenceTiming = 'triggered by user-defined source';
+SSRC_SSRCG = 'PWM Special Event Trigger';
+
+% Note: Sequential sampling (small delay between channels)
+% Suitable for slower control loops or when exact simultaneity not critical
+</code></pre>
+        </div>
+
+        <p><strong>Trigger Source Mapping (Device-Specific):</strong></p>
+        <table>
+            <tr>
+                <th>PWM Block</th>
+                <th>PWM Configuration</th>
+                <th>ADC Trigger Selection</th>
+            </tr>
+            <tr>
+                <td><strong>MCHP_PWM</strong></td>
+                <td>Set <code>PxSECMP</code> (time in seconds)</td>
+                <td><code>'PWM Special Event Trigger'</code></td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_PWM_HighSpeed</strong></td>
+                <td>Set <code>TrigOut</code> array</td>
+                <td><code>'PWM1 Trigger 1'</code></td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_MCPWM</strong></td>
+                <td>Set <code>SEVTCMP</code> or <code>TRIG1/2/3</code></td>
+                <td><code>'PWM1 Special Event'</code></td>
+            </tr>
+        </table>
+
+        <h4>Strategy 4: Multiple Triggers per PWM Period (Limited Support)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.png"
+                     alt="Multiple ADC Triggers per PWM Period"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Limited Support in Standard ADC:</strong><br>
+            The standard ADC block provides <strong>one trigger source per ADC module</strong>. For applications requiring multiple ADC samples per PWM period (e.g., single-shunt FOC), consider upgrading to:
+            <ul>
+                <li><a href="adc_hs_sar.html"><strong>MCHP_ADC_HighSpeed_SAR</strong></a> (dsPIC33C, PIC32MK) - Dedicated cores with independent triggers</li>
+                <li><a href="adc_hs_12b.html"><strong>MCHP_ADC_HS_12b</strong></a> (dsPIC33A) - Software sequencing with 6 sequences × multiple triggers</li>
+            </ul>
+        </div>
+
+        <p><strong>Workaround Using Scan Mode + SequenceRepeat:</strong></p>
+        <div class="example">
+<pre><code>% Limited multiple sampling with single trigger:
+SequenceTiming = 'triggered by user-defined source';
+SSRC_SSRCG = 'PWM Special Event Trigger';
+SequenceRepeat = 3;  % Repeat sequence 3 times per trigger
+
+% Result: 3 samples per PWM period, but NOT at different PWM phases
+% All samples occur sequentially after single trigger event
+% Not suitable for single-shunt FOC (needs samples at different sectors)
+</code></pre>
+        </div>
+
+        <h3>Application-Specific Recommendations</h3>
+
+        <table>
+            <tr>
+                <th>Application</th>
+                <th>Recommended Strategy</th>
+                <th>ADC Configuration</th>
+            </tr>
+            <tr>
+                <td><strong>3-Phase FOC Motor Control</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • 10-bit mode with simultaneous sampling<br>
+                    • MUXA_CH123 = AN0:AN1:AN2 (3 phase currents)<br>
+                    • Trigger: PWM Special Event at valley
+                </td>
+            </tr>
+            <tr>
+                <td><strong>BLDC Motor Control</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • 12-bit mode, single channel<br>
+                    • ADxCSS = [0] (DC bus current)<br>
+                    • Trigger: PWM Special Event
+                </td>
+            </tr>
+            <tr>
+                <td><strong>DC-DC Buck/Boost Converter</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • 12-bit mode, scan 2-3 channels<br>
+                    • Output voltage, inductor current<br>
+                    • Trigger: PWM Special Event (sample during FET ON)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>PFC Boost Converter</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • 12-bit mode<br>
+                    • Input current, output voltage<br>
+                    • Trigger: PWM at 85-90% of period
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Multi-Channel Data Acquisition</strong></td>
+                <td>Timer → ADC → Task (Strategy 2)</td>
+                <td>
+                    • 12-bit mode, scan mode<br>
+                    • ADxCSS = [0 1 2 3 ...] (multiple channels)<br>
+                    • Trigger: Timer at fixed rate
+                </td>
+            </tr>
+            <tr>
+                <td><strong>General Sensor Monitoring</strong></td>
+                <td>Timer-Based (Strategy 1)</td>
+                <td>
+                    • SequenceTiming = 'at end of previous time step'<br>
+                    • Flexible channel configuration<br>
+                    • Simple periodic sampling
+                </td>
+            </tr>
+        </table>
+
+        <h3>Troubleshooting Synchronization Issues</h3>
+
+        <table>
+            <tr>
+                <th>Problem</th>
+                <th>Likely Cause</th>
+                <th>ADC Configuration Fix</th>
+            </tr>
+            <tr>
+                <td>Phase currents read as zero or incorrect</td>
+                <td>ADC not triggered at PWM valley</td>
+                <td>
+                    • Verify: <code>SequenceTiming = 'triggered by user-defined source'</code><br>
+                    • Check: <code>SSRC_SSRCG = 'PWM Special Event Trigger'</code><br>
+                    • In PWM: <code>PxSECMP = InitialPeriod / 2</code> (valley)<br>
+                    • PWM mode must be center-aligned
+                </td>
+            </tr>
+            <tr>
+                <td>Noisy or erratic ADC readings</td>
+                <td>Sampling during switching transients</td>
+                <td>
+                    • Change PWM trigger to valley position<br>
+                    • Increase sampling time (ADC_R setting)<br>
+                    • Use 'stretched to time step' mode for automatic optimization<br>
+                    • Add hardware RC filter on ADC inputs
+                </td>
+            </tr>
+            <tr>
+                <td>No PWM triggers in SSRC_SSRCG dropdown</td>
+                <td>PWM block not configured with trigger</td>
+                <td>
+                    • In PWM block: Set <code>PxSECMP</code> to valid time value (not -1)<br>
+                    • Add PWM block to model before ADC block<br>
+                    • Re-open ADC block mask to refresh trigger list
+                </td>
+            </tr>
+            <tr>
+                <td>Control task timing inconsistent</td>
+                <td>Task not synchronized with ADC interrupt</td>
+                <td>
+                    • Set control task sample time = 'Inherited'<br>
+                    • Verify task triggered by ADC interrupt (not separate timer)<br>
+                    • Check interrupt priorities in Master block
+                </td>
+            </tr>
+            <tr>
+                <td>Phase currents not simultaneous</td>
+                <td>Wrong ADC mode or sampling setting</td>
+                <td>
+                    • Must use: <code>Mode = '10 bits'</code><br>
+                    • Must use: <code>SIMULTANEOUS = 'Simultaneous sampling'</code><br>
+                    • 12-bit mode does NOT support simultaneous sampling<br>
+                    • Verify: <code>nSAMPLECHANNELS = 'CH0:CH1:CH2:CH3'</code>
+                </td>
+            </tr>
+            <tr>
+                <td>ADC timing stretched incorrectly</td>
+                <td>'Stretched to time step' misconfigured</td>
+                <td>
+                    • Verify model has fixed time step (not variable)<br>
+                    • Check ADC_R impedance setting is appropriate<br>
+                    • Review calculated ADCS and SAMC values in mask<br>
+                    • Total ADC time must fit within time step
+                </td>
+            </tr>
+        </table>
+
+        <h3>Simultaneous Sampling Requirements</h3>
+
+        <div class="note">
+            <strong>Critical for 3-Phase Motor Control:</strong><br>
+            True simultaneous sampling (all channels at exact same instant) requires:
+            <ol>
+                <li><code>Mode = '10 bits'</code> (12-bit does NOT support simultaneous)</li>
+                <li><code>nSAMPLECHANNELS = 'CH0:CH1:CH2:CH3'</code> (4 S&H capacitors)</li>
+                <li><code>SIMULTANEOUS = 'Simultaneous sampling'</code></li>
+                <li>Assign 3 phase currents to <code>MUXA_CH123</code></li>
+                <li>Trigger from PWM valley: <code>SSRC_SSRCG = 'PWM Special Event'</code></li>
+            </ol>
+            If any of these conditions are not met, channels will be sampled sequentially (small delay between them).
+        </div>
+
+        <h3>Performance Optimization Tips</h3>
+
+        <ul>
+            <li><strong>Use Simultaneous Mode:</strong> For 3-phase current sensing, always use 10-bit simultaneous mode even if 12-bit precision desired (accuracy matters less than timing)</li>
+            <li><strong>Minimize Scan Channels:</strong> Only include channels actually needed in ADxCSS to reduce conversion time</li>
+            <li><strong>Optimize Sample Time:</strong> Use 'stretched to time step' mode to automatically calculate optimal ADCS/SAMC for your impedance</li>
+            <li><strong>DMA for High-Speed:</strong> Enable DMA when SequenceRepeat > 8 or scanning many channels to reduce CPU load</li>
+            <li><strong>Buffer Management:</strong> Use ping-pong buffering (BUFM) for continuous acquisition without data loss</li>
+            <li><strong>Interrupt Priority:</strong> Set ADC interrupt priority higher than control task for immediate data availability</li>
+        </ul>
+
+        <h3>Comparison with Advanced ADC Blocks</h3>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Standard ADC (This Block)</th>
+                <th>HS SAR ADC</th>
+                <th>dsPIC33A HS 12b</th>
+            </tr>
+            <tr>
+                <td><strong>Simultaneous Sampling</strong></td>
+                <td>✅ Yes (10-bit mode only)</td>
+                <td>✅ Yes (dedicated cores)</td>
+                <td>❌ No (software sequencing)</td>
+            </tr>
+            <tr>
+                <td><strong>Triggers per Period</strong></td>
+                <td>⚠️ 1 trigger (limited)</td>
+                <td>✅ Multiple (per core)</td>
+                <td>✅ Multiple (6 sequences)</td>
+            </tr>
+            <tr>
+                <td><strong>Resolution Options</strong></td>
+                <td>10-bit or 12-bit</td>
+                <td>6/8/10/12-bit per core</td>
+                <td>Fixed 12-bit</td>
+            </tr>
+            <tr>
+                <td><strong>Best For</strong></td>
+                <td>dsPIC30F/33F/33E legacy, 3-phase FOC</td>
+                <td>Multi-motor, high-speed parallel acquisition</td>
+                <td>dsPIC33A, single-shunt FOC</td>
+            </tr>
+        </table>
+
+        <h3>Related PWM Blocks for Synchronization</h3>
+        <ul>
+            <li><a href="../pwm/pwm_standard.html"><strong>MCHP_PWM</strong></a> - Standard PWM with special event trigger (dsPIC30F/33F/33E)</li>
+            <li><a href="../pwm/pwm_high_speed.html"><strong>MCHP_PWM_HighSpeed</strong></a> - High-speed PWM for dsPIC33C/CH/CK</li>
+            <li><a href="../pwm/mcpwm.html"><strong>MCHP_MCPWM</strong></a> - Motor Control PWM with advanced triggers</li>
+        </ul>
+
+        <h2>Sampling Modes</h2>
+
+        <h3>10-bit ADC Modes</h3>
+        <ul>
+            <li><strong>Single Channel (CH0 only):</strong> Uses one sample & hold capacitor</li>
+            <li><strong>Simultaneous Sampling:</strong> All 4 S&H capacitors sample at the same instant, then sequentially convert</li>
+            <li><strong>Sequential Sampling:</strong> Each S&H capacitor samples and converts in sequence</li>
+            <li><strong>Scan Mode:</strong> Automatically scan through multiple channels defined in ADxCSS</li>
+            <li><strong>Dual Sequence (A&B):</strong> Alternate between two different channel configurations</li>
+        </ul>
+
+        <h3>12-bit ADC Modes</h3>
+        <ul>
+            <li><strong>Single Channel (Seq A):</strong> Only CH0 available, single sample & hold</li>
+            <li><strong>Dual Sequence (A&B):</strong> Alternate between two channels (CH0 for each sequence)</li>
+            <li><strong>Scan Mode:</strong> Automatically scan through channels in ADxCSS</li>
+        </ul>
+
+        <div class="note">
+            <strong>Simultaneous Sampling Note:</strong> True simultaneous sampling (all channels at exact same instant) is only available in 10-bit mode with 4 S&H capacitors. This is critical for 3-phase motor current sensing.
+        </div>
+
+        <h2>Block Inputs/Outputs</h2>
+
+        <h3>Block Outputs</h3>
+        <p>The block dynamically creates outputs based on configuration:</p>
+        <ul>
+            <li><strong>Number of outputs:</strong> Determined by number of unique channels configured</li>
+            <li><strong>Output size:</strong> Vector size = SequenceRepeat × number of scans (or 1 if triggered after each conversion)</li>
+            <li><strong>Data type:</strong> Controlled by FORM parameter (int16, uint16, or fractional)</li>
+            <li><strong>Port labels:</strong> Automatically show channel names (e.g., "AN0", "AN5-AN6", "OA1")</li>
+        </ul>
+
+        <div class="example">
+            <strong>Example Output Configuration:</strong><br>
+            <code>ADxCSS = [0 2 5]</code>, <code>nSAMPLECHANNELS = CH0:CH1</code>, <code>SequenceRepeat = 2</code><br>
+            → Creates 4 outputs: [AN0 &lt;2&gt;], [AN2 &lt;2&gt;], [AN5 &lt;2&gt;], [AN1 &lt;6&gt;]
+        </div>
+
+        <h2>Implementation Details</h2>
+
+        <h3>Registers Configured</h3>
+        <table>
+            <tr>
+                <th>Register</th>
+                <th>Purpose</th>
+                <th>Key Bits</th>
+            </tr>
+            <tr>
+                <td><strong>ADxCON1</strong></td>
+                <td>ADC control</td>
+                <td>ADON, AD12B, FORM, SSRC, SSRCG, SIMSAM, ASAM, ADDMABM</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCON2</strong></td>
+                <td>Result buffer & scanning</td>
+                <td>CSCNA, CHPS, SMPI, BUFM, ALTS</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCON3</strong></td>
+                <td>Sample time & clock</td>
+                <td>SAMC, ADCS, ADRC</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCON4</strong></td>
+                <td>DMA control (if available)</td>
+                <td>ADDMAEN</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCHS0</strong></td>
+                <td>Channel 0 selection</td>
+                <td>CH0SA, CH0NA, CH0SB, CH0NB</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCHS123</strong></td>
+                <td>Channels 1/2/3 selection (10-bit mode)</td>
+                <td>CH123SA, CH123NA, CH123SB, CH123NB</td>
+            </tr>
+            <tr>
+                <td><strong>ADxCSSL/H</strong></td>
+                <td>Scan mode channel selection</td>
+                <td>CSS0-CSS31 (bit per channel)</td>
+            </tr>
+        </table>
+
+        <h3>Interrupt/DMA Behavior</h3>
+        <ul>
+            <li><strong>Interrupt Mode:</strong> Triggers after SMPI+1 samples completed</li>
+            <li><strong>DMA Mode:</strong> Automatically transfers ADC results to memory buffer</li>
+            <li><strong>Buffer Mode:</strong> Ping-pong buffering available for continuous acquisition</li>
+            <li><strong>Priority:</strong> Managed by MCHP rate monotonic scheduler</li>
+        </ul>
+
+        <h2>Usage Examples</h2>
+
+        <h3>Example 1: Basic Single Channel Acquisition</h3>
+        <div class="example">
+            <strong>Configuration:</strong>
+            <ul>
+                <li>Mode: 12 bits</li>
+                <li>ADxCSS: [0] (AN0 only)</li>
+                <li>nSAMPLECHANNELS_12bits: Seq A</li>
+                <li>SequenceTiming: at end of previous time step</li>
+                <li>FORM: Unsigned integer</li>
+            </ul>
+            <strong>Result:</strong> One output port with AN0 value updated each time step.
+        </div>
+
+        <h3>Example 2: PWM-Triggered 3-Phase Current Sensing</h3>
+        <div class="example">
+            <strong>Configuration:</strong>
+            <ul>
+                <li>Mode: 10 bits (for simultaneous sampling)</li>
+                <li>ADxCSS: [0] (all currents on CH1:CH2:CH3)</li>
+                <li>nSAMPLECHANNELS: CH0:CH1:CH2:CH3</li>
+                <li>MUXA_CH123: AN3:AN4:AN5 (three phase currents)</li>
+                <li>SIMULTANEOUS: Simultaneous sampling</li>
+                <li>SequenceTiming: triggered by user-defined source</li>
+                <li>SSRC_SSRCG: PWM1 Special Event Trigger</li>
+                <li>FORM: Signed integer</li>
+            </ul>
+            <strong>Result:</strong> Four outputs (AN0 + three phase currents) sampled exactly simultaneously at PWM trigger point.
+        </div>
+
+        <h3>Example 3: Multi-Channel Scan with DMA</h3>
+        <div class="example">
+            <strong>Configuration:</strong>
+            <ul>
+                <li>Mode: 12 bits</li>
+                <li>ADxCSS: [0 1 2 3 4 5 6 7] (8 channels)</li>
+                <li>nSAMPLECHANNELS_12bits: Seq A</li>
+                <li>SequenceTiming: continuously as fast as possible</li>
+                <li>ADC_DMA_CHANNEL: use DMA Channel 0</li>
+                <li>SequenceRepeat: 4</li>
+            </ul>
+            <strong>Result:</strong> Eight outputs, each with vector size 4, updated continuously via DMA transfer.
+        </div>
+
+        <h3>Example 4: OpAmp Integration</h3>
+        <div class="example">
+            <strong>Scenario:</strong> When OpAmp blocks are present in the model and configured as outputs, the ADC block automatically detects them.
+            <br><br>
+            <strong>Configuration:</strong>
+            <ul>
+                <li>Add MCHP_Comparator/OpAmps block with OA1 as output</li>
+                <li>In ADC block, MUXA_CH123 dropdown will show: "OA1:AN1:AN2 &lt;-&gt; AN3:AN1:AN2"</li>
+                <li>Select this to measure OpAmp output on CH1</li>
+            </ul>
+            <strong>Result:</strong> CH1 measures OpAmp1 output, CH2 measures AN1, CH3 measures AN2.
+        </div>
+
+        <h2>Performance Considerations</h2>
+
+        <h3>Conversion Time</h3>
+        <ul>
+            <li><strong>10-bit mode:</strong> 12 TAD cycles per conversion</li>
+            <li><strong>12-bit mode:</strong> 14 TAD cycles per conversion</li>
+            <li><strong>TAD minimum:</strong> 76ns (10-bit EP/EV), 154ns (10-bit F), 117.6ns (12-bit EP), 667ns (12-bit F)</li>
+            <li><strong>Sample time:</strong> Configurable 0-31 TAD (SAMC register)</li>
+        </ul>
+
+        <h3>Total Acquisition Time</h3>
+        <p>The block automatically calculates and displays total time:</p>
+        <code>Total Time = (NConv × Tconv) + (NSampleHold × Tsample)</code>
+
+        <div class="note">
+            <strong>Optimization:</strong> For "stretched to time step" mode, the block finds optimal ADCS and SAMC values to match the model time step exactly while meeting minimum sampling time requirements.
+        </div>
+
+        <h3>DMA vs Interrupt Trade-offs</h3>
+        <table>
+            <tr>
+                <th>Aspect</th>
+                <th>Interrupt Mode</th>
+                <th>DMA Mode</th>
+            </tr>
+            <tr>
+                <td>Max Conversions</td>
+                <td>Limited by buffer size (typically 16)</td>
+                <td>Up to 65535 (DMA_CNTmax)</td>
+            </tr>
+            <tr>
+                <td>CPU Overhead</td>
+                <td>Higher (ISR execution per sequence)</td>
+                <td>Lower (hardware transfer)</td>
+            </tr>
+            <tr>
+                <td>Latency</td>
+                <td>Depends on interrupt priority</td>
+                <td>Deterministic (no ISR delay)</td>
+            </tr>
+            <tr>
+                <td>Memory</td>
+                <td>Uses ADC buffer registers</td>
+                <td>Requires dedicated DMA buffer</td>
+            </tr>
+        </table>
+
+        <h2>Troubleshooting</h2>
+
+        <h3>Common Issues</h3>
+
+        <div class="warning">
+            <strong>Issue:</strong> "ADC block warning: model time step could not be set to auto"<br>
+            <strong>Solution:</strong> Set a fixed time step in model configuration (Solver settings).
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> "Number of conversion requested exceeds limit"<br>
+            <strong>Solution:</strong>
+            <ul>
+                <li>For interrupt mode: Reduce number of channels or use DMA</li>
+                <li>For DMA mode: Reduce SequenceRepeat or number of channels</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> "ADC channels above 31 cannot be used in SCAN mode"<br>
+            <strong>Solution:</strong> For chips with AN32-AN63, use single conversion mode or configure manually without scan.
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> Block outputs show incorrect vector sizes<br>
+            <strong>Solution:</strong>
+            <ul>
+                <li>Check "Update block output" setting for custom trigger modes</li>
+                <li>Verify SequenceRepeat value</li>
+                <li>For simultaneous mode, ensure proper S&H configuration</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> No user-defined triggers available in SSRC_SSRCG<br>
+            <strong>Solution:</strong> Add PWM or Timer blocks with ADC trigger capability enabled before opening ADC block.
+        </div>
+
+        <h3>Chip-Specific Limitations</h3>
+        <ul>
+            <li><strong>dsPIC30F:</strong> 10-bit only, maximum 16 channels, no DMA, ADCS is 6-bit (max 63)</li>
+            <li><strong>dsPIC33F:</strong> Most have 10-bit only, some 12-bit models exist</li>
+            <li><strong>dsPIC33E:</strong> 10/12-bit switchable, DMA supported, ADCS is 8-bit (max 255)</li>
+            <li><strong>PIC24F:</strong> Typically 10-bit, limited S&H channels</li>
+            <li><strong>ADC2:</strong> On dual-ADC chips, ADC2 limited to AN0-AN15 (no AN16+)</li>
+        </ul>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="adc_hs_sar.html">MCHP_ADC_HighSpeed_SAR</a> - High-speed SAR ADC for PIC32MK/MZ</li>
+            <li><a href="adc_hs_sar_dspic.html">MCHP_ADC_HighSpeed_SAR_dsPIC</a> - High-speed SAR for dsPIC33C</li>
+            <li><a href="adc_hs_12b.html">MCHP_ADC_HS_12b</a> - 12-bit high-speed ADC for dsPIC33A</li>
+            <li><a href="../pwm/pwm_hs_fep.html">MCHP_PWM_HS_FEP</a> - PWM with ADC trigger generation</li>
+            <li><a href="../dma_blocks.html">MCHP_DMA</a> - Direct Memory Access configuration</li>
+        </ul>
+
+        <h2>See Also</h2>
+        <p>
+            <a href="../adc_blocks.html">ADC Blocks Overview</a> |
+            <a href="../index.html">Block Reference</a> |
+            <a href="../../getting_started.html">Getting Started Guide</a>
+        </p>
+
+        <hr>
+        <p style="font-size: 0.9em; color: #666;">
+            <strong>MCHP Blockset Documentation</strong> |
+            Last updated: 2025 |
+            <a href="../../index.html">Documentation Home</a>
+        </p>
+    </div>
+    </div>
+</body>
+</html>

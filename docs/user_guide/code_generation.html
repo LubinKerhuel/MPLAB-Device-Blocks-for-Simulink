@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Generation - User Guide</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Code Generation</h1>
+
+    <p>The MCHP Blockset automatically generates optimized C code from Simulink models for deployment on Microchip microcontrollers.</p>
+
+    <h2>Code Generation Workflow</h2>
+    <ol>
+        <li><strong>Model Design</strong> - Create algorithm in Simulink</li>
+        <li><strong>Configuration</strong> - Set up target hardware and compiler</li>
+        <li><strong>Build</strong> - Generate and compile code</li>
+        <li><strong>Deploy</strong> - Program device with generated firmware</li>
+    </ol>
+
+    <h2>Model Configuration Parameters</h2>
+
+    <h3>System Target File</h3>
+    <p>Select the appropriate target for your device family:</p>
+    <ul>
+        <li><code>MCHP_dsPIC_PIC24.tlc</code> - dsPIC and PIC24 devices</li>
+        <li><code>MCHP_PIC32.tlc</code> - PIC32 devices</li>
+        <li><code>MCHP_SAM.tlc</code> - SAM (ARM) devices</li>
+    </ul>
+
+    <h3>Code Generation Settings</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Recommended Value</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Target selection</td>
+            <td>ert.tlc</td>
+            <td>Embedded Coder target</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>C</td>
+            <td>Generate C code (default)</td>
+        </tr>
+        <tr>
+            <td>Code interface packaging</td>
+            <td>Reusable function</td>
+            <td>For standalone deployment</td>
+        </tr>
+        <tr>
+            <td>Generate code only</td>
+            <td>Unchecked</td>
+            <td>Enable compilation</td>
+        </tr>
+    </table>
+
+    <h3>MCHP Target Settings</h3>
+    <p>Configure in <strong>Code Generation → MCHP Target</strong> section:</p>
+    <ul>
+        <li><strong>Device</strong> - Select target microcontroller</li>
+        <li><strong>Compiler Version</strong> - Select installed compiler</li>
+        <li><strong>Optimization Level</strong> - 0 (debug) to 3 (max speed)</li>
+        <li><strong>Build Action</strong> - Build, Build and Download, etc.</li>
+    </ul>
+
+    <h2>Optimization Settings</h2>
+
+    <h3>Compiler Optimization Levels</h3>
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Flag</th>
+            <th>Description</th>
+            <th>Use Case</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>-O0</td>
+            <td>No optimization</td>
+            <td>Debug, code analysis</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>-O1</td>
+            <td>Basic optimization</td>
+            <td>Development testing</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>-O2</td>
+            <td>Moderate optimization</td>
+            <td>Balanced speed/size</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>-O3</td>
+            <td>Aggressive optimization</td>
+            <td>Maximum performance</td>
+        </tr>
+        <tr>
+            <td>s</td>
+            <td>-Os</td>
+            <td>Size optimization</td>
+            <td>Memory-constrained devices</td>
+        </tr>
+    </table>
+
+    <h3>Model Optimization</h3>
+    <ul>
+        <li><strong>Solver</strong> - Fixed-step, Discrete (no continuous time)</li>
+        <li><strong>Eliminate dead branches</strong> - Enable for code size reduction</li>
+        <li><strong>Inline parameters</strong> - Enable for performance</li>
+        <li><strong>Reusable functions</strong> - Enable for modular code</li>
+    </ul>
+
+    <h2>Custom Code Integration</h2>
+
+    <h3>Adding Custom C Code</h3>
+    <p>Use <strong>Code Generation → Custom Code</strong> section:</p>
+    <ul>
+        <li><strong>Include directories</strong> - Add header file paths</li>
+        <li><strong>Source files</strong> - Add .c files to compilation</li>
+        <li><strong>Additional include files</strong> - Specify headers to include</li>
+        <li><strong>Custom code</strong> - Add code snippets (initialization, etc.)</li>
+    </ul>
+
+    <h3>Legacy Code Integration</h3>
+    <p>Use Legacy Code Tool to wrap existing C functions:</p>
+    <ol>
+        <li>Create legacy code specification structure</li>
+        <li>Register function interface with Simulink</li>
+        <li>Generate S-Function wrapper</li>
+        <li>Use S-Function block in model</li>
+    </ol>
+
+    <h2>Code Generation Process</h2>
+
+    <h3>Build Steps</h3>
+    <ol>
+        <li><strong>TLC Processing</strong> - Model converted to Target Language Compiler format</li>
+        <li><strong>Code Generation</strong> - C code generated from TLC</li>
+        <li><strong>Compilation</strong> - XC compiler builds object files</li>
+        <li><strong>Linking</strong> - Object files linked to create executable</li>
+        <li><strong>Post-processing</strong> - Generate .hex, .elf, .lst files</li>
+    </ol>
+
+    <h3>Generated Files</h3>
+    <table>
+        <tr>
+            <th>File Type</th>
+            <th>Extension</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Source Code</td>
+            <td>.c, .h</td>
+            <td>Generated C source and headers</td>
+        </tr>
+        <tr>
+            <td>Executable</td>
+            <td>.elf</td>
+            <td>ELF format with debug symbols</td>
+        </tr>
+        <tr>
+            <td>Programming File</td>
+            <td>.hex</td>
+            <td>Intel HEX for device programming</td>
+        </tr>
+        <tr>
+            <td>Listing</td>
+            <td>.lst</td>
+            <td>Assembly listing with addresses</td>
+        </tr>
+        <tr>
+            <td>Map File</td>
+            <td>.map</td>
+            <td>Memory map and symbol table</td>
+        </tr>
+    </table>
+
+    <h2>Fixed-Point Code Generation</h2>
+
+    <h3>Fixed-Point Toolbox Integration</h3>
+    <p>For DSP and motor control applications:</p>
+    <ul>
+        <li>Use <code>fi()</code> objects for fixed-point signals</li>
+        <li>Configure word lengths: 8, 16, 32 bits</li>
+        <li>Set fraction lengths for precision</li>
+        <li>Enable fixed-point code generation in model settings</li>
+    </ul>
+
+    <h3>dsPIC Assembly Optimization</h3>
+    <p>Blockset includes assembly code replacements for:</p>
+    <ul>
+        <li><strong>Math Functions</strong> - sin, cos, atan2, sqrt</li>
+        <li><strong>Matrix Operations</strong> - multiply, transpose</li>
+        <li><strong>DSP Blocks</strong> - FIR, IIR filters, FFT</li>
+        <li><strong>Saturation</strong> - Optimized saturation arithmetic</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> Assembly replacements are automatically used when available for the target device family.
+    </div>
+
+    <h2>Memory Management</h2>
+
+    <h3>RAM Allocation</h3>
+    <ul>
+        <li><strong>Stack</strong> - Configured in linker script</li>
+        <li><strong>Heap</strong> - Avoid dynamic allocation if possible</li>
+        <li><strong>Global Variables</strong> - Minimize for better performance</li>
+        <li><strong>DMA Buffers</strong> - Use aligned memory sections</li>
+    </ul>
+
+    <h3>Flash Optimization</h3>
+    <ul>
+        <li>Use <code>const</code> for constant data</li>
+        <li>Enable compiler size optimization (-Os)</li>
+        <li>Minimize duplicate code with reusable functions</li>
+        <li>Use lookup tables for complex math</li>
+    </ul>
+
+    <h2>Build Diagnostics</h2>
+
+    <h3>Common Build Errors</h3>
+    <table>
+        <tr>
+            <th>Error</th>
+            <th>Cause</th>
+            <th>Solution</th>
+        </tr>
+        <tr>
+            <td>Compiler not found</td>
+            <td>Path not configured</td>
+            <td>Set compiler path in model settings</td>
+        </tr>
+        <tr>
+            <td>Symbol not defined</td>
+            <td>Missing library/header</td>
+            <td>Add to custom code includes</td>
+        </tr>
+        <tr>
+            <td>Memory overflow</td>
+            <td>Code/data too large</td>
+            <td>Enable optimization, reduce model size</td>
+        </tr>
+        <tr>
+            <td>Unsupported block</td>
+            <td>Block not compatible</td>
+            <td>Replace with supported alternative</td>
+        </tr>
+    </table>
+
+    <h3>Build Warnings</h3>
+    <p>Address these warnings for robust code:</p>
+    <ul>
+        <li><strong>Unused variables</strong> - Remove or comment out</li>
+        <li><strong>Type mismatches</strong> - Use explicit casts</li>
+        <li><strong>Uninitialized variables</strong> - Add initialization</li>
+        <li><strong>Deprecated functions</strong> - Update to current API</li>
+    </ul>
+
+    <h2>Code Review and Analysis</h2>
+
+    <h3>Generated Code Inspection</h3>
+    <p>Review generated code for:</p>
+    <ul>
+        <li><strong>Efficiency</strong> - Check loop structure, function calls</li>
+        <li><strong>Safety</strong> - Verify array bounds, pointer usage</li>
+        <li><strong>Readability</strong> - Enable code generation comments</li>
+        <li><strong>Compliance</strong> - MISRA-C, coding standards</li>
+    </ul>
+
+    <h3>Code Metrics</h3>
+    <p>Use Code Generation Report to analyze:</p>
+    <ul>
+        <li>Lines of code generated</li>
+        <li>ROM/RAM usage</li>
+        <li>Function complexity</li>
+        <li>Stack depth estimates</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use discrete solver with fixed time step</li>
+        <li>Avoid dynamic memory allocation</li>
+        <li>Minimize global variable usage</li>
+        <li>Use appropriate data types (int16, uint32, etc.)</li>
+        <li>Enable code generation report for documentation</li>
+        <li>Test with PIL before final deployment</li>
+        <li>Use version control for model files</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="index.html">User Guide</a> |
+        <a href="external_mode.html">External Mode</a> |
+        <a href="pil_testing.html">PIL Testing</a> |
+        <a href="compiler_setup.html">Compiler Setup</a>
+    </p>
+    </div>
+</body>
+</html>

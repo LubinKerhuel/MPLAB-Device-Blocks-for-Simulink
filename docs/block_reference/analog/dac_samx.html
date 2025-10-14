@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP DAC SAMx - MCHP Blockset Documentation</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>MCHP_DACC_SAMx - Digital-to-Analog Converter</h1>
+        <p>High-performance DAC for waveform generation and precision voltage output</p>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span>›</span>
+        <a href="../index.html">Block Reference</a>
+        <span>›</span>
+        <a href="analog.html">Analog Blocks</a>
+        <span>›</span>
+        <span>DAC SAMx</span>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+            
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/DAC_SAMx.svg"
+             alt="DAC_SAMx Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/DAC_SAMx.png';">
+        <div class="block-image-caption">
+            DAC_SAMx Block Icon
+        </div>
+    </div>
+<h2>Block Overview</h2>
+            <p>
+                The <strong>MCHP_DACC_SAMx</strong> block provides access to the Digital-to-Analog Converter Controller (DACC)
+                available in SAM E5x, SAM E7x, and SAM C2x microcontrollers. This peripheral enables high-quality analog voltage
+                generation for applications including waveform synthesis, precision voltage references, audio output, and control
+                signal generation.
+            </p>
+
+            <div class="note">
+                <strong>Key Features:</strong>
+                <ul>
+                    <li>10-bit or 12-bit resolution (device-dependent)</li>
+                    <li>Dual-channel independent or differential output modes</li>
+                    <li>Up to 1 MSPS conversion rate</li>
+                    <li>Internal or external voltage reference options</li>
+                    <li>Built-in waveform generation capabilities</li>
+                    <li>DMA support for continuous waveform streaming</li>
+                    <li>Low glitch energy and monotonic output</li>
+                </ul>
+            </div>
+
+            <h3>Supported Device Families</h3>
+            <table class="parameter-table">
+                <tr>
+                    <th>Family</th>
+                    <th>Representative Devices</th>
+                    <th>Resolution</th>
+                    <th>Channels</th>
+                    <th>Max Rate</th>
+                </tr>
+                <tr>
+                    <td><strong>SAM E5x</strong></td>
+                    <td>SAME54P20A, SAME53J18A</td>
+                    <td>12-bit</td>
+                    <td>2 (DAC0, DAC1)</td>
+                    <td>1 MSPS</td>
+                </tr>
+                <tr>
+                    <td><strong>SAM E7x</strong></td>
+                    <td>SAME70Q21B, SAMV71Q21B</td>
+                    <td>12-bit</td>
+                    <td>2 (DAC0, DAC1)</td>
+                    <td>1 MSPS</td>
+                </tr>
+                <tr>
+                    <td><strong>SAM C2x</strong></td>
+                    <td>SAMC21G18A, SAMC20G18A</td>
+                    <td>10-bit</td>
+                    <td>2 (DAC0, DAC1)</td>
+                    <td>350 kSPS</td>
+                </tr>
+            </table>
+
+            <div class="info">
+                <strong>Output Modes:</strong> The DACC supports both single-ended outputs (DAC0 and DAC1 independent) and
+                differential output mode (DAC0 - DAC1), providing flexibility for various signal generation requirements.
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Operating Modes</h2>
+
+            <h3>1. Single-Ended Output Mode</h3>
+            <div class="example">
+                <strong>Configuration:</strong> Independent DAC channels
+                <ul>
+                    <li><strong>DAC0 Output:</strong> 0 to VREF voltage range on DAC0 pin</li>
+                    <li><strong>DAC1 Output:</strong> 0 to VREF voltage range on DAC1 pin</li>
+                    <li><strong>Resolution:</strong> 10-bit (0-1023) or 12-bit (0-4095)</li>
+                    <li><strong>Update:</strong> Independent data registers for each channel</li>
+                    <li><strong>Use Case:</strong> Dual independent voltage sources, stereo audio, multi-channel control</li>
+                </ul>
+            </div>
+
+            <h3>2. Differential Output Mode</h3>
+            <div class="example">
+                <strong>Configuration:</strong> Differential voltage output
+                <ul>
+                    <li><strong>Output:</strong> V_OUT = DAC0 - DAC1 (differential voltage)</li>
+                    <li><strong>Range:</strong> -VREF to +VREF (doubled output range)</li>
+                    <li><strong>Common Mode:</strong> Typically VREF/2 for maximum swing</li>
+                    <li><strong>Advantage:</strong> Noise cancellation, doubled voltage swing</li>
+                    <li><strong>Use Case:</strong> Differential signaling, balanced audio, precision offset generation</li>
+                </ul>
+            </div>
+
+            <h3>3. Waveform Generation Mode</h3>
+            <div class="example">
+                <strong>Configuration:</strong> Automatic waveform synthesis
+                <ul>
+                    <li><strong>Sine Wave:</strong> Pure sine generation using internal sine table</li>
+                    <li><strong>Triangle Wave:</strong> Linear ramp up/down waveform</li>
+                    <li><strong>Sawtooth Wave:</strong> Ramp waveform (up or down)</li>
+                    <li><strong>DMA-based:</strong> Arbitrary waveforms from memory buffer</li>
+                    <li><strong>Use Case:</strong> Function generator, audio synthesis, test signal generation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Block Parameters</h2>
+
+            <table class="parameter-table">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Options/Values</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>DIFF</strong></td>
+                    <td>
+                        • Single-Ended Outputs<br>
+                        • Differential Outputs
+                    </td>
+                    <td>
+                        Selects output mode. Single-ended provides two independent channels (DAC0, DAC1).
+                        Differential mode combines outputs as DAC0 - DAC1, doubling voltage swing and
+                        improving noise immunity.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC0_OUTPUT_PIN</strong></td>
+                    <td>
+                        • Not used<br>
+                        • DAC0 / Port / Pin[xx]
+                    </td>
+                    <td>
+                        Enables and selects pin for DAC0 output. When "Not used", DAC0 is disabled.
+                        Pin assignment is device-specific and displayed based on hardware configuration.
+                        Automatically configures pin as analog output when enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC0_INITIAL_OUTPUT</strong></td>
+                    <td>
+                        Numeric value (0-4095 for 12-bit)
+                    </td>
+                    <td>
+                        Initial DAC0 output value at startup. For 12-bit DAC: V_OUT = (value/4095) × VREF.
+                        For 10-bit DAC: V_OUT = (value/1023) × VREF. Ensures defined output state before
+                        first update from block input.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC0_INPUT</strong></td>
+                    <td>
+                        • on (Enable input port)<br>
+                        • off (Fixed output)
+                    </td>
+                    <td>
+                        When enabled, creates block input port for runtime DAC0 updates. Input accepts
+                        signed/unsigned integer matching DAC resolution. When disabled, DAC0 holds
+                        initial value (static voltage reference).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC0_INPUT_SAT</strong></td>
+                    <td>
+                        • on (Enable saturation)<br>
+                        • off (No saturation)
+                    </td>
+                    <td>
+                        Input saturation protection. When enabled, input values are clamped to valid
+                        DAC range (0-1023 or 0-4095). Prevents overflow errors from out-of-range inputs.
+                        Disable for performance if input range is guaranteed valid.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC1_OUTPUT_PIN</strong></td>
+                    <td>
+                        • Not used<br>
+                        • DAC1 / Port / Pin[xx]
+                    </td>
+                    <td>
+                        Enables and selects pin for DAC1 output (single-ended mode only). Similar
+                        functionality to DAC0_OUTPUT_PIN for second channel.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC1_INITIAL_OUTPUT</strong></td>
+                    <td>
+                        Numeric value (0-4095 for 12-bit)
+                    </td>
+                    <td>
+                        Initial DAC1 output value (single-ended mode). Sets starting voltage on DAC1 pin.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC1_INPUT</strong></td>
+                    <td>
+                        • on<br>
+                        • off
+                    </td>
+                    <td>
+                        Enable runtime update for DAC1 via block input port (single-ended mode).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC1_INPUT_SAT</strong></td>
+                    <td>
+                        • on<br>
+                        • off
+                    </td>
+                    <td>
+                        Input saturation for DAC1 (single-ended mode).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC0_FORCED_OUTPUT_PIN</strong></td>
+                    <td>
+                        Display only (differential mode)
+                    </td>
+                    <td>
+                        Shows DAC0 pin assignment in differential mode. Pin is forced active and cannot
+                        be disabled when differential mode selected.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC1_FORCED_OUTPUT_PIN</strong></td>
+                    <td>
+                        Display only (differential mode)
+                    </td>
+                    <td>
+                        Shows DAC1 pin assignment in differential mode. Both pins required for differential output.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DACC_DIFF_INITIAL_OUTPUT</strong></td>
+                    <td>
+                        Numeric value (differential mode)
+                    </td>
+                    <td>
+                        Initial differential output value. Represents signed differential voltage.
+                        V_DIFF = (value/4095) × VREF - VREF/2 (for bipolar centered output).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC_INPUT_DIFF</strong></td>
+                    <td>
+                        • on<br>
+                        • off
+                    </td>
+                    <td>
+                        Enable differential input port (differential mode). Single input controls
+                        differential output voltage (DAC0 - DAC1).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>DAC_INPUT_DIFF_SAT</strong></td>
+                    <td>
+                        • on<br>
+                        • off
+                    </td>
+                    <td>
+                        Input saturation for differential mode. Clamps input to valid differential range.
+                    </td>
+                </tr>
+            </table>
+
+            <div class="warning">
+                <strong>Mode-Dependent Parameters:</strong> When switching between Single-Ended and Differential modes,
+                different parameters become visible. Single-ended shows DAC0/DAC1 individual controls. Differential mode
+                shows combined DACC_DIFF controls. The block automatically manages visibility based on DIFF selection.
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Register Configuration</h2>
+
+            <h3>DACC Control Register (DACC_CR)</h3>
+            <div class="code-block">
+// DAC Control Register
+DACC_CR = (SWRST &lt;&lt; 0);  // Software reset (write 1 to reset)
+
+// DAC Mode Register (DACC_MR)
+DACC_MR = (DIFF &lt;&lt; 23) |       // Differential mode (0=single, 1=diff)
+          (PRESCALER &lt;&lt; 8) |   // Prescaler for DAC clock
+          (STARTUP &lt;&lt; 24) |     // Startup time selection
+          (MAXS &lt;&lt; 0) |         // Max speed mode
+          (WORD &lt;&lt; 4) |         // Transfer mode (0=half-word, 1=word)
+          (REFRESH &lt;&lt; 8);       // Refresh period for output
+            </div>
+
+            <h3>Single-Ended Mode Configuration</h3>
+            <div class="code-block">
+// Enable DAC channels independently
+DACC_CHER = (1 &lt;&lt; 0) |  // Enable DAC0
+            (1 &lt;&lt; 1);   // Enable DAC1
+
+// Set initial output values
+DACC_CDR0 = 2048;  // DAC0 initial (mid-scale for 12-bit)
+DACC_CDR1 = 2048;  // DAC1 initial (mid-scale)
+
+// Runtime updates
+DACC_CDR0 = new_value_dac0;  // Update DAC0 output
+DACC_CDR1 = new_value_dac1;  // Update DAC1 output
+
+// Voltage calculation:
+// V_DAC0 = (DACC_CDR0 / 4095) × VREF  (for 12-bit)
+// V_DAC1 = (DACC_CDR1 / 4095) × VREF
+            </div>
+
+            <h3>Differential Mode Configuration</h3>
+            <div class="code-block">
+// Enable differential mode
+DACC_MRbits.DIFF = 1;
+
+// Enable both DAC channels (required for differential)
+DACC_CHER = 0x03;  // Enable DAC0 and DAC1
+
+// Set differential output
+// For centered bipolar output (±VREF/2):
+int16_t diff_value = 0;  // 0 = center (0V differential)
+
+// Convert signed value to DAC codes:
+uint16_t dac0_code = 2048 + (diff_value / 2);  // Positive side
+uint16_t dac1_code = 2048 - (diff_value / 2);  // Negative side
+
+DACC_CDR0 = dac0_code;
+DACC_CDR1 = dac1_code;
+
+// Differential voltage:
+// V_DIFF = V_DAC0 - V_DAC1
+//        = [(dac0_code - dac1_code) / 4095] × VREF
+//        = (diff_value / 4095) × VREF
+            </div>
+
+            <h3>Pin Configuration (Automatic)</h3>
+            <div class="code-block">
+// Automatic pin configuration when DAC enabled
+// Example for SAME70 device:
+
+if (DAC0_enabled) {
+    PMC_PCER1 |= (1 &lt;&lt; (ID_DACC - 32));  // Enable DACC clock
+    PIOB-&gt;PIO_PDR |= PIO_PB13;            // Disable PIO on DAC0 pin
+    PIOB-&gt;PIO_PPDDR |= PIO_PB13;          // Disable pull-down
+    PIOB-&gt;PIO_PUDR |= PIO_PB13;           // Disable pull-up
+    // Pin is now analog output (DAC0)
+}
+
+if (DAC1_enabled) {
+    PIOB-&gt;PIO_PDR |= PIO_PD0;             // Configure DAC1 pin
+    PIOB-&gt;PIO_PPDDR |= PIO_PD0;
+    PIOB-&gt;PIO_PUDR |= PIO_PD0;
+    // Pin is now analog output (DAC1)
+}
+
+// MCHP_PORT field handles all pin configuration automatically
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Application Examples</h2>
+
+            <h3>Example 1: DC Voltage Reference Generation</h3>
+            <div class="example">
+                <strong>Application:</strong> Precision 1.65V reference for ADC bias
+                <div class="code-block">
+// Configuration:
+// - DIFF = "Single-Ended Outputs"
+// - DAC0_OUTPUT_PIN = "DAC0 / PB13 / Pin[57]" (enabled)
+// - DAC0_INITIAL_OUTPUT = 2048 (mid-scale for 12-bit)
+// - DAC0_INPUT = "off" (static reference)
+// - DAC1_OUTPUT_PIN = "Not used"
+// - VREF = 3.3V (internal or external)
+
+// Initial configuration:
+DACC_MRbits.DIFF = 0;      // Single-ended mode
+DACC_CHER = 0x01;          // Enable DAC0 only
+DACC_CDR0 = 2048;          // 2048/4095 × 3.3V = 1.65V
+
+// Result:
+// DAC0 pin outputs stable 1.65V for ADC single-ended biasing
+// No code execution needed after initialization
+// Low drift, low noise reference voltage
+                </div>
+            </div>
+
+            <h3>Example 2: Sine Wave Audio Generation</h3>
+            <div class="example">
+                <strong>Application:</strong> 1 kHz audio tone generation
+                <div class="code-block">
+// Configuration:
+// - DIFF = "Single-Ended Outputs"
+// - DAC0_OUTPUT_PIN = "DAC0 / PB13 / Pin[57]"
+// - DAC0_INITIAL_OUTPUT = 2048
+// - DAC0_INPUT = "on" (runtime updates)
+// - DAC0_INPUT_SAT = "off" (pre-validated samples)
+// - Sample rate: 48 kHz
+// - Frequency: 1 kHz (48 samples per cycle)
+
+// Sine wave lookup table (48 samples, 12-bit, DC offset)
+const uint16_t sine_table[48] = {
+    2048, 2313, 2571, 2815, 3039, 3238, 3408, 3547,
+    3650, 3716, 3744, 3733, 3685, 3602, 3487, 3343,
+    3174, 2985, 2780, 2563, 2340, 2115, 1893, 1679,
+    1477, 1292, 1128, 988, 876, 793, 743, 726,
+    742, 790, 869, 976, 1107, 1260, 1429, 1610,
+    1798, 1989, 2176, 2357, 2526, 2681, 2817, 2931
+};
+
+// Timer interrupt at 48 kHz:
+void DACC_Update_ISR(void) {
+    static uint8_t index = 0;
+    DACC_CDR0 = sine_table[index];  // Update DAC output
+    index = (index + 1) % 48;       // Circular buffer
+}
+
+// Result: 1 kHz sine wave on DAC0 output
+// Add RC filter (1kΩ + 10nF) for smooth analog output
+                </div>
+            </div>
+
+            <h3>Example 3: Differential Motor Control Signal</h3>
+            <div class="example">
+                <strong>Application:</strong> Balanced command voltage for motor driver
+                <div class="code-block">
+// Configuration:
+// - DIFF = "Differential Outputs"
+// - DAC0_FORCED_OUTPUT_PIN = "DAC0 / PB13 / Pin[57]"
+// - DAC1_FORCED_OUTPUT_PIN = "DAC1 / PD0 / Pin[89]"
+// - DACC_DIFF_INITIAL_OUTPUT = 0 (0V differential)
+// - DAC_INPUT_DIFF = "on" (runtime control)
+// - DAC_INPUT_DIFF_SAT = "on" (prevent overflow)
+
+// Motor speed command: -100% to +100%
+// Convert to differential DAC value:
+
+float motor_command = 0.75;  // 75% forward
+
+// Map -1.0 to +1.0 → -2048 to +2048 (12-bit centered)
+int16_t diff_value = (int16_t)(motor_command * 2048.0);
+
+// Block input receives diff_value
+// Block automatically converts to DAC0/DAC1 codes:
+uint16_t dac0 = 2048 + diff_value/2;  // High side
+uint16_t dac1 = 2048 - diff_value/2;  // Low side
+
+// Differential output:
+// V_DIFF = (diff_value / 2048) × (VREF/2)
+// For 75% command: V_DIFF = 0.75 × 1.65V = 1.24V
+
+// Motor driver receives balanced differential command
+// Noise on both lines cancels in differential input
+                </div>
+            </div>
+
+            <h3>Example 4: Arbitrary Waveform Generation with DMA</h3>
+            <div class="example">
+                <strong>Application:</strong> Custom waveform from memory buffer
+                <div class="code-block">
+// Configuration:
+// - DIFF = "Single-Ended Outputs"
+// - DAC0_OUTPUT_PIN = "DAC0 / PB13 / Pin[57]"
+// - DAC0_INPUT = "on"
+// - DMA enabled for continuous transfer
+
+// Waveform buffer (1000 samples, 12-bit)
+#define WAVEFORM_SIZE 1000
+uint16_t waveform_buffer[WAVEFORM_SIZE];
+
+// Generate custom waveform (e.g., modulated sine)
+void GenerateWaveform(void) {
+    for (int i = 0; i &lt; WAVEFORM_SIZE; i++) {
+        float t = (float)i / WAVEFORM_SIZE;
+        // AM modulated sine: carrier × envelope
+        float carrier = sin(2*PI*10*t);       // 10 cycles
+        float envelope = 0.5 + 0.5*sin(2*PI*t); // 1 cycle envelope
+        float value = carrier * envelope;
+        // Convert -1...+1 to 0...4095 (12-bit)
+        waveform_buffer[i] = (uint16_t)((value + 1.0) * 2047.5);
+    }
+}
+
+// DMA configuration for circular transfer:
+DMA_CH0_SADDR = (uint32_t)waveform_buffer;  // Source
+DMA_CH0_DADDR = (uint32_t)&DACC_CDR0;      // Destination
+DMA_CH0_BTCNT = WAVEFORM_SIZE;             // Transfer count
+DMA_CH0_BTCTRL = DMA_CIRCULAR_MODE;        // Circular mode
+
+// Timer triggers DMA transfer at desired sample rate
+// DMA continuously streams waveform to DAC
+// CPU-free waveform generation
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Design Guidelines</h2>
+
+            <h3>Resolution and Accuracy</h3>
+            <table class="parameter-table">
+                <tr>
+                    <th>Specification</th>
+                    <th>10-bit DAC</th>
+                    <th>12-bit DAC</th>
+                    <th>Impact</th>
+                </tr>
+                <tr>
+                    <td><strong>Step Size</strong></td>
+                    <td>VREF / 1024<br>(~3.2mV @ 3.3V)</td>
+                    <td>VREF / 4096<br>(~0.8mV @ 3.3V)</td>
+                    <td>Minimum voltage increment</td>
+                </tr>
+                <tr>
+                    <td><strong>INL</strong></td>
+                    <td>±2 LSB typical</td>
+                    <td>±2 LSB typical</td>
+                    <td>Linearity error (±6.4mV or ±1.6mV)</td>
+                </tr>
+                <tr>
+                    <td><strong>DNL</strong></td>
+                    <td>±1 LSB typical</td>
+                    <td>±1 LSB typical</td>
+                    <td>Step uniformity (monotonic guaranteed)</td>
+                </tr>
+                <tr>
+                    <td><strong>Settling Time</strong></td>
+                    <td>1-3 μs</td>
+                    <td>1-3 μs</td>
+                    <td>Time to reach final value</td>
+                </tr>
+            </table>
+
+            <h3>Output Buffer Considerations</h3>
+            <ul>
+                <li><strong>Output Impedance:</strong> Typically 10-100Ω, varies with frequency and load</li>
+                <li><strong>Drive Capability:</strong> Limited current output (~10mA max), use buffer for heavy loads</li>
+                <li><strong>Capacitive Load:</strong> Maximum ~100pF without oscillation, add series resistor for higher capacitance</li>
+                <li><strong>Filtering:</strong> Add RC low-pass filter to remove switching artifacts (e.g., 1kΩ + 10nF for audio)</li>
+            </ul>
+
+            <h3>Voltage Reference Options</h3>
+            <div class="info">
+                <strong>Reference Selection:</strong>
+                <ul>
+                    <li><strong>VDDANA (Default):</strong> DAC output referenced to analog supply, simple but supply noise affects output</li>
+                    <li><strong>External VREF:</strong> Precision external reference (e.g., 2.5V) for accurate voltage generation</li>
+                    <li><strong>Internal Bandgap:</strong> Some devices offer internal 1.0V or 2.048V reference for stability</li>
+                    <li><strong>Buffered Reference:</strong> Use reference buffer to reduce loading and improve accuracy</li>
+                </ul>
+            </div>
+
+            <h3>Update Rate and Throughput</h3>
+            <div class="code-block">
+// Maximum update rates (device-dependent):
+// SAM E5x/E7x: Up to 1 MSPS (1 μs per update)
+// SAM C2x: Up to 350 kSPS (2.86 μs per update)
+
+// Update rate limited by:
+// 1. DAC settling time (~1-3 μs)
+// 2. CPU/DMA transfer speed
+// 3. Application sample rate requirements
+
+// For high-speed waveforms (&gt;100 kHz):
+// - Use DMA for CPU-free updates
+// - Pre-calculate waveform samples
+// - Minimize ISR overhead
+// - Consider external DAC for &gt;1 MSPS
+            </div>
+
+            <h3>Noise and Distortion</h3>
+            <ul>
+                <li><strong>Thermal Noise:</strong> Approximately 10-50 μVrms (device-dependent)</li>
+                <li><strong>Glitch Energy:</strong> Minimize by using monotonic DAC architecture</li>
+                <li><strong>THD (Total Harmonic Distortion):</strong> Typically -60 to -80 dB for audio applications</li>
+                <li><strong>SFDR (Spurious Free Dynamic Range):</strong> >70 dB typical at low frequencies</li>
+                <li><strong>PSRR (Power Supply Rejection):</strong> -40 to -60 dB, use clean analog supply</li>
+            </ul>
+
+            <h3>PCB Layout Best Practices</h3>
+            <ul>
+                <li><strong>Separate Grounds:</strong> Analog ground plane under DAC area, single-point connection to digital ground</li>
+                <li><strong>Short Traces:</strong> Keep DAC output traces short to minimize noise pickup</li>
+                <li><strong>Decoupling:</strong> 100nF + 10μF capacitors close to VDDANA pin</li>
+                <li><strong>Reference Decoupling:</strong> Low-ESR capacitor (1-10μF) on VREF pin if using external reference</li>
+                <li><strong>Isolation:</strong> Route DAC signals away from switching noise (PWM, digital clocks)</li>
+                <li><strong>Guard Traces:</strong> Surround sensitive DAC traces with grounded guard traces</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Performance Optimization</h2>
+
+            <h3>Reducing Update Latency</h3>
+            <div class="code-block">
+// Method 1: Direct register write (fastest)
+DACC_CDR0 = new_value;  // ~1-2 CPU cycles
+
+// Method 2: DMA transfer (CPU-free)
+// Configure DMA to transfer from memory buffer to DACC_CDRx
+// Zero CPU overhead after setup
+
+// Method 3: Interrupt-driven (moderate speed)
+void TIMER_ISR(void) {
+    DACC_CDR0 = next_sample();  // ISR overhead ~10-20 cycles
+}
+
+// Latency comparison:
+// Direct write: &lt;100 ns
+// DMA transfer: ~200-500 ns (first sample)
+// ISR-driven: ~500-1000 ns (ISR entry/exit)
+            </div>
+
+            <h3>Power Consumption Optimization</h3>
+            <div class="code-block">
+// Power saving techniques:
+
+// 1. Disable unused DAC channels
+if (!using_DAC1) {
+    DACC_CHDR = (1 &lt;&lt; 1);  // Disable DAC1
+}
+
+// 2. Reduce update rate when possible
+// Lower sample rate = lower power
+// Example: 1 kHz vs 100 kHz = ~50% power reduction
+
+// 3. Use sleep modes between updates
+DACC_CDR0 = value;
+__WFI();  // Sleep until next timer interrupt
+
+// 4. Disable DAC during idle periods
+if (idle_state) {
+    DACC_CHDR = 0x03;  // Disable both channels
+    PMC_PCDR1 = (1 &lt;&lt; (ID_DACC - 32));  // Disable clock
+}
+            </div>
+
+            <h3>Glitch Minimization Techniques</h3>
+            <ul>
+                <li><strong>Double Buffering:</strong> Some devices support double-buffered updates to synchronize output changes</li>
+                <li><strong>Simultaneous Update:</strong> Update both DAC channels atomically in differential mode</li>
+                <li><strong>Ramp Transitions:</strong> For large step changes, ramp through intermediate values</li>
+                <li><strong>Deglitching Filter:</strong> External RC filter to smooth output transitions</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Troubleshooting</h2>
+
+            <table class="parameter-table">
+                <tr>
+                    <th>Issue</th>
+                    <th>Possible Causes</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>No output voltage</td>
+                    <td>
+                        • DAC not enabled<br>
+                        • Pin not configured<br>
+                        • Clock disabled<br>
+                        • Wrong pin selected
+                    </td>
+                    <td>
+                        Verify DAC channel enabled in DACC_CHER register. Check MCHP_PORT configuration
+                        is correct. Ensure DACC clock enabled in PMC. Verify pin matches device datasheet.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Incorrect output voltage</td>
+                    <td>
+                        • Wrong VREF<br>
+                        • Incorrect DAC value<br>
+                        • Resolution mismatch<br>
+                        • Load impedance too low
+                    </td>
+                    <td>
+                        Measure VREF voltage, verify matches expected value. Check DAC code calculation
+                        (10-bit vs 12-bit). Ensure load impedance &gt;10kΩ or add output buffer.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Noisy output</td>
+                    <td>
+                        • No output filter<br>
+                        • Poor PCB layout<br>
+                        • Noisy VREF<br>
+                        • Digital crosstalk
+                    </td>
+                    <td>
+                        Add RC low-pass filter on output (1kΩ + 10-100nF). Improve ground plane and
+                        shielding. Decouple VREF with 1-10μF capacitor. Separate analog/digital routing.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Slow settling</td>
+                    <td>
+                        • Large capacitive load<br>
+                        • Insufficient output current<br>
+                        • Wrong update timing
+                    </td>
+                    <td>
+                        Reduce load capacitance (&lt;100pF) or add series resistor (10-100Ω). Use output
+                        buffer for heavy loads. Ensure settling time (1-3μs) before next update.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Differential mode issues</td>
+                    <td>
+                        • One channel disabled<br>
+                        • Incorrect DAC codes<br>
+                        • Common-mode error
+                    </td>
+                    <td>
+                        Enable both DAC0 and DAC1 in DACC_CHER. Verify differential calculation:
+                        dac0 = 2048 + diff/2, dac1 = 2048 - diff/2. Check common-mode at VREF/2.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Distorted waveform</td>
+                    <td>
+                        • Update rate too low<br>
+                        • Insufficient samples<br>
+                        • DMA misconfiguration
+                    </td>
+                    <td>
+                        Increase sample rate (Nyquist: &gt;2× max frequency). Ensure adequate samples per
+                        waveform cycle (≥20 recommended). Verify DMA circular mode and transfer count.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content-card">
+            <h2>Related Blocks</h2>
+            <ul>
+                <li><a href="op_amp.html">MCHP_OP_AMP</a> - Operational amplifier for DAC output buffering/scaling</li>
+                <li><a href="pga.html">MCHP_PGA</a> - Programmable gain amplifier for DAC output amplification</li>
+                <li><a href="../adc/adc_coreindependent_pic32c.html">MCHP_ADC_CoreIndependent_PIC32C</a> - SAM ADC for feedback/measurement</li>
+                <li><a href="../timers/timer_pic32.html">MCHP_Timer_PIC32</a> - Timer for DAC update rate control</li>
+                <li><a href="../dma/dma_sam.html">MCHP_DMA_SAM</a> - DMA for continuous waveform streaming</li>
+            </ul>
+        </div>
+
+        <a href="analog.html" class="back-link">← Back to Analog Blocks</a>
+    </div>
+    </div>
+</body>
+</html>

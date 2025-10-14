@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Digital_Output_Read - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./digital_io.html">Digital I/O Blocks</a> &gt;
+        MCHP_Digital_Output_Read
+    </div>
+
+    <h1>MCHP_Digital_Output_Read - Digital Output Read-back Block</h1>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/DigitalOutput_Read.svg"
+             alt="DigitalOutput_Read Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/DigitalOutput_Read.png';">
+        <div class="block-image-caption">
+            DigitalOutput_Read Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Digital_Output_Read</strong> block reads the current state of output pins by accessing the LAT (latch) register. This block provides feedback on the actual output state with a 1-sample delay, which is useful for diagnostics, state verification, and closed-loop control applications.</p>
+
+    <p><strong>Key Features:</strong></p>
+    <ul>
+        <li>Reads LAT register (actual output state), not PORT register (pin state)</li>
+        <li>Provides 1-sample delayed feedback of written values</li>
+        <li>Supports packed (uint16/uint32) or individual (boolean) output formats</li>
+        <li>Typically used within MCHP_Digital_Output parent block</li>
+        <li>Can be used standalone for advanced read-back scenarios</li>
+        <li>Automatic pin availability validation</li>
+    </ul>
+
+    <div class="note">
+        <strong>Primary Usage:</strong> This block is typically instantiated automatically by the <a href="digital_output.html">MCHP_Digital_Output</a> master block when READPREVIOUS='on'. It can also be used standalone for specialized applications requiring LAT register reading.
+    </div>
+
+    <h2>Device Support</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device Family</th>
+                <th>LAT Register</th>
+                <th>Read Support</th>
+                <th>Port Width</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dsPIC30F</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33F/E</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>dsPIC33C/CH/CK/A</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC24F/H</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>16-bit</td>
+            </tr>
+            <tr>
+                <td>PIC32MK/MZ/MX</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>32-bit</td>
+            </tr>
+            <tr>
+                <td>SAM (ARM)</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>32-bit</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+                <th>Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PORT</strong></td>
+                <td>GPIO port selection. Dynamic popup shows available ports.</td>
+                <td>A, B, C, D, E, F, G, H, J, K<br>(device-dependent)</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td><strong>PIN</strong></td>
+                <td>Pin index selection within the port. Must match corresponding write block configuration.</td>
+                <td>[0:15] for 16-bit<br>[0:31] for 32-bit</td>
+                <td>[0]</td>
+            </tr>
+            <tr>
+                <td><strong>PACK</strong></td>
+                <td>Output data format. Should match write block format for consistency.</td>
+                <td>'on' - Packed uint16/uint32<br>'off' - Individual booleans</td>
+                <td>'off'</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Parameter Matching:</strong> When used with MCHP_Digital_Output_Write, ensure PORT, PIN, and PACK parameters are identical. Mismatched parameters will cause incorrect read-back values. The parent MCHP_Digital_Output block handles this synchronization automatically.
+    </div>
+
+    <h2>LAT vs PORT Register</h2>
+
+    <h3>Critical Difference</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Register</th>
+                <th>Purpose</th>
+                <th>Reads</th>
+                <th>Writes</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>LAT</strong><br>(Latch)</td>
+                <td>Output state storage</td>
+                <td>Last written value</td>
+                <td>Sets output state</td>
+                <td>Output control and read-back</td>
+            </tr>
+            <tr>
+                <td><strong>PORT</strong></td>
+                <td>Physical pin state</td>
+                <td>Actual pin voltage</td>
+                <td>Same as LAT write</td>
+                <td>Input reading</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Why Read LAT, Not PORT?</h3>
+    <pre><code>// Scenario: Output pin drives high-impedance load
+LATAbits.LATA0 = 1;  // Write logic '1'
+
+// Reading back:
+PORTAbits.RA0 = ?    // May read 0 if external load pulls down
+LATAbits.LATA0 = 1   // Always reads what was written
+
+// Conclusion: LAT read reflects intended output state
+//            PORT read reflects actual pin voltage</code></pre>
+
+    <div class="note">
+        <strong>Best Practice:</strong> For output verification, always read LAT register (what the MCU is driving). Only read PORT for input monitoring or to detect output conflicts (e.g., shorted pins).
+    </div>
+
+    <h2>Implementation Details</h2>
+
+    <h3>Register Access (dsPIC/PIC24)</h3>
+    <pre><code>// Read LAT register for output state
+value = LATA;  // Reads entire LAT register
+
+// Individual pin access
+bit_state = LATAbits.LATA5;  // Read pin A5 output state
+
+// Masked read for specific pins
+pins_state = LATA & 0x0007;  // Read pins [2:0] only</code></pre>
+
+    <h3>Register Access (PIC32)</h3>
+    <pre><code>// Read LAT register (32-bit)
+value = LATA;  // Reads entire LAT register
+
+// Alternative: Use LATAx for specific port
+bit_state = (LATA >> 5) & 0x01;  // Read pin A5 state</code></pre>
+
+    <h3>RTWdata Structure</h3>
+    <pre><code>// Data passed to TLC for code generation
+RTWdata.Port = 'A';              // Port letter
+RTWdata.PortNum = '0';           // Port number (A=0, B=1, ...)
+RTWdata.Pins = '[0 1 2]';        // Array of pin indices
+RTWdata.Pack_Flag = '1';         // 1 = packed, 0 = individual
+
+// TLC uses this to generate:
+// - Correct LAT register access
+// - Bit masking for selected pins
+// - Data type conversion (uint16/uint32/boolean)</code></pre>
+
+    <h2>Block Output Configuration</h2>
+
+    <h3>Individual Output Mode (PACK = 'off')</h3>
+    <p>Creates separate boolean outputs for each pin:</p>
+    <pre><code>// Parameters: PORT='A', PIN=[0 1 2], PACK='off'
+// Outputs:
+Output 1: A0 (boolean) = LATAbits.LATA0
+Output 2: A1 (boolean) = LATAbits.LATA1
+Output 3: A2 (boolean) = LATAbits.LATA2
+
+// Generated code:
+rtB.A0 = (LATA >> 0) & 0x01;
+rtB.A1 = (LATA >> 1) & 0x01;
+rtB.A2 = (LATA >> 2) & 0x01;</code></pre>
+
+    <h3>Packed Output Mode (PACK = 'on')</h3>
+    <p>Creates single uint16/uint32 output with all pins:</p>
+    <pre><code>// Parameters: PORT='B', PIN=[0 2 4 6], PACK='on'
+// Output:
+Output 1: B (uint16) = LATB & 0x0055
+
+// Generated code:
+rtB.B = LATB & 0x0055;  // Mask bits [6,4,2,0]
+
+// Bit positions:
+// Bit 0 = PB0 state
+// Bit 2 = PB2 state
+// Bit 4 = PB4 state
+// Bit 6 = PB6 state</code></pre>
+
+    <h2>1-Sample Delay Behavior</h2>
+
+    <h3>Execution Order</h3>
+    <pre><code>// Within same sample time (k):
+// 1. Write block executes first
+Digital_Output_Write:
+    LATA = new_value;  // Update LAT register
+
+// 2. Read block executes second (same cycle)
+Digital_Output_Read:
+    feedback = LATA;   // Reads value just written
+
+// Result: feedback = new_value (current cycle)
+// But Simulink block output updates NEXT cycle
+
+// Timing:
+// Cycle k:   Write(value_k) → LAT=value_k → Read(LAT)=value_k
+// Cycle k+1: Block output = value_k (1 sample delayed)</code></pre>
+
+    <h3>Delay Diagram</h3>
+    <pre><code>Sample:     k-1         k           k+1         k+2
+            │           │           │           │
+Write In:   │  0x01     │  0x02     │  0x04     │  0x08
+            │           │           │           │
+LAT Reg:    │  0x01     │  0x02     │  0x04     │  0x08
+            │           │           │           │
+LAT Read:   │  0x00     │  0x01     │  0x02     │  0x04
+            │  (init)   │  (k-1)    │  (k)      │  (k+1)
+            │           │           │           │
+Read Out:   │  0x00     │  0x01     │  0x02     │  0x04
+            └───────────┴───────────┴───────────┴──────
+
+// Read output always lags write input by 1 sample</code></pre>
+
+    <h2>Block Usage Examples</h2>
+
+    <h3>Example 1: Within MCHP_Digital_Output (Automatic)</h3>
+    <pre><code>// User configures master block only:
+MCHP_Digital_Output:
+    PORT: 'A'
+    PIN: [0 1 2]
+    PACK: 'off'
+    READPREVIOUS: 'on'  ← Triggers automatic instantiation
+
+// Internal structure (automatic):
+├── Digital_Output_Write (PORT='A', PIN=[0 1 2], PACK='off')
+└── Digital_Output_Read  (PORT='A', PIN=[0 1 2], PACK='off')
+
+// User sees:
+Inputs:  A0_in, A1_in, A2_in
+Outputs: A0_fb, A1_fb, A2_fb (1/z delayed)</code></pre>
+
+    <h3>Example 2: Standalone Diagnostic Read-back</h3>
+    <pre><code>// Scenario: Monitor outputs written by different block
+// Use standalone Digital_Output_Read for diagnostics
+
+// Configuration:
+PORT: 'C'
+PIN: [0 1 2 3 4 5 6 7]  // Monitor all 8 bits
+PACK: 'on'               // Single uint16 output
+
+// Application:
+// - Another block writes to PORTC
+// - This block reads LAT for verification
+// - Log output for diagnostics
+// - Compare expected vs actual state</code></pre>
+
+    <h3>Example 3: Error Detection</h3>
+    <pre><code>// Application: Detect output conflicts or failures
+// Compare commanded vs actual output state
+
+// Block 1: Digital_Output_Write
+PORT: 'D', PIN: [0 1], Command: motor_dir
+
+// Block 2: Digital_Output_Read (standalone)
+PORT: 'D', PIN: [0 1], Feedback: motor_dir_actual
+
+// Error detection logic:
+if (motor_dir != motor_dir_actual) {
+    // Output failure detected
+    // Possible short circuit, driver failure, etc.
+    trigger_error_handler();
+}</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Read-back shows unexpected values</td>
+                <td>Reading PORT instead of LAT</td>
+                <td>Verify block reads LAT register (check TLC code)</td>
+            </tr>
+            <tr>
+                <td>Values don't match write block</td>
+                <td>PIN parameter mismatch</td>
+                <td>Ensure PIN settings identical to write block</td>
+            </tr>
+            <tr>
+                <td>1-sample delay unexpected</td>
+                <td>Execution order misunderstanding</td>
+                <td>Remember: Read output = LAT(k-1), not LAT(k)</td>
+            </tr>
+            <tr>
+                <td>Packed output wrong bit positions</td>
+                <td>PACK parameter mismatch</td>
+                <td>Match PACK setting with write block</td>
+            </tr>
+            <tr>
+                <td>Output always reads zero</td>
+                <td>Pins not configured as outputs</td>
+                <td>Ensure write block sets TRIS correctly</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Validation Procedure</h3>
+    <pre><code>% MATLAB script to validate read-back configuration
+% Compare write and read block parameters
+
+write_blk = 'model/Digital_Output_Write';
+read_blk = 'model/Digital_Output_Read';
+
+% Check parameter matching
+port_match = strcmp(get_param(write_blk,'PORT'), get_param(read_blk,'PORT'));
+pin_match = strcmp(get_param(write_blk,'PIN'), get_param(read_blk,'PIN'));
+pack_match = strcmp(get_param(write_blk,'PACK'), get_param(read_blk,'PACK'));
+
+if ~(port_match && pin_match && pack_match)
+    warning('Parameter mismatch between write and read blocks!');
+    % Display differences
+end</code></pre>
+
+    <h2>Advanced Usage</h2>
+
+    <h3>Multi-Port Monitoring</h3>
+    <pre><code>// Use multiple read blocks to monitor different ports
+// Useful for system-wide output diagnostics
+
+// Block 1: Read PORT A outputs
+PORT: 'A', PIN: [0:15], PACK: 'on'
+Output: portA_state (uint16)
+
+// Block 2: Read PORT B outputs
+PORT: 'B', PIN: [0:15], PACK: 'on'
+Output: portB_state (uint16)
+
+// Combine for full system state:
+system_output_state = [portA_state, portB_state];  // uint32</code></pre>
+
+    <h3>Conditional Read-back</h3>
+    <pre><code>// Read LAT only when needed (save execution time)
+// Use enabled subsystem with read block inside
+
+if diagnostic_mode == 1
+    enable_subsystem('Diagnostics/LAT_Readback');
+    // Read block executes only in diagnostic mode
+else
+    disable_subsystem('Diagnostics/LAT_Readback');
+    // Skip LAT read for normal operation
+end</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="digital_output.html">MCHP_Digital_Output</a> - Master block (contains this block when READPREVIOUS='on')</li>
+        <li><a href="digital_output_write.html">MCHP_Digital_Output_Write</a> - Output writing block (pair with this read block)</li>
+        <li><a href="digital_input.html">MCHP_Digital_Input</a> - Digital input reading (reads PORT, not LAT)</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="../../getting_started/gpio_tutorial.html">GPIO Configuration Tutorial</a></li>
+        <li><a href="../../application_notes/lat_port_difference.html">Understanding LAT vs PORT Registers</a></li>
+        <li><a href="../../application_notes/feedback_loops.html">Implementing Feedback Loops with Read-back</a></li>
+        <li>Microchip Device Datasheet - LAT Register Description</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p>Part of the <strong>MCHP Blockset</strong> for Model-Based Design with dsPIC, PIC32, and SAM microcontrollers.</p>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_QEI - Quadrature Encoder Interface</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">MCHP Blockset</a> &gt;
+        <a href="encoders.html">Encoder & Counter Blocks</a> &gt;
+        <strong>QEI</strong>
+    </div>
+
+    <div class="header">
+        <h1>MCHP_QEI</h1>
+        <p>Quadrature Encoder Interface - Position and Velocity Measurement</p>
+    </div>
+
+    <div class="content-section">
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/digital/QEI.svg"
+             alt="QEI Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/digital/QEI.png';">
+        <div class="block-image-caption">
+            QEI Block Icon
+        </div>
+    </div>
+<h2>Overview</h2>
+        <p>The MCHP_QEI block provides an interface to the Quadrature Encoder Interface (QEI) peripheral available on dsPIC and PIC32 microcontrollers. This peripheral decodes quadrature encoder signals to measure position, direction, and velocity of rotating shafts, making it ideal for motor control and precision positioning applications.</p>
+
+        <div class="note-box">
+            <strong>Key Features:</strong>
+            <ul>
+                <li>Quadrature decoding (X2 and X4 modes)</li>
+                <li>16-bit or 32-bit position counter</li>
+                <li>Index pulse detection and position reset</li>
+                <li>Direction sensing</li>
+                <li>Programmable digital filtering</li>
+                <li>Velocity measurement (32-bit QEI only)</li>
+                <li>Multiple operating modes: encoder, pulse counter, up/down counter</li>
+                <li>Position modulo and reset options</li>
+            </ul>
+        </div>
+
+        <h3>Device Support</h3>
+        <div class="device-table">
+            <table class="parameter-table">
+                <tr>
+                    <th>Family</th>
+                    <th>QEI Type</th>
+                    <th>Max Modules</th>
+                    <th>Features</th>
+                </tr>
+                <tr>
+                    <td>dsPIC30F</td>
+                    <td>16-bit</td>
+                    <td>1-2</td>
+                    <td>Basic quadrature decoding, index reset</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33F</td>
+                    <td>16-bit</td>
+                    <td>1-2</td>
+                    <td>Basic quadrature decoding, index reset</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33E</td>
+                    <td>32-bit</td>
+                    <td>1-2</td>
+                    <td>Extended position counter, velocity measurement</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33C</td>
+                    <td>32-bit</td>
+                    <td>1-2</td>
+                    <td>Extended position counter, velocity measurement</td>
+                </tr>
+                <tr>
+                    <td>dsPIC33A</td>
+                    <td>32-bit</td>
+                    <td>1-2</td>
+                    <td>Enhanced position/velocity, advanced filtering</td>
+                </tr>
+                <tr>
+                    <td>PIC32MK</td>
+                    <td>32-bit</td>
+                    <td>1-2</td>
+                    <td>Extended features, modulo with index reset</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Block Parameters</h2>
+
+        <h3>Operating Mode</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>QEI Mode</td>
+                <td>
+                    • Quadrature Encoder<br>
+                    • External Pulse Counter<br>
+                    • External Pulse Counter with Gate<br>
+                    • External Pulse Counter with Direction
+                </td>
+                <td>Selects the QEI operating mode</td>
+            </tr>
+            <tr>
+                <td>X2/X4 Mode</td>
+                <td>on/off (16-bit QEI only)</td>
+                <td>X2: 2 counts/line, X4: 4 counts/line</td>
+            </tr>
+        </table>
+
+        <h3>Position Counter Configuration</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Position Output</td>
+                <td>
+                    • is not an output<br>
+                    • 16-bit unsigned<br>
+                    • 16-bit signed<br>
+                    • 32-bit unsigned (32-bit QEI)<br>
+                    • 32-bit signed (32-bit QEI)
+                </td>
+                <td>Position counter output datatype</td>
+            </tr>
+            <tr>
+                <td>Position Reset Mode</td>
+                <td>
+                    • Never reset<br>
+                    • Reset on INDEX<br>
+                    • Modulo between boundaries<br>
+                    • Initialize once on event
+                </td>
+                <td>Position counter reset behavior</td>
+            </tr>
+            <tr>
+                <td>Modulo Limits</td>
+                <td>[Low High] vector</td>
+                <td>Position counter modulo boundaries</td>
+            </tr>
+            <tr>
+                <td>Initial Value</td>
+                <td>Integer</td>
+                <td>Position initialization value</td>
+            </tr>
+        </table>
+
+        <h3>Index Pulse Configuration</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Index Counter Output</td>
+                <td>
+                    • is not an output<br>
+                    • 16-bit unsigned/signed<br>
+                    • 32-bit unsigned/signed
+                </td>
+                <td>Revolution counter (32-bit QEI only)</td>
+            </tr>
+            <tr>
+                <td>Index Match Value</td>
+                <td>QEA/QEB state (00, 01, 10, 11)</td>
+                <td>Encoder state when index is valid</td>
+            </tr>
+            <tr>
+                <td>Index Polarity</td>
+                <td>Active high/low</td>
+                <td>Index pulse polarity</td>
+            </tr>
+        </table>
+
+        <h3>Velocity Measurement (32-bit QEI)</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Velocity Output</td>
+                <td>
+                    • is not an output<br>
+                    • 16-bit unsigned<br>
+                    • 16-bit signed
+                </td>
+                <td>Position difference (velocity)</td>
+            </tr>
+            <tr>
+                <td>Period Output</td>
+                <td>
+                    • is not an output<br>
+                    • 16-bit unsigned<br>
+                    • 32-bit unsigned
+                </td>
+                <td>Time between encoder pulses</td>
+            </tr>
+            <tr>
+                <td>Max Period</td>
+                <td>Time (seconds)</td>
+                <td>Maximum period for velocity calculation</td>
+            </tr>
+        </table>
+
+        <h3>Signal Conditioning</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Digital Filter</td>
+                <td>on/off</td>
+                <td>Enable input signal filtering</td>
+            </tr>
+            <tr>
+                <td>Filter Cutoff Freq</td>
+                <td>Frequency (Hz)</td>
+                <td>Low-pass filter cutoff frequency</td>
+            </tr>
+            <tr>
+                <td>Swap QEA/QEB</td>
+                <td>on/off</td>
+                <td>Reverse encoder direction</td>
+            </tr>
+            <tr>
+                <td>Invert Polarity</td>
+                <td>QEA, QEB, INDEX, HOME</td>
+                <td>Invert input signal polarity</td>
+            </tr>
+        </table>
+
+        <h3>Pin Configuration (Remappable Devices)</h3>
+        <table class="parameter-table">
+            <tr>
+                <th>Pin</th>
+                <th>Function</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>QEA/QEIA</td>
+                <td>Phase A Input</td>
+                <td>Encoder channel A (or pulse input)</td>
+            </tr>
+            <tr>
+                <td>QEB/QEIB</td>
+                <td>Phase B Input</td>
+                <td>Encoder channel B (or direction input)</td>
+            </tr>
+            <tr>
+                <td>INDEX/QEINDX</td>
+                <td>Index Input</td>
+                <td>Index pulse for position reset</td>
+            </tr>
+            <tr>
+                <td>HOME/QEIHOM</td>
+                <td>Home Input</td>
+                <td>Home reference signal (optional)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>Quadrature Encoding Principles</h2>
+
+        <h3>X4 Quadrature Decoding</h3>
+        <p>In X4 mode, the QEI peripheral counts on both rising and falling edges of both channels, providing 4 counts per encoder line:</p>
+
+        <div class="diagram">
+QEA  ___┌───┐___┌───┐___┌───┐___┌───┐___
+        │   │   │   │   │   │   │   │
+        └───┘   └───┘   └───┘   └───┘
+
+QEB  ______┌───┐___┌───┐___┌───┐___┌───
+           │   │   │   │   │   │   │
+       ____└───┘   └───┘   └───┘   └───
+
+Count:  0  1  2  3  4  5  6  7  8  9  10 11 12
+
+Direction: FORWARD (QEA leads QEB by 90°)
+        </div>
+
+        <h3>X2 Quadrature Decoding (16-bit QEI)</h3>
+        <p>In X2 mode, only one edge per channel is counted, providing 2 counts per encoder line:</p>
+
+        <div class="diagram">
+QEA  ___┌───┐___┌───┐___┌───┐___┌───┐___
+        │   │   │   │   │   │   │   │
+        └───┘   └───┘   └───┘   └───┘
+
+Count:  0     1     2     3     4     5     6
+
+(Rising edges of QEA when in X2 mode)
+        </div>
+
+        <h3>Index Pulse Operation</h3>
+        <p>The index pulse provides absolute position reference. It can reset the position counter when specific conditions are met:</p>
+
+        <div class="diagram">
+QEA     ┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_
+        │ │ │ │ │ │ │ │ │ │ │ │ │ │ │ │
+QEB   __┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐_┌─┐
+
+INDEX ________________┌──────┐__________
+                      │      │
+
+Position: ... → 47 → 48 → 0 → 1 → 2 → ...
+                         ↑
+                    Reset on INDEX
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Key Registers (dsPIC)</h2>
+
+        <h3>16-bit QEI Registers (dsPIC30F/33F)</h3>
+        <div class="code-block">
+<span class="comment">// QEI Control Register</span>
+QEICONbits.QEIM   = 0b110;  <span class="comment">// X4 mode, reset on index match</span>
+QEICONbits.POSRES = 1;      <span class="comment">// Index pulse resets position</span>
+QEICONbits.SWPAB  = 0;      <span class="comment">// No swap of QEA/QEB</span>
+QEICONbits.TQCS   = 0;      <span class="comment">// Internal clock</span>
+QEICONbits.UPDN   = 1;      <span class="comment">// Direction (read-only)</span>
+
+<span class="comment">// Position Counter</span>
+POSCNT = 0;                 <span class="comment">// Current position</span>
+MAXCNT = 1999;              <span class="comment">// Modulo at 2000 (500 PPR × 4)</span>
+
+<span class="comment">// Digital Filter Control</span>
+DFLTCONbits.QECK  = 0b100;  <span class="comment">// Clock divider for filter</span>
+DFLTCONbits.QEOUT = 1;      <span class="comment">// Enable digital filter</span>
+        </div>
+
+        <h3>32-bit QEI Registers (dsPIC33E/33C/33A)</h3>
+        <div class="code-block">
+<span class="comment">// QEI Control Register</span>
+QEICONbits.QEIEN  = 1;      <span class="comment">// Enable QEI</span>
+QEICONbits.PIMOD  = 0b110;  <span class="comment">// Modulo count mode</span>
+QEICONbits.IMV    = 0b11;   <span class="comment">// Index match: QEA=1, QEB=1</span>
+QEICONbits.INTDIV = 0b011;  <span class="comment">// Velocity timer prescaler</span>
+QEICONbits.CCM    = 0b00;   <span class="comment">// Quadrature encoder mode</span>
+
+<span class="comment">// Position Counter (32-bit)</span>
+POSCNTH = 0;                <span class="comment">// Position high word</span>
+POSCNTL = 0;                <span class="comment">// Position low word</span>
+
+<span class="comment">// Modulo Limits</span>
+QEILEC = 0;                 <span class="comment">// Lower limit (32-bit)</span>
+QEIGEC = 1999;              <span class="comment">// Upper limit (32-bit)</span>
+
+<span class="comment">// I/O Control Register</span>
+QEIOCbits.SWPAB   = 0;      <span class="comment">// Swap QEA/QEB</span>
+QEIOCbits.OUTFNC  = 0b00;   <span class="comment">// No output function</span>
+QEIOCbits.QFDIV   = 0b100;  <span class="comment">// Digital filter clock divider</span>
+QEIOCbits.FLTREN  = 1;      <span class="comment">// Enable digital filter</span>
+
+<span class="comment">// Velocity/Period Capture</span>
+VELCNT = ...;               <span class="comment">// Position delta (velocity)</span>
+INTCNT = ...;               <span class="comment">// Period counter</span>
+        </div>
+
+        <h3>PIC32MK QEI Registers</h3>
+        <div class="code-block">
+<span class="comment">// Similar to dsPIC33E with additional features:</span>
+QEICONbits.PIMOD = 0b111;   <span class="comment">// Modulo + index reset (MK only)</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Examples</h2>
+
+        <h3>Example 1: 500 PPR Incremental Encoder (X4 Mode)</h3>
+        <div class="example-box">
+            <h4>Application: BLDC Motor Position Control</h4>
+            <p><strong>Hardware:</strong> 500 PPR (Pulses Per Revolution) incremental encoder</p>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>QEI Mode: Quadrature Encoder (X4)</li>
+                <li>Position Output: 16-bit signed</li>
+                <li>Position Reset: Modulo between [0, 1999]</li>
+                <li>Digital Filter: 50 kHz cutoff</li>
+            </ul>
+
+            <p><strong>Resolution Calculation:</strong></p>
+            <div class="code-block">
+<span class="comment">// 500 PPR × 4 (X4 mode) = 2000 counts/revolution</span>
+Counts_per_rev = 500 * 4 = 2000;
+Degrees_per_count = 360 / 2000 = 0.18°;
+Radians_per_count = 2*π / 2000 = 0.00314 rad;
+
+<span class="comment">// In Simulink/MATLAB</span>
+Position_rad = QEI_Position * (2*pi/2000);
+Position_deg = QEI_Position * 0.18;
+            </div>
+
+            <div class="warning-box">
+                <strong>Note:</strong> Set modulo limits to [0, 1999] so position wraps at 2000 counts (one full revolution). For signed output, use [-1000, 999] for symmetric range.
+            </div>
+        </div>
+
+        <h3>Example 2: Velocity Measurement from Position Difference</h3>
+        <div class="example-box">
+            <h4>Application: Motor Speed Feedback</h4>
+            <p><strong>Method 1: Position Difference (Simple)</strong></p>
+            <div class="code-block">
+<span class="comment">// Simulink blocks:</span>
+QEI Position → [Unit Delay] → Subtract → Velocity (counts/sample)
+               └──────────────────┘
+
+<span class="comment">// Convert to RPM (1 kHz sample rate, 2000 counts/rev)</span>
+Velocity_RPM = (Position - Position_z) * (1000 samples/s) * (60 s/min) / (2000 counts/rev)
+Velocity_RPM = Velocity_counts * 30
+            </div>
+
+            <p><strong>Method 2: Period Measurement (32-bit QEI, Better at Low Speed)</strong></p>
+            <div class="code-block">
+<span class="comment">// Use QEI period output</span>
+Period_Output: 32-bit unsigned
+Max_Period: 0.1 seconds
+
+<span class="comment">// Period in timer ticks, convert to RPM</span>
+Velocity_RPM = (60 / Max_Period) / (Period_ticks / QEI_max)
+            </div>
+
+            <div class="note-box">
+                <strong>Tip:</strong> Position difference method works well at high speeds. Period measurement (INTCNT) is better for low speeds where counts are infrequent.
+            </div>
+        </div>
+
+        <h3>Example 3: Index-Referenced Absolute Position</h3>
+        <div class="example-box">
+            <h4>Application: Multi-Turn Absolute Position with Index Pulse</h4>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>Position Output: 16-bit unsigned (0-1999)</li>
+                <li>Index Counter Output: 16-bit signed (revolution counter)</li>
+                <li>Position Reset: Reset on INDEX event</li>
+                <li>Index Match: QEA=1, QEB=1</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Absolute position calculation:</span>
+Absolute_Position_counts = (Revolution_Count * 2000) + Position_Within_Rev;
+
+<span class="comment">// In degrees:</span>
+Absolute_Position_deg = Absolute_Position_counts * 0.18;
+
+<span class="comment">// Example: After 3.5 revolutions from index</span>
+Revolution_Count = 3;
+Position_Within_Rev = 1000;  <span class="comment">// Halfway through 4th revolution</span>
+Absolute_Position_counts = (3 * 2000) + 1000 = 7000 counts
+Absolute_Position_deg = 7000 * 0.18 = 1260°
+            </div>
+
+            <div class="note-box">
+                <strong>Index Homing Procedure:</strong>
+                <ol>
+                    <li>Power on: position and revolution counters are undefined</li>
+                    <li>Rotate motor until first index pulse → counters reset to 0</li>
+                    <li>Now position is referenced to index</li>
+                    <li>Multi-turn position = (revolution × 2000) + position</li>
+                </ol>
+            </div>
+        </div>
+
+        <h3>Example 4: External Pulse Counter with Direction</h3>
+        <div class="example-box">
+            <h4>Application: Conveyor Belt Position Tracking</h4>
+            <p><strong>Hardware:</strong> Proximity sensor generates pulses, separate direction signal</p>
+            <p><strong>Configuration:</strong></p>
+            <ul>
+                <li>QEI Mode: External Pulse Counter with Direction</li>
+                <li>QEA Pin: Pulse input (proximity sensor)</li>
+                <li>QEB Pin: Direction input (forward/reverse)</li>
+                <li>Position Output: 32-bit signed</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Wiring:</span>
+<span class="comment">// QEA ← Proximity sensor pulses (1 pulse per 10 mm)</span>
+<span class="comment">// QEB ← Direction: HIGH = forward, LOW = reverse</span>
+
+<span class="comment">// Position in millimeters:</span>
+Position_mm = QEI_Position * 10;
+
+<span class="comment">// Velocity in mm/s (1 kHz sample):</span>
+Velocity_mm_s = (Position - Position_prev) * 10 * 1000;
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Troubleshooting</h2>
+
+        <h3>Common Issues and Solutions</h3>
+
+        <div class="warning-box">
+            <h4>Issue: Position Counter Counts Backward</h4>
+            <p><strong>Cause:</strong> Encoder wiring reversed (QEA and QEB swapped)</p>
+            <p><strong>Solution:</strong> Enable "Swap QEA/QEB" parameter, or physically swap encoder wires</p>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Noisy Position Reading (Jumps/Jitter)</h4>
+            <p><strong>Cause:</strong> Electrical noise on encoder signals</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Enable digital filter with appropriate cutoff frequency (set to 1/2 of max encoder frequency)</li>
+                <li>Use shielded cable for encoder wiring</li>
+                <li>Add external RC filter on encoder inputs</li>
+                <li>Check encoder power supply quality</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Missed Counts at High Speed</h4>
+            <p><strong>Cause:</strong> Encoder frequency exceeds QEI peripheral maximum input frequency</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Reduce digital filter cutoff frequency (increases max input frequency)</li>
+                <li>Check encoder frequency: Max_freq = (MCU_freq / Filter_divider) / 2</li>
+                <li>For 70 MIPS dsPIC33: with QFDIV=3, max freq ≈ 11.7 MHz / 6 = 1.95 MHz</li>
+                <li>Consider using lower resolution encoder or gear reduction</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Index Pulse Not Detected</h4>
+            <p><strong>Causes and Solutions:</strong></p>
+            <ul>
+                <li>Check INDEX pin wiring and polarity</li>
+                <li>Verify "Index Match Value" corresponds to encoder state when index is active</li>
+                <li>Ensure index pulse width is sufficient (minimum 1 QEI clock cycle)</li>
+                <li>Check that encoder is rotating through the index position</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>Issue: Position Overflow/Underflow</h4>
+            <p><strong>Cause:</strong> Position exceeds selected datatype range</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Use larger datatype (32-bit instead of 16-bit)</li>
+                <li>Use signed datatype for bidirectional motion</li>
+                <li>Enable modulo mode to wrap position at defined boundaries</li>
+                <li>Use revolution counter for multi-turn applications</li>
+            </ul>
+        </div>
+
+        <h3>Filter Cutoff Frequency Selection</h3>
+        <div class="code-block">
+<span class="comment">// Rule of thumb for filter selection:</span>
+Max_Encoder_Freq = Max_RPM * (Counts_per_Rev / 60);
+Filter_Cutoff = Max_Encoder_Freq * 2;  <span class="comment">// Nyquist criterion</span>
+
+<span class="comment">// Example: 3000 RPM motor with 500 PPR encoder (X4 = 2000 counts/rev)</span>
+Max_Encoder_Freq = 3000 * (2000 / 60) = 100 kHz
+Filter_Cutoff = 100 kHz * 2 = 200 kHz  <span class="comment">// Select ≥ 200 kHz filter</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Performance Considerations</h2>
+
+        <h3>Maximum Encoder Frequency</h3>
+        <p>The maximum encoder input frequency depends on the device clock and filter settings:</p>
+
+        <div class="code-block">
+<span class="comment">// For dsPIC33E/33C at 70 MIPS (140 MHz SYSCLK)</span>
+QEI_Clock = 140 MHz;
+Filter_Divider = [1 2 4 8 16 32 64 256] * 3;  <span class="comment">// Actual divider values</span>
+
+<span class="comment">// Maximum input frequency:</span>
+Max_Input_Freq = QEI_Clock / (Filter_Divider * 2);
+
+<span class="comment">// Examples:</span>
+<span class="comment">// QFDIV=0 (÷3):   Max = 140M / (3*2)  = 23.3 MHz</span>
+<span class="comment">// QFDIV=1 (÷6):   Max = 140M / (6*2)  = 11.7 MHz</span>
+<span class="comment">// QFDIV=7 (÷768): Max = 140M / (768*2) = 91 kHz</span>
+        </div>
+
+        <h3>Velocity Measurement Resolution</h3>
+        <p>For 32-bit QEI with period measurement:</p>
+
+        <div class="code-block">
+<span class="comment">// Period counter resolution:</span>
+Timer_Prescaler = [1 2 4 8 16 32 64 256];  <span class="comment">// INTDIV settings</span>
+Timer_Frequency = QEI_Clock / Timer_Prescaler;
+Period_Resolution = 1 / Timer_Frequency;
+
+<span class="comment">// Velocity range:</span>
+Max_Velocity = 1 / (Period_Resolution);
+Min_Velocity = 1 / (Period_Resolution * 65535);  <span class="comment">// 16-bit counter</span>
+
+<span class="comment">// Example with INTDIV=4 (÷8) at 140 MHz:</span>
+Period_Resolution = 1 / (140M / 8) = 57.1 ns
+Max_Velocity = 17.5 MHz
+Min_Velocity = 267 Hz
+        </div>
+
+        <h3>Interrupt Latency</h3>
+        <p>When using QEI interrupts for index detection or position limits:</p>
+
+        <div class="note-box">
+            <strong>Interrupt Response Time:</strong>
+            <ul>
+                <li>Typical latency: 10-20 instruction cycles</li>
+                <li>At 70 MIPS: ~140-280 ns interrupt response</li>
+                <li>Index position accuracy: ±1-2 encoder counts at maximum speed</li>
+                <li>For precise index homing: use index match value (IMV) instead of interrupt</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="qdec_samx.html"><strong>MCHP_QDEC_SAMx</strong></a> - Quadrature Decoder for SAM devices</li>
+            <li><a href="pdec.html"><strong>MCHP_PDEC</strong></a> - Position Decoder for SAM E5x/E7x (Hall sensors, stepper)</li>
+            <li><a href="change_notification.html"><strong>MCHP_CN</strong></a> - Change Notification (pin interrupt, can be used for simple encoders)</li>
+            <li><strong>MCHP_IC</strong> - Input Capture (alternative for encoder pulse timing)</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>References</h2>
+        <ul>
+            <li><strong>dsPIC30F/33F Family Reference Manual</strong> - Section 15: Quadrature Encoder Interface</li>
+            <li><strong>dsPIC33E/33C Family Reference Manual</strong> - Section 15: QEI (<a href="https://www.microchip.com/DS70601B">DS70601B</a>)</li>
+            <li><strong>dsPIC33A Family Reference Manual</strong> - Section 15: QEI Module</li>
+            <li><strong>PIC32MK Family Reference Manual</strong> - Section 22: QEI</li>
+            <li><strong><a href="https://www.microchip.com/AN1078">AN1078</a>:</strong> Sensorless Field Oriented Control (Application Note using QEI)</li>
+            <li><strong><a href="https://www.microchip.com/AN1162">AN1162</a>:</strong> Sensored FOC for PMSM/BLDC (QEI-based motor control)</li>
+        </ul>
+    </div>
+
+    <div class="content-section" style="background-color: #f8f9fa; border-top: 3px solid #667eea; margin-top: 40px;">
+        <p><strong>See Also:</strong> <a href="encoders.html">Encoder & Counter Blocks Overview</a> | <a href="../index.html">MCHP Blockset Documentation</a></p>
+        <p style="color: #666; font-size: 0.9em;">Last Updated: 2024 | MCHP Blockset for MATLAB/Simulink</p>
+    </div>
+    </div>
+</body>
+</html>

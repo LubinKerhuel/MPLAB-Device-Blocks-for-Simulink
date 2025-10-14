@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_IC - Input Capture Block</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>MCHP_IC - Input Capture Block</h1>
+        <p class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="../index.html">Block Reference</a> &gt;
+            <a href="../timers.html">Timer Blocks</a> &gt;
+            Input Capture
+        </p>
+    </div>
+
+    <div class="container">
+        <section id="description">
+            
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/timers/InputCapture.svg"
+             alt="InputCapture Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/timers/InputCapture.png';">
+        <div class="block-image-caption">
+            InputCapture Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+            <p>
+                The <strong>MCHP_IC</strong> block captures hardware timer values when external events occur on input pins. It enables precise measurement of pulse widths, periods, frequencies, and event timestamps using dedicated Input Capture peripheral modules.
+            </p>
+            <p>
+                Each IC channel can detect rising edges, falling edges, or both, and automatically capture the associated timer value. This is ideal for encoder interfaces, frequency measurement, and event timing applications.
+            </p>
+            <div class="note">
+                <strong>Key Feature:</strong> Hardware-based event capture with no CPU overhead, providing microsecond-level timing accuracy.
+            </div>
+        </section>
+
+        <section id="device-support">
+            <h2>Supported Device Families</h2>
+            <table class="device-table">
+                <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>IC Channels</th>
+                        <th>Edge Detection</th>
+                        <th>Timer Association</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>dsPIC33F/33E</td>
+                        <td>IC1-IC8</td>
+                        <td>Rising, Falling, Both</td>
+                        <td>Timer2/Timer3</td>
+                    </tr>
+                    <tr>
+                        <td>dsPIC33C/33A</td>
+                        <td>IC1-IC16 (device dependent)</td>
+                        <td>Rising, Falling, Both</td>
+                        <td>Timer1-Timer5</td>
+                    </tr>
+                    <tr>
+                        <td>PIC24F</td>
+                        <td>IC1-IC9</td>
+                        <td>Rising, Falling, Both</td>
+                        <td>Timer2/Timer3</td>
+                    </tr>
+                    <tr>
+                        <td>PIC32MK</td>
+                        <td>IC1-IC9</td>
+                        <td>Rising, Falling, Both</td>
+                        <td>Timer2/Timer3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="parameters">
+            <h2>Configuration Parameters</h2>
+
+            <h3>Channel Selection</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Channel</code></td>
+                        <td>IC channel numbers to use</td>
+                        <td>[1 2 3] for IC1, IC2, IC3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Capture Mode</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Mode Value</th>
+                        <th>Description</th>
+                        <th>Captures</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 (0x001)</td>
+                        <td>Edge detect, every edge</td>
+                        <td>Every rising or falling edge</td>
+                    </tr>
+                    <tr>
+                        <td>2 (0x002)</td>
+                        <td>Edge detect, every 4th edge</td>
+                        <td>Every 4th rising or falling edge</td>
+                    </tr>
+                    <tr>
+                        <td>3 (0x003)</td>
+                        <td>Edge detect, every 16th edge</td>
+                        <td>Every 16th rising or falling edge</td>
+                    </tr>
+                    <tr>
+                        <td>4 (0x004)</td>
+                        <td>Capture rising edge only</td>
+                        <td>Timer value on rising edge</td>
+                    </tr>
+                    <tr>
+                        <td>5 (0x005)</td>
+                        <td>Capture falling edge only</td>
+                        <td>Timer value on falling edge</td>
+                    </tr>
+                    <tr>
+                        <td>6 (0x006)</td>
+                        <td>Capture every 4th rising edge</td>
+                        <td>Every 4th rising edge</td>
+                    </tr>
+                    <tr>
+                        <td>7 (0x007)</td>
+                        <td>Capture every 16th rising edge</td>
+                        <td>Every 16th rising edge</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Measurement Configuration</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Channel_UP_Down_Periode</code></td>
+                        <td>Measurement type per channel</td>
+                        <td>
+                            <ul>
+                                <li>3: Pulse width (up & down)</li>
+                                <li>5: Pulse up + period</li>
+                                <li>10: Pulse down + period</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>ChangeDetect</code></td>
+                        <td>Output only when value changes</td>
+                        <td>ON/OFF per channel</td>
+                    </tr>
+                    <tr>
+                        <td><code>Timer_Ref</code></td>
+                        <td>Associated timer for each channel</td>
+                        <td>Timer index or -2 for system timer</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Pin Mapping (for remappable devices)</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>PIN_IC1</code> ... <code>PIN_IC16</code></td>
+                        <td>Remappable pin selection for each IC channel (dsPIC33E/C/A, PIC32)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="outputs">
+            <h2>Block Inputs/Outputs</h2>
+            <p><strong>Inputs:</strong> None (captures from hardware pins)</p>
+            <p><strong>Outputs:</strong> Dynamic based on configuration</p>
+            <ul>
+                <li><code>IC1_Up</code>, <code>IC1_Down</code> - Pulse width measurements (mode 3)</li>
+                <li><code>IC1_Up</code>, <code>IC1_Period</code> - Pulse and period (mode 5)</li>
+                <li><code>IC1_Down</code>, <code>IC1_Period</code> - Down pulse and period (mode 10)</li>
+            </ul>
+            <p>Output values in timer ticks. Use <code>ICxmax</code> workspace variable for scaling.</p>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation Details</h2>
+
+            <h3>Register Configuration (dsPIC)</h3>
+            <ul>
+                <li><strong>ICxCON1</strong> register:
+                    <ul>
+                        <li>ICSIDL = 0 (continue in idle mode)</li>
+                        <li>ICTMR = timer selection (0=Timer3, 1=Timer2, others device-specific)</li>
+                        <li>ICI = interrupt prescaler</li>
+                        <li>ICM = capture mode (0x1-0x7)</li>
+                    </ul>
+                </li>
+                <li><strong>ICxBUF</strong> - Capture buffer (read-only, contains timer value)</li>
+                <li><strong>ICxCON2</strong> (33C/33A) - Additional control bits, trigger synchronization</li>
+            </ul>
+
+            <h3>Interrupt Handling</h3>
+            <p>IC interrupts trigger on each capture event:</p>
+            <ol>
+                <li>Edge detected on ICx pin</li>
+                <li>Timer value captured to ICxBUF</li>
+                <li>IC interrupt flag set (IFS)</li>
+                <li>ISR reads ICxBUF and processes measurement</li>
+                <li>Measurement output updated (pulse width, period, etc.)</li>
+            </ol>
+
+            <h3>Timing Calculation</h3>
+            <pre><code>% Pulse width measurement (mode 3)
+RisingEdge_Time = IC_RisingCapture / Timer_Frequency;
+FallingEdge_Time = IC_FallingCapture / Timer_Frequency;
+PulseWidth = FallingEdge_Time - RisingEdge_Time;
+
+% Period measurement (mode 5)
+Period = (IC_CurrentCapture - IC_PreviousCapture) / Timer_Frequency;
+</code></pre>
+        </section>
+
+        <section id="examples">
+            <h2>Usage Examples</h2>
+
+            <h3>Example 1: Quadrature Encoder Interface</h3>
+            <pre><code>% Measure encoder pulses on IC1 and IC2
+Channel: [1 2]
+Capture Mode: [4 4]  % Rising edge only on both
+Channel_UP_Down_Periode: [3 3]  % Pulse measurement
+Timer_Ref: [2 2]  % Both use Timer2
+Change Detect: [ON ON]  % Output only on changes
+</code></pre>
+            <p><strong>Result:</strong> Captures encoder A/B channel transitions for position/speed calculation.</p>
+
+            <h3>Example 2: Frequency Measurement</h3>
+            <pre><code>% Measure signal frequency on IC1
+Channel: 1
+Capture Mode: 4  % Rising edge
+Channel_UP_Down_Periode: 5  % Pulse + period
+Timer_Ref: 3  % Timer3 with maximum range
+</code></pre>
+            <p><strong>Result:</strong> Outputs pulse width and period. Frequency = 1 / (Period_ticks / Timer_Freq)</p>
+
+            <h3>Example 3: PWM Duty Cycle Measurement</h3>
+            <pre><code>% Measure PWM duty cycle
+Channel: 1
+Capture Mode: 1  % Every edge (rising and falling)
+Channel_UP_Down_Periode: 5  % Up time + period
+</code></pre>
+            <p><strong>Result:</strong> DutyCycle = (PulseWidth / Period) * 100%</p>
+
+            <h3>Example 4: Event Timestamping</h3>
+            <pre><code>% Timestamp external events
+Channel: [1 2 3]  % Three event sources
+Capture Mode: [4 4 4]  % Rising edge trigger
+Timer_Ref: [-2 -2 -2]  % Use high-resolution system timer
+</code></pre>
+            <p><strong>Result:</strong> Precise event timestamps for synchronization or logging.</p>
+        </section>
+
+        <section id="timing">
+            <h2>Timing Considerations</h2>
+
+            <h3>Timer Selection Guidelines</h3>
+            <ul>
+                <li><strong>High-frequency signals:</strong> Use Timer2/3 with 1:1 prescaler for best resolution</li>
+                <li><strong>Low-frequency signals:</strong> Use higher prescaler or 32-bit timer mode to avoid overflow</li>
+                <li><strong>Multiple channels:</strong> Share same timer when measuring related signals</li>
+            </ul>
+
+            <h3>Maximum Measurable Period</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Timer Config</th>
+                        <th>Max Period @ 60MHz Fcy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>16-bit, 1:1 prescaler</td><td>1.09 ms</td></tr>
+                    <tr><td>16-bit, 1:256 prescaler</td><td>280 ms</td></tr>
+                    <tr><td>32-bit mode</td><td>71.6 seconds</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Interrupt Latency</h3>
+            <ul>
+                <li>IC interrupt priority should be high for accurate measurements</li>
+                <li>Typical latency: 10-20 instruction cycles (dsPIC)</li>
+                <li>Use change detect to reduce output update rate if needed</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+
+            <h3>No Capture Events</h3>
+            <p><strong>Check:</strong></p>
+            <ul>
+                <li>Input signal connected to correct IC pin</li>
+                <li>Pin configured as input (check PPS mapping)</li>
+                <li>Signal levels meet input threshold (typically 0.3VDD to 0.7VDD)</li>
+                <li>Capture mode matches signal characteristics</li>
+            </ul>
+
+            <h3>Incorrect Measurements</h3>
+            <p><strong>Check:</strong></p>
+            <ul>
+                <li>Timer frequency configuration matches actual clock</li>
+                <li>Timer not shared with conflicting peripheral</li>
+                <li>ICxmax variable correctly scaled for unit conversion</li>
+                <li>Capture mode appropriate for signal type</li>
+            </ul>
+
+            <h3>Overflow Issues</h3>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Increase timer prescaler for longer periods</li>
+                <li>Use 32-bit timer mode (if available)</li>
+                <li>Reduce edge prescaler (capture every edge instead of every 4th/16th)</li>
+            </ul>
+        </section>
+
+        <section id="related">
+            <h2>Related Blocks</h2>
+            <ul class="related-blocks">
+                <li><a href="timer_config.html">MCHP_TIMER_Config</a> - Configure timer timebase for IC</li>
+                <li><a href="output_compare_hw.html">MCHP_OC_HW</a> - Output Compare for PWM generation</li>
+                <li><a href="../encoders.html">MCHP_QEI</a> - Dedicated quadrature encoder interface</li>
+                <li><a href="../digital_io/digital_input.html">MCHP_Digital_Input</a> - General digital input (no timing)</li>
+            </ul>
+        </section>
+
+        <section id="see-also">
+            <h2>See Also</h2>
+            <ul>
+                <li><a href="../../examples/encoder_interface.html">Encoder Interface Examples</a></li>
+                <li><a href="../../examples/frequency_measurement.html">Frequency Measurement Examples</a></li>
+                <li>Microchip Family Reference Manual: Input Capture module</li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Microchip Technology Inc.</p>
+    </div>
+    </div>
+</body>
+</html>

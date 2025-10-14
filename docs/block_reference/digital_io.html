@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital I/O Blocks - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="index.html">Block Reference</a> &gt; Digital I/O Blocks
+    </div>
+
+    <h1>Digital I/O Blocks</h1>
+
+    <h2>Overview</h2>
+    <p>
+        Digital I/O blocks provide comprehensive GPIO (General Purpose Input/Output) pin control for Microchip microcontrollers.
+        These blocks support advanced features including <strong>packed/individual pin modes</strong>, <strong>electrical configuration</strong>
+        (pull-up, pull-down, open-drain), and <strong>read-back capability</strong> for output verification.
+    </p>
+
+    <div class="note">
+        <strong>Key Features:</strong>
+        <ul>
+            <li><strong>Flexible I/O modes:</strong> Individual boolean signals or packed uint16/uint32</li>
+            <li><strong>Electrical configuration:</strong> Pull-up/pull-down resistors, open-drain outputs</li>
+            <li><strong>Atomic updates:</strong> Simultaneous write mode for glitch-free port changes</li>
+            <li><strong>Read-back capability:</strong> Verify output state with 1-sample delay</li>
+            <li><strong>All device families:</strong> dsPIC30F/33F/33E/33C/33A, PIC24, PIC32, SAM (ARM)</li>
+        </ul>
+    </div>
+
+    <h2>Available Blocks</h2>
+
+    <h3>Input Block</h3>
+    <ul>
+        <li>
+            <a href="digital_io/digital_input.html" class="block-link">MCHP_Digital_Input</a> - Read GPIO input pins
+            <ul>
+                <li>Individual or packed (uint16/uint32) outputs</li>
+                <li>Pull-up/pull-down configuration (dsPIC33C/A, PIC32)</li>
+                <li>All device ports supported (A-K)</li>
+                <li><strong>Use for:</strong> Buttons, switches, sensors, parallel data input</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Output Blocks</h3>
+    <ul>
+        <li>
+            <a href="digital_io/digital_output.html" class="block-link">MCHP_Digital_Output</a> - Master output control with optional read-back
+            <ul>
+                <li><strong>Composite block:</strong> Contains Digital_Output_Write + optional Digital_Output_Read</li>
+                <li>Dynamic subsystem management based on READPREVIOUS parameter</li>
+                <li>1-sample delayed feedback for state verification</li>
+                <li><strong>Use for:</strong> LEDs, relays, motor control, any output needing verification</li>
+            </ul>
+        </li>
+        <li>
+            <a href="digital_io/digital_output_write.html" class="block-link">MCHP_Digital_Output_Write</a> - Direct GPIO output writing
+            <ul>
+                <li>LAT register control for output pin states</li>
+                <li>Simultaneous (atomic) write mode for multi-pin updates</li>
+                <li>Initial value configuration</li>
+                <li>Open-drain or push-pull output modes (device dependent)</li>
+                <li><strong>Use for:</strong> High-performance output control, stepper motors, LED matrices</li>
+            </ul>
+        </li>
+        <li>
+            <a href="digital_io/digital_output_read.html" class="block-link">MCHP_Digital_Output_Read</a> - Read output pin states
+            <ul>
+                <li>Reads LAT register (actual output state, not pin state)</li>
+                <li>Typically used within MCHP_Digital_Output master block</li>
+                <li>Provides 1-sample delayed feedback</li>
+                <li><strong>Use for:</strong> Output verification, diagnostics, error detection</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Block Selection Guide</h2>
+    <table>
+        <tr>
+            <th>Your Need</th>
+            <th>Recommended Block</th>
+            <th>Key Features</th>
+        </tr>
+        <tr>
+            <td>Read buttons or sensors</td>
+            <td><a href="digital_io/digital_input.html">MCHP_Digital_Input</a></td>
+            <td>Pull-up/down config, debouncing support</td>
+        </tr>
+        <tr>
+            <td>Control LEDs with feedback</td>
+            <td><a href="digital_io/digital_output.html">MCHP_Digital_Output</a></td>
+            <td>Auto read-back, state verification</td>
+        </tr>
+        <tr>
+            <td>High-speed output control</td>
+            <td><a href="digital_io/digital_output_write.html">MCHP_Digital_Output_Write</a></td>
+            <td>Direct LAT access, atomic writes</td>
+        </tr>
+        <tr>
+            <td>Verify output states</td>
+            <td><a href="digital_io/digital_output_read.html">MCHP_Digital_Output_Read</a></td>
+            <td>LAT register reading, diagnostics</td>
+        </tr>
+        <tr>
+            <td>Parallel data bus</td>
+            <td><a href="digital_io/digital_input.html">MCHP_Digital_Input</a> (packed mode)</td>
+            <td>Single uint16/uint32 for 8-32 bits</td>
+        </tr>
+        <tr>
+            <td>Stepper motor control</td>
+            <td><a href="digital_io/digital_output_write.html">MCHP_Digital_Output_Write</a> (simultaneous)</td>
+            <td>Atomic 4-phase updates</td>
+        </tr>
+    </table>
+
+    <h2>Common Features Across All Blocks</h2>
+
+    <h3>Port and Pin Selection</h3>
+    <ul>
+        <li><strong>All device ports:</strong> A, B, C, D, E, F, G, H, J, K (device dependent)</li>
+        <li><strong>Pin numbers:</strong> 0-15 (16-bit devices) or 0-31 (32-bit devices)</li>
+        <li><strong>Multiple pins:</strong> Vector support: [0 1 2 3] for 4-pin control</li>
+        <li><strong>Automatic validation:</strong> Blocks check pin availability for selected device</li>
+    </ul>
+
+    <h3>Packed vs Individual Modes</h3>
+    <table>
+        <tr>
+            <th>Mode</th>
+            <th>Data Type</th>
+            <th>Simulink Signals</th>
+            <th>Best For</th>
+        </tr>
+        <tr>
+            <td><strong>Individual</strong> (PACK='off')</td>
+            <td>Boolean per pin</td>
+            <td>Separate signal per pin</td>
+            <td>Simple on/off control, separate logic paths</td>
+        </tr>
+        <tr>
+            <td><strong>Packed</strong> (PACK='on')</td>
+            <td>uint16 or uint32</td>
+            <td>Single signal, bits = pins</td>
+            <td>Parallel buses, pattern outputs, bit manipulation</td>
+        </tr>
+    </table>
+
+    <h3>Electrical Configuration (Device Dependent)</h3>
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>Supported Devices</th>
+            <th>Registers</th>
+            <th>Use Case</th>
+        </tr>
+        <tr>
+            <td><strong>Pull-up Resistors</strong></td>
+            <td>dsPIC33C/A, PIC32</td>
+            <td>CNPUx</td>
+            <td>Buttons without external resistors</td>
+        </tr>
+        <tr>
+            <td><strong>Pull-down Resistors</strong></td>
+            <td>dsPIC33C/A, PIC32</td>
+            <td>CNPDx</td>
+            <td>Active-high sensor inputs</td>
+        </tr>
+        <tr>
+            <td><strong>Open-Drain Outputs</strong></td>
+            <td>dsPIC33C/A, PIC32</td>
+            <td>ODCx</td>
+            <td>I2C, multi-voltage interfaces</td>
+        </tr>
+        <tr>
+            <td><strong>Push-Pull Outputs</strong></td>
+            <td>All devices</td>
+            <td>Default mode</td>
+            <td>LEDs, standard logic outputs</td>
+        </tr>
+    </table>
+
+    <h2>Device Family Support</h2>
+    <table>
+        <tr>
+            <th>Device Family</th>
+            <th>Port Width</th>
+            <th>Pull-up/Down</th>
+            <th>Open-Drain</th>
+            <th>Special Features</th>
+        </tr>
+        <tr>
+            <td>dsPIC30F</td>
+            <td>16-bit</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Basic GPIO</td>
+        </tr>
+        <tr>
+            <td>dsPIC33F/E, PIC24H/E</td>
+            <td>16-bit</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Standard GPIO</td>
+        </tr>
+        <tr>
+            <td>dsPIC33C/CH/CK</td>
+            <td>16-bit</td>
+            <td>Yes (CNPU/CNPD)</td>
+            <td>Yes (ODC)</td>
+            <td>Enhanced electrical config</td>
+        </tr>
+        <tr>
+            <td>dsPIC33A</td>
+            <td>16-bit (ports)</td>
+            <td>Yes (CNPU/CNPD)</td>
+            <td>Yes (ODC)</td>
+            <td>Full feature set</td>
+        </tr>
+        <tr>
+            <td>PIC32MX/MZ/MK</td>
+            <td>32-bit</td>
+            <td>Yes (CNPU/CNPD)</td>
+            <td>Yes (ODC)</td>
+            <td>32-bit wide ports</td>
+        </tr>
+        <tr>
+            <td>SAM E5x/E7x/C2x</td>
+            <td>32-bit</td>
+            <td>Yes (PIO config)</td>
+            <td>Yes (PIO config)</td>
+            <td>ARM PIO controller</td>
+        </tr>
+    </table>
+
+    <h2>Implementation Patterns</h2>
+
+    <h3>Register Overview</h3>
+    <pre><code>// dsPIC/PIC32 GPIO Registers (per port, e.g., PORTA)
+TRISx   - Data direction (0=output, 1=input)
+PORTx   - Read pin state (inputs)
+LATx    - Output latch (outputs)
+ODCx    - Open-drain control (1=open-drain, 0=push-pull)
+CNPUx   - Pull-up enable (1=enabled)
+CNPDx   - Pull-down enable (1=enabled)
+
+// Register usage patterns
+// Input: Set TRIS=1, read PORT
+// Output: Set TRIS=0, write LAT
+// Output read-back: Read LAT (not PORT)
+</code></pre>
+
+    <h3>Common Usage Patterns</h3>
+
+    <h4>Pattern 1: Button Input with Pull-up</h4>
+    <pre><code>% MCHP_Digital_Input block
+PORT: 'B'
+PIN: [0 1 2]            % Three buttons on RB0-RB2
+PACK: 'off'             % Individual boolean outputs
+INPUT_PIN_MODE: 'Pull-up'  % Internal pull-up resistors
+
+% Result: 3 boolean outputs, active-low (pressed = 0)
+</code></pre>
+
+    <h4>Pattern 2: LED Control with Verification</h4>
+    <pre><code>% MCHP_Digital_Output block (master)
+PORT: 'A'
+PIN: [0 1 2 3]          % Four LEDs
+PACK: 'off'
+READPREVIOUS: 'on'      % Enable read-back
+INIT_VALUE: [0 0 0 0]   % Start with LEDs off
+
+% Result: 4 inputs (LED control) + 4 outputs (state feedback)
+% Outputs provide 1-sample delayed verification
+</code></pre>
+
+    <h4>Pattern 3: Stepper Motor Phase Control</h4>
+    <pre><code>% MCHP_Digital_Output_Write block (direct)
+PORT: 'C'
+PIN: [0 1 2 3]          % 4-phase stepper
+PACK: 'on'              % Single uint16 input for phase patterns
+SIMULTANEOUS: 'on'      % Atomic write (no glitches)
+OUTPUT_PIN_MODE: 'Push-pull'
+
+% Input patterns (uint16):
+% 0b0001, 0b0010, 0b0100, 0b1000 - Full step
+% Simultaneous write prevents intermediate states
+</code></pre>
+
+    <h2>Related Blocks</h2>
+    <ul>
+        <li><a href="pwm/pwm_standard.html"><strong>MCHP_PWM</strong></a> - Dedicated PWM for analog-like control</li>
+        <li><a href="timers/output_compare_hw.html"><strong>MCHP_OC_HW</strong></a> - Hardware timed output control</li>
+        <li><a href="timers/input_capture.html"><strong>MCHP_IC</strong></a> - Precise input timing measurement</li>
+        <li><a href="communication.html"><strong>Communication Blocks</strong></a> - UART, SPI, I2C for serial I/O</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><strong>Device Datasheet:</strong> I/O Ports chapter (register details)</li>
+        <li><strong>Getting Started Guide:</strong> Basic GPIO configuration examples</li>
+        <li><strong>Application Notes:</strong>
+            <ul>
+                <li><a href="https://www.microchip.com/AN1094">AN1094</a> - "Using PIC18 I/O Pins" (concepts apply to dsPIC/PIC32)</li>
+                <li><a href="https://www.microchip.com/AN1890">AN1890</a> - "Safe I/O Pin Design"</li>
+            </ul>
+        </li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        <p><a href="index.html">Block Reference Home</a> | <a href="../getting_started/overview.html">Getting Started</a></p>
+    </footer>
+    </div>
+</body>
+</html>

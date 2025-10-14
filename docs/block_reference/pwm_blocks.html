@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWM Blocks - Block Reference</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>PWM Blocks Reference</h1>
+    <p>Comprehensive PWM (Pulse Width Modulation) blocks for motor control, power conversion, and signal generation across all MCHP Blockset supported families.</p>
+
+    <div class="note">
+        <strong>Quick Selection:</strong>
+        <ul>
+            <li><strong>dsPIC30F/33F/33E:</strong> → <a href="pwm/pwm_standard.html">MCHP_PWM</a></li>
+            <li><strong>dsPIC33C/CH/CK:</strong> → <a href="pwm/pwm_high_speed.html">MCHP_PWM_HighSpeed</a></li>
+            <li><strong>dsPIC33A:</strong> → <a href="pwm/pwm_hs_fep.html">MCHP_PWM_HS_FEP</a></li>
+            <li><strong>SAM/ARM:</strong> → <a href="pwm/pwm_sam7x.html">MCHP_PWM_SAM7x</a> or <a href="pwm/tcc_pwm.html">MCHP_TCC_PWM</a></li>
+        </ul>
+    </div>
+
+    <h2>dsPIC Family PWM Blocks</h2>
+    <div class="block-list">
+        <a href="pwm/pwm_standard.html">
+            <strong>MCHP_PWM</strong> - Standard PWM<br>
+            <small>Basic PWM for dsPIC30F/33F/33E with dead-time and fault protection</small><br>
+            <span class="family-badge">dsPIC30F</span> <span class="family-badge">dsPIC33F</span> <span class="family-badge">dsPIC33E</span>
+        </a>
+
+        <a href="pwm/pwm_high_speed.html">
+            <strong>MCHP_PWM_HighSpeed</strong> - High-Speed PWM<br>
+            <small>Advanced PWM with independent time bases and 4 output modes</small><br>
+            <span class="family-badge">dsPIC33C</span> <span class="family-badge">dsPIC33CH</span> <span class="family-badge">dsPIC33CK</span>
+        </a>
+
+        <a href="pwm/pwm_hs_override.html">
+            <strong>MCHP_PWM_HighSpeed_Override</strong> - PWM Override Control<br>
+            <small>Manual override for emergency shutdown and diagnostics</small><br>
+            <span class="family-badge">dsPIC33C/CH/CK</span>
+        </a>
+
+        <a href="pwm/pwm_hs_fep.html">
+            <strong>MCHP_PWM_HS_FEP</strong> - High-Speed PWM with Fine Edge Positioning<br>
+            <small>Latest generation with 16× resolution (High-Resolution mode)</small><br>
+            <span class="family-badge">dsPIC33A</span>
+        </a>
+    </div>
+
+    <h2>Motor Control PWM</h2>
+    <div class="block-list">
+        <a href="pwm/mcpwm.html">
+            <strong>MCHP_MCPWM</strong> - Motor Control PWM<br>
+            <small>Advanced fault handling, dead-time compensation, leading-edge blanking</small><br>
+            <span class="family-badge">PIC32MK</span> <span class="family-badge">dsPIC33C</span> <span class="family-badge">dsPIC33A</span>
+        </a>
+    </div>
+
+    <h2>SAM/ARM Family PWM Blocks</h2>
+    <div class="block-list">
+        <a href="pwm/pwm_sam7x.html">
+            <strong>MCHP_PWM_SAM7x</strong> - SAM7x PWM<br>
+            <small>PWM peripheral for SAME5x/SAME7x/SAMC2x/SAMD2x families</small><br>
+            <span class="family-badge">SAME5x</span> <span class="family-badge">SAME7x</span> <span class="family-badge">SAMC2x</span> <span class="family-badge">SAMD2x</span>
+        </a>
+
+        <a href="pwm/pwm_sam7x_override.html">
+            <strong>MCHP_PWM_SAM7x_Override</strong> - SAM7x Override<br>
+            <small>Override control for SAM7x PWM outputs</small><br>
+            <span class="family-badge">SAM7x</span>
+        </a>
+
+        <a href="pwm/tcc_pwm.html">
+            <strong>MCHP_TCC_PWM</strong> - Timer/Counter for Control PWM<br>
+            <small>TCC-based PWM with pattern generation for BLDC motors</small><br>
+            <span class="family-badge">SAME5x</span> <span class="family-badge">SAMC2x</span> <span class="family-badge">SAMD2x</span>
+        </a>
+    </div>
+
+    <h2>Common Features</h2>
+    <ul>
+        <li><strong>Output Modes:</strong> Complementary, Redundant, Push-Pull, Independent</li>
+        <li><strong>Alignment:</strong> Edge-aligned, Center-aligned (symmetric/asymmetric)</li>
+        <li><strong>Dead-Time:</strong> Configurable insertion for shoot-through protection</li>
+        <li><strong>Fault Protection:</strong> Hardware fault inputs with configurable response</li>
+        <li><strong>ADC Synchronization:</strong> Trigger outputs for precise current sampling</li>
+        <li><strong>High Resolution:</strong> Up to 16× enhanced timing precision (selected blocks)</li>
+    </ul>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="index.html">Block Reference Home</a></li>
+        <li><a href="adc_blocks.html">ADC Blocks</a></li>
+        <li><a href="../motor_control_guide.html">Motor Control Application Guide</a></li>
+        <li><a href="../examples/pwm_examples.html">PWM Examples</a></li>
+    </ul>
+    </div>
+</body>
+</html>

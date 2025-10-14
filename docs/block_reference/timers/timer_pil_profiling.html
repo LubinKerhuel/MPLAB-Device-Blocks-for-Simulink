@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_TIMER_PIL_Profiling - PIL Timing Profiler</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="header">
+        <h1>MCHP_TIMER_PIL_Profiling - PIL Timing Profiler</h1>
+        <p class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="../index.html">Block Reference</a> &gt;
+            <a href="../timers.html">Timer Blocks</a> &gt;
+            PIL Profiling
+        </p>
+    </div>
+
+    <div class="container">
+        <section id="description">
+            
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/timers/Timer_PIL_Profiling.svg"
+             alt="Timer_PIL_Profiling Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/timers/Timer_PIL_Profiling.png';">
+        <div class="block-image-caption">
+            Timer_PIL_Profiling Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+            <p>
+                The <strong>MCHP_TIMER_PIL_Profiling</strong> block enables precise code execution timing measurement during Processor-in-the-Loop (PIL) simulations. It uses hardware timers to measure actual execution time of Simulink subsystems or blocks on target hardware.
+            </p>
+            <p>
+                This block is essential for performance profiling, real-time constraint verification, and optimization of embedded code. It provides microsecond-level timing accuracy using the target's hardware timer peripheral.
+            </p>
+        </section>
+
+        <section id="device-support">
+            <h2>Supported Device Families</h2>
+            <table class="device-table">
+                <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>Timer Used</th>
+                        <th>Resolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>dsPIC30/33F/33E/33C/33A</td><td>Timer1 (typically)</td><td>Instruction cycle</td></tr>
+                    <tr><td>PIC24F</td><td>Timer1</td><td>Instruction cycle</td></tr>
+                    <tr><td>PIC32</td><td>Core Timer (CP0)</td><td>CPU cycle</td></tr>
+                    <tr><td>SAMx (ARM)</td><td>SysTick or TC</td><td>CPU cycle</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="parameters">
+            <h2>Configuration Parameters</h2>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>ProfileMode</code></td>
+                        <td>Timing measurement mode: Start/Stop markers or continuous</td>
+                        <td>Start/Stop</td>
+                    </tr>
+                    <tr>
+                        <td><code>TimerSource</code></td>
+                        <td>Hardware timer selection for profiling</td>
+                        <td>Automatic</td>
+                    </tr>
+                    <tr>
+                        <td><code>OutputUnits</code></td>
+                        <td>Time output format (seconds, milliseconds, microseconds, ticks)</td>
+                        <td>microseconds</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="usage">
+            <h2>Block Inputs/Outputs</h2>
+            <p><strong>Inputs:</strong> None (profiling markers inserted automatically)</p>
+            <p><strong>Outputs:</strong></p>
+            <ul>
+                <li><code>ExecutionTime</code> - Measured execution time in selected units</li>
+                <li><code>OverflowFlag</code> - Indicates timer overflow (measurement invalid)</li>
+            </ul>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation Details</h2>
+            <h3>Profiling Mechanism</h3>
+            <ol>
+                <li><strong>Start Marker:</strong> Captures timer value before code execution</li>
+                <li><strong>Code Execution:</strong> Target code runs normally</li>
+                <li><strong>Stop Marker:</strong> Captures timer value after execution</li>
+                <li><strong>Calculation:</strong> Elapsed time = (Stop - Start) / Timer Frequency</li>
+            </ol>
+
+            <h3>Timer Resolution by Family</h3>
+            <ul>
+                <li><strong>dsPIC @ 60MHz Fcy:</strong> 16.67ns per tick (1:1 prescaler)</li>
+                <li><strong>PIC32 @ 200MHz:</strong> 5ns per CPU cycle</li>
+                <li><strong>SAMx7 @ 300MHz:</strong> 3.33ns per CPU cycle</li>
+            </ul>
+        </section>
+
+        <section id="examples">
+            <h2>Usage Examples</h2>
+            <h3>Example 1: Measure Subsystem Execution Time</h3>
+            <pre><code>1. Place MCHP_TIMER_PIL_Profiling block in model
+2. Configure for Start/Stop mode
+3. Build and run PIL simulation
+4. Monitor ExecutionTime output signal
+</code></pre>
+
+            <h3>Example 2: Verify Real-Time Constraints</h3>
+            <pre><code>% MATLAB verification script
+maxAllowedTime = 100; % microseconds
+if ExecutionTime > maxAllowedTime
+    warning('Real-time constraint violated!');
+end
+</code></pre>
+        </section>
+
+        <section id="related">
+            <h2>Related Blocks</h2>
+            <ul class="related-blocks">
+                <li><a href="timer_config.html">MCHP_TIMER_Config</a> - Timer resource configuration</li>
+                <li><a href="../../user_guide/pil_testing.html">PIL Testing Guide</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Microchip Technology Inc.</p>
+    </div>
+    </div>
+</body>
+</html>

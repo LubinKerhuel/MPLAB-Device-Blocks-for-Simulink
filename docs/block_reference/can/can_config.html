@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CAN Config - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Block Reference</a> &gt;
+            <a href="./can.html">CAN Blocks</a> &gt;
+            CAN Config
+        </div>
+
+        <h1>CAN Config</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/bus_can/CAN_Config.svg"
+             alt="CAN_Config Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/bus_can/CAN_Config.png';">
+        <div class="block-image-caption">
+            CAN_Config Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+        <p>
+            The <strong>CAN Config</strong> block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks.
+            This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration,
+            and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks.
+        </p>
+
+        <p>
+            CAN is a robust, multi-master serial bus system designed for networking intelligent devices. It is widely used in automotive,
+            industrial automation, and embedded systems for reliable communication in electrically noisy environments. The protocol
+            features automatic message prioritization, error detection, and fault confinement mechanisms.
+        </p>
+
+        <h2>Device Support</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device Family</th>
+                    <th>CAN Type</th>
+                    <th>Maximum Modules</th>
+                    <th>CAN-FD Support</th>
+                    <th>Features</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SAM E70/S70/V70/V71</strong></td>
+                    <td>MCAN (Bosch M_CAN)</td>
+                    <td>2</td>
+                    <td>Yes</td>
+                    <td>Advanced filtering, timestamping, DMA-based buffers</td>
+                </tr>
+                <tr>
+                    <td><strong>SAM E5x (E51/E53/E54)</strong></td>
+                    <td>CAN</td>
+                    <td>2</td>
+                    <td>Yes</td>
+                    <td>Standard/Extended ID, FIFO mode, dedicated buffers</td>
+                </tr>
+                <tr>
+                    <td><strong>SAM C20/C21</strong></td>
+                    <td>CAN</td>
+                    <td>2</td>
+                    <td>Yes</td>
+                    <td>Standard/Extended ID, message filtering</td>
+                </tr>
+                <tr>
+                    <td><strong>SAM D51</strong></td>
+                    <td>CAN</td>
+                    <td>2</td>
+                    <td>Yes</td>
+                    <td>Standard/Extended ID, FIFO mode</td>
+                </tr>
+                <tr>
+                    <td><strong>dsPIC30F/33F/33E/33C</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><em>Not currently supported (future enhancement)</em></td>
+                </tr>
+                <tr>
+                    <td><strong>PIC32MX/MZ</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><em>Not currently supported (future enhancement)</em></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <strong>Note:</strong> Currently, CAN blocks are implemented for SAM ARM-based microcontrollers only.
+            Support for dsPIC ECAN modules is planned for future releases.
+        </div>
+
+        <h2>Block Parameters</h2>
+
+        <h3>CAN Module Selection</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">CAN Module</span></td>
+                    <td>Selects which CAN peripheral to configure (CAN0, CAN1, MCAN0, MCAN1)</td>
+                    <td>Device-dependent dropdown</td>
+                    <td>CAN0 or MCAN0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Bit Timing Configuration</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">Baud Rate</span></td>
+                    <td>Communication speed in bits per second</td>
+                    <td>50 kbps to 1000 kbps (standard values)</td>
+                    <td>250000 (250 kbps)</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Propagation Segment (PRSEG)</span></td>
+                    <td>Compensates for physical delays in the network</td>
+                    <td>1-8 TQ (Time Quanta)</td>
+                    <td>Auto-calculated</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Phase Segment 1 (PHSEG1)</span></td>
+                    <td>First phase buffer segment for bit synchronization</td>
+                    <td>1-8 TQ</td>
+                    <td>Auto-calculated</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Phase Segment 2 (PHSEG2)</span></td>
+                    <td>Second phase buffer segment for bit synchronization</td>
+                    <td>1-8 TQ</td>
+                    <td>Auto-calculated</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Synchronization Jump Width (SJW)</span></td>
+                    <td>Maximum time by which the bit can be lengthened or shortened</td>
+                    <td>1-4 TQ</td>
+                    <td>Auto-calculated</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip">
+            <strong>Tip:</strong> The blockset automatically calculates optimal bit timing parameters to achieve the selected
+            baud rate with a sample point around 87.5% of the bit time, which is ideal for most CAN networks.
+        </div>
+
+        <h3>Pin Configuration</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">CAN RX Pin</span></td>
+                    <td>GPIO pin for CAN receive signal</td>
+                    <td>Device-specific pin list (e.g., PA12, PB15)</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">CAN TX Pin</span></td>
+                    <td>GPIO pin for CAN transmit signal</td>
+                    <td>Device-specific pin list (e.g., PA13, PB14)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Buffer Configuration</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Configured By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">Rx Dedicated Buffers</span></td>
+                    <td>Number of dedicated receive buffers (one per unique message ID)</td>
+                    <td>Auto-detected from CAN_Rx blocks</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Rx FIFO 0 Size</span></td>
+                    <td>Number of messages in receive FIFO 0</td>
+                    <td>Auto-detected from CAN_Rx blocks</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Rx FIFO 1 Size</span></td>
+                    <td>Number of messages in receive FIFO 1</td>
+                    <td>Auto-detected from CAN_Rx blocks</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Tx Dedicated Buffers</span></td>
+                    <td>Number of dedicated transmit buffers</td>
+                    <td>Auto-detected from CAN_Tx blocks</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Tx FIFO Size</span></td>
+                    <td>Number of messages in transmit FIFO</td>
+                    <td>Auto-detected from CAN_Tx blocks</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <strong>Note:</strong> Buffer sizes are automatically determined by scanning the model for CAN_Rx and CAN_Tx blocks.
+            The Config block allocates memory and configures hardware buffers accordingly.
+        </div>
+
+        <h3>CAN-FD Configuration (SAM E5x/E7x/C2x Only)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">Enable CAN-FD</span></td>
+                    <td>Enable CAN with Flexible Data rate support</td>
+                    <td>On / Off</td>
+                    <td>Off</td>
+                </tr>
+                <tr>
+                    <td><span class="param-type">Data Buffer Size</span></td>
+                    <td>Maximum data bytes per message (CAN 2.0: 8 bytes, CAN-FD: up to 64 bytes)</td>
+                    <td>8 (standard) or 64 (CAN-FD)</td>
+                    <td>8</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Interrupt Configuration</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="param-type">Rx Interrupt Priority</span></td>
+                    <td>Priority level for receive interrupts (0 = highest priority)</td>
+                    <td>0-7</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>CAN Bit Timing Fundamentals</h2>
+
+        <h3>Time Quantum (TQ) and Bit Segments</h3>
+        <p>
+            A CAN bit time is divided into four segments, each measured in Time Quanta (TQ):
+        </p>
+
+        <div class="block-diagram">
+<pre>
+|<---- Nominal Bit Time ---->|
+|SYNC|  PROP  | PHASE1 | PHASE2 |
+  1TQ   1-8TQ    1-8TQ   1-8TQ
+        ^Sample Point (typically 87.5%)
+</pre>
+        </div>
+
+        <ul>
+            <li><strong>SYNC Segment:</strong> Always 1 TQ, used for synchronization</li>
+            <li><strong>Propagation Segment (PRSEG):</strong> Compensates for signal propagation delays (1-8 TQ)</li>
+            <li><strong>Phase Segment 1 (PHSEG1):</strong> Buffer segment before sample point (1-8 TQ)</li>
+            <li><strong>Phase Segment 2 (PHSEG2):</strong> Buffer segment after sample point (1-8 TQ)</li>
+        </ul>
+
+        <h3>Baud Rate Calculation</h3>
+        <p>The CAN baud rate is determined by:</p>
+
+        <pre><code>Baud Rate = F_CAN / (BRP × (SYNC + PRSEG + PHSEG1 + PHSEG2))
+
+Where:
+  F_CAN = CAN peripheral clock frequency
+  BRP   = Baud Rate Prescaler (1-1024)
+
+Time Quantum (TQ) = BRP / F_CAN</code></pre>
+
+        <h3>Sample Point Location</h3>
+        <p>
+            The sample point is where the CAN controller reads the bus level. Optimal location is typically 87.5% of the bit time:
+        </p>
+
+        <pre><code>Sample Point (%) = (SYNC + PRSEG + PHSEG1) / Total TQ × 100
+
+Recommended: 75-90% for networks up to 1 Mbps
+Typical:     87.5% provides good tolerance</code></pre>
+
+        <h2>Implementation Details</h2>
+
+        <h3>SAM E7x MCAN Peripheral Registers</h3>
+        <pre><code>/* CAN Module Initialization (SAME7x) */
+void MCAN_Init(void) {
+    /* Enable peripheral clock */
+    PMC->PMC_PCR = PMC_PCR_EN | PMC_PCR_CMD | PMC_PCR_PID(ID_MCAN0);
+    PMC->PMC_PCER1 = (1 << (ID_MCAN0 - 32));
+
+    /* Configure bit timing */
+    MCAN0_REGS->MCAN_NBTP =
+        MCAN_NBTP_NSJW(SJW - 1) |
+        MCAN_NBTP_NBRP(BRP - 1) |
+        MCAN_NBTP_NTSEG1(TSEG1 - 1) |
+        MCAN_NBTP_NTSEG2(TSEG2 - 1);
+
+    /* Configure filters */
+    MCAN0_REGS->MCAN_SIDFC =
+        MCAN_SIDFC_LSS(numStandardFilters);
+
+    MCAN0_REGS->MCAN_XIDFC =
+        MCAN_XIDFC_LSE(numExtendedFilters);
+
+    /* Configure Rx buffers and FIFOs */
+    MCAN0_REGS->MCAN_RXBC =
+        MCAN_RXBC_RBSA(rxBufferAddress);
+
+    MCAN0_REGS->MCAN_RXF0C =
+        MCAN_RXF0C_F0SA(rxFifo0Address) |
+        MCAN_RXF0C_F0S(rxFifo0Size);
+
+    /* Configure Tx buffers and FIFO */
+    MCAN0_REGS->MCAN_TXBC =
+        MCAN_TXBC_TBSA(txBufferAddress) |
+        MCAN_TXBC_TFQS(txFifoSize);
+
+    /* Enable interrupts */
+    MCAN0_REGS->MCAN_IE = MCAN_IE_RF0NE | MCAN_IE_RF1NE;
+    NVIC_EnableIRQ(MCAN0_INT0_IRQn);
+
+    /* Enable CAN module */
+    MCAN0_REGS->MCAN_CCCR &= ~MCAN_CCCR_INIT;
+}</code></pre>
+
+        <h3>SAM E5x/C2x CAN Peripheral Registers</h3>
+        <pre><code>/* CAN Module Initialization (SAMx5/C2x) */
+void CAN_Init(void) {
+    /* Configure GCLK for CAN peripheral */
+    GCLK->PCHCTRL[GCLK_CAN0].reg =
+        GCLK_PCHCTRL_GEN_GCLK0 |
+        GCLK_PCHCTRL_CHEN;
+
+    /* Enable CAN peripheral in MCLK */
+    MCLK->AHBMASK.bit.CAN0_ = 1;
+
+    /* Configure bit timing */
+    CAN0->NBTP.reg =
+        CAN_NBTP_NSJW(SJW - 1) |
+        CAN_NBTP_NBRP(BRP - 1) |
+        CAN_NBTP_NTSEG1(TSEG1 - 1) |
+        CAN_NBTP_NTSEG2(TSEG2 - 1);
+
+    /* Configure standard ID filters */
+    CAN0->SIDFC.reg = CAN_SIDFC_LSS(numStdFilters);
+
+    /* Configure extended ID filters */
+    CAN0->XIDFC.reg = CAN_XIDFC_LSE(numExtFilters);
+
+    /* Configure Rx FIFO 0 */
+    CAN0->RXF0C.reg =
+        CAN_RXF0C_F0SA(fifo0Addr >> 2) |
+        CAN_RXF0C_F0S(fifo0Size);
+
+    /* Configure Tx buffer/FIFO */
+    CAN0->TXBC.reg =
+        CAN_TXBC_TBSA(txBufAddr >> 2) |
+        CAN_TXBC_TFQS(txFifoSize);
+
+    /* Enable interrupts */
+    CAN0->IE.reg = CAN_IE_RF0NE | CAN_IE_TCFE;
+    NVIC_EnableIRQ(CAN0_IRQn);
+
+    /* Release initialization mode */
+    CAN0->CCCR.bit.INIT = 0;
+}</code></pre>
+
+        <h2>Block Usage Examples</h2>
+
+        <h3>Example 1: Standard CAN at 250 kbps</h3>
+        <p><strong>Application:</strong> Industrial control network with 8-byte data messages</p>
+
+        <div class="block-diagram">
+<pre>
+Configuration:
+  - CAN Module: CAN0
+  - Baud Rate: 250000 (250 kbps)
+  - RX Pin: PA23 (CAN0_RX)
+  - TX Pin: PA22 (CAN0_TX)
+  - Message Format: Standard 11-bit ID
+  - Data Length: 8 bytes (CAN 2.0)
+  - Rx Interrupt Priority: 2
+</pre>
+        </div>
+
+        <pre><code>/* Resulting bit timing parameters (F_CAN = 60 MHz):
+ * BRP = 12
+ * SYNC = 1 TQ
+ * PRSEG = 3 TQ
+ * PHSEG1 = 10 TQ
+ * PHSEG2 = 6 TQ
+ * Total = 20 TQ
+ * Baud = 60MHz / (12 × 20) = 250 kbps
+ * Sample Point = (1+3+10)/20 = 70% (acceptable range)
+ */</code></pre>
+
+        <h3>Example 2: High-Speed CAN at 1 Mbps</h3>
+        <p><strong>Application:</strong> Automotive ECU communication with minimal latency</p>
+
+        <div class="block-diagram">
+<pre>
+Configuration:
+  - CAN Module: MCAN0 (SAM E70)
+  - Baud Rate: 1000000 (1 Mbps)
+  - RX Pin: PD28 (MCAN0_RX)
+  - TX Pin: PD12 (MCAN0_TX)
+  - Message Format: Extended 29-bit ID
+  - Data Length: 8 bytes
+  - Network: Short bus (<40 meters)
+</pre>
+        </div>
+
+        <pre><code>/* Resulting bit timing (F_CAN = 60 MHz):
+ * BRP = 6
+ * SYNC = 1 TQ
+ * PRSEG = 1 TQ
+ * PHSEG1 = 4 TQ
+ * PHSEG2 = 4 TQ
+ * Total = 10 TQ
+ * Baud = 60MHz / (6 × 10) = 1 Mbps
+ * Sample Point = (1+1+4)/10 = 60% (suitable for short bus)
+ */</code></pre>
+
+        <h3>Example 3: CAN-FD with Data Phase at 2 Mbps</h3>
+        <p><strong>Application:</strong> High-throughput sensor data acquisition (SAM E70 only)</p>
+
+        <div class="block-diagram">
+<pre>
+Configuration:
+  - CAN Module: MCAN1
+  - Enable CAN-FD: On
+  - Nominal Baud Rate: 500000 (500 kbps, arbitration phase)
+  - Data Baud Rate: 2000000 (2 Mbps, data phase)
+  - RX Pin: PC12 (MCAN1_RX)
+  - TX Pin: PC14 (MCAN1_TX)
+  - Data Buffer Size: 64 bytes
+</pre>
+        </div>
+
+        <pre><code>/* CAN-FD allows different bit rates for arbitration and data phases:
+ * Nominal Phase (arbitration): 500 kbps
+ * Data Phase (payload): 2 Mbps
+ *
+ * Advantages:
+ *   - Up to 64 bytes per message (vs 8 for CAN 2.0)
+ *   - Faster data transfer during payload transmission
+ *   - Backward compatible with CAN 2.0 nodes during arbitration
+ */</code></pre>
+
+        <h3>Example 4: Multi-Node Network Configuration</h3>
+        <p><strong>Application:</strong> Motor controller with sensor nodes and HMI</p>
+
+        <div class="block-diagram">
+<pre>
+Network Topology:
+  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+  │ Motor Control│─────│  Sensor Node │─────│     HMI      │
+  │  (Controller)│     │   (Node 1)   │     │   Display    │
+  └──────────────┘     └──────────────┘     └──────────────┘
+         │                    │                     │
+         └────────────────────┴─────────────────────┘
+                    CAN Bus (250 kbps)
+
+Configuration per node:
+  - Baud Rate: 250 kbps (all nodes must match)
+  - Termination: 120Ω at each end of bus
+  - Message IDs:
+      0x100-0x10F: Motor control commands
+      0x200-0x20F: Sensor data
+      0x300-0x30F: HMI updates
+</pre>
+        </div>
+
+        <h2>Filter Configuration (Auto-Managed)</h2>
+        <p>
+            The CAN Config block automatically configures message filters based on CAN_Rx blocks in your model:
+        </p>
+
+        <h3>Filter Types</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Filter Type</th>
+                    <th>Description</th>
+                    <th>Configuration</th>
+                    <th>Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Classic (Mask)</strong></td>
+                    <td>ID AND mask comparison</td>
+                    <td>Message ID + Mask</td>
+                    <td>Accept messages with specific bits matching</td>
+                </tr>
+                <tr>
+                    <td><strong>Dual ID</strong></td>
+                    <td>Accept either of two IDs</td>
+                    <td>ID1 OR ID2</td>
+                    <td>Two specific message types to same buffer</td>
+                </tr>
+                <tr>
+                    <td><strong>Range</strong></td>
+                    <td>Accept ID range</td>
+                    <td>ID_Min to ID_Max</td>
+                    <td>Group of related messages (e.g., 0x100-0x10F)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Filter Configuration Examples</h3>
+        <pre><code>/* Classic filter: Accept ID 0x123 only */
+Filter ID:   0x123
+Filter Mask: 0x7FF (all 11 bits must match)
+Result: Accepts only 0x123
+
+/* Range filter: Accept 0x100-0x10F */
+ID1: 0x100 (minimum)
+ID2: 0x10F (maximum)
+Result: Accepts any ID from 0x100 to 0x10F
+
+/* Dual ID filter */
+ID1: 0x200
+ID2: 0x300
+Result: Accepts either 0x200 or 0x300</code></pre>
+
+        <h2>Troubleshooting</h2>
+
+        <h3>Common Issues and Solutions</h3>
+
+        <div class="warning">
+            <strong>Bus-Off Error State</strong>
+            <p><strong>Symptoms:</strong> CAN module enters bus-off state, stops transmitting/receiving</p>
+            <p><strong>Causes:</strong></p>
+            <ul>
+                <li>Incorrect bit timing (baud rate mismatch)</li>
+                <li>Missing or incorrect termination resistors</li>
+                <li>Excessive noise or EMI on bus</li>
+                <li>Hardware fault (shorted lines)</li>
+            </ul>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Verify all nodes use identical bit timing settings</li>
+                <li>Check for 120Ω termination at both ends of bus</li>
+                <li>Inspect CAN_H and CAN_L signals with oscilloscope</li>
+                <li>Implement automatic bus-off recovery in software</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>Message Not Received</strong>
+            <p><strong>Symptoms:</strong> Expected messages don't arrive at Rx block</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Verify CAN Config block is present in model</li>
+                <li>Check filter configuration in CAN_Rx block</li>
+                <li>Ensure message ID matches filter settings</li>
+                <li>Verify buffer allocation (FIFO vs dedicated buffer)</li>
+                <li>Check if buffer overflow occurred</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>Arbitration Loss</strong>
+            <p><strong>Symptoms:</strong> High-priority messages delayed or not transmitted</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+                <li>Review message ID assignment (lower ID = higher priority)</li>
+                <li>Reduce bus load (transmission frequency)</li>
+                <li>Use Tx buffers instead of Tx FIFO for time-critical messages</li>
+                <li>Implement priority-based message scheduling</li>
+            </ul>
+        </div>
+
+        <h3>Bit Timing Issues</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Symptom</th>
+                    <th>Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sample point too early</td>
+                    <td>Frequent bit errors, poor noise immunity</td>
+                    <td>Increase PHSEG1, decrease PHSEG2 (move sample point to 75-87.5%)</td>
+                </tr>
+                <tr>
+                    <td>Sample point too late</td>
+                    <td>Synchronization errors on long cables</td>
+                    <td>Decrease PHSEG1, increase PHSEG2</td>
+                </tr>
+                <tr>
+                    <td>SJW too small</td>
+                    <td>Poor resynchronization, oscillator drift issues</td>
+                    <td>Increase SJW (typically set to min(4, PHSEG2))</td>
+                </tr>
+                <tr>
+                    <td>Baud rate mismatch</td>
+                    <td>No communication, constant errors</td>
+                    <td>Verify identical baud rate on all nodes, check clock source accuracy</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Hardware Troubleshooting Checklist</h3>
+        <ul>
+            <li>✓ Verify 120Ω termination resistors at both ends of CAN bus</li>
+            <li>✓ Check CAN_H voltage: 3.5V (recessive), 2.5V (dominant)</li>
+            <li>✓ Check CAN_L voltage: 1.5V (recessive), 2.5V (dominant)</li>
+            <li>✓ Measure differential voltage: ~0V (recessive), ~2V (dominant)</li>
+            <li>✓ Inspect for ground loops or poor grounding</li>
+            <li>✓ Verify twisted-pair cable for CAN_H/CAN_L</li>
+            <li>✓ Check maximum cable length for baud rate (40m @ 1Mbps, 1000m @ 50kbps)</li>
+            <li>✓ Confirm CAN transceiver is powered and not in standby mode</li>
+        </ul>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="can_tx.html">CAN Tx</a> - Transmit CAN messages</li>
+            <li><a href="can_rx.html">CAN Rx</a> - Receive CAN messages with filtering</li>
+            <li><a href="../digital_io/digital_output.html">Digital Output</a> - Control CAN transceiver enable/standby pins</li>
+            <li><a href="../interrupts/interrupt_config.html">Interrupt Config</a> - Advanced interrupt priority configuration</li>
+        </ul>
+
+        <h2>References</h2>
+        <ul>
+            <li>ISO 11898-1:2015 - Controller Area Network (CAN) specification</li>
+            <li>Bosch CAN FD Specification Version 1.0</li>
+            <li>SAM E70/S70/V70/V71 Datasheet (<a href="https://www.microchip.com/DS60001527">DS60001527</a>)</li>
+            <li>SAM E5x/D5x Family Datasheet (<a href="https://www.microchip.com/DS60001507">DS60001507</a>)</li>
+            <li>Application Note: CAN Bus Network Design and Troubleshooting</li>
+        </ul>
+
+        <footer>
+            <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
+        </footer>
+    </div>
+    </div>
+</body>
+</html>

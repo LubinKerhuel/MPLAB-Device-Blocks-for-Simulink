@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Visualization with PIC GUI - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <script src="../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <h1>Data Visualization with PIC GUI</h1>
+
+    <h2>Overview</h2>
+    <p>PIC GUI is a lightweight, user-friendly data visualization tool that enables real-time monitoring of variables from your embedded application. Unlike External Mode (which requires XCP protocol), PIC GUI provides a simplified approach to streaming data over UART for analysis and debugging.</p>
+
+    <div class="note">
+        <strong>Key Benefit:</strong> PIC GUI offers instant data visualization with minimal setup - just add a UART Tx-Matlab block, connect a serial cable, and start plotting. No complex protocol configuration required.
+    </div>
+
+    <h2>PIC GUI vs External Mode</h2>
+
+    <table class="comparison-table">
+        <tr>
+            <th>Feature</th>
+            <th>PIC GUI</th>
+            <th>External Mode</th>
+        </tr>
+        <tr>
+            <td><strong>Communication Protocol</strong></td>
+            <td>Simple UART packet format</td>
+            <td>XCP protocol over Serial/TCP/UDP</td>
+        </tr>
+        <tr>
+            <td><strong>Setup Complexity</strong></td>
+            <td><strong>Very Simple</strong> - Drag UART Tx-Matlab block, configure baud rate</td>
+            <td>Moderate - Configure XCP settings, target properties</td>
+        </tr>
+        <tr>
+            <td><strong>Data Monitoring</strong></td>
+            <td><strong>Yes</strong> - Stream variables to MATLAB for plotting</td>
+            <td><strong>Yes</strong> - Monitor signals directly in Simulink scopes</td>
+        </tr>
+        <tr>
+            <td><strong>Parameter Tuning</strong></td>
+            <td>No - Read-only data streaming</td>
+            <td><strong>Yes</strong> - Modify parameters in real-time from Simulink</td>
+        </tr>
+        <tr>
+            <td><strong>Synchronization</strong></td>
+            <td>Asynchronous data logging</td>
+            <td>Synchronized with Simulink simulation time</td>
+        </tr>
+        <tr>
+            <td><strong>Custom Visualization</strong></td>
+            <td><strong>Yes</strong> - Full MATLAB scripting for custom plots/analysis</td>
+            <td>Limited to Simulink scope capabilities</td>
+        </tr>
+        <tr>
+            <td><strong>Typical Use Case</strong></td>
+            <td>Data logging, debugging, custom analysis</td>
+            <td>Interactive parameter tuning, live scope monitoring</td>
+        </tr>
+        <tr>
+            <td><strong>Hardware Requirements</strong></td>
+            <td>UART peripheral + USB-Serial adapter</td>
+            <td>UART/Ethernet/CAN + XCP support</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>When to Use Each Tool:</strong>
+        <ul>
+            <li><strong>Use PIC GUI</strong> when you need quick data logging, custom MATLAB analysis, or read-only monitoring</li>
+            <li><strong>Use External Mode</strong> when you need to tune parameters in real-time or require synchronized scope displays</li>
+            <li><strong>Use Both</strong> - They can coexist! Use External Mode for tuning, PIC GUI for detailed data analysis</li>
+        </ul>
+    </div>
+
+    <h2>How PIC GUI Works</h2>
+
+    <h3>Data Flow</h3>
+    <ol>
+        <li><strong>Embedded Side</strong>: UART Tx-Matlab block packages selected variables into packets and transmits via UART</li>
+        <li><strong>Serial Connection</strong>: USB-Serial adapter bridges microcontroller UART to PC COM port</li>
+        <li><strong>MATLAB Side</strong>: PIC GUI decodes packets and makes data available as MATLAB variables</li>
+        <li><strong>Visualization</strong>: Custom MATLAB script plots data in real-time or saves for offline analysis</li>
+    </ol>
+
+    <h3>Packet Format</h3>
+    <p>The UART Tx-Matlab block uses a simple, efficient packet structure:</p>
+    <ul>
+        <li><strong>Start Byte</strong>: Synchronization marker (0x5A)</li>
+        <li><strong>Data Length</strong>: Number of variables being transmitted</li>
+        <li><strong>Variable Data</strong>: Raw binary values (16-bit or 32-bit integers)</li>
+        <li><strong>Checksum</strong>: Optional error detection</li>
+    </ul>
+
+    <h2>Setting Up PIC GUI</h2>
+
+    <h3>Step 1: Add UART Tx-Matlab Block to Model</h3>
+    <ol>
+        <li>Open your Simulink model</li>
+        <li>Add <strong>UART Config</strong> block from MCHP library → Communication</li>
+        <li>Configure UART:
+            <ul>
+                <li>Baud rate: 115200 (standard) or up to 2 Mbaud with FTDI cable</li>
+                <li>Select UART peripheral (e.g., UART1)</li>
+                <li>Assign Tx/Rx pins matching board hardware</li>
+            </ul>
+        </li>
+        <li>Add <strong>UART Tx-Matlab</strong> block from MCHP library → Communication</li>
+        <li>Configure transmission:
+            <ul>
+                <li>Number of variables to transmit</li>
+                <li>Sample time (data logging rate, e.g., 1ms)</li>
+                <li>Variable data types (int16, int32, float, etc.)</li>
+            </ul>
+        </li>
+        <li>Connect signals you want to monitor to UART Tx-Matlab block inputs</li>
+    </ol>
+
+    <div class="warning">
+        <strong>Baud Rate Considerations:</strong>
+        <ul>
+            <li><strong>115200 baud</strong>: Safe default, works with most USB-Serial adapters (~11 KB/s)</li>
+            <li><strong>460800 baud</strong>: Higher throughput if adapter supports it (~45 KB/s)</li>
+            <li><strong>2 Mbaud</strong>: Maximum with FTDI cables, requires direct connection to UART pins (~200 KB/s)</li>
+            <li><strong>Rule of thumb</strong>: Ensure data rate < 80% of baud rate to avoid buffer overflow</li>
+        </ul>
+    </div>
+
+    <h3>Step 2: Build and Program</h3>
+    <ol>
+        <li>Press <strong>Build</strong> button (Ctrl+B) to generate code and program microcontroller</li>
+        <li>Verify UART communication is working (LED blinks, no error messages)</li>
+        <li>Connect USB-Serial adapter to UART pins on development board</li>
+    </ol>
+
+    <h3>Step 3: Launch PIC GUI</h3>
+    <ol>
+        <li>In MATLAB command window, type: <code>picgui</code></li>
+        <li>Alternatively, double-click the <strong>UART Tx-Matlab</strong> block in your model</li>
+        <li>PIC GUI interface opens</li>
+    </ol>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/picgui_plot.PNG" alt="PIC GUI Interface" style="max-width: 900px;">
+
+    <h3>Step 4: Connect to Target</h3>
+    <ol>
+        <li>Select <strong>COM port</strong> from dropdown (e.g., COM3, COM4)</li>
+        <li>Set <strong>Baud rate</strong> matching UART Config block (e.g., 115200)</li>
+        <li>Click <strong>Connect</strong> button</li>
+        <li>Verify "Connected" status appears</li>
+        <li>Data should start streaming immediately</li>
+    </ol>
+
+    <h3>Step 5: Customize Visualization</h3>
+    <p>PIC GUI includes a default visualization script, but you can create custom plots:</p>
+
+    <ol>
+        <li>Click <strong>Edit Script</strong> button in PIC GUI</li>
+        <li>Modify MATLAB code to create custom plots</li>
+        <li>Click <strong>Start</strong> to run visualization</li>
+        <li>Data updates in real-time as packets arrive</li>
+    </ol>
+
+    <h2>Example: Motor Control Data Logging</h2>
+
+    <p>Typical use case: Monitor speed, current, and control voltage during motor operation.</p>
+
+    <h3>Simulink Configuration</h3>
+    <pre><code>% UART Tx-Matlab block configured with 4 inputs:
+% Input 1: Speed setpoint (int16, RPM)
+% Input 2: Measured speed (int16, RPM)
+% Input 3: Motor current (int16, mA)
+% Input 4: PWM duty cycle (int16, %)
+% Sample time: 1ms (1kHz data rate)</code></pre>
+
+    <h3>Custom Visualization Script</h3>
+    <pre><code>% Extract data from PIC GUI variables
+time = data.time;
+speed_ref = data.var1;
+speed_meas = data.var2;
+current = data.var3;
+duty = data.var4;
+
+% Create subplots
+subplot(3,1,1);
+plot(time, speed_ref, 'r--', time, speed_meas, 'b');
+ylabel('Speed (RPM)');
+legend('Reference', 'Measured');
+grid on;
+
+subplot(3,1,2);
+plot(time, current, 'g');
+ylabel('Current (mA)');
+grid on;
+
+subplot(3,1,3);
+plot(time, duty, 'm');
+ylabel('Duty Cycle (%)');
+xlabel('Time (s)');
+grid on;</code></pre>
+
+    <img src="../block_reference/assets/images/toolbox_concepts/realtime_tools/picgui_2000rpm_noLoad.png" alt="PIC GUI Motor Control Example" style="max-width: 900px;">
+
+    <p><strong>Result:</strong> Real-time plots showing motor speed tracking, current consumption, and controller output - all captured during actual hardware operation at 2000 RPM with no load.</p>
+
+    <h2>Advanced Features</h2>
+
+    <h3>Data Logging to File</h3>
+    <p>Save streamed data for offline analysis:</p>
+    <pre><code>% In PIC GUI custom script
+% Save data structure to MAT file every 10 seconds
+if mod(length(data.time), 10000) == 0
+    save(['motor_log_' datestr(now, 'yyyymmdd_HHMMSS') '.mat'], 'data');
+end</code></pre>
+
+    <h3>Real-Time Signal Processing</h3>
+    <p>Apply filters, FFT, or other analysis in real-time:</p>
+    <pre><code>% Calculate moving average of current
+window_size = 50;
+current_filtered = movmean(data.var3, window_size);
+
+% Compute FFT of speed signal
+fs = 1000; % Sample rate (Hz)
+N = length(speed_meas);
+f = (0:N-1)*(fs/N);
+speed_fft = abs(fft(speed_meas));
+
+% Plot frequency spectrum
+figure(2);
+plot(f(1:N/2), speed_fft(1:N/2));
+xlabel('Frequency (Hz)');
+ylabel('Magnitude');
+title('Speed Spectrum');</code></pre>
+
+    <h3>Automated Testing</h3>
+    <p>Use PIC GUI for automated characterization:</p>
+    <pre><code>% Run step response test automatically
+% Wait for steady-state at each speed
+test_speeds = [500, 1000, 1500, 2000]; % RPM
+for i = 1:length(test_speeds)
+    % Capture data for 5 seconds at each speed
+    wait_time = 5;
+    % Analyze settling time, overshoot, steady-state error
+    % Save results to report
+end</code></pre>
+
+    <h3>Multi-Variable Analysis</h3>
+    <p>Correlate multiple signals to identify system behavior:</p>
+    <pre><code>% Plot phase portrait: current vs speed
+figure(3);
+plot(speed_meas, current, '.');
+xlabel('Speed (RPM)');
+ylabel('Current (mA)');
+title('Operating Point Distribution');
+grid on;</code></pre>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>No Data Received</h3>
+    <ul>
+        <li><strong>Check COM port</strong>: Verify correct port selected in PIC GUI (use Device Manager on Windows)</li>
+        <li><strong>Verify baud rate</strong>: Must match UART Config block setting exactly</li>
+        <li><strong>Check wiring</strong>: Ensure Tx pin of microcontroller connects to Rx of USB-Serial adapter</li>
+        <li><strong>Test hardware</strong>: Try loopback test (connect Tx to Rx) to verify adapter works</li>
+        <li><strong>Check UART pins</strong>: Verify UART Config block pin assignments match board schematic</li>
+    </ul>
+
+    <h3>Garbled Data / Synchronization Errors</h3>
+    <ul>
+        <li><strong>Baud rate mismatch</strong>: Double-check both sides set to same rate</li>
+        <li><strong>Buffer overflow</strong>: Reduce data rate (increase UART Tx-Matlab sample time)</li>
+        <li><strong>Clock accuracy</strong>: Verify oscillator configuration in Master block for accurate baud generation</li>
+        <li><strong>Cable quality</strong>: Use shielded USB cable, keep cable length < 3m</li>
+    </ul>
+
+    <h3>Slow Update Rate</h3>
+    <ul>
+        <li><strong>Increase baud rate</strong>: Switch from 115200 to 460800 or 2 Mbaud</li>
+        <li><strong>Reduce variables</strong>: Transmit fewer signals to reduce packet size</li>
+        <li><strong>Use integer types</strong>: int16 transmits faster than float (2 bytes vs 4 bytes)</li>
+        <li><strong>Increase sample time</strong>: If 1ms rate not needed, try 5ms or 10ms</li>
+        <li><strong>Optimize script</strong>: Reduce MATLAB processing in visualization loop</li>
+    </ul>
+
+    <h3>MATLAB Script Errors</h3>
+    <ul>
+        <li><strong>Variable naming</strong>: Use <code>data.var1</code>, <code>data.var2</code>, etc. to access transmitted variables</li>
+        <li><strong>Array dimensions</strong>: Check that arrays have same length before plotting</li>
+        <li><strong>Handle clearing</strong>: Clear figure handles properly to avoid memory leaks</li>
+        <li><strong>Test incrementally</strong>: Start with simple plot, add complexity gradually</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <div class="note">
+        <strong>Recommended Practices:</strong>
+        <ul>
+            <li><strong>Start Simple</strong>: Begin with 2-3 variables to verify communication before adding more</li>
+            <li><strong>Use Appropriate Data Types</strong>: int16 sufficient for most control variables, saves bandwidth</li>
+            <li><strong>Scale Data Properly</strong>: Apply scaling in embedded code before transmission to avoid float overhead</li>
+            <li><strong>Add Timestamps</strong>: Include sample counter as first variable for time-base reference</li>
+            <li><strong>Document Variables</strong>: Comment visualization script with variable names and units</li>
+            <li><strong>Save Logs</strong>: Implement automatic data saving for reproducible experiments</li>
+            <li><strong>Monitor Bandwidth</strong>: Calculate data rate = (bytes_per_packet × sample_rate), keep below 80% of baud rate</li>
+            <li><strong>Use Conditional Logging</strong>: Only transmit data when needed (e.g., when motor running)</li>
+        </ul>
+    </div>
+
+    <h2>Bandwidth Calculation Example</h2>
+
+    <p>Ensure your data rate doesn't exceed UART capacity:</p>
+
+    <pre><code>% Configuration:
+% - 5 variables (int16) = 10 bytes
+% - Packet overhead (start, length, checksum) = 4 bytes
+% - Total packet size = 14 bytes
+% - Sample rate = 1 kHz (1ms)
+
+bytes_per_packet = 14;
+sample_rate = 1000; % Hz
+data_rate = bytes_per_packet * sample_rate; % bytes/s
+data_rate_bits = data_rate * 10; % 10 bits per byte (1 start + 8 data + 1 stop)
+
+% Result: 140,000 bits/s = 140 kbps
+
+% Check against baud rate:
+baud_rate = 460800;
+utilization = (data_rate_bits / baud_rate) * 100;
+% Result: 30% utilization - Safe! (< 80% threshold)</code></pre>
+
+    <h2>Integration with Other Tools</h2>
+
+    <h3>Using PIC GUI with External Mode</h3>
+    <p>Both tools can coexist if using different communication channels:</p>
+    <ul>
+        <li><strong>PIC GUI</strong>: UART1 for data logging (e.g., high-speed signals)</li>
+        <li><strong>External Mode</strong>: UART2 for parameter tuning (e.g., PI gains)</li>
+    </ul>
+
+    <h3>Combining with PIL Testing</h3>
+    <p>Use PIC GUI during PIL tests to capture detailed execution data:</p>
+    <ol>
+        <li>Run PIL test to verify algorithm correctness</li>
+        <li>Add PIC GUI logging to same model</li>
+        <li>Capture internal states during PIL execution</li>
+        <li>Analyze timing, overflow conditions, state transitions</li>
+    </ol>
+
+    <h2>See Also</h2>
+    <p>
+        <a href="external_mode_pil.html">External Mode & PIL Testing</a> |
+        <a href="quick_start.html">Quick Start Guide</a> |
+        <a href="../block_reference/uart/uart_txmatlab.html">UART Tx-Matlab Block Reference</a> |
+        <a href="../user_guide/index.html">User Guide</a>
+    </p>
+    </div>
+</body>
+</html>

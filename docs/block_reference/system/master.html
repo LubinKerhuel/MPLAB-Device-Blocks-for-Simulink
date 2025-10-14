@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_Master - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="breadcrumb">
+        <a href="../index.html">Block Reference</a> &gt;
+        <a href="./system.html">System Blocks</a> &gt;
+        MCHP_Master
+    </div>
+
+    <h1>MCHP_Master - Master Configuration Block</h1>
+
+    <div class="warning">
+        <strong>CRITICAL:</strong> The <strong>MCHP_Master</strong> block is MANDATORY in every MCHP Blockset model. This is always the FIRST block to add to any new model. Without it, no other MCHP blocks will function.
+    </div>
+
+    
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/system_configuration/Master.svg"
+             alt="Master Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/system_configuration/Master.png';">
+        <div class="block-image-caption">
+            Master Block Icon
+        </div>
+    </div>
+<h2>Description</h2>
+    <p>The <strong>MCHP_Master</strong> block is the central configuration block for the entire MCHP Blockset. It defines the target microcontroller, clock configuration, peripheral initialization, compiler settings, and code generation options. All other MCHP blocks depend on parameters set in this block.</p>
+
+    <p><strong>Primary Functions:</strong></p>
+    <ul>
+        <li><strong>Target Selection</strong> - Choose from 800+ supported Microchip microcontrollers</li>
+        <li><strong>Clock Configuration</strong> - Configure oscillator, PLL, and system clocks (FCY/FOSC)</li>
+        <li><strong>Fuse Settings</strong> - Set device configuration bits (watchdog, code protection, etc.)</li>
+        <li><strong>Build System</strong> - Configure compiler paths, optimization, and project settings</li>
+        <li><strong>External Mode</strong> - Enable real-time data monitoring via UART</li>
+        <li><strong>PIL Testing</strong> - Processor-in-the-Loop test framework configuration</li>
+    </ul>
+
+    <h2>Supported Devices</h2>
+    <p>The MCHP_Master block supports <strong>800+ Microchip microcontrollers</strong> across multiple families:</p>
+
+    <h3>16-bit DSC/MCU Families</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Family</th>
+                <th>Examples</th>
+                <th>Features</th>
+                <th>Applications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>dsPIC30F</strong></td>
+                <td>30F1010, 30F2020, 30F6015</td>
+                <td>Legacy DSC, basic DSP engine</td>
+                <td>Motor control, power supplies</td>
+            </tr>
+            <tr>
+                <td><strong>dsPIC33F</strong></td>
+                <td>33FJ128MC802, 33FJ256GP710A</td>
+                <td>Enhanced DSP, DMA, advanced PWM</td>
+                <td>Digital power, motor control</td>
+            </tr>
+            <tr>
+                <td><strong>dsPIC33E</strong></td>
+                <td>33EP512MU810, 33EP256MC710</td>
+                <td>PPS, DMA, high-speed ADC</td>
+                <td>Motor control, instrumentation</td>
+            </tr>
+            <tr>
+                <td><strong>dsPIC33C</strong></td>
+                <td>33CK64MC105, 33CH128MP508</td>
+                <td>Dual-core options, high-speed PWM</td>
+                <td>Motor control, power conversion</td>
+            </tr>
+            <tr>
+                <td><strong>dsPIC33A</strong> (Latest)</td>
+                <td>33AK128MC106, 33AK512MPS512</td>
+                <td>Advanced PWM with FEP, 12-bit ADC</td>
+                <td>Next-gen motor control, power</td>
+            </tr>
+            <tr>
+                <td><strong>PIC24F/H</strong></td>
+                <td>24F16KL402, 24FJ256GB110</td>
+                <td>General-purpose MCU, low power</td>
+                <td>Portable, battery-powered apps</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>32-bit MCU Families</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Family</th>
+                <th>Examples</th>
+                <th>Features</th>
+                <th>Applications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PIC32MK</strong></td>
+                <td>32MK0512MCF064, 32MK1024GPE100</td>
+                <td>MIPS M5150, FPU, motor control</td>
+                <td>Advanced motor control</td>
+            </tr>
+            <tr>
+                <td><strong>PIC32MZ</strong></td>
+                <td>32MZ2048EFM144, 32MZ1024ECH144</td>
+                <td>High-performance MIPS, crypto</td>
+                <td>IoT, connectivity, graphics</td>
+            </tr>
+            <tr>
+                <td><strong>PIC32MX</strong></td>
+                <td>32MX795F512L, 32MX440F256H</td>
+                <td>USB, Ethernet, graphics</td>
+                <td>HMI, connectivity</td>
+            </tr>
+            <tr>
+                <td><strong>PIC32A</strong> (New)</td>
+                <td>32AK1216GC41036</td>
+                <td>Next-gen 32-bit architecture</td>
+                <td>Advanced embedded systems</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>ARM-based Families (SAM)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Family</th>
+                <th>Core</th>
+                <th>Examples</th>
+                <th>Features</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>SAME70</strong></td>
+                <td>Cortex-M7</td>
+                <td>SAME70Q21B, SAME70N21B</td>
+                <td>300 MHz, FPU, DSP, Ethernet</td>
+            </tr>
+            <tr>
+                <td><strong>SAMS70</strong></td>
+                <td>Cortex-M7</td>
+                <td>SAMS70Q21B</td>
+                <td>High-speed processing, security</td>
+            </tr>
+            <tr>
+                <td><strong>SAMV71</strong></td>
+                <td>Cortex-M7</td>
+                <td>SAMV71Q21B</td>
+                <td>Automotive, CAN-FD, safety</td>
+            </tr>
+            <tr>
+                <td><strong>SAME5x</strong></td>
+                <td>Cortex-M4F</td>
+                <td>SAME54P20A</td>
+                <td>120 MHz, crypto, low power</td>
+            </tr>
+            <tr>
+                <td><strong>SAMC2x</strong></td>
+                <td>Cortex-M0+</td>
+                <td>SAMC21N18A</td>
+                <td>Motor control, cost-optimized</td>
+            </tr>
+            <tr>
+                <td><strong>SAMD2x</strong></td>
+                <td>Cortex-M0+</td>
+                <td>SAMD21G18A</td>
+                <td>Ultra-low power, IoT</td>
+            </tr>
+            <tr>
+                <td><strong>PIC32CZ</strong></td>
+                <td>Cortex-M7</td>
+                <td>PIC32CZ_MC70</td>
+                <td>High-performance, security</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Block Parameters</h2>
+
+    <h3>Target Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values/Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PICREF</strong></td>
+                <td>Microcontroller selection. Dynamic popup filtered by supported families with oscillator support verification.</td>
+                <td>800+ devices<br>(dsPIC, PIC32, SAM)</td>
+            </tr>
+            <tr>
+                <td><strong>PACKAGE</strong> (SAM only)</td>
+                <td>Package selection for ARM devices (affects pin availability).</td>
+                <td>TQFP, LQFP, QFN, etc.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Clock Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values/Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>OSCILLATOR_SELECT</strong></td>
+                <td>Primary oscillator source selection. Options dynamically updated based on chip capabilities.</td>
+                <td>• Internal Fast RC (FRC)<br>• Internal Low Power RC (LPRC)<br>• Crystal/Ceramic Resonator<br>• External Clock (EC)<br>• Device-specific options</td>
+            </tr>
+            <tr>
+                <td><strong>QUARTZ</strong></td>
+                <td>Crystal/resonator frequency when using external oscillator.</td>
+                <td>0.4 MHz to 40 MHz<br>(device-dependent)</td>
+            </tr>
+            <tr>
+                <td><strong>ACTIV_PLL</strong></td>
+                <td>Enable Phase-Locked Loop for frequency multiplication.</td>
+                <td>on / off</td>
+            </tr>
+            <tr>
+                <td><strong>MIPS_DESIRED</strong></td>
+                <td>Target instruction cycle frequency (FCY). Automatically calculates PLL settings.</td>
+                <td>Device-specific<br>Up to 200 MIPS (dsPIC33A)<br>Up to 300 MHz (SAME70)</td>
+            </tr>
+            <tr>
+                <td><strong>ACLKCON</strong><br>(dsPIC33C only)</td>
+                <td>Auxiliary clock configuration for PWM and other peripherals.</td>
+                <td>AFPLLO, FRC, FOSC</td>
+            </tr>
+            <tr>
+                <td><strong>CPUDIV</strong><br>(SAM Cortex-M0+ only)</td>
+                <td>CPU clock divider selection.</td>
+                <td>1, 2, 4, 8, 16, 32, 64, 128</td>
+            </tr>
+            <tr>
+                <td><strong>VDD_range</strong><br>(SAM Cortex-M0+ only)</td>
+                <td>Operating voltage range (affects flash wait states).</td>
+                <td>1.62-2.7V, 2.7-3.6V, 3.6-5.5V</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Clock Configuration Workflow:</strong>
+        <ol>
+            <li>Select oscillator source (internal RC or external crystal/clock)</li>
+            <li>If using crystal, specify frequency in QUARTZ parameter</li>
+            <li>Enable PLL if higher frequencies are required</li>
+            <li>Set MIPS_DESIRED to target frequency - PLL multipliers are calculated automatically</li>
+            <li>Block display shows achieved MIPS/MHz on the diagram</li>
+        </ol>
+    </div>
+
+    <h3>Fuse Configuration (Device Configuration Bits)</h3>
+    <p>The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Common Fuse Categories</th>
+                <th>Examples</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Watchdog Timer</strong></td>
+                <td>FWDTEN, FWDTPS</td>
+                <td>Watchdog enable and prescaler settings</td>
+            </tr>
+            <tr>
+                <td><strong>Code Protection</strong></td>
+                <td>FCPS, FBOR</td>
+                <td>Read/write protection, boot segment protection</td>
+            </tr>
+            <tr>
+                <td><strong>Debugging</strong></td>
+                <td>FICD, FJTAG</td>
+                <td>ICD/JTAG enable, pin selection</td>
+            </tr>
+            <tr>
+                <td><strong>Power Management</strong></td>
+                <td>FBOR, FPOR</td>
+                <td>Brown-out reset, power-on reset settings</td>
+            </tr>
+            <tr>
+                <td><strong>Peripheral Config</strong></td>
+                <td>FIOEN, FBS</td>
+                <td>Peripheral pin select, boot segment</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Fuse Auto-Discovery:</strong> The Master block automatically reads the device's XML definition file and populates all available configuration fuses. Only fuses supported by the selected chip are visible.
+    </div>
+
+    <h3>Dual-Core Configuration (dsPIC33CH only)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Master/Slave Selection</strong></td>
+                <td>For dsPIC33CH dual-core devices, select chip name ending with "S1" for slave core configuration.</td>
+                <td>• Master: 33CH128MP508<br>• Slave: 33CH128MP508S1</td>
+            </tr>
+            <tr>
+                <td><strong>SECONDARYIMAGE</strong></td>
+                <td>Automatically set to slave image name when slave device is selected.</td>
+                <td>Used by build system to link secondary core code</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Build Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Set By</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Compiler Path</strong></td>
+                <td>Automatically detected compiler installation paths.</td>
+                <td>Auto-configured from system</td>
+            </tr>
+            <tr>
+                <td><strong>Header Paths</strong></td>
+                <td>Include directories for device headers.</td>
+                <td>Auto-configured from DFP</td>
+            </tr>
+            <tr>
+                <td><strong>Linker Script</strong></td>
+                <td>Memory map linker script selection.</td>
+                <td>Auto-selected or custom</td>
+            </tr>
+            <tr>
+                <td><strong>Library Paths</strong></td>
+                <td>Standard library paths (math, DSP, etc.).</td>
+                <td>Auto-configured</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>External Mode Configuration</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>UART Selection</strong></td>
+                <td>UART peripheral for external mode communication.</td>
+                <td>UART1-4 (device-dependent)</td>
+            </tr>
+            <tr>
+                <td><strong>Baud Rate</strong></td>
+                <td>Communication speed for real-time monitoring.</td>
+                <td>9600 to 921600 bps</td>
+            </tr>
+            <tr>
+                <td><strong>Buffer Size</strong></td>
+                <td>Communication buffer allocation.</td>
+                <td>256 to 4096 bytes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Busy Flag (Debug Output)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>BUSYFLAG</strong></td>
+                <td>Assign a GPIO pin to toggle during task execution for timing analysis.</td>
+                <td>• Not used<br>• Any available GPIO<br>• Use oscilloscope to measure execution time</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Generated Model Workspace Variables</h2>
+    <p>The Master block creates essential variables in the model workspace (accessible to all blocks):</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>MCHP.id.name</code></td>
+                <td>Selected chip reference</td>
+                <td>'33AK128MC106'</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.id.Arch</code></td>
+                <td>Architecture ID</td>
+                <td>8 (dsPIC33A), 5 (SAM M7)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.fcy.FCY</code></td>
+                <td>Instruction cycle frequency (Hz)</td>
+                <td>100e6 (100 MIPS)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.fcy.FOSC</code></td>
+                <td>Oscillator frequency (Hz)</td>
+                <td>200e6 (200 MHz)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.NTIMERS</code></td>
+                <td>Number of available timers</td>
+                <td>1-12 (device-dependent)</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.modsrc.*</code></td>
+                <td>Peripheral availability flags</td>
+                <td>DOS module indicators</td>
+            </tr>
+            <tr>
+                <td><code>MCHP.Rx</code></td>
+                <td>Pin remapping (PPS) data structure</td>
+                <td>Available remappable pins</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Code Generation Settings</h2>
+    <p>The Master block automatically configures critical code generation parameters:</p>
+
+    <ul>
+        <li><strong>Target Selection:</strong> Sets <code>RTWSystemTargetFile</code> to appropriate .tlc file</li>
+        <li><strong>Compiler Detection:</strong> Automatically finds and configures XC16/XC32/XC-DSC compiler paths</li>
+        <li><strong>DFP Integration:</strong> Loads Device Family Pack for accurate peripheral definitions</li>
+        <li><strong>PPS Configuration:</strong> Enables Peripheral Pin Select for remappable devices</li>
+        <li><strong>Code Replacement:</strong> Optionally enables optimized DSP assembly libraries</li>
+    </ul>
+
+    <h2>Examples</h2>
+
+    <h3>Example 1: Basic dsPIC33A Configuration</h3>
+    <pre><code>% Select dsPIC33AK128MC106
+% Configure for motor control application
+
+PICREF: 33AK128MC106
+OSCILLATOR_SELECT: Crystal / Ceramic resonator
+QUARTZ: 8e6              % 8 MHz crystal
+ACTIV_PLL: on            % Enable PLL
+MIPS_DESIRED: 100e6      % 100 MIPS target
+
+% Result: FCY = 100 MHz, FOSC = 200 MHz
+% PLL automatically configured: M=50, N1=2, N2=2</code></pre>
+
+    <h3>Example 2: SAME70 ARM Cortex-M7 Setup</h3>
+    <pre><code>% Select SAME70Q21B with LQFP package
+% High-performance application
+
+PICREF: SAME70Q21B - LQFP144
+OSCILLATOR_SELECT: Crystal Oscillator
+QUARTZ: 12e6             % 12 MHz crystal
+ACTIV_PLL: on            % Enable PLL
+MIPS_DESIRED: 300e6      % 300 MHz ARM core
+
+% Result: MCLK = 300 MHz</code></pre>
+
+    <h3>Example 3: dsPIC33CH Dual-Core Master</h3>
+    <pre><code>% Master core configuration
+% Slave core built separately
+
+PICREF: 33CH128MP508     % Master core
+OSCILLATOR_SELECT: Internal Fast RC (FRC)
+ACTIV_PLL: on
+MIPS_DESIRED: 90e6       % 90 MIPS master
+
+% Slave project uses: 33CH128MP508S1</code></pre>
+
+    <h3>Example 4: Low-Power SAMD21 Configuration</h3>
+    <pre><code>% Ultra-low power IoT application
+
+PICREF: SAMD21G18A
+OSCILLATOR_SELECT: Internal 48MHz Oscillator
+ACTIV_PLL: off
+CPUDIV: 1                % No division
+VDD_range: 2.7V to 3.6V  % Standard voltage
+
+% Result: 48 MHz operation</code></pre>
+
+    <h2>Common Workflows</h2>
+
+    <h3>New Model Setup</h3>
+    <ol>
+        <li>Create new Simulink model</li>
+        <li>Open MCHP Blockset library</li>
+        <li>Drag <strong>MCHP_Master</strong> block to model (FIRST block)</li>
+        <li>Double-click Master block to open configuration dialog</li>
+        <li>Select target microcontroller from PICREF dropdown</li>
+        <li>Configure clock settings for desired frequency</li>
+        <li>Set any required fuse configuration bits</li>
+        <li>Click OK/Apply - block display shows chip name and achieved MIPS</li>
+        <li>Add other MCHP peripheral blocks as needed</li>
+    </ol>
+
+    <h3>Changing Target Device</h3>
+    <ol>
+        <li>Open Master block</li>
+        <li>Select new device from PICREF dropdown</li>
+        <li>Click Apply - GUI closes automatically due to parameter structure change</li>
+        <li>Re-open Master block - new fuses and clock options now visible</li>
+        <li>Reconfigure clock and fuses for new device</li>
+        <li>Review all peripheral blocks for compatibility warnings</li>
+    </ol>
+
+    <h3>External Mode Setup</h3>
+    <ol>
+        <li>Configure UART in Master block for external mode</li>
+        <li>Set baud rate (typically 115200 or higher)</li>
+        <li>In Simulink Configuration Parameters:
+            <ul>
+                <li>Code Generation → Interface → External mode</li>
+                <li>Set transport to "tcpip" or "serial"</li>
+            </ul>
+        </li>
+        <li>Build and download code to target</li>
+        <li>Connect via Simulink External Mode toolbar</li>
+        <li>Monitor/tune parameters in real-time</li>
+    </ol>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Common Issues</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Problem</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Block GUI closes on Apply</td>
+                <td>Normal behavior when changing devices (fuse structure changes)</td>
+                <td>Re-open block to see updated configuration</td>
+            </tr>
+            <tr>
+                <td>Compiler not found</td>
+                <td>XC16/XC32 not installed or not in PATH</td>
+                <td>Install compiler from Microchip website, run picSetup</td>
+            </tr>
+            <tr>
+                <td>Desired MIPS not achievable</td>
+                <td>PLL limitations or oscillator range</td>
+                <td>Check datasheet for valid PLL settings, try different crystal</td>
+            </tr>
+            <tr>
+                <td>Fuses not visible</td>
+                <td>Device XML not found or old blockset version</td>
+                <td>Ensure DFP installed, update blockset</td>
+            </tr>
+            <tr>
+                <td>Code generation fails</td>
+                <td>Missing DFP or linker script</td>
+                <td>Check compiler optimization block, verify DFP installation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Important Notes:</strong>
+        <ul>
+            <li>The Master block MUST be present before adding any other MCHP blocks</li>
+            <li>Changing the target device may invalidate peripheral block configurations</li>
+            <li>Always verify achieved MIPS matches application requirements</li>
+            <li>Dual-core devices require separate projects for master and slave cores</li>
+            <li>External mode requires dedicated UART - cannot be shared with application</li>
+        </ul>
+    </div>
+
+    <h2>See Also</h2>
+    <ul>
+        <li><a href="scheduler_options.html">MCHP_Scheduler_Options</a> - Task scheduling configuration</li>
+        <li><a href="../utility/compiler_optimisation.html">MCHP_CompilerOptimisation</a> - Compiler and optimization settings</li>
+        <li><a href="interrupt.html">MCHP_Interrupt</a> - Interrupt subsystem configuration</li>
+        <li><a href="secondary_core.html">MCHP_SECONDARY_CORE</a> - Dual-core secondary configuration</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p>
+        <p>For support, visit <a href="https://www.microchip.com/design-centers/motor-control-and-drive">Microchip Motor Control</a></p>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_TimerInfo - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+<div class="breadcrumb"><a href="../index.html">Block Reference</a> &gt; <a href="./utility.html">Utility Blocks</a> &gt; MCHP_TimerInfo</div>
+<h1>MCHP_TimerInfo - Timer Resource Allocation Display</h1>
+
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/utility/TimerInfo.svg"
+             alt="TimerInfo Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/utility/TimerInfo.png';">
+        <div class="block-image-caption">
+            TimerInfo Block Icon
+        </div>
+    </div>
+<h2>Description</h2><p>The <strong>MCHP_TimerInfo</strong> block visualizes timer resource allocation across all peripheral blocks, showing which timers are used, their configuration, and detecting conflicts.</p>
+<h2>Display Information</h2>
+<table><thead><tr><th>Information</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>Timer Allocation</strong></td><td>Which peripheral uses which timer</td></tr>
+<tr><td><strong>Timer Configuration</strong></td><td>Prescaler, period, mode</td></tr>
+<tr><td><strong>Conflicts</strong></td><td>Multiple peripherals requesting same timer</td></tr>
+<tr><td><strong>Available Timers</strong></td><td>Unused timer resources</td></tr>
+</tbody></table>
+<h2>Example Display</h2>
+<pre><code>Timer Resources (dsPIC33AK128MC106):
+
+Timer1: ⚠️ CONFLICT
+  - MCHP_Interrupt (Hardware Timer mode)
+  - MCHP_IC1 (Input Capture)
+  → Resolve: Use different timer
+
+Timer2: PWM_HS Module
+  - PWM timebase, Period=1000, Prescaler=1
+
+Timer3: QEI1 Position Measurement
+  - Speed calculation, Period=65535
+
+Timer4: [Available]
+Timer5: [Available]
+</code></pre>
+<h2>Usage</h2>
+<ol><li>Add MCHP_TimerInfo block to model</li><li>Double-click to view allocation</li><li>Verify no conflicts exist</li><li>Identify available timers for new features</li></ol>
+<div style="background-color:#fff3cd;border-left:4px solid #ffc107;padding:10px;margin:15px 0"><strong>Timer Conflicts:</strong> Must be resolved before code generation. Reconfigure peripheral blocks to use different timers.</div>
+<h2>See Also</h2>
+<ul><li><a href="port_info.html">MCHP_PortInfo</a> - GPIO allocation</li>
+<li><a href="../timers/timers.html">Timer Blocks</a> - Timer peripheral blocks</li></ul>
+<footer><p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p></footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_MSI - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+<div class="breadcrumb"><a href="../index.html">Block Reference</a> &gt; <a href="./utility.html">Utility Blocks</a> &gt; MCHP_MSI</div>
+<h1>MCHP_MSI - Master Secondary Interface</h1>
+
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/utility/MSI.svg"
+             alt="MSI Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/utility/MSI.png';">
+        <div class="block-image-caption">
+            MSI Block Icon
+        </div>
+    </div>
+<h2>Description</h2><p>The <strong>MCHP_MSI</strong> block configures the Master Secondary Interface (MSI) for inter-core communication in dual-core dsPIC33CH devices, enabling data exchange between master and secondary cores.</p>
+<div class="warning"><strong>dsPIC33CH Only:</strong> This block is exclusively for dual-core dsPIC33CH family devices.</div>
+<h2>Communication Methods</h2>
+<table><thead><tr><th>Method</th><th>Speed</th><th>Size</th><th>Direction</th><th>Use Case</th></tr></thead><tbody>
+<tr><td><strong>Mailboxes</strong></td><td>Fast</td><td>16 words × 16 boxes</td><td>Bidirectional</td><td>Control parameters, flags</td></tr>
+<tr><td><strong>FIFO</strong></td><td>Medium</td><td>Configurable buffer</td><td>Bidirectional</td><td>Data streaming, logs</td></tr>
+<tr><td><strong>Protocol Interrupts</strong></td><td>Immediate</td><td>N/A</td><td>Bidirectional</td><td>Event notification, sync</td></tr>
+</tbody></table>
+<h2>Block Parameters</h2>
+<table><thead><tr><th>Parameter</th><th>Description</th><th>Options</th></tr></thead><tbody>
+<tr><td><strong>Communication Type</strong></td><td>Select MSI communication method</td><td>Mailbox / FIFO / Protocol Interrupt</td></tr>
+<tr><td><strong>Mailbox Number</strong></td><td>Mailbox index (0-15)</td><td>0 to 15</td></tr>
+<tr><td><strong>Direction</strong></td><td>Data transfer direction</td><td>Master→Secondary<br>Secondary→Master</td></tr>
+<tr><td><strong>FIFO Size</strong></td><td>FIFO buffer size</td><td>16 to 256 words</td></tr>
+<tr><td><strong>Interrupt Enable</strong></td><td>Generate interrupt on data available</td><td>on / off</td></tr>
+</tbody></table>
+<h2>Example Dual-Core Communication</h2>
+<pre><code>% Master Core (33CH128MP508):
+MSI_Mailbox0_Write:
+  - Write speed reference to Mailbox 0
+  - Trigger secondary interrupt
+
+MSI_Mailbox1_Read:
+  - Read current measurement from Mailbox 1
+  - Update speed controller
+
+% Secondary Core (33CH128MP508S1):
+MSI_Mailbox0_Read:
+  - Read speed reference from Mailbox 0
+  - Execute in interrupt handler
+
+MSI_Mailbox1_Write:
+  - Write current measurement to Mailbox 1
+  - Trigger master interrupt
+</code></pre>
+<h2>Mailbox vs FIFO Selection</h2>
+<table><thead><tr><th>Scenario</th><th>Recommended</th><th>Reason</th></tr></thead><tbody>
+<tr><td>Control loop parameters</td><td>Mailbox</td><td>Fast, deterministic, 16 words enough</td></tr>
+<tr><td>Sensor data streaming</td><td>FIFO</td><td>Buffered, handles variable rates</td></tr>
+<tr><td>Event flags, status</td><td>Mailbox</td><td>Immediate, small data</td></tr>
+<tr><td>Data logging</td><td>FIFO</td><td>Large buffer, non-critical timing</td></tr>
+<tr><td>Synchronization signals</td><td>Protocol Interrupt</td><td>No data, just notification</td></tr>
+</tbody></table>
+<h2>Synchronization Example</h2>
+<pre><code>% Master triggers secondary task execution
+
+Master:
+  compute_reference();
+  MSI_SendProtocolInterrupt(SECONDARY_START);
+
+Secondary (Interrupt Handler):
+  if (protocol_interrupt == SECONDARY_START)
+    execute_fast_control_loop();
+    MSI_SendProtocolInterrupt(TASK_COMPLETE);
+  end
+
+% Result: Precise task synchronization between cores
+</code></pre>
+<h2>See Also</h2>
+<ul><li><a href="../system/secondary_core.html">MCHP_SECONDARY_CORE</a> - Secondary core configuration</li>
+<li><a href="../system/master.html">MCHP_Master</a> - Dual-core device selection</li></ul>
+<footer><p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p></footer>
+    </div>
+</body>
+</html>

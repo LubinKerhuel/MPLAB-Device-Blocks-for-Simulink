@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Blocks - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+<div class="breadcrumb"><a href="../index.html">Block Reference</a> &gt; System Blocks</div>
+<h1>System Configuration and Monitoring Blocks</h1>
+<p>System blocks configure the fundamental behavior of MCHP Blockset models, including target selection, clock configuration, multitasking scheduler, and runtime monitoring.</p>
+<h2>Core Configuration Blocks</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Required?</th></tr></thead><tbody>
+<tr><td><strong><a href="master.html">MCHP_Master</a></strong></td><td>Main configuration block - chip selection, clock, fuses, build settings</td><td>✓ Yes - ALWAYS required</td></tr>
+<tr><td><strong><a href="scheduler_options.html">MCHP_Scheduler_Options</a></strong></td><td>Rate monotonic scheduler configuration and overload behavior</td><td>Optional (default settings used)</td></tr>
+<tr><td><strong><a href="interrupt.html">MCHP_Interrupt</a></strong></td><td>Interrupt service routine configuration for triggered subsystems</td><td>Optional (for ISR-driven tasks)</td></tr>
+</tbody></table>
+<h2>Task Management Blocks</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><strong><a href="idle_task.html">MCHP_IdleTask</a></strong></td><td>Background task executed when CPU is idle</td><td>Power saving, watchdog, diagnostics</td></tr>
+<tr><td><strong><a href="tasks_state.html">MCHP_Tasks_State</a></strong></td><td>Real-time task execution state monitoring</td><td>Debug timing, verify preemption</td></tr>
+</tbody></table>
+<h2>Performance Monitoring Blocks</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Output</th></tr></thead><tbody>
+<tr><td><strong><a href="mcu_load.html">MCHP_MCU_LOAD</a></strong></td><td>CPU utilization measurement (percentage)</td><td>0-100% CPU load</td></tr>
+<tr><td><strong><a href="mcu_overload.html">MCHP_MCU_OVERLOAD</a></strong></td><td>Task deadline miss detection and diagnostics</td><td>Overload flags, task ID, count</td></tr>
+</tbody></table>
+<h2>Advanced Features</h2>
+<table><thead><tr><th>Block</th><th>Description</th><th>Applicability</th></tr></thead><tbody>
+<tr><td><strong><a href="secondary_core.html">MCHP_SECONDARY_CORE</a></strong></td><td>Dual-core secondary (slave) core configuration</td><td>dsPIC33CH only</td></tr>
+</tbody></table>
+<div class="note"><strong>Getting Started:</strong> Every MCHP Blockset model MUST contain the <strong>MCHP_Master</strong> block as the first block added. All other system blocks are optional and add specific capabilities.</div>
+<h2>Typical Model Setup</h2>
+<ol><li><strong>Add MCHP_Master</strong> - Select target chip, configure clock</li>
+<li><strong>Add peripherals</strong> - PWM, ADC, UART, etc.</li>
+<li><strong>Configure scheduling</strong> - Add MCHP_Scheduler_Options if custom behavior needed</li>
+<li><strong>Add monitoring</strong> - MCHP_MCU_LOAD for performance validation</li>
+<li><strong>Build and test</strong> - Verify timing with MCHP_Tasks_State</li></ol>
+<h2>See Also</h2>
+<ul><li><a href="../index.html">Block Reference Home</a></li>
+<li><a href="../utility/utility.html">Utility Blocks</a> - Compiler optimization, X2C debugging</li>
+<li><a href="../pwm/pwm_blocks.html">PWM Blocks</a> - Pulse-width modulation</li>
+<li><a href="../adc/adc_blocks.html">ADC Blocks</a> - Analog-to-digital conversion</li></ul>
+<footer><p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p></footer>
+    </div>
+</body>
+</html>

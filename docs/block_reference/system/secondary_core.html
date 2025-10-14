@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_SECONDARY_CORE - MCHP Blockset</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+<div class="breadcrumb"><a href="../index.html">Block Reference</a> &gt; <a href="./system.html">System Blocks</a> &gt; MCHP_SECONDARY_CORE</div>
+<h1>MCHP_SECONDARY_CORE - Dual-Core Secondary Configuration</h1>
+
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/dual_core/SECONDARY_core.svg"
+             alt="SecondaryCore Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/dual_core/SECONDARY_core.png';">
+        <div class="block-image-caption">
+            SecondaryCore Block Icon
+        </div>
+    </div>
+<h2>Description</h2><p>The <strong>MCHP_SECONDARY_CORE</strong> block configures the secondary (slave) core in dual-core dsPIC33CH devices.</p>
+<div class="warning"><strong>dsPIC33CH Only:</strong> This block is exclusively for dual-core dsPIC33CH family devices.</div>
+<h2>Dual-Core Architecture</h2>
+<table><thead><tr><th>Feature</th><th>Master Core</th><th>Secondary Core</th></tr></thead><tbody>
+<tr><td><strong>Device Name</strong></td><td>33CH128MP508</td><td>33CH128MP508S1</td></tr>
+<tr><td><strong>Purpose</strong></td><td>System management</td><td>Real-time control</td></tr>
+<tr><td><strong>Communication</strong></td><td>MSI mailboxes, FIFO</td><td>MSI mailboxes, FIFO</td></tr></tbody></table>
+<h2>Development Workflow</h2><pre><code>% Step 1: Create MASTER core project
+Model: Master_Control.slx
+MCHP_Master → PICREF: 33CH128MP508 (master)
+
+% Step 2: Create SECONDARY core project
+Model: Secondary_FastLoop.slx
+MCHP_Master → PICREF: 33CH128MP508S1 (slave)
+
+% Step 3: Build both projects
+1. Build secondary → generates .s image file
+2. Build master → links secondary image
+3. Program master (includes slave code)</code></pre>
+<h2>See Also</h2><ul><li><a href="master.html">MCHP_Master</a> - Target device configuration</li></ul>
+<footer><p>&copy; 2025 Microchip Technology Inc. MCHP Blockset Documentation.</p></footer>
+    </div>
+</body>
+</html>

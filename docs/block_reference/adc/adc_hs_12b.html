@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCHP_ADC_HS_12b - 12-bit High-Speed ADC for dsPIC33A</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/navigation.css">
+    <script src="../../assets/js/navigation.js"></script>
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <!-- Left Navigation Panel -->
+    <nav class="doc-nav-container">
+        <div class="doc-nav-header">
+            <a href="../../index.html">MCHP Blockset Docs</a>
+        </div>
+        <ul class="doc-nav-menu">
+            <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+
+            <!-- Getting Started Section -->
+            <li class="nav-item">
+                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../getting_started/overview.html" class="nav-link">Overview</a></li>
+                    <li><a href="../../getting_started/installation.html" class="nav-link">Installation</a></li>
+                    <li><a href="../../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
+                    <li><a href="../../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
+                    <li><a href="../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
+                </ul>
+            </li>
+
+            <!-- User Guide Section -->
+            <li class="nav-item">
+                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
+                    <li><a href="../../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
+                    <li><a href="../../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
+                </ul>
+            </li>
+
+            <!-- Block Reference Section -->
+            <li class="nav-item">
+                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
+                </ul>
+            </li>
+
+            <!-- Examples Section -->
+            <li class="nav-item">
+                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
+                <ul class="nav-list">
+                    <li><a href="../../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
+                </ul>
+            </li>
+
+            <!-- Release Notes -->
+            <li class="nav-item">
+                <a href="../../release_notes.html" class="nav-link">Release Notes</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="doc-content-wrapper">
+    <div class="container">
+        <h1>MCHP_ADC_HS_12b - 12-bit High-Speed ADC for dsPIC33A</h1>
+
+        
+    <!-- Block Icon -->
+    <div class="block-image">
+        <img src="../assets/images/blocks/analog/ADC_HS_12b_dsPICA.svg"
+             alt="ADC_HS_12b_dsPICA Block Icon"
+             onerror="this.onerror=null; this.src='../assets/images/blocks/analog/ADC_HS_12b_dsPICA.png';">
+        <div class="block-image-caption">
+            ADC_HS_12b_dsPICA Block Icon
+        </div>
+    </div>
+<h2>Block Description</h2>
+        <p>The <strong>MCHP_ADC_HS_12b</strong> block implements the advanced 12-bit high-speed ADC peripheral found in the latest <strong>dsPIC33A</strong> family. This next-generation ADC features <strong>software-programmable sequencing</strong>, multiple ADC cores (2-5 depending on variant), and sophisticated trigger management optimized for high-performance motor control and power conversion applications.</p>
+
+        <div class="highlight">
+            <strong>dsPIC33A Advantage:</strong> Software-configurable conversion sequences allow dynamic channel assignment and flexible multi-channel acquisition patterns without hardware limitations, providing unprecedented flexibility for complex control algorithms.
+        </div>
+
+        <h2>Supported dsPIC33A Variants</h2>
+        <table>
+            <tr>
+                <th>Variant</th>
+                <th>Module Type</th>
+                <th>ADC Cores</th>
+                <th>Max Channels per Core</th>
+                <th>Example Device</th>
+            </tr>
+            <tr>
+                <td><strong>Perseus (STX04)</strong></td>
+                <td>DOS_03459_adc_pc_ctrl_upb_v2</td>
+                <td>2 (ADC1, ADC2)</td>
+                <td>20 each</td>
+                <td>33AK128MC106</td>
+            </tr>
+            <tr>
+                <td><strong>Pegasus (STX32)</strong></td>
+                <td>DOS_02976_adc_12b_upb_v2</td>
+                <td>5 (ADC1-5)</td>
+                <td>16 each</td>
+                <td>33AK512MPS512</td>
+            </tr>
+            <tr>
+                <td><strong>Blue Ridge (STX33)</strong></td>
+                <td>DOS_05972_adc_12b_upb_v3_itc</td>
+                <td>3 (ADC1-3)</td>
+                <td>12 each</td>
+                <td>33AK256MPS306</td>
+            </tr>
+            <tr>
+                <td><strong>Serpens (STX21)</strong></td>
+                <td>DOS_05972_adc_12b_upb_v3_adc</td>
+                <td>2 (ADC1, ADC2)</td>
+                <td>20, 39</td>
+                <td>33AKV512GM510</td>
+            </tr>
+        </table>
+
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>Resolution</strong><br>
+                Fixed 12-bit high-precision
+            </div>
+            <div class="feature-item">
+                <strong>Sequencing</strong><br>
+                6 sequences × 6 conversions per sequence
+            </div>
+            <div class="feature-item">
+                <strong>Flexibility</strong><br>
+                Any channel to any sequence slot
+            </div>
+            <div class="feature-item">
+                <strong>Synchronization</strong><br>
+                SCCP/SSC timer trigger integration
+            </div>
+            <div class="feature-item">
+                <strong>Multiple Cores</strong><br>
+                2-5 independent ADC cores
+            </div>
+            <div class="feature-item">
+                <strong>High Speed</strong><br>
+                Optimized for FOC motor control
+            </div>
+        </div>
+
+        <h2>Software Sequencing Architecture</h2>
+
+        <h3>Sequence Configuration</h3>
+        <ul>
+            <li><strong>6 Sequences:</strong> seq0 through seq5 for each ADC core</li>
+            <li><strong>6 Conversions per sequence:</strong> Each sequence can perform up to 6 channel conversions</li>
+            <li><strong>Dynamic assignment:</strong> Select any available ANx channel for any conversion slot</li>
+            <li><strong>Independent triggers:</strong> Each sequence can have its own trigger source</li>
+        </ul>
+
+        <div class="example">
+            <strong>Sequence Example:</strong>
+            <ul>
+                <li><strong>ADC1_seq0:</strong> AN0, AN1, AN2 (3-phase currents) - Trigger: PWM1 Special Event</li>
+                <li><strong>ADC1_seq1:</strong> AN5, AN6 (DC bus voltage/current) - Trigger: PWM2 Special Event</li>
+                <li><strong>ADC2_seq0:</strong> AN20, AN21 (auxiliary sensors) - Trigger: SCCP1 Timer</li>
+            </ul>
+        </div>
+
+        <h2>Configuration Parameters</h2>
+
+        <h3>ADC Core Selection</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Options</th>
+            </tr>
+            <tr>
+                <td><strong>ADC1_Enable - ADC5_Enable</strong></td>
+                <td>Enable individual ADC cores</td>
+                <td>on / off (availability depends on chip variant)</td>
+            </tr>
+        </table>
+
+        <h3>Sequence Configuration (for each enabled ADC)</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>ADCx_seq0</strong></td>
+                <td>Channel for sequence 0, conversion 0</td>
+                <td>Dropdown with available ANx channels (e.g., "Not Used", "AN0", "AN1", ...)</td>
+            </tr>
+            <tr>
+                <td><strong>ADCx_seq0_1 to ADCx_seq0_5</strong></td>
+                <td>Additional conversions in sequence 0</td>
+                <td>Up to 6 conversions total per sequence</td>
+            </tr>
+            <tr>
+                <td><strong>ADCx_seq1 through ADCx_seq5</strong></td>
+                <td>Additional sequences with 6 conversions each</td>
+                <td>Complete flexibility in channel assignment</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Channel Assignment:</strong> The GUI dynamically shows available channels based on the selected chip. Channels are displayed with pin information (e.g., "AN5 / PB5 / Pin[14]").
+        </div>
+
+        <h3>Trigger Configuration</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+                <th>Available Triggers</th>
+            </tr>
+            <tr>
+                <td><strong>ADCx_seq0_Trig</strong></td>
+                <td>Trigger source for sequence 0</td>
+                <td rowspan="6">
+                    • Manual (software)<br>
+                    • SCCP1-9 (Pegasus)<br>
+                    • SSC1-4, SSC9 (Perseus, Blue Ridge, Serpens)<br>
+                    • External pins<br>
+                    • PWM special events
+                </td>
+            </tr>
+            <tr>
+                <td><strong>ADCx_seq1_Trig - ADCx_seq5_Trig</strong></td>
+                <td>Triggers for sequences 1-5</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Trigger Synchronization:</strong> dsPIC33A devices use SCCP (Standard CCP) or SSC (Synchronous Serial Clock) timers for ADC triggering. The available trigger list is automatically populated based on the chip variant and timer blocks in the model.
+        </div>
+
+        <h2>PWM-ADC Synchronization Strategies</h2>
+
+        <p>Proper ADC trigger configuration is critical for motor control and power conversion. The dsPIC33A ADC supports multiple synchronization strategies, each optimized for different control requirements. Understanding when and how to trigger ADC conversions directly impacts control accuracy and performance.</p>
+
+        <h3>Strategy Overview</h3>
+
+        <p>The MCHP_ADC_HS_12b block supports four fundamental synchronization strategies:</p>
+
+        <h4>Strategy 1: Timer-Based Trigger (Independent Sampling)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_0TrigTimer.png"
+                     alt="Timer-Based ADC Trigger"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>ADC Configuration:</strong></p>
+        <ul>
+            <li>Set <code>ADCx_seq0_Trig = 'SCCP1'</code> or <code>'SSC1'</code></li>
+            <li>Timer runs at fixed frequency independent of PWM</li>
+            <li>Control task triggered by ADC interrupt completion</li>
+        </ul>
+
+        <p><strong>When to Use:</strong></p>
+        <ul>
+            <li>General-purpose data acquisition</li>
+            <li>Sensor monitoring at fixed intervals</li>
+            <li>Multi-loop control with different sampling rates</li>
+            <li>Applications where PWM synchronization is not critical</li>
+        </ul>
+
+        <p><strong>Limitations:</strong></p>
+        <ul>
+            <li>❌ Not synchronized with PWM switching</li>
+            <li>❌ May sample during switching noise/transients</li>
+            <li>❌ Not suitable for phase current sensing in motor control</li>
+        </ul>
+
+        <h4>Strategy 2: Timer → ADC → Task (Synchronized Acquisition)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_1TrigTimerADC.png"
+                     alt="Timer-ADC-Task Synchronization"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>ADC Configuration:</strong></p>
+        <ul>
+            <li>Timer trigger starts ADC conversion</li>
+            <li>ADC interrupt triggers control task execution</li>
+            <li>Ensures fresh data before control algorithm runs</li>
+        </ul>
+
+        <p><strong>Key Benefit:</strong> Zero latency - control task always uses the most recent ADC data (no stale samples).</p>
+
+        <p><strong>Configuration Example:</strong></p>
+        <div class="example">
+<pre><code>% ADC Block Configuration:
+ADC1_Enable = 'on';
+ADC1_seq0 = 'AN0';      % First channel
+ADC1_seq0_1 = 'AN1';    % Second channel
+ADC1_seq0_Trig = 'SCCP1';  % Timer trigger
+
+% SCCP1 Timer Block:
+Period = 1/10e3;  % 10 kHz sampling rate
+
+% Scheduler Configuration:
+% Set control task to be triggered by ADC1 interrupt
+% Task sample time = 'Inherited' (follows ADC trigger rate)
+</code></pre>
+        </div>
+
+        <p><strong>Best For:</strong></p>
+        <ul>
+            <li>Feedback control systems requiring minimum latency</li>
+            <li>Data logging applications</li>
+            <li>Sensor monitoring with immediate processing</li>
+        </ul>
+
+        <h4>Strategy 3: PWM → ADC → Task (Motor Control Standard) ⭐ RECOMMENDED</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_2TrigPWMADC.png"
+                     alt="PWM-ADC-Task Synchronization"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>⭐ This is the STANDARD approach for motor control and power conversion applications.</strong></p>
+
+        <p><strong>Key Benefits:</strong></p>
+        <ul>
+            <li>✅ <strong>Optimal sampling timing:</strong> Sample when PWM low-side FET is ON</li>
+            <li>✅ <strong>Noise immunity:</strong> Avoid switching transients</li>
+            <li>✅ <strong>Accurate current sensing:</strong> Sample during shunt current flow</li>
+            <li>✅ <strong>Automatic synchronization:</strong> Control rate matches PWM frequency</li>
+        </ul>
+
+        <p><strong>ADC Configuration Example (3-Phase FOC):</strong></p>
+        <div class="example">
+<pre><code>% PWM Block Configuration (MCHP_PWM_HS_FEP):
+PWM_Mode = 'Center-aligned';
+PWM_Frequency = 20e3;  % 20 kHz
+SEVTCMP = 0;  % Trigger at PWM valley (center point)
+
+% ADC Block Configuration:
+ADC1_Enable = 'on';
+
+% Phase current sensing (triggered by PWM valley):
+ADC1_seq0 = 'AN0';      % Phase A current (Iu)
+ADC1_seq0_1 = 'AN1';    % Phase B current (Iv)
+ADC1_seq0_2 = 'AN2';    % Phase C current (Iw)
+ADC1_seq0_Trig = 'PWM1 Special Event';  % PWM valley trigger
+
+% DC bus voltage (same trigger):
+ADC1_seq1 = 'AN5';      % DC bus voltage
+ADC1_seq1_Trig = 'PWM1 Special Event';  % Same instant as currents
+
+% Result: ADC samples all signals at PWM valley (20 kHz rate)
+% Control task triggered by ADC1 interrupt completion
+</code></pre>
+        </div>
+
+        <div class="highlight">
+            <strong>💡 Why Sample at PWM Valley?</strong><br>
+            In center-aligned PWM for 3-phase motor control, the valley (center) is when <strong>all three low-side FETs are simultaneously ON</strong>. This is the <strong>only time</strong> when phase currents flow through shunt resistors, enabling accurate current measurement. Sampling at any other time results in incorrect or zero current readings.
+        </div>
+
+        <p><strong>Trigger Sources for dsPIC33A:</strong></p>
+        <table>
+            <tr>
+                <th>PWM Block</th>
+                <th>Trigger Configuration</th>
+                <th>ADC Trigger Selection</th>
+            </tr>
+            <tr>
+                <td><strong>MCHP_PWM_HS_FEP</strong></td>
+                <td>Set <code>SEVTCMP</code> or <code>TrigOut</code></td>
+                <td><code>'PWM1 Special Event'</code> or<br><code>'PWM1 Trigger 1'</code></td>
+            </tr>
+            <tr>
+                <td><strong>MCHP_MCPWM</strong></td>
+                <td>Set <code>TRIG1/2/3</code> or <code>SEVTCMP</code></td>
+                <td><code>'PWM1 TRIG1'</code>,<br><code>'PWM1 TRIG2'</code>, etc.</td>
+            </tr>
+        </table>
+
+        <h4>Strategy 4: Multiple Triggers per PWM Period (Advanced Control)</h4>
+        <div style="text-align: center; margin: 20px 0;">
+            <picture>
+                <source srcset="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.svg" type="image/svg+xml">
+                <img src="../assets/images/toolbox_concepts/synchronization/MCHP_TimeStep_3TrigPWMADC.png"
+                     alt="Multiple ADC Triggers per PWM Period"
+                     style="max-width: 800px; width: 100%; border: 1px solid #ddd;">
+            </picture>
+        </div>
+
+        <p><strong>Use Case:</strong> High-performance control requiring multiple measurements per PWM cycle.</p>
+
+        <p><strong>Key Applications:</strong></p>
+        <ul>
+            <li><strong>Single-shunt FOC:</strong> Sample currents at multiple PWM sector transitions</li>
+            <li><strong>Dual sampling:</strong> Measure phase currents at peak and valley</li>
+            <li><strong>Sensorless FOC:</strong> Sample back-EMF at multiple rotor positions</li>
+            <li><strong>Digital power:</strong> Monitor voltage/current at different switching states</li>
+        </ul>
+
+        <p><strong>ADC Configuration Example (Single-Shunt FOC):</strong></p>
+        <div class="example">
+<pre><code>% PWM Block (MCHP_PWM_HS_FEP):
+PWM_Mode = 'Center-aligned';
+TRIG1 = Period * 0.4;   % Before valley
+SEVTCMP = 0;            % Valley
+TRIG2 = Period * 0.6;   % After valley
+
+% ADC Block Configuration:
+ADC1_Enable = 'on';
+
+% Sequence 0: First current sample (sector 1)
+ADC1_seq0 = 'AN0';      % Shunt current
+ADC1_seq0_Trig = 'PWM1 TRIG1';
+
+% Sequence 1: Second current sample (sector 2)
+ADC1_seq1 = 'AN0';      % Same shunt (different sector)
+ADC1_seq1_Trig = 'PWM1 Special Event';  % Valley
+
+% Sequence 2: Third current sample (sector 3)
+ADC1_seq2 = 'AN0';      % Same shunt (different sector)
+ADC1_seq2_Trig = 'PWM1 TRIG2';
+
+% Result: 3 current measurements per PWM period
+% Reconstruct 3-phase currents from single shunt
+</code></pre>
+        </div>
+
+        <p><strong>Advantages:</strong></p>
+        <ul>
+            <li>Maximum information extraction per PWM cycle</li>
+            <li>Improved state estimation (sensorless control)</li>
+            <li>Faster transient response</li>
+            <li>Cost reduction (single shunt vs. 3 shunts)</li>
+        </ul>
+
+        <p><strong>Considerations:</strong></p>
+        <ul>
+            <li>⚠️ Increased CPU load (multiple sequences to process)</li>
+            <li>⚠️ Careful timing analysis required (ensure ADC completes before next trigger)</li>
+            <li>⚠️ Complex reconstruction algorithms</li>
+        </ul>
+
+        <h3>Application-Specific Recommendations</h3>
+
+        <table>
+            <tr>
+                <th>Application</th>
+                <th>Recommended Strategy</th>
+                <th>ADC Configuration</th>
+            </tr>
+            <tr>
+                <td><strong>3-Phase FOC Motor Control</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • seq0: 3 phase currents<br>
+                    • seq1: DC bus voltage<br>
+                    • All triggered by PWM Special Event
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Single-Shunt FOC</strong></td>
+                <td>Multiple Triggers (Strategy 4)</td>
+                <td>
+                    • seq0-2: Shunt current at 3 sector transitions<br>
+                    • Triggers: TRIG1, SEVTCMP, TRIG2
+                </td>
+            </tr>
+            <tr>
+                <td><strong>BLDC Motor Control</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • seq0: DC bus current<br>
+                    • Trigger: PWM Special Event<br>
+                    • Sample during active commutation
+                </td>
+            </tr>
+            <tr>
+                <td><strong>PFC Boost Converter</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • seq0: Input current, output voltage<br>
+                    • Trigger: PWM Special Event at 85% period
+                </td>
+            </tr>
+            <tr>
+                <td><strong>DC-DC Buck/Boost</strong></td>
+                <td>PWM → ADC → Task (Strategy 3)</td>
+                <td>
+                    • seq0: Output voltage/current<br>
+                    • Trigger: PWM Special Event (sample during FET ON)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Multi-Axis Motion Control</strong></td>
+                <td>Multiple independent PWM→ADC chains</td>
+                <td>
+                    • ADC1: Motor 1 (PWM1 trigger)<br>
+                    • ADC2: Motor 2 (PWM2 trigger)<br>
+                    • Independent control loops
+                </td>
+            </tr>
+            <tr>
+                <td><strong>General Data Acquisition</strong></td>
+                <td>Timer → ADC → Task (Strategy 2)</td>
+                <td>
+                    • Multiple sequences at fixed rate<br>
+                    • Trigger: SCCP/SSC timer<br>
+                    • Independent of PWM
+                </td>
+            </tr>
+        </table>
+
+        <h3>Troubleshooting Synchronization Issues</h3>
+
+        <table>
+            <tr>
+                <th>Problem</th>
+                <th>Likely Cause</th>
+                <th>ADC Configuration Fix</th>
+            </tr>
+            <tr>
+                <td>Phase currents read as zero</td>
+                <td>ADC not triggered at PWM valley</td>
+                <td>
+                    • Verify: <code>ADCx_seqX_Trig = 'PWM1 Special Event'</code><br>
+                    • In PWM block: <code>SEVTCMP = 0</code> (valley)<br>
+                    • Check PWM mode is center-aligned
+                </td>
+            </tr>
+            <tr>
+                <td>Noisy ADC readings</td>
+                <td>Sampling during switching transients</td>
+                <td>
+                    • Change trigger to PWM valley or after settling<br>
+                    • Avoid sampling immediately after PWM edge<br>
+                    • Add hardware RC filter on ADC inputs
+                </td>
+            </tr>
+            <tr>
+                <td>No ADC trigger available in dropdown</td>
+                <td>PWM block not configured with triggers</td>
+                <td>
+                    • In PWM block: Enable <code>SEVTCMP</code> or <code>TrigOut</code><br>
+                    • Add PWM block to model before ADC block<br>
+                    • Rebuild ADC trigger list (re-open block mask)
+                </td>
+            </tr>
+            <tr>
+                <td>Control task not synchronized with ADC</td>
+                <td>Task triggered by timer, not ADC interrupt</td>
+                <td>
+                    • In Scheduler: Set task trigger to ADC interrupt<br>
+                    • Task sample time = 'Inherited'<br>
+                    • Verify ADC interrupt priority allows task execution
+                </td>
+            </tr>
+            <tr>
+                <td>Missing ADC samples</td>
+                <td>ADC overrun (next trigger before conversion complete)</td>
+                <td>
+                    • Reduce number of conversions per sequence<br>
+                    • Distribute channels across multiple ADC cores<br>
+                    • Increase PWM period (lower frequency)<br>
+                    • Check ADC clock configuration
+                </td>
+            </tr>
+            <tr>
+                <td>Inconsistent trigger timing</td>
+                <td>Multiple sequences with overlapping triggers</td>
+                <td>
+                    • Verify ADC conversion time + margin between triggers<br>
+                    • Example: 3 µs ADC time → minimum 5 µs spacing<br>
+                    • Stagger trigger times appropriately
+                </td>
+            </tr>
+        </table>
+
+        <h3>Performance Optimization Tips</h3>
+
+        <ul>
+            <li><strong>Core Distribution:</strong> Distribute high-frequency channels across multiple ADC cores (ADC1-5) for parallel sampling</li>
+            <li><strong>Sequence Organization:</strong> Group channels with same trigger into one sequence to minimize overhead</li>
+            <li><strong>Conversion Time:</strong> Calculate total sequence conversion time: N_channels × (SAMC + 12 cycles). Ensure completion before next trigger.</li>
+            <li><strong>DMA Usage:</strong> For high-speed applications, enable DMA to transfer ADC results without CPU intervention</li>
+            <li><strong>Interrupt Priority:</strong> Set ADC interrupt priority higher than control task to ensure immediate data processing</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>🎯 Quick Start Recommendation:</strong><br>
+            For most motor control applications, start with <strong>Strategy 3 (PWM → ADC → Task)</strong>:
+            <ul>
+                <li>Configure PWM with center-aligned mode and <code>SEVTCMP = 0</code></li>
+                <li>Set ADC sequence trigger to <code>'PWM1 Special Event'</code></li>
+                <li>Assign phase current channels to same sequence</li>
+                <li>Set control task to trigger on ADC interrupt</li>
+            </ul>
+            This provides optimal current measurement with minimal configuration complexity.
+        </div>
+
+        <h3>Related PWM Blocks for Synchronization</h3>
+        <ul>
+            <li><a href="../pwm/pwm_hs_fep.html"><strong>MCHP_PWM_HS_FEP</strong></a> - High-resolution PWM for dsPIC33A with multiple triggers</li>
+            <li><a href="../pwm/mcpwm.html"><strong>MCHP_MCPWM</strong></a> - Motor Control PWM with advanced trigger capabilities</li>
+            <li><a href="../pwm/pwm_high_speed.html"><strong>MCHP_PWM_HighSpeed</strong></a> - High-speed PWM for dsPIC33C</li>
+        </ul>
+
+        <h2>Device-Specific Capabilities</h2>
+
+        <h3>Perseus (33AK128MC106) - STX04</h3>
+        <ul>
+            <li><strong>ADC Cores:</strong> 2 (ADC1, ADC2)</li>
+            <li><strong>Channels:</strong> 20 per core (AN0-AN19)</li>
+            <li><strong>Timers:</strong> SSC 1, 2, 3, 4, 9</li>
+            <li><strong>Best for:</strong> Dual motor control, isolated converters</li>
+        </ul>
+
+        <h3>Pegasus (33AK512MPS512) - STX32</h3>
+        <ul>
+            <li><strong>ADC Cores:</strong> 5 (ADC1-5)</li>
+            <li><strong>Channels:</strong> 16 per core (AN0-AN15)</li>
+            <li><strong>Timers:</strong> SCCP 1-9 (more trigger options)</li>
+            <li><strong>Best for:</strong> Multi-axis motor control, multi-phase power</li>
+        </ul>
+
+        <h3>Blue Ridge (33AK256MPS306) - STX33</h3>
+        <ul>
+            <li><strong>ADC Cores:</strong> 3 (ADC1-3)</li>
+            <li><strong>Channels:</strong> 12 per core (AN0-AN11)</li>
+            <li><strong>Timers:</strong> SSC 1, 2, 3, 4, 5</li>
+            <li><strong>Best for:</strong> Cost-optimized motor control</li>
+        </ul>
+
+        <h3>Serpens (33AKV512GM510) - STX21</h3>
+        <ul>
+            <li><strong>ADC Cores:</strong> 2 (ADC1, ADC2)</li>
+            <li><strong>Channels:</strong> ADC1=20 (AN0-AN19), ADC2=39 (AN0-AN38)</li>
+            <li><strong>Timers:</strong> SCC 1, 2, 3, 4, 9</li>
+            <li><strong>Best for:</strong> High channel count applications</li>
+        </ul>
+
+        <h2>Block Outputs</h2>
+
+        <h3>Dynamic Output Generation</h3>
+        <p>The block creates output ports automatically based on sequence configuration:</p>
+
+        <ul>
+            <li><strong>Output per conversion:</strong> Each assigned channel in each sequence creates one output</li>
+            <li><strong>Port naming:</strong> ADCx_seqY_Z format (e.g., ADC1_seq0_0, ADC1_seq0_1, ADC2_seq1_0)</li>
+            <li><strong>Data type:</strong> uint16 (12-bit right-aligned)</li>
+            <li><strong>Trigger-based updates:</strong> Each output updates when its sequence trigger fires</li>
+        </ul>
+
+        <div class="example">
+            <strong>Output Example:</strong><br>
+            <strong>ADC1:</strong> seq0 → AN0, AN1, AN2 | seq1 → AN5<br>
+            <strong>ADC2:</strong> seq0 → AN10, AN11<br>
+            <br>
+            <strong>Outputs:</strong>
+            <ul>
+                <li>ADC1_seq0_0 (AN0)</li>
+                <li>ADC1_seq0_1 (AN1)</li>
+                <li>ADC1_seq0_2 (AN2)</li>
+                <li>ADC1_seq1_0 (AN5)</li>
+                <li>ADC2_seq0_0 (AN10)</li>
+                <li>ADC2_seq0_1 (AN11)</li>
+            </ul>
+            Total: 6 outputs
+        </div>
+
+        <h2>Usage Examples</h2>
+
+        <h3>Example 1: 3-Phase FOC Motor Control</h3>
+        <div class="example">
+            <strong>Configuration:</strong>
+            <ul>
+                <li><strong>ADC1 seq0:</strong> AN0 (Iu), AN1 (Iv), AN2 (Iw) - Trigger: PWM1 Special Event</li>
+                <li><strong>ADC1 seq1:</strong> AN5 (Vdc) - Trigger: PWM1 Special Event (same instant)</li>
+                <li><strong>ADC2 seq0:</strong> AN10 (Temperature) - Trigger: SSC3 (lower frequency)</li>
+            </ul>
+            <strong>Result:</strong> 3-phase currents + DC bus sampled synchronously with PWM, temperature sampled periodically.
+        </div>
+
+        <h3>Example 2: Dual Motor Control (Pegasus)</h3>
+        <div class="example">
+            <strong>Motor 1 (ADC1):</strong>
+            <ul>
+                <li>seq0: AN0, AN1, AN2 (currents) - Trigger: SCCP1</li>
+                <li>seq1: AN5 (position feedback) - Trigger: SCCP2</li>
+            </ul>
+            <strong>Motor 2 (ADC2):</strong>
+            <ul>
+                <li>seq0: AN8, AN9, AN10 (currents) - Trigger: SCCP5</li>
+                <li>seq1: AN12 (position feedback) - Trigger: SCCP6</li>
+            </ul>
+            <strong>Result:</strong> Independent control of two motors with isolated ADC resources.
+        </div>
+
+        <h3>Example 3: Multi-Channel Data Acquisition</h3>
+        <div class="example">
+            <strong>Configuration:</strong>
+            <ul>
+                <li><strong>ADC1:</strong> seq0-2 with 6 channels each = 18 channels total</li>
+                <li><strong>Trigger:</strong> All sequences on SCCP1 (simultaneous acquisition)</li>
+                <li><strong>Sampling rate:</strong> 10kHz</li>
+            </ul>
+            <strong>Result:</strong> 18-channel synchronized data acquisition system.
+        </div>
+
+        <h2>Implementation Details</h2>
+
+        <h3>Key Registers</h3>
+        <table>
+            <tr>
+                <th>Register</th>
+                <th>Purpose</th>
+                <th>Configuration</th>
+            </tr>
+            <tr>
+                <td><strong>ADCxCON</strong></td>
+                <td>ADC control</td>
+                <td>Enable, clock source, resolution</td>
+            </tr>
+            <tr>
+                <td><strong>ADCxSEQCON</strong></td>
+                <td>Sequence control</td>
+                <td>Sequence enable, length, trigger assignment</td>
+            </tr>
+            <tr>
+                <td><strong>ADCxCHANNEL[0-5]</strong></td>
+                <td>Channel assignment for each sequence conversion</td>
+                <td>ANx channel selection per conversion slot</td>
+            </tr>
+            <tr>
+                <td><strong>ADCxTRIG</strong></td>
+                <td>Trigger selection</td>
+                <td>SCCP/SSC timer or external source</td>
+            </tr>
+            <tr>
+                <td><strong>ADCxDATA[0-5]</strong></td>
+                <td>Conversion results</td>
+                <td>12-bit data registers (one per conversion in sequence)</td>
+            </tr>
+        </table>
+
+        <h2>Troubleshooting</h2>
+
+        <div class="warning">
+            <strong>Issue:</strong> Block shows "ADC not available"<br>
+            <strong>Solution:</strong> Verify you're using a dsPIC33A device. This block is NOT compatible with dsPIC33C, 33E, or 33F. Use appropriate ADC block for those families.
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> Not all channels visible in dropdown<br>
+            <strong>Solution:</strong> Channel availability varies by chip variant. Check device datasheet for supported ANx channels on selected ADC core.
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> No trigger sources available<br>
+            <strong>Solution:</strong> Add SCCP/SSC timer blocks or PWM blocks with trigger capability before configuring ADC. Trigger list is dynamically built from model contents.
+        </div>
+
+        <div class="warning">
+            <strong>Issue:</strong> "Updating ADC block options, please wait..." hangs<br>
+            <strong>Solution:</strong> Large models may take time to enumerate all channels and triggers. Wait for completion or simplify model structure.
+        </div>
+
+        <h2>Performance Tips</h2>
+
+        <ul>
+            <li><strong>Minimize sequence count:</strong> Use fewer sequences with more conversions each for lower overhead</li>
+            <li><strong>Trigger alignment:</strong> Align multiple sequences to same trigger for simultaneous sampling</li>
+            <li><strong>Core distribution:</strong> Distribute channels across ADC cores to maximize parallel throughput</li>
+            <li><strong>Sample time:</strong> Optimize SAMC value per application - shorter for speed, longer for accuracy</li>
+        </ul>
+
+        <h2>Related Blocks</h2>
+        <ul>
+            <li><a href="adc_standard.html">MCHP_ADC</a> - Standard ADC for older dsPIC families</li>
+            <li><a href="adc_hs_sar.html">MCHP_ADC_HighSpeed_SAR</a> - High-speed SAR for PIC32</li>
+            <li><a href="../pwm/pwm_hs_fep.html">MCHP_PWM_HS_FEP</a> - Advanced PWM with ADC trigger for dsPIC33A</li>
+            <li><a href="../timer_blocks.html">MCHP_SCCP/SSC</a> - Timer blocks for ADC triggering</li>
+        </ul>
+
+        <h2>See Also</h2>
+        <p>
+            <a href="../adc_blocks.html">ADC Blocks Overview</a> |
+            <a href="../index.html">Block Reference</a> |
+            <a href="../../dspic33a_guide.html">dsPIC33A Family Guide</a>
+        </p>
+
+        <hr>
+        <p style="font-size: 0.9em; color: #666;">
+            <strong>MCHP Blockset Documentation</strong> |
+            Last updated: 2025 |
+            <a href="../../index.html">Documentation Home</a>
+        </p>
+    </div>
+    </div>
+</body>
+</html>
