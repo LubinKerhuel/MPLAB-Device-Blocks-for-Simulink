@@ -1,75 +1,1075 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</title>
-    <link>/block_reference/system_configuration.html</link>
-    <description>Recent content in System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CompilerOptimisation</title>
-      <link>/block_reference/system_configuration/compiler_options.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/compiler_options.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/CompilerOptimisation.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/CompilerOptimisation.png&#34; alt=&#34;Compiler Options Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;CompilerOptimisation&lt;/strong&gt; block configures compiler toolchain, optimization levels, Device Family Pack (DFP) selection, and linker options for controlling code size, execution speed, and build behavior.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;compiler-selection&#34;&gt;Compiler Selection&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;COMP_LIST&lt;/td&gt;&#xA;          &lt;td&gt;Installed compiler version selection (auto-detected)&lt;/td&gt;&#xA;          &lt;td&gt;XC16 v1.xx-v2.xx&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LATEST_CMPLR&lt;/td&gt;&#xA;          &lt;td&gt;Always use latest installed compiler&lt;/td&gt;&#xA;          &lt;td&gt;on / off&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DFP_LIST&lt;/td&gt;&#xA;          &lt;td&gt;Device Family Pack version&lt;/td&gt;&#xA;          &lt;td&gt;from compiler&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CMSIS_DSP&lt;/td&gt;&#xA;          &lt;td&gt;(ARM)&lt;/td&gt;&#xA;          &lt;td&gt;CMSIS DSP library for ARM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;optimization-levels&#34;&gt;Optimization Levels&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Level&lt;/th&gt;&#xA;          &lt;th&gt;Speed&lt;/th&gt;&#xA;          &lt;th&gt;Code Size&lt;/th&gt;&#xA;          &lt;th&gt;Use Case&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;-O0&lt;/td&gt;&#xA;          &lt;td&gt;Slowest&lt;/td&gt;&#xA;          &lt;td&gt;Largest&lt;/td&gt;&#xA;          &lt;td&gt;Debug - no optimization&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;-O1&lt;/td&gt;&#xA;          &lt;td&gt;Moderate&lt;/td&gt;&#xA;          &lt;td&gt;Reduced&lt;/td&gt;&#xA;          &lt;td&gt;Basic optimization&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;-O2&lt;/td&gt;&#xA;          &lt;td&gt;Fast&lt;/td&gt;&#xA;          &lt;td&gt;Smaller&lt;/td&gt;&#xA;          &lt;td&gt;Production (recommended)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;-O3&lt;/td&gt;&#xA;          &lt;td&gt;Fastest&lt;/td&gt;&#xA;          &lt;td&gt;May increase&lt;/td&gt;&#xA;          &lt;td&gt;Maximum speed&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;-Os&lt;/td&gt;&#xA;          &lt;td&gt;Varies&lt;/td&gt;&#xA;          &lt;td&gt;Smallest&lt;/td&gt;&#xA;          &lt;td&gt;Size-constrained&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;dspic-options-16-bit&#34;&gt;dsPIC Options (16-bit)&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Option&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Impact&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;USE_64BIT_DOUBLE&lt;/td&gt;&#xA;          &lt;td&gt;64-bit doubles vs 32-bit&lt;/td&gt;&#xA;          &lt;td&gt;2× memory, higher precision&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PROCEDURAL_ABSTRACTION&lt;/td&gt;&#xA;          &lt;td&gt;Extract common code (-mpa)&lt;/td&gt;&#xA;          &lt;td&gt;5-15% size reduction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MCODE&lt;/td&gt;&#xA;          &lt;td&gt;Code memory model&lt;/td&gt;&#xA;          &lt;td&gt;small (&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MDATA&lt;/td&gt;&#xA;          &lt;td&gt;Data memory model&lt;/td&gt;&#xA;          &lt;td&gt;small (near) / large (far)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MLARGEARRAY&lt;/td&gt;&#xA;          &lt;td&gt;Arrays &amp;gt;32KB&lt;/td&gt;&#xA;          &lt;td&gt;32-bit indexing required&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;GC_SECTIONS&lt;/td&gt;&#xA;          &lt;td&gt;Remove unused code/data&lt;/td&gt;&#xA;          &lt;td&gt;10-30% size reduction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;armpic32-options-32-bit&#34;&gt;ARM/PIC32 Options (32-bit)&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Option&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Impact&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;OPTIMIZATION_FLTO&lt;/td&gt;&#xA;          &lt;td&gt;Link-Time Optimization&lt;/td&gt;&#xA;          &lt;td&gt;5-20% improvement, slow build&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;OPTIMIZATION_REORDER&lt;/td&gt;&#xA;          &lt;td&gt;Reorder for cache locality&lt;/td&gt;&#xA;          &lt;td&gt;Speed improvement&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CONSERVE_STACK&lt;/td&gt;&#xA;          &lt;td&gt;Minimize stack usage&lt;/td&gt;&#xA;          &lt;td&gt;Reduced stack requirements&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;debug-options&#34;&gt;Debug Options&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Option&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DEBUG_INFO&lt;/td&gt;&#xA;          &lt;td&gt;Debug symbols in ELF&lt;/td&gt;&#xA;          &lt;td&gt;Required for debugging&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;AssemblyListing&lt;/td&gt;&#xA;          &lt;td&gt;.lst file generation&lt;/td&gt;&#xA;          &lt;td&gt;Assembly/source mix&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;ProduceHexOutput&lt;/td&gt;&#xA;          &lt;td&gt;.hex file generation&lt;/td&gt;&#xA;          &lt;td&gt;Programming file&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MCHP_STACK_USAGE&lt;/td&gt;&#xA;          &lt;td&gt;Stack usage report (MCHP)&lt;/td&gt;&#xA;          &lt;td&gt;.su files&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;GCC_STACK_USAGE&lt;/td&gt;&#xA;          &lt;td&gt;Stack usage report (GCC)&lt;/td&gt;&#xA;          &lt;td&gt;.su files&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;linker-configuration&#34;&gt;Linker Configuration&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;UseCustom_LinkerScript&lt;/td&gt;&#xA;          &lt;td&gt;Use custom memory map&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LinkerScript&lt;/td&gt;&#xA;          &lt;td&gt;Path to .gld/.ld file&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;HEAP_SIZE&lt;/td&gt;&#xA;          &lt;td&gt;Heap allocation (bytes)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CUSTOM_OPTIM&lt;/td&gt;&#xA;          &lt;td&gt;Additional compiler flags&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CUSTOM_OPTIM_LD&lt;/td&gt;&#xA;          &lt;td&gt;Additional linker flags&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;math-libraries-dspic&#34;&gt;Math Libraries (dsPIC)&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Library&lt;/th&gt;&#xA;          &lt;th&gt;Speed&lt;/th&gt;&#xA;          &lt;th&gt;Accuracy&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Standard&lt;/td&gt;&#xA;          &lt;td&gt;Moderate&lt;/td&gt;&#xA;          &lt;td&gt;Full precision&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Fast&lt;/td&gt;&#xA;          &lt;td&gt;2-3× faster&lt;/td&gt;&#xA;          &lt;td&gt;Slightly reduced&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Relaxed&lt;/td&gt;&#xA;          &lt;td&gt;Maximum speed&lt;/td&gt;&#xA;          &lt;td&gt;Trade precision&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;example-configurations&#34;&gt;Example Configurations&lt;/h2&gt;&#xA;&lt;h3 id=&#34;debug&#34;&gt;Debug&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;OPTIMIZATION_LEVEL: -O0&#xD;&#xA;DEBUG_INFO: on&#xD;&#xA;GC_SECTIONS: None&#xD;&#xA;→ Largest code, easiest debugging&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;production-speed&#34;&gt;Production (Speed)&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;OPTIMIZATION_LEVEL: -O2&#xD;&#xA;PROCEDURAL_ABSTRACTION: on (dsPIC)&#xD;&#xA;OPTIMIZATION_FLTO: on (ARM/PIC32)&#xD;&#xA;GC_SECTIONS: Remove unused&#xD;&#xA;→ Fast execution, moderate size&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;size-constrained&#34;&gt;Size-Constrained&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;OPTIMIZATION_LEVEL: -Os&#xD;&#xA;PROCEDURAL_ABSTRACTION: on&#xD;&#xA;GC_SECTIONS: Remove unused&#xD;&#xA;→ Minimum code size&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_Master] - Compiler auto-configuration&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_PortInfo] - Resource visualization&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>IdleTask</title>
-      <link>/block_reference/system_configuration/idle_task.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/idle_task.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_functions/IdleTask.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_functions/IdleTask.png&#34; alt=&#34;Idle Task Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;strong&gt;Idle Task Characteristics:&lt;/strong&gt;  - &lt;strong&gt;Lowest priority&lt;/strong&gt; - Preempted by any scheduled task or interrupt - &lt;strong&gt;Non-deterministic timing&lt;/strong&gt; - Execution time varies with CPU load - &lt;strong&gt;Continuous loop&lt;/strong&gt; - Runs whenever CPU is idle - &lt;strong&gt;Single instance&lt;/strong&gt; - Only one idle task per model - &lt;strong&gt;Power management&lt;/strong&gt; - Ideal location for sleep/idle instructions&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;usage-scenarios&#34;&gt;Usage Scenarios&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Application&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Example Code&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Power Saving&lt;/td&gt;&#xA;          &lt;td&gt;Enter low-power mode when idle&lt;/td&gt;&#xA;          &lt;td&gt;Idle(); (dsPIC) __WFI(); (ARM)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Watchdog Refresh&lt;/td&gt;&#xA;          &lt;td&gt;Service watchdog timer in idle loop&lt;/td&gt;&#xA;          &lt;td&gt;ClrWdt();&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Background Communication&lt;/td&gt;&#xA;          &lt;td&gt;Process non-critical messages&lt;/td&gt;&#xA;          &lt;td&gt;Parse low-priority UART data&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Diagnostics&lt;/td&gt;&#xA;          &lt;td&gt;Monitor system health&lt;/td&gt;&#xA;          &lt;td&gt;Check stack usage, temperature&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LED Blinking&lt;/td&gt;&#xA;          &lt;td&gt;Visual heartbeat indicator&lt;/td&gt;&#xA;          &lt;td&gt;Toggle status LED&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-configuration&#34;&gt;Block Configuration&lt;/h2&gt;&#xA;&lt;p&gt;The idle task is implemented using a Simulink Function-Call Subsystem:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Interrupt</title>
-      <link>/block_reference/system_configuration/interrupt.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/interrupt.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_functions/Interrupt.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_functions/Interrupt.png&#34; alt=&#34;Interrupt Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Interrupt&lt;/strong&gt; block creates interrupt-driven subsystems by connecting peripheral interrupt sources to Simulink triggered subsystems. The block automatically manages interrupt vector configuration, priority levels, and timing synchronization.  &lt;strong&gt;Key Capabilities:&lt;/strong&gt;  - &lt;strong&gt;Automatic interrupt detection&lt;/strong&gt; - Discovers all peripheral interrupts in model - &lt;strong&gt;Dynamic interrupt list&lt;/strong&gt; - Popup shows only available interrupts from active peripherals - &lt;strong&gt;Priority management&lt;/strong&gt; - Configure interrupt priority levels (device-dependent) - &lt;strong&gt;Multiple timing modes&lt;/strong&gt; - Base rate, periodic trigger, or hardware timer-based - &lt;strong&gt;Context preservation&lt;/strong&gt; - Automatic FPU context save/restore (PIC32 with FPU)&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;interrupt-sources&#34;&gt;Interrupt Sources&lt;/h2&gt;&#xA;&lt;h3 id=&#34;peripheral-interrupts-auto-detected&#34;&gt;Peripheral Interrupts (Auto-detected)&lt;/h3&gt;&#xA;&lt;p&gt;The block automatically detects interrupts from peripheral blocks in your model:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Master</title>
-      <link>/block_reference/system_configuration/master.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/master.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/Master.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/Master.png&#34; alt=&#34;Master Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;div class=&#34;warning&#34; style=&#34;background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;&#34;&gt;&#xD;&#xA;    CRITICAL: The Master block is MANDATORY in every MCHP Blockset model. This is always the FIRST block to add to any new model. Without it, no other MCHP blocks will function.  Master Block The &lt;strong&gt;Master&lt;/strong&gt; block is the central configuration block for the entire MCHP Blockset. It defines the target microcontroller, clock configuration, peripheral initialization, compiler settings, and code generation options. All other MCHP blocks depend on parameters set in this block.  &lt;strong&gt;Primary Functions:&lt;/strong&gt;  - &lt;strong&gt;Target Selection&lt;/strong&gt; - Choose from 800+ supported Microchip microcontrollers - &lt;strong&gt;Clock Configuration&lt;/strong&gt; - Configure oscillator, PLL, and system clocks (FCY/FOSC) - &lt;strong&gt;Fuse Settings&lt;/strong&gt; - Set device configuration bits (watchdog, code protection, etc.) - &lt;strong&gt;Build System&lt;/strong&gt; - Configure compiler paths, optimization, and project settings - &lt;strong&gt;External Mode&lt;/strong&gt; - Enable real-time data monitoring via UART - &lt;strong&gt;PIL Testing&lt;/strong&gt; - Processor-in-the-Loop test framework configuration&#xD;&#xA;&lt;/div&gt;&#xD;&#xA; ## Supported Devices  The Master block supports &lt;strong&gt;800+ Microchip microcontrollers&lt;/strong&gt; across multiple families:&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h3 id=&#34;16-bit-dscmcu-families&#34;&gt;16-bit DSC/MCU Families&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Examples&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;          &lt;th&gt;Applications&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC30F&lt;/td&gt;&#xA;          &lt;td&gt;30F1010, 30F2020, 30F6015&lt;/td&gt;&#xA;          &lt;td&gt;Legacy DSC, basic DSP engine&lt;/td&gt;&#xA;          &lt;td&gt;Motor control, power supplies&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33F&lt;/td&gt;&#xA;          &lt;td&gt;33FJ128MC802, 33FJ256GP710A&lt;/td&gt;&#xA;          &lt;td&gt;Enhanced DSP, DMA, advanced PWM&lt;/td&gt;&#xA;          &lt;td&gt;Digital power, motor control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33E&lt;/td&gt;&#xA;          &lt;td&gt;33EP512MU810, 33EP256MC710&lt;/td&gt;&#xA;          &lt;td&gt;PPS, DMA, high-speed ADC&lt;/td&gt;&#xA;          &lt;td&gt;Motor control, instrumentation&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C&lt;/td&gt;&#xA;          &lt;td&gt;33CK64MC105, 33CH128MP508&lt;/td&gt;&#xA;          &lt;td&gt;Dual-core options, high-speed PWM&lt;/td&gt;&#xA;          &lt;td&gt;Motor control, power conversion&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33A&lt;/td&gt;&#xA;          &lt;td&gt;(Latest)&lt;/td&gt;&#xA;          &lt;td&gt;33AK128MC106, 33AK512MPS512&lt;/td&gt;&#xA;          &lt;td&gt;Advanced PWM with FEP, 12-bit ADC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC24F/H&lt;/td&gt;&#xA;          &lt;td&gt;24F16KL402, 24FJ256GB110&lt;/td&gt;&#xA;          &lt;td&gt;General-purpose MCU, low power&lt;/td&gt;&#xA;          &lt;td&gt;Portable, battery-powered apps&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;32-bit-mcu-families&#34;&gt;32-bit MCU Families&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Examples&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;          &lt;th&gt;Applications&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MK&lt;/td&gt;&#xA;          &lt;td&gt;32MK0512MCF064, 32MK1024GPE100&lt;/td&gt;&#xA;          &lt;td&gt;MIPS M5150, FPU, motor control&lt;/td&gt;&#xA;          &lt;td&gt;Advanced motor control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MZ&lt;/td&gt;&#xA;          &lt;td&gt;32MZ2048EFM144, 32MZ1024ECH144&lt;/td&gt;&#xA;          &lt;td&gt;High-performance MIPS, crypto&lt;/td&gt;&#xA;          &lt;td&gt;IoT, connectivity, graphics&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MX&lt;/td&gt;&#xA;          &lt;td&gt;32MX795F512L, 32MX440F256H&lt;/td&gt;&#xA;          &lt;td&gt;USB, Ethernet, graphics&lt;/td&gt;&#xA;          &lt;td&gt;HMI, connectivity&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32A&lt;/td&gt;&#xA;          &lt;td&gt;(New)&lt;/td&gt;&#xA;          &lt;td&gt;32AK1216GC41036&lt;/td&gt;&#xA;          &lt;td&gt;Next-gen 32-bit architecture&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;arm-based-families-sam&#34;&gt;ARM-based Families (SAM)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Core&lt;/th&gt;&#xA;          &lt;th&gt;Examples&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAME70&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M7&lt;/td&gt;&#xA;          &lt;td&gt;SAME70Q21B, SAME70N21B&lt;/td&gt;&#xA;          &lt;td&gt;300 MHz, FPU, DSP, Ethernet&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAMS70&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M7&lt;/td&gt;&#xA;          &lt;td&gt;SAMS70Q21B&lt;/td&gt;&#xA;          &lt;td&gt;High-speed processing, security&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAMV71&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M7&lt;/td&gt;&#xA;          &lt;td&gt;SAMV71Q21B&lt;/td&gt;&#xA;          &lt;td&gt;Automotive, CAN-FD, safety&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAME5x&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M4F&lt;/td&gt;&#xA;          &lt;td&gt;SAME54P20A&lt;/td&gt;&#xA;          &lt;td&gt;120 MHz, crypto, low power&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAMC2x&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M0+&lt;/td&gt;&#xA;          &lt;td&gt;SAMC21N18A&lt;/td&gt;&#xA;          &lt;td&gt;Motor control, cost-optimized&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAMD2x&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M0+&lt;/td&gt;&#xA;          &lt;td&gt;SAMD21G18A&lt;/td&gt;&#xA;          &lt;td&gt;Ultra-low power, IoT&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32CZ&lt;/td&gt;&#xA;          &lt;td&gt;Cortex-M7&lt;/td&gt;&#xA;          &lt;td&gt;PIC32CZ_MC70&lt;/td&gt;&#xA;          &lt;td&gt;High-performance, security&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-parameters&#34;&gt;Block Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;target-configuration&#34;&gt;Target Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values/Range&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PICREF&lt;/td&gt;&#xA;          &lt;td&gt;Microcontroller selection. Dynamic popup filtered by supported families with oscillator support verification.&lt;/td&gt;&#xA;          &lt;td&gt;800+ devices&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PACKAGE&lt;/td&gt;&#xA;          &lt;td&gt;(SAM only)&lt;/td&gt;&#xA;          &lt;td&gt;Package selection for ARM devices (affects pin availability).&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;clock-configuration&#34;&gt;Clock Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values/Range&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;OSCILLATOR_SELECT&lt;/td&gt;&#xA;          &lt;td&gt;Primary oscillator source selection. Options dynamically updated based on chip capabilities.&lt;/td&gt;&#xA;          &lt;td&gt;• Internal Fast RC (FRC)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QUARTZ&lt;/td&gt;&#xA;          &lt;td&gt;Crystal/resonator frequency when using external oscillator.&lt;/td&gt;&#xA;          &lt;td&gt;0.4 MHz to 40 MHz&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;ACTIV_PLL&lt;/td&gt;&#xA;          &lt;td&gt;Enable Phase-Locked Loop for frequency multiplication.&lt;/td&gt;&#xA;          &lt;td&gt;on / off&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MIPS_DESIRED&lt;/td&gt;&#xA;          &lt;td&gt;Target instruction cycle frequency (FCY). Automatically calculates PLL settings.&lt;/td&gt;&#xA;          &lt;td&gt;Device-specific&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;ACLKCON&lt;/td&gt;&#xA;          &lt;td&gt;(dsPIC33C only)&lt;/td&gt;&#xA;          &lt;td&gt;Auxiliary clock configuration for PWM and other peripherals.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CPUDIV&lt;/td&gt;&#xA;          &lt;td&gt;(SAM Cortex-M0+ only)&lt;/td&gt;&#xA;          &lt;td&gt;CPU clock divider selection.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;VDD_range&lt;/td&gt;&#xA;          &lt;td&gt;(SAM Cortex-M0+ only)&lt;/td&gt;&#xA;          &lt;td&gt;Operating voltage range (affects flash wait states).&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;pre&gt;&lt;code&gt;        Select oscillator source (internal RC or external crystal/clock)&#xD;&#xA;        If using crystal, specify frequency in QUARTZ parameter&#xD;&#xA;        Enable PLL if higher frequencies are required&#xD;&#xA;        Set MIPS_DESIRED to target frequency - PLL multipliers are calculated automatically&#xD;&#xA;        Block display shows achieved MIPS/MHz on the diagram&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;fuse-configuration-device-configuration-bits&#34;&gt;Fuse Configuration (Device Configuration Bits)&lt;/h3&gt;&#xA;&lt;p&gt;The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MCU LOAD</title>
-      <link>/block_reference/system_configuration/mcu_load.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/mcu_load.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/MCU_Load.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/MCU_Load.png&#34; alt=&#34;MCU Load Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;MCU LOAD&lt;/strong&gt; block measures and outputs the real-time CPU utilization percentage, providing essential feedback for performance optimization and schedulability verification.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;output-signal&#34;&gt;Output Signal&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Data Type&lt;/th&gt;&#xA;          &lt;th&gt;Range&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CPU_Load&lt;/td&gt;&#xA;          &lt;td&gt;single (float)&lt;/td&gt;&#xA;          &lt;td&gt;0.0 to 100.0&lt;/td&gt;&#xA;          &lt;td&gt;Percentage of CPU time used by scheduled tasks&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;measurement-method&#34;&gt;Measurement Method&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;//&lt;/span&gt; CPU load calculation:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CPU_Load = (&lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; (IdleTime &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;/&lt;/span&gt; TotalTime)) × &lt;span style=&#34;color:#099&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;%&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Where:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  IdleTime = Time spent in idle task&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  TotalTime = Total elapsed time&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Measurement window: Configurable averaging period&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;usage-guidelines&#34;&gt;Usage Guidelines&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;CPU Load Range&lt;/th&gt;&#xA;          &lt;th&gt;Status&lt;/th&gt;&#xA;          &lt;th&gt;Recommendation&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;0-60%&lt;/td&gt;&#xA;          &lt;td&gt;✓ Healthy&lt;/td&gt;&#xA;          &lt;td&gt;Good margin for additional features&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;60-80%&lt;/td&gt;&#xA;          &lt;td&gt;⚠ Moderate&lt;/td&gt;&#xA;          &lt;td&gt;Monitor closely, optimize if growing&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;80-95%&lt;/td&gt;&#xA;          &lt;td&gt;⚠ High&lt;/td&gt;&#xA;          &lt;td&gt;Optimize code, reduce sample rates&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&amp;gt;95%&lt;/td&gt;&#xA;          &lt;td&gt;❌ Critical&lt;/td&gt;&#xA;          &lt;td&gt;System unstable, immediate action required&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;example-application&#34;&gt;Example Application&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Monitor CPU load and trigger optimization&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CPU_Load → Display (live monitoring)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CPU_Load → Compare (threshold &lt;span style=&#34;color:#099&#34;&gt;80&lt;/span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;%)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;         → LED warning &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;if&lt;/span&gt; exceeded&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% External mode:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% - Tune parameters while monitoring load&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% - Find maximum achievable performance&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_MCU_OVERLOAD] - Overload detection and recovery&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_Tasks_State] - Task execution monitoring&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>MCU OVERLOAD</title>
-      <link>/block_reference/system_configuration/mcu_overload.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/mcu_overload.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/MCU_Overload.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/MCU_Overload.png&#34; alt=&#34;MCU Overload Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;MCU OVERLOAD&lt;/strong&gt; block detects when scheduled tasks miss their deadlines and provides diagnostic information for identifying the cause of overload conditions.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;output-signals&#34;&gt;Output Signals&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Data Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overload_Flag&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;1 = Task missed deadline, 0 = Normal operation&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overload_TaskID&lt;/td&gt;&#xA;          &lt;td&gt;uint8&lt;/td&gt;&#xA;          &lt;td&gt;ID of task that caused overload (if known)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overload_Count&lt;/td&gt;&#xA;          &lt;td&gt;uint32&lt;/td&gt;&#xA;          &lt;td&gt;Cumulative count of overload events&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;overload-conditions&#34;&gt;Overload Conditions&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Condition&lt;/th&gt;&#xA;          &lt;th&gt;Detection Method&lt;/th&gt;&#xA;          &lt;th&gt;Response&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Task execution exceeds period&lt;/td&gt;&#xA;          &lt;td&gt;Compare execution time vs sample time&lt;/td&gt;&#xA;          &lt;td&gt;Set flag, log task ID&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Queue overflow&lt;/td&gt;&#xA;          &lt;td&gt;Task triggered while already queued&lt;/td&gt;&#xA;          &lt;td&gt;Set flag, increment counter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Preemption cascade&lt;/td&gt;&#xA;          &lt;td&gt;Multiple nested preemptions&lt;/td&gt;&#xA;          &lt;td&gt;Set flag, identify root task&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;example-usage&#34;&gt;Example Usage&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Overload detection and safe shutdown&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Overload_Flag → LED (visual warning)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Overload_Flag → Switch&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;             → &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;): Enter safe mode&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        Disable non&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt;critical tasks&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        Log diagnostics&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Recovery strategy:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;if&lt;/span&gt; Overload_Count &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;10&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Persistent overload - reduce functionality&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Disable_MotorControl();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Enable_SafeShutdown();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;end&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;debugging-with-overload-block&#34;&gt;Debugging with Overload Block&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Analysis workflow:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;1.&lt;/span&gt; Connect outputs to scopes&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;/&lt;/span&gt;displays&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;2.&lt;/span&gt; Run model and observe overload &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;events&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;3.&lt;/span&gt; Identify TaskID causing overload&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;4.&lt;/span&gt; Use MCHP_Tasks_State to see task interactions&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;5.&lt;/span&gt; Optimize identified task or reduce sample rate&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Common overload patterns:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID=&lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;, Count growing → Base rate task too slow&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID varies randomly → Interrupt storms&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID=&lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt; (idle) → Should never happen (check config)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_MCU_LOAD] - CPU utilization monitoring&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_Tasks_State] - Task state visibility&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_Scheduler_Options] - Overload behavior config&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Scheduler Options</title>
-      <link>/block_reference/system_configuration/scheduler_options.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/scheduler_options.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/SchedulerOptions.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/SchedulerOptions.png&#34; alt=&#34;Scheduler Options Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Scheduler Options&lt;/strong&gt; block configures the behavior of the built-in &lt;strong&gt;Rate Monotonic Scheduler&lt;/strong&gt; used for multitasking in MCHP Blockset models. The scheduler manages execution of multiple tasks at different sample rates with &lt;strong&gt;preemptive priority-based scheduling&lt;/strong&gt;.  &lt;strong&gt;Rate Monotonic Scheduling Principle:&lt;/strong&gt;  - &lt;strong&gt;Highest rate = Highest priority&lt;/strong&gt; - Faster tasks automatically get higher priority - &lt;strong&gt;Preemptive execution&lt;/strong&gt; - Higher priority tasks interrupt lower priority tasks - &lt;strong&gt;Deterministic behavior&lt;/strong&gt; - Guaranteed timing if schedulability conditions are met - &lt;strong&gt;Automatic priority assignment&lt;/strong&gt; - No manual priority configuration needed&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;rate-monotonic-scheduler-architecture&#34;&gt;Rate Monotonic Scheduler Architecture&lt;/h2&gt;&#xA;&lt;h3 id=&#34;task-priority-assignment&#34;&gt;Task Priority Assignment&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Sample Time&lt;/th&gt;&#xA;          &lt;th&gt;Priority Level&lt;/th&gt;&#xA;          &lt;th&gt;Can Preempt&lt;/th&gt;&#xA;          &lt;th&gt;Example Use&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Base rate (fastest)&lt;/td&gt;&#xA;          &lt;td&gt;40 (highest)&lt;/td&gt;&#xA;          &lt;td&gt;All slower tasks&lt;/td&gt;&#xA;          &lt;td&gt;Fast current loop (50 µs)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;2× base rate&lt;/td&gt;&#xA;          &lt;td&gt;30&lt;/td&gt;&#xA;          &lt;td&gt;Slower tasks&lt;/td&gt;&#xA;          &lt;td&gt;Speed controller (100 µs)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;10× base rate&lt;/td&gt;&#xA;          &lt;td&gt;20&lt;/td&gt;&#xA;          &lt;td&gt;Even slower tasks&lt;/td&gt;&#xA;          &lt;td&gt;Position controller (500 µs)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;100× base rate&lt;/td&gt;&#xA;          &lt;td&gt;10&lt;/td&gt;&#xA;          &lt;td&gt;Background tasks&lt;/td&gt;&#xA;          &lt;td&gt;Communication (5 ms)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Triggered subsystems&lt;/td&gt;&#xA;          &lt;td&gt;Configurable&lt;/td&gt;&#xA;          &lt;td&gt;Based on config&lt;/td&gt;&#xA;          &lt;td&gt;Interrupt-driven tasks&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-parameters&#34;&gt;Block Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;task-overload-behavior&#34;&gt;Task Overload Behavior&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Option&lt;/th&gt;&#xA;          &lt;th&gt;Behavior&lt;/th&gt;&#xA;          &lt;th&gt;Use Case&lt;/th&gt;&#xA;          &lt;th&gt;Risk&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Queue the task&lt;/td&gt;&#xA;          &lt;td&gt;(queue length is 1)&lt;/td&gt;&#xA;          &lt;td&gt;• If task is still running when next trigger occurs, queue ONE additional execution&lt;/td&gt;&#xA;          &lt;td&gt;• Task executes twice back-to-back when current run completes&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Skip this task execution once&lt;/td&gt;&#xA;          &lt;td&gt;• If task is running, skip the triggered execution&lt;/td&gt;&#xA;          &lt;td&gt;• Resume normal execution at next trigger&lt;/td&gt;&#xA;          &lt;td&gt;• Overload does not accumulate&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Delay all new tasks&lt;/td&gt;&#xA;          &lt;td&gt;until end of overload&lt;/td&gt;&#xA;          &lt;td&gt;• All task triggers are blocked during overload&lt;/td&gt;&#xA;          &lt;td&gt;• Tasks resume when overloaded task completes&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;overload-behavior-comparison&#34;&gt;Overload Behavior Comparison&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Task with 10 ms period, execution takes 12 ms (overload)&#xD;&#xA;&#xD;&#xA;Option 1: Queue (queue length = 1)&#xD;&#xA;t=0ms:   Task starts&#xD;&#xA;t=10ms:  Trigger → QUEUED (1 pending)&#xD;&#xA;t=12ms:  Task ends → immediately starts queued execution&#xD;&#xA;t=20ms:  Trigger → LOST (queue full)&#xD;&#xA;t=24ms:  Task ends&#xD;&#xA;t=30ms:  Normal execution resumes&#xD;&#xA;&#xD;&#xA;Option 2: Skip once&#xD;&#xA;t=0ms:   Task starts&#xD;&#xA;t=10ms:  Trigger → SKIPPED&#xD;&#xA;t=12ms:  Task ends&#xD;&#xA;t=20ms:  Normal execution&#xD;&#xA;t=30ms:  Normal execution&#xD;&#xA;&#xD;&#xA;Option 3: Delay all&#xD;&#xA;t=0ms:   Task starts&#xD;&#xA;t=10ms:  Trigger → DELAYED&#xD;&#xA;t=12ms:  Task ends → delayed trigger executes immediately&#xD;&#xA;t=24ms:  Task ends (ran at t=12)&#xD;&#xA;t=30ms:  Back to normal (with 2ms delay accumulated)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;multitasking-configuration&#34;&gt;Multitasking Configuration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;simulink-configuration-requirements&#34;&gt;Simulink Configuration Requirements&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Solver Type:&lt;/strong&gt; Fixed-step (required for code generation)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Configuration Parameters → Solver&#xD;&#xA;Type: Fixed-step&#xD;&#xA;Solver: discrete (no continuous states)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Sample Times:&lt;/strong&gt; Define task rates as integer multiples&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Base rate: &lt;span style=&#34;color:#099&#34;&gt;50e-6&lt;/span&gt;     &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 50 µs (20 kHz)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Task &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;:    &lt;span style=&#34;color:#099&#34;&gt;100e-6&lt;/span&gt;    &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 2× base rate&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Task &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt;:    &lt;span style=&#34;color:#099&#34;&gt;500e-6&lt;/span&gt;    &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 10× base rate&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Task &lt;span style=&#34;color:#099&#34;&gt;3&lt;/span&gt;:    &lt;span style=&#34;color:#099&#34;&gt;5e-3&lt;/span&gt;      &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 100× base rate&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tasking Mode:&lt;/strong&gt; Enable multitasking in configuration&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Configuration Parameters → Code Generation → Interface&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Multi&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt;instance code: off&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Single output&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;/&lt;/span&gt;update &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;function&lt;/span&gt;: off&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;⚠️ Let MCHP blockset manage tasking automatically&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;scheduling-algorithm&#34;&gt;Scheduling Algorithm&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Simplified scheduler pseudocode&#xD;&#xA;&#xD;&#xA;        execute_task(highest);&#xD;&#xA;        mark_complete(highest);&#xD;&#xA;        ready_tasks = check_triggered_tasks();&#xD;&#xA;    }&#xD;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;&#xA;&lt;h3 id=&#34;example-1-motor-control-application&#34;&gt;Example 1: Motor Control Application&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Three-level motor control hierarchy&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Base rate: 50 µs, Overload: Queue&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Sample times:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Current loop:    &lt;span style=&#34;color:#099&#34;&gt;50e-6&lt;/span&gt;    (Priority &lt;span style=&#34;color:#099&#34;&gt;40&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; highest)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Speed loop:      &lt;span style=&#34;color:#099&#34;&gt;500e-6&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;30&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Position loop:   &lt;span style=&#34;color:#099&#34;&gt;5e-3&lt;/span&gt;     (Priority &lt;span style=&#34;color:#099&#34;&gt;20&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Communication:   &lt;span style=&#34;color:#099&#34;&gt;100e-3&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; lowest)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Scheduler Options:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskOverloadBehaviour: &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Queue the task (queue length is 1)&amp;#39;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Result: Current loop can preempt all others&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Brief overloads are queued and caught up&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;example-2-data-acquisition-system&#34;&gt;Example 2: Data Acquisition System&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Robust data logging with guaranteed timing&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Base rate: 100 µs, Overload: Delay all&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Sample times:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Fast ADC:       &lt;span style=&#34;color:#099&#34;&gt;100e-6&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;40&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Slow sensors:   &lt;span style=&#34;color:#099&#34;&gt;10e-3&lt;/span&gt;    (Priority &lt;span style=&#34;color:#099&#34;&gt;30&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Data logging:   &lt;span style=&#34;color:#099&#34;&gt;100e-3&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;20&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Display update: &lt;span style=&#34;color:#099&#34;&gt;500e-3&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;10&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Scheduler Options:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskOverloadBehaviour: &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Delay all new tasks until end of overload&amp;#39;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Result: No samples lost, timing may shift temporarily&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;example-3-communication-system&#34;&gt;Example 3: Communication System&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Non-critical monitoring allows missed samples&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Base rate: 1 ms, Overload: Skip&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Sample times:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Protocol handler: &lt;span style=&#34;color:#099&#34;&gt;1e-3&lt;/span&gt;   (Priority &lt;span style=&#34;color:#099&#34;&gt;40&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Data processing:  &lt;span style=&#34;color:#099&#34;&gt;10e-3&lt;/span&gt;  (Priority &lt;span style=&#34;color:#099&#34;&gt;30&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt; Status update:    &lt;span style=&#34;color:#099&#34;&gt;100e-3&lt;/span&gt; (Priority &lt;span style=&#34;color:#099&#34;&gt;20&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Scheduler Options:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskOverloadBehaviour: &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Skip this task execution once&amp;#39;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Result: Skipped status updates acceptable&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;schedulability-analysis&#34;&gt;Schedulability Analysis&lt;/h2&gt;&#xA;&lt;h3 id=&#34;liu--layland-utilization-bound&#34;&gt;Liu &amp;amp; Layland Utilization Bound&lt;/h3&gt;&#xA;&lt;p&gt;For Rate Monotonic Scheduling, the system is schedulable if:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SECONDARY CORE</title>
-      <link>/block_reference/system_configuration/secondary_core.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/secondary_core.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/dual_core/SECONDARY_core.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/dual_core/SECONDARY_core.png&#34; alt=&#34;Secondary Core Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;SECONDARY CORE&lt;/strong&gt; block configures the secondary (slave) core in dual-core dsPIC33CH devices.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;dual-core-architecture&#34;&gt;Dual-Core Architecture&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Master Core&lt;/th&gt;&#xA;          &lt;th&gt;Secondary Core&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Device Name&lt;/td&gt;&#xA;          &lt;td&gt;33CH128MP508&lt;/td&gt;&#xA;          &lt;td&gt;33CH128MP508S1&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Purpose&lt;/td&gt;&#xA;          &lt;td&gt;System management&lt;/td&gt;&#xA;          &lt;td&gt;Real-time control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Communication&lt;/td&gt;&#xA;          &lt;td&gt;MSI mailboxes, FIFO&lt;/td&gt;&#xA;          &lt;td&gt;MSI mailboxes, FIFO&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;development-workflow&#34;&gt;Development Workflow&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Step 1: Create MASTER core project&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Model: Master_Control.slx&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;MCHP_Master → PICREF: &lt;span style=&#34;color:#099&#34;&gt;33&lt;/span&gt;CH128MP508 (master)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Step 2: Create SECONDARY core project&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Model: Secondary_FastLoop.slx&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;MCHP_Master → PICREF: &lt;span style=&#34;color:#099&#34;&gt;33&lt;/span&gt;CH128MP508S1 (slave)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Step 3: Build both projects&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;1.&lt;/span&gt; Build secondary → generates .s image file&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;2.&lt;/span&gt; Build master → links secondary image&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;3.&lt;/span&gt; Program master (includes slave code)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_Master] - Target device configuration&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Tasks State</title>
-      <link>/block_reference/system_configuration/tasks_state.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system_configuration/tasks_state.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/system_configuration/TasksState.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/system_configuration/TasksState.png&#34; alt=&#34;Tasks State Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Tasks State&lt;/strong&gt; block outputs the current execution state of all scheduled tasks, providing real-time visibility into the multitasking scheduler behavior. Essential for debugging timing issues and verifying task preemption.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;output-signals&#34;&gt;Output Signals&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Data Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TaskID&lt;/td&gt;&#xA;          &lt;td&gt;uint8&lt;/td&gt;&#xA;          &lt;td&gt;Currently executing task identifier&lt;/td&gt;&#xA;          &lt;td&gt;0 = Idle&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TaskState&lt;/td&gt;&#xA;          &lt;td&gt;uint8 vector&lt;/td&gt;&#xA;          &lt;td&gt;State of each task (length = number of tasks)&lt;/td&gt;&#xA;          &lt;td&gt;0 = Idle&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overload&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Overload condition detected&lt;/td&gt;&#xA;          &lt;td&gt;0 = Normal&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;example-usage&#34;&gt;Example Usage&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Monitor task execution and detect preemption&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Connect outputs:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID     → Display or scope&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskState  → Vector scope (multi&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;-&lt;/span&gt;line)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Overload   → Alert&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;/&lt;/span&gt;LED&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Interpretation:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID = &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;  → Base rate task executing&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID = &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt;  → First subrate task executing&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TaskID = &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;  → Idle task (no scheduled work)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% TaskState example for 3-task system:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;]  → Task &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; running, Task &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt; ready, Task &lt;span style=&#34;color:#099&#34;&gt;3&lt;/span&gt; idle&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;]  → Task &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; ready, Task &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt; running (preempted Task &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;debugging-scenarios&#34;&gt;Debugging Scenarios&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Observation&lt;/th&gt;&#xA;          &lt;th&gt;Diagnosis&lt;/th&gt;&#xA;          &lt;th&gt;Action&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TaskID always 1&lt;/td&gt;&#xA;          &lt;td&gt;Base rate never completes&lt;/td&gt;&#xA;          &lt;td&gt;Reduce base rate execution time&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TaskID never changes&lt;/td&gt;&#xA;          &lt;td&gt;Single task consuming all CPU&lt;/td&gt;&#xA;          &lt;td&gt;Check for infinite loops&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overload = 1 frequently&lt;/td&gt;&#xA;          &lt;td&gt;Tasks missing deadlines&lt;/td&gt;&#xA;          &lt;td&gt;Lower sample rates or optimize code&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TaskState shows [2 2 2]&lt;/td&gt;&#xA;          &lt;td&gt;Multiple tasks trying to run simultaneously (impossible)&lt;/td&gt;&#xA;          &lt;td&gt;Check scheduler configuration&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_MCU_LOAD] - CPU load measurement&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_MCU_OVERLOAD] - Overload detection&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/system_configuration.html</link><description>Recent content in System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml"/><item><title>CompilerOptimisation</title><link>/block_reference/system_configuration/compiler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/compiler_options.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/CompilerOptimisation.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/CompilerOptimisation.png" alt="Compiler Options Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>CompilerOptimisation&lt;/strong> block configures compiler toolchain, optimization levels, Device Family Pack (DFP) selection, and linker options for controlling code size, execution speed, and build behavior.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="compiler-selection">Compiler Selection&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>COMP_LIST&lt;/td>
+ &lt;td>Installed compiler version selection (auto-detected)&lt;/td>
+ &lt;td>XC16 v1.xx-v2.xx&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>LATEST_CMPLR&lt;/td>
+ &lt;td>Always use latest installed compiler&lt;/td>
+ &lt;td>on / off&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DFP_LIST&lt;/td>
+ &lt;td>Device Family Pack version&lt;/td>
+ &lt;td>from compiler&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CMSIS_DSP&lt;/td>
+ &lt;td>(ARM)&lt;/td>
+ &lt;td>CMSIS DSP library for ARM&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="optimization-levels">Optimization Levels&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Level&lt;/th>
+ &lt;th>Speed&lt;/th>
+ &lt;th>Code Size&lt;/th>
+ &lt;th>Use Case&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>-O0&lt;/td>
+ &lt;td>Slowest&lt;/td>
+ &lt;td>Largest&lt;/td>
+ &lt;td>Debug - no optimization&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-O1&lt;/td>
+ &lt;td>Moderate&lt;/td>
+ &lt;td>Reduced&lt;/td>
+ &lt;td>Basic optimization&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-O2&lt;/td>
+ &lt;td>Fast&lt;/td>
+ &lt;td>Smaller&lt;/td>
+ &lt;td>Production (recommended)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-O3&lt;/td>
+ &lt;td>Fastest&lt;/td>
+ &lt;td>May increase&lt;/td>
+ &lt;td>Maximum speed&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>-Os&lt;/td>
+ &lt;td>Varies&lt;/td>
+ &lt;td>Smallest&lt;/td>
+ &lt;td>Size-constrained&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="dspic-options-16-bit">dsPIC Options (16-bit)&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Option&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Impact&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>USE_64BIT_DOUBLE&lt;/td>
+ &lt;td>64-bit doubles vs 32-bit&lt;/td>
+ &lt;td>2× memory, higher precision&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PROCEDURAL_ABSTRACTION&lt;/td>
+ &lt;td>Extract common code (-mpa)&lt;/td>
+ &lt;td>5-15% size reduction&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MCODE&lt;/td>
+ &lt;td>Code memory model&lt;/td>
+ &lt;td>small (&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MDATA&lt;/td>
+ &lt;td>Data memory model&lt;/td>
+ &lt;td>small (near) / large (far)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MLARGEARRAY&lt;/td>
+ &lt;td>Arrays &amp;gt;32KB&lt;/td>
+ &lt;td>32-bit indexing required&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GC_SECTIONS&lt;/td>
+ &lt;td>Remove unused code/data&lt;/td>
+ &lt;td>10-30% size reduction&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="armpic32-options-32-bit">ARM/PIC32 Options (32-bit)&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Option&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Impact&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>OPTIMIZATION_FLTO&lt;/td>
+ &lt;td>Link-Time Optimization&lt;/td>
+ &lt;td>5-20% improvement, slow build&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>OPTIMIZATION_REORDER&lt;/td>
+ &lt;td>Reorder for cache locality&lt;/td>
+ &lt;td>Speed improvement&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CONSERVE_STACK&lt;/td>
+ &lt;td>Minimize stack usage&lt;/td>
+ &lt;td>Reduced stack requirements&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="debug-options">Debug Options&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Option&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Output&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DEBUG_INFO&lt;/td>
+ &lt;td>Debug symbols in ELF&lt;/td>
+ &lt;td>Required for debugging&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>AssemblyListing&lt;/td>
+ &lt;td>.lst file generation&lt;/td>
+ &lt;td>Assembly/source mix&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ProduceHexOutput&lt;/td>
+ &lt;td>.hex file generation&lt;/td>
+ &lt;td>Programming file&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MCHP_STACK_USAGE&lt;/td>
+ &lt;td>Stack usage report (MCHP)&lt;/td>
+ &lt;td>.su files&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GCC_STACK_USAGE&lt;/td>
+ &lt;td>Stack usage report (GCC)&lt;/td>
+ &lt;td>.su files&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="linker-configuration">Linker Configuration&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>UseCustom_LinkerScript&lt;/td>
+ &lt;td>Use custom memory map&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>LinkerScript&lt;/td>
+ &lt;td>Path to .gld/.ld file&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>HEAP_SIZE&lt;/td>
+ &lt;td>Heap allocation (bytes)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CUSTOM_OPTIM&lt;/td>
+ &lt;td>Additional compiler flags&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CUSTOM_OPTIM_LD&lt;/td>
+ &lt;td>Additional linker flags&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="math-libraries-dspic">Math Libraries (dsPIC)&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Library&lt;/th>
+ &lt;th>Speed&lt;/th>
+ &lt;th>Accuracy&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Standard&lt;/td>
+ &lt;td>Moderate&lt;/td>
+ &lt;td>Full precision&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Fast&lt;/td>
+ &lt;td>2-3× faster&lt;/td>
+ &lt;td>Slightly reduced&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Relaxed&lt;/td>
+ &lt;td>Maximum speed&lt;/td>
+ &lt;td>Trade precision&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="example-configurations">Example Configurations&lt;/h2>
+&lt;h3 id="debug">Debug&lt;/h3>
+&lt;pre tabindex="0">&lt;code>OPTIMIZATION_LEVEL: -O0
+DEBUG_INFO: on
+GC_SECTIONS: None
+→ Largest code, easiest debugging
+&lt;/code>&lt;/pre>&lt;h3 id="production-speed">Production (Speed)&lt;/h3>
+&lt;pre tabindex="0">&lt;code>OPTIMIZATION_LEVEL: -O2
+PROCEDURAL_ABSTRACTION: on (dsPIC)
+OPTIMIZATION_FLTO: on (ARM/PIC32)
+GC_SECTIONS: Remove unused
+→ Fast execution, moderate size
+&lt;/code>&lt;/pre>&lt;h3 id="size-constrained">Size-Constrained&lt;/h3>
+&lt;pre tabindex="0">&lt;code>OPTIMIZATION_LEVEL: -Os
+PROCEDURAL_ABSTRACTION: on
+GC_SECTIONS: Remove unused
+→ Minimum code size
+&lt;/code>&lt;/pre>&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_Master] - Compiler auto-configuration&lt;/li>
+&lt;li>[MCHP_PortInfo] - Resource visualization&lt;/li>
+&lt;/ul></description></item><item><title>IdleTask</title><link>/block_reference/system_configuration/idle_task.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/idle_task.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_functions/IdleTask.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_functions/IdleTask.png" alt="Idle Task Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;strong>Idle Task Characteristics:&lt;/strong> - &lt;strong>Lowest priority&lt;/strong> - Preempted by any scheduled task or interrupt - &lt;strong>Non-deterministic timing&lt;/strong> - Execution time varies with CPU load - &lt;strong>Continuous loop&lt;/strong> - Runs whenever CPU is idle - &lt;strong>Single instance&lt;/strong> - Only one idle task per model - &lt;strong>Power management&lt;/strong> - Ideal location for sleep/idle instructions
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="usage-scenarios">Usage Scenarios&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Application&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Example Code&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Power Saving&lt;/td>
+ &lt;td>Enter low-power mode when idle&lt;/td>
+ &lt;td>Idle(); (dsPIC) __WFI(); (ARM)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Watchdog Refresh&lt;/td>
+ &lt;td>Service watchdog timer in idle loop&lt;/td>
+ &lt;td>ClrWdt();&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Background Communication&lt;/td>
+ &lt;td>Process non-critical messages&lt;/td>
+ &lt;td>Parse low-priority UART data&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Diagnostics&lt;/td>
+ &lt;td>Monitor system health&lt;/td>
+ &lt;td>Check stack usage, temperature&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>LED Blinking&lt;/td>
+ &lt;td>Visual heartbeat indicator&lt;/td>
+ &lt;td>Toggle status LED&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-configuration">Block Configuration&lt;/h2>
+&lt;p>The idle task is implemented using a Simulink Function-Call Subsystem:&lt;/p></description></item><item><title>Interrupt</title><link>/block_reference/system_configuration/interrupt.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/interrupt.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_functions/Interrupt.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_functions/Interrupt.png" alt="Interrupt Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Interrupt&lt;/strong> block creates interrupt-driven subsystems by connecting peripheral interrupt sources to Simulink triggered subsystems. The block automatically manages interrupt vector configuration, priority levels, and timing synchronization. &lt;strong>Key Capabilities:&lt;/strong> - &lt;strong>Automatic interrupt detection&lt;/strong> - Discovers all peripheral interrupts in model - &lt;strong>Dynamic interrupt list&lt;/strong> - Popup shows only available interrupts from active peripherals - &lt;strong>Priority management&lt;/strong> - Configure interrupt priority levels (device-dependent) - &lt;strong>Multiple timing modes&lt;/strong> - Base rate, periodic trigger, or hardware timer-based - &lt;strong>Context preservation&lt;/strong> - Automatic FPU context save/restore (PIC32 with FPU)
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="interrupt-sources">Interrupt Sources&lt;/h2>
+&lt;h3 id="peripheral-interrupts-auto-detected">Peripheral Interrupts (Auto-detected)&lt;/h3>
+&lt;p>The block automatically detects interrupts from peripheral blocks in your model:&lt;/p></description></item><item><title>Master</title><link>/block_reference/system_configuration/master.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/master.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/Master.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/Master.png" alt="Master Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+ CRITICAL: The Master block is MANDATORY in every MCHP Blockset model. This is always the FIRST block to add to any new model. Without it, no other MCHP blocks will function. Master Block The &lt;strong>Master&lt;/strong> block is the central configuration block for the entire MCHP Blockset. It defines the target microcontroller, clock configuration, peripheral initialization, compiler settings, and code generation options. All other MCHP blocks depend on parameters set in this block. &lt;strong>Primary Functions:&lt;/strong> - &lt;strong>Target Selection&lt;/strong> - Choose from 800+ supported Microchip microcontrollers - &lt;strong>Clock Configuration&lt;/strong> - Configure oscillator, PLL, and system clocks (FCY/FOSC) - &lt;strong>Fuse Settings&lt;/strong> - Set device configuration bits (watchdog, code protection, etc.) - &lt;strong>Build System&lt;/strong> - Configure compiler paths, optimization, and project settings - &lt;strong>External Mode&lt;/strong> - Enable real-time data monitoring via UART - &lt;strong>PIL Testing&lt;/strong> - Processor-in-the-Loop test framework configuration
+&lt;/div>
+ ## Supported Devices The Master block supports &lt;strong>800+ Microchip microcontrollers&lt;/strong> across multiple families:
+ &lt;/div>
+&lt;/div>
+
+&lt;h3 id="16-bit-dscmcu-families">16-bit DSC/MCU Families&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Examples&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;th>Applications&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC30F&lt;/td>
+ &lt;td>30F1010, 30F2020, 30F6015&lt;/td>
+ &lt;td>Legacy DSC, basic DSP engine&lt;/td>
+ &lt;td>Motor control, power supplies&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33F&lt;/td>
+ &lt;td>33FJ128MC802, 33FJ256GP710A&lt;/td>
+ &lt;td>Enhanced DSP, DMA, advanced PWM&lt;/td>
+ &lt;td>Digital power, motor control&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33E&lt;/td>
+ &lt;td>33EP512MU810, 33EP256MC710&lt;/td>
+ &lt;td>PPS, DMA, high-speed ADC&lt;/td>
+ &lt;td>Motor control, instrumentation&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33C&lt;/td>
+ &lt;td>33CK64MC105, 33CH128MP508&lt;/td>
+ &lt;td>Dual-core options, high-speed PWM&lt;/td>
+ &lt;td>Motor control, power conversion&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33A&lt;/td>
+ &lt;td>(Latest)&lt;/td>
+ &lt;td>33AK128MC106, 33AK512MPS512&lt;/td>
+ &lt;td>Advanced PWM with FEP, 12-bit ADC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC24F/H&lt;/td>
+ &lt;td>24F16KL402, 24FJ256GB110&lt;/td>
+ &lt;td>General-purpose MCU, low power&lt;/td>
+ &lt;td>Portable, battery-powered apps&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="32-bit-mcu-families">32-bit MCU Families&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Examples&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;th>Applications&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PIC32MK&lt;/td>
+ &lt;td>32MK0512MCF064, 32MK1024GPE100&lt;/td>
+ &lt;td>MIPS M5150, FPU, motor control&lt;/td>
+ &lt;td>Advanced motor control&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32MZ&lt;/td>
+ &lt;td>32MZ2048EFM144, 32MZ1024ECH144&lt;/td>
+ &lt;td>High-performance MIPS, crypto&lt;/td>
+ &lt;td>IoT, connectivity, graphics&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32MX&lt;/td>
+ &lt;td>32MX795F512L, 32MX440F256H&lt;/td>
+ &lt;td>USB, Ethernet, graphics&lt;/td>
+ &lt;td>HMI, connectivity&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32A&lt;/td>
+ &lt;td>(New)&lt;/td>
+ &lt;td>32AK1216GC41036&lt;/td>
+ &lt;td>Next-gen 32-bit architecture&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="arm-based-families-sam">ARM-based Families (SAM)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Core&lt;/th>
+ &lt;th>Examples&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>SAME70&lt;/td>
+ &lt;td>Cortex-M7&lt;/td>
+ &lt;td>SAME70Q21B, SAME70N21B&lt;/td>
+ &lt;td>300 MHz, FPU, DSP, Ethernet&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAMS70&lt;/td>
+ &lt;td>Cortex-M7&lt;/td>
+ &lt;td>SAMS70Q21B&lt;/td>
+ &lt;td>High-speed processing, security&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAMV71&lt;/td>
+ &lt;td>Cortex-M7&lt;/td>
+ &lt;td>SAMV71Q21B&lt;/td>
+ &lt;td>Automotive, CAN-FD, safety&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAME5x&lt;/td>
+ &lt;td>Cortex-M4F&lt;/td>
+ &lt;td>SAME54P20A&lt;/td>
+ &lt;td>120 MHz, crypto, low power&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAMC2x&lt;/td>
+ &lt;td>Cortex-M0+&lt;/td>
+ &lt;td>SAMC21N18A&lt;/td>
+ &lt;td>Motor control, cost-optimized&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAMD2x&lt;/td>
+ &lt;td>Cortex-M0+&lt;/td>
+ &lt;td>SAMD21G18A&lt;/td>
+ &lt;td>Ultra-low power, IoT&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32CZ&lt;/td>
+ &lt;td>Cortex-M7&lt;/td>
+ &lt;td>PIC32CZ_MC70&lt;/td>
+ &lt;td>High-performance, security&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
+&lt;h3 id="target-configuration">Target Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values/Range&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PICREF&lt;/td>
+ &lt;td>Microcontroller selection. Dynamic popup filtered by supported families with oscillator support verification.&lt;/td>
+ &lt;td>800+ devices&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PACKAGE&lt;/td>
+ &lt;td>(SAM only)&lt;/td>
+ &lt;td>Package selection for ARM devices (affects pin availability).&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="clock-configuration">Clock Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values/Range&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>OSCILLATOR_SELECT&lt;/td>
+ &lt;td>Primary oscillator source selection. Options dynamically updated based on chip capabilities.&lt;/td>
+ &lt;td>• Internal Fast RC (FRC)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>QUARTZ&lt;/td>
+ &lt;td>Crystal/resonator frequency when using external oscillator.&lt;/td>
+ &lt;td>0.4 MHz to 40 MHz&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ACTIV_PLL&lt;/td>
+ &lt;td>Enable Phase-Locked Loop for frequency multiplication.&lt;/td>
+ &lt;td>on / off&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MIPS_DESIRED&lt;/td>
+ &lt;td>Target instruction cycle frequency (FCY). Automatically calculates PLL settings.&lt;/td>
+ &lt;td>Device-specific&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ACLKCON&lt;/td>
+ &lt;td>(dsPIC33C only)&lt;/td>
+ &lt;td>Auxiliary clock configuration for PWM and other peripherals.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CPUDIV&lt;/td>
+ &lt;td>(SAM Cortex-M0+ only)&lt;/td>
+ &lt;td>CPU clock divider selection.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>VDD_range&lt;/td>
+ &lt;td>(SAM Cortex-M0+ only)&lt;/td>
+ &lt;td>Operating voltage range (affects flash wait states).&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;pre>&lt;code> Select oscillator source (internal RC or external crystal/clock)
+ If using crystal, specify frequency in QUARTZ parameter
+ Enable PLL if higher frequencies are required
+ Set MIPS_DESIRED to target frequency - PLL multipliers are calculated automatically
+ Block display shows achieved MIPS/MHz on the diagram
+&lt;/code>&lt;/pre>
+&lt;h3 id="fuse-configuration-device-configuration-bits">Fuse Configuration (Device Configuration Bits)&lt;/h3>
+&lt;p>The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.&lt;/p></description></item><item><title>MCU LOAD</title><link>/block_reference/system_configuration/mcu_load.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_load.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/MCU_Load.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/MCU_Load.png" alt="MCU Load Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>MCU LOAD&lt;/strong> block measures and outputs the real-time CPU utilization percentage, providing essential feedback for performance optimization and schedulability verification.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="output-signal">Output Signal&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Range&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>CPU_Load&lt;/td>
+ &lt;td>single (float)&lt;/td>
+ &lt;td>0.0 to 100.0&lt;/td>
+ &lt;td>Percentage of CPU time used by scheduled tasks&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="measurement-method">Measurement Method&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">//&lt;/span> CPU load calculation:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CPU_Load = (&lt;span style="color:#099">1&lt;/span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> (IdleTime &lt;span style="color:#000;font-weight:bold">/&lt;/span> TotalTime)) × &lt;span style="color:#099">100&lt;/span>&lt;span style="color:#998;font-style:italic">%&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Where:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> IdleTime = Time spent in idle task
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> TotalTime = Total elapsed time
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Measurement window: Configurable averaging period
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="usage-guidelines">Usage Guidelines&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>CPU Load Range&lt;/th>
+ &lt;th>Status&lt;/th>
+ &lt;th>Recommendation&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>0-60%&lt;/td>
+ &lt;td>✓ Healthy&lt;/td>
+ &lt;td>Good margin for additional features&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>60-80%&lt;/td>
+ &lt;td>⚠ Moderate&lt;/td>
+ &lt;td>Monitor closely, optimize if growing&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>80-95%&lt;/td>
+ &lt;td>⚠ High&lt;/td>
+ &lt;td>Optimize code, reduce sample rates&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&amp;gt;95%&lt;/td>
+ &lt;td>❌ Critical&lt;/td>
+ &lt;td>System unstable, immediate action required&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="example-application">Example Application&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Monitor CPU load and trigger optimization&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CPU_Load → Display (live monitoring)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CPU_Load → Compare (threshold &lt;span style="color:#099">80&lt;/span>&lt;span style="color:#998;font-style:italic">%)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> → LED warning &lt;span style="color:#000;font-weight:bold">if&lt;/span> exceeded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% External mode:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% - Tune parameters while monitoring load&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% - Find maximum achievable performance&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_MCU_OVERLOAD] - Overload detection and recovery&lt;/li>
+&lt;li>[MCHP_Tasks_State] - Task execution monitoring&lt;/li>
+&lt;li>[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li>
+&lt;/ul></description></item><item><title>MCU OVERLOAD</title><link>/block_reference/system_configuration/mcu_overload.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_overload.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/MCU_Overload.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/MCU_Overload.png" alt="MCU Overload Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>MCU OVERLOAD&lt;/strong> block detects when scheduled tasks miss their deadlines and provides diagnostic information for identifying the cause of overload conditions.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="output-signals">Output Signals&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Overload_Flag&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>1 = Task missed deadline, 0 = Normal operation&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Overload_TaskID&lt;/td>
+ &lt;td>uint8&lt;/td>
+ &lt;td>ID of task that caused overload (if known)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Overload_Count&lt;/td>
+ &lt;td>uint32&lt;/td>
+ &lt;td>Cumulative count of overload events&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="overload-conditions">Overload Conditions&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Condition&lt;/th>
+ &lt;th>Detection Method&lt;/th>
+ &lt;th>Response&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Task execution exceeds period&lt;/td>
+ &lt;td>Compare execution time vs sample time&lt;/td>
+ &lt;td>Set flag, log task ID&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Queue overflow&lt;/td>
+ &lt;td>Task triggered while already queued&lt;/td>
+ &lt;td>Set flag, increment counter&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Preemption cascade&lt;/td>
+ &lt;td>Multiple nested preemptions&lt;/td>
+ &lt;td>Set flag, identify root task&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Overload detection and safe shutdown&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Overload_Flag → LED (visual warning)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Overload_Flag → Switch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> → &lt;span style="color:#000;font-weight:bold">if&lt;/span> (&lt;span style="color:#099">1&lt;/span>): Enter safe mode
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Disable non&lt;span style="color:#000;font-weight:bold">-&lt;/span>critical tasks
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Log diagnostics
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Recovery strategy:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">if&lt;/span> Overload_Count &lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#099">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#998;font-style:italic">% Persistent overload - reduce functionality&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Disable_MotorControl();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Enable_SafeShutdown();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="debugging-with-overload-block">Debugging with Overload Block&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Analysis workflow:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">1.&lt;/span> Connect outputs to scopes&lt;span style="color:#000;font-weight:bold">/&lt;/span>displays
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">2.&lt;/span> Run model and observe overload &lt;span style="color:#000;font-weight:bold">events&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">3.&lt;/span> Identify TaskID causing overload
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">4.&lt;/span> Use MCHP_Tasks_State to see task interactions
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">5.&lt;/span> Optimize identified task or reduce sample rate
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Common overload patterns:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID=&lt;span style="color:#099">1&lt;/span>, Count growing → Base rate task too slow
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID varies randomly → Interrupt storms
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID=&lt;span style="color:#099">0&lt;/span> (idle) → Should never happen (check config)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_MCU_LOAD] - CPU utilization monitoring&lt;/li>
+&lt;li>[MCHP_Tasks_State] - Task state visibility&lt;/li>
+&lt;li>[MCHP_Scheduler_Options] - Overload behavior config&lt;/li>
+&lt;/ul></description></item><item><title>Scheduler Options</title><link>/block_reference/system_configuration/scheduler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/scheduler_options.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/SchedulerOptions.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/SchedulerOptions.png" alt="Scheduler Options Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Scheduler Options&lt;/strong> block configures the behavior of the built-in &lt;strong>Rate Monotonic Scheduler&lt;/strong> used for multitasking in MCHP Blockset models. The scheduler manages execution of multiple tasks at different sample rates with &lt;strong>preemptive priority-based scheduling&lt;/strong>. &lt;strong>Rate Monotonic Scheduling Principle:&lt;/strong> - &lt;strong>Highest rate = Highest priority&lt;/strong> - Faster tasks automatically get higher priority - &lt;strong>Preemptive execution&lt;/strong> - Higher priority tasks interrupt lower priority tasks - &lt;strong>Deterministic behavior&lt;/strong> - Guaranteed timing if schedulability conditions are met - &lt;strong>Automatic priority assignment&lt;/strong> - No manual priority configuration needed
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="rate-monotonic-scheduler-architecture">Rate Monotonic Scheduler Architecture&lt;/h2>
+&lt;h3 id="task-priority-assignment">Task Priority Assignment&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Sample Time&lt;/th>
+ &lt;th>Priority Level&lt;/th>
+ &lt;th>Can Preempt&lt;/th>
+ &lt;th>Example Use&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Base rate (fastest)&lt;/td>
+ &lt;td>40 (highest)&lt;/td>
+ &lt;td>All slower tasks&lt;/td>
+ &lt;td>Fast current loop (50 µs)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2× base rate&lt;/td>
+ &lt;td>30&lt;/td>
+ &lt;td>Slower tasks&lt;/td>
+ &lt;td>Speed controller (100 µs)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>10× base rate&lt;/td>
+ &lt;td>20&lt;/td>
+ &lt;td>Even slower tasks&lt;/td>
+ &lt;td>Position controller (500 µs)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>100× base rate&lt;/td>
+ &lt;td>10&lt;/td>
+ &lt;td>Background tasks&lt;/td>
+ &lt;td>Communication (5 ms)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Triggered subsystems&lt;/td>
+ &lt;td>Configurable&lt;/td>
+ &lt;td>Based on config&lt;/td>
+ &lt;td>Interrupt-driven tasks&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
+&lt;h3 id="task-overload-behavior">Task Overload Behavior&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Option&lt;/th>
+ &lt;th>Behavior&lt;/th>
+ &lt;th>Use Case&lt;/th>
+ &lt;th>Risk&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Queue the task&lt;/td>
+ &lt;td>(queue length is 1)&lt;/td>
+ &lt;td>• If task is still running when next trigger occurs, queue ONE additional execution&lt;/td>
+ &lt;td>• Task executes twice back-to-back when current run completes&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Skip this task execution once&lt;/td>
+ &lt;td>• If task is running, skip the triggered execution&lt;/td>
+ &lt;td>• Resume normal execution at next trigger&lt;/td>
+ &lt;td>• Overload does not accumulate&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Delay all new tasks&lt;/td>
+ &lt;td>until end of overload&lt;/td>
+ &lt;td>• All task triggers are blocked during overload&lt;/td>
+ &lt;td>• Tasks resume when overloaded task completes&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="overload-behavior-comparison">Overload Behavior Comparison&lt;/h3>
+&lt;pre tabindex="0">&lt;code>// Task with 10 ms period, execution takes 12 ms (overload)
+
+Option 1: Queue (queue length = 1)
+t=0ms: Task starts
+t=10ms: Trigger → QUEUED (1 pending)
+t=12ms: Task ends → immediately starts queued execution
+t=20ms: Trigger → LOST (queue full)
+t=24ms: Task ends
+t=30ms: Normal execution resumes
+
+Option 2: Skip once
+t=0ms: Task starts
+t=10ms: Trigger → SKIPPED
+t=12ms: Task ends
+t=20ms: Normal execution
+t=30ms: Normal execution
+
+Option 3: Delay all
+t=0ms: Task starts
+t=10ms: Trigger → DELAYED
+t=12ms: Task ends → delayed trigger executes immediately
+t=24ms: Task ends (ran at t=12)
+t=30ms: Back to normal (with 2ms delay accumulated)
+&lt;/code>&lt;/pre>&lt;h2 id="multitasking-configuration">Multitasking Configuration&lt;/h2>
+&lt;h3 id="simulink-configuration-requirements">Simulink Configuration Requirements&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Solver Type:&lt;/strong> Fixed-step (required for code generation)&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>Configuration Parameters → Solver
+Type: Fixed-step
+Solver: discrete (no continuous states)
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>&lt;strong>Sample Times:&lt;/strong> Define task rates as integer multiples&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>Base rate: &lt;span style="color:#099">50e-6&lt;/span> &lt;span style="color:#998;font-style:italic">% 50 µs (20 kHz)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Task &lt;span style="color:#099">1&lt;/span>: &lt;span style="color:#099">100e-6&lt;/span> &lt;span style="color:#998;font-style:italic">% 2× base rate&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Task &lt;span style="color:#099">2&lt;/span>: &lt;span style="color:#099">500e-6&lt;/span> &lt;span style="color:#998;font-style:italic">% 10× base rate&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Task &lt;span style="color:#099">3&lt;/span>: &lt;span style="color:#099">5e-3&lt;/span> &lt;span style="color:#998;font-style:italic">% 100× base rate&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>Tasking Mode:&lt;/strong> Enable multitasking in configuration&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>Configuration Parameters → Code Generation → Interface
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Multi&lt;span style="color:#000;font-weight:bold">-&lt;/span>instance code: off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Single output&lt;span style="color:#000;font-weight:bold">/&lt;/span>update &lt;span style="color:#000;font-weight:bold">function&lt;/span>: off
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>⚠️ Let MCHP blockset manage tasking automatically
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="scheduling-algorithm">Scheduling Algorithm&lt;/h3>
+&lt;pre tabindex="0">&lt;code>// Simplified scheduler pseudocode
+
+ execute_task(highest);
+ mark_complete(highest);
+ ready_tasks = check_triggered_tasks();
+ }
+}
+&lt;/code>&lt;/pre>&lt;h2 id="examples">Examples&lt;/h2>
+&lt;h3 id="example-1-motor-control-application">Example 1: Motor Control Application&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Three-level motor control hierarchy&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Base rate: 50 µs, Overload: Queue&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Sample times:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Current loop: &lt;span style="color:#099">50e-6&lt;/span> (Priority &lt;span style="color:#099">40&lt;/span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> highest)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Speed loop: &lt;span style="color:#099">500e-6&lt;/span> (Priority &lt;span style="color:#099">30&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Position loop: &lt;span style="color:#099">5e-3&lt;/span> (Priority &lt;span style="color:#099">20&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Communication: &lt;span style="color:#099">100e-3&lt;/span> (Priority &lt;span style="color:#099">10&lt;/span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> lowest)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Scheduler Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskOverloadBehaviour: &lt;span style="color:#d14">&amp;#39;Queue the task (queue length is 1)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Result: Current loop can preempt all others&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Brief overloads are queued and caught up&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="example-2-data-acquisition-system">Example 2: Data Acquisition System&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Robust data logging with guaranteed timing&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Base rate: 100 µs, Overload: Delay all&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Sample times:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Fast ADC: &lt;span style="color:#099">100e-6&lt;/span> (Priority &lt;span style="color:#099">40&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Slow sensors: &lt;span style="color:#099">10e-3&lt;/span> (Priority &lt;span style="color:#099">30&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Data logging: &lt;span style="color:#099">100e-3&lt;/span> (Priority &lt;span style="color:#099">20&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Display update: &lt;span style="color:#099">500e-3&lt;/span> (Priority &lt;span style="color:#099">10&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Scheduler Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskOverloadBehaviour: &lt;span style="color:#d14">&amp;#39;Delay all new tasks until end of overload&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Result: No samples lost, timing may shift temporarily&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="example-3-communication-system">Example 3: Communication System&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Non-critical monitoring allows missed samples&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Base rate: 1 ms, Overload: Skip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Sample times:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Protocol handler: &lt;span style="color:#099">1e-3&lt;/span> (Priority &lt;span style="color:#099">40&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Data processing: &lt;span style="color:#099">10e-3&lt;/span> (Priority &lt;span style="color:#099">30&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">-&lt;/span> Status update: &lt;span style="color:#099">100e-3&lt;/span> (Priority &lt;span style="color:#099">20&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Scheduler Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskOverloadBehaviour: &lt;span style="color:#d14">&amp;#39;Skip this task execution once&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Result: Skipped status updates acceptable&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="schedulability-analysis">Schedulability Analysis&lt;/h2>
+&lt;h3 id="liu--layland-utilization-bound">Liu &amp;amp; Layland Utilization Bound&lt;/h3>
+&lt;p>For Rate Monotonic Scheduling, the system is schedulable if:&lt;/p></description></item><item><title>SECONDARY CORE</title><link>/block_reference/system_configuration/secondary_core.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/secondary_core.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/dual_core/SECONDARY_core.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/dual_core/SECONDARY_core.png" alt="Secondary Core Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>SECONDARY CORE&lt;/strong> block configures the secondary (slave) core in dual-core dsPIC33CH devices.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="dual-core-architecture">Dual-Core Architecture&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Feature&lt;/th>
+ &lt;th>Master Core&lt;/th>
+ &lt;th>Secondary Core&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Device Name&lt;/td>
+ &lt;td>33CH128MP508&lt;/td>
+ &lt;td>33CH128MP508S1&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Purpose&lt;/td>
+ &lt;td>System management&lt;/td>
+ &lt;td>Real-time control&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Communication&lt;/td>
+ &lt;td>MSI mailboxes, FIFO&lt;/td>
+ &lt;td>MSI mailboxes, FIFO&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="development-workflow">Development Workflow&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Step 1: Create MASTER core project&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Model: Master_Control.slx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MCHP_Master → PICREF: &lt;span style="color:#099">33&lt;/span>CH128MP508 (master)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Step 2: Create SECONDARY core project&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Model: Secondary_FastLoop.slx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MCHP_Master → PICREF: &lt;span style="color:#099">33&lt;/span>CH128MP508S1 (slave)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Step 3: Build both projects&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">1.&lt;/span> Build secondary → generates .s image file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">2.&lt;/span> Build master → links secondary image
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#099">3.&lt;/span> Program master (includes slave code)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_Master] - Target device configuration&lt;/li>
+&lt;/ul></description></item><item><title>Tasks State</title><link>/block_reference/system_configuration/tasks_state.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/tasks_state.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/system_configuration/TasksState.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/system_configuration/TasksState.png" alt="Tasks State Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Tasks State&lt;/strong> block outputs the current execution state of all scheduled tasks, providing real-time visibility into the multitasking scheduler behavior. Essential for debugging timing issues and verifying task preemption.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="output-signals">Output Signals&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>TaskID&lt;/td>
+ &lt;td>uint8&lt;/td>
+ &lt;td>Currently executing task identifier&lt;/td>
+ &lt;td>0 = Idle&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>TaskState&lt;/td>
+ &lt;td>uint8 vector&lt;/td>
+ &lt;td>State of each task (length = number of tasks)&lt;/td>
+ &lt;td>0 = Idle&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Overload&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Overload condition detected&lt;/td>
+ &lt;td>0 = Normal&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Monitor task execution and detect preemption&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Connect outputs:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID → Display or scope
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskState → Vector scope (multi&lt;span style="color:#000;font-weight:bold">-&lt;/span>line)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Overload → Alert&lt;span style="color:#000;font-weight:bold">/&lt;/span>LED
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Interpretation:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID = &lt;span style="color:#099">1&lt;/span> → Base rate task executing
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID = &lt;span style="color:#099">2&lt;/span> → First subrate task executing
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TaskID = &lt;span style="color:#099">0&lt;/span> → Idle task (no scheduled work)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% TaskState example for 3-task system:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#099">2&lt;/span> &lt;span style="color:#099">1&lt;/span> &lt;span style="color:#099">0&lt;/span>] → Task &lt;span style="color:#099">1&lt;/span> running, Task &lt;span style="color:#099">2&lt;/span> ready, Task &lt;span style="color:#099">3&lt;/span> idle
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#099">1&lt;/span> &lt;span style="color:#099">2&lt;/span> &lt;span style="color:#099">0&lt;/span>] → Task &lt;span style="color:#099">1&lt;/span> ready, Task &lt;span style="color:#099">2&lt;/span> running (preempted Task &lt;span style="color:#099">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="debugging-scenarios">Debugging Scenarios&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Observation&lt;/th>
+ &lt;th>Diagnosis&lt;/th>
+ &lt;th>Action&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>TaskID always 1&lt;/td>
+ &lt;td>Base rate never completes&lt;/td>
+ &lt;td>Reduce base rate execution time&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>TaskID never changes&lt;/td>
+ &lt;td>Single task consuming all CPU&lt;/td>
+ &lt;td>Check for infinite loops&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Overload = 1 frequently&lt;/td>
+ &lt;td>Tasks missing deadlines&lt;/td>
+ &lt;td>Lower sample rates or optimize code&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>TaskState shows [2 2 2]&lt;/td>
+ &lt;td>Multiple tasks trying to run simultaneously (impossible)&lt;/td>
+ &lt;td>Check scheduler configuration&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li>
+&lt;li>[MCHP_MCU_LOAD] - CPU load measurement&lt;/li>
+&lt;li>[MCHP_MCU_OVERLOAD] - Overload detection&lt;/li>
+&lt;/ul></description></item></channel></rss>

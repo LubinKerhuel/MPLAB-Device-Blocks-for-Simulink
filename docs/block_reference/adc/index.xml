@@ -1,61 +1,347 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>ADC Blocks on MPLAB Blockset for MATLAB/Simulink</title>
-    <link>/block_reference/adc.html</link>
-    <description>Recent content in ADC Blocks on MPLAB Blockset for MATLAB/Simulink</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/block_reference/adc/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ADC - Standard ADC Block</title>
-      <link>/block_reference/adc/adc.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC.png&#34; alt=&#34;Adc Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC30F&lt;/strong&gt; - 16-bit DSCs with 10-bit ADC - &lt;strong&gt;dsPIC33F&lt;/strong&gt; - Digital Signal Controllers with 10-bit ADC - &lt;strong&gt;dsPIC33E&lt;/strong&gt; - Enhanced DSCs with 10/12-bit ADC - &lt;strong&gt;dsPIC33C&lt;/strong&gt; - Dual-core DSCs with 12-bit ADC - &lt;strong&gt;PIC24F/H&lt;/strong&gt; - 16-bit microcontrollers with 10/12-bit ADC&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC30F&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33F&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33E&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33C&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;PIC24F/H&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 10-bit or 12-bit selectable (chip dependent) &lt;strong&gt;Sampling&lt;/strong&gt; Simultaneous or sequential sampling modes &lt;strong&gt;Channels&lt;/strong&gt; Up to 32 analog inputs (chip dependent) &lt;strong&gt;Scan Mode&lt;/strong&gt; Automatic multi-channel scanning &lt;strong&gt;DMA Support&lt;/strong&gt; Optional DMA for high-speed transfers &lt;strong&gt;Triggers&lt;/strong&gt; PWM, Timer, External, Manual triggers&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ADC HighSpeed SAR - High-Speed SAR ADC Block</title>
-      <link>/block_reference/adc/adc_highspeed_sar.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc_highspeed_sar.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_HighSpeed_SAR.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_HighSpeed_SAR.png&#34; alt=&#34;Adc Highspeed Sar Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        | Device Family | Module Type | Dedicated Cores | Shared ADC | |&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;| | PIC32MK | DOS_02508_adc_sar_ctrl_upb_v1_PIC32MK | 6 (ADC0-ADC5) | ADC7 (configurable) | | dsPIC33C (WACP) | DOS_02508_WACP_adc_sar_ctrl_upb_v1 | 3 (ADC0-ADC2) | ADC7 (configurable) | | dsPIC33C (Standard) | DOS_02508_adc_sar_ctrl_upb_v1 | 5 (ADC0-ADC4) | ADC7 (configurable) |&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;PIC32MK&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33C (WAC)&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33C (Standard)&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 6/8/10/12-bit selectable per core &lt;strong&gt;Dedicated Cores&lt;/strong&gt; 3-6 dedicated ADC cores (chip dependent) &lt;strong&gt;Shared ADC7&lt;/strong&gt; Software-configurable multiplexed core &lt;strong&gt;Speed&lt;/strong&gt; Up to 3.25 Msps per core &lt;strong&gt;Triggers&lt;/strong&gt; Independent triggers per core &lt;strong&gt;Special Inputs&lt;/strong&gt; VBat, IVref, Temperature, CTMU&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ADC HighSpeed SAR dsPIC - High-Speed SAR ADC for dsPIC33C</title>
-      <link>/block_reference/adc/adc_highspeed_sar_dspic.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc_highspeed_sar_dspic.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_PIC32_High_Speed_SAR.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_PIC32_High_Speed_SAR.png&#34; alt=&#34;Adc Highspeed Sar Dspic Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        MCHP_ADC_HighSpeed_SAR_dsPIC - dsPIC-style interface (this block)                 MCHP_ADC_HighSpeed_SAR - PIC32-style interface                          Both blocks configure the same hardware but with different parameter organization.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;            MCHP_ADC_HighSpeed_SAR_dsPIC - dsPIC-style interface (this block)&#xD;&#xA;            MCHP_ADC_HighSpeed_SAR - PIC32-style interface&#xD;&#xA;        &#xD;&#xA;        Both blocks configure the same hardware but with different parameter organization.&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h2 id=&#34;supported-devices&#34;&gt;Supported Devices&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33CH&lt;/strong&gt; - Dual-core devices with master/slave architecture&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;dsPIC33CK&lt;/strong&gt; - Single-core high-performance DSCs&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;3-6 dedicated ADC cores depending on device&lt;/li&gt;&#xA;&lt;li&gt;Shared ADC7 for auxiliary channels&lt;/li&gt;&#xA;&lt;li&gt;6/8/10/12-bit resolution per core&lt;/li&gt;&#xA;&lt;li&gt;Up to 3.25 Msps per core&lt;/li&gt;&#xA;&lt;li&gt;PWM-synchronized acquisition&lt;/li&gt;&#xA;&lt;li&gt;DMA support&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;p&gt;dsPIC-style parameter interface with array-based configuration for dedicated cores.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ADC HS 12b - 12-bit High-Speed ADC for dsPIC33A</title>
-      <link>/block_reference/adc/adc_hs_12b.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc_hs_12b.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_HS_12b_dsPICA.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_HS_12b_dsPICA.png&#34; alt=&#34;Adc Hs 12B Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        | Variant | Module Type | ADC Cores | Max Channels per Core | Example Device | |&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;| | Perseus (STX04) | DOS_03459_adc_pc_ctrl_upb_v2 | 2 (ADC1, ADC2) | 20 each | 33AK128MC106 | | Pegasus (STX32) | DOS_02976_adc_12b_upb_v2 | 5 (ADC1-5) | 16 each | 33AK512MPS512 | | Blue Ridge (STX33) | DOS_05972_adc_12b_upb_v3_itc | 3 (ADC1-3) | 12 each | 33AK256MPS306 | | Serpens (STX21) | DOS_05972_adc_12b_upb_v3_adc | 2 (ADC1, ADC2) | 20, 39 | 33AKV512GM510 |&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;quick-reference&#34;&gt;Quick Reference&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Application&lt;/th&gt;&#xA;          &lt;th&gt;Recommended Strategy&lt;/th&gt;&#xA;          &lt;th&gt;Key Configuration&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;3-Phase FOC Motor Control&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;⭐ PWM → ADC → Task&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;ADC1_seq0: AN0,AN1,AN2&lt;/code&gt;&lt;br&gt;&lt;code&gt;Trigger: &#39;PWM1 Special Event&#39;&lt;/code&gt;&lt;br&gt;&lt;code&gt;SEVTCMP: 0&lt;/code&gt; (PWM valley)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Single-Shunt FOC&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Multiple Triggers/Period&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;seq0-2: AN0&lt;/code&gt; (shunt)&lt;br&gt;&lt;code&gt;Triggers: TRIG1, SEVTCMP, TRIG2&lt;/code&gt;&lt;br&gt;3 samples/PWM cycle&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Dual Motor Control&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Independent ADC cores&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;ADC1: Motor1 (SCCP1 trigger)&lt;/code&gt;&lt;br&gt;&lt;code&gt;ADC2: Motor2 (SCCP5 trigger)&lt;/code&gt;&lt;br&gt;Parallel sampling&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Multi-Channel DAQ&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Timer → ADC → Task&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;18 channels across seq0-2&lt;/code&gt;&lt;br&gt;&lt;code&gt;Trigger: SCCP1&lt;/code&gt;&lt;br&gt;Simultaneous acquisition&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;DC-DC Converter&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;PWM → ADC → Task&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;seq0: Vout, Iout&lt;/code&gt;&lt;br&gt;&lt;code&gt;Trigger: PWM Special Event&lt;/code&gt;&lt;br&gt;Sample during FET ON&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;⭐ &lt;strong&gt;Most Common&lt;/strong&gt;: Use PWM Special Event trigger at valley (&lt;code&gt;SEVTCMP: 0&lt;/code&gt;) for center-aligned motor control PWM&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ADC SAME5x - ADC for SAM E5x/D5x/C2x Families</title>
-      <link>/block_reference/adc/adc_same5x.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc_same5x.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.png&#34; alt=&#34;Adc Same5X Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E5x&lt;/strong&gt; - High-performance Cortex-M4F (SAME51, SAME53, SAME54) - &lt;strong&gt;SAM D5x&lt;/strong&gt; - Cost-optimized Cortex-M4F (SAMD51) - &lt;strong&gt;SAM C2x&lt;/strong&gt; - Motor control focused (SAMC20, SAMC21)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E5x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM D5x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM C2x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Resolution&lt;/td&gt;&#xA;          &lt;td&gt;12-bit SAR ADC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Cores&lt;/td&gt;&#xA;          &lt;td&gt;Dual ADC (ADC0, ADC1) on SAMC2x, single ADC on SAMD&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Sequencing&lt;/td&gt;&#xA;          &lt;td&gt;6 sequences × 6 conversions = 36 programmable slots&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Channels&lt;/td&gt;&#xA;          &lt;td&gt;Up to 20 single-ended or 10 differential inputs&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Speed&lt;/td&gt;&#xA;          &lt;td&gt;Up to 1 Msps&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;sequence-based-configuration&#34;&gt;Sequence-Based Configuration&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;ADC0_seq0 through ADC0_seq5&lt;/strong&gt; - Primary ADC sequences&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ADC1_seq0 through ADC1_seq5&lt;/strong&gt; - Secondary ADC sequences (SAMC2x only)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Each sequence:&lt;/strong&gt; Configure up to 6 channel conversions&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Pin selection:&lt;/strong&gt; Dropdown shows available ANx pins with port mapping&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;applications&#34;&gt;Applications&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Motor control feedback (position, current, voltage)&lt;/li&gt;&#xA;&lt;li&gt;Multi-channel sensor acquisition&lt;/li&gt;&#xA;&lt;li&gt;Power supply monitoring&lt;/li&gt;&#xA;&lt;li&gt;Industrial automation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;related-blocks&#34;&gt;Related Blocks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[MCHP_AFEC_SAM7x] - For SAM E7x/S7x/V7x families&lt;/li&gt;&#xA;&lt;li&gt;[MCHP_ADC_SAMRH707x] - For radiation-hardened SAM RH707x&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;[Back to ADC Blocks]&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ADC SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title>
-      <link>/block_reference/adc/adc_samrh707x.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/adc_samrh707x.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_SAMRH707x.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_SAMRH707x.png&#34; alt=&#34;Adc Samrh707X Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAMRH707&lt;/strong&gt; - 300 MHz Arm Cortex-M7 with radiation hardening - &lt;strong&gt;SAMRH70&lt;/strong&gt; - Radiation-tolerant variant&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM RH707x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Specification&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Resolution&lt;/td&gt;&#xA;          &lt;td&gt;12-bit SAR ADC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Speed&lt;/td&gt;&#xA;          &lt;td&gt;Up to 1 Msps&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Channels&lt;/td&gt;&#xA;          &lt;td&gt;Multiple analog inputs (device dependent)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Reliability&lt;/td&gt;&#xA;          &lt;td&gt;Radiation hardening, ECC, fault detection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Operating Temperature&lt;/td&gt;&#xA;          &lt;td&gt;Extended range for space applications&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;p&gt;Similar sequence-based configuration to SAM E5x ADC block, with additional reliability features and radiation-aware timing parameters.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>AFEC SAM7x - Analog Front-End Controller for SAM 7x</title>
-      <link>/block_reference/adc/afec_sam7x.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc/afec_sam7x.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/analog/ADC_SAMx7.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/analog/ADC_SAMx7.png&#34; alt=&#34;Afec Sam7X Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        &lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E70&lt;/strong&gt; - High-performance Cortex-M7 (up to 300 MHz) - &lt;strong&gt;SAM S70&lt;/strong&gt; - Secure Cortex-M7 with TrustZone - &lt;strong&gt;SAM V70/V71&lt;/strong&gt; - Automotive-qualified Cortex-M7&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM S70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V71&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Dual AFEC&lt;/td&gt;&#xA;          &lt;td&gt;AFEC0 and AFEC1 (12 channels each)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Resolution&lt;/td&gt;&#xA;          &lt;td&gt;12-bit with up to 16-bit oversampling&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Programmable Gain&lt;/td&gt;&#xA;          &lt;td&gt;1x, 2x, 4x amplification per channel&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Offset Compensation&lt;/td&gt;&#xA;          &lt;td&gt;Automatic offset cancellation&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Temperature Sensor&lt;/td&gt;&#xA;          &lt;td&gt;Integrated temperature measurement (AD11)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Speed&lt;/td&gt;&#xA;          &lt;td&gt;Up to 1 Msps per AFEC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;afec-architecture&#34;&gt;AFEC Architecture&lt;/h2&gt;&#xA;&lt;h3 id=&#34;dual-afec-configuration&#34;&gt;Dual AFEC Configuration&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;AFEC0:&lt;/strong&gt; Channels AD0-AD11 (AD11 = Temperature sensor)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;AFEC1:&lt;/strong&gt; Channels AD0-AD11&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Independent operation:&lt;/strong&gt; Each AFEC can sample simultaneously&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Pin mapping:&lt;/strong&gt; ADx channels map to specific port pins (e.g., AD0 → PE5)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;analog-front-end-features&#34;&gt;Analog Front-End Features&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Configuration&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Single-ended/Differential&lt;/td&gt;&#xA;          &lt;td&gt;Configurable per channel&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Gain&lt;/td&gt;&#xA;          &lt;td&gt;1x, 2x, 4x (programmable per channel)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Offset&lt;/td&gt;&#xA;          &lt;td&gt;Automatic offset correction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Averaging&lt;/td&gt;&#xA;          &lt;td&gt;Hardware averaging for noise reduction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;channel-selection&#34;&gt;Channel Selection&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;AFEC0_ADx checkboxes:&lt;/strong&gt; Enable individual channels on AFEC0&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;AFEC1_ADx checkboxes:&lt;/strong&gt; Enable individual channels on AFEC1&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Temperature sensor:&lt;/strong&gt; AD11 on AFEC0 (special handling)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;per-channel-settings&#34;&gt;Per-Channel Settings&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Gain:&lt;/strong&gt; Select 1x, 2x, or 4x amplification&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Differential mode:&lt;/strong&gt; Enable differential measurement&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Offset compensation:&lt;/strong&gt; Enable automatic offset correction&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;trigger-sources&#34;&gt;Trigger Sources&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Software trigger (manual conversion)&lt;/li&gt;&#xA;&lt;li&gt;TC (Timer Counter) output&lt;/li&gt;&#xA;&lt;li&gt;PWM events&lt;/li&gt;&#xA;&lt;li&gt;External trigger pins&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;pin-mapping&#34;&gt;Pin Mapping&lt;/h2&gt;&#xA;&lt;p&gt;The block automatically displays pin assignments for enabled channels (e.g., &amp;ldquo;AD0 / PE5 / Pin[X]&amp;rdquo;).&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ADC Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/adc.html</link><description>Recent content in ADC Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/adc/index.xml" rel="self" type="application/rss+xml"/><item><title>ADC - Standard ADC Block</title><link>/block_reference/adc/adc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC.png" alt="Adc Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;ul>
+&lt;li>&lt;strong>dsPIC30F&lt;/strong> - 16-bit DSCs with 10-bit ADC - &lt;strong>dsPIC33F&lt;/strong> - Digital Signal Controllers with 10-bit ADC - &lt;strong>dsPIC33E&lt;/strong> - Enhanced DSCs with 10/12-bit ADC - &lt;strong>dsPIC33C&lt;/strong> - Dual-core DSCs with 12-bit ADC - &lt;strong>PIC24F/H&lt;/strong> - 16-bit microcontrollers with 10/12-bit ADC&lt;/li>
+&lt;/ul>
+
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>dsPIC30F&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dsPIC33F&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dsPIC33E&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dsPIC33C&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>PIC24F/H&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;p>&lt;strong>Resolution&lt;/strong> 10-bit or 12-bit selectable (chip dependent) &lt;strong>Sampling&lt;/strong> Simultaneous or sequential sampling modes &lt;strong>Channels&lt;/strong> Up to 32 analog inputs (chip dependent) &lt;strong>Scan Mode&lt;/strong> Automatic multi-channel scanning &lt;strong>DMA Support&lt;/strong> Optional DMA for high-speed transfers &lt;strong>Triggers&lt;/strong> PWM, Timer, External, Manual triggers&lt;/p></description></item><item><title>ADC HighSpeed SAR - High-Speed SAR ADC Block</title><link>/block_reference/adc/adc_highspeed_sar.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc_highspeed_sar.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_HighSpeed_SAR.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_HighSpeed_SAR.png" alt="Adc Highspeed Sar Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ | Device Family | Module Type | Dedicated Cores | Shared ADC | |&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;| | PIC32MK | DOS_02508_adc_sar_ctrl_upb_v1_PIC32MK | 6 (ADC0-ADC5) | ADC7 (configurable) | | dsPIC33C (WACP) | DOS_02508_WACP_adc_sar_ctrl_upb_v1 | 3 (ADC0-ADC2) | ADC7 (configurable) | | dsPIC33C (Standard) | DOS_02508_adc_sar_ctrl_upb_v1 | 5 (ADC0-ADC4) | ADC7 (configurable) |
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>PIC32MK&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dsPIC33C (WAC)&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dsPIC33C (Standard)&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;p>&lt;strong>Resolution&lt;/strong> 6/8/10/12-bit selectable per core &lt;strong>Dedicated Cores&lt;/strong> 3-6 dedicated ADC cores (chip dependent) &lt;strong>Shared ADC7&lt;/strong> Software-configurable multiplexed core &lt;strong>Speed&lt;/strong> Up to 3.25 Msps per core &lt;strong>Triggers&lt;/strong> Independent triggers per core &lt;strong>Special Inputs&lt;/strong> VBat, IVref, Temperature, CTMU&lt;/p></description></item><item><title>ADC HighSpeed SAR dsPIC - High-Speed SAR ADC for dsPIC33C</title><link>/block_reference/adc/adc_highspeed_sar_dspic.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc_highspeed_sar_dspic.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_PIC32_High_Speed_SAR.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_PIC32_High_Speed_SAR.png" alt="Adc Highspeed Sar Dspic Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ MCHP_ADC_HighSpeed_SAR_dsPIC - dsPIC-style interface (this block) MCHP_ADC_HighSpeed_SAR - PIC32-style interface Both blocks configure the same hardware but with different parameter organization.
+ &lt;/div>
+&lt;/div>
+
+&lt;pre>&lt;code> MCHP_ADC_HighSpeed_SAR_dsPIC - dsPIC-style interface (this block)
+ MCHP_ADC_HighSpeed_SAR - PIC32-style interface
+ 
+ Both blocks configure the same hardware but with different parameter organization.
+&lt;/code>&lt;/pre>
+&lt;h2 id="supported-devices">Supported Devices&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>dsPIC33CH&lt;/strong> - Dual-core devices with master/slave architecture&lt;/li>
+&lt;li>&lt;strong>dsPIC33CK&lt;/strong> - Single-core high-performance DSCs&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;ul>
+&lt;li>3-6 dedicated ADC cores depending on device&lt;/li>
+&lt;li>Shared ADC7 for auxiliary channels&lt;/li>
+&lt;li>6/8/10/12-bit resolution per core&lt;/li>
+&lt;li>Up to 3.25 Msps per core&lt;/li>
+&lt;li>PWM-synchronized acquisition&lt;/li>
+&lt;li>DMA support&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;p>dsPIC-style parameter interface with array-based configuration for dedicated cores.&lt;/p></description></item><item><title>ADC HS 12b - 12-bit High-Speed ADC for dsPIC33A</title><link>/block_reference/adc/adc_hs_12b.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc_hs_12b.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_HS_12b_dsPICA.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_HS_12b_dsPICA.png" alt="Adc Hs 12B Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ | Variant | Module Type | ADC Cores | Max Channels per Core | Example Device | |&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;| | Perseus (STX04) | DOS_03459_adc_pc_ctrl_upb_v2 | 2 (ADC1, ADC2) | 20 each | 33AK128MC106 | | Pegasus (STX32) | DOS_02976_adc_12b_upb_v2 | 5 (ADC1-5) | 16 each | 33AK512MPS512 | | Blue Ridge (STX33) | DOS_05972_adc_12b_upb_v3_itc | 3 (ADC1-3) | 12 each | 33AK256MPS306 | | Serpens (STX21) | DOS_05972_adc_12b_upb_v3_adc | 2 (ADC1, ADC2) | 20, 39 | 33AKV512GM510 |
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="quick-reference">Quick Reference&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Application&lt;/th>
+ &lt;th>Recommended Strategy&lt;/th>
+ &lt;th>Key Configuration&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;strong>3-Phase FOC Motor Control&lt;/strong>&lt;/td>
+ &lt;td>⭐ PWM → ADC → Task&lt;/td>
+ &lt;td>&lt;code>ADC1_seq0: AN0,AN1,AN2&lt;/code>&lt;br>&lt;code>Trigger: 'PWM1 Special Event'&lt;/code>&lt;br>&lt;code>SEVTCMP: 0&lt;/code> (PWM valley)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>Single-Shunt FOC&lt;/strong>&lt;/td>
+ &lt;td>Multiple Triggers/Period&lt;/td>
+ &lt;td>&lt;code>seq0-2: AN0&lt;/code> (shunt)&lt;br>&lt;code>Triggers: TRIG1, SEVTCMP, TRIG2&lt;/code>&lt;br>3 samples/PWM cycle&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>Dual Motor Control&lt;/strong>&lt;/td>
+ &lt;td>Independent ADC cores&lt;/td>
+ &lt;td>&lt;code>ADC1: Motor1 (SCCP1 trigger)&lt;/code>&lt;br>&lt;code>ADC2: Motor2 (SCCP5 trigger)&lt;/code>&lt;br>Parallel sampling&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>Multi-Channel DAQ&lt;/strong>&lt;/td>
+ &lt;td>Timer → ADC → Task&lt;/td>
+ &lt;td>&lt;code>18 channels across seq0-2&lt;/code>&lt;br>&lt;code>Trigger: SCCP1&lt;/code>&lt;br>Simultaneous acquisition&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>DC-DC Converter&lt;/strong>&lt;/td>
+ &lt;td>PWM → ADC → Task&lt;/td>
+ &lt;td>&lt;code>seq0: Vout, Iout&lt;/code>&lt;br>&lt;code>Trigger: PWM Special Event&lt;/code>&lt;br>Sample during FET ON&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>⭐ &lt;strong>Most Common&lt;/strong>: Use PWM Special Event trigger at valley (&lt;code>SEVTCMP: 0&lt;/code>) for center-aligned motor control PWM&lt;/p></description></item><item><title>ADC SAME5x - ADC for SAM E5x/D5x/C2x Families</title><link>/block_reference/adc/adc_same5x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc_same5x.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_SAMx5_SAMC2x.png" alt="Adc Same5X Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;ul>
+&lt;li>&lt;strong>SAM E5x&lt;/strong> - High-performance Cortex-M4F (SAME51, SAME53, SAME54) - &lt;strong>SAM D5x&lt;/strong> - Cost-optimized Cortex-M4F (SAMD51) - &lt;strong>SAM C2x&lt;/strong> - Motor control focused (SAMC20, SAMC21)&lt;/li>
+&lt;/ul>
+
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM E5x&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM D5x&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM C2x&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Feature&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Resolution&lt;/td>
+ &lt;td>12-bit SAR ADC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Cores&lt;/td>
+ &lt;td>Dual ADC (ADC0, ADC1) on SAMC2x, single ADC on SAMD&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Sequencing&lt;/td>
+ &lt;td>6 sequences × 6 conversions = 36 programmable slots&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Channels&lt;/td>
+ &lt;td>Up to 20 single-ended or 10 differential inputs&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Speed&lt;/td>
+ &lt;td>Up to 1 Msps&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;h3 id="sequence-based-configuration">Sequence-Based Configuration&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>ADC0_seq0 through ADC0_seq5&lt;/strong> - Primary ADC sequences&lt;/li>
+&lt;li>&lt;strong>ADC1_seq0 through ADC1_seq5&lt;/strong> - Secondary ADC sequences (SAMC2x only)&lt;/li>
+&lt;li>&lt;strong>Each sequence:&lt;/strong> Configure up to 6 channel conversions&lt;/li>
+&lt;li>&lt;strong>Pin selection:&lt;/strong> Dropdown shows available ANx pins with port mapping&lt;/li>
+&lt;/ul>
+&lt;h2 id="applications">Applications&lt;/h2>
+&lt;ul>
+&lt;li>Motor control feedback (position, current, voltage)&lt;/li>
+&lt;li>Multi-channel sensor acquisition&lt;/li>
+&lt;li>Power supply monitoring&lt;/li>
+&lt;li>Industrial automation&lt;/li>
+&lt;/ul>
+&lt;h2 id="related-blocks">Related Blocks&lt;/h2>
+&lt;ul>
+&lt;li>[MCHP_AFEC_SAM7x] - For SAM E7x/S7x/V7x families&lt;/li>
+&lt;li>[MCHP_ADC_SAMRH707x] - For radiation-hardened SAM RH707x&lt;/li>
+&lt;/ul>
+&lt;p>[Back to ADC Blocks]&lt;/p></description></item><item><title>ADC SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title><link>/block_reference/adc/adc_samrh707x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/adc_samrh707x.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_SAMRH707x.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_SAMRH707x.png" alt="Adc Samrh707X Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;ul>
+&lt;li>&lt;strong>SAMRH707&lt;/strong> - 300 MHz Arm Cortex-M7 with radiation hardening - &lt;strong>SAMRH70&lt;/strong> - Radiation-tolerant variant&lt;/li>
+&lt;/ul>
+
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM RH707x&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Feature&lt;/th>
+ &lt;th>Specification&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Resolution&lt;/td>
+ &lt;td>12-bit SAR ADC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Speed&lt;/td>
+ &lt;td>Up to 1 Msps&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Channels&lt;/td>
+ &lt;td>Multiple analog inputs (device dependent)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Reliability&lt;/td>
+ &lt;td>Radiation hardening, ECC, fault detection&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Operating Temperature&lt;/td>
+ &lt;td>Extended range for space applications&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>Similar sequence-based configuration to SAM E5x ADC block, with additional reliability features and radiation-aware timing parameters.&lt;/p></description></item><item><title>AFEC SAM7x - Analog Front-End Controller for SAM 7x</title><link>/block_reference/adc/afec_sam7x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc/afec_sam7x.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/analog/ADC_SAMx7.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/analog/ADC_SAMx7.png" alt="Afec Sam7X Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ &lt;ul>
+&lt;li>&lt;strong>SAM E70&lt;/strong> - High-performance Cortex-M7 (up to 300 MHz) - &lt;strong>SAM S70&lt;/strong> - Secure Cortex-M7 with TrustZone - &lt;strong>SAM V70/V71&lt;/strong> - Automotive-qualified Cortex-M7&lt;/li>
+&lt;/ul>
+
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM E70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM S70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V71&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Feature&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Dual AFEC&lt;/td>
+ &lt;td>AFEC0 and AFEC1 (12 channels each)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Resolution&lt;/td>
+ &lt;td>12-bit with up to 16-bit oversampling&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Programmable Gain&lt;/td>
+ &lt;td>1x, 2x, 4x amplification per channel&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Offset Compensation&lt;/td>
+ &lt;td>Automatic offset cancellation&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Temperature Sensor&lt;/td>
+ &lt;td>Integrated temperature measurement (AD11)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Speed&lt;/td>
+ &lt;td>Up to 1 Msps per AFEC&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="afec-architecture">AFEC Architecture&lt;/h2>
+&lt;h3 id="dual-afec-configuration">Dual AFEC Configuration&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>AFEC0:&lt;/strong> Channels AD0-AD11 (AD11 = Temperature sensor)&lt;/li>
+&lt;li>&lt;strong>AFEC1:&lt;/strong> Channels AD0-AD11&lt;/li>
+&lt;li>&lt;strong>Independent operation:&lt;/strong> Each AFEC can sample simultaneously&lt;/li>
+&lt;li>&lt;strong>Pin mapping:&lt;/strong> ADx channels map to specific port pins (e.g., AD0 → PE5)&lt;/li>
+&lt;/ul>
+&lt;h3 id="analog-front-end-features">Analog Front-End Features&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Feature&lt;/th>
+ &lt;th>Configuration&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Single-ended/Differential&lt;/td>
+ &lt;td>Configurable per channel&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Gain&lt;/td>
+ &lt;td>1x, 2x, 4x (programmable per channel)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Offset&lt;/td>
+ &lt;td>Automatic offset correction&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Averaging&lt;/td>
+ &lt;td>Hardware averaging for noise reduction&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="channel-selection">Channel Selection&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>AFEC0_ADx checkboxes:&lt;/strong> Enable individual channels on AFEC0&lt;/li>
+&lt;li>&lt;strong>AFEC1_ADx checkboxes:&lt;/strong> Enable individual channels on AFEC1&lt;/li>
+&lt;li>&lt;strong>Temperature sensor:&lt;/strong> AD11 on AFEC0 (special handling)&lt;/li>
+&lt;/ul>
+&lt;h3 id="per-channel-settings">Per-Channel Settings&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Gain:&lt;/strong> Select 1x, 2x, or 4x amplification&lt;/li>
+&lt;li>&lt;strong>Differential mode:&lt;/strong> Enable differential measurement&lt;/li>
+&lt;li>&lt;strong>Offset compensation:&lt;/strong> Enable automatic offset correction&lt;/li>
+&lt;/ul>
+&lt;h3 id="trigger-sources">Trigger Sources&lt;/h3>
+&lt;ul>
+&lt;li>Software trigger (manual conversion)&lt;/li>
+&lt;li>TC (Timer Counter) output&lt;/li>
+&lt;li>PWM events&lt;/li>
+&lt;li>External trigger pins&lt;/li>
+&lt;/ul>
+&lt;h2 id="pin-mapping">Pin Mapping&lt;/h2>
+&lt;p>The block automatically displays pin assignments for enabled channels (e.g., &amp;ldquo;AD0 / PE5 / Pin[X]&amp;rdquo;).&lt;/p></description></item></channel></rss>

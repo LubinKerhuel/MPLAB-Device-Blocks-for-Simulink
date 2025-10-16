@@ -1,68 +1,1148 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>PWM Blocks on MPLAB Blockset for MATLAB/Simulink</title>
-    <link>/block_reference/pwm_io.html</link>
-    <description>Recent content in PWM Blocks on MPLAB Blockset for MATLAB/Simulink</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/block_reference/pwm_io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>MCPWM</title>
-      <link>/block_reference/pwm_io/mcpwm.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/mcpwm.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/MCPWM.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/MCPWM.png&#34; alt=&#34;Mcpwm Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        MCPWM (Motor Control PWM) offers enhanced features beyond standard PWM blocks, including programmable fault sources with digital comparator inputs, leading-edge blanking, dead-time compensation modes, and extensive trigger output capabilities for ADC synchronization.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Representative Devices&lt;/th&gt;&#xA;          &lt;th&gt;Key Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MK&lt;/td&gt;&#xA;          &lt;td&gt;PIC32MK MCJ/MCM/MCA families&lt;/td&gt;&#xA;          &lt;td&gt;Full MCPWM with digital comparators, advanced fault handling&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C (selected)&lt;/td&gt;&#xA;          &lt;td&gt;33CH, 33CK families with MCPWM&lt;/td&gt;&#xA;          &lt;td&gt;High-speed MCPWM, multiple fault sources&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33A&lt;/td&gt;&#xA;          &lt;td&gt;Latest 33A families&lt;/td&gt;&#xA;          &lt;td&gt;Enhanced MCPWM with fine edge placement&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;time-base-and-alignment&#34;&gt;Time Base and Alignment&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PWMx_ECAM_ITB&lt;/td&gt;&#xA;          &lt;td&gt;PWM mode selection&lt;/td&gt;&#xA;          &lt;td&gt;• Edge aligned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;dead-time-configuration&#34;&gt;Dead Time Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTC&lt;/td&gt;&#xA;          &lt;td&gt;Dead Time Control mode&lt;/td&gt;&#xA;          &lt;td&gt;• Disabled&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTH_xxx&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time high-side (per PWM)&lt;/td&gt;&#xA;          &lt;td&gt;Time in seconds&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTL_xxx&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time low-side (per PWM)&lt;/td&gt;&#xA;          &lt;td&gt;Time in seconds&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTCMPSEL&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time compensation select&lt;/td&gt;&#xA;          &lt;td&gt;Comparator source for compensation mode&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;fault-configuration&#34;&gt;Fault Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FLTSRCx&lt;/td&gt;&#xA;          &lt;td&gt;Fault source selection for each PWM generator:&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FLTSRC1..12_DTCMP&lt;/td&gt;&#xA;          &lt;td&gt;Digital comparator assignment for dead-time compensation per PWM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FaultMode&lt;/td&gt;&#xA;          &lt;td&gt;Fault response mode:&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FaultState&lt;/td&gt;&#xA;          &lt;td&gt;Output state during fault: All Low, All High, High-Z, or custom&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;leading-edge-blanking-leb&#34;&gt;Leading-Edge Blanking (LEB)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LEB_Enable&lt;/td&gt;&#xA;          &lt;td&gt;Enable leading-edge blanking for fault inputs&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LEB_Duration&lt;/td&gt;&#xA;          &lt;td&gt;Blanking time after PWM edge transition (ignores fault during switching noise)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;LEB_Trigger&lt;/td&gt;&#xA;          &lt;td&gt;Trigger source: Rising edge PWMxH, Falling edge PWMxH, or PWMxL edges&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;trigger-outputs&#34;&gt;Trigger Outputs&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TRIG1..3&lt;/td&gt;&#xA;          &lt;td&gt;Up to 3 trigger outputs per PWM generator for ADC/DAC synchronization&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SEVTCMP&lt;/td&gt;&#xA;          &lt;td&gt;Special event compare for primary ADC trigger&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TriggerInterrupt&lt;/td&gt;&#xA;          &lt;td&gt;Enable interrupt on trigger events&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;pwm-adc-synchronization&#34;&gt;PWM-ADC Synchronization&lt;/h2&gt;&#xA;&lt;p&gt;Proper synchronization between PWM generation and ADC sampling is critical for motor control and power conversion applications. The MCPWM block provides multiple trigger outputs (&lt;code&gt;TRIG1..3&lt;/code&gt;, &lt;code&gt;SEVTCMP&lt;/code&gt;) to precisely coordinate ADC conversions with PWM waveform timing.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM</title>
-      <link>/block_reference/pwm_io/pwm.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM.png&#34; alt=&#34;Pwm Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The PWM block supports up to 4 complementary PWM channel pairs with independent duty cycle control, dead-time insertion, fault protection, and special event triggers for ADC synchronization.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Devices&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC30F&lt;/td&gt;&#xA;          &lt;td&gt;All dsPIC30F devices with PWM module&lt;/td&gt;&#xA;          &lt;td&gt;Basic PWM, Dead-time A, Fault A&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33F&lt;/td&gt;&#xA;          &lt;td&gt;All dsPIC33F devices with PWM module&lt;/td&gt;&#xA;          &lt;td&gt;Basic PWM, Dead-time A, Fault A&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33E&lt;/td&gt;&#xA;          &lt;td&gt;dsPIC33EP devices with standard PWM&lt;/td&gt;&#xA;          &lt;td&gt;Enhanced PWM, Dead-time A/B, Fault A/B&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;pwm-reference&#34;&gt;PWM Reference&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PWM_REF&lt;/td&gt;&#xA;          &lt;td&gt;PWM peripheral reference (visible only if multiple PWM modules available)&lt;/td&gt;&#xA;          &lt;td&gt;1, 2, or Duplicate Ports for PWM x&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;basic-configuration&#34;&gt;Basic Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Default&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;InitialPeriod&lt;/td&gt;&#xA;          &lt;td&gt;PWM period in seconds (max depends on prescaler and clock)&lt;/td&gt;&#xA;          &lt;td&gt;100e-6 (100 µs)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CAM&lt;/td&gt;&#xA;          &lt;td&gt;Center Aligned Mode (on/off)&lt;/td&gt;&#xA;          &lt;td&gt;off&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;IUE&lt;/td&gt;&#xA;          &lt;td&gt;Immediate Update Enable (on/off)&lt;/td&gt;&#xA;          &lt;td&gt;off&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Channel&lt;/td&gt;&#xA;          &lt;td&gt;Enabled PWM channels (Low side)&lt;/td&gt;&#xA;          &lt;td&gt;[1 2 3 4]&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;ChannelHigh&lt;/td&gt;&#xA;          &lt;td&gt;Enabled PWM channels (High side, if separate control)&lt;/td&gt;&#xA;          &lt;td&gt;[1 2 3 4]&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;dead-time-configuration&#34;&gt;Dead Time Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Range&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimePrescaleA&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time duration for Prescaler A in seconds&lt;/td&gt;&#xA;          &lt;td&gt;0 to max (depends on clock)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimePrescaleB&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time duration for Prescaler B in seconds (dsPIC33E only)&lt;/td&gt;&#xA;          &lt;td&gt;0 to max (depends on clock)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTPWMxa/i&lt;/td&gt;&#xA;          &lt;td&gt;Select Prescaler A or B for each PWM channel (active/inactive side)&lt;/td&gt;&#xA;          &lt;td&gt;Prescaler A / Prescaler B&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;fault-protection&#34;&gt;Fault Protection&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FAULTA_FLATM&lt;/td&gt;&#xA;          &lt;td&gt;Fault A mode&lt;/td&gt;&#xA;          &lt;td&gt;• Fault cleared automatically&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;FaultA_PWMx_State&lt;/td&gt;&#xA;          &lt;td&gt;PWM output state during Fault A&lt;/td&gt;&#xA;          &lt;td&gt;• Disabled&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIN_FaultA&lt;/td&gt;&#xA;          &lt;td&gt;Fault A input pin (for remappable devices)&lt;/td&gt;&#xA;          &lt;td&gt;Pin selection popup&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;special-event-trigger&#34;&gt;Special Event Trigger&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PxSECMP&lt;/td&gt;&#xA;          &lt;td&gt;Special event trigger time in seconds (typically for ADC sampling point)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PxSECMPBlkInChk&lt;/td&gt;&#xA;          &lt;td&gt;Enable block input for dynamic event trigger control (on/off)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;pwm-adc-synchronization&#34;&gt;PWM-ADC Synchronization&lt;/h2&gt;&#xA;&lt;p&gt;The standard PWM block provides a Special Event Trigger (&lt;code&gt;PxSECMP&lt;/code&gt; / &lt;code&gt;SEVTCMP&lt;/code&gt;) to synchronize ADC sampling with PWM generation. This is essential for accurate current and voltage sensing in motor control and power conversion applications.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM HighSpeed</title>
-      <link>/block_reference/pwm_io/pwm_highspeed.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm_highspeed.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM_HS.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM_HS.png&#34; alt=&#34;Pwm Highspeed Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        This block is designed for demanding motor control and power conversion applications requiring precise timing, independent channel control, and high switching frequencies.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Masksets&lt;/th&gt;&#xA;          &lt;th&gt;Key Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33F (selected)&lt;/td&gt;&#xA;          &lt;td&gt;DOS_00958_pwm_TLAH&lt;/td&gt;&#xA;          &lt;td&gt;DOS_00958_pwm_TLAY&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33EP (GS)&lt;/td&gt;&#xA;          &lt;td&gt;DOS_00958_pwm_TLAH&lt;/td&gt;&#xA;          &lt;td&gt;DOS_00958_pwm_TLAY&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C/CH/CK&lt;/td&gt;&#xA;          &lt;td&gt;Various (WAC, WBH masksets)&lt;/td&gt;&#xA;          &lt;td&gt;Full-featured high-speed PWM, independent time bases&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;h2 id=&#34;output-modes&#34;&gt;Output Modes&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Mode&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Use Case&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Complementary&lt;/td&gt;&#xA;          &lt;td&gt;PWMxH and PWMxL are complementary with dead-time insertion&lt;/td&gt;&#xA;          &lt;td&gt;Standard motor drive, half-bridge converters&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Redundant&lt;/td&gt;&#xA;          &lt;td&gt;PWMxH and PWMxL output identical signals&lt;/td&gt;&#xA;          &lt;td&gt;Parallel drive, increased current capability&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Push-Pull&lt;/td&gt;&#xA;          &lt;td&gt;PWMxH and PWMxL alternate (no dead-time)&lt;/td&gt;&#xA;          &lt;td&gt;Push-pull converters, full-bridge DC-DC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Independent&lt;/td&gt;&#xA;          &lt;td&gt;PWMxH and PWMxL operate independently&lt;/td&gt;&#xA;          &lt;td&gt;Dual independent loads, asymmetric control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;panel-1-basic-configuration&#34;&gt;Panel 1: Basic Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;pop1&lt;/td&gt;&#xA;          &lt;td&gt;PWM output mode&lt;/td&gt;&#xA;          &lt;td&gt;1=Complementary, 2=Redundant, 3=Push-Pull, 4=Independent&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;ITB&lt;/td&gt;&#xA;          &lt;td&gt;Independent Time Base&lt;/td&gt;&#xA;          &lt;td&gt;0=Master period for all, 1=Independent period per PWM pair&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MDCS&lt;/td&gt;&#xA;          &lt;td&gt;Master Duty Cycle Select&lt;/td&gt;&#xA;          &lt;td&gt;0=Independent duty cycle, 1=Master duty cycle&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CAM&lt;/td&gt;&#xA;          &lt;td&gt;Center Aligned Mode&lt;/td&gt;&#xA;          &lt;td&gt;0=Edge-aligned, 1=Center-aligned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;IUE&lt;/td&gt;&#xA;          &lt;td&gt;Immediate Update Enable&lt;/td&gt;&#xA;          &lt;td&gt;0=Synchronized update, 1=Immediate update&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DBL_UPDATE&lt;/td&gt;&#xA;          &lt;td&gt;Double Update Mode&lt;/td&gt;&#xA;          &lt;td&gt;Enable asymmetric center-aligned PWM (2 duty cycle values)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;chkHL1&lt;/td&gt;&#xA;          &lt;td&gt;Output Enable&lt;/td&gt;&#xA;          &lt;td&gt;Select which PWMxH and PWMxL outputs are enabled&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;maxP1&lt;/td&gt;&#xA;          &lt;td&gt;Maximum Period&lt;/td&gt;&#xA;          &lt;td&gt;Array of maximum period values in seconds for each PWM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;panel-2-period-and-duty-cycle&#34;&gt;Panel 2: Period and Duty Cycle&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;InitP2&lt;/td&gt;&#xA;          &lt;td&gt;Initial period values (seconds). Scalar for master, array for independent&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;chkP2&lt;/td&gt;&#xA;          &lt;td&gt;Enable period block inputs (0=constant, 1=variable via input port)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;InitDC&lt;/td&gt;&#xA;          &lt;td&gt;Initial duty cycle values (%). Can be [single] or [val1 val2] for double update&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;chkDC&lt;/td&gt;&#xA;          &lt;td&gt;Enable duty cycle block inputs per channel&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;panel-3-dead-time-configuration&#34;&gt;Panel 3: Dead Time Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTH&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for high-side transitions (seconds). One value per enabled PWM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DTL&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for low-side transitions (seconds). One value per enabled PWM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;panel-4-trigger-configuration&#34;&gt;Panel 4: Trigger Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TrigOut&lt;/td&gt;&#xA;          &lt;td&gt;Trigger output configuration for ADC/DAC sync. Format: [PWM# TrigPoint]&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TrigOutBlkIn&lt;/td&gt;&#xA;          &lt;td&gt;Enable block input for dynamic trigger control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-inputs&#34;&gt;Block Inputs&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Condition&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Period&lt;/td&gt;&#xA;          &lt;td&gt;uint16 or uint16[]&lt;/td&gt;&#xA;          &lt;td&gt;chkP2 = 1&lt;/td&gt;&#xA;          &lt;td&gt;Period value(s). Scalar if ITB=0, vector if ITB=1&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DutyCycle 1..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16 or uint16[2]&lt;/td&gt;&#xA;          &lt;td&gt;chkDC = 1&lt;/td&gt;&#xA;          &lt;td&gt;Duty cycle values. Single value or [val1 val2] for double update&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Trigger 1..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;TrigOutBlkIn = 1&lt;/td&gt;&#xA;          &lt;td&gt;Dynamic trigger point values&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeH 1..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Optional&lt;/td&gt;&#xA;          &lt;td&gt;Dynamic dead-time high (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeL 1..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Optional&lt;/td&gt;&#xA;          &lt;td&gt;Dynamic dead-time low (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-outputs&#34;&gt;Block Outputs&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Trigger 1..N&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Trigger output signals (for custom synchronization logic)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PWM Status&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Optional status output (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;clock-configuration&#34;&gt;Clock Configuration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;auxiliary-clock-apll---dspic33ep-gs-only&#34;&gt;Auxiliary Clock (APLL) - dsPIC33EP GS Only&lt;/h3&gt;&#xA;&lt;p&gt;For devices with DOS_00958_pwm_TLAH or DOS_00958_pwm_TLAY:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM HighSpeed Override</title>
-      <link>/block_reference/pwm_io/pwm_highspeed_override.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm_highspeed_override.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM_HS_Override.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM_HS_Override.png&#34; alt=&#34;Pwm Highspeed Override Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The override block works in conjunction with the &lt;strong&gt;MCHP_PWM_HighSpeed&lt;/strong&gt; block and can force PWM outputs to specific logic levels regardless of the PWM generator state. &lt;strong&gt;Important:&lt;/strong&gt; Override control should be used with extreme caution in motor control applications, as improper use can cause hardware damage or create hazardous conditions.  ## Supported Device Families  This block supports the same device families as MCHP_PWM_HighSpeed:  - &lt;strong&gt;dsPIC33F (selected)&lt;/strong&gt; - with high-speed PWM module - &lt;strong&gt;dsPIC33EP (GS)&lt;/strong&gt; - with auxiliary clock support - &lt;strong&gt;dsPIC33C/CH/CK&lt;/strong&gt; - full-featured implementations&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Direct control of PWM output pins (PWMxH and PWMxL)&lt;/li&gt;&#xA;&lt;li&gt;Individual or grouped override control&lt;/li&gt;&#xA;&lt;li&gt;Override enable/disable per channel&lt;/li&gt;&#xA;&lt;li&gt;Synchronization with PWM generator (optional)&lt;/li&gt;&#xA;&lt;li&gt;Support for safe state configuration&lt;/li&gt;&#xA;&lt;li&gt;Runtime override value modification&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;override-channel-selection&#34;&gt;Override Channel Selection&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;OverrideChannels&lt;/td&gt;&#xA;          &lt;td&gt;Select which PWM channels are controlled by override&lt;/td&gt;&#xA;          &lt;td&gt;Vector of channel numbers [1 2 3 &amp;hellip;]&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;OverrideMode&lt;/td&gt;&#xA;          &lt;td&gt;Override application mode&lt;/td&gt;&#xA;          &lt;td&gt;• Individual (per channel control)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;override-state-configuration&#34;&gt;Override State Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Values&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DefaultState_H&lt;/td&gt;&#xA;          &lt;td&gt;Default state for high-side outputs when override active&lt;/td&gt;&#xA;          &lt;td&gt;0 (Low), 1 (High)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DefaultState_L&lt;/td&gt;&#xA;          &lt;td&gt;Default state for low-side outputs when override active&lt;/td&gt;&#xA;          &lt;td&gt;0 (Low), 1 (High)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SyncMode&lt;/td&gt;&#xA;          &lt;td&gt;Synchronization with PWM timebase&lt;/td&gt;&#xA;          &lt;td&gt;• Immediate (override applied immediately)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-inputs&#34;&gt;Block Inputs&lt;/h2&gt;&#xA;&lt;h3 id=&#34;individual-override-mode&#34;&gt;Individual Override Mode&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_En 1..N&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Enable override for channel N (1=override active, 0=normal PWM)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_H 1..N&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;High-side output state when override enabled for channel N&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_L 1..N&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Low-side output state when override enabled for channel N&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;grouped-override-mode&#34;&gt;Grouped Override Mode&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_En&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Enable override for all selected channels&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Value&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Bitfield: override state for all channels&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-outputs&#34;&gt;Block Outputs&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Status&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Current override register value (IOCONx.OVRDAT bits)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Active&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Indicates if any override is currently active&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;implementation-details&#34;&gt;Implementation Details&lt;/h2&gt;&#xA;&lt;h3 id=&#34;hardware-registers&#34;&gt;Hardware Registers&lt;/h3&gt;&#xA;&lt;p&gt;The override block configures the following registers:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM HS FEP</title>
-      <link>/block_reference/pwm_io/pwm_hs_fep.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm_hs_fep.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM_HS_FEP.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM_HS_FEP.png&#34; alt=&#34;Pwm Hs Fep Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        This advanced PWM peripheral is specifically designed for precision motor control, high-frequency power conversion, and applications demanding superior timing accuracy and reduced total harmonic distortion (THD).&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;quick-reference&#34;&gt;Quick Reference&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Application&lt;/th&gt;&#xA;          &lt;th&gt;Key Settings&lt;/th&gt;&#xA;          &lt;th&gt;Device Example&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;3-Phase Motor Control (HiRES)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;ClockResolution: &amp;quot;no scaling&amp;quot;&lt;/code&gt;&lt;br&gt;&lt;code&gt;ECAM: &amp;quot;Center aligned - Symmetric&amp;quot;&lt;/code&gt;&lt;br&gt;&lt;code&gt;Channels: [1 2 3]&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;dsPIC33AK512MPS512&lt;br&gt;(14-bit resolution @ 50kHz)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Interleaved DC-DC Converter&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;Channels: [1 2 3 4]&lt;/code&gt;&lt;br&gt;&lt;code&gt;PhaseShift: [0, T/4, T/2, 3T/4]&lt;/code&gt;&lt;br&gt;&lt;code&gt;ECAM: &amp;quot;Edge aligned&amp;quot;&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;dsPIC33CK256MP508&lt;br&gt;(800kHz effective ripple)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Synchronized ADC Sampling&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;SEVTCMP: 0&lt;/code&gt; (valley trigger)&lt;br&gt;&lt;code&gt;PWM→ADC→Task&lt;/code&gt; timing&lt;br&gt;&lt;code&gt;Center aligned PWM&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;Any dsPIC33A/C&lt;br&gt;(Noise-free current sensing)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;EMI Spread Spectrum&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;ECAM: &amp;quot;Asymmetric - double update&amp;quot;&lt;/code&gt;&lt;br&gt;&lt;code&gt;Dynamic duty cycle modulation&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;dsPIC33AK (V4)&lt;br&gt;(Harmonic spreading)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;⚠️ &lt;strong&gt;Critical for HiRES Mode&lt;/strong&gt;: Must use &lt;code&gt;&amp;quot;no scaling&amp;quot;&lt;/code&gt; clock option - dividers/scalers disable High-Resolution mode!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM SAM7x</title>
-      <link>/block_reference/pwm_io/pwm_sam7x.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm_sam7x.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM_SAMx7.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM_SAMx7.png&#34; alt=&#34;Pwm Sam7X Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        | Family | Examples | Features | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME5x | SAME54, SAME53, SAME51 | Up to 4 PWM channels, 120 MHz, TCC peripherals | | SAME7x | SAME70, SAMS70, SAMV71 | Up to 8 PWM channels, 300 MHz, advanced PWM features | | SAMC2x | SAMC21, SAMC20 | Up to 4 PWM channels, 48 MHz, motor control optimized | | SAMD2x | SAMD21, SAMD20 | Up to 3 PWM channels, 48 MHz, compact implementation |&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM S70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V71&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Complementary PWM output pairs with dead-time&lt;/li&gt;&#xA;&lt;li&gt;Independent period and duty cycle control&lt;/li&gt;&#xA;&lt;li&gt;Center-aligned and edge-aligned modes&lt;/li&gt;&#xA;&lt;li&gt;Fault input with configurable response&lt;/li&gt;&#xA;&lt;li&gt;Pattern generation for BLDC commutation&lt;/li&gt;&#xA;&lt;li&gt;Synchronized PWM update&lt;/li&gt;&#xA;&lt;li&gt;Dynamic dead-time adjustment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;basic-configuration&#34;&gt;Basic Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PWM_Channels&lt;/td&gt;&#xA;          &lt;td&gt;Enabled PWM channel numbers (e.g., [0 1 2 3])&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PWM_Mode&lt;/td&gt;&#xA;          &lt;td&gt;Edge-aligned or Center-aligned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Period&lt;/td&gt;&#xA;          &lt;td&gt;PWM period (constant or input)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DutyCycle_Init&lt;/td&gt;&#xA;          &lt;td&gt;Initial duty cycle values&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;dead-time&#34;&gt;Dead Time&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTime_Enable&lt;/td&gt;&#xA;          &lt;td&gt;Enable dead-time insertion&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeH&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for high-side output (seconds)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeL&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for low-side output (seconds)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-inputsoutputs&#34;&gt;Block Inputs/Outputs&lt;/h2&gt;&#xA;&lt;h3 id=&#34;inputs&#34;&gt;Inputs&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Period&lt;/td&gt;&#xA;          &lt;td&gt;Variable&lt;/td&gt;&#xA;          &lt;td&gt;Optional period input (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DutyCycle 0..N&lt;/td&gt;&#xA;          &lt;td&gt;Variable&lt;/td&gt;&#xA;          &lt;td&gt;Duty cycle per enabled channel&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeH 0..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Dynamic high-side dead-time (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTimeL 0..N&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Dynamic low-side dead-time (if enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;outputs&#34;&gt;Outputs&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Fault_Status&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Fault condition indicator (if fault enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;usage-example&#34;&gt;Usage Example&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% SAME70 3-phase motor control:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PWM_Channels = [&lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PWM_Mode = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Center-aligned&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Period = &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#099&#34;&gt;20e3&lt;/span&gt;;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 20 kHz&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Dead-time:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DeadTime_Enable = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;on&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DeadTimeH = [&lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt;];  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% 1 µs each phase&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DeadTimeL = [&lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1e-6&lt;/span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Connect duty cycle inputs from FOC algorithm&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;related-blocks&#34;&gt;Related Blocks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;pwm_sam7x_override.html&#34;&gt;&lt;strong&gt;MCHP_PWM_SAM7x_Override&lt;/strong&gt;&lt;/a&gt; - Override control for SAM7x PWM&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;tcc_pwm.html&#34;&gt;&lt;strong&gt;MCHP_TCC_PWM&lt;/strong&gt;&lt;/a&gt; - TCC-based PWM for SAME5x/SAMC2x&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with PWM synchronization&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>PWM SAM7x Override</title>
-      <link>/block_reference/pwm_io/pwm_sam7x_override.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/pwm_sam7x_override.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/PWM_SAMx7_Override.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/PWM_SAMx7_Override.png&#34; alt=&#34;Pwm Sam7X Override Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        All SAM7x families: SAME5x, SAME7x, SAMC2x, SAMD2x&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM S70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V70&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM V71&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Channels&lt;/td&gt;&#xA;          &lt;td&gt;PWM channels to control via override&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Mode&lt;/td&gt;&#xA;          &lt;td&gt;Individual or Grouped control&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Safe_State_H&lt;/td&gt;&#xA;          &lt;td&gt;Safe state for high-side outputs (0=Low, 1=High)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Safe_State_L&lt;/td&gt;&#xA;          &lt;td&gt;Safe state for low-side outputs (0=Low, 1=High)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-inputs&#34;&gt;Block Inputs&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Enable&lt;/td&gt;&#xA;          &lt;td&gt;boolean&lt;/td&gt;&#xA;          &lt;td&gt;Activate override control (1=override active)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Override_Value&lt;/td&gt;&#xA;          &lt;td&gt;uint16&lt;/td&gt;&#xA;          &lt;td&gt;Output pin states (bitfield)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;usage-example&#34;&gt;Usage Example&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Emergency shutdown for SAM7x motor drive:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Override_Channels = [&lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Override_Mode = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Grouped&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Safe_State_H = &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% All high-sides OFF&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Safe_State_L = &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% All low-sides OFF&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Connect emergency stop -&amp;gt; Override_Enable&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;related-blocks&#34;&gt;Related Blocks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;pwm_sam7x.html&#34;&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt; - Main SAM7x PWM block&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;pwm_highspeed_override.html&#34;&gt;&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt;&lt;/a&gt; - Override for dsPIC PWM&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>TCC PWM</title>
-      <link>/block_reference/pwm_io/tcc_pwm.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_io/tcc_pwm.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/pwm/TCC_PWM.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/pwm/TCC_PWM.png&#34; alt=&#34;Tcc Pwm Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        | Family | TCC Instances | Channels per TCC | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME54/53/51 | TCC0, TCC1, TCC2 | 6, 4, 3 channels | | SAMC21/20 | TCC0, TCC1, TCC2 | 4, 4, 2 channels | | SAMD21/20 | TCC0, TCC1, TCC2 | 4, 2, 2 channels |&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM E5x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM D5x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;SAM C2x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Up to 6 PWM channels per TCC instance (device dependent)&lt;/li&gt;&#xA;&lt;li&gt;Complementary outputs with dead-time&lt;/li&gt;&#xA;&lt;li&gt;Circular, dual-slope (center-aligned) modes&lt;/li&gt;&#xA;&lt;li&gt;Pattern generation for BLDC/stepper motors&lt;/li&gt;&#xA;&lt;li&gt;Recoverable and non-recoverable faults&lt;/li&gt;&#xA;&lt;li&gt;Dithering for enhanced resolution&lt;/li&gt;&#xA;&lt;li&gt;Compare capture for position sensing&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;basic-configuration&#34;&gt;Basic Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;TCC_Instance&lt;/td&gt;&#xA;          &lt;td&gt;Select TCC0, TCC1, or TCC2&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Waveform_Mode&lt;/td&gt;&#xA;          &lt;td&gt;Normal Frequency, Match Frequency, or PWM&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Counter_Mode&lt;/td&gt;&#xA;          &lt;td&gt;Up, Down, or Dual-slope (center-aligned)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Enabled_Channels&lt;/td&gt;&#xA;          &lt;td&gt;Array of enabled channel numbers&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;dead-time-and-pattern&#34;&gt;Dead Time and Pattern&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTime_Enable&lt;/td&gt;&#xA;          &lt;td&gt;Enable complementary output with dead-time&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTime_Low&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for low-side (cycles)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DeadTime_High&lt;/td&gt;&#xA;          &lt;td&gt;Dead-time for high-side (cycles)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Pattern_Enable&lt;/td&gt;&#xA;          &lt;td&gt;Enable pattern generator for BLDC&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Pattern_Table&lt;/td&gt;&#xA;          &lt;td&gt;Commutation pattern table&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-inputsoutputs&#34;&gt;Block Inputs/Outputs&lt;/h2&gt;&#xA;&lt;h3 id=&#34;inputs&#34;&gt;Inputs&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Input&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Period&lt;/td&gt;&#xA;          &lt;td&gt;Optional period input&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Compare 0..N&lt;/td&gt;&#xA;          &lt;td&gt;Compare values (duty cycle) per channel&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Pattern_Index&lt;/td&gt;&#xA;          &lt;td&gt;Pattern table index (if pattern mode enabled)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;outputs&#34;&gt;Outputs&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Fault_Status&lt;/td&gt;&#xA;          &lt;td&gt;Fault condition status&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Overflow_Flag&lt;/td&gt;&#xA;          &lt;td&gt;Counter overflow indicator&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;usage-example&#34;&gt;Usage Example&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-matlab&#34; data-lang=&#34;matlab&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% BLDC motor control with TCC pattern generator:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TCC_Instance = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;TCC0&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Waveform_Mode = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;PWM&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Counter_Mode = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;Dual-slope&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Enabled_Channels = [&lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#099&#34;&gt;2&lt;/span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Pattern generator:&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Pattern_Enable = &lt;span style=&#34;color:#d14&#34;&gt;&amp;#39;on&amp;#39;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Pattern_Table = [&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall state -&amp;gt; [Ch0 Ch1 Ch2] outputs&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b000000;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Invalid&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b100001;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 001&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b001100;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 010&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b101100;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 011&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b110010;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 100&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b110001;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 101&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b011010;  &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Hall 110&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#099&#34;&gt;0&lt;/span&gt;b000000   &lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Invalid&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#998;font-style:italic&#34;&gt;% Connect Hall sensor state -&amp;gt; Pattern_Index&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;related-blocks&#34;&gt;Related Blocks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;pwm_sam7x.html&#34;&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt; - General SAM7x PWM&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;MCHP_TC_PWM&lt;/strong&gt; - Basic Timer/Counter PWM&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with TCC event sync&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PWM Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/pwm_io.html</link><description>Recent content in PWM Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/pwm_io/index.xml" rel="self" type="application/rss+xml"/><item><title>MCPWM</title><link>/block_reference/pwm_io/mcpwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/mcpwm.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/MCPWM.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/MCPWM.png" alt="Mcpwm Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ MCPWM (Motor Control PWM) offers enhanced features beyond standard PWM blocks, including programmable fault sources with digital comparator inputs, leading-edge blanking, dead-time compensation modes, and extensive trigger output capabilities for ADC synchronization.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Representative Devices&lt;/th>
+ &lt;th>Key Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PIC32MK&lt;/td>
+ &lt;td>PIC32MK MCJ/MCM/MCA families&lt;/td>
+ &lt;td>Full MCPWM with digital comparators, advanced fault handling&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33C (selected)&lt;/td>
+ &lt;td>33CH, 33CK families with MCPWM&lt;/td>
+ &lt;td>High-speed MCPWM, multiple fault sources&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33A&lt;/td>
+ &lt;td>Latest 33A families&lt;/td>
+ &lt;td>Enhanced MCPWM with fine edge placement&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="time-base-and-alignment">Time Base and Alignment&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PWMx_ECAM_ITB&lt;/td>
+ &lt;td>PWM mode selection&lt;/td>
+ &lt;td>• Edge aligned&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="dead-time-configuration">Dead Time Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DTC&lt;/td>
+ &lt;td>Dead Time Control mode&lt;/td>
+ &lt;td>• Disabled&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DTH_xxx&lt;/td>
+ &lt;td>Dead-time high-side (per PWM)&lt;/td>
+ &lt;td>Time in seconds&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DTL_xxx&lt;/td>
+ &lt;td>Dead-time low-side (per PWM)&lt;/td>
+ &lt;td>Time in seconds&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DTCMPSEL&lt;/td>
+ &lt;td>Dead-time compensation select&lt;/td>
+ &lt;td>Comparator source for compensation mode&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="fault-configuration">Fault Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>FLTSRCx&lt;/td>
+ &lt;td>Fault source selection for each PWM generator:&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>FLTSRC1..12_DTCMP&lt;/td>
+ &lt;td>Digital comparator assignment for dead-time compensation per PWM&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>FaultMode&lt;/td>
+ &lt;td>Fault response mode:&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>FaultState&lt;/td>
+ &lt;td>Output state during fault: All Low, All High, High-Z, or custom&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="leading-edge-blanking-leb">Leading-Edge Blanking (LEB)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>LEB_Enable&lt;/td>
+ &lt;td>Enable leading-edge blanking for fault inputs&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>LEB_Duration&lt;/td>
+ &lt;td>Blanking time after PWM edge transition (ignores fault during switching noise)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>LEB_Trigger&lt;/td>
+ &lt;td>Trigger source: Rising edge PWMxH, Falling edge PWMxH, or PWMxL edges&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="trigger-outputs">Trigger Outputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>TRIG1..3&lt;/td>
+ &lt;td>Up to 3 trigger outputs per PWM generator for ADC/DAC synchronization&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SEVTCMP&lt;/td>
+ &lt;td>Special event compare for primary ADC trigger&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>TriggerInterrupt&lt;/td>
+ &lt;td>Enable interrupt on trigger events&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="pwm-adc-synchronization">PWM-ADC Synchronization&lt;/h2>
+&lt;p>Proper synchronization between PWM generation and ADC sampling is critical for motor control and power conversion applications. The MCPWM block provides multiple trigger outputs (&lt;code>TRIG1..3&lt;/code>, &lt;code>SEVTCMP&lt;/code>) to precisely coordinate ADC conversions with PWM waveform timing.&lt;/p></description></item><item><title>PWM</title><link>/block_reference/pwm_io/pwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM.png" alt="Pwm Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The PWM block supports up to 4 complementary PWM channel pairs with independent duty cycle control, dead-time insertion, fault protection, and special event triggers for ADC synchronization.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Devices&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC30F&lt;/td>
+ &lt;td>All dsPIC30F devices with PWM module&lt;/td>
+ &lt;td>Basic PWM, Dead-time A, Fault A&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33F&lt;/td>
+ &lt;td>All dsPIC33F devices with PWM module&lt;/td>
+ &lt;td>Basic PWM, Dead-time A, Fault A&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33E&lt;/td>
+ &lt;td>dsPIC33EP devices with standard PWM&lt;/td>
+ &lt;td>Enhanced PWM, Dead-time A/B, Fault A/B&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="pwm-reference">PWM Reference&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PWM_REF&lt;/td>
+ &lt;td>PWM peripheral reference (visible only if multiple PWM modules available)&lt;/td>
+ &lt;td>1, 2, or Duplicate Ports for PWM x&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="basic-configuration">Basic Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Default&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>InitialPeriod&lt;/td>
+ &lt;td>PWM period in seconds (max depends on prescaler and clock)&lt;/td>
+ &lt;td>100e-6 (100 µs)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CAM&lt;/td>
+ &lt;td>Center Aligned Mode (on/off)&lt;/td>
+ &lt;td>off&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>IUE&lt;/td>
+ &lt;td>Immediate Update Enable (on/off)&lt;/td>
+ &lt;td>off&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Channel&lt;/td>
+ &lt;td>Enabled PWM channels (Low side)&lt;/td>
+ &lt;td>[1 2 3 4]&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ChannelHigh&lt;/td>
+ &lt;td>Enabled PWM channels (High side, if separate control)&lt;/td>
+ &lt;td>[1 2 3 4]&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="dead-time-configuration">Dead Time Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Range&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DeadTimePrescaleA&lt;/td>
+ &lt;td>Dead-time duration for Prescaler A in seconds&lt;/td>
+ &lt;td>0 to max (depends on clock)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimePrescaleB&lt;/td>
+ &lt;td>Dead-time duration for Prescaler B in seconds (dsPIC33E only)&lt;/td>
+ &lt;td>0 to max (depends on clock)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DTPWMxa/i&lt;/td>
+ &lt;td>Select Prescaler A or B for each PWM channel (active/inactive side)&lt;/td>
+ &lt;td>Prescaler A / Prescaler B&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="fault-protection">Fault Protection&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>FAULTA_FLATM&lt;/td>
+ &lt;td>Fault A mode&lt;/td>
+ &lt;td>• Fault cleared automatically&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>FaultA_PWMx_State&lt;/td>
+ &lt;td>PWM output state during Fault A&lt;/td>
+ &lt;td>• Disabled&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIN_FaultA&lt;/td>
+ &lt;td>Fault A input pin (for remappable devices)&lt;/td>
+ &lt;td>Pin selection popup&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="special-event-trigger">Special Event Trigger&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PxSECMP&lt;/td>
+ &lt;td>Special event trigger time in seconds (typically for ADC sampling point)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PxSECMPBlkInChk&lt;/td>
+ &lt;td>Enable block input for dynamic event trigger control (on/off)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="pwm-adc-synchronization">PWM-ADC Synchronization&lt;/h2>
+&lt;p>The standard PWM block provides a Special Event Trigger (&lt;code>PxSECMP&lt;/code> / &lt;code>SEVTCMP&lt;/code>) to synchronize ADC sampling with PWM generation. This is essential for accurate current and voltage sensing in motor control and power conversion applications.&lt;/p></description></item><item><title>PWM HighSpeed</title><link>/block_reference/pwm_io/pwm_highspeed.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm_highspeed.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM_HS.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM_HS.png" alt="Pwm Highspeed Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ This block is designed for demanding motor control and power conversion applications requiring precise timing, independent channel control, and high switching frequencies.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Masksets&lt;/th>
+ &lt;th>Key Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC33F (selected)&lt;/td>
+ &lt;td>DOS_00958_pwm_TLAH&lt;/td>
+ &lt;td>DOS_00958_pwm_TLAY&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33EP (GS)&lt;/td>
+ &lt;td>DOS_00958_pwm_TLAH&lt;/td>
+ &lt;td>DOS_00958_pwm_TLAY&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33C/CH/CK&lt;/td>
+ &lt;td>Various (WAC, WBH masksets)&lt;/td>
+ &lt;td>Full-featured high-speed PWM, independent time bases&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;h2 id="output-modes">Output Modes&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Use Case&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Complementary&lt;/td>
+ &lt;td>PWMxH and PWMxL are complementary with dead-time insertion&lt;/td>
+ &lt;td>Standard motor drive, half-bridge converters&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Redundant&lt;/td>
+ &lt;td>PWMxH and PWMxL output identical signals&lt;/td>
+ &lt;td>Parallel drive, increased current capability&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Push-Pull&lt;/td>
+ &lt;td>PWMxH and PWMxL alternate (no dead-time)&lt;/td>
+ &lt;td>Push-pull converters, full-bridge DC-DC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Independent&lt;/td>
+ &lt;td>PWMxH and PWMxL operate independently&lt;/td>
+ &lt;td>Dual independent loads, asymmetric control&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="panel-1-basic-configuration">Panel 1: Basic Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>pop1&lt;/td>
+ &lt;td>PWM output mode&lt;/td>
+ &lt;td>1=Complementary, 2=Redundant, 3=Push-Pull, 4=Independent&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>ITB&lt;/td>
+ &lt;td>Independent Time Base&lt;/td>
+ &lt;td>0=Master period for all, 1=Independent period per PWM pair&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MDCS&lt;/td>
+ &lt;td>Master Duty Cycle Select&lt;/td>
+ &lt;td>0=Independent duty cycle, 1=Master duty cycle&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CAM&lt;/td>
+ &lt;td>Center Aligned Mode&lt;/td>
+ &lt;td>0=Edge-aligned, 1=Center-aligned&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>IUE&lt;/td>
+ &lt;td>Immediate Update Enable&lt;/td>
+ &lt;td>0=Synchronized update, 1=Immediate update&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DBL_UPDATE&lt;/td>
+ &lt;td>Double Update Mode&lt;/td>
+ &lt;td>Enable asymmetric center-aligned PWM (2 duty cycle values)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>chkHL1&lt;/td>
+ &lt;td>Output Enable&lt;/td>
+ &lt;td>Select which PWMxH and PWMxL outputs are enabled&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>maxP1&lt;/td>
+ &lt;td>Maximum Period&lt;/td>
+ &lt;td>Array of maximum period values in seconds for each PWM&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="panel-2-period-and-duty-cycle">Panel 2: Period and Duty Cycle&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>InitP2&lt;/td>
+ &lt;td>Initial period values (seconds). Scalar for master, array for independent&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>chkP2&lt;/td>
+ &lt;td>Enable period block inputs (0=constant, 1=variable via input port)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>InitDC&lt;/td>
+ &lt;td>Initial duty cycle values (%). Can be [single] or [val1 val2] for double update&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>chkDC&lt;/td>
+ &lt;td>Enable duty cycle block inputs per channel&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="panel-3-dead-time-configuration">Panel 3: Dead Time Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DTH&lt;/td>
+ &lt;td>Dead-time for high-side transitions (seconds). One value per enabled PWM&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DTL&lt;/td>
+ &lt;td>Dead-time for low-side transitions (seconds). One value per enabled PWM&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="panel-4-trigger-configuration">Panel 4: Trigger Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>TrigOut&lt;/td>
+ &lt;td>Trigger output configuration for ADC/DAC sync. Format: [PWM# TrigPoint]&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>TrigOutBlkIn&lt;/td>
+ &lt;td>Enable block input for dynamic trigger control&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputs">Block Inputs&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Condition&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Period&lt;/td>
+ &lt;td>uint16 or uint16[]&lt;/td>
+ &lt;td>chkP2 = 1&lt;/td>
+ &lt;td>Period value(s). Scalar if ITB=0, vector if ITB=1&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DutyCycle 1..N&lt;/td>
+ &lt;td>uint16 or uint16[2]&lt;/td>
+ &lt;td>chkDC = 1&lt;/td>
+ &lt;td>Duty cycle values. Single value or [val1 val2] for double update&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Trigger 1..N&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>TrigOutBlkIn = 1&lt;/td>
+ &lt;td>Dynamic trigger point values&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeH 1..N&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Optional&lt;/td>
+ &lt;td>Dynamic dead-time high (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeL 1..N&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Optional&lt;/td>
+ &lt;td>Dynamic dead-time low (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-outputs">Block Outputs&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Trigger 1..N&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Trigger output signals (for custom synchronization logic)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PWM Status&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Optional status output (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="clock-configuration">Clock Configuration&lt;/h2>
+&lt;h3 id="auxiliary-clock-apll---dspic33ep-gs-only">Auxiliary Clock (APLL) - dsPIC33EP GS Only&lt;/h3>
+&lt;p>For devices with DOS_00958_pwm_TLAH or DOS_00958_pwm_TLAY:&lt;/p></description></item><item><title>PWM HighSpeed Override</title><link>/block_reference/pwm_io/pwm_highspeed_override.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm_highspeed_override.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM_HS_Override.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM_HS_Override.png" alt="Pwm Highspeed Override Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The override block works in conjunction with the &lt;strong>MCHP_PWM_HighSpeed&lt;/strong> block and can force PWM outputs to specific logic levels regardless of the PWM generator state. &lt;strong>Important:&lt;/strong> Override control should be used with extreme caution in motor control applications, as improper use can cause hardware damage or create hazardous conditions. ## Supported Device Families This block supports the same device families as MCHP_PWM_HighSpeed: - &lt;strong>dsPIC33F (selected)&lt;/strong> - with high-speed PWM module - &lt;strong>dsPIC33EP (GS)&lt;/strong> - with auxiliary clock support - &lt;strong>dsPIC33C/CH/CK&lt;/strong> - full-featured implementations
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;ul>
+&lt;li>Direct control of PWM output pins (PWMxH and PWMxL)&lt;/li>
+&lt;li>Individual or grouped override control&lt;/li>
+&lt;li>Override enable/disable per channel&lt;/li>
+&lt;li>Synchronization with PWM generator (optional)&lt;/li>
+&lt;li>Support for safe state configuration&lt;/li>
+&lt;li>Runtime override value modification&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="override-channel-selection">Override Channel Selection&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>OverrideChannels&lt;/td>
+ &lt;td>Select which PWM channels are controlled by override&lt;/td>
+ &lt;td>Vector of channel numbers [1 2 3 &amp;hellip;]&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>OverrideMode&lt;/td>
+ &lt;td>Override application mode&lt;/td>
+ &lt;td>• Individual (per channel control)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="override-state-configuration">Override State Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Values&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DefaultState_H&lt;/td>
+ &lt;td>Default state for high-side outputs when override active&lt;/td>
+ &lt;td>0 (Low), 1 (High)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DefaultState_L&lt;/td>
+ &lt;td>Default state for low-side outputs when override active&lt;/td>
+ &lt;td>0 (Low), 1 (High)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SyncMode&lt;/td>
+ &lt;td>Synchronization with PWM timebase&lt;/td>
+ &lt;td>• Immediate (override applied immediately)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputs">Block Inputs&lt;/h2>
+&lt;h3 id="individual-override-mode">Individual Override Mode&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Override_En 1..N&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Enable override for channel N (1=override active, 0=normal PWM)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_H 1..N&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>High-side output state when override enabled for channel N&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_L 1..N&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Low-side output state when override enabled for channel N&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="grouped-override-mode">Grouped Override Mode&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Override_En&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Enable override for all selected channels&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_Value&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Bitfield: override state for all channels&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-outputs">Block Outputs&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Override_Status&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Current override register value (IOCONx.OVRDAT bits)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_Active&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Indicates if any override is currently active&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="implementation-details">Implementation Details&lt;/h2>
+&lt;h3 id="hardware-registers">Hardware Registers&lt;/h3>
+&lt;p>The override block configures the following registers:&lt;/p></description></item><item><title>PWM HS FEP</title><link>/block_reference/pwm_io/pwm_hs_fep.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm_hs_fep.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM_HS_FEP.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM_HS_FEP.png" alt="Pwm Hs Fep Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ This advanced PWM peripheral is specifically designed for precision motor control, high-frequency power conversion, and applications demanding superior timing accuracy and reduced total harmonic distortion (THD).
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="quick-reference">Quick Reference&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Application&lt;/th>
+ &lt;th>Key Settings&lt;/th>
+ &lt;th>Device Example&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;strong>3-Phase Motor Control (HiRES)&lt;/strong>&lt;/td>
+ &lt;td>&lt;code>ClockResolution: &amp;quot;no scaling&amp;quot;&lt;/code>&lt;br>&lt;code>ECAM: &amp;quot;Center aligned - Symmetric&amp;quot;&lt;/code>&lt;br>&lt;code>Channels: [1 2 3]&lt;/code>&lt;/td>
+ &lt;td>dsPIC33AK512MPS512&lt;br>(14-bit resolution @ 50kHz)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>Interleaved DC-DC Converter&lt;/strong>&lt;/td>
+ &lt;td>&lt;code>Channels: [1 2 3 4]&lt;/code>&lt;br>&lt;code>PhaseShift: [0, T/4, T/2, 3T/4]&lt;/code>&lt;br>&lt;code>ECAM: &amp;quot;Edge aligned&amp;quot;&lt;/code>&lt;/td>
+ &lt;td>dsPIC33CK256MP508&lt;br>(800kHz effective ripple)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>Synchronized ADC Sampling&lt;/strong>&lt;/td>
+ &lt;td>&lt;code>SEVTCMP: 0&lt;/code> (valley trigger)&lt;br>&lt;code>PWM→ADC→Task&lt;/code> timing&lt;br>&lt;code>Center aligned PWM&lt;/code>&lt;/td>
+ &lt;td>Any dsPIC33A/C&lt;br>(Noise-free current sensing)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;strong>EMI Spread Spectrum&lt;/strong>&lt;/td>
+ &lt;td>&lt;code>ECAM: &amp;quot;Asymmetric - double update&amp;quot;&lt;/code>&lt;br>&lt;code>Dynamic duty cycle modulation&lt;/code>&lt;/td>
+ &lt;td>dsPIC33AK (V4)&lt;br>(Harmonic spreading)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>⚠️ &lt;strong>Critical for HiRES Mode&lt;/strong>: Must use &lt;code>&amp;quot;no scaling&amp;quot;&lt;/code> clock option - dividers/scalers disable High-Resolution mode!&lt;/p></description></item><item><title>PWM SAM7x</title><link>/block_reference/pwm_io/pwm_sam7x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm_sam7x.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM_SAMx7.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM_SAMx7.png" alt="Pwm Sam7X Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ | Family | Examples | Features | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME5x | SAME54, SAME53, SAME51 | Up to 4 PWM channels, 120 MHz, TCC peripherals | | SAME7x | SAME70, SAMS70, SAMV71 | Up to 8 PWM channels, 300 MHz, advanced PWM features | | SAMC2x | SAMC21, SAMC20 | Up to 4 PWM channels, 48 MHz, motor control optimized | | SAMD2x | SAMD21, SAMD20 | Up to 3 PWM channels, 48 MHz, compact implementation |
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM E70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM S70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V71&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;ul>
+&lt;li>Complementary PWM output pairs with dead-time&lt;/li>
+&lt;li>Independent period and duty cycle control&lt;/li>
+&lt;li>Center-aligned and edge-aligned modes&lt;/li>
+&lt;li>Fault input with configurable response&lt;/li>
+&lt;li>Pattern generation for BLDC commutation&lt;/li>
+&lt;li>Synchronized PWM update&lt;/li>
+&lt;li>Dynamic dead-time adjustment&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="basic-configuration">Basic Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>PWM_Channels&lt;/td>
+ &lt;td>Enabled PWM channel numbers (e.g., [0 1 2 3])&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PWM_Mode&lt;/td>
+ &lt;td>Edge-aligned or Center-aligned&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Period&lt;/td>
+ &lt;td>PWM period (constant or input)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DutyCycle_Init&lt;/td>
+ &lt;td>Initial duty cycle values&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="dead-time">Dead Time&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DeadTime_Enable&lt;/td>
+ &lt;td>Enable dead-time insertion&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeH&lt;/td>
+ &lt;td>Dead-time for high-side output (seconds)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeL&lt;/td>
+ &lt;td>Dead-time for low-side output (seconds)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputsoutputs">Block Inputs/Outputs&lt;/h2>
+&lt;h3 id="inputs">Inputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Period&lt;/td>
+ &lt;td>Variable&lt;/td>
+ &lt;td>Optional period input (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DutyCycle 0..N&lt;/td>
+ &lt;td>Variable&lt;/td>
+ &lt;td>Duty cycle per enabled channel&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeH 0..N&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Dynamic high-side dead-time (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTimeL 0..N&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Dynamic low-side dead-time (if enabled)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="outputs">Outputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Fault_Status&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Fault condition indicator (if fault enabled)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="usage-example">Usage Example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% SAME70 3-phase motor control:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PWM_Channels = [&lt;span style="color:#099">0&lt;/span> &lt;span style="color:#099">1&lt;/span> &lt;span style="color:#099">2&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PWM_Mode = &lt;span style="color:#d14">&amp;#39;Center-aligned&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Period = &lt;span style="color:#099">1&lt;/span>&lt;span style="color:#000;font-weight:bold">/&lt;/span>&lt;span style="color:#099">20e3&lt;/span>; &lt;span style="color:#998;font-style:italic">% 20 kHz&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Dead-time:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DeadTime_Enable = &lt;span style="color:#d14">&amp;#39;on&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DeadTimeH = [&lt;span style="color:#099">1e-6&lt;/span> &lt;span style="color:#099">1e-6&lt;/span> &lt;span style="color:#099">1e-6&lt;/span>]; &lt;span style="color:#998;font-style:italic">% 1 µs each phase&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DeadTimeL = [&lt;span style="color:#099">1e-6&lt;/span> &lt;span style="color:#099">1e-6&lt;/span> &lt;span style="color:#099">1e-6&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Connect duty cycle inputs from FOC algorithm&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="related-blocks">Related Blocks&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="pwm_sam7x_override.html">&lt;strong>MCHP_PWM_SAM7x_Override&lt;/strong>&lt;/a> - Override control for SAM7x PWM&lt;/li>
+&lt;li>&lt;a href="tcc_pwm.html">&lt;strong>MCHP_TCC_PWM&lt;/strong>&lt;/a> - TCC-based PWM for SAME5x/SAMC2x&lt;/li>
+&lt;li>&lt;strong>MCHP_ADC_SAM&lt;/strong> - SAM ADC with PWM synchronization&lt;/li>
+&lt;/ul></description></item><item><title>PWM SAM7x Override</title><link>/block_reference/pwm_io/pwm_sam7x_override.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/pwm_sam7x_override.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/PWM_SAMx7_Override.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/PWM_SAMx7_Override.png" alt="Pwm Sam7X Override Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ All SAM7x families: SAME5x, SAME7x, SAMC2x, SAMD2x
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM E70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM S70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V70&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM V71&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Override_Channels&lt;/td>
+ &lt;td>PWM channels to control via override&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_Mode&lt;/td>
+ &lt;td>Individual or Grouped control&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Safe_State_H&lt;/td>
+ &lt;td>Safe state for high-side outputs (0=Low, 1=High)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Safe_State_L&lt;/td>
+ &lt;td>Safe state for low-side outputs (0=Low, 1=High)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputs">Block Inputs&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Override_Enable&lt;/td>
+ &lt;td>boolean&lt;/td>
+ &lt;td>Activate override control (1=override active)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Override_Value&lt;/td>
+ &lt;td>uint16&lt;/td>
+ &lt;td>Output pin states (bitfield)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="usage-example">Usage Example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Emergency shutdown for SAM7x motor drive:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Override_Channels = [&lt;span style="color:#099">0&lt;/span> &lt;span style="color:#099">1&lt;/span> &lt;span style="color:#099">2&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Override_Mode = &lt;span style="color:#d14">&amp;#39;Grouped&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Safe_State_H = &lt;span style="color:#099">0&lt;/span>; &lt;span style="color:#998;font-style:italic">% All high-sides OFF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Safe_State_L = &lt;span style="color:#099">0&lt;/span>; &lt;span style="color:#998;font-style:italic">% All low-sides OFF&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Connect emergency stop -&amp;gt; Override_Enable&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="related-blocks">Related Blocks&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="pwm_sam7x.html">&lt;strong>MCHP_PWM_SAM7x&lt;/strong>&lt;/a> - Main SAM7x PWM block&lt;/li>
+&lt;li>&lt;a href="pwm_highspeed_override.html">&lt;strong>MCHP_PWM_HighSpeed_Override&lt;/strong>&lt;/a> - Override for dsPIC PWM&lt;/li>
+&lt;/ul></description></item><item><title>TCC PWM</title><link>/block_reference/pwm_io/tcc_pwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_io/tcc_pwm.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/pwm/TCC_PWM.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/pwm/TCC_PWM.png" alt="Tcc Pwm Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ | Family | TCC Instances | Channels per TCC | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME54/53/51 | TCC0, TCC1, TCC2 | 6, 4, 3 channels | | SAMC21/20 | TCC0, TCC1, TCC2 | 4, 4, 2 channels | | SAMD21/20 | TCC0, TCC1, TCC2 | 4, 2, 2 channels |
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>SAM E5x&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM D5x&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>SAM C2x&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features&lt;/h2>
+&lt;ul>
+&lt;li>Up to 6 PWM channels per TCC instance (device dependent)&lt;/li>
+&lt;li>Complementary outputs with dead-time&lt;/li>
+&lt;li>Circular, dual-slope (center-aligned) modes&lt;/li>
+&lt;li>Pattern generation for BLDC/stepper motors&lt;/li>
+&lt;li>Recoverable and non-recoverable faults&lt;/li>
+&lt;li>Dithering for enhanced resolution&lt;/li>
+&lt;li>Compare capture for position sensing&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="basic-configuration">Basic Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>TCC_Instance&lt;/td>
+ &lt;td>Select TCC0, TCC1, or TCC2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Waveform_Mode&lt;/td>
+ &lt;td>Normal Frequency, Match Frequency, or PWM&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Counter_Mode&lt;/td>
+ &lt;td>Up, Down, or Dual-slope (center-aligned)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Enabled_Channels&lt;/td>
+ &lt;td>Array of enabled channel numbers&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="dead-time-and-pattern">Dead Time and Pattern&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>DeadTime_Enable&lt;/td>
+ &lt;td>Enable complementary output with dead-time&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTime_Low&lt;/td>
+ &lt;td>Dead-time for low-side (cycles)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DeadTime_High&lt;/td>
+ &lt;td>Dead-time for high-side (cycles)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Pattern_Enable&lt;/td>
+ &lt;td>Enable pattern generator for BLDC&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Pattern_Table&lt;/td>
+ &lt;td>Commutation pattern table&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputsoutputs">Block Inputs/Outputs&lt;/h2>
+&lt;h3 id="inputs">Inputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Period&lt;/td>
+ &lt;td>Optional period input&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Compare 0..N&lt;/td>
+ &lt;td>Compare values (duty cycle) per channel&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Pattern_Index&lt;/td>
+ &lt;td>Pattern table index (if pattern mode enabled)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="outputs">Outputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Output&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Fault_Status&lt;/td>
+ &lt;td>Fault condition status&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Overflow_Flag&lt;/td>
+ &lt;td>Counter overflow indicator&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="usage-example">Usage Example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% BLDC motor control with TCC pattern generator:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>TCC_Instance = &lt;span style="color:#d14">&amp;#39;TCC0&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Waveform_Mode = &lt;span style="color:#d14">&amp;#39;PWM&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Counter_Mode = &lt;span style="color:#d14">&amp;#39;Dual-slope&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Enabled_Channels = [&lt;span style="color:#099">0&lt;/span> &lt;span style="color:#099">1&lt;/span> &lt;span style="color:#099">2&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Pattern generator:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Pattern_Enable = &lt;span style="color:#d14">&amp;#39;on&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Pattern_Table = [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#998;font-style:italic">% Hall state -&amp;gt; [Ch0 Ch1 Ch2] outputs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b000000; &lt;span style="color:#998;font-style:italic">% Invalid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b100001; &lt;span style="color:#998;font-style:italic">% Hall 001&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b001100; &lt;span style="color:#998;font-style:italic">% Hall 010&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b101100; &lt;span style="color:#998;font-style:italic">% Hall 011&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b110010; &lt;span style="color:#998;font-style:italic">% Hall 100&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b110001; &lt;span style="color:#998;font-style:italic">% Hall 101&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b011010; &lt;span style="color:#998;font-style:italic">% Hall 110&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#099">0&lt;/span>b000000 &lt;span style="color:#998;font-style:italic">% Invalid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Connect Hall sensor state -&amp;gt; Pattern_Index&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="related-blocks">Related Blocks&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="pwm_sam7x.html">&lt;strong>MCHP_PWM_SAM7x&lt;/strong>&lt;/a> - General SAM7x PWM&lt;/li>
+&lt;li>&lt;strong>MCHP_TC_PWM&lt;/strong> - Basic Timer/Counter PWM&lt;/li>
+&lt;li>&lt;strong>MCHP_ADC_SAM&lt;/strong> - SAM ADC with TCC event sync&lt;/li>
+&lt;/ul></description></item></channel></rss>

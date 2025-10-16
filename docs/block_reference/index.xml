@@ -1,117 +1,1691 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Block Reference on MPLAB Blockset for MATLAB/Simulink</title>
-    <link>/block_reference.html</link>
-    <description>Recent content in Block Reference on MPLAB Blockset for MATLAB/Simulink</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/block_reference/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ADC Blocks - Analog-to-Digital Converter Reference</title>
-      <link>/block_reference/adc_blocks.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/adc_blocks.html</guid>
-      <description>&lt;p&gt;The MCHP Blockset provides comprehensive ADC support for all Microchip microcontroller families. Each family has optimized ADC blocks tailored to the specific peripheral architecture and capabilities.&lt;/p&gt;&#xA;&lt;h2 id=&#34;dspic--pic24-family-adc-blocks&#34;&gt;dsPIC &amp;amp; PIC24 Family ADC Blocks&lt;/h2&gt;&#xA;&lt;p&gt;[MCHP_ADC] Standard ADC for dsPIC30F, dsPIC33F, dsPIC33E, dsPIC33C, and PIC24 families. &lt;strong&gt;Resolution:&lt;/strong&gt; 10/12-bit&lt;strong&gt;Features:&lt;/strong&gt; Scan mode, simultaneous sampling, DMA support&lt;strong&gt;Best for:&lt;/strong&gt; General-purpose acquisition, motor control [MCHP_ADC_HighSpeed_SAR_dsPIC] High-speed SAR ADC for dsPIC33C with dedicated cores and shared ADC7. &lt;strong&gt;Resolution:&lt;/strong&gt; 6/8/10/12-bit&lt;strong&gt;Cores:&lt;/strong&gt; 3-6 dedicated + shared ADC7&lt;strong&gt;Speed:&lt;/strong&gt; Up to 3.25 Msps per core&lt;strong&gt;Best for:&lt;/strong&gt; High-speed multi-channel, simultaneous sampling [MCHP_ADC_HS_12b] 12-bit high-speed ADC with software sequencing for dsPIC33A family. &lt;strong&gt;Resolution:&lt;/strong&gt; 12-bit fixed&lt;strong&gt;Cores:&lt;/strong&gt; 2-5 (variant dependent)&lt;strong&gt;Sequencing:&lt;/strong&gt; 6 sequences × 6 conversions&lt;strong&gt;Devices:&lt;/strong&gt; Perseus, Pegasus, Blue Ridge, Serpens (33AK series)&lt;strong&gt;Best for:&lt;/strong&gt; Advanced FOC motor control, flexible multi-channel&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Analog Signal Conditioning Blocks Documentation</title>
-      <link>/block_reference/analog.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog.html</guid>
-      <description>&lt;p&gt;Integrated analog peripherals for signal amplification, buffering, and voltage generation&lt;/p&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;Analog signal conditioning blocks provide access to integrated analog peripherals in Microchip microcontrollers, enabling precision signal processing without external components. These blocks eliminate the need for discrete amplifiers, comparators, and DACs in many applications, reducing BOM cost, board space, and improving signal integrity.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                Integrated signal chain reduces external component count&#xD;&#xA;                Direct connection to ADC for optimized analog front-end&#xD;&#xA;                Software-configurable gain and operating modes&#xD;&#xA;                Low noise and high precision for measurement applications&#xD;&#xA;                Calibration capabilities for enhanced accuracy&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h2 id=&#34;available-blocks&#34;&gt;Available Blocks&lt;/h2&gt;&#xA;&lt;p&gt;[&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Block Reference</title>
-      <link>/block_reference/user_functions/c_function_call.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/user_functions/c_function_call.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/user_functions/C_Function_Call.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/user_functions/C_Function_Call.png&#34; alt=&#34;C Function Call Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Complete reference for all MCHP Blockset peripheral blocks.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h3 id=&#34;pwm-blocks&#34;&gt;[PWM Blocks]&lt;/h3&gt;&#xA;&lt;p&gt;Pulse Width Modulation blocks for motor control and power conversion.&lt;/p&gt;&#xA;&lt;h3 id=&#34;adc-blocks&#34;&gt;[ADC Blocks]&lt;/h3&gt;&#xA;&lt;p&gt;Analog-to-Digital Converter blocks for sensor interfaces.&lt;/p&gt;&#xA;&lt;h3 id=&#34;communication-blocks&#34;&gt;[Communication Blocks]&lt;/h3&gt;&#xA;&lt;p&gt;UART, SPI, I2C, CAN, and other communication interfaces.&lt;/p&gt;&#xA;&lt;h3 id=&#34;timer-blocks&#34;&gt;[Timer Blocks]&lt;/h3&gt;&#xA;&lt;p&gt;Timer and interrupt configuration blocks.&lt;/p&gt;&#xA;&lt;h2 id=&#34;see-also&#34;&gt;See Also&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;../getting_started.html&#34;&gt;Getting Started&lt;/a&gt; | &lt;a href=&#34;../user_guide.html&#34;&gt;User Guide&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CAN Communication Blocks</title>
-      <link>/block_reference/can.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/can.html</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;CAN (Controller Area Network)&lt;/strong&gt; block family enables robust, multi-master communication on CAN bus networks. CAN is widely used in automotive, industrial automation, and embedded systems for reliable data exchange in electrically noisy environments.&lt;/p&gt;&#xA;&lt;p&gt;The MCHP Blockset provides three blocks for CAN communication: &lt;strong&gt;CAN Config&lt;/strong&gt; for peripheral setup, &lt;strong&gt;CAN Tx&lt;/strong&gt; for message transmission, and &lt;strong&gt;CAN Rx&lt;/strong&gt; for message reception with flexible filtering. These blocks support both CAN 2.0 (standard) and CAN-FD (flexible data-rate) protocols.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CN - Change Notification (Pin Interrupt)</title>
-      <link>/block_reference/encoders_counters/change_notification.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/encoders_counters/change_notification.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/digital/ChangeNotification.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/digital/ChangeNotification.png&#34; alt=&#34;Change Notification Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Change Notification - Pin State Change Interrupts and Timing&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The MCHP_CN block provides an interface to the Change Notification (CN) peripheral, which detects pin state changes and measures transition timing. While primarily used for GPIO interrupts (buttons, switches), CN can also serve as a simple encoder interface or pulse counter.&#xA;&lt;strong&gt;Key Features:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Multi-pin state change detection (up to 32 CN pins)&lt;/li&gt;&#xA;&lt;li&gt;Edge detection: rising, falling, or both&lt;/li&gt;&#xA;&lt;li&gt;Transition timing measurement (time between edges)&lt;/li&gt;&#xA;&lt;li&gt;Period measurement (rising-to-rising or falling-to-falling)&lt;/li&gt;&#xA;&lt;li&gt;Programmable pull-up/pull-down resistors&lt;/li&gt;&#xA;&lt;li&gt;Interrupt generation on pin change&lt;/li&gt;&#xA;&lt;li&gt;Wake from sleep on pin change&lt;/li&gt;&#xA;&lt;li&gt;Can be used for simple rotary encoders or pulse counting&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;device-support&#34;&gt;Device Support&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;CN Type&lt;/th&gt;&#xA;          &lt;th&gt;CN Pins&lt;/th&gt;&#xA;          &lt;th&gt;Notes&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC30F&lt;/td&gt;&#xA;          &lt;td&gt;Type 0&lt;/td&gt;&#xA;          &lt;td&gt;CN0-CN15&lt;/td&gt;&#xA;          &lt;td&gt;Dedicated CN peripheral&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33F&lt;/td&gt;&#xA;          &lt;td&gt;Type 0&lt;/td&gt;&#xA;          &lt;td&gt;CN0-CN23&lt;/td&gt;&#xA;          &lt;td&gt;Dedicated CN peripheral&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33E&lt;/td&gt;&#xA;          &lt;td&gt;Type 1&lt;/td&gt;&#xA;          &lt;td&gt;All GPIO pins&lt;/td&gt;&#xA;          &lt;td&gt;All ports have CN capability&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C&lt;/td&gt;&#xA;          &lt;td&gt;Type 1&lt;/td&gt;&#xA;          &lt;td&gt;All GPIO pins&lt;/td&gt;&#xA;          &lt;td&gt;All ports have CN capability&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MK&lt;/td&gt;&#xA;          &lt;td&gt;Type 2&lt;/td&gt;&#xA;          &lt;td&gt;Port-based&lt;/td&gt;&#xA;          &lt;td&gt;One interrupt per port&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC24F&lt;/td&gt;&#xA;          &lt;td&gt;Type 0/1&lt;/td&gt;&#xA;          &lt;td&gt;Varies&lt;/td&gt;&#xA;          &lt;td&gt;Family dependent&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-parameters&#34;&gt;Block Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;channel-selection&#34;&gt;Channel Selection&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CN Channels (dsPIC30F/33F)&lt;/td&gt;&#xA;          &lt;td&gt;Vector of CN channel numbers, e.g., [0 1 2] for CN0, CN1, CN2&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;CN Port (dsPIC33E/C, PIC32MK)&lt;/td&gt;&#xA;          &lt;td&gt;Port pin list, e.g., [A0 A1 B5] for PA0, PA1, PB5&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;measurement-configuration-per-channel&#34;&gt;Measurement Configuration (per channel)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Mode Value&lt;/th&gt;&#xA;          &lt;th&gt;Measurement&lt;/th&gt;&#xA;          &lt;th&gt;Output Ports&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;0&lt;/td&gt;&#xA;          &lt;td&gt;Change detect only&lt;/td&gt;&#xA;          &lt;td&gt;Change detected flag only&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;          &lt;td&gt;Measure time UP (rising edge to falling edge)&lt;/td&gt;&#xA;          &lt;td&gt;T_Up (pulse width high)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;2&lt;/td&gt;&#xA;          &lt;td&gt;Measure time DOWN (falling edge to rising edge)&lt;/td&gt;&#xA;          &lt;td&gt;T_Down (pulse width low)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;3&lt;/td&gt;&#xA;          &lt;td&gt;Measure UP &amp;amp; DOWN&lt;/td&gt;&#xA;          &lt;td&gt;T_Up, T_Down&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;4&lt;/td&gt;&#xA;          &lt;td&gt;Period on rising edge&lt;/td&gt;&#xA;          &lt;td&gt;P_Rising (time between rising edges)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;8&lt;/td&gt;&#xA;          &lt;td&gt;Period on falling edge&lt;/td&gt;&#xA;          &lt;td&gt;P_Falling (time between falling edges)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;5&lt;/td&gt;&#xA;          &lt;td&gt;UP + Period on rising&lt;/td&gt;&#xA;          &lt;td&gt;T_Up, P_Rising&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;10&lt;/td&gt;&#xA;          &lt;td&gt;DOWN + Period on falling&lt;/td&gt;&#xA;          &lt;td&gt;T_Down, P_Falling&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;change-detection-per-channel&#34;&gt;Change Detection (per channel)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Value&lt;/th&gt;&#xA;          &lt;th&gt;Detection Mode&lt;/th&gt;&#xA;          &lt;th&gt;Output&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;0&lt;/td&gt;&#xA;          &lt;td&gt;No change detection&lt;/td&gt;&#xA;          &lt;td&gt;-&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;          &lt;td&gt;Rising edge&lt;/td&gt;&#xA;          &lt;td&gt;CNx_Rise (timestamp)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;2&lt;/td&gt;&#xA;          &lt;td&gt;Falling edge&lt;/td&gt;&#xA;          &lt;td&gt;CNx_Fall (timestamp)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;3&lt;/td&gt;&#xA;          &lt;td&gt;Both edges&lt;/td&gt;&#xA;          &lt;td&gt;CNx_Rise&amp;amp;Fall (timestamp)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;advanced-configuration&#34;&gt;Advanced Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Output Port Value&lt;/td&gt;&#xA;          &lt;td&gt;Enable current pin state output (boolean per channel)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Max Channel&lt;/td&gt;&#xA;          &lt;td&gt;Maximum expected time for measurements (seconds, per channel)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Safe Margin&lt;/td&gt;&#xA;          &lt;td&gt;Percentage margin for timer overflow protection (per channel)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Interrupt Priority&lt;/td&gt;&#xA;          &lt;td&gt;CN interrupt priority level (1-7)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;cn-peripheral-registers&#34;&gt;CN Peripheral Registers&lt;/h2&gt;&#xA;&lt;h3 id=&#34;dspic30f33f-type-0&#34;&gt;dsPIC30F/33F (Type 0)&lt;/h3&gt;&#xA;&lt;p&gt;// Enable CN module CNCONbits.ON = 1; // Enable specific CN pins CNEN1bits.CN0IE = 1; // Enable CN0 CNEN1bits.CN1IE = 1; // Enable CN1// Enable pull-ups CNPU1bits.CN0PUE = 1; // Pull-up on CN0// Interrupt configuration IFS1bits.CNIF = 0; // Clear interrupt flag IEC1bits.CNIE = 1; // Enable CN interrupt IPC4bits.CNIP = 5; // Priority level// Read current state state = PORTBbits.RB0; // Read pin state (if CN0 is on RB0)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MCHP DAC SAMx Documentation</title>
-      <link>/block_reference/analog_io/dac_samx.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog_io/dac_samx.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/analog/DAC_SAMx.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/analog/DAC_SAMx.png&#34; alt=&#34;DAC SAMx Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        High-performance DAC for waveform generation and precision voltage output&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;block-overview&#34;&gt;Block Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP_DACC_SAMx&lt;/strong&gt; block provides access to the Digital-to-Analog Converter Controller (DACC) available in SAM E5x, SAM E7x, and SAM C2x microcontrollers. This peripheral enables high-quality analog voltage generation for applications including waveform synthesis, precision voltage references, audio output, and control signal generation.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                10-bit or 12-bit resolution (device-dependent)&#xD;&#xA;                Dual-channel independent or differential output modes&#xD;&#xA;                Up to 1 MSPS conversion rate&#xD;&#xA;                Internal or external voltage reference options&#xD;&#xA;                Built-in waveform generation capabilities&#xD;&#xA;                DMA support for continuous waveform streaming&#xD;&#xA;                Low glitch energy and monotonic output&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;Representative Devices&lt;/th&gt;&#xA;          &lt;th&gt;Resolution&lt;/th&gt;&#xA;          &lt;th&gt;Channels&lt;/th&gt;&#xA;          &lt;th&gt;Max Rate&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E5x&lt;/td&gt;&#xA;          &lt;td&gt;SAME54P20A, SAME53J18A&lt;/td&gt;&#xA;          &lt;td&gt;12-bit&lt;/td&gt;&#xA;          &lt;td&gt;2 (DAC0, DAC1)&lt;/td&gt;&#xA;          &lt;td&gt;1 MSPS&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E7x&lt;/td&gt;&#xA;          &lt;td&gt;SAME70Q21B, SAMV71Q21B&lt;/td&gt;&#xA;          &lt;td&gt;12-bit&lt;/td&gt;&#xA;          &lt;td&gt;2 (DAC0, DAC1)&lt;/td&gt;&#xA;          &lt;td&gt;1 MSPS&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM C2x&lt;/td&gt;&#xA;          &lt;td&gt;SAMC21G18A, SAMC20G18A&lt;/td&gt;&#xA;          &lt;td&gt;10-bit&lt;/td&gt;&#xA;          &lt;td&gt;2 (DAC0, DAC1)&lt;/td&gt;&#xA;          &lt;td&gt;350 kSPS&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;Output Modes:&lt;/strong&gt; The DACC supports both single-ended outputs (DAC0 and DAC1 independent) and differential output mode (DAC0 - DAC1), providing flexibility for various signal generation requirements.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MCHP High-Speed Analog Comparator Documentation</title>
-      <link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/analog/HighSpeed_AnalogComparator.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/analog/HighSpeed_AnalogComparator.png&#34; alt=&#34;High-Speed Analog Comparator Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Fast threshold detection and PWM integration for motor control and power applications&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP High-Speed Analog Comparator&lt;/strong&gt; block configures the on-chip analog comparators for fast threshold detection applications. These comparators provide critical real-time monitoring for motor control overcurrent protection, power supply fault detection, and zero-crossing detection. With response times in the nanosecond range, they can directly trigger PWM fault events without CPU intervention.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                Sub-microsecond response time for critical fault protection&#xD;&#xA;                Multiple comparator instances (up to 4 per device)&#xD;&#xA;                Internal DAC reference or external voltage reference&#xD;&#xA;                Programmable hysteresis for noise immunity&#xD;&#xA;                Direct PWM fault input integration&#xD;&#xA;                Configurable output state monitoring&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;typical-applications&#34;&gt;Typical Applications&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overcurrent Protection:&lt;/strong&gt; Motor drive current limit detection&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overvoltage/Undervoltage:&lt;/strong&gt; DC bus voltage monitoring&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Zero-Crossing Detection:&lt;/strong&gt; AC line synchronization&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;PWM Blanking:&lt;/strong&gt; Noise immunity during switching&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Peak Detection:&lt;/strong&gt; Signal peak monitoring&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;device-family-support&#34;&gt;Device Family Support&lt;/h2&gt;&#xA;&lt;h4 id=&#34;dspic33ep&#34;&gt;dsPIC33EP&lt;/h4&gt;&#xA;&lt;p&gt;1-4 Comparators&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MCHP High-Speed Analog Comparator with Slope Compensation Documentation</title>
-      <link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.png&#34; alt=&#34;High-Speed Analog Comparator with Slope Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Advanced peak current mode control with programmable slope compensation&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP High-Speed Analog Comparator with Slope Compensation&lt;/strong&gt; block extends the standard comparator with integrated slope compensation capabilities for peak current mode control applications. This advanced feature prevents sub-harmonic oscillation in current-mode DC-DC converters and motor drives operating at duty cycles above 50%.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                All standard comparator features plus slope compensation&#xD;&#xA;                Programmable compensation ramp generation&#xD;&#xA;                Automatic ramp synchronization with PWM&#xD;&#xA;                Variable slope adjustment for optimal stability&#xD;&#xA;                Sub-microsecond response for high-frequency switching&#xD;&#xA;                Integrated peak current mode control logic&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;peak-current-mode-control&#34;&gt;Peak Current Mode Control&lt;/h3&gt;&#xA;&lt;p&gt;Peak current mode control regulates output by controlling the peak inductor current in each switching cycle. Slope compensation stabilizes the control loop when duty cycle exceeds 50%, preventing period-doubling oscillations.&#xA;&lt;strong&gt;Why Slope Compensation?&lt;/strong&gt;&#xA;In peak current mode control with D &amp;gt; 50%, the inductor current slope creates a positive feedback loop leading to sub-harmonic oscillation. Adding a compensation ramp to the current sense signal stabilizes the loop.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MCHP Op-Amp Documentation</title>
-      <link>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/analog/OpAmp.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/analog/OpAmp.png&#34; alt=&#34;OpAmp Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Integrated operational amplifiers for signal conditioning and analog processing&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;block-overview&#34;&gt;Block Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP_OP_AMP&lt;/strong&gt; block provides access to the integrated operational amplifiers available in dsPIC33C, dsPIC33CH, and dsPIC33CK microcontrollers. These on-chip op-amps eliminate the need for external amplification circuitry in many applications, reducing BOM cost and board space while improving signal integrity.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                Integrated signal conditioning eliminates external op-amps&#xD;&#xA;                Direct connection to ADC for optimized signal chain&#xD;&#xA;                Configurable gain settings for flexible amplification&#xD;&#xA;                Rail-to-rail operation for maximum dynamic range&#xD;&#xA;                Low offset and drift for precision measurements&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;| Family | DOS Module | Op-Amp Instances | Key Features |&#xD;&#xA;|---|---|---|---|&#xD;&#xA;| dsPIC33C/CH/CK | DOS_03349_amp_pad_opamp_ctrl_upb_v1 | Up to 3 op-amps | Basic amplification, fixed gain |&#xD;&#xA;| dsPIC33A | DOS_03495_amp_pad_opamp_ctrl_upb_v2_dspic33a | Up to 3 op-amps | Enhanced features, programmable gain |&#xD;&#xA;&#xD;&#xA;**Pin Mapping:** The block automatically displays pin assignments for each op-amp instance (IN+, IN-, OUT) based on the selected device. Pin assignments are fixed in hardware and cannot be remapped. &#xD;&#xA;## Operating Modes&#xD;&#xA;&#xD;&#xA;### 1. Voltage Follower (Buffer)&#xD;&#xA;**Configuration:** Enabled with negative input internally set to 0 &#xD;&#xA;- **Gain:** Unity (1×)&#xD;&#xA;- **Input:** IN+ connected to signal source&#xD;&#xA;- **Feedback:** Output internally connected to IN-&#xD;&#xA;- **Use Case:** High-impedance buffer, isolation amplifier&#xD;&#xA;&#xD;&#xA;### 2. Non-Inverting Amplifier&#xD;&#xA;**Configuration:** Enabled with positive and negative inputs &#xD;&#xA;- **Gain:** Configured by external resistor network&#xD;&#xA;- **Input:** Signal applied to IN+&#xD;&#xA;- **Feedback:** Resistor divider on IN- for gain setting&#xD;&#xA;- **Use Case:** Signal amplification, sensor conditioning&#xD;&#xA;&#xD;&#xA;### 3. Inverting Amplifier&#xD;&#xA;**Configuration:** Enabled with positive and negative inputs &#xD;&#xA;- **Gain:** Set by input/feedback resistor ratio&#xD;&#xA;- **Input:** Signal applied to IN- through input resistor&#xD;&#xA;- **Reference:** IN+ connected to ground or reference voltage&#xD;&#xA;- **Use Case:** Phase inversion, current-to-voltage conversion&#xD;&#xA;&#xD;&#xA;### 4. Differential Amplifier&#xD;&#xA;**Configuration:** Enabled with positive and negative inputs &#xD;&#xA;- **Gain:** Matched resistor network for CMRR&#xD;&#xA;- **Input:** Differential signal on IN+ and IN-&#xD;&#xA;- **Output:** Single-ended amplified difference&#xD;&#xA;- **Use Case:** Differential sensor signals, noise rejection&#xD;&#xA;&#xD;&#xA;## Block Parameters&#xD;&#xA;&#xD;&#xA;| Parameter | Options | Description |&#xD;&#xA;|---|---|---|&#xD;&#xA;| OpAmp1 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for first op-amp instance. When enabled, the block automatically                         configures AMPON (master enable) and AMPEN[0] (instance enable) bits. The mode                         selection determines NCHDIS[0] setting (0 = internal connection, 1 = external pins). |&#xD;&#xA;| OpAmp2 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for second op-amp instance. Independent control of AMPEN[1] and                         NCHDIS[1] bits. Can be used simultaneously with OpAmp1 for dual-channel applications. |&#xD;&#xA;| OpAmp3 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for third op-amp instance (if available on device). Controls AMPEN[2]                         and NCHDIS[2]. Useful for three-phase motor control or multi-channel data acquisition. |&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;## Register Configuration&#xD;&#xA;&#xD;&#xA;### AMPCON1 Register&#xD;&#xA; // Op-Amp Control Register 1 AMPCON1 = (AMPON &amp;lt;&amp;lt; 15) | // Master enable (1 = enabled) (AMPSIDL &amp;lt;&amp;lt; 13) | // Stop in idle (0 = continue in idle) (NCHDIS2 &amp;lt;&amp;lt; 10) | // OpAmp3 negative channel (1 = external pin) (NCHDIS1 &amp;lt;&amp;lt; 9) | // OpAmp2 negative channel (1 = external pin) (NCHDIS0 &amp;lt;&amp;lt; 8) | // OpAmp1 negative channel (1 = external pin) (AMPEN2 &amp;lt;&amp;lt; 2) | // OpAmp3 enable (1 = enabled) (AMPEN1 &amp;lt;&amp;lt; 1) | // OpAmp2 enable (1 = enabled) (AMPEN0 &amp;lt;&amp;lt; 0); // OpAmp1 enable (1 = enabled) &#xD;&#xA;### Port Configuration&#xD;&#xA;## Application Examples&#xD;&#xA;&#xD;&#xA;### Example 1: Voltage Follower for ADC Input Buffering&#xD;&#xA;**Application:** High-impedance sensor buffer  // Configuration: // - OpAmp1 = &amp;#34;Enabled with negative input internally set to 0&amp;#34; // - OpAmp2 = Disabled // - OpAmp3 = Disabled // Hardware connections: // - Sensor output → OA1_IN+ (high impedance input) // - OA1_OUT → ADC channel (low impedance) // - Feedback is internal (unity gain) // Block automatically configures: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 0; // Internal feedback (voltage follower) // Result: Buffered sensor signal with no loading effect &#xD;&#xA;### Example 2: Non-Inverting Amplifier (Gain = 10)&#xD;&#xA;**Application:** Thermocouple amplification  // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; // - External resistors: R1 = 1kΩ (to GND), R2 = 9kΩ (feedback) // - Gain = 1 + (R2/R1) = 1 + (9k/1k) = 10 // Hardware connections: // - Thermocouple → OA1_IN+ // - OA1_OUT → R2 → OA1_IN- // - OA1_IN- → R1 → GND // - OA1_OUT → ADC channel // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 1; // External pin for feedback network // Result: 10× amplified thermocouple signal // Input: 5mV → Output: 50mV &#xD;&#xA;### Example 3: Differential Amplifier for Current Sensing&#xD;&#xA;**Application:** High-side current measurement  // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; // - Shunt resistor: 0.01Ω (100mΩ) // - Matched resistor network: R1 = R3 = 1kΩ, R2 = R4 = 10kΩ // - Differential gain = 10 // Hardware connections: // - Motor high-side → Shunt (0.01Ω) → Motor // - Shunt_High → R1 → OA1_IN+ // - Shunt_Low → R3 → GND // - OA1_IN+ → R2 → OA1_OUT // - OA1_IN- → R4 → GND // - OA1_OUT → ADC // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 1; // External resistor network // Current measurement: // Motor current: 10A → Shunt voltage: 100mV // Op-amp output: 100mV × 10 = 1V → ADC &#xD;&#xA;### Example 4: Multi-Channel Instrumentation Amplifier&#xD;&#xA;**Application:** Three-phase current sensing  // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase A) // - OpAmp2 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase B) // - OpAmp3 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase C) // Hardware connections (per channel): // - Shunt resistor: 0.01Ω per phase // - Differential gain: 20 (configured by external resistors) // - OA1_OUT → ADC_CH1 // - OA2_OUT → ADC_CH2 // - OA3_OUT → ADC_CH3 // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 (Phase A) AMPCON1bits.AMPEN1 = 1; // Enable OpAmp2 (Phase B) AMPCON1bits.AMPEN2 = 1; // Enable OpAmp3 (Phase C) AMPCON1bits.NCHDIS0 = 1; // External network for all AMPCON1bits.NCHDIS1 = 1; AMPCON1bits.NCHDIS2 = 1; // Synchronized three-phase current measurement // Sample all three ADC channels simultaneously for accurate FOC &#xD;&#xA;## Design Considerations&#xD;&#xA;&#xD;&#xA;### Gain Configuration&#xD;&#xA;&#xD;&#xA;- **Voltage Follower:** No external components required, unity gain (1×), high input impedance&#xD;&#xA;- **Non-Inverting:** Gain = 1 + (R2/R1), input impedance ≈ op-amp input impedance (very high)&#xD;&#xA;- **Inverting:** Gain = -(R2/R1), input impedance = R1 (finite), inverted output phase&#xD;&#xA;- **Differential:** Gain = (R2/R1) for matched resistors, requires precision resistor matching&#xD;&#xA;&#xD;&#xA;### Bandwidth and Slew Rate&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;                &#xD;&#xA;                    Op-amp bandwidth typically ranges from 1 MHz to 10 MHz (device-dependent)&#xD;&#xA;                    Gain-bandwidth product limits useful frequency range at higher gains&#xD;&#xA;                    Slew rate limits large signal response (typically 1-10 V/μs)&#xD;&#xA;                    Check device datasheet for specific performance parameters&#xD;&#xA;&#xD;&#xA;### Offset and Calibration&#xD;&#xA;&#xD;&#xA;- **Input Offset Voltage:** Typically ±1-5 mV (device-dependent)&#xD;&#xA;- **Temperature Drift:** Consider offset drift over operating temperature range&#xD;&#xA;- **Calibration:** Some devices support offset trim registers (check DOS module features)&#xD;&#xA;- **Mitigation:** Use AC coupling or software offset correction for critical applications&#xD;&#xA;&#xD;&#xA;### Power Supply Considerations&#xD;&#xA;**Rail-to-Rail Operation:**&#xD;&#xA;- Input common-mode range typically extends from VSS to VDD - 1.5V&#xD;&#xA;- Output swing typically VSS + 100mV to VDD - 100mV under light loads&#xD;&#xA;- Ensure signal levels stay within op-amp linear range&#xD;&#xA;- Headroom required for proper operation, especially at high frequencies&#xD;&#xA;&#xD;&#xA;### PCB Layout Guidelines&#xD;&#xA;&#xD;&#xA;- **Short Traces:** Keep op-amp input and feedback traces as short as possible&#xD;&#xA;- **Ground Plane:** Use solid ground plane under op-amp circuitry&#xD;&#xA;- **Decoupling:** Place 100nF ceramic capacitor close to VDD pin&#xD;&#xA;- **Separation:** Separate analog and digital ground returns&#xD;&#xA;- **Shielding:** Shield sensitive inputs from switching noise sources&#xD;&#xA;&#xD;&#xA;## Integration with Other Blocks&#xD;&#xA;&#xD;&#xA;### Op-Amp + ADC Chain&#xD;&#xA;**Optimized Signal Path:**&#xD;&#xA;- Configure MCHP_OP_AMP block for desired gain and mode&#xD;&#xA;- Connect op-amp output pin to dedicated ADC input channel&#xD;&#xA;- Configure MCHP_ADC block to sample from op-amp output pin&#xD;&#xA;- Synchronize ADC sampling with control loop timing&#xD;&#xA;- Apply digital calibration/offset correction if needed&#xD;&#xA;&#xD;&#xA;### Op-Amp + PWM Synchronization&#xD;&#xA;**Motor Control Application:**&#xD;&#xA;- Use op-amps to amplify shunt resistor voltages (current sensing)&#xD;&#xA;- Trigger ADC from PWM events to sample at optimal timing&#xD;&#xA;- Avoid sampling during PWM switching transitions&#xD;&#xA;- Use ADC trigger delay to account for op-amp settling time&#xD;&#xA;&#xD;&#xA;### Multi-Instance Coordination&#xD;&#xA; // Example: Three-phase motor current sensing // OpAmp1 → ADC_CH1 (Phase A current) // OpAmp2 → ADC_CH2 (Phase B current) // OpAmp3 → ADC_CH3 (Phase C current) // Configure all op-amps with identical gain // Sample all ADC channels simultaneously // Ensures phase alignment for FOC algorithm &#xD;&#xA;## Troubleshooting&#xD;&#xA;&#xD;&#xA;| Issue | Possible Causes | Solution |&#xD;&#xA;|---|---|---|&#xD;&#xA;| No output signal | • AMPON not set | • AMPENx not set | • Pin not configured as analog | Verify block configuration enables the desired op-amp instance.                         Check that MCHP_PORT is correctly configured (automatic in INITIALISATION). |&#xD;&#xA;| Saturated output | • Excessive input signal | • Incorrect gain setting | • Insufficient supply headroom | Reduce input amplitude, check resistor values for correct gain,                         ensure VDD provides adequate headroom for output swing. |&#xD;&#xA;| Oscillation | • Poor PCB layout | • Missing decoupling | • Capacitive load | Add series resistor to output (10-50Ω), improve ground plane,                         add decoupling capacitor close to VDD pin, reduce trace lengths. |&#xD;&#xA;| DC offset error | • Input offset voltage | • Bias current effects | • Temperature drift | Apply software offset calibration, use AC coupling if DC accuracy                         not required, check for trim registers in device datasheet. |&#xD;&#xA;| Incorrect gain | • Wrong resistor values | • Incorrect mode selection | • Loading effects | Verify resistor network matches desired gain formula, ensure                         NCHDIS bit matches mode (0 = internal, 1 = external), check                         output load impedance is much higher than feedback resistors. |&#xD;&#xA;&#xD;&#xA;## Related Blocks&#xD;&#xA;&#xD;&#xA;- [MCHP_HighSpeed_AnalogComparator] - Fast analog comparator for threshold detection&#xD;&#xA;- [MCHP_PGA] - Programmable Gain Amplifier with digital gain control&#xD;&#xA;- [MCHP_ADC_HS_SAR_dsPIC33] - High-speed ADC for digitizing op-amp outputs&#xD;&#xA;- [MCHP_PWM_HS_FEP] - PWM for motor control synchronization&#xD;&#xA;[← Back to Analog Blocks]&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    <item>
-      <title>MCHP PGA Documentation</title>
-      <link>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/analog/PGA.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/analog/PGA.png&#34; alt=&#34;PGA Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Digitally-controlled gain amplifier with calibration for precision analog signal conditioning&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;block-overview&#34;&gt;Block Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP_PGA&lt;/strong&gt; block provides access to the Programmable Gain Amplifier (PGA) peripheral available in select dsPIC33C, dsPIC33CH, and dsPIC33CK devices. The PGA offers digitally-controlled gain settings with calibration capabilities, enabling precision signal conditioning for sensor inputs and ADC front-end applications.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;                Software-configurable gain: 1×, 2×, 4×, 8×, 16×, 32× (device-dependent)&#xD;&#xA;                Runtime gain adjustment via block input or register write&#xD;&#xA;                Offset and gain calibration registers for precision measurements&#xD;&#xA;                Direct connection to DACOUT pins or internal ADC inputs&#xD;&#xA;                Single-ended or differential input modes&#xD;&#xA;                Eliminates external amplifier circuits and reduces BOM cost&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;supported-device-families&#34;&gt;Supported Device Families&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;DOS Module&lt;/th&gt;&#xA;          &lt;th&gt;PGA Instances&lt;/th&gt;&#xA;          &lt;th&gt;Gain Range&lt;/th&gt;&#xA;          &lt;th&gt;Output Options&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C/CH/CK&lt;/td&gt;&#xA;          &lt;td&gt;DOS_02291_PGA&lt;/td&gt;&#xA;          &lt;td&gt;2 PGA channels&lt;/td&gt;&#xA;          &lt;td&gt;1×, 2×, 4×, 8×, 16×, 32×&lt;/td&gt;&#xA;          &lt;td&gt;DACOUT1, DACOUT2, Internal&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;Output Routing:&lt;/strong&gt; PGA outputs can be routed to DACOUT pins (for external ADC or monitoring) or kept internal (for direct connection to on-chip ADC). The block automatically configures pin assignments based on your selection.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PDEC - Position Decoder for SAM Devices</title>
-      <link>/block_reference/encoders_counters/pdec.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/encoders_counters/pdec.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/digital/PDEC.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/digital/PDEC.png&#34; alt=&#34;PDEC Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Position Decoder - Hall Sensors and Stepper Motor Interface&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The MCHP_PDEC block provides an interface to the Position Decoder (PDEC) peripheral on SAM E5x and E7x microcontrollers. Unlike traditional quadrature encoders, PDEC is optimized for Hall effect sensors (3-phase BLDC motors) and stepper motor position tracking, with specialized features for these applications.&#xA;&lt;strong&gt;Key Features:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;3-input position decoder (Hall sensors: A, B, C)&lt;/li&gt;&#xA;&lt;li&gt;Quadrature encoder mode (X2/X4)&lt;/li&gt;&#xA;&lt;li&gt;Counter with direction input mode&lt;/li&gt;&#xA;&lt;li&gt;Configurable position counter and revolution counter&lt;/li&gt;&#xA;&lt;li&gt;Auto-correction for phase errors&lt;/li&gt;&#xA;&lt;li&gt;Programmable digital filtering&lt;/li&gt;&#xA;&lt;li&gt;Index pulse support&lt;/li&gt;&#xA;&lt;li&gt;Angular position calculation (9-bit + configurable resolution)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;device-support&#34;&gt;Device Support&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;PDEC Module&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E54/E53/E51&lt;/td&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;          &lt;td&gt;Hall sensor, quadrature, stepper position&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E70/S70/V71&lt;/td&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;          &lt;td&gt;Hall sensor, quadrature, stepper position&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-parameters&#34;&gt;Block Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;operating-mode&#34;&gt;Operating Mode&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Mode&lt;/td&gt;&#xA;          &lt;td&gt;• Quadrature Encoder&lt;/td&gt;&#xA;          &lt;td&gt;• Counter with direction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;position-configuration&#34;&gt;Position Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Counter Output&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Enable position counter output&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Counter Datatype&lt;/td&gt;&#xA;          &lt;td&gt;unsigned/signed&lt;/td&gt;&#xA;          &lt;td&gt;Position counter sign&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Revolution Output&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Enable revolution counter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Revolution Datatype&lt;/td&gt;&#xA;          &lt;td&gt;unsigned/signed&lt;/td&gt;&#xA;          &lt;td&gt;Revolution counter sign&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Counter Revolution Length&lt;/td&gt;&#xA;          &lt;td&gt;• Counter is 16-bit (9+7 bit resolution)&lt;/td&gt;&#xA;          &lt;td&gt;• Counter is 17-bit (9+8 bit resolution)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;index-and-reset&#34;&gt;Index and Reset&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Index&lt;/td&gt;&#xA;          &lt;td&gt;• Not used&lt;/td&gt;&#xA;          &lt;td&gt;• Reset counter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Max Counter Reset&lt;/td&gt;&#xA;          &lt;td&gt;Integer value&lt;/td&gt;&#xA;          &lt;td&gt;Modulo limit for position counter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Max Position Input&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Enable dynamic modulo limit via block input&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Reset Input&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Enable external reset input&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;signal-configuration&#34;&gt;Signal Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Pin&lt;/th&gt;&#xA;          &lt;th&gt;Function (Quadrature)&lt;/th&gt;&#xA;          &lt;th&gt;Function (Hall Sensor)&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QDI0&lt;/td&gt;&#xA;          &lt;td&gt;Phase A&lt;/td&gt;&#xA;          &lt;td&gt;Hall A&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QDI1&lt;/td&gt;&#xA;          &lt;td&gt;Phase B&lt;/td&gt;&#xA;          &lt;td&gt;Hall B&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QDI2&lt;/td&gt;&#xA;          &lt;td&gt;Index&lt;/td&gt;&#xA;          &lt;td&gt;Hall C&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Parameter&lt;/td&gt;&#xA;          &lt;td&gt;Options&lt;/td&gt;&#xA;          &lt;td&gt;Description&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Invert QDI0/1/2&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Invert input polarity&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Swap Pin Phase A &amp;amp; B&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Reverse direction (quadrature mode)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Auto Correction&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Automatic phase error correction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Digital Filter&lt;/td&gt;&#xA;          &lt;td&gt;disabled or time period&lt;/td&gt;&#xA;          &lt;td&gt;Input signal filtering&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;hall-sensor-operation&#34;&gt;Hall Sensor Operation&lt;/h2&gt;&#xA;&lt;h3 id=&#34;3-phase-hall-sensor-interface&#34;&gt;3-Phase Hall Sensor Interface&lt;/h3&gt;&#xA;&lt;p&gt;PDEC decodes 3-wire Hall sensor signals for BLDC motor position:&#xA;Hall Sensor States (6-step commutation): State | Hall A | Hall B | Hall C | Sector &amp;mdash;&amp;mdash;-|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash; 1 | 0 | 0 | 1 | 0-60° 2 | 0 | 1 | 1 | 60-120° 3 | 0 | 1 | 0 | 120-180° 4 | 1 | 1 | 0 | 180-240° 5 | 1 | 0 | 0 | 240-300° 6 | 1 | 0 | 1 | 300-360° Valid transitions: 1→2→3→4→5→6→1 (CW) 1→6→5→4→3→2→1 (CCW)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PWM Blocks - Block Reference</title>
-      <link>/block_reference/pwm_blocks.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/pwm_blocks.html</guid>
-      <description>&lt;p&gt;Comprehensive PWM (Pulse Width Modulation) blocks for motor control, power conversion, and signal generation across all MCHP Blockset supported families.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;[]&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;[]&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;[]&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;[][]&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;      dsPIC30F/33F/33E: → MCHP_PWM&#xD;&#xA;      dsPIC33C/CH/CK: → MCHP_PWM_HighSpeed&#xD;&#xA;      dsPIC33A: → MCHP_PWM_HS_FEP&#xD;&#xA;      SAM/ARM: → MCHP_PWM_SAM7x or MCHP_TCC_PWM&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;dspic-family-pwm-blocks&#34;&gt;dsPIC Family PWM Blocks&lt;/h2&gt;&#xA;&lt;p&gt;[&lt;strong&gt;MCHP_PWM&lt;/strong&gt; - Standard PWMBasic PWM for dsPIC30F/33F/33E with dead-time and fault protectiondsPIC30FdsPIC33FdsPIC33E][&lt;strong&gt;MCHP_PWM_HighSpeed&lt;/strong&gt; - High-Speed PWMAdvanced PWM with independent time bases and 4 output modesdsPIC33CdsPIC33CHdsPIC33CK][&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt; - PWM Override ControlManual override for emergency shutdown and diagnosticsdsPIC33C/CH/CK][&lt;strong&gt;MCHP_PWM_HS_FEP&lt;/strong&gt; - High-Speed PWM with Fine Edge PositioningLatest generation with 16× resolution (High-Resolution mode)dsPIC33A]&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>QDEC SAMx - Quadrature Decoder for SAM Devices</title>
-      <link>/block_reference/encoders_counters/qdec_samx.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/encoders_counters/qdec_samx.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/digital/QDEC_SAMx.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/digital/QDEC_SAMx.png&#34; alt=&#34;QDEC SAMx Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Quadrature Decoder Using TC Modules - SAM Device Encoder Interface&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The MCHP_QDEC_SAMx block implements quadrature encoder decoding using the Timer/Counter (TC) modules on SAM microcontrollers (E5x, E7x, C2x). Unlike dedicated QEI peripherals, this implementation uses TC modules in quadrature mode to decode encoder signals for position and speed measurement.&#xA;&lt;strong&gt;Key Features:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Quadrature position decoding using TC modules&lt;/li&gt;&#xA;&lt;li&gt;32-bit position counter with revolution counter&lt;/li&gt;&#xA;&lt;li&gt;Index pulse support for position reset&lt;/li&gt;&#xA;&lt;li&gt;Direction detection&lt;/li&gt;&#xA;&lt;li&gt;Speed measurement using time base&lt;/li&gt;&#xA;&lt;li&gt;Phase error detection (quadrature integrity check)&lt;/li&gt;&#xA;&lt;li&gt;Missing pulse error detection&lt;/li&gt;&#xA;&lt;li&gt;Configurable digital filtering&lt;/li&gt;&#xA;&lt;li&gt;Rotation change flag&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;device-support&#34;&gt;Device Support&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;TC Modules&lt;/th&gt;&#xA;          &lt;th&gt;Max QDEC Instances&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E54/E53&lt;/td&gt;&#xA;          &lt;td&gt;TC0-TC7&lt;/td&gt;&#xA;          &lt;td&gt;2-4&lt;/td&gt;&#xA;          &lt;td&gt;Position, speed, index, error detection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM E70/S70/V71&lt;/td&gt;&#xA;          &lt;td&gt;TC0-TC11&lt;/td&gt;&#xA;          &lt;td&gt;4&lt;/td&gt;&#xA;          &lt;td&gt;Position, speed, index, error detection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;SAM C21&lt;/td&gt;&#xA;          &lt;td&gt;TC0-TC7&lt;/td&gt;&#xA;          &lt;td&gt;2-4&lt;/td&gt;&#xA;          &lt;td&gt;Position, speed, index, error detection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; Each QDEC instance requires 3 TC channels (one complete TC module). For example, TC0 uses channels 0, 1, and 2 for phase A/B counting, index counting, and speed time base respectively.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>QEI - Quadrature Encoder Interface</title>
-      <link>/block_reference/encoders_counters/qei.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/encoders_counters/qei.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../assets/images/blocks/digital/QEI.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../assets/images/blocks/digital/QEI.png&#34; alt=&#34;QEI Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        Quadrature Encoder Interface - Position and Velocity Measurement&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The MCHP_QEI block provides an interface to the Quadrature Encoder Interface (QEI) peripheral available on dsPIC and PIC32 microcontrollers. This peripheral decodes quadrature encoder signals to measure position, direction, and velocity of rotating shafts, making it ideal for motor control and precision positioning applications.&#xA;&lt;strong&gt;Key Features:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Quadrature decoding (X2 and X4 modes)&lt;/li&gt;&#xA;&lt;li&gt;16-bit or 32-bit position counter&lt;/li&gt;&#xA;&lt;li&gt;Index pulse detection and position reset&lt;/li&gt;&#xA;&lt;li&gt;Direction sensing&lt;/li&gt;&#xA;&lt;li&gt;Programmable digital filtering&lt;/li&gt;&#xA;&lt;li&gt;Velocity measurement (32-bit QEI only)&lt;/li&gt;&#xA;&lt;li&gt;Multiple operating modes: encoder, pulse counter, up/down counter&lt;/li&gt;&#xA;&lt;li&gt;Position modulo and reset options&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;device-support&#34;&gt;Device Support&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Family&lt;/th&gt;&#xA;          &lt;th&gt;QEI Type&lt;/th&gt;&#xA;          &lt;th&gt;Max Modules&lt;/th&gt;&#xA;          &lt;th&gt;Features&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC30F&lt;/td&gt;&#xA;          &lt;td&gt;16-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Basic quadrature decoding, index reset&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33F&lt;/td&gt;&#xA;          &lt;td&gt;16-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Basic quadrature decoding, index reset&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33E&lt;/td&gt;&#xA;          &lt;td&gt;32-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Extended position counter, velocity measurement&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33C&lt;/td&gt;&#xA;          &lt;td&gt;32-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Extended position counter, velocity measurement&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;dsPIC33A&lt;/td&gt;&#xA;          &lt;td&gt;32-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Enhanced position/velocity, advanced filtering&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;PIC32MK&lt;/td&gt;&#xA;          &lt;td&gt;32-bit&lt;/td&gt;&#xA;          &lt;td&gt;1-2&lt;/td&gt;&#xA;          &lt;td&gt;Extended features, modulo with index reset&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;block-parameters&#34;&gt;Block Parameters&lt;/h2&gt;&#xA;&lt;h3 id=&#34;operating-mode&#34;&gt;Operating Mode&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QEI Mode&lt;/td&gt;&#xA;          &lt;td&gt;• Quadrature Encoder&lt;/td&gt;&#xA;          &lt;td&gt;• External Pulse Counter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;X2/X4 Mode&lt;/td&gt;&#xA;          &lt;td&gt;on/off (16-bit QEI only)&lt;/td&gt;&#xA;          &lt;td&gt;X2: 2 counts/line, X4: 4 counts/line&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;position-counter-configuration&#34;&gt;Position Counter Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Position Output&lt;/td&gt;&#xA;          &lt;td&gt;• is not an output&lt;/td&gt;&#xA;          &lt;td&gt;• 16-bit unsigned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Position Reset Mode&lt;/td&gt;&#xA;          &lt;td&gt;• Never reset&lt;/td&gt;&#xA;          &lt;td&gt;• Reset on INDEX&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Modulo Limits&lt;/td&gt;&#xA;          &lt;td&gt;[Low High] vector&lt;/td&gt;&#xA;          &lt;td&gt;Position counter modulo boundaries&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Initial Value&lt;/td&gt;&#xA;          &lt;td&gt;Integer&lt;/td&gt;&#xA;          &lt;td&gt;Position initialization value&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;index-pulse-configuration&#34;&gt;Index Pulse Configuration&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Index Counter Output&lt;/td&gt;&#xA;          &lt;td&gt;• is not an output&lt;/td&gt;&#xA;          &lt;td&gt;• 16-bit unsigned/signed&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Index Match Value&lt;/td&gt;&#xA;          &lt;td&gt;QEA/QEB state (00, 01, 10, 11)&lt;/td&gt;&#xA;          &lt;td&gt;Encoder state when index is valid&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Index Polarity&lt;/td&gt;&#xA;          &lt;td&gt;Active high/low&lt;/td&gt;&#xA;          &lt;td&gt;Index pulse polarity&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;velocity-measurement-32-bit-qei&#34;&gt;Velocity Measurement (32-bit QEI)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Velocity Output&lt;/td&gt;&#xA;          &lt;td&gt;• is not an output&lt;/td&gt;&#xA;          &lt;td&gt;• 16-bit unsigned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Period Output&lt;/td&gt;&#xA;          &lt;td&gt;• is not an output&lt;/td&gt;&#xA;          &lt;td&gt;• 16-bit unsigned&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Max Period&lt;/td&gt;&#xA;          &lt;td&gt;Time (seconds)&lt;/td&gt;&#xA;          &lt;td&gt;Maximum period for velocity calculation&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;signal-conditioning&#34;&gt;Signal Conditioning&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Parameter&lt;/th&gt;&#xA;          &lt;th&gt;Options&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Digital Filter&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Enable input signal filtering&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Filter Cutoff Freq&lt;/td&gt;&#xA;          &lt;td&gt;Frequency (Hz)&lt;/td&gt;&#xA;          &lt;td&gt;Low-pass filter cutoff frequency&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Swap QEA/QEB&lt;/td&gt;&#xA;          &lt;td&gt;on/off&lt;/td&gt;&#xA;          &lt;td&gt;Reverse encoder direction&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Invert Polarity&lt;/td&gt;&#xA;          &lt;td&gt;QEA, QEB, INDEX, HOME&lt;/td&gt;&#xA;          &lt;td&gt;Invert input signal polarity&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;pin-configuration-remappable-devices&#34;&gt;Pin Configuration (Remappable Devices)&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Pin&lt;/th&gt;&#xA;          &lt;th&gt;Function&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QEA/QEIA&lt;/td&gt;&#xA;          &lt;td&gt;Phase A Input&lt;/td&gt;&#xA;          &lt;td&gt;Encoder channel A (or pulse input)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;QEB/QEIB&lt;/td&gt;&#xA;          &lt;td&gt;Phase B Input&lt;/td&gt;&#xA;          &lt;td&gt;Encoder channel B (or direction input)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;INDEX/QEINDX&lt;/td&gt;&#xA;          &lt;td&gt;Index Input&lt;/td&gt;&#xA;          &lt;td&gt;Index pulse for position reset&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;HOME/QEIHOM&lt;/td&gt;&#xA;          &lt;td&gt;Home Input&lt;/td&gt;&#xA;          &lt;td&gt;Home reference signal (optional)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;quadrature-encoding-principles&#34;&gt;Quadrature Encoding Principles&lt;/h2&gt;&#xA;&lt;h3 id=&#34;x4-quadrature-decoding&#34;&gt;X4 Quadrature Decoding&lt;/h3&gt;&#xA;&lt;p&gt;In X4 mode, the QEI peripheral counts on both rising and falling edges of both channels, providing 4 counts per encoder line:&#xA;QEA &lt;em&gt;&lt;strong&gt;┌───┐&lt;/strong&gt;&lt;/em&gt;┌───┐&lt;em&gt;&lt;strong&gt;┌───┐&lt;/strong&gt;&lt;/em&gt;┌───┐___ │ │ │ │ │ │ │ │ └───┘ └───┘ └───┘ └───┘ QEB &lt;em&gt;&lt;strong&gt;&lt;em&gt;&lt;strong&gt;┌───┐&lt;/strong&gt;&lt;/em&gt;┌───┐&lt;/strong&gt;&lt;/em&gt;┌───┐___┌─── │ │ │ │ │ │ │ ____└───┘ └───┘ └───┘ └─── Count: 0 1 2 3 4 5 6 7 8 9 10 11 12 Direction: FORWARD (QEA leads QEB by 90°)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>System Blocks</title>
-      <link>/block_reference/system/system.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/system/system.html</guid>
-      <description>&lt;p&gt;System blocks configure the fundamental behavior of MCHP Blockset models, including target selection, clock configuration, multitasking scheduler, and runtime monitoring.&lt;/p&gt;&#xA;&lt;h2 id=&#34;core-configuration-blocks&#34;&gt;Core Configuration Blocks&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;[][][]&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Block&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;          &lt;th&gt;Required?&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MCHP_Master&lt;/td&gt;&#xA;          &lt;td&gt;Main configuration block - chip selection, clock, fuses, build settings&lt;/td&gt;&#xA;          &lt;td&gt;✓ Yes - ALWAYS required&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MCHP_Scheduler_Options&lt;/td&gt;&#xA;          &lt;td&gt;Rate monotonic scheduler configuration and overload behavior&lt;/td&gt;&#xA;          &lt;td&gt;Optional (default settings used)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;MCHP_Interrupt&lt;/td&gt;&#xA;          &lt;td&gt;Interrupt service routine configuration for triggered subsystems&lt;/td&gt;&#xA;          &lt;td&gt;Optional (for ISR-driven tasks)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;task-management-blocks&#34;&gt;Task Management Blocks&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;[][]&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Block Reference on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference.html</link><description>Recent content in Block Reference on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/index.xml" rel="self" type="application/rss+xml"/><item><title>ADC Blocks - Analog-to-Digital Converter Reference</title><link>/block_reference/adc_blocks.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/adc_blocks.html</guid><description>&lt;p>The MCHP Blockset provides comprehensive ADC support for all Microchip microcontroller families. Each family has optimized ADC blocks tailored to the specific peripheral architecture and capabilities.&lt;/p>
+&lt;h2 id="dspic--pic24-family-adc-blocks">dsPIC &amp;amp; PIC24 Family ADC Blocks&lt;/h2>
+&lt;p>[MCHP_ADC] Standard ADC for dsPIC30F, dsPIC33F, dsPIC33E, dsPIC33C, and PIC24 families. &lt;strong>Resolution:&lt;/strong> 10/12-bit&lt;strong>Features:&lt;/strong> Scan mode, simultaneous sampling, DMA support&lt;strong>Best for:&lt;/strong> General-purpose acquisition, motor control [MCHP_ADC_HighSpeed_SAR_dsPIC] High-speed SAR ADC for dsPIC33C with dedicated cores and shared ADC7. &lt;strong>Resolution:&lt;/strong> 6/8/10/12-bit&lt;strong>Cores:&lt;/strong> 3-6 dedicated + shared ADC7&lt;strong>Speed:&lt;/strong> Up to 3.25 Msps per core&lt;strong>Best for:&lt;/strong> High-speed multi-channel, simultaneous sampling [MCHP_ADC_HS_12b] 12-bit high-speed ADC with software sequencing for dsPIC33A family. &lt;strong>Resolution:&lt;/strong> 12-bit fixed&lt;strong>Cores:&lt;/strong> 2-5 (variant dependent)&lt;strong>Sequencing:&lt;/strong> 6 sequences × 6 conversions&lt;strong>Devices:&lt;/strong> Perseus, Pegasus, Blue Ridge, Serpens (33AK series)&lt;strong>Best for:&lt;/strong> Advanced FOC motor control, flexible multi-channel&lt;/p></description></item><item><title>Analog Signal Conditioning Blocks Documentation</title><link>/block_reference/analog.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog.html</guid><description>&lt;p>Integrated analog peripherals for signal amplification, buffering, and voltage generation&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Analog signal conditioning blocks provide access to integrated analog peripherals in Microchip microcontrollers, enabling precision signal processing without external components. These blocks eliminate the need for discrete amplifiers, comparators, and DACs in many applications, reducing BOM cost, board space, and improving signal integrity.&lt;/p>
+&lt;pre>&lt;code> Integrated signal chain reduces external component count
+ Direct connection to ADC for optimized analog front-end
+ Software-configurable gain and operating modes
+ Low noise and high precision for measurement applications
+ Calibration capabilities for enhanced accuracy
+&lt;/code>&lt;/pre>
+&lt;h2 id="available-blocks">Available Blocks&lt;/h2>
+&lt;p>[&lt;/p></description></item><item><title>Block Reference</title><link>/block_reference/user_functions/c_function_call.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/user_functions/c_function_call.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/user_functions/C_Function_Call.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/user_functions/C_Function_Call.png" alt="C Function Call Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Complete reference for all MCHP Blockset peripheral blocks.
+ &lt;/div>
+&lt;/div>
+
+&lt;h3 id="pwm-blocks">[PWM Blocks]&lt;/h3>
+&lt;p>Pulse Width Modulation blocks for motor control and power conversion.&lt;/p>
+&lt;h3 id="adc-blocks">[ADC Blocks]&lt;/h3>
+&lt;p>Analog-to-Digital Converter blocks for sensor interfaces.&lt;/p>
+&lt;h3 id="communication-blocks">[Communication Blocks]&lt;/h3>
+&lt;p>UART, SPI, I2C, CAN, and other communication interfaces.&lt;/p>
+&lt;h3 id="timer-blocks">[Timer Blocks]&lt;/h3>
+&lt;p>Timer and interrupt configuration blocks.&lt;/p>
+&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;p>&lt;a href="../getting_started.html">Getting Started&lt;/a> | &lt;a href="../user_guide.html">User Guide&lt;/a>&lt;/p></description></item><item><title>CAN Communication Blocks</title><link>/block_reference/can.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/can.html</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>CAN (Controller Area Network)&lt;/strong> block family enables robust, multi-master communication on CAN bus networks. CAN is widely used in automotive, industrial automation, and embedded systems for reliable data exchange in electrically noisy environments.&lt;/p>
+&lt;p>The MCHP Blockset provides three blocks for CAN communication: &lt;strong>CAN Config&lt;/strong> for peripheral setup, &lt;strong>CAN Tx&lt;/strong> for message transmission, and &lt;strong>CAN Rx&lt;/strong> for message reception with flexible filtering. These blocks support both CAN 2.0 (standard) and CAN-FD (flexible data-rate) protocols.&lt;/p></description></item><item><title>CAN Config</title><link>/block_reference/communication/can/can_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_config.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_can/CAN_Config.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_can/CAN_Config.png" alt="CAN Config Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>CAN Config&lt;/strong> block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks. CAN is a robust, multi-master serial bus system designed for networking intelligent devices. It is widely used in automotive, industrial automation, and embedded systems for reliable communication in electrically noisy environments. The protocol features automatic message prioritization, error detection, and fault confinement mechanisms.
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>CAN Config&lt;/strong> block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks.&lt;/p></description></item><item><title>CAN Rx</title><link>/block_reference/communication/can/can_rx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_rx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_can/CAN_Rx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_can/CAN_Rx.png" alt="CAN Rx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>CAN Rx&lt;/strong> block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs. This block requires a &lt;strong>CAN Config&lt;/strong> block in the same model to configure the CAN peripheral. Multiple CAN Rx blocks can be used to receive different messages on the same CAN module, each with its own filter configuration.
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>CAN Rx&lt;/strong> block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs.&lt;/p></description></item><item><title>CAN Tx</title><link>/block_reference/communication/can/can_tx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_tx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_can/CAN_Tx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_can/CAN_Tx.png" alt="CAN Tx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>CAN Tx&lt;/strong> block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes. This block requires a &lt;strong>CAN Config&lt;/strong> block in the same model to configure the CAN peripheral. Multiple CAN Tx blocks can be used to send different messages on the same CAN module.
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>CAN Tx&lt;/strong> block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes.&lt;/p></description></item><item><title>CN - Change Notification (Pin Interrupt)</title><link>/block_reference/encoders_counters/change_notification.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/encoders_counters/change_notification.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/digital/ChangeNotification.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/digital/ChangeNotification.png" alt="Change Notification Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Change Notification - Pin State Change Interrupts and Timing
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The MCHP_CN block provides an interface to the Change Notification (CN) peripheral, which detects pin state changes and measures transition timing. While primarily used for GPIO interrupts (buttons, switches), CN can also serve as a simple encoder interface or pulse counter.
+&lt;strong>Key Features:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Multi-pin state change detection (up to 32 CN pins)&lt;/li>
+&lt;li>Edge detection: rising, falling, or both&lt;/li>
+&lt;li>Transition timing measurement (time between edges)&lt;/li>
+&lt;li>Period measurement (rising-to-rising or falling-to-falling)&lt;/li>
+&lt;li>Programmable pull-up/pull-down resistors&lt;/li>
+&lt;li>Interrupt generation on pin change&lt;/li>
+&lt;li>Wake from sleep on pin change&lt;/li>
+&lt;li>Can be used for simple rotary encoders or pulse counting&lt;/li>
+&lt;/ul>
+&lt;h3 id="device-support">Device Support&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>CN Type&lt;/th>
+ &lt;th>CN Pins&lt;/th>
+ &lt;th>Notes&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC30F&lt;/td>
+ &lt;td>Type 0&lt;/td>
+ &lt;td>CN0-CN15&lt;/td>
+ &lt;td>Dedicated CN peripheral&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33F&lt;/td>
+ &lt;td>Type 0&lt;/td>
+ &lt;td>CN0-CN23&lt;/td>
+ &lt;td>Dedicated CN peripheral&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33E&lt;/td>
+ &lt;td>Type 1&lt;/td>
+ &lt;td>All GPIO pins&lt;/td>
+ &lt;td>All ports have CN capability&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33C&lt;/td>
+ &lt;td>Type 1&lt;/td>
+ &lt;td>All GPIO pins&lt;/td>
+ &lt;td>All ports have CN capability&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32MK&lt;/td>
+ &lt;td>Type 2&lt;/td>
+ &lt;td>Port-based&lt;/td>
+ &lt;td>One interrupt per port&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC24F&lt;/td>
+ &lt;td>Type 0/1&lt;/td>
+ &lt;td>Varies&lt;/td>
+ &lt;td>Family dependent&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
+&lt;h3 id="channel-selection">Channel Selection&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>CN Channels (dsPIC30F/33F)&lt;/td>
+ &lt;td>Vector of CN channel numbers, e.g., [0 1 2] for CN0, CN1, CN2&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>CN Port (dsPIC33E/C, PIC32MK)&lt;/td>
+ &lt;td>Port pin list, e.g., [A0 A1 B5] for PA0, PA1, PB5&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="measurement-configuration-per-channel">Measurement Configuration (per channel)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode Value&lt;/th>
+ &lt;th>Measurement&lt;/th>
+ &lt;th>Output Ports&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>0&lt;/td>
+ &lt;td>Change detect only&lt;/td>
+ &lt;td>Change detected flag only&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>1&lt;/td>
+ &lt;td>Measure time UP (rising edge to falling edge)&lt;/td>
+ &lt;td>T_Up (pulse width high)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2&lt;/td>
+ &lt;td>Measure time DOWN (falling edge to rising edge)&lt;/td>
+ &lt;td>T_Down (pulse width low)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>3&lt;/td>
+ &lt;td>Measure UP &amp;amp; DOWN&lt;/td>
+ &lt;td>T_Up, T_Down&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>4&lt;/td>
+ &lt;td>Period on rising edge&lt;/td>
+ &lt;td>P_Rising (time between rising edges)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>8&lt;/td>
+ &lt;td>Period on falling edge&lt;/td>
+ &lt;td>P_Falling (time between falling edges)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>5&lt;/td>
+ &lt;td>UP + Period on rising&lt;/td>
+ &lt;td>T_Up, P_Rising&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>10&lt;/td>
+ &lt;td>DOWN + Period on falling&lt;/td>
+ &lt;td>T_Down, P_Falling&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="change-detection-per-channel">Change Detection (per channel)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Value&lt;/th>
+ &lt;th>Detection Mode&lt;/th>
+ &lt;th>Output&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>0&lt;/td>
+ &lt;td>No change detection&lt;/td>
+ &lt;td>-&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>1&lt;/td>
+ &lt;td>Rising edge&lt;/td>
+ &lt;td>CNx_Rise (timestamp)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>2&lt;/td>
+ &lt;td>Falling edge&lt;/td>
+ &lt;td>CNx_Fall (timestamp)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>3&lt;/td>
+ &lt;td>Both edges&lt;/td>
+ &lt;td>CNx_Rise&amp;amp;Fall (timestamp)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="advanced-configuration">Advanced Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Output Port Value&lt;/td>
+ &lt;td>Enable current pin state output (boolean per channel)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Max Channel&lt;/td>
+ &lt;td>Maximum expected time for measurements (seconds, per channel)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Safe Margin&lt;/td>
+ &lt;td>Percentage margin for timer overflow protection (per channel)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Interrupt Priority&lt;/td>
+ &lt;td>CN interrupt priority level (1-7)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="cn-peripheral-registers">CN Peripheral Registers&lt;/h2>
+&lt;h3 id="dspic30f33f-type-0">dsPIC30F/33F (Type 0)&lt;/h3>
+&lt;p>// Enable CN module CNCONbits.ON = 1; // Enable specific CN pins CNEN1bits.CN0IE = 1; // Enable CN0 CNEN1bits.CN1IE = 1; // Enable CN1// Enable pull-ups CNPU1bits.CN0PUE = 1; // Pull-up on CN0// Interrupt configuration IFS1bits.CNIF = 0; // Clear interrupt flag IEC1bits.CNIE = 1; // Enable CN interrupt IPC4bits.CNIP = 5; // Priority level// Read current state state = PORTBbits.RB0; // Read pin state (if CN0 is on RB0)&lt;/p></description></item><item><title>Communication Blocks - Block Reference</title><link>/block_reference/communication.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication.html</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Communication interface blocks for serial, network, and industrial protocols.&lt;/p>
+&lt;h2 id="uart-blocks">UART (Universal Asynchronous Receiver Transmitter)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="communication/uart/uart_config.html">&lt;strong>UART Config&lt;/strong>&lt;/a> - Configure UART module (baud rate, pins, implementation mode)&lt;/li>
+&lt;li>&lt;a href="communication/uart/uart_tx.html">&lt;strong>UART Tx&lt;/strong>&lt;/a> - Transmit data through UART&lt;/li>
+&lt;li>&lt;a href="communication/uart/uart_rx.html">&lt;strong>UART Rx&lt;/strong>&lt;/a> - Receive data from UART&lt;/li>
+&lt;li>&lt;a href="communication/uart/uart_txmatlab.html">&lt;strong>UART TxMatlab&lt;/strong>&lt;/a> - Transmit data to MATLAB (picgui interface)&lt;/li>
+&lt;li>&lt;a href="communication/uart/uart_brk_autobaud.html">&lt;strong>UART Break/Autobaud&lt;/strong>&lt;/a> - Break detection and auto-baud features&lt;/li>
+&lt;/ul>
+&lt;h2 id="can-blocks">CAN (Controller Area Network)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="communication/can/can_config.html">&lt;strong>CAN Config&lt;/strong>&lt;/a> - Configure CAN module (baud rate, message IDs, filters)&lt;/li>
+&lt;li>&lt;a href="communication/can/can_tx.html">&lt;strong>CAN Tx&lt;/strong>&lt;/a> - Transmit CAN messages&lt;/li>
+&lt;li>&lt;a href="communication/can/can_rx.html">&lt;strong>CAN Rx&lt;/strong>&lt;/a> - Receive CAN messages&lt;/li>
+&lt;/ul>
+&lt;h2 id="i2c-blocks">I2C (Inter-Integrated Circuit)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="communication/i2c.html">&lt;strong>I2C Master/Slave&lt;/strong>&lt;/a> - Configure I2C in Master or Slave mode (documentation in progress)&lt;/li>
+&lt;/ul>
+&lt;h2 id="spi-blocks">SPI (Serial Peripheral Interface)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="communication/spi.html">&lt;strong>SPI Master/Slave&lt;/strong>&lt;/a> - Configure SPI in Master or Slave mode (documentation in progress)&lt;/li>
+&lt;/ul>
+&lt;h2 id="other-communication-protocols">Other Communication Protocols&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>CAN-FD&lt;/strong> - CAN with Flexible Data-rate (coming soon)&lt;/li>
+&lt;li>&lt;strong>USB&lt;/strong> - Universal Serial Bus for PIC32 and SAM devices (coming soon)&lt;/li>
+&lt;li>&lt;strong>Ethernet&lt;/strong> - 10/100 Ethernet MAC for PIC32MZ and SAME70 (coming soon)&lt;/li>
+&lt;/ul>
+&lt;h2 id="see-also">See Also&lt;/h2>
+&lt;p>&lt;a href="../block_reference.html">Block Reference&lt;/a> | &lt;a href="../block_reference/pwm_io.html">Timer Blocks&lt;/a>&lt;/p></description></item><item><title>MCHP DAC SAMx Documentation</title><link>/block_reference/analog_io/dac_samx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/dac_samx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/analog/DAC_SAMx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/analog/DAC_SAMx.png" alt="DAC SAMx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ High-performance DAC for waveform generation and precision voltage output
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="block-overview">Block Overview&lt;/h2>
+&lt;p>The &lt;strong>MCHP_DACC_SAMx&lt;/strong> block provides access to the Digital-to-Analog Converter Controller (DACC) available in SAM E5x, SAM E7x, and SAM C2x microcontrollers. This peripheral enables high-quality analog voltage generation for applications including waveform synthesis, precision voltage references, audio output, and control signal generation.&lt;/p>
+&lt;pre>&lt;code> 10-bit or 12-bit resolution (device-dependent)
+ Dual-channel independent or differential output modes
+ Up to 1 MSPS conversion rate
+ Internal or external voltage reference options
+ Built-in waveform generation capabilities
+ DMA support for continuous waveform streaming
+ Low glitch energy and monotonic output
+&lt;/code>&lt;/pre>
+&lt;h3 id="supported-device-families">Supported Device Families&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Representative Devices&lt;/th>
+ &lt;th>Resolution&lt;/th>
+ &lt;th>Channels&lt;/th>
+ &lt;th>Max Rate&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>SAM E5x&lt;/td>
+ &lt;td>SAME54P20A, SAME53J18A&lt;/td>
+ &lt;td>12-bit&lt;/td>
+ &lt;td>2 (DAC0, DAC1)&lt;/td>
+ &lt;td>1 MSPS&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E7x&lt;/td>
+ &lt;td>SAME70Q21B, SAMV71Q21B&lt;/td>
+ &lt;td>12-bit&lt;/td>
+ &lt;td>2 (DAC0, DAC1)&lt;/td>
+ &lt;td>1 MSPS&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM C2x&lt;/td>
+ &lt;td>SAMC21G18A, SAMC20G18A&lt;/td>
+ &lt;td>10-bit&lt;/td>
+ &lt;td>2 (DAC0, DAC1)&lt;/td>
+ &lt;td>350 kSPS&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Output Modes:&lt;/strong> The DACC supports both single-ended outputs (DAC0 and DAC1 independent) and differential output mode (DAC0 - DAC1), providing flexibility for various signal generation requirements.&lt;/p></description></item><item><title>MCHP High-Speed Analog Comparator Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/analog/HighSpeed_AnalogComparator.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/analog/HighSpeed_AnalogComparator.png" alt="High-Speed Analog Comparator Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Fast threshold detection and PWM integration for motor control and power applications
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>MCHP High-Speed Analog Comparator&lt;/strong> block configures the on-chip analog comparators for fast threshold detection applications. These comparators provide critical real-time monitoring for motor control overcurrent protection, power supply fault detection, and zero-crossing detection. With response times in the nanosecond range, they can directly trigger PWM fault events without CPU intervention.&lt;/p>
+&lt;pre>&lt;code> Sub-microsecond response time for critical fault protection
+ Multiple comparator instances (up to 4 per device)
+ Internal DAC reference or external voltage reference
+ Programmable hysteresis for noise immunity
+ Direct PWM fault input integration
+ Configurable output state monitoring
+&lt;/code>&lt;/pre>
+&lt;h3 id="typical-applications">Typical Applications&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Overcurrent Protection:&lt;/strong> Motor drive current limit detection&lt;/li>
+&lt;li>&lt;strong>Overvoltage/Undervoltage:&lt;/strong> DC bus voltage monitoring&lt;/li>
+&lt;li>&lt;strong>Zero-Crossing Detection:&lt;/strong> AC line synchronization&lt;/li>
+&lt;li>&lt;strong>PWM Blanking:&lt;/strong> Noise immunity during switching&lt;/li>
+&lt;li>&lt;strong>Peak Detection:&lt;/strong> Signal peak monitoring&lt;/li>
+&lt;/ul>
+&lt;h2 id="device-family-support">Device Family Support&lt;/h2>
+&lt;h4 id="dspic33ep">dsPIC33EP&lt;/h4>
+&lt;p>1-4 Comparators&lt;/p></description></item><item><title>MCHP High-Speed Analog Comparator with Slope Compensation Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.png" alt="High-Speed Analog Comparator with Slope Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Advanced peak current mode control with programmable slope compensation
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>MCHP High-Speed Analog Comparator with Slope Compensation&lt;/strong> block extends the standard comparator with integrated slope compensation capabilities for peak current mode control applications. This advanced feature prevents sub-harmonic oscillation in current-mode DC-DC converters and motor drives operating at duty cycles above 50%.&lt;/p>
+&lt;pre>&lt;code> All standard comparator features plus slope compensation
+ Programmable compensation ramp generation
+ Automatic ramp synchronization with PWM
+ Variable slope adjustment for optimal stability
+ Sub-microsecond response for high-frequency switching
+ Integrated peak current mode control logic
+&lt;/code>&lt;/pre>
+&lt;h3 id="peak-current-mode-control">Peak Current Mode Control&lt;/h3>
+&lt;p>Peak current mode control regulates output by controlling the peak inductor current in each switching cycle. Slope compensation stabilizes the control loop when duty cycle exceeds 50%, preventing period-doubling oscillations.
+&lt;strong>Why Slope Compensation?&lt;/strong>
+In peak current mode control with D &amp;gt; 50%, the inductor current slope creates a positive feedback loop leading to sub-harmonic oscillation. Adding a compensation ramp to the current sense signal stabilizes the loop.&lt;/p></description></item><item><title>MCHP Op-Amp Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/analog/OpAmp.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/analog/OpAmp.png" alt="OpAmp Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Integrated operational amplifiers for signal conditioning and analog processing
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="block-overview">Block Overview&lt;/h2>
+&lt;p>The &lt;strong>MCHP_OP_AMP&lt;/strong> block provides access to the integrated operational amplifiers available in dsPIC33C, dsPIC33CH, and dsPIC33CK microcontrollers. These on-chip op-amps eliminate the need for external amplification circuitry in many applications, reducing BOM cost and board space while improving signal integrity.&lt;/p>
+&lt;pre>&lt;code> Integrated signal conditioning eliminates external op-amps
+ Direct connection to ADC for optimized signal chain
+ Configurable gain settings for flexible amplification
+ Rail-to-rail operation for maximum dynamic range
+ Low offset and drift for precision measurements
+&lt;/code>&lt;/pre>
+&lt;h3 id="supported-device-families">Supported Device Families&lt;/h3>
+&lt;pre tabindex="0">&lt;code>| Family | DOS Module | Op-Amp Instances | Key Features |
+|---|---|---|---|
+| dsPIC33C/CH/CK | DOS_03349_amp_pad_opamp_ctrl_upb_v1 | Up to 3 op-amps | Basic amplification, fixed gain |
+| dsPIC33A | DOS_03495_amp_pad_opamp_ctrl_upb_v2_dspic33a | Up to 3 op-amps | Enhanced features, programmable gain |
+
+**Pin Mapping:** The block automatically displays pin assignments for each op-amp instance (IN+, IN-, OUT) based on the selected device. Pin assignments are fixed in hardware and cannot be remapped. 
+## Operating Modes
+
+### 1. Voltage Follower (Buffer)
+**Configuration:** Enabled with negative input internally set to 0 
+- **Gain:** Unity (1×)
+- **Input:** IN+ connected to signal source
+- **Feedback:** Output internally connected to IN-
+- **Use Case:** High-impedance buffer, isolation amplifier
+
+### 2. Non-Inverting Amplifier
+**Configuration:** Enabled with positive and negative inputs 
+- **Gain:** Configured by external resistor network
+- **Input:** Signal applied to IN+
+- **Feedback:** Resistor divider on IN- for gain setting
+- **Use Case:** Signal amplification, sensor conditioning
+
+### 3. Inverting Amplifier
+**Configuration:** Enabled with positive and negative inputs 
+- **Gain:** Set by input/feedback resistor ratio
+- **Input:** Signal applied to IN- through input resistor
+- **Reference:** IN+ connected to ground or reference voltage
+- **Use Case:** Phase inversion, current-to-voltage conversion
+
+### 4. Differential Amplifier
+**Configuration:** Enabled with positive and negative inputs 
+- **Gain:** Matched resistor network for CMRR
+- **Input:** Differential signal on IN+ and IN-
+- **Output:** Single-ended amplified difference
+- **Use Case:** Differential sensor signals, noise rejection
+
+## Block Parameters
+
+| Parameter | Options | Description |
+|---|---|---|
+| OpAmp1 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for first op-amp instance. When enabled, the block automatically configures AMPON (master enable) and AMPEN[0] (instance enable) bits. The mode selection determines NCHDIS[0] setting (0 = internal connection, 1 = external pins). |
+| OpAmp2 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for second op-amp instance. Independent control of AMPEN[1] and NCHDIS[1] bits. Can be used simultaneously with OpAmp1 for dual-channel applications. |
+| OpAmp3 | • Disabled | • Enabled with negative input internally set to 0 | • Enabled with positive and negative inputs | Configuration for third op-amp instance (if available on device). Controls AMPEN[2] and NCHDIS[2]. Useful for three-phase motor control or multi-channel data acquisition. |
+
+
+## Register Configuration
+
+### AMPCON1 Register
+ // Op-Amp Control Register 1 AMPCON1 = (AMPON &amp;lt;&amp;lt; 15) | // Master enable (1 = enabled) (AMPSIDL &amp;lt;&amp;lt; 13) | // Stop in idle (0 = continue in idle) (NCHDIS2 &amp;lt;&amp;lt; 10) | // OpAmp3 negative channel (1 = external pin) (NCHDIS1 &amp;lt;&amp;lt; 9) | // OpAmp2 negative channel (1 = external pin) (NCHDIS0 &amp;lt;&amp;lt; 8) | // OpAmp1 negative channel (1 = external pin) (AMPEN2 &amp;lt;&amp;lt; 2) | // OpAmp3 enable (1 = enabled) (AMPEN1 &amp;lt;&amp;lt; 1) | // OpAmp2 enable (1 = enabled) (AMPEN0 &amp;lt;&amp;lt; 0); // OpAmp1 enable (1 = enabled) 
+### Port Configuration
+## Application Examples
+
+### Example 1: Voltage Follower for ADC Input Buffering
+**Application:** High-impedance sensor buffer // Configuration: // - OpAmp1 = &amp;#34;Enabled with negative input internally set to 0&amp;#34; // - OpAmp2 = Disabled // - OpAmp3 = Disabled // Hardware connections: // - Sensor output → OA1_IN+ (high impedance input) // - OA1_OUT → ADC channel (low impedance) // - Feedback is internal (unity gain) // Block automatically configures: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 0; // Internal feedback (voltage follower) // Result: Buffered sensor signal with no loading effect 
+### Example 2: Non-Inverting Amplifier (Gain = 10)
+**Application:** Thermocouple amplification // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; // - External resistors: R1 = 1kΩ (to GND), R2 = 9kΩ (feedback) // - Gain = 1 + (R2/R1) = 1 + (9k/1k) = 10 // Hardware connections: // - Thermocouple → OA1_IN+ // - OA1_OUT → R2 → OA1_IN- // - OA1_IN- → R1 → GND // - OA1_OUT → ADC channel // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 1; // External pin for feedback network // Result: 10× amplified thermocouple signal // Input: 5mV → Output: 50mV 
+### Example 3: Differential Amplifier for Current Sensing
+**Application:** High-side current measurement // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; // - Shunt resistor: 0.01Ω (100mΩ) // - Matched resistor network: R1 = R3 = 1kΩ, R2 = R4 = 10kΩ // - Differential gain = 10 // Hardware connections: // - Motor high-side → Shunt (0.01Ω) → Motor // - Shunt_High → R1 → OA1_IN+ // - Shunt_Low → R3 → GND // - OA1_IN+ → R2 → OA1_OUT // - OA1_IN- → R4 → GND // - OA1_OUT → ADC // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 AMPCON1bits.NCHDIS0 = 1; // External resistor network // Current measurement: // Motor current: 10A → Shunt voltage: 100mV // Op-amp output: 100mV × 10 = 1V → ADC 
+### Example 4: Multi-Channel Instrumentation Amplifier
+**Application:** Three-phase current sensing // Configuration: // - OpAmp1 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase A) // - OpAmp2 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase B) // - OpAmp3 = &amp;#34;Enabled with positive and negative inputs&amp;#34; (Phase C) // Hardware connections (per channel): // - Shunt resistor: 0.01Ω per phase // - Differential gain: 20 (configured by external resistors) // - OA1_OUT → ADC_CH1 // - OA2_OUT → ADC_CH2 // - OA3_OUT → ADC_CH3 // Block configuration: AMPCON1bits.AMPON = 1; // Enable op-amp module AMPCON1bits.AMPEN0 = 1; // Enable OpAmp1 (Phase A) AMPCON1bits.AMPEN1 = 1; // Enable OpAmp2 (Phase B) AMPCON1bits.AMPEN2 = 1; // Enable OpAmp3 (Phase C) AMPCON1bits.NCHDIS0 = 1; // External network for all AMPCON1bits.NCHDIS1 = 1; AMPCON1bits.NCHDIS2 = 1; // Synchronized three-phase current measurement // Sample all three ADC channels simultaneously for accurate FOC 
+## Design Considerations
+
+### Gain Configuration
+
+- **Voltage Follower:** No external components required, unity gain (1×), high input impedance
+- **Non-Inverting:** Gain = 1 + (R2/R1), input impedance ≈ op-amp input impedance (very high)
+- **Inverting:** Gain = -(R2/R1), input impedance = R1 (finite), inverted output phase
+- **Differential:** Gain = (R2/R1) for matched resistors, requires precision resistor matching
+
+### Bandwidth and Slew Rate
+
+
+ 
+ Op-amp bandwidth typically ranges from 1 MHz to 10 MHz (device-dependent)
+ Gain-bandwidth product limits useful frequency range at higher gains
+ Slew rate limits large signal response (typically 1-10 V/μs)
+ Check device datasheet for specific performance parameters
+
+### Offset and Calibration
+
+- **Input Offset Voltage:** Typically ±1-5 mV (device-dependent)
+- **Temperature Drift:** Consider offset drift over operating temperature range
+- **Calibration:** Some devices support offset trim registers (check DOS module features)
+- **Mitigation:** Use AC coupling or software offset correction for critical applications
+
+### Power Supply Considerations
+**Rail-to-Rail Operation:**
+- Input common-mode range typically extends from VSS to VDD - 1.5V
+- Output swing typically VSS + 100mV to VDD - 100mV under light loads
+- Ensure signal levels stay within op-amp linear range
+- Headroom required for proper operation, especially at high frequencies
+
+### PCB Layout Guidelines
+
+- **Short Traces:** Keep op-amp input and feedback traces as short as possible
+- **Ground Plane:** Use solid ground plane under op-amp circuitry
+- **Decoupling:** Place 100nF ceramic capacitor close to VDD pin
+- **Separation:** Separate analog and digital ground returns
+- **Shielding:** Shield sensitive inputs from switching noise sources
+
+## Integration with Other Blocks
+
+### Op-Amp + ADC Chain
+**Optimized Signal Path:**
+- Configure MCHP_OP_AMP block for desired gain and mode
+- Connect op-amp output pin to dedicated ADC input channel
+- Configure MCHP_ADC block to sample from op-amp output pin
+- Synchronize ADC sampling with control loop timing
+- Apply digital calibration/offset correction if needed
+
+### Op-Amp + PWM Synchronization
+**Motor Control Application:**
+- Use op-amps to amplify shunt resistor voltages (current sensing)
+- Trigger ADC from PWM events to sample at optimal timing
+- Avoid sampling during PWM switching transitions
+- Use ADC trigger delay to account for op-amp settling time
+
+### Multi-Instance Coordination
+ // Example: Three-phase motor current sensing // OpAmp1 → ADC_CH1 (Phase A current) // OpAmp2 → ADC_CH2 (Phase B current) // OpAmp3 → ADC_CH3 (Phase C current) // Configure all op-amps with identical gain // Sample all ADC channels simultaneously // Ensures phase alignment for FOC algorithm 
+## Troubleshooting
+
+| Issue | Possible Causes | Solution |
+|---|---|---|
+| No output signal | • AMPON not set | • AMPENx not set | • Pin not configured as analog | Verify block configuration enables the desired op-amp instance. Check that MCHP_PORT is correctly configured (automatic in INITIALISATION). |
+| Saturated output | • Excessive input signal | • Incorrect gain setting | • Insufficient supply headroom | Reduce input amplitude, check resistor values for correct gain, ensure VDD provides adequate headroom for output swing. |
+| Oscillation | • Poor PCB layout | • Missing decoupling | • Capacitive load | Add series resistor to output (10-50Ω), improve ground plane, add decoupling capacitor close to VDD pin, reduce trace lengths. |
+| DC offset error | • Input offset voltage | • Bias current effects | • Temperature drift | Apply software offset calibration, use AC coupling if DC accuracy not required, check for trim registers in device datasheet. |
+| Incorrect gain | • Wrong resistor values | • Incorrect mode selection | • Loading effects | Verify resistor network matches desired gain formula, ensure NCHDIS bit matches mode (0 = internal, 1 = external), check output load impedance is much higher than feedback resistors. |
+
+## Related Blocks
+
+- [MCHP_HighSpeed_AnalogComparator] - Fast analog comparator for threshold detection
+- [MCHP_PGA] - Programmable Gain Amplifier with digital gain control
+- [MCHP_ADC_HS_SAR_dsPIC33] - High-speed ADC for digitizing op-amp outputs
+- [MCHP_PWM_HS_FEP] - PWM for motor control synchronization
+[← Back to Analog Blocks]
+&lt;/code>&lt;/pre></description></item><item><title>MCHP PGA Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/analog/PGA.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/analog/PGA.png" alt="PGA Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Digitally-controlled gain amplifier with calibration for precision analog signal conditioning
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="block-overview">Block Overview&lt;/h2>
+&lt;p>The &lt;strong>MCHP_PGA&lt;/strong> block provides access to the Programmable Gain Amplifier (PGA) peripheral available in select dsPIC33C, dsPIC33CH, and dsPIC33CK devices. The PGA offers digitally-controlled gain settings with calibration capabilities, enabling precision signal conditioning for sensor inputs and ADC front-end applications.&lt;/p>
+&lt;pre>&lt;code> Software-configurable gain: 1×, 2×, 4×, 8×, 16×, 32× (device-dependent)
+ Runtime gain adjustment via block input or register write
+ Offset and gain calibration registers for precision measurements
+ Direct connection to DACOUT pins or internal ADC inputs
+ Single-ended or differential input modes
+ Eliminates external amplifier circuits and reduces BOM cost
+&lt;/code>&lt;/pre>
+&lt;h3 id="supported-device-families">Supported Device Families&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>DOS Module&lt;/th>
+ &lt;th>PGA Instances&lt;/th>
+ &lt;th>Gain Range&lt;/th>
+ &lt;th>Output Options&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC33C/CH/CK&lt;/td>
+ &lt;td>DOS_02291_PGA&lt;/td>
+ &lt;td>2 PGA channels&lt;/td>
+ &lt;td>1×, 2×, 4×, 8×, 16×, 32×&lt;/td>
+ &lt;td>DACOUT1, DACOUT2, Internal&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Output Routing:&lt;/strong> PGA outputs can be routed to DACOUT pins (for external ADC or monitoring) or kept internal (for direct connection to on-chip ADC). The block automatically configures pin assignments based on your selection.&lt;/p></description></item><item><title>PDEC - Position Decoder for SAM Devices</title><link>/block_reference/encoders_counters/pdec.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/encoders_counters/pdec.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/digital/PDEC.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/digital/PDEC.png" alt="PDEC Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Position Decoder - Hall Sensors and Stepper Motor Interface
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The MCHP_PDEC block provides an interface to the Position Decoder (PDEC) peripheral on SAM E5x and E7x microcontrollers. Unlike traditional quadrature encoders, PDEC is optimized for Hall effect sensors (3-phase BLDC motors) and stepper motor position tracking, with specialized features for these applications.
+&lt;strong>Key Features:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>3-input position decoder (Hall sensors: A, B, C)&lt;/li>
+&lt;li>Quadrature encoder mode (X2/X4)&lt;/li>
+&lt;li>Counter with direction input mode&lt;/li>
+&lt;li>Configurable position counter and revolution counter&lt;/li>
+&lt;li>Auto-correction for phase errors&lt;/li>
+&lt;li>Programmable digital filtering&lt;/li>
+&lt;li>Index pulse support&lt;/li>
+&lt;li>Angular position calculation (9-bit + configurable resolution)&lt;/li>
+&lt;/ul>
+&lt;h3 id="device-support">Device Support&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>PDEC Module&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>SAM E54/E53/E51&lt;/td>
+ &lt;td>1&lt;/td>
+ &lt;td>Hall sensor, quadrature, stepper position&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E70/S70/V71&lt;/td>
+ &lt;td>1&lt;/td>
+ &lt;td>Hall sensor, quadrature, stepper position&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
+&lt;h3 id="operating-mode">Operating Mode&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Mode&lt;/td>
+ &lt;td>• Quadrature Encoder&lt;/td>
+ &lt;td>• Counter with direction&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="position-configuration">Position Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Counter Output&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Enable position counter output&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Counter Datatype&lt;/td>
+ &lt;td>unsigned/signed&lt;/td>
+ &lt;td>Position counter sign&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Revolution Output&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Enable revolution counter&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Revolution Datatype&lt;/td>
+ &lt;td>unsigned/signed&lt;/td>
+ &lt;td>Revolution counter sign&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Counter Revolution Length&lt;/td>
+ &lt;td>• Counter is 16-bit (9+7 bit resolution)&lt;/td>
+ &lt;td>• Counter is 17-bit (9+8 bit resolution)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="index-and-reset">Index and Reset&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Index&lt;/td>
+ &lt;td>• Not used&lt;/td>
+ &lt;td>• Reset counter&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Max Counter Reset&lt;/td>
+ &lt;td>Integer value&lt;/td>
+ &lt;td>Modulo limit for position counter&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Max Position Input&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Enable dynamic modulo limit via block input&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Reset Input&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Enable external reset input&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="signal-configuration">Signal Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Pin&lt;/th>
+ &lt;th>Function (Quadrature)&lt;/th>
+ &lt;th>Function (Hall Sensor)&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>QDI0&lt;/td>
+ &lt;td>Phase A&lt;/td>
+ &lt;td>Hall A&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>QDI1&lt;/td>
+ &lt;td>Phase B&lt;/td>
+ &lt;td>Hall B&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>QDI2&lt;/td>
+ &lt;td>Index&lt;/td>
+ &lt;td>Hall C&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Parameter&lt;/td>
+ &lt;td>Options&lt;/td>
+ &lt;td>Description&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Invert QDI0/1/2&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Invert input polarity&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Swap Pin Phase A &amp;amp; B&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Reverse direction (quadrature mode)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Auto Correction&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Automatic phase error correction&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Digital Filter&lt;/td>
+ &lt;td>disabled or time period&lt;/td>
+ &lt;td>Input signal filtering&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="hall-sensor-operation">Hall Sensor Operation&lt;/h2>
+&lt;h3 id="3-phase-hall-sensor-interface">3-Phase Hall Sensor Interface&lt;/h3>
+&lt;p>PDEC decodes 3-wire Hall sensor signals for BLDC motor position:
+Hall Sensor States (6-step commutation): State | Hall A | Hall B | Hall C | Sector &amp;mdash;&amp;mdash;-|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash;|&amp;mdash;&amp;mdash;&amp;ndash; 1 | 0 | 0 | 1 | 0-60° 2 | 0 | 1 | 1 | 60-120° 3 | 0 | 1 | 0 | 120-180° 4 | 1 | 1 | 0 | 180-240° 5 | 1 | 0 | 0 | 240-300° 6 | 1 | 0 | 1 | 300-360° Valid transitions: 1→2→3→4→5→6→1 (CW) 1→6→5→4→3→2→1 (CCW)&lt;/p></description></item><item><title>PWM Blocks - Block Reference</title><link>/block_reference/pwm_blocks.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/pwm_blocks.html</guid><description>&lt;p>Comprehensive PWM (Pulse Width Modulation) blocks for motor control, power conversion, and signal generation across all MCHP Blockset supported families.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>[]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>[]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>[]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>[][]&lt;/p>
+&lt;pre>&lt;code> dsPIC30F/33F/33E: → MCHP_PWM
+ dsPIC33C/CH/CK: → MCHP_PWM_HighSpeed
+ dsPIC33A: → MCHP_PWM_HS_FEP
+ SAM/ARM: → MCHP_PWM_SAM7x or MCHP_TCC_PWM
+&lt;/code>&lt;/pre>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="dspic-family-pwm-blocks">dsPIC Family PWM Blocks&lt;/h2>
+&lt;p>[&lt;strong>MCHP_PWM&lt;/strong> - Standard PWMBasic PWM for dsPIC30F/33F/33E with dead-time and fault protectiondsPIC30FdsPIC33FdsPIC33E][&lt;strong>MCHP_PWM_HighSpeed&lt;/strong> - High-Speed PWMAdvanced PWM with independent time bases and 4 output modesdsPIC33CdsPIC33CHdsPIC33CK][&lt;strong>MCHP_PWM_HighSpeed_Override&lt;/strong> - PWM Override ControlManual override for emergency shutdown and diagnosticsdsPIC33C/CH/CK][&lt;strong>MCHP_PWM_HS_FEP&lt;/strong> - High-Speed PWM with Fine Edge PositioningLatest generation with 16× resolution (High-Resolution mode)dsPIC33A]&lt;/p></description></item><item><title>QDEC SAMx - Quadrature Decoder for SAM Devices</title><link>/block_reference/encoders_counters/qdec_samx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/encoders_counters/qdec_samx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/digital/QDEC_SAMx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/digital/QDEC_SAMx.png" alt="QDEC SAMx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Quadrature Decoder Using TC Modules - SAM Device Encoder Interface
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The MCHP_QDEC_SAMx block implements quadrature encoder decoding using the Timer/Counter (TC) modules on SAM microcontrollers (E5x, E7x, C2x). Unlike dedicated QEI peripherals, this implementation uses TC modules in quadrature mode to decode encoder signals for position and speed measurement.
+&lt;strong>Key Features:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Quadrature position decoding using TC modules&lt;/li>
+&lt;li>32-bit position counter with revolution counter&lt;/li>
+&lt;li>Index pulse support for position reset&lt;/li>
+&lt;li>Direction detection&lt;/li>
+&lt;li>Speed measurement using time base&lt;/li>
+&lt;li>Phase error detection (quadrature integrity check)&lt;/li>
+&lt;li>Missing pulse error detection&lt;/li>
+&lt;li>Configurable digital filtering&lt;/li>
+&lt;li>Rotation change flag&lt;/li>
+&lt;/ul>
+&lt;h3 id="device-support">Device Support&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>TC Modules&lt;/th>
+ &lt;th>Max QDEC Instances&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>SAM E54/E53&lt;/td>
+ &lt;td>TC0-TC7&lt;/td>
+ &lt;td>2-4&lt;/td>
+ &lt;td>Position, speed, index, error detection&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E70/S70/V71&lt;/td>
+ &lt;td>TC0-TC11&lt;/td>
+ &lt;td>4&lt;/td>
+ &lt;td>Position, speed, index, error detection&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM C21&lt;/td>
+ &lt;td>TC0-TC7&lt;/td>
+ &lt;td>2-4&lt;/td>
+ &lt;td>Position, speed, index, error detection&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Important:&lt;/strong> Each QDEC instance requires 3 TC channels (one complete TC module). For example, TC0 uses channels 0, 1, and 2 for phase A/B counting, index counting, and speed time base respectively.&lt;/p></description></item><item><title>QEI - Quadrature Encoder Interface</title><link>/block_reference/encoders_counters/qei.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/encoders_counters/qei.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/digital/QEI.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/digital/QEI.png" alt="QEI Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Quadrature Encoder Interface - Position and Velocity Measurement
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The MCHP_QEI block provides an interface to the Quadrature Encoder Interface (QEI) peripheral available on dsPIC and PIC32 microcontrollers. This peripheral decodes quadrature encoder signals to measure position, direction, and velocity of rotating shafts, making it ideal for motor control and precision positioning applications.
+&lt;strong>Key Features:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Quadrature decoding (X2 and X4 modes)&lt;/li>
+&lt;li>16-bit or 32-bit position counter&lt;/li>
+&lt;li>Index pulse detection and position reset&lt;/li>
+&lt;li>Direction sensing&lt;/li>
+&lt;li>Programmable digital filtering&lt;/li>
+&lt;li>Velocity measurement (32-bit QEI only)&lt;/li>
+&lt;li>Multiple operating modes: encoder, pulse counter, up/down counter&lt;/li>
+&lt;li>Position modulo and reset options&lt;/li>
+&lt;/ul>
+&lt;h3 id="device-support">Device Support&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>QEI Type&lt;/th>
+ &lt;th>Max Modules&lt;/th>
+ &lt;th>Features&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC30F&lt;/td>
+ &lt;td>16-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Basic quadrature decoding, index reset&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33F&lt;/td>
+ &lt;td>16-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Basic quadrature decoding, index reset&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33E&lt;/td>
+ &lt;td>32-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Extended position counter, velocity measurement&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33C&lt;/td>
+ &lt;td>32-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Extended position counter, velocity measurement&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dsPIC33A&lt;/td>
+ &lt;td>32-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Enhanced position/velocity, advanced filtering&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32MK&lt;/td>
+ &lt;td>32-bit&lt;/td>
+ &lt;td>1-2&lt;/td>
+ &lt;td>Extended features, modulo with index reset&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
+&lt;h3 id="operating-mode">Operating Mode&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>QEI Mode&lt;/td>
+ &lt;td>• Quadrature Encoder&lt;/td>
+ &lt;td>• External Pulse Counter&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>X2/X4 Mode&lt;/td>
+ &lt;td>on/off (16-bit QEI only)&lt;/td>
+ &lt;td>X2: 2 counts/line, X4: 4 counts/line&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="position-counter-configuration">Position Counter Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Position Output&lt;/td>
+ &lt;td>• is not an output&lt;/td>
+ &lt;td>• 16-bit unsigned&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Position Reset Mode&lt;/td>
+ &lt;td>• Never reset&lt;/td>
+ &lt;td>• Reset on INDEX&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Modulo Limits&lt;/td>
+ &lt;td>[Low High] vector&lt;/td>
+ &lt;td>Position counter modulo boundaries&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Initial Value&lt;/td>
+ &lt;td>Integer&lt;/td>
+ &lt;td>Position initialization value&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="index-pulse-configuration">Index Pulse Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Index Counter Output&lt;/td>
+ &lt;td>• is not an output&lt;/td>
+ &lt;td>• 16-bit unsigned/signed&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Index Match Value&lt;/td>
+ &lt;td>QEA/QEB state (00, 01, 10, 11)&lt;/td>
+ &lt;td>Encoder state when index is valid&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Index Polarity&lt;/td>
+ &lt;td>Active high/low&lt;/td>
+ &lt;td>Index pulse polarity&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="velocity-measurement-32-bit-qei">Velocity Measurement (32-bit QEI)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Velocity Output&lt;/td>
+ &lt;td>• is not an output&lt;/td>
+ &lt;td>• 16-bit unsigned&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Period Output&lt;/td>
+ &lt;td>• is not an output&lt;/td>
+ &lt;td>• 16-bit unsigned&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Max Period&lt;/td>
+ &lt;td>Time (seconds)&lt;/td>
+ &lt;td>Maximum period for velocity calculation&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="signal-conditioning">Signal Conditioning&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Digital Filter&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Enable input signal filtering&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Filter Cutoff Freq&lt;/td>
+ &lt;td>Frequency (Hz)&lt;/td>
+ &lt;td>Low-pass filter cutoff frequency&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Swap QEA/QEB&lt;/td>
+ &lt;td>on/off&lt;/td>
+ &lt;td>Reverse encoder direction&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Invert Polarity&lt;/td>
+ &lt;td>QEA, QEB, INDEX, HOME&lt;/td>
+ &lt;td>Invert input signal polarity&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="pin-configuration-remappable-devices">Pin Configuration (Remappable Devices)&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Pin&lt;/th>
+ &lt;th>Function&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>QEA/QEIA&lt;/td>
+ &lt;td>Phase A Input&lt;/td>
+ &lt;td>Encoder channel A (or pulse input)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>QEB/QEIB&lt;/td>
+ &lt;td>Phase B Input&lt;/td>
+ &lt;td>Encoder channel B (or direction input)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>INDEX/QEINDX&lt;/td>
+ &lt;td>Index Input&lt;/td>
+ &lt;td>Index pulse for position reset&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>HOME/QEIHOM&lt;/td>
+ &lt;td>Home Input&lt;/td>
+ &lt;td>Home reference signal (optional)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="quadrature-encoding-principles">Quadrature Encoding Principles&lt;/h2>
+&lt;h3 id="x4-quadrature-decoding">X4 Quadrature Decoding&lt;/h3>
+&lt;p>In X4 mode, the QEI peripheral counts on both rising and falling edges of both channels, providing 4 counts per encoder line:
+QEA &lt;em>&lt;strong>┌───┐&lt;/strong>&lt;/em>┌───┐&lt;em>&lt;strong>┌───┐&lt;/strong>&lt;/em>┌───┐___ │ │ │ │ │ │ │ │ └───┘ └───┘ └───┘ └───┘ QEB &lt;em>&lt;strong>&lt;em>&lt;strong>┌───┐&lt;/strong>&lt;/em>┌───┐&lt;/strong>&lt;/em>┌───┐___┌─── │ │ │ │ │ │ │ ____└───┘ └───┘ └───┘ └─── Count: 0 1 2 3 4 5 6 7 8 9 10 11 12 Direction: FORWARD (QEA leads QEB by 90°)&lt;/p></description></item><item><title>System Blocks</title><link>/block_reference/system/system.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system/system.html</guid><description>&lt;p>System blocks configure the fundamental behavior of MCHP Blockset models, including target selection, clock configuration, multitasking scheduler, and runtime monitoring.&lt;/p>
+&lt;h2 id="core-configuration-blocks">Core Configuration Blocks&lt;/h2>
+&lt;p>&lt;strong>[][][]&lt;/strong>&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Block&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Required?&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>MCHP_Master&lt;/td>
+ &lt;td>Main configuration block - chip selection, clock, fuses, build settings&lt;/td>
+ &lt;td>✓ Yes - ALWAYS required&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MCHP_Scheduler_Options&lt;/td>
+ &lt;td>Rate monotonic scheduler configuration and overload behavior&lt;/td>
+ &lt;td>Optional (default settings used)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MCHP_Interrupt&lt;/td>
+ &lt;td>Interrupt service routine configuration for triggered subsystems&lt;/td>
+ &lt;td>Optional (for ISR-driven tasks)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="task-management-blocks">Task Management Blocks&lt;/h2>
+&lt;p>&lt;strong>[][]&lt;/strong>&lt;/p></description></item><item><title>UART Break/Autobaud</title><link>/block_reference/communication/uart/uart_break_and_autobaud.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_break_and_autobaud.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_uart/UART_Config.png" alt="UART Break and Autobaud Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ Microchip UART modules support advanced communication features including Break character transmission/detection and Auto-Baud rate detection for robust communication in systems where baud rates are unknown or need synchronization.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Microchip UART modules support advanced communication features including &lt;strong>Break character transmission/detection&lt;/strong> and &lt;strong>Auto-Baud rate detection&lt;/strong>. These features enable robust communication in systems where baud rates are unknown or need synchronization, and provide special signaling capabilities for protocol implementations.&lt;/p></description></item><item><title>UART Config Block</title><link>/block_reference/communication/uart/uart_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_config.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_uart/UART_Config.png" alt="UART Config Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ UART_Config Block The &lt;strong>UART Config&lt;/strong> block configures a UART (Universal Asynchronous Receiver/Transmitter) module for serial communication. This block sets up baud rate, pin assignments, operating modes, and implementation methods for both transmit and receive operations.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Series&lt;/th>
+ &lt;th>Architecture ID&lt;/th>
+ &lt;th>Notes&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC&lt;/td>
+ &lt;td>30F, 24F, 33F, 33E, 33C, 33A&lt;/td>
+ &lt;td>1, 2, 3, 4, 8&lt;/td>
+ &lt;td>Full support including IrDA on capable devices&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32&lt;/td>
+ &lt;td>MK, MZ, MX, PIC32A&lt;/td>
+ &lt;td>Included in dsPIC arch&lt;/td>
+ &lt;td>Standard UART functionality&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM&lt;/td>
+ &lt;td>E7x, E5x, D5x, C2x, D2x&lt;/td>
+ &lt;td>5, 6, 7&lt;/td>
+ &lt;td>USART peripheral (SAMx callback variants)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="uart-selection">UART Selection&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>UART Module&lt;/strong> - Select UART/USART number (1 to N, depending on device)&lt;/li>
+&lt;li>Number of available UARTs detected automatically from selected chip&lt;/li>
+&lt;/ul>
+&lt;h3 id="baud-rate-configuration">Baud Rate Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Baud Rate Selection&lt;/td>
+ &lt;td>Popup list or Custom&lt;/td>
+ &lt;td>Choose from standard rates (110 to 12M baud) or enter custom value&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Standard Rates&lt;/td>
+ &lt;td>110, 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, &amp;hellip;&lt;/td>
+ &lt;td>Up to 12000000 baud on capable devices&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Custom Baud&lt;/td>
+ &lt;td>User-defined&lt;/td>
+ &lt;td>Enter any baud rate value (validated against FCY)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Init Sequence Baud&lt;/td>
+ &lt;td>Same options&lt;/td>
+ &lt;td>Optional different baud rate for initialization sequence&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="operating-modes">Operating Modes&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Availability&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Full Duplex&lt;/td>
+ &lt;td>Default mode - independent Tx and Rx&lt;/td>
+ &lt;td>All devices&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Half Duplex&lt;/td>
+ &lt;td>One-wire Rx-Tx (shared pin)&lt;/td>
+ &lt;td>All devices&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>IrDA Mode&lt;/td>
+ &lt;td>Infrared communication (requires IrDA encoder/decoder)&lt;/td>
+ &lt;td>Only on devices with UxMODE bit 12&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="transmit-tx-implementation">Transmit (Tx) Implementation&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Use Case&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Do not implement Tx&lt;/td>
+ &lt;td>No transmit capability&lt;/td>
+ &lt;td>Receive-only applications&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Simplest&lt;/td>
+ &lt;td>1, 4, or 8 byte internal buffer (device dependent)&lt;/td>
+ &lt;td>Low data rate, minimal overhead&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Circular Buffer&lt;/td>
+ &lt;td>Software circular buffer with interrupt&lt;/td>
+ &lt;td>Moderate data rate, reliable&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DMA Ping-Pong&lt;/td>
+ &lt;td>Two DMA buffers alternating&lt;/td>
+ &lt;td>High throughput, no data loss&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DMA Circular Buffer&lt;/td>
+ &lt;td>DMA with circular buffer&lt;/td>
+ &lt;td>Continuous streaming&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DMA Single Buffer&lt;/td>
+ &lt;td>Single DMA buffer (possible data loss)&lt;/td>
+ &lt;td>High speed, can tolerate data loss&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="receive-rx-implementation">Receive (Rx) Implementation&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Use Case&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Do not implement Rx&lt;/td>
+ &lt;td>No receive capability&lt;/td>
+ &lt;td>Transmit-only applications&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Simplest&lt;/td>
+ &lt;td>1, 4, or 8 byte internal buffer&lt;/td>
+ &lt;td>Low data rate polling&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Circular Buffer&lt;/td>
+ &lt;td>Software circular buffer with interrupt&lt;/td>
+ &lt;td>Reliable reception, moderate rate&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>DMA Ping-Pong&lt;/td>
+ &lt;td>Two DMA buffers alternating&lt;/td>
+ &lt;td>High throughput reception&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="pin-configuration">Pin Configuration&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>RX Pin&lt;/strong> - Receive data pin (remappable on PPS-capable devices)&lt;/li>
+&lt;li>&lt;strong>TX Pin&lt;/strong> - Transmit data pin (remappable on PPS-capable devices)&lt;/li>
+&lt;li>&lt;strong>CTS Pin&lt;/strong> - Clear To Send (hardware flow control, optional)&lt;/li>
+&lt;li>&lt;strong>RTS Pin&lt;/strong> - Request To Send (hardware flow control, optional)&lt;/li>
+&lt;li>&lt;strong>DTR Pin&lt;/strong> - Data Terminal Ready (dsPIC CK/33A only)&lt;/li>
+&lt;li>&lt;strong>DSR Pin&lt;/strong> - Data Set Ready (dsPIC CK/33A only)&lt;/li>
+&lt;/ul>
+&lt;h3 id="advanced-options">Advanced Options&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Idle Time Control&lt;/strong> (dsPIC CK only) - Insert phantom bytes for idle time on Tx line&lt;/li>
+&lt;li>&lt;strong>Initialization Sequence&lt;/strong> - Configure different settings at startup&lt;/li>
+&lt;li>&lt;strong>External PIL Communication&lt;/strong> - Enable for Processor-in-the-Loop testing&lt;/li>
+&lt;/ul>
+&lt;h2 id="registers-configured">Registers Configured&lt;/h2>
+&lt;h3 id="dspicpic32-registers">dsPIC/PIC32 Registers&lt;/h3>
+&lt;p>&lt;code>**``**``**``**``**``**&lt;/code>&lt;/p></description></item><item><title>UART Rx Block</title><link>/block_reference/communication/uart/uart_rx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_rx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_uart/UART_Rx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_uart/UART_Rx.png" alt="UART Rx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ UART_Rx Block Icon The &lt;strong>UART Rx&lt;/strong> block receives data from a configured UART module. This block outputs 8-bit data (uint8 type) with flexible size configuration including inherited sizing, user-defined vectors, and automatic buffer sizing based on baud rate and sample time. It works in conjunction with the &lt;strong>UART Config&lt;/strong> block to provide efficient serial reception.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Series&lt;/th>
+ &lt;th>Architecture ID&lt;/th>
+ &lt;th>Implementation Files&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC&lt;/td>
+ &lt;td>30F, 24F, 33F, 33E, 33C, 33A&lt;/td>
+ &lt;td>1, 2, 3, 4, 8&lt;/td>
+ &lt;td>PIC bare, Interrupt (Circular Buffer)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32&lt;/td>
+ &lt;td>MK, MZ, MX, PIC32A&lt;/td>
+ &lt;td>Included in dsPIC arch&lt;/td>
+ &lt;td>Same as dsPIC (PIC implementations)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E7x/S7x&lt;/td>
+ &lt;td>SAME70, SAMS70, V71, PIC32CZ MC70&lt;/td>
+ &lt;td>5&lt;/td>
+ &lt;td>SAMx7 bare, Interrupt, DMA ping-pong&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E5x/D5x&lt;/td>
+ &lt;td>SAME5x, SAMD5x&lt;/td>
+ &lt;td>6&lt;/td>
+ &lt;td>SAMx5 bare, Interrupt, DMA ping-pong&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM C2x/D2x&lt;/td>
+ &lt;td>SAMC2x, SAMD2x, SAMDA1&lt;/td>
+ &lt;td>7&lt;/td>
+ &lt;td>SAMx5 implementations (shared)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-outputs">Block Outputs&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Port Name&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Size&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Optional&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Nbr&lt;/td>
+ &lt;td>uint8/uint16&lt;/td>
+ &lt;td>Scalar&lt;/td>
+ &lt;td>Number of bytes received (buffer fill level)&lt;/td>
+ &lt;td>Yes (enable via Flag_Out parameter)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Rx&lt;/td>
+ &lt;td>uint8&lt;/td>
+ &lt;td>Scalar or Vector [N]&lt;/td>
+ &lt;td>Received data (configurable size)&lt;/td>
+ &lt;td>No (always present)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="uart-selection">UART Selection&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>UART Module&lt;/strong> - Select UART/USART number (must match UART Config block)&lt;/li>
+&lt;li>Dropdown automatically populated with available UARTs from selected chip&lt;/li>
+&lt;/ul>
+&lt;h3 id="output-size-configuration">Output Size Configuration&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Rx_Size_popup&lt;/td>
+ &lt;td>User defined&lt;/td>
+ &lt;td>Inherited via back propagation&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Rx_Size&lt;/td>
+ &lt;td>Positive integer or []&lt;/td>
+ &lt;td>User-defined size (when Rx_Size_popup = &amp;ldquo;User defined&amp;rdquo;)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="size-determination-methods">Size Determination Methods&lt;/h3>
+&lt;h4 id="1-user-defined">1. User Defined&lt;/h4>
+&lt;p>Explicitly set output vector size:&lt;/p></description></item><item><title>UART Tx Block</title><link>/block_reference/communication/uart/uart_tx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_tx.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_uart/UART_Tx.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_uart/UART_Tx.png" alt="UART Tx Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ UART_Tx Block Icon The &lt;strong>UART Tx&lt;/strong> block transmits data through a configured UART module. This block sends 8-bit data (uint8 type) and supports variable-length transmission with optional feedback on bytes sent. It works in conjunction with the &lt;strong>UART Config&lt;/strong> block to provide flexible, efficient serial transmission.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Series&lt;/th>
+ &lt;th>Architecture ID&lt;/th>
+ &lt;th>Implementation Files&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC&lt;/td>
+ &lt;td>30F, 24F, 33F, 33E, 33C, 33A&lt;/td>
+ &lt;td>1, 2, 3, 4, 8&lt;/td>
+ &lt;td>PIC bare, Interrupt, DMA variants&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32&lt;/td>
+ &lt;td>MK, MZ, MX, PIC32A&lt;/td>
+ &lt;td>Included in dsPIC arch&lt;/td>
+ &lt;td>Same as dsPIC (PIC implementations)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E7x/S7x&lt;/td>
+ &lt;td>SAME70, SAMS70, V71, PIC32CZ MC70&lt;/td>
+ &lt;td>5&lt;/td>
+ &lt;td>SAMx7 bare, Interrupt, DMA ping-pong&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E5x/D5x&lt;/td>
+ &lt;td>SAME5x, SAMD5x&lt;/td>
+ &lt;td>6&lt;/td>
+ &lt;td>SAMx5 bare, Interrupt, DMA ping-pong&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM C2x/D2x&lt;/td>
+ &lt;td>SAMC2x, SAMD2x, SAMDA1&lt;/td>
+ &lt;td>7&lt;/td>
+ &lt;td>SAMx5 implementations (shared)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputs-and-outputs">Block Inputs and Outputs&lt;/h2>
+&lt;h3 id="inputs">Inputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Port Name&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Optional&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>N&lt;/td>
+ &lt;td>uint8/uint16&lt;/td>
+ &lt;td>Number of bytes to send (variable length mode)&lt;/td>
+ &lt;td>Yes (enable via parameter)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Tx&lt;/td>
+ &lt;td>uint8 (vector or scalar)&lt;/td>
+ &lt;td>Data to transmit&lt;/td>
+ &lt;td>No (always present)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>$&lt;/td>
+ &lt;td>any&lt;/td>
+ &lt;td>Function-Call input (triggers execution)&lt;/td>
+ &lt;td>Yes (based on ordering)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="outputs">Outputs&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Port Name&lt;/th>
+ &lt;th>Data Type&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;th>Optional&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>N&lt;/td>
+ &lt;td>uint8/uint16&lt;/td>
+ &lt;td>Number of bytes actually sent&lt;/td>
+ &lt;td>Yes (enable via parameter)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>$&lt;/td>
+ &lt;td>function-call&lt;/td>
+ &lt;td>Function-Call output (execution chain)&lt;/td>
+ &lt;td>Yes (based on ordering)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
+&lt;h3 id="uart-selection">UART Selection&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>UART Module&lt;/strong> - Select UART/USART number (must match UART Config block)&lt;/li>
+&lt;li>Dropdown automatically populated with available UARTs from selected chip&lt;/li>
+&lt;/ul>
+&lt;h3 id="data-transmission-options">Data Transmission Options&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Parameter&lt;/th>
+ &lt;th>Options&lt;/th>
+ &lt;th>Description&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>NSend Input&lt;/td>
+ &lt;td>On/Off checkbox&lt;/td>
+ &lt;td>Enable &amp;lsquo;N&amp;rsquo; input port for variable-length transmission&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>NSend Output&lt;/td>
+ &lt;td>On/Off checkbox&lt;/td>
+ &lt;td>Enable &amp;lsquo;N&amp;rsquo; output port (bytes actually sent)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>UART String Mode&lt;/td>
+ &lt;td>On/Off checkbox&lt;/td>
+ &lt;td>When enabled: &amp;lsquo;0&amp;rsquo; (null character) marks end of string&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>All or Nothing&lt;/td>
+ &lt;td>On/Off checkbox&lt;/td>
+ &lt;td>Only transmit if entire buffer can be sent (no partial sends)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="implementation-modes">Implementation Modes&lt;/h2>
+&lt;p>Transmission behavior depends on the implementation mode selected in the &lt;strong>UART Config&lt;/strong> block:&lt;/p></description></item><item><title>UART TxMatlab Block</title><link>/block_reference/communication/uart/uart_txmatlab.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_txmatlab.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../assets/images/blocks/bus_uart/UART_TxMatlab.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_uart/UART_TxMatlab.png" alt="UART TxMatlab Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ UART_TxMatlab Block Icon The &lt;strong>UART TxMatlab&lt;/strong> block transmits numerical data through UART to MATLAB (or alternative hosts) for real-time monitoring, plotting, and recording. This block supports multiple data types (int8, uint8, int16, uint16, int32, uint32, single, double) and implements a packetized protocol for reliable data streaming and visualization using the &lt;strong>picgui&lt;/strong> MATLAB interface.
+ &lt;/div>
+&lt;/div>
+
+&lt;h2 id="supported-device-families">Supported Device Families&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Family&lt;/th>
+ &lt;th>Series&lt;/th>
+ &lt;th>Architecture ID&lt;/th>
+ &lt;th>Implementation&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>dsPIC&lt;/td>
+ &lt;td>30F, 24F, 33F, 33E, 33C, 33A&lt;/td>
+ &lt;td>1, 2, 3, 4, 8&lt;/td>
+ &lt;td>Same as UART Tx (PIC implementations)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>PIC32&lt;/td>
+ &lt;td>MK, MZ, MX, PIC32A&lt;/td>
+ &lt;td>Included in dsPIC arch&lt;/td>
+ &lt;td>Same as UART Tx (PIC implementations)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E7x/S7x&lt;/td>
+ &lt;td>SAME70, SAMS70, V71, PIC32CZ MC70&lt;/td>
+ &lt;td>5&lt;/td>
+ &lt;td>USART/UART variants (SAMx7)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM E5x/D5x&lt;/td>
+ &lt;td>SAME5x, SAMD5x&lt;/td>
+ &lt;td>6&lt;/td>
+ &lt;td>SERCOM USART (SAMx5)&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SAM C2x/D2x&lt;/td>
+ &lt;td>SAMC2x, SAMD2x, SAMDA1&lt;/td>
+ &lt;td>7&lt;/td>
+ &lt;td>SERCOM USART (SAMx5 variant)&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="block-inputs">Block Inputs&lt;/h2>
+&lt;h3 id="dynamic-channel-inputs">Dynamic Channel Inputs&lt;/h3>
+&lt;p>The number and labels of input ports are determined by the &lt;strong>CHANNELS&lt;/strong> parameter. Each specified channel creates a corresponding input port.&lt;/p></description></item><item><title>I2C Master/Slave - Communication Blocks</title><link>/block_reference/communication/i2c.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/i2c.html</guid><description>&lt;h2 id="i2c-masterslave-block">I2C Master/Slave Block&lt;/h2>
+&lt;div style="text-align: center; margin: 20px 0;">
+ &lt;picture>
+ &lt;source srcset="../assets/images/blocks/bus_i2c/BUS_I2C_MASTER.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_i2c/BUS_I2C_MASTER.png" alt="I2C Block" style="max-width: 200px;">
+ &lt;/picture>
+&lt;/div>
+&lt;p>&lt;strong>Status&lt;/strong>: Documentation in progress.&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Configure and use I2C (Inter-Integrated Circuit) communication interface in either Master or Slave mode.&lt;/p>
+&lt;p>The I2C protocol is a synchronous, multi-master, multi-slave, packet-switched, single-ended serial communication bus commonly used for attaching lower-speed peripheral ICs to processors and microcontrollers. This single block handles both Master and Slave functionality.&lt;/p>
+&lt;h2 id="block-modes">Block Modes&lt;/h2>
+&lt;h3 id="master-mode">Master Mode&lt;/h3>
+&lt;p>In Master mode, the microcontroller initiates all communication on the I2C bus:&lt;/p></description></item><item><title>SPI Master/Slave - Communication Blocks</title><link>/block_reference/communication/spi.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/spi.html</guid><description>&lt;h2 id="spi-masterslave-block">SPI Master/Slave Block&lt;/h2>
+&lt;div style="text-align: center; margin: 20px 0;">
+ &lt;picture>
+ &lt;source srcset="../assets/images/blocks/bus_spi/BUS_SPI.svg" type="image/svg+xml">
+ &lt;img src="../assets/images/blocks/bus_spi/BUS_SPI.png" alt="SPI Block" style="max-width: 200px;">
+ &lt;/picture>
+&lt;/div>
+&lt;p>&lt;strong>Status&lt;/strong>: Documentation in progress.&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Configure and use SPI (Serial Peripheral Interface) communication in either Master or Slave mode.&lt;/p>
+&lt;p>The SPI protocol is a synchronous serial communication interface for short-distance communication, primarily used in embedded systems. SPI operates in full-duplex mode with a master-slave architecture. This single block handles both Master and Slave functionality.&lt;/p>
+&lt;h2 id="block-modes">Block Modes&lt;/h2>
+&lt;h3 id="master-mode">Master Mode&lt;/h3>
+&lt;p>In Master mode, the microcontroller controls the SPI bus:&lt;/p></description></item></channel></rss>

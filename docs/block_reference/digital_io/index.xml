@@ -1,40 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Digital I/O Blocks on MPLAB Blockset for MATLAB/Simulink</title>
-    <link>/block_reference/digital_io.html</link>
-    <description>Recent content in Digital I/O Blocks on MPLAB Blockset for MATLAB/Simulink</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/block_reference/digital_io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Digital Input</title>
-      <link>/block_reference/digital_io/digital_input.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/digital_io/digital_input.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/digital/DigitalInput.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/digital/DigitalInput.png&#34; alt=&#34;Digital Input Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Digital Input&lt;/strong&gt; block reads the state of digital input pins from any available GPIO port on Microchip microcontrollers. The block supports configurable electrical characteristics including pull-up and pull-down resistors, and provides flexible output formats for easy integration into Simulink models.  &lt;strong&gt;Key Features:&lt;/strong&gt;  - [Pin Mapping and PPS Guide] - Microchip Device Datasheet - GPIO/PORT section&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;Digital Input&lt;/strong&gt; block reads the state of digital input pins from any available GPIO port on Microchip microcontrollers. The block supports configurable electrical characteristics including pull-up and pull-down resistors, and provides flexible output formats for easy integration into Simulink models.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Digital Output</title>
-      <link>/block_reference/digital_io/digital_output.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/digital_io/digital_output.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/digital/DigitalOutput.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/digital/DigitalOutput.png&#34; alt=&#34;Digital Output Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Digital Output&lt;/strong&gt; block is a high-level composite subsystem block that provides digital output functionality with optional read-back capability. This master block automatically manages internal sub-blocks to provide a clean, user-friendly interface for controlling GPIO output pins.  &lt;strong&gt;Key Features:&lt;/strong&gt;  - [Electrical Specifications and Ratings] - Microchip Device Datasheet - GPIO/LAT/ODC sections&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;Digital Output&lt;/strong&gt; block is a high-level composite subsystem block that provides digital output functionality with optional read-back capability. This master block automatically manages internal sub-blocks to provide a clean, user-friendly interface for controlling GPIO output pins.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Digital Output Read</title>
-      <link>/block_reference/digital_io/digital_output_read.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/digital_io/digital_output_read.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/digital/DigitalOutput_Read.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/digital/DigitalOutput_Read.png&#34; alt=&#34;Digital Output Read Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Digital Output Read&lt;/strong&gt; block reads the current state of output pins by accessing the LAT (latch) register. This block provides feedback on the actual output state with a 1-sample delay, which is useful for diagnostics, state verification, and closed-loop control applications.  &lt;strong&gt;Key Features:&lt;/strong&gt;  - Microchip Device Datasheet - LAT Register Description&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;Digital Output Read&lt;/strong&gt; block reads the current state of output pins by accessing the LAT (latch) register. This block provides feedback on the actual output state with a 1-sample delay, which is useful for diagnostics, state verification, and closed-loop control applications.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Digital Output Write</title>
-      <link>/block_reference/digital_io/digital_output_write.html</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>/block_reference/digital_io/digital_output_write.html</guid>
-      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/digital/DigitalOutput_Write.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/digital/DigitalOutput_Write.png&#34; alt=&#34;Digital Output Write Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;Digital Output Write&lt;/strong&gt; block is the core digital output writing block that directly controls GPIO pins via LAT register writes. This block configures pins as outputs, sets initial values, and provides options for atomic multi-pin updates and electrical characteristics configuration.  &lt;strong&gt;Key Features:&lt;/strong&gt;  - [Electrical Specifications and Current Limits] - Microchip Device Datasheet - GPIO/LAT/TRIS/ODC sections&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;Digital Output Write&lt;/strong&gt; block is the core digital output writing block that directly controls GPIO pins via LAT register writes. This block configures pins as outputs, sets initial values, and provides options for atomic multi-pin updates and electrical characteristics configuration.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital I/O Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/digital_io.html</link><description>Recent content in Digital I/O Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/digital_io/index.xml" rel="self" type="application/rss+xml"/><item><title>Digital Input</title><link>/block_reference/digital_io/digital_input.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/digital_io/digital_input.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/digital/DigitalInput.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/digital/DigitalInput.png" alt="Digital Input Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Digital Input&lt;/strong> block reads the state of digital input pins from any available GPIO port on Microchip microcontrollers. The block supports configurable electrical characteristics including pull-up and pull-down resistors, and provides flexible output formats for easy integration into Simulink models. &lt;strong>Key Features:&lt;/strong> - [Pin Mapping and PPS Guide] - Microchip Device Datasheet - GPIO/PORT section
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>Digital Input&lt;/strong> block reads the state of digital input pins from any available GPIO port on Microchip microcontrollers. The block supports configurable electrical characteristics including pull-up and pull-down resistors, and provides flexible output formats for easy integration into Simulink models.&lt;/p></description></item><item><title>Digital Output</title><link>/block_reference/digital_io/digital_output.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/digital_io/digital_output.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/digital/DigitalOutput.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/digital/DigitalOutput.png" alt="Digital Output Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Digital Output&lt;/strong> block is a high-level composite subsystem block that provides digital output functionality with optional read-back capability. This master block automatically manages internal sub-blocks to provide a clean, user-friendly interface for controlling GPIO output pins. &lt;strong>Key Features:&lt;/strong> - [Electrical Specifications and Ratings] - Microchip Device Datasheet - GPIO/LAT/ODC sections
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>Digital Output&lt;/strong> block is a high-level composite subsystem block that provides digital output functionality with optional read-back capability. This master block automatically manages internal sub-blocks to provide a clean, user-friendly interface for controlling GPIO output pins.&lt;/p></description></item><item><title>Digital Output Read</title><link>/block_reference/digital_io/digital_output_read.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/digital_io/digital_output_read.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/digital/DigitalOutput_Read.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/digital/DigitalOutput_Read.png" alt="Digital Output Read Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Digital Output Read&lt;/strong> block reads the current state of output pins by accessing the LAT (latch) register. This block provides feedback on the actual output state with a 1-sample delay, which is useful for diagnostics, state verification, and closed-loop control applications. &lt;strong>Key Features:&lt;/strong> - Microchip Device Datasheet - LAT Register Description
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>Digital Output Read&lt;/strong> block reads the current state of output pins by accessing the LAT (latch) register. This block provides feedback on the actual output state with a 1-sample delay, which is useful for diagnostics, state verification, and closed-loop control applications.&lt;/p></description></item><item><title>Digital Output Write</title><link>/block_reference/digital_io/digital_output_write.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/digital_io/digital_output_write.html</guid><description>&lt;div class="block-icon-container">
+ &lt;picture class="block-icon-image">
+ &lt;source srcset="../../assets/images/blocks/digital/DigitalOutput_Write.svg" type="image/svg+xml">
+ &lt;img src="../../assets/images/blocks/digital/DigitalOutput_Write.png" alt="Digital Output Write Block Icon">
+ &lt;/picture>
+ &lt;div class="block-icon-description">
+ The &lt;strong>Digital Output Write&lt;/strong> block is the core digital output writing block that directly controls GPIO pins via LAT register writes. This block configures pins as outputs, sets initial values, and provides options for atomic multi-pin updates and electrical characteristics configuration. &lt;strong>Key Features:&lt;/strong> - [Electrical Specifications and Current Limits] - Microchip Device Datasheet - GPIO/LAT/TRIS/ODC sections
+ &lt;/div>
+&lt;/div>
+
+&lt;p>The &lt;strong>Digital Output Write&lt;/strong> block is the core digital output writing block that directly controls GPIO pins via LAT register writes. This block configures pins as outputs, sets initial values, and provides options for atomic multi-pin updates and electrical characteristics configuration.&lt;/p></description></item></channel></rss>
