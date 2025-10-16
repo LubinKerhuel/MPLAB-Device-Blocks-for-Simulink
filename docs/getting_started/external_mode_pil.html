@@ -1,139 +1,1476 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>External Mode & PIL Testing - MPLAB Device Blocks for Simulink</title>
+    <title>External Mode &amp; PIL Testing - MPLAB Device Blocks for Simulink - MPLAB Blockset for MATLAB/Simulink</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../assets/css/navigation.css">
-    <script src="../assets/js/navigation.js"></script>
+    <style>
+         
+         
+
+         
+        :root {
+             
+            --bg-primary: #f8f9fa;
+            --bg-secondary: white;
+            --bg-tertiary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --text-tertiary: #6c757d;
+            --text-heading: #003d5c;
+            --border-color: #dee2e6;
+            --border-light: #e1e8ed;
+            --border-medium: #e9ecef;
+            --accent-primary: #0076A8;
+            --accent-secondary: #005a85;
+            --accent-hover: #005580;
+            --accent-light: #e3f2fd;
+            --code-bg: #f4f4f4;
+            --code-text: #c7254e;
+            --pre-bg: linear-gradient(to bottom, #e8e8e8 0%, #f0f0f0 100%);
+            --pre-border: #d0d0d0;
+            --table-hover: #e3f2fd;
+            --table-stripe: #f8f9fa;
+            --note-bg: linear-gradient(to right, #e7f3fe 0%, #f5fbff 100%);
+            --note-border: #2196F3;
+            --note-text: #1976D2;
+            --warning-bg: linear-gradient(to right, #fff9e6 0%, #fffcf0 100%);
+            --warning-border: #ff9800;
+            --warning-text: #f57c00;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+             
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242831;
+            --bg-tertiary: #2d3139;
+            --text-primary: #e4e6eb;
+            --text-secondary: #adb5bd;
+            --text-tertiary: #8b95a1;
+            --text-heading: #e4e6eb;
+            --border-color: #3a3f4b;
+            --border-light: #3a3f4b;
+            --border-medium: #404654;
+            --accent-primary: #4da6d6;
+            --accent-secondary: #3d8ab5;
+            --accent-hover: #60b4e0;
+            --accent-light: #2d4556;
+            --code-bg: #2d3139;
+            --code-text: #ff6b9d;
+            --pre-bg: linear-gradient(to bottom, #2d3139 0%, #2d3139 100%);
+            --pre-border: #3a3f4b;
+            --table-hover: #2d4556;
+            --table-stripe: #2d3139;
+            --note-bg: linear-gradient(to right, #1e3a52 0%, #1e3a52 100%);
+            --note-border: #4da6d6;
+            --note-text: #66b3e0;
+            --warning-bg: linear-gradient(to right, #3d3520 0%, #3d3520 100%);
+            --warning-border: #ffb347;
+            --warning-text: #ffc870;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.5);
+        }
+
+         
+        
+        :root {
+             
+            --content-max-width: 1000px;
+            --content-margin-horizontal: 30px;
+            --content-margin-vertical: 15px;
+            --container-border-radius: 8px;
+        }
+        
+
+         
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 15px;
+        }
+
+         
+        
+         
+        .doc-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: var(--content-margin-vertical) var(--content-margin-horizontal);
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--container-border-radius);
+        }
+        
+
+         
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-section-title:hover {
+            background-color: var(--bg-tertiary);
+            border-left-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .nav-section-title .icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .nav-section-title .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-section.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-section-children {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .nav-section.expanded > .nav-section-children {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            padding-left: 45px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-light);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+         
+        .nav-subsection {
+            margin-bottom: 4px;
+        }
+
+        .nav-subsection-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            padding-left: 35px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .nav-subsection-title:hover {
+            background-color: var(--bg-primary);
+            border-left-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .nav-subsection-title .icon {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .nav-subsection-title .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-subsection.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsection .nav-section-children {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .nav-subsection.expanded > .nav-section-children {
+            display: block;
+        }
+
+         
+        .nav-block-link {
+            display: block;
+            padding: 6px 20px;
+            padding-left: 55px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-block-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .nav-block-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+
+         
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-left: 16px;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+         
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--text-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .microchip-logo {
+            height: 55px;
+        }
+
+         
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        .breadcrumbs a:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-tertiary);
+        }
+
+         
+        h2 {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+         
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+         
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 18px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: linear-gradient(to bottom, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-medium);
+            vertical-align: top;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--table-stripe);
+        }
+
+        tbody tr:hover td {
+            background-color: var(--table-hover);
+        }
+
+         
+        code {
+            background-color: var(--code-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: var(--code-text);
+            font-size: 14px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+         
+        .note {
+            background: var(--note-bg);
+            border-left: 5px solid var(--note-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\2139\FE0F  Note';
+            display: block;
+            font-weight: 600;
+            color: var(--note-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .note p {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .warning::before {
+            content: '\26A0\FE0F  Warning';
+            display: block;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .warning p {
+            color: var(--text-primary);
+        }
+
+         
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+         
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+         
+        .nav-footer {
+            margin-top: 48px;
+            padding: 20px 0 12px 0;
+            border-top: 2px solid var(--border-light);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .nav-footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+         
+        .block-icon-container {
+            display: table;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            table-layout: fixed;
+        }
+
+        .block-icon-image {
+            display: table-cell;
+            width: 220px;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+
+        .block-icon-image img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .block-icon-description {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+         
+        p img, .container > img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+         
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .microchip-logo {
+                height: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+         
+        
+        @media (max-width: 1024px) {
+             
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.mobile-visible {
+                left: 0;
+            }
+
+             
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+             
+            .content-wrapper {
+                width: 100%;
+            }
+
+            .container {
+                margin: 10px 15px;
+                padding: 20px;
+            }
+
+             
+            .sidebar.mobile-visible::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 280px;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .nav-section-title {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 6px 15px;
+                padding-left: 35px;
+            }
+        }
+        
+
+         
+        .under-construction-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid #e65100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .under-construction-banner .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .under-construction-banner strong {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Mobile Navigation Toggle -->
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    
+    
+    <div class="doc-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">MPLAB Blockset</h2>
+            </div>
+            <div class="sidebar-nav">
+                
+                <div class="nav-section">
+                    <a href="../" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">🏠</span>Home</span>
+                    </a>
+                </div>
 
-    <!-- Left Navigation Panel -->
-    <nav class="doc-nav-container">
-        <div class="doc-nav-header">
-            <a href="../index.html">MCHP Blockset Docs</a>
-        </div>
-        <ul class="doc-nav-menu">
-            <li class="nav-item">
-                <a href="../index.html" class="nav-link">Home</a>
-            </li>
+                
+                
+                <div class="nav-section" id="section-getting-started">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('getting-started')">
+                        <span><span class="icon">🚀</span>Getting Started</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../getting_started/overview.html" class="nav-link">Overview</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/installation.html" class="nav-link">Installation</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/quick_start.html" class="nav-link">Quick Start Guide</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/motor_control_examples.html" class="nav-link">Motor Control Examples</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/scheduler_multitasking.html" class="nav-link">Scheduler &amp; Multitasking</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/external_mode_pil.html" class="nav-link">External Mode &amp; PIL</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/data_visualization.html" class="nav-link">Data Visualization</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-user-guide">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('user-guide')">
+                        <span><span class="icon">📚</span>User Guide</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/external_mode.html" class="nav-link">External Mode</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/pil_testing.html" class="nav-link">PIL Testing</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-block-reference">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('block-reference')">
+                        <span><span class="icon">🧩</span>Block Reference</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-pwm-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('pwm-timers')">
+                                    <span><span class="icon">⚡</span>PWM &amp; Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm.html" class="nav-block-link">PWM</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed.html" class="nav-block-link">PWM High-Speed</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_hs_fep.html" class="nav-block-link">PWM HS FEP</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed_override.html" class="nav-block-link">PWM HS Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/mcpwm.html" class="nav-block-link">MCPWM (PIC32)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x.html" class="nav-block-link">PWM SAM7x</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x_override.html" class="nav-block-link">PWM SAM7x Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/tcc_pwm.html" class="nav-block-link">TCC PWM (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('timers')">
+                                    <span><span class="icon">⏱️</span>Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_config.html" class="nav-block-link">Timer Config</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/input_capture.html" class="nav-block-link">Input Capture</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_hw.html" class="nav-block-link">Output Compare (HW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_sw.html" class="nav-block-link">Output Compare (SW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_pil_profiling.html" class="nav-block-link">PIL Profiling Timer</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-adc">
+                                <div class="nav-subsection-title" onclick="toggleSection('adc')">
+                                    <span><span class="icon">📊</span>ADC</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc.html" class="nav-block-link">ADC (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_hs_12b.html" class="nav-block-link">ADC HS 12-bit</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar.html" class="nav-block-link">ADC High-Speed SAR</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar_dspic.html" class="nav-block-link">ADC HS SAR (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_same5x.html" class="nav-block-link">ADC (SAM E5x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_samrh707x.html" class="nav-block-link">ADC (SAMRH707x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/afec_sam7x.html" class="nav-block-link">AFEC (SAM7x)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-communication">
+                                <div class="nav-subsection-title" onclick="toggleSection('communication')">
+                                    <span><span class="icon">📡</span>Communication</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-uart">
+                                            <div class="nav-subsection-title" onclick="toggleSection('uart')">
+                                                <span><span class="icon"></span>UART</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_config.html" class="nav-block-link">UART Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_tx.html" class="nav-block-link">UART Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_rx.html" class="nav-block-link">UART Rx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_txmatlab.html" class="nav-block-link">UART Tx MATLAB</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_break_and_autobaud.html" class="nav-block-link">UART Break &amp; Autobaud</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-can">
+                                            <div class="nav-subsection-title" onclick="toggleSection('can')">
+                                                <span><span class="icon"></span>CAN</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_config.html" class="nav-block-link">CAN Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_tx.html" class="nav-block-link">CAN Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_rx.html" class="nav-block-link">CAN Rx</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/i2c.html" class="nav-block-link">I2C Master/Slave</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/spi.html" class="nav-block-link">SPI Master/Slave</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-digital-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('digital-io')">
+                                    <span><span class="icon">🔌</span>Digital I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_input.html" class="nav-block-link">Digital Input</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output.html" class="nav-block-link">Digital Output</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_read.html" class="nav-block-link">Digital Output Read</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_write.html" class="nav-block-link">Digital Output Write</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-encoders">
+                                <div class="nav-subsection-title" onclick="toggleSection('encoders')">
+                                    <span><span class="icon">🔄</span>Encoders</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qei.html" class="nav-block-link">QEI (Quadrature Encoder)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/pdec.html" class="nav-block-link">PDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qdec_samx.html" class="nav-block-link">QDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/change_notification.html" class="nav-block-link">Change Notification</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-analog-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('analog-io')">
+                                    <span><span class="icon">📉</span>Analog I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html" class="nav-block-link">High-Speed Comparator</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html" class="nav-block-link">Comparator w/ Slope</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html" class="nav-block-link">Op-Amp</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/pga.html" class="nav-block-link">PGA (Programmable Gain Amp)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/dac_samx.html" class="nav-block-link">DAC (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-system-config">
+                                <div class="nav-subsection-title" onclick="toggleSection('system-config')">
+                                    <span><span class="icon">⚙️</span>System Config</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/master.html" class="nav-block-link">Master</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/interrupt.html" class="nav-block-link">Interrupt</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/compiler_options.html" class="nav-block-link">Compiler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/scheduler_options.html" class="nav-block-link">Scheduler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/idle_task.html" class="nav-block-link">Idle Task</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_load.html" class="nav-block-link">MCU Load</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_overload.html" class="nav-block-link">MCU Overload</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/tasks_state.html" class="nav-block-link">Tasks State</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/secondary_core.html" class="nav-block-link">Secondary Core</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-utility">
+                                <div class="nav-subsection-title" onclick="toggleSection('utility')">
+                                    <span><span class="icon">🔧</span>Utility Blocks</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/user_functions/c_function_call.html" class="nav-block-link">C Function Call</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/doc.html" class="nav-block-link">Documentation Block</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/msi.html" class="nav-block-link">MSI (Model Sample Info)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/port_info.html" class="nav-block-link">Port Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/timer_info.html" class="nav-block-link">Timer Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/simulink_reset_config.html" class="nav-block-link">Simulink Reset Config</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-examples">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('examples')">
+                        <span><span class="icon">📖</span>Examples</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-github">
+                    
+                    
+                    <a href="https://github.com/microchip-technology/mplab-blockset" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">💻</span>GitHub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </nav>
 
-            <!-- Getting Started Section -->
-            <li class="nav-item">
-                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
-                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
-                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
-                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
-                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
-                </ul>
-            </li>
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <a href="../">Home</a>
+                    
+                        <span>&gt;</span>
+                        <a href="../getting_started.html">Getting Started</a>
+                    
+                    <span>&gt;</span>
+                    <span>External Mode &amp; PIL Testing - MPLAB Device Blocks for Simulink</span>
+                </div>
 
-            <!-- User Guide Section -->
-            <li class="nav-item">
-                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
-                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
-                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
-                </ul>
-            </li>
+                
+                <div class="under-construction-banner">
+                    <span class="icon">⚠️</span>
+                    <strong>Documentation Under Construction</strong> —
+                    This documentation is currently being developed. All information has not been validated by Microchip yet.
+                </div>
+                
 
-            <!-- Block Reference Section -->
-            <li class="nav-item">
-                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
-                </ul>
-            </li>
+                <div class="page-header">
+                    <h1>External Mode &amp; PIL Testing - MPLAB Device Blocks for Simulink</h1>
+                    <div class="page-header-right">
+                        <img src="../images/microchip-logo.png" alt="Microchip Logo" class="microchip-logo">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                            <span class="theme-icon" id="theme-icon">☀️</span>
+                            <span id="theme-text">Light</span>
+                        </button>
+                    </div>
+                </div>
 
-            <!-- Examples Section -->
-            <li class="nav-item">
-                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
-                </ul>
-            </li>
+                
+  <p>The MPLAB Device Blocks for Simulink provides two powerful tools for testing and validating embedded algorithms:</p>
+<ul>
+<li><strong>External Mode</strong>: Real-time parameter tuning and data visualization during code execution</li>
+<li><strong>PIL (Processor-in-the-Loop)</strong>: Verification of code generation accuracy and performance analysis</li>
+</ul>
+<p>This guide explains both tools, their use cases, setup procedures, and best practices.</p>
+<h2 id="external-mode-real-time-parameter-tuning">External Mode: Real-Time Parameter Tuning</h2>
+<h3 id="what-is-external-mode">What is External Mode?</h3>
+<p>External Mode creates a bidirectional communication link between Simulink and your embedded target while the code is running. This enables:</p>
+<ul>
+<li><strong>Upload parameters</strong> to running code without rebuilding (e.g., tune PID gains in real-time)</li>
+<li><strong>Download signals</strong> from embedded hardware for real-time plotting in Simulink</li>
+<li><strong>Start/stop execution</strong> from Simulink interface</li>
+<li><strong>Trigger data capture</strong> based on signal conditions</li>
+</ul>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+     Typical Use Case:
+A motor control engineer uses External Mode to tune PID controller gains while the motor is running, observing the effect of each change immediately on Simulink scopes without stopping the motor or rebuilding code.
+</div>
 
-            <!-- Release Notes -->
-            <li class="nav-item">
-                <a href="../release_notes.html" class="nav-link">Release Notes</a>
-            </li>
-        </ul>
-    </nav>
+<h3 id="external-mode-variants">External Mode Variants</h3>
+<p>The toolbox provides MathWorks External Mode for real-time parameter tuning and signal monitoring.</p>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+     Related Tool - PIC GUI:
+For simplified data visualization without parameter tuning capabilities, see Data Visualization with PIC GUI. PIC GUI provides lightweight data logging over UART with custom MATLAB visualization scripts.
+</div>
 
-    <div class="doc-content-wrapper">
-    <h1>External Mode & Processor-in-the-Loop (PIL) Testing</h1>
-
-    <p>The MPLAB Device Blocks for Simulink provides two powerful tools for testing and validating embedded algorithms:</p>
-    <ul>
-        <li><strong>External Mode</strong>: Real-time parameter tuning and data visualization during code execution</li>
-        <li><strong>PIL (Processor-in-the-Loop)</strong>: Verification of code generation accuracy and performance analysis</li>
-    </ul>
-
-    <p>This guide explains both tools, their use cases, setup procedures, and best practices.</p>
-
-    <h2>External Mode: Real-Time Parameter Tuning</h2>
-
-    <h3>What is External Mode?</h3>
-
-    <p>External Mode creates a bidirectional communication link between Simulink and your embedded target while the code is running. This enables:</p>
-
-    <ul>
-        <li><strong>Upload parameters</strong> to running code without rebuilding (e.g., tune PID gains in real-time)</li>
-        <li><strong>Download signals</strong> from embedded hardware for real-time plotting in Simulink</li>
-        <li><strong>Start/stop execution</strong> from Simulink interface</li>
-        <li><strong>Trigger data capture</strong> based on signal conditions</li>
-    </ul>
-
-    <div class="note">
-        <strong>💡 Typical Use Case:</strong>
-        <p>A motor control engineer uses External Mode to tune PID controller gains while the motor is running, observing the effect of each change immediately on Simulink scopes without stopping the motor or rebuilding code.</p>
-    </div>
-
-    <h3>External Mode Variants</h3>
-
-    <p>The toolbox supports two External Mode implementations:</p>
-
-    <div class="note">
-        <strong>💡 Related Tool - PIC GUI:</strong>
-        <p>For simplified data visualization without parameter tuning capabilities, see <a href="data_visualization.html">Data Visualization with PIC GUI</a>. PIC GUI provides lightweight data logging over UART with custom MATLAB visualization scripts.</p>
-    </div>
-
-    <h2>MathWorks External Mode</h2>
-
-    <h3>Overview</h3>
-
-    <p>MathWorks External Mode provides tight integration with Simulink, enabling parameter tuning and signal monitoring directly from the Simulink model interface.</p>
-
-    <h3>Protocol: XCP (Universal Measurement and Calibration Protocol)</h3>
-
-    <p>External Mode uses the industry-standard XCP protocol, which provides:</p>
-    <ul>
-        <li>Standardized communication protocol</li>
-        <li>Support for multiple transport layers (Serial, TCP/IP, CAN)</li>
-        <li>Efficient binary data format</li>
-        <li>Synchronization with model execution</li>
-    </ul>
-
-    <h3>External Mode Setup Procedure</h3>
-
-    <h4>Step 1: Enable External Mode in Model</h4>
-
-    <pre><code>1. Open Model Configuration Parameters (Ctrl+E)
+<h2 id="mathworks-external-mode">MathWorks External Mode</h2>
+<h3 id="overview">Overview</h3>
+<p>MathWorks External Mode provides tight integration with Simulink, enabling parameter tuning and signal monitoring directly from the Simulink model interface.</p>
+<h3 id="protocol-xcp-universal-measurement-and-calibration-protocol">Protocol: XCP (Universal Measurement and Calibration Protocol)</h3>
+<p>External Mode uses the industry-standard XCP protocol, which provides:</p>
+<ul>
+<li>Standardized communication protocol</li>
+<li>Support for multiple transport layers (Serial, TCP/IP, CAN)</li>
+<li>Efficient binary data format</li>
+<li>Synchronization with model execution</li>
+</ul>
+<h3 id="external-mode-setup-procedure">External Mode Setup Procedure</h3>
+<h4 id="step-1-enable-external-mode-in-model">Step 1: Enable External Mode in Model</h4>
+<pre tabindex="0"><code>1. Open Model Configuration Parameters (Ctrl+E)
 2. Navigate to: Code Generation → Interface
-3. Check "External mode"
+3. Check &#34;External mode&#34;
 4. Configure transport layer:
-   - Transport: "XCP on Serial" (for UART)
-   - Transport: "XCP on TCP/IP" (for Ethernet)
-5. Set baud rate (serial) or IP address (TCP/IP)</code></pre>
-
-    <h4>Step 2: Configure Communication Parameters</h4>
-
-    <pre><code>For Serial (UART):
+   - Transport: &#34;XCP on Serial&#34; (for UART)
+   - Transport: &#34;XCP on TCP/IP&#34; (for Ethernet)
+5. Set baud rate (serial) or IP address (TCP/IP)
+</code></pre><h4 id="step-2-configure-communication-parameters">Step 2: Configure Communication Parameters</h4>
+<pre tabindex="0"><code>For Serial (UART):
   - Baud rate: 115200 (or higher)
   - COM port: Detected automatically or set manually
   - Data bits: 8
@@ -142,342 +1479,303 @@
 
 For TCP/IP (Ethernet):
   - Target IP address: e.g., 192.168.1.100
-  - Port: 17725 (default XCP port)</code></pre>
-
-    <h4>Step 3: Build and Program with External Mode</h4>
-
-    <pre><code>1. Build model (Ctrl+B)
+  - Port: 17725 (default XCP port)
+</code></pre><h4 id="step-3-build-and-program-with-external-mode">Step 3: Build and Program with External Mode</h4>
+<pre tabindex="0"><code>1. Build model (Ctrl+B)
    - External Mode code is automatically included
 2. Program microcontroller via ICD/PICkit
 3. In Simulink:
-   - Click "Connect to Target" button (or Ctrl+K)
+   - Click &#34;Connect to Target&#34; button (or Ctrl+K)
    - Wait for connection confirmation
-4. Click "Start Real-Time Code" (or Ctrl+T)
+4. Click &#34;Start Real-Time Code&#34; (or Ctrl+T)
 5. Observe signals in Simulink scopes
-6. Modify tunable parameters in real-time</code></pre>
-
-    <h3>Making Parameters Tunable</h3>
-
-    <p>To allow real-time tuning of a parameter:</p>
-
-    <pre><code>1. Right-click the block parameter or constant block
-2. Select "Tune Parameter..."
-3. Check "Tunable" checkbox
+6. Modify tunable parameters in real-time
+</code></pre><h3 id="making-parameters-tunable">Making Parameters Tunable</h3>
+<p>To allow real-time tuning of a parameter:</p>
+<pre tabindex="0"><code>1. Right-click the block parameter or constant block
+2. Select &#34;Tune Parameter...&#34;
+3. Check &#34;Tunable&#34; checkbox
 4. Optional: Set min/max limits for safety
 5. Rebuild model
 
 During External Mode:
   - Double-click parameter to open slider
   - Adjust value while code runs
-  - Observe effect immediately</code></pre>
+  - Observe effect immediately
+</code></pre><div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+    <p>⚠️ Safety Warning:
+When tuning parameters in real-time for motor control or other safety-critical applications:</p>
+<pre><code>        Set appropriate min/max limits on tunable parameters
+        Have emergency stop mechanism ready
+        Start with safe operating conditions
+        Monitor system behavior continuously
+</code></pre>
+</div>
 
-    <div class="warning">
-        <strong>⚠️ Safety Warning:</strong>
-        <p>When tuning parameters in real-time for motor control or other safety-critical applications:</p>
-        <ul>
-            <li>Set appropriate min/max limits on tunable parameters</li>
-            <li>Have emergency stop mechanism ready</li>
-            <li>Start with safe operating conditions</li>
-            <li>Monitor system behavior continuously</li>
-        </ul>
-    </div>
+<h3 id="external-mode-performance-considerations">External Mode Performance Considerations</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Impact</th>
+          <th>Recommendation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CPU Overhead</td>
+          <td>5-15% depending on logged signals</td>
+          <td>Minimize number of logged signals</td>
+      </tr>
+      <tr>
+          <td>Communication Latency</td>
+          <td>10-100ms depending on transport</td>
+          <td>Use TCP/IP for lower latency than Serial</td>
+      </tr>
+      <tr>
+          <td>Maximum Sample Rate</td>
+          <td>Limited by baud rate / network speed</td>
+          <td>Serial: ~10 kHz max, Ethernet: ~100 kHz max</td>
+      </tr>
+      <tr>
+          <td>Buffer Size</td>
+          <td>Limits burst logging capability</td>
+          <td>Configure in External Mode settings</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="processor-in-the-loop-pil-testing">Processor-in-the-Loop (PIL) Testing</h2>
+<h3 id="what-is-pil">What is PIL?</h3>
+<p>PIL runs your generated code on the actual target hardware and compares the results to a reference simulation. This provides two critical types of verification:</p>
+<ul>
+<li><strong>Numerical Verification</strong>: Confirms code generation produces bit-accurate results</li>
+<li><strong>Timing Analysis</strong>: Measures actual execution time and resource usage on hardware</li>
+</ul>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    <p> Why PIL is Important:
+PIL catches errors that simulation alone cannot detect:</p>
+<pre><code>        Fixed-point quantization errors
+        Compiler optimization side effects
+        Hardware-specific behavior
+        Performance bottlenecks
+</code></pre>
+</div>
 
-    <h3>External Mode Performance Considerations</h3>
-
-    <table>
-        <tr>
-            <th>Aspect</th>
-            <th>Impact</th>
-            <th>Recommendation</th>
-        </tr>
-        <tr>
-            <td><strong>CPU Overhead</strong></td>
-            <td>5-15% depending on logged signals</td>
-            <td>Minimize number of logged signals</td>
-        </tr>
-        <tr>
-            <td><strong>Communication Latency</strong></td>
-            <td>10-100ms depending on transport</td>
-            <td>Use TCP/IP for lower latency than Serial</td>
-        </tr>
-        <tr>
-            <td><strong>Maximum Sample Rate</strong></td>
-            <td>Limited by baud rate / network speed</td>
-            <td>Serial: ~10 kHz max, Ethernet: ~100 kHz max</td>
-        </tr>
-        <tr>
-            <td><strong>Buffer Size</strong></td>
-            <td>Limits burst logging capability</td>
-            <td>Configure in External Mode settings</td>
-        </tr>
-    </table>
-
-    <h2>Processor-in-the-Loop (PIL) Testing</h2>
-
-    <h3>What is PIL?</h3>
-
-    <p>PIL runs your generated code on the actual target hardware and compares the results to a reference simulation. This provides two critical types of verification:</p>
-
-    <ol>
-        <li><strong>Numerical Verification</strong>: Confirms code generation produces bit-accurate results</li>
-        <li><strong>Timing Analysis</strong>: Measures actual execution time and resource usage on hardware</li>
-    </ol>
-
-    <div class="note">
-        <strong>💡 Why PIL is Important:</strong>
-        <p>PIL catches errors that simulation alone cannot detect:</p>
-        <ul>
-            <li>Fixed-point quantization errors</li>
-            <li>Compiler optimization side effects</li>
-            <li>Hardware-specific behavior</li>
-            <li>Performance bottlenecks</li>
-        </ul>
-    </div>
-
-    <h3>PIL Test Model Structure</h3>
-
-    <div class="figure">
-        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_Model.PNG"
-             alt="PIL test model structure">
-        <p><strong>Figure 2:</strong> PIL test model structure. The algorithm under test runs on hardware (PIL block), while a reference model runs in simulation. Results are compared to verify correctness.</p>
-    </div>
-
-    <p><strong>Model components:</strong></p>
-    <ul>
-        <li><strong>Test Inputs</strong>: Signal sources (sine waves, steps, ramps)</li>
-        <li><strong>PIL Block</strong>: Algorithm running on hardware</li>
-        <li><strong>Reference Model</strong>: Same algorithm in Simulink</li>
-        <li><strong>Comparison</strong>: Subtract outputs to check for differences</li>
-        <li><strong>Assertion</strong>: Fail test if error exceeds threshold</li>
-    </ul>
-
-    <h3>PIL Numerical Verification</h3>
-
-    <div class="figure">
-        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_Out_Simu_Vs_Exec.PNG"
-             alt="PIL numerical comparison results">
-        <p><strong>Figure 3:</strong> PIL numerical verification results. Blue line (simulation) vs. Orange line (hardware execution). In this test, the outputs match exactly, confirming code generation accuracy.</p>
-    </div>
-
-    <p><strong>What to verify:</strong></p>
-    <ul>
-        <li><strong>Floating-point algorithms</strong>: Should match simulation exactly (within rounding tolerance)</li>
-        <li><strong>Fixed-point algorithms</strong>: May have quantization differences - verify they're acceptable</li>
-        <li><strong>Lookup tables</strong>: Check interpolation accuracy</li>
-        <li><strong>State machines</strong>: Verify state transitions</li>
-    </ul>
-
-    <h3>PIL Timing Analysis</h3>
-
-    <div class="figure">
-        <img src="../block_reference/assets/images/toolbox_concepts/PIL_33AK512MPS506_TimingAnalysis.PNG"
-             alt="PIL timing analysis results">
-        <p><strong>Figure 4:</strong> PIL timing analysis results showing actual execution time on target hardware. Statistics include minimum, maximum, and average execution times in CPU cycles and microseconds.</p>
-    </div>
-
-    <p><strong>Timing metrics provided:</strong></p>
-    <table>
-        <tr>
-            <th>Metric</th>
-            <th>Description</th>
-            <th>Use</th>
-        </tr>
-        <tr>
-            <td><strong>Minimum Time</strong></td>
-            <td>Fastest execution (best-case path)</td>
-            <td>Understand base performance</td>
-        </tr>
-        <tr>
-            <td><strong>Maximum Time</strong></td>
-            <td>Slowest execution (worst-case path)</td>
-            <td>Verify meets deadline</td>
-        </tr>
-        <tr>
-            <td><strong>Average Time</strong></td>
-            <td>Typical execution time</td>
-            <td>Calculate CPU utilization</td>
-        </tr>
-        <tr>
-            <td><strong>Stack Usage</strong></td>
-            <td>Peak stack depth</td>
-            <td>Ensure no stack overflow</td>
-        </tr>
-        <tr>
-            <td><strong>Code Size</strong></td>
-            <td>Flash memory used</td>
-            <td>Check fits in device</td>
-        </tr>
-    </table>
-
-    <h3>PIL Setup Procedure</h3>
-
-    <h4>Step 1: Create PIL Test Model</h4>
-
-    <pre><code>1. Create new Simulink model
+<h3 id="pil-test-model-structure">PIL Test Model Structure</h3>
+<p><img src="../assets/images/toolbox_concepts/PIL_33AK512MPS506_Model.PNG" alt="PIL test model structure"></p>
+<p><strong>Figure 2:</strong> PIL test model structure. The algorithm under test runs on hardware (PIL block), while a reference model runs in simulation. Results are compared to verify correctness.</p>
+<p><strong>Model components:</strong></p>
+<ul>
+<li><strong>Test Inputs</strong>: Signal sources (sine waves, steps, ramps)</li>
+<li><strong>PIL Block</strong>: Algorithm running on hardware</li>
+<li><strong>Reference Model</strong>: Same algorithm in Simulink</li>
+<li><strong>Comparison</strong>: Subtract outputs to check for differences</li>
+<li><strong>Assertion</strong>: Fail test if error exceeds threshold</li>
+</ul>
+<h3 id="pil-numerical-verification">PIL Numerical Verification</h3>
+<p><img src="../assets/images/toolbox_concepts/PIL_33AK512MPS506_Out_Simu_Vs_Exec.PNG" alt="PIL numerical comparison results"></p>
+<p><strong>Figure 3:</strong> PIL numerical verification results. Blue line (simulation) vs. Orange line (hardware execution). In this test, the outputs match exactly, confirming code generation accuracy.</p>
+<p><strong>What to verify:</strong></p>
+<ul>
+<li><strong>Floating-point algorithms</strong>: Should match simulation exactly (within rounding tolerance)</li>
+<li><strong>Fixed-point algorithms</strong>: May have quantization differences - verify they&rsquo;re acceptable</li>
+<li><strong>Lookup tables</strong>: Check interpolation accuracy</li>
+<li><strong>State machines</strong>: Verify state transitions</li>
+</ul>
+<h3 id="pil-timing-analysis">PIL Timing Analysis</h3>
+<p><img src="../assets/images/toolbox_concepts/PIL_33AK512MPS506_TimingAnalysis.PNG" alt="PIL timing analysis results"></p>
+<p><strong>Figure 4:</strong> PIL timing analysis results showing actual execution time on target hardware. Statistics include minimum, maximum, and average execution times in CPU cycles and microseconds.</p>
+<p><strong>Timing metrics provided:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Metric</th>
+          <th>Description</th>
+          <th>Use</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Minimum Time</td>
+          <td>Fastest execution (best-case path)</td>
+          <td>Understand base performance</td>
+      </tr>
+      <tr>
+          <td>Maximum Time</td>
+          <td>Slowest execution (worst-case path)</td>
+          <td>Verify meets deadline</td>
+      </tr>
+      <tr>
+          <td>Average Time</td>
+          <td>Typical execution time</td>
+          <td>Calculate CPU utilization</td>
+      </tr>
+      <tr>
+          <td>Stack Usage</td>
+          <td>Peak stack depth</td>
+          <td>Ensure no stack overflow</td>
+      </tr>
+      <tr>
+          <td>Code Size</td>
+          <td>Flash memory used</td>
+          <td>Check fits in device</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="pil-setup-procedure">PIL Setup Procedure</h3>
+<h4 id="step-1-create-pil-test-model">Step 1: Create PIL Test Model</h4>
+<pre tabindex="0"><code>1. Create new Simulink model
 2. Add test signal sources (sine, step, etc.)
 3. Add your algorithm as a subsystem or reference model
 4. Add reference implementation for comparison
-5. Add comparison logic (subtraction + assertion)</code></pre>
-
-    <h4>Step 2: Configure Subsystem for PIL</h4>
-
-    <pre><code>1. Right-click subsystem/model block
-2. Select "C/C++ Code" → "Build"
+5. Add comparison logic (subtraction + assertion)
+</code></pre><h4 id="step-2-configure-subsystem-for-pil">Step 2: Configure Subsystem for PIL</h4>
+<pre tabindex="0"><code>1. Right-click subsystem/model block
+2. Select &#34;C/C++ Code&#34; → &#34;Build&#34;
 3. In build dialog:
-   - Set "Build action" to "Software-in-the-Loop (SIL)"
-     or "Processor-in-the-Loop (PIL)"
+   - Set &#34;Build action&#34; to &#34;Software-in-the-Loop (SIL)&#34;
+     or &#34;Processor-in-the-Loop (PIL)&#34;
    - Select PIL for hardware testing
 4. Choose hardware connection:
    - ICD3/ICD4/ICD5
    - PICkit 3/4/5
    - MPLAB SNAP
-5. Click "Build"</code></pre>
-
-    <h4>Step 3: Run PIL Test</h4>
-
-    <pre><code>1. Click "Run" in Simulink (Ctrl+T)
+5. Click &#34;Build&#34;
+</code></pre><h4 id="step-3-run-pil-test">Step 3: Run PIL Test</h4>
+<pre tabindex="0"><code>1. Click &#34;Run&#34; in Simulink (Ctrl+T)
 2. Code is automatically:
    - Generated
    - Compiled
    - Programmed to hardware
    - Executed with test inputs
 3. Results compared to reference
-4. Report generated with timing data</code></pre>
-
-    <h3>Interpreting PIL Results</h3>
-
-    <h4>Numerical Verification Pass Criteria</h4>
-
-    <table>
-        <tr>
-            <th>Data Type</th>
-            <th>Acceptable Error</th>
-            <th>Notes</th>
-        </tr>
-        <tr>
-            <td><strong>double (64-bit)</strong></td>
-            <td>&lt; 1e-14 (rounding)</td>
-            <td>Should match exactly</td>
-        </tr>
-        <tr>
-            <td><strong>single (32-bit)</strong></td>
-            <td>&lt; 1e-6 (rounding)</td>
-            <td>Should match exactly</td>
-        </tr>
-        <tr>
-            <td><strong>int32 / uint32</strong></td>
-            <td>0 (exact)</td>
-            <td>Must match exactly</td>
-        </tr>
-        <tr>
-            <td><strong>int16 / uint16</strong></td>
-            <td>0 or ±1 (rounding)</td>
-            <td>Check quantization</td>
-        </tr>
-        <tr>
-            <td><strong>Fixed-point</strong></td>
-            <td>Application-dependent</td>
-            <td>Verify against requirements</td>
-        </tr>
-    </table>
-
-    <h4>Timing Analysis Guidelines</h4>
-
-    <pre><code>Example Timing Report:
-  Function: ControlLoop
-  Min time:  45 μs  (2,250 cycles @ 50 MHz)
-  Max time:  67 μs  (3,350 cycles @ 50 MHz)
-  Avg time:  52 μs  (2,600 cycles @ 50 MHz)
-
-Analysis:
-  • Sample period: 100 μs (10 kHz control loop)
-  • Worst case: 67 μs < 100 μs ✅ PASS
-  • CPU load: 52 / 100 = 52% average
-  • Safety margin: 100 - 67 = 33 μs (33% margin) ✅ GOOD</code></pre>
-
-    <div class="important">
-        <strong>🔴 Timing Failure:</strong>
-        <p>If maximum execution time exceeds sample period:</p>
-        <ol>
-            <li><strong>Optimize code</strong>: Use PIL profiling to find bottlenecks</li>
-            <li><strong>Enable optimizations</strong>: Check compiler settings (-O1/-O2/-O3)</li>
-            <li><strong>Use code replacement</strong>: Enable assembly optimizations for dsPIC</li>
-            <li><strong>Reduce sample rate</strong>: Increase sample period if possible</li>
-            <li><strong>Upgrade hardware</strong>: Consider faster microcontroller</li>
-        </ol>
-    </div>
-
-    <h2>External Mode vs PIL Comparison</h2>
-
-    <table>
-        <tr>
-            <th>Aspect</th>
-            <th>External Mode</th>
-            <th>PIL</th>
-        </tr>
-        <tr>
-            <td><strong>Purpose</strong></td>
-            <td>Real-time tuning & debugging</td>
-            <td>Verification & performance analysis</td>
-        </tr>
-        <tr>
-            <td><strong>When to use</strong></td>
-            <td>During development & commissioning</td>
-            <td>Before production release</td>
-        </tr>
-        <tr>
-            <td><strong>Code modification</strong></td>
-            <td>Adds communication code</td>
-            <td>No modification (tests production code)</td>
-        </tr>
-        <tr>
-            <td><strong>Performance impact</strong></td>
-            <td>5-15% overhead</td>
-            <td>None (measured without overhead)</td>
-        </tr>
-        <tr>
-            <td><strong>Hardware connection</strong></td>
-            <td>Serial/Ethernet required during run</td>
-            <td>Programmer (ICD/PICkit) required</td>
-        </tr>
-        <tr>
-            <td><strong>Results</strong></td>
-            <td>Real-time plots, tuned parameters</td>
-            <td>Pass/fail verification, timing data</td>
-        </tr>
-        <tr>
-            <td><strong>Automation</strong></td>
-            <td>Manual interaction</td>
-            <td>Fully automated test</td>
-        </tr>
-    </table>
-
-    <h2>Best Practices</h2>
-
-    <h3>External Mode Best Practices</h3>
-
-    <ol>
-        <li><strong>Minimize logged signals</strong>: Only log signals you need to observe</li>
-        <li><strong>Use appropriate sample rates</strong>: Don't oversample slow signals</li>
-        <li><strong>Set parameter limits</strong>: Prevent accidental unsafe values</li>
-        <li><strong>Document tuned values</strong>: Record final parameter values in model</li>
-        <li><strong>Test without External Mode</strong>: Verify performance without communication overhead</li>
-    </ol>
-
-    <h3>PIL Best Practices</h3>
-
-    <ol>
-        <li><strong>Test early and often</strong>: Run PIL after major algorithm changes</li>
-        <li><strong>Use realistic test inputs</strong>: Cover full operating range</li>
-        <li><strong>Check worst-case timing</strong>: Verify maximum execution time</li>
-        <li><strong>Test with optimizations</strong>: PIL with same settings as production</li>
-        <li><strong>Automate PIL tests</strong>: Integrate into CI/CD pipeline</li>
-        <li><strong>Document results</strong>: Keep timing reports for reference</li>
-    </ol>
-
-    <h3>Workflow Recommendation</h3>
-
-    <pre><code>Development Phase:
+4. Report generated with timing data
+</code></pre><h3 id="interpreting-pil-results">Interpreting PIL Results</h3>
+<h4 id="numerical-verification-pass-criteria">Numerical Verification Pass Criteria</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Data Type</th>
+          <th>Acceptable Error</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>double (64-bit)</td>
+          <td>&lt; 1e-14 (rounding)</td>
+          <td>Should match exactly</td>
+      </tr>
+      <tr>
+          <td>single (32-bit)</td>
+          <td>&lt; 1e-6 (rounding)</td>
+          <td>Should match exactly</td>
+      </tr>
+      <tr>
+          <td>int32 / uint32</td>
+          <td>0 (exact)</td>
+          <td>Must match exactly</td>
+      </tr>
+      <tr>
+          <td>int16 / uint16</td>
+          <td>0 or ±1 (rounding)</td>
+          <td>Check quantization</td>
+      </tr>
+      <tr>
+          <td>Fixed-point</td>
+          <td>Application-dependent</td>
+          <td>Verify against requirements</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="timing-analysis-guidelines">Timing Analysis Guidelines</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span>Example Timing Report:
+</span></span><span style="display:flex;"><span>  Function: ControlLoop
+</span></span><span style="display:flex;"><span>  Min time:  <span style="color:#099">45</span> μs  (<span style="color:#099">2</span>,<span style="color:#099">250</span> cycles @ <span style="color:#099">50</span> MHz)
+</span></span><span style="display:flex;"><span>  Max time:  <span style="color:#099">67</span> μs  (<span style="color:#099">3</span>,<span style="color:#099">350</span> cycles @ <span style="color:#099">50</span> MHz)
+</span></span><span style="display:flex;"><span>  Avg time:  <span style="color:#099">52</span> μs  (<span style="color:#099">2</span>,<span style="color:#099">600</span> cycles @ <span style="color:#099">50</span> MHz)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Analysis:
+</span></span><span style="display:flex;"><span>  • Sample period: <span style="color:#099">100</span> μs (<span style="color:#099">10</span> kHz control loop)
+</span></span><span style="display:flex;"><span>  • Worst <span style="color:#000;font-weight:bold">case</span>: <span style="color:#099">67</span> μs <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#099">100</span> μs ✅ PASS
+</span></span><span style="display:flex;"><span>  • CPU load: <span style="color:#099">52</span> <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">100</span> = <span style="color:#099">52</span><span style="color:#998;font-style:italic">% average</span>
+</span></span><span style="display:flex;"><span>  • Safety margin: <span style="color:#099">100</span> <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">67</span> = <span style="color:#099">33</span> μs (<span style="color:#099">33</span><span style="color:#998;font-style:italic">% margin) ✅ GOOD</span>
+</span></span></code></pre></div><p><strong> Timing Failure:</strong>
+If maximum execution time exceeds sample period:</p>
+<ul>
+<li><strong>Optimize code</strong>: Use PIL profiling to find bottlenecks</li>
+<li><strong>Enable optimizations</strong>: Check compiler settings (-O1/-O2/-O3)</li>
+<li><strong>Use code replacement</strong>: Enable assembly optimizations for dsPIC</li>
+<li><strong>Reduce sample rate</strong>: Increase sample period if possible</li>
+<li><strong>Upgrade hardware</strong>: Consider faster microcontroller</li>
+</ul>
+<h2 id="external-mode-vs-pil-comparison">External Mode vs PIL Comparison</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>External Mode</th>
+          <th>PIL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Purpose</td>
+          <td>Real-time tuning &amp; debugging</td>
+          <td>Verification &amp; performance analysis</td>
+      </tr>
+      <tr>
+          <td>When to use</td>
+          <td>During development &amp; commissioning</td>
+          <td>Before production release</td>
+      </tr>
+      <tr>
+          <td>Code modification</td>
+          <td>Adds communication code</td>
+          <td>No modification (tests production code)</td>
+      </tr>
+      <tr>
+          <td>Performance impact</td>
+          <td>5-15% overhead</td>
+          <td>None (measured without overhead)</td>
+      </tr>
+      <tr>
+          <td>Hardware connection</td>
+          <td>Serial/Ethernet required during run</td>
+          <td>Programmer (ICD/PICkit) required</td>
+      </tr>
+      <tr>
+          <td>Results</td>
+          <td>Real-time plots, tuned parameters</td>
+          <td>Pass/fail verification, timing data</td>
+      </tr>
+      <tr>
+          <td>Automation</td>
+          <td>Manual interaction</td>
+          <td>Fully automated test</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="external-mode-best-practices">External Mode Best Practices</h3>
+<ul>
+<li><strong>Minimize logged signals</strong>: Only log signals you need to observe</li>
+<li><strong>Use appropriate sample rates</strong>: Don&rsquo;t oversample slow signals</li>
+<li><strong>Set parameter limits</strong>: Prevent accidental unsafe values</li>
+<li><strong>Document tuned values</strong>: Record final parameter values in model</li>
+<li><strong>Test without External Mode</strong>: Verify performance without communication overhead</li>
+</ul>
+<h3 id="pil-best-practices">PIL Best Practices</h3>
+<ul>
+<li><strong>Test early and often</strong>: Run PIL after major algorithm changes</li>
+<li><strong>Use realistic test inputs</strong>: Cover full operating range</li>
+<li><strong>Check worst-case timing</strong>: Verify maximum execution time</li>
+<li><strong>Test with optimizations</strong>: PIL with same settings as production</li>
+<li><strong>Automate PIL tests</strong>: Integrate into CI/CD pipeline</li>
+<li><strong>Document results</strong>: Keep timing reports for reference</li>
+</ul>
+<h3 id="workflow-recommendation">Workflow Recommendation</h3>
+<pre tabindex="0"><code>Development Phase:
   1. Develop algorithm in Simulink (pure simulation)
   2. Test with PIL for numerical verification
   3. Optimize if timing fails
@@ -489,58 +1787,210 @@ Production Phase:
   7. Disable External Mode (remove overhead)
   8. Build production code
   9. Final verification with PIL
-  10. Program production units</code></pre>
+  10. Program production units
+</code></pre><h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="external-mode-connection-issues">External Mode Connection Issues</h3>
+<p><strong>Problem:</strong> Cannot connect to target</p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Verify COM port or IP address is correct</li>
+<li>Check baud rate matches between model and hardware</li>
+<li>Ensure target code is running (toggle LED test)</li>
+<li>Check cable connections</li>
+<li>Disable Windows firewall (for TCP/IP mode)</li>
+<li>Try different USB port (for Serial mode)</li>
+</ul>
+<h3 id="pil-test-failures">PIL Test Failures</h3>
+<p><strong>Problem:</strong> Numerical mismatch between simulation and hardware</p>
+<p><strong>Possible causes:</strong></p>
+<ul>
+<li><strong>Fixed-point quantization</strong>: Check word lengths and scaling</li>
+<li><strong>Compiler optimization</strong>: May reorder operations (usually safe)</li>
+<li><strong>Uninitialized variables</strong>: Hardware vs simulation default values differ</li>
+<li><strong>Timing-dependent logic</strong>: Sample time mismatch</li>
+</ul>
+<p><strong>Problem:</strong> Timing exceeds sample period</p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Enable compiler optimizations (-O2 or -O3)</li>
+<li>Enable code replacement library (assembly optimizations)</li>
+<li>Profile code to find bottleneck functions</li>
+<li>Simplify algorithm or increase sample period</li>
+</ul>
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li>[Communication Blocks] (UART for External Mode)</li>
+<li><a href="../block_reference/system_configuration/mcu_load.html">MCHP_MCU_Load Block</a></li>
+<li><a href="../getting_started/scheduler_multitasking.html">Scheduler &amp; Multitasking Guide</a></li>
+<li><a href="../block_reference/system_configuration/compiler_options.html">Compiler Optimization Block</a></li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<h3 id="other">Other</h3>
 
-    <h2>Troubleshooting</h2>
 
-    <h3>External Mode Connection Issues</h3>
 
-    <p><strong>Problem:</strong> Cannot connect to target</p>
-    <p><strong>Solutions:</strong></p>
-    <ul>
-        <li>Verify COM port or IP address is correct</li>
-        <li>Check baud rate matches between model and hardware</li>
-        <li>Ensure target code is running (toggle LED test)</li>
-        <li>Check cable connections</li>
-        <li>Disable Windows firewall (for TCP/IP mode)</li>
-        <li>Try different USB port (for Serial mode)</li>
-    </ul>
+                <div class="nav-footer">
+                    <p>Last updated: January 2025 | MPLAB Blockset Documentation</p>
+                    <p>&copy; 2025 Microchip Technology Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
 
-    <h3>PIL Test Failures</h3>
-
-    <p><strong>Problem:</strong> Numerical mismatch between simulation and hardware</p>
-    <p><strong>Possible causes:</strong></p>
-    <ul>
-        <li><strong>Fixed-point quantization</strong>: Check word lengths and scaling</li>
-        <li><strong>Compiler optimization</strong>: May reorder operations (usually safe)</li>
-        <li><strong>Uninitialized variables</strong>: Hardware vs simulation default values differ</li>
-        <li><strong>Timing-dependent logic</strong>: Sample time mismatch</li>
-    </ul>
-
-    <p><strong>Problem:</strong> Timing exceeds sample period</p>
-    <p><strong>Solutions:</strong></p>
-    <ol>
-        <li>Enable compiler optimizations (-O2 or -O3)</li>
-        <li>Enable code replacement library (assembly optimizations)</li>
-        <li>Profile code to find bottleneck functions</li>
-        <li>Simplify algorithm or increase sample period</li>
-    </ol>
-
-    <h2>Related Documentation</h2>
-
-    <ul>
-        <li><a href="../block_reference/communication.html">Communication Blocks</a> (UART for External Mode)</li>
-        <li><a href="../block_reference/system/mcu_load.html">MCHP_MCU_Load Block</a></li>
-        <li><a href="scheduler_multitasking.html">Scheduler & Multitasking Guide</a></li>
-        <li><a href="../block_reference/utility/compiler_optimisation.html">Compiler Optimization Block</a></li>
-    </ul>
-
-    <hr>
-
-    <p style="text-align: center; color: #666; font-size: 0.9em;">
-        <strong>MPLAB Device Blocks for Simulink</strong> | Microchip Technology Inc.<br>
-        For technical support, visit <a href="https://www.microchip.com/support">www.microchip.com/support</a>
-    </p>
+        
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation">
+            ☰
+        </button>
     </div>
+    
+
+    <script>
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+
+            if (theme === 'dark') {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        }
+
+        
+        (function initTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+        })();
+
+        
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                }
+            });
+        }
+
+        
+        
+
+        
+        window.toggleSection = function(identifier) {
+            const section = document.getElementById('section-' + identifier);
+            if (section) {
+                section.classList.toggle('expanded');
+
+                
+                
+                if (section.classList.contains('nav-section')) {
+                    
+                    const expandedSections = getExpandedSections();
+                    if (section.classList.contains('expanded')) {
+                        expandedSections.add(identifier);
+                    } else {
+                        expandedSections.delete(identifier);
+                    }
+                    localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                }
+                
+                
+            }
+        };
+
+        
+        function getExpandedSections() {
+            const stored = localStorage.getItem('expandedSections');
+            return new Set(stored ? JSON.parse(stored) : []);
+        }
+
+        
+        function restoreExpandedSections() {
+            const expandedSections = getExpandedSections();
+            expandedSections.forEach(identifier => {
+                const section = document.getElementById('section-' + identifier);
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            });
+        }
+
+        
+        function highlightActivePage() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .nav-block-link, .nav-section-title[href], .nav-subsection-title[href]');
+
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+
+                    
+                    const parentSubsection = link.closest('.nav-subsection');
+                    if (parentSubsection && !parentSubsection.classList.contains('expanded')) {
+                        parentSubsection.classList.add('expanded');
+                        
+                    }
+
+                    
+                    const parentSection = link.closest('.nav-section');
+                    if (parentSection && !parentSection.classList.contains('expanded')) {
+                        parentSection.classList.add('expanded');
+                        
+                        const identifier = parentSection.id.replace('section-', '');
+                        const expandedSections = getExpandedSections();
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            });
+        }
+
+        
+        window.toggleMobileSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-visible');
+            }
+        };
+
+        
+        (function initSidebar() {
+            restoreExpandedSections();
+            highlightActivePage();
+
+            
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const parentSection = activeLink.closest('.nav-section');
+                if (parentSection && parentSection.id) {
+                    const identifier = parentSection.id.replace('section-', '');
+                    const expandedSections = getExpandedSections();
+                    if (!expandedSections.has(identifier)) {
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            }
+        })();
+        
+    </script>
 </body>
 </html>

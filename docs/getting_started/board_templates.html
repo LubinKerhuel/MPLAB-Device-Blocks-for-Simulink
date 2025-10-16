@@ -1,467 +1,1963 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Board Templates - MCHP Blockset</title>
+    <title>Board Templates - MPLAB Blockset for MATLAB/Simulink</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../assets/css/navigation.css">
-    <script src="../assets/js/navigation.js"></script>
+    <style>
+         
+         
+
+         
+        :root {
+             
+            --bg-primary: #f8f9fa;
+            --bg-secondary: white;
+            --bg-tertiary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --text-tertiary: #6c757d;
+            --text-heading: #003d5c;
+            --border-color: #dee2e6;
+            --border-light: #e1e8ed;
+            --border-medium: #e9ecef;
+            --accent-primary: #0076A8;
+            --accent-secondary: #005a85;
+            --accent-hover: #005580;
+            --accent-light: #e3f2fd;
+            --code-bg: #f4f4f4;
+            --code-text: #c7254e;
+            --pre-bg: linear-gradient(to bottom, #e8e8e8 0%, #f0f0f0 100%);
+            --pre-border: #d0d0d0;
+            --table-hover: #e3f2fd;
+            --table-stripe: #f8f9fa;
+            --note-bg: linear-gradient(to right, #e7f3fe 0%, #f5fbff 100%);
+            --note-border: #2196F3;
+            --note-text: #1976D2;
+            --warning-bg: linear-gradient(to right, #fff9e6 0%, #fffcf0 100%);
+            --warning-border: #ff9800;
+            --warning-text: #f57c00;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+             
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242831;
+            --bg-tertiary: #2d3139;
+            --text-primary: #e4e6eb;
+            --text-secondary: #adb5bd;
+            --text-tertiary: #8b95a1;
+            --text-heading: #e4e6eb;
+            --border-color: #3a3f4b;
+            --border-light: #3a3f4b;
+            --border-medium: #404654;
+            --accent-primary: #4da6d6;
+            --accent-secondary: #3d8ab5;
+            --accent-hover: #60b4e0;
+            --accent-light: #2d4556;
+            --code-bg: #2d3139;
+            --code-text: #ff6b9d;
+            --pre-bg: linear-gradient(to bottom, #2d3139 0%, #2d3139 100%);
+            --pre-border: #3a3f4b;
+            --table-hover: #2d4556;
+            --table-stripe: #2d3139;
+            --note-bg: linear-gradient(to right, #1e3a52 0%, #1e3a52 100%);
+            --note-border: #4da6d6;
+            --note-text: #66b3e0;
+            --warning-bg: linear-gradient(to right, #3d3520 0%, #3d3520 100%);
+            --warning-border: #ffb347;
+            --warning-text: #ffc870;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.5);
+        }
+
+         
+        
+        :root {
+             
+            --content-max-width: 1000px;
+            --content-margin-horizontal: 30px;
+            --content-margin-vertical: 15px;
+            --container-border-radius: 8px;
+        }
+        
+
+         
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 15px;
+        }
+
+         
+        
+         
+        .doc-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: var(--content-margin-vertical) var(--content-margin-horizontal);
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--container-border-radius);
+        }
+        
+
+         
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-section-title:hover {
+            background-color: var(--bg-tertiary);
+            border-left-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .nav-section-title .icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .nav-section-title .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-section.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-section-children {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .nav-section.expanded > .nav-section-children {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            padding-left: 45px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-light);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+         
+        .nav-subsection {
+            margin-bottom: 4px;
+        }
+
+        .nav-subsection-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            padding-left: 35px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .nav-subsection-title:hover {
+            background-color: var(--bg-primary);
+            border-left-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .nav-subsection-title .icon {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .nav-subsection-title .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-subsection.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsection .nav-section-children {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .nav-subsection.expanded > .nav-section-children {
+            display: block;
+        }
+
+         
+        .nav-block-link {
+            display: block;
+            padding: 6px 20px;
+            padding-left: 55px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-block-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .nav-block-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+
+         
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-left: 16px;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+         
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--text-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .microchip-logo {
+            height: 55px;
+        }
+
+         
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        .breadcrumbs a:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-tertiary);
+        }
+
+         
+        h2 {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+         
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+         
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 18px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: linear-gradient(to bottom, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-medium);
+            vertical-align: top;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--table-stripe);
+        }
+
+        tbody tr:hover td {
+            background-color: var(--table-hover);
+        }
+
+         
+        code {
+            background-color: var(--code-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: var(--code-text);
+            font-size: 14px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+         
+        .note {
+            background: var(--note-bg);
+            border-left: 5px solid var(--note-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\2139\FE0F  Note';
+            display: block;
+            font-weight: 600;
+            color: var(--note-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .note p {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .warning::before {
+            content: '\26A0\FE0F  Warning';
+            display: block;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .warning p {
+            color: var(--text-primary);
+        }
+
+         
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+         
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+         
+        .nav-footer {
+            margin-top: 48px;
+            padding: 20px 0 12px 0;
+            border-top: 2px solid var(--border-light);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .nav-footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+         
+        .block-icon-container {
+            display: table;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            table-layout: fixed;
+        }
+
+        .block-icon-image {
+            display: table-cell;
+            width: 220px;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+
+        .block-icon-image img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .block-icon-description {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+         
+        p img, .container > img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+         
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .microchip-logo {
+                height: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+         
+        
+        @media (max-width: 1024px) {
+             
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.mobile-visible {
+                left: 0;
+            }
+
+             
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+             
+            .content-wrapper {
+                width: 100%;
+            }
+
+            .container {
+                margin: 10px 15px;
+                padding: 20px;
+            }
+
+             
+            .sidebar.mobile-visible::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 280px;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .nav-section-title {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 6px 15px;
+                padding-left: 35px;
+            }
+        }
+        
+
+         
+        .under-construction-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid #e65100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .under-construction-banner .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .under-construction-banner strong {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Mobile Navigation Toggle -->
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    
+    
+    <div class="doc-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">MPLAB Blockset</h2>
+            </div>
+            <div class="sidebar-nav">
+                
+                <div class="nav-section">
+                    <a href="../" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">🏠</span>Home</span>
+                    </a>
+                </div>
 
-    <!-- Left Navigation Panel -->
-    <nav class="doc-nav-container">
-        <div class="doc-nav-header">
-            <a href="../index.html">MCHP Blockset Docs</a>
+                
+                
+                <div class="nav-section" id="section-getting-started">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('getting-started')">
+                        <span><span class="icon">🚀</span>Getting Started</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../getting_started/overview.html" class="nav-link">Overview</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/installation.html" class="nav-link">Installation</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/quick_start.html" class="nav-link">Quick Start Guide</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/motor_control_examples.html" class="nav-link">Motor Control Examples</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/scheduler_multitasking.html" class="nav-link">Scheduler &amp; Multitasking</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/external_mode_pil.html" class="nav-link">External Mode &amp; PIL</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/data_visualization.html" class="nav-link">Data Visualization</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-user-guide">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('user-guide')">
+                        <span><span class="icon">📚</span>User Guide</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/external_mode.html" class="nav-link">External Mode</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/pil_testing.html" class="nav-link">PIL Testing</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-block-reference">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('block-reference')">
+                        <span><span class="icon">🧩</span>Block Reference</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-pwm-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('pwm-timers')">
+                                    <span><span class="icon">⚡</span>PWM &amp; Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm.html" class="nav-block-link">PWM</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed.html" class="nav-block-link">PWM High-Speed</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_hs_fep.html" class="nav-block-link">PWM HS FEP</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed_override.html" class="nav-block-link">PWM HS Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/mcpwm.html" class="nav-block-link">MCPWM (PIC32)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x.html" class="nav-block-link">PWM SAM7x</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x_override.html" class="nav-block-link">PWM SAM7x Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/tcc_pwm.html" class="nav-block-link">TCC PWM (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('timers')">
+                                    <span><span class="icon">⏱️</span>Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_config.html" class="nav-block-link">Timer Config</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/input_capture.html" class="nav-block-link">Input Capture</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_hw.html" class="nav-block-link">Output Compare (HW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_sw.html" class="nav-block-link">Output Compare (SW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_pil_profiling.html" class="nav-block-link">PIL Profiling Timer</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-adc">
+                                <div class="nav-subsection-title" onclick="toggleSection('adc')">
+                                    <span><span class="icon">📊</span>ADC</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc.html" class="nav-block-link">ADC (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_hs_12b.html" class="nav-block-link">ADC HS 12-bit</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar.html" class="nav-block-link">ADC High-Speed SAR</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar_dspic.html" class="nav-block-link">ADC HS SAR (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_same5x.html" class="nav-block-link">ADC (SAM E5x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_samrh707x.html" class="nav-block-link">ADC (SAMRH707x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/afec_sam7x.html" class="nav-block-link">AFEC (SAM7x)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-communication">
+                                <div class="nav-subsection-title" onclick="toggleSection('communication')">
+                                    <span><span class="icon">📡</span>Communication</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-uart">
+                                            <div class="nav-subsection-title" onclick="toggleSection('uart')">
+                                                <span><span class="icon"></span>UART</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_config.html" class="nav-block-link">UART Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_tx.html" class="nav-block-link">UART Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_rx.html" class="nav-block-link">UART Rx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_txmatlab.html" class="nav-block-link">UART Tx MATLAB</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_break_and_autobaud.html" class="nav-block-link">UART Break &amp; Autobaud</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-can">
+                                            <div class="nav-subsection-title" onclick="toggleSection('can')">
+                                                <span><span class="icon"></span>CAN</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_config.html" class="nav-block-link">CAN Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_tx.html" class="nav-block-link">CAN Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_rx.html" class="nav-block-link">CAN Rx</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/i2c.html" class="nav-block-link">I2C Master/Slave</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/spi.html" class="nav-block-link">SPI Master/Slave</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-digital-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('digital-io')">
+                                    <span><span class="icon">🔌</span>Digital I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_input.html" class="nav-block-link">Digital Input</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output.html" class="nav-block-link">Digital Output</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_read.html" class="nav-block-link">Digital Output Read</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_write.html" class="nav-block-link">Digital Output Write</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-encoders">
+                                <div class="nav-subsection-title" onclick="toggleSection('encoders')">
+                                    <span><span class="icon">🔄</span>Encoders</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qei.html" class="nav-block-link">QEI (Quadrature Encoder)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/pdec.html" class="nav-block-link">PDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qdec_samx.html" class="nav-block-link">QDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/change_notification.html" class="nav-block-link">Change Notification</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-analog-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('analog-io')">
+                                    <span><span class="icon">📉</span>Analog I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html" class="nav-block-link">High-Speed Comparator</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html" class="nav-block-link">Comparator w/ Slope</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html" class="nav-block-link">Op-Amp</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/pga.html" class="nav-block-link">PGA (Programmable Gain Amp)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/dac_samx.html" class="nav-block-link">DAC (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-system-config">
+                                <div class="nav-subsection-title" onclick="toggleSection('system-config')">
+                                    <span><span class="icon">⚙️</span>System Config</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/master.html" class="nav-block-link">Master</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/interrupt.html" class="nav-block-link">Interrupt</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/compiler_options.html" class="nav-block-link">Compiler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/scheduler_options.html" class="nav-block-link">Scheduler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/idle_task.html" class="nav-block-link">Idle Task</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_load.html" class="nav-block-link">MCU Load</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_overload.html" class="nav-block-link">MCU Overload</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/tasks_state.html" class="nav-block-link">Tasks State</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/secondary_core.html" class="nav-block-link">Secondary Core</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-utility">
+                                <div class="nav-subsection-title" onclick="toggleSection('utility')">
+                                    <span><span class="icon">🔧</span>Utility Blocks</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/user_functions/c_function_call.html" class="nav-block-link">C Function Call</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/doc.html" class="nav-block-link">Documentation Block</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/msi.html" class="nav-block-link">MSI (Model Sample Info)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/port_info.html" class="nav-block-link">Port Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/timer_info.html" class="nav-block-link">Timer Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/simulink_reset_config.html" class="nav-block-link">Simulink Reset Config</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-examples">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('examples')">
+                        <span><span class="icon">📖</span>Examples</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-github">
+                    
+                    
+                    <a href="https://github.com/microchip-technology/mplab-blockset" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">💻</span>GitHub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </nav>
+
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <a href="../">Home</a>
+                    
+                        <span>&gt;</span>
+                        <a href="../getting_started.html">Getting Started</a>
+                    
+                    <span>&gt;</span>
+                    <span>Board Templates</span>
+                </div>
+
+                
+                <div class="under-construction-banner">
+                    <span class="icon">⚠️</span>
+                    <strong>Documentation Under Construction</strong> —
+                    This documentation is currently being developed. All information has not been validated by Microchip yet.
+                </div>
+                
+
+                <div class="page-header">
+                    <h1>Board Templates</h1>
+                    <div class="page-header-right">
+                        <img src="../images/microchip-logo.png" alt="Microchip Logo" class="microchip-logo">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                            <span class="theme-icon" id="theme-icon">☀️</span>
+                            <span id="theme-text">Light</span>
+                        </button>
+                    </div>
+                </div>
+
+                
+  <h2 id="overview">Overview</h2>
+<p>Board templates provide pre-configured Simulink models optimized for popular Microchip development boards. These templates include:</p>
+<ul>
+<li><strong>Pre-configured Master block</strong> with correct chip selection and clock settings</li>
+<li><strong>Peripheral blocks</strong> configured for board-specific hardware (PWM, ADC, UART, QEI, etc.)</li>
+<li><strong>Pin assignments</strong> matching the physical board layout</li>
+<li><strong>Example algorithms</strong> demonstrating typical use cases (motor control, sensor interfaces)</li>
+<li><strong>Validated configurations</strong> tested on actual hardware</li>
+</ul>
+<hr>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    Key Benefit: Templates eliminate hours of configuration work, allowing you to start developing control algorithms immediately. Simply select your board template, customize the algorithm, and build.
+</div>
+
+<h2 id="why-use-board-templates">Why Use Board Templates?</h2>
+<hr>
+<table>
+  <thead>
+      <tr>
+          <th>Benefit</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fast Prototyping</td>
+          <td>Start coding control algorithms in minutes instead of hours spent on peripheral configuration</td>
+      </tr>
+      <tr>
+          <td>Validated Hardware</td>
+          <td>All pin assignments and peripheral settings verified on actual hardware - reduces debugging time</td>
+      </tr>
+      <tr>
+          <td>Best Practices</td>
+          <td>Templates follow Microchip recommended configurations for optimal performance</td>
+      </tr>
+      <tr>
+          <td>Learning Tool</td>
+          <td>Study working examples to understand peripheral configuration patterns</td>
+      </tr>
+      <tr>
+          <td>Easy Portability</td>
+          <td>Switch between boards by simply loading a different template - same algorithm, different hardware</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="available-board-templates">Available Board Templates</h2>
+<p><img src="../assets/images/toolbox_concepts/MCHP_i_Board_MCLV_2.png" alt="MCLV-2 Development Board"></p>
+<h4 id="mclv-2-motor-control-low-voltage">MCLV-2 (Motor Control Low Voltage)</h4>
+<p><strong>Target Applications:</strong> Low-voltage motor control, BLDC/PMSM development</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>24V max, 8A continuous motor drive</li>
+<li>Integrated current sensing with op-amps</li>
+<li>QEI encoder interface</li>
+<li>Push buttons and LEDs for user interface</li>
+<li>Compatible with dsPIC33E, 33C, 33A families</li>
+</ul>
+<p><strong>Template Models:</strong> FOC control, six-step commutation, sensor interfaces</p>
+<p><img src="../assets/images/toolbox_concepts/MCHP_i_Board_LVMC.png" alt="LVMC Development Board"></p>
+<h4 id="lvmc-low-voltage-motor-control">LVMC (Low Voltage Motor Control)</h4>
+<p><strong>Target Applications:</strong> Entry-level motor control prototyping</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Compact form factor</li>
+<li>Integrated H-bridge driver</li>
+<li>On-board current sensing</li>
+<li>Plug-in module (PIM) socket for easy chip swapping</li>
+<li>USB programmer interface</li>
+</ul>
+<p><strong>Template Models:</strong> Basic PWM control, ADC sampling, UART communication</p>
+<p><img src="../assets/images/toolbox_concepts/MCHP_i_Board_MCLV_300W48V.png" alt="MCLV 300W-48V Board"></p>
+<h4 id="mclv-300w-48v">MCLV 300W-48V</h4>
+<p><strong>Target Applications:</strong> Higher power motor control, industrial applications</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>48V DC bus, 300W continuous power</li>
+<li>Optimized for dsPIC33A (32-bit DSC with FPU)</li>
+<li>Three-phase current sensing</li>
+<li>High-speed PWM with dead-time control</li>
+<li>CAN communication interface</li>
+</ul>
+<p><strong>Template Models:</strong> Advanced FOC, floating-point control, high-resolution PWM</p>
+<h4 id="motor-control-dev-board-33cdv64mc106">Motor Control Dev Board (33CDV64MC106)</h4>
+<p><strong>Target Applications:</strong> Dual-core motor control applications</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>dsPIC33CDV dual-core architecture</li>
+<li>Independent PWM modules per core</li>
+<li>Multi-motor control capability</li>
+<li>Integrated communication peripherals</li>
+<li>Flexible I/O configuration</li>
+</ul>
+<p><strong>Template Models:</strong> Dual-motor control, master-slave coordination</p>
+<h2 id="how-to-use-board-templates">How to Use Board Templates</h2>
+<h3 id="method-1-creating-new-model-from-template">Method 1: Creating New Model from Template</h3>
+<p><img src="../assets/images/toolbox_concepts/Simulink_New_FromMicrochipTemplate.PNG" alt="Create from Microchip Template"></p>
+<ul>
+<li><strong>Open Simulink</strong>: Launch MATLAB and open the Simulink Start Page</li>
+<li><strong>Browse Templates</strong>: Navigate to <em>Simulink Start Page → Templates → Microchip</em></li>
+<li><strong>Select Board</strong>: Choose your target development board from the list</li>
+<li><strong>Create Model</strong>: Click &ldquo;Create Model&rdquo; to generate a new model with pre-configured peripherals</li>
+<li><strong>Customize Algorithm</strong>: Replace the placeholder algorithm with your control logic</li>
+<li><strong>Build</strong>: Click the Build button (Ctrl+B) to generate code and program the board</li>
+</ul>
+<hr>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    Tip: Save the template-based model with a new name immediately to preserve the original template for future use.
+</div>
+
+<h3 id="method-2-loading-template-example">Method 2: Loading Template Example</h3>
+<ul>
+<li>In MATLAB command window, type: <code>mchp</code> to open the block library</li>
+<li>Navigate to <em>MCHP Blockset → Examples → [Board Name]</em></li>
+<li>Double-click the desired example model</li>
+<li>Study the configuration and modify as needed</li>
+<li>Save as new model for your project</li>
+</ul>
+<h2 id="template-structure">Template Structure</h2>
+<p><img src="../assets/images/toolbox_concepts/CodeGeneration_Template.png" alt="Template Structure Overview"></p>
+<p>A typical board template includes the following components:</p>
+<h3 id="1-master-block-configuration">1. Master Block Configuration</h3>
+<ul>
+<li><strong>Target Device</strong>: Pre-selected chip matching the board (e.g., dsPIC33CK256MP508)</li>
+<li><strong>Clock Configuration</strong>: Oscillator settings for maximum performance</li>
+<li><strong>Compiler Settings</strong>: Optimization level, memory model, code replacement</li>
+<li><strong>Programmer Selection</strong>: ICD4/ICD5/PICkit configuration</li>
+</ul>
+<h3 id="2-peripheral-blocks">2. Peripheral Blocks</h3>
+<p><img src="../assets/images/toolbox_concepts/CodeGeneration_Template_details.png" alt="Template Detailed Structure"></p>
+<h2 id="templates-include-commonly-used-peripherals-pre-configured-for-the-board-hardware">Templates include commonly-used peripherals pre-configured for the board hardware:</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Peripheral</th>
+          <th>Typical Configuration</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>PWM</td>
+          <td>Center-aligned, complementary outputs with dead-time</td>
+          <td>Motor drive, power conversion</td>
+      </tr>
+      <tr>
+          <td>ADC</td>
+          <td>Synchronized with PWM, parallel sampling, multiple channels</td>
+          <td>Current/voltage sensing</td>
+      </tr>
+      <tr>
+          <td>QEI</td>
+          <td>Quadrature decoding with index, configurable resolution</td>
+          <td>Motor position/speed measurement</td>
+      </tr>
+      <tr>
+          <td>UART</td>
+          <td>115200 baud (upgradeable to 2Mbaud with FTDI)</td>
+          <td>Data logging, parameter tuning (picgui)</td>
+      </tr>
+      <tr>
+          <td>Digital I/O</td>
+          <td>Buttons (input), LEDs (output), fault signals</td>
+          <td>User interface, status indication</td>
+      </tr>
+      <tr>
+          <td>Op-Amps</td>
+          <td>Configured for current sensing with appropriate gain</td>
+          <td>Analog signal conditioning</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="3-sample-algorithm">3. Sample Algorithm</h3>
+<p>Templates include a working control algorithm demonstrating:</p>
+<ul>
+<li>Multi-rate execution (fast current loop, slower speed loop)</li>
+<li>Proper scaling and fixed-point data types</li>
+<li>Real-time constraint management</li>
+<li>Best practices for embedded code generation</li>
+</ul>
+<h3 id="4-visualization--debug-tools">4. Visualization &amp; Debug Tools</h3>
+<ul>
+<li><strong>Task State blocks</strong>: Monitor task execution on scope/LEDs</li>
+<li><strong>MCU Load block</strong>: Measure CPU utilization</li>
+<li><strong>UART Tx-Matlab</strong>: Stream data to picgui for real-time plotting</li>
+<li><strong>Scope trigger points</strong>: Pre-configured measurement points</li>
+</ul>
+<h2 id="switching-between-boards">Switching Between Boards</h2>
+<p>One of the key advantages of templates is easy portability. To migrate an algorithm from one board to another:</p>
+<ul>
+<li><strong>Save Current Model</strong>: Backup your algorithm implementation</li>
+<li><strong>Extract Algorithm</strong>: Copy your control algorithm subsystem (without peripheral blocks)</li>
+<li><strong>Open Target Template</strong>: Load the template for your new target board</li>
+<li><strong>Paste Algorithm</strong>: Insert your control algorithm into the new template</li>
+<li><strong>Verify Connections</strong>: Ensure algorithm inputs/outputs connect to peripheral blocks</li>
+<li><strong>Adjust Parameters</strong>: Update scaling factors, sample times if board specs differ</li>
+<li><strong>Build &amp; Test</strong>: Compile for new target and verify functionality</li>
+</ul>
+<hr>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    <p>Example: Moving a FOC algorithm from MCLV-2 (dsPIC33CK) to MCLV-300W48V (dsPIC33A) requires only:</p>
+<pre><code>        Updating current sensor scaling (different op-amp gains)
+        Adjusting PWM frequency (different board power stage limits)
+        Optionally switching from fixed-point to floating-point (utilizing dsPIC33A's FPU)
+    
+    The core control algorithm remains unchanged!
+</code></pre>
+</div>
+
+<h2 id="template-customization">Template Customization</h2>
+<h3 id="common-customization-tasks">Common Customization Tasks</h3>
+<hr>
+<hr>
+<hr>
+<hr>
+<table>
+  <thead>
+      <tr>
+          <th>Task</th>
+          <th>Steps</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Change PWM Frequency</td>
+          <td>Double-click PWM block</td>
+      </tr>
+      <tr>
+          <td>Add ADC Channel</td>
+          <td>Double-click ADC block</td>
+      </tr>
+      <tr>
+          <td>Enable CAN Communication</td>
+          <td>Add &ldquo;CAN Config&rdquo; block from MCHP library</td>
+      </tr>
+      <tr>
+          <td>Change Clock Speed</td>
+          <td>Double-click Master block</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="advanced-customization">Advanced Customization</h3>
+<ul>
+<li><strong>Multi-rate Scheduling</strong>: Add subsystems with different sample times to implement multi-tasking</li>
+<li><strong>Fixed-Point Optimization</strong>: Use Fixed-Point Tool to convert floating-point to fixed-point for faster execution</li>
+<li><strong>Code Replacement</strong>: Enable hardware-optimized functions in Configuration Parameters → Code Generation</li>
+<li><strong>External Mode</strong>: Add XCP-on-Serial support for real-time parameter tuning from Simulink</li>
+<li><strong>PIL Testing</strong>: Configure Processor-in-the-Loop to verify generated code behavior</li>
+</ul>
+<h2 id="template-best-practices">Template Best Practices</h2>
+<hr>
+<ul>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+</ul>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    <p>Best Practices:</p>
+<pre><code>        Start with Template: Always begin with a board template rather than blank model - saves configuration time
+        Preserve Original: Save template-based models with new names to keep clean templates available
+        Match Time Steps: Ensure Simulink base time step matches PWM period (if using PWM-triggered ADC)
+        Verify Pin Assignments: Check physical board pinout matches template configuration before hardware testing
+        Test Incrementally: Start with simple algorithm, verify peripherals work, then add complexity
+        Use Task State Blocks: Monitor real-time execution with Task State and MCU Load blocks
+        Document Changes: Add comments to model explaining customizations from original template
+</code></pre>
+</div>
+
+<h2 id="troubleshooting-template-issues">Troubleshooting Template Issues</h2>
+<h3 id="model-wont-build">Model Won&rsquo;t Build</h3>
+<ul>
+<li><strong>Compiler Path</strong>: Verify compiler installation in Configuration Parameters → Code Generation → System target file</li>
+<li><strong>MATLAB Version</strong>: Ensure MATLAB version matches template requirements (R2020b+ recommended)</li>
+<li><strong>Toolbox Dependencies</strong>: Check Embedded Coder, MATLAB Coder, Simulink Coder installed</li>
+<li><strong>Path Issues</strong>: Run <code>rehash toolboxcache</code> if blockset not found</li>
+</ul>
+<h3 id="hardware-not-responding">Hardware Not Responding</h3>
+<ul>
+<li><strong>Programmer Connection</strong>: Verify ICD/PICkit connected and powered</li>
+<li><strong>Board Power</strong>: Ensure development board has power supply connected</li>
+<li><strong>Chip Selection</strong>: Verify Master block targets correct chip for your board version</li>
+<li><strong>Fuse Settings</strong>: Check configuration bits match hardware (oscillator type, debug pins)</li>
+</ul>
+<h3 id="incorrect-peripheral-behavior">Incorrect Peripheral Behavior</h3>
+<ul>
+<li><strong>Pin Mismatch</strong>: Verify template pin assignments match your board revision</li>
+<li><strong>Scaling Errors</strong>: Check ADC/PWM scaling factors match your hardware (sensor gains, voltage levels)</li>
+<li><strong>Timing Issues</strong>: Verify sample times and peripheral frequencies are correctly configured</li>
+<li><strong>Real-time Violations</strong>: Use MCU Load block to check for overload conditions</li>
+</ul>
+<h2 id="creating-custom-templates">Creating Custom Templates</h2>
+<p>Once you&rsquo;ve configured a model for a custom board, you can save it as a template for reuse:</p>
+<ul>
+<li><strong>Configure Model</strong>: Set up all peripherals and verify working on hardware</li>
+<li><strong>Clean Algorithm</strong>: Replace specific control logic with generic placeholder algorithm</li>
+<li><strong>Add Documentation</strong>: Include block comments explaining peripheral configuration</li>
+<li><strong>Create Template File</strong>: Save as .sltx template file (File → Save As → Simulink Template)</li>
+<li><strong>Add Metadata</strong>: Fill in template description, tags, and preview image</li>
+<li><strong>Share</strong>: Distribute template to team or organization</li>
+</ul>
+<hr>
+<div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+    <p>Custom Board Note: When creating templates for custom hardware, thoroughly document:</p>
+<pre><code>        Pin assignments and their mapping to board connectors
+        Clock configuration rationale and limitations
+        Scaling factors for analog inputs (sensor gains, voltage dividers)
+        Known hardware limitations or errata workarounds
+</code></pre>
+</div>
+
+<h2 id="example-use-case-dc-motor-control">Example Use Case: DC Motor Control</h2>
+<p>Using the MCLV-2 template, you can implement a cascaded PI controller for DC motor speed control in under 30 minutes:</p>
+<ul>
+<li>
+<p><strong>Load Template</strong>: Open &ldquo;MCLV2_dsPIC33CK_MotorControl_Template&rdquo;</p>
+</li>
+<li>
+<p><strong>Pre-configured Peripherals</strong>:</p>
+</li>
+<li>
+<p>PWM: 20kHz, center-aligned, 1µs dead-time</p>
+</li>
+<li>
+<p>ADC: Synchronized to PWM, measuring motor current (AN0) and potentiometer (AN13)</p>
+</li>
+<li>
+<p>QEI: 1000-line encoder, speed measurement at 2ms rate</p>
+</li>
+<li>
+<p>UART: 115200 baud for picgui data logging</p>
+</li>
+<li>
+<p><strong>Add Control Algorithm</strong>:</p>
+</li>
+<li>
+<p>Inner current loop: PI controller at 50µs (20kHz)</p>
+</li>
+<li>
+<p>Outer speed loop: PI controller at 1ms (1kHz)</p>
+</li>
+<li>
+<p>Speed reference from potentiometer</p>
+</li>
+<li>
+<p><strong>Build &amp; Deploy</strong>: Press Ctrl+B to generate code and program board</p>
+</li>
+<li>
+<p><strong>Tune &amp; Visualize</strong>: Use picgui to monitor speed/current in real-time and adjust PI gains</p>
+</li>
+</ul>
+<p><strong>Result:</strong> Working motor control system in 30 minutes instead of several hours of manual configuration!</p>
+<h2 id="see-also">See Also</h2>
+<p>[MCHP Blockset Overview] | [Quick Start Guide] | [Motor Control Examples] | [External Mode &amp; PIL] | <a href="../user_guide.html">User Guide</a></p>
+
+
+
+                <div class="nav-footer">
+                    <p>Last updated: January 2025 | MPLAB Blockset Documentation</p>
+                    <p>&copy; 2025 Microchip Technology Inc. All rights reserved.</p>
+                </div>
+            </div>
         </div>
-        <ul class="doc-nav-menu">
-            <li class="nav-item">
-                <a href="../index.html" class="nav-link">Home</a>
-            </li>
 
-            <!-- Getting Started Section -->
-            <li class="nav-item">
-                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
-                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
-                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
-                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
-                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
-                </ul>
-            </li>
-
-            <!-- User Guide Section -->
-            <li class="nav-item">
-                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
-                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
-                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
-                </ul>
-            </li>
-
-            <!-- Block Reference Section -->
-            <li class="nav-item">
-                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
-                </ul>
-            </li>
-
-            <!-- Examples Section -->
-            <li class="nav-item">
-                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
-                </ul>
-            </li>
-
-            <!-- Release Notes -->
-            <li class="nav-item">
-                <a href="../release_notes.html" class="nav-link">Release Notes</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="doc-content-wrapper">
-    <h1>Board Templates</h1>
-
-    <h2>Overview</h2>
-    <p>Board templates provide pre-configured Simulink models optimized for popular Microchip development boards. These templates include:</p>
-    <ul>
-        <li><strong>Pre-configured Master block</strong> with correct chip selection and clock settings</li>
-        <li><strong>Peripheral blocks</strong> configured for board-specific hardware (PWM, ADC, UART, QEI, etc.)</li>
-        <li><strong>Pin assignments</strong> matching the physical board layout</li>
-        <li><strong>Example algorithms</strong> demonstrating typical use cases (motor control, sensor interfaces)</li>
-        <li><strong>Validated configurations</strong> tested on actual hardware</li>
-    </ul>
-
-    <div class="note">
-        <strong>Key Benefit:</strong> Templates eliminate hours of configuration work, allowing you to start developing control algorithms immediately. Simply select your board template, customize the algorithm, and build.
+        
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation">
+            ☰
+        </button>
     </div>
+    
 
-    <h2>Why Use Board Templates?</h2>
-    <table>
-        <tr>
-            <th>Benefit</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td><strong>Fast Prototyping</strong></td>
-            <td>Start coding control algorithms in minutes instead of hours spent on peripheral configuration</td>
-        </tr>
-        <tr>
-            <td><strong>Validated Hardware</strong></td>
-            <td>All pin assignments and peripheral settings verified on actual hardware - reduces debugging time</td>
-        </tr>
-        <tr>
-            <td><strong>Best Practices</strong></td>
-            <td>Templates follow Microchip recommended configurations for optimal performance</td>
-        </tr>
-        <tr>
-            <td><strong>Learning Tool</strong></td>
-            <td>Study working examples to understand peripheral configuration patterns</td>
-        </tr>
-        <tr>
-            <td><strong>Easy Portability</strong></td>
-            <td>Switch between boards by simply loading a different template - same algorithm, different hardware</td>
-        </tr>
-    </table>
+    <script>
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    <h2>Available Board Templates</h2>
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
 
-    <div class="board-gallery">
-        <div class="board-card">
-            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_MCLV_2.png" alt="MCLV-2 Development Board">
-            <h4>MCLV-2 (Motor Control Low Voltage)</h4>
-            <p><strong>Target Applications:</strong> Low-voltage motor control, BLDC/PMSM development</p>
-            <p><strong>Key Features:</strong></p>
-            <ul>
-                <li>24V max, 8A continuous motor drive</li>
-                <li>Integrated current sensing with op-amps</li>
-                <li>QEI encoder interface</li>
-                <li>Push buttons and LEDs for user interface</li>
-                <li>Compatible with dsPIC33E, 33C, 33A families</li>
-            </ul>
-            <p><strong>Template Models:</strong> FOC control, six-step commutation, sensor interfaces</p>
-        </div>
+        function updateThemeButton(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
 
-        <div class="board-card">
-            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_LVMC.png" alt="LVMC Development Board">
-            <h4>LVMC (Low Voltage Motor Control)</h4>
-            <p><strong>Target Applications:</strong> Entry-level motor control prototyping</p>
-            <p><strong>Key Features:</strong></p>
-            <ul>
-                <li>Compact form factor</li>
-                <li>Integrated H-bridge driver</li>
-                <li>On-board current sensing</li>
-                <li>Plug-in module (PIM) socket for easy chip swapping</li>
-                <li>USB programmer interface</li>
-            </ul>
-            <p><strong>Template Models:</strong> Basic PWM control, ADC sampling, UART communication</p>
-        </div>
+            if (theme === 'dark') {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        }
 
-        <div class="board-card">
-            <img src="../block_reference/assets/images/toolbox_concepts/MCHP_i_Board_MCLV_300W48V.png" alt="MCLV 300W-48V Board">
-            <h4>MCLV 300W-48V</h4>
-            <p><strong>Target Applications:</strong> Higher power motor control, industrial applications</p>
-            <p><strong>Key Features:</strong></p>
-            <ul>
-                <li>48V DC bus, 300W continuous power</li>
-                <li>Optimized for dsPIC33A (32-bit DSC with FPU)</li>
-                <li>Three-phase current sensing</li>
-                <li>High-speed PWM with dead-time control</li>
-                <li>CAN communication interface</li>
-            </ul>
-            <p><strong>Template Models:</strong> Advanced FOC, floating-point control, high-resolution PWM</p>
-        </div>
+        
+        (function initTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
 
-        <div class="board-card">
-            <h4>Motor Control Dev Board (33CDV64MC106)</h4>
-            <p><strong>Target Applications:</strong> Dual-core motor control applications</p>
-            <p><strong>Key Features:</strong></p>
-            <ul>
-                <li>dsPIC33CDV dual-core architecture</li>
-                <li>Independent PWM modules per core</li>
-                <li>Multi-motor control capability</li>
-                <li>Integrated communication peripherals</li>
-                <li>Flexible I/O configuration</li>
-            </ul>
-            <p><strong>Template Models:</strong> Dual-motor control, master-slave coordination</p>
-        </div>
-    </div>
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+        })();
 
-    <h2>How to Use Board Templates</h2>
+        
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                }
+            });
+        }
 
-    <h3>Method 1: Creating New Model from Template</h3>
-    <img src="../block_reference/assets/images/toolbox_concepts/Simulink_New_FromMicrochipTemplate.PNG" alt="Create from Microchip Template">
+        
+        
 
-    <ol>
-        <li><strong>Open Simulink</strong>: Launch MATLAB and open the Simulink Start Page</li>
-        <li><strong>Browse Templates</strong>: Navigate to <em>Simulink Start Page → Templates → Microchip</em></li>
-        <li><strong>Select Board</strong>: Choose your target development board from the list</li>
-        <li><strong>Create Model</strong>: Click "Create Model" to generate a new model with pre-configured peripherals</li>
-        <li><strong>Customize Algorithm</strong>: Replace the placeholder algorithm with your control logic</li>
-        <li><strong>Build</strong>: Click the Build button (Ctrl+B) to generate code and program the board</li>
-    </ol>
+        
+        window.toggleSection = function(identifier) {
+            const section = document.getElementById('section-' + identifier);
+            if (section) {
+                section.classList.toggle('expanded');
 
-    <div class="note">
-        <strong>Tip:</strong> Save the template-based model with a new name immediately to preserve the original template for future use.
-    </div>
+                
+                
+                if (section.classList.contains('nav-section')) {
+                    
+                    const expandedSections = getExpandedSections();
+                    if (section.classList.contains('expanded')) {
+                        expandedSections.add(identifier);
+                    } else {
+                        expandedSections.delete(identifier);
+                    }
+                    localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                }
+                
+                
+            }
+        };
 
-    <h3>Method 2: Loading Template Example</h3>
-    <ol>
-        <li>In MATLAB command window, type: <code>mchp</code> to open the block library</li>
-        <li>Navigate to <em>MCHP Blockset → Examples → [Board Name]</em></li>
-        <li>Double-click the desired example model</li>
-        <li>Study the configuration and modify as needed</li>
-        <li>Save as new model for your project</li>
-    </ol>
+        
+        function getExpandedSections() {
+            const stored = localStorage.getItem('expandedSections');
+            return new Set(stored ? JSON.parse(stored) : []);
+        }
 
-    <h2>Template Structure</h2>
+        
+        function restoreExpandedSections() {
+            const expandedSections = getExpandedSections();
+            expandedSections.forEach(identifier => {
+                const section = document.getElementById('section-' + identifier);
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            });
+        }
 
-    <img src="../block_reference/assets/images/toolbox_concepts/CodeGeneration_Template.png" alt="Template Structure Overview" style="max-width: 800px;">
+        
+        function highlightActivePage() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .nav-block-link, .nav-section-title[href], .nav-subsection-title[href]');
 
-    <p>A typical board template includes the following components:</p>
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
 
-    <h3>1. Master Block Configuration</h3>
-    <ul>
-        <li><strong>Target Device</strong>: Pre-selected chip matching the board (e.g., dsPIC33CK256MP508)</li>
-        <li><strong>Clock Configuration</strong>: Oscillator settings for maximum performance</li>
-        <li><strong>Compiler Settings</strong>: Optimization level, memory model, code replacement</li>
-        <li><strong>Programmer Selection</strong>: ICD4/ICD5/PICkit configuration</li>
-    </ul>
+                    
+                    const parentSubsection = link.closest('.nav-subsection');
+                    if (parentSubsection && !parentSubsection.classList.contains('expanded')) {
+                        parentSubsection.classList.add('expanded');
+                        
+                    }
 
-    <h3>2. Peripheral Blocks</h3>
+                    
+                    const parentSection = link.closest('.nav-section');
+                    if (parentSection && !parentSection.classList.contains('expanded')) {
+                        parentSection.classList.add('expanded');
+                        
+                        const identifier = parentSection.id.replace('section-', '');
+                        const expandedSections = getExpandedSections();
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            });
+        }
 
-    <img src="../block_reference/assets/images/toolbox_concepts/CodeGeneration_Template_details.png" alt="Template Detailed Structure" style="max-width: 800px;">
+        
+        window.toggleMobileSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-visible');
+            }
+        };
 
-    <p>Templates include commonly-used peripherals pre-configured for the board hardware:</p>
+        
+        (function initSidebar() {
+            restoreExpandedSections();
+            highlightActivePage();
 
-    <table>
-        <tr>
-            <th>Peripheral</th>
-            <th>Typical Configuration</th>
-            <th>Purpose</th>
-        </tr>
-        <tr>
-            <td><strong>PWM</strong></td>
-            <td>Center-aligned, complementary outputs with dead-time</td>
-            <td>Motor drive, power conversion</td>
-        </tr>
-        <tr>
-            <td><strong>ADC</strong></td>
-            <td>Synchronized with PWM, parallel sampling, multiple channels</td>
-            <td>Current/voltage sensing</td>
-        </tr>
-        <tr>
-            <td><strong>QEI</strong></td>
-            <td>Quadrature decoding with index, configurable resolution</td>
-            <td>Motor position/speed measurement</td>
-        </tr>
-        <tr>
-            <td><strong>UART</strong></td>
-            <td>115200 baud (upgradeable to 2Mbaud with FTDI)</td>
-            <td>Data logging, parameter tuning (picgui)</td>
-        </tr>
-        <tr>
-            <td><strong>Digital I/O</strong></td>
-            <td>Buttons (input), LEDs (output), fault signals</td>
-            <td>User interface, status indication</td>
-        </tr>
-        <tr>
-            <td><strong>Op-Amps</strong></td>
-            <td>Configured for current sensing with appropriate gain</td>
-            <td>Analog signal conditioning</td>
-        </tr>
-    </table>
-
-    <h3>3. Sample Algorithm</h3>
-    <p>Templates include a working control algorithm demonstrating:</p>
-    <ul>
-        <li>Multi-rate execution (fast current loop, slower speed loop)</li>
-        <li>Proper scaling and fixed-point data types</li>
-        <li>Real-time constraint management</li>
-        <li>Best practices for embedded code generation</li>
-    </ul>
-
-    <h3>4. Visualization & Debug Tools</h3>
-    <ul>
-        <li><strong>Task State blocks</strong>: Monitor task execution on scope/LEDs</li>
-        <li><strong>MCU Load block</strong>: Measure CPU utilization</li>
-        <li><strong>UART Tx-Matlab</strong>: Stream data to picgui for real-time plotting</li>
-        <li><strong>Scope trigger points</strong>: Pre-configured measurement points</li>
-    </ul>
-
-    <h2>Switching Between Boards</h2>
-
-    <p>One of the key advantages of templates is easy portability. To migrate an algorithm from one board to another:</p>
-
-    <ol>
-        <li><strong>Save Current Model</strong>: Backup your algorithm implementation</li>
-        <li><strong>Extract Algorithm</strong>: Copy your control algorithm subsystem (without peripheral blocks)</li>
-        <li><strong>Open Target Template</strong>: Load the template for your new target board</li>
-        <li><strong>Paste Algorithm</strong>: Insert your control algorithm into the new template</li>
-        <li><strong>Verify Connections</strong>: Ensure algorithm inputs/outputs connect to peripheral blocks</li>
-        <li><strong>Adjust Parameters</strong>: Update scaling factors, sample times if board specs differ</li>
-        <li><strong>Build & Test</strong>: Compile for new target and verify functionality</li>
-    </ol>
-
-    <div class="note">
-        <strong>Example:</strong> Moving a FOC algorithm from MCLV-2 (dsPIC33CK) to MCLV-300W48V (dsPIC33A) requires only:
-        <ul>
-            <li>Updating current sensor scaling (different op-amp gains)</li>
-            <li>Adjusting PWM frequency (different board power stage limits)</li>
-            <li>Optionally switching from fixed-point to floating-point (utilizing dsPIC33A's FPU)</li>
-        </ul>
-        The core control algorithm remains unchanged!
-    </div>
-
-    <h2>Template Customization</h2>
-
-    <h3>Common Customization Tasks</h3>
-
-    <table>
-        <tr>
-            <th>Task</th>
-            <th>Steps</th>
-        </tr>
-        <tr>
-            <td><strong>Change PWM Frequency</strong></td>
-            <td>
-                <ol>
-                    <li>Double-click PWM block</li>
-                    <li>Modify "Period" parameter (e.g., 50µs for 20kHz)</li>
-                    <li>Update ADC trigger timing if synchronized</li>
-                    <li>Verify base time step in Configuration Parameters matches</li>
-                </ol>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Add ADC Channel</strong></td>
-            <td>
-                <ol>
-                    <li>Double-click ADC block</li>
-                    <li>Add channel to conversion list (e.g., AN13 for potentiometer)</li>
-                    <li>Configure sampling time and trigger source</li>
-                    <li>Add output port to ADC block for new channel</li>
-                </ol>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Enable CAN Communication</strong></td>
-            <td>
-                <ol>
-                    <li>Add "CAN Config" block from MCHP library</li>
-                    <li>Configure bit rate and identifier acceptance filter</li>
-                    <li>Add "CAN Tx" and "CAN Rx" blocks as needed</li>
-                    <li>Verify pins assigned correctly for board CAN transceiver</li>
-                </ol>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Change Clock Speed</strong></td>
-            <td>
-                <ol>
-                    <li>Double-click Master block</li>
-                    <li>Navigate to "Clock" tab</li>
-                    <li>Adjust PLL settings for desired MIPS</li>
-                    <li>Verify peripheral frequencies remain within spec</li>
-                </ol>
-            </td>
-        </tr>
-    </table>
-
-    <h3>Advanced Customization</h3>
-    <ul>
-        <li><strong>Multi-rate Scheduling</strong>: Add subsystems with different sample times to implement multi-tasking</li>
-        <li><strong>Fixed-Point Optimization</strong>: Use Fixed-Point Tool to convert floating-point to fixed-point for faster execution</li>
-        <li><strong>Code Replacement</strong>: Enable hardware-optimized functions in Configuration Parameters → Code Generation</li>
-        <li><strong>External Mode</strong>: Add XCP-on-Serial support for real-time parameter tuning from Simulink</li>
-        <li><strong>PIL Testing</strong>: Configure Processor-in-the-Loop to verify generated code behavior</li>
-    </ul>
-
-    <h2>Template Best Practices</h2>
-
-    <div class="note">
-        <strong>Best Practices:</strong>
-        <ul>
-            <li><strong>Start with Template</strong>: Always begin with a board template rather than blank model - saves configuration time</li>
-            <li><strong>Preserve Original</strong>: Save template-based models with new names to keep clean templates available</li>
-            <li><strong>Match Time Steps</strong>: Ensure Simulink base time step matches PWM period (if using PWM-triggered ADC)</li>
-            <li><strong>Verify Pin Assignments</strong>: Check physical board pinout matches template configuration before hardware testing</li>
-            <li><strong>Test Incrementally</strong>: Start with simple algorithm, verify peripherals work, then add complexity</li>
-            <li><strong>Use Task State Blocks</strong>: Monitor real-time execution with Task State and MCU Load blocks</li>
-            <li><strong>Document Changes</strong>: Add comments to model explaining customizations from original template</li>
-        </ul>
-    </div>
-
-    <h2>Troubleshooting Template Issues</h2>
-
-    <h3>Model Won't Build</h3>
-    <ul>
-        <li><strong>Compiler Path</strong>: Verify compiler installation in Configuration Parameters → Code Generation → System target file</li>
-        <li><strong>MATLAB Version</strong>: Ensure MATLAB version matches template requirements (R2020b+ recommended)</li>
-        <li><strong>Toolbox Dependencies</strong>: Check Embedded Coder, MATLAB Coder, Simulink Coder installed</li>
-        <li><strong>Path Issues</strong>: Run <code>rehash toolboxcache</code> if blockset not found</li>
-    </ul>
-
-    <h3>Hardware Not Responding</h3>
-    <ul>
-        <li><strong>Programmer Connection</strong>: Verify ICD/PICkit connected and powered</li>
-        <li><strong>Board Power</strong>: Ensure development board has power supply connected</li>
-        <li><strong>Chip Selection</strong>: Verify Master block targets correct chip for your board version</li>
-        <li><strong>Fuse Settings</strong>: Check configuration bits match hardware (oscillator type, debug pins)</li>
-    </ul>
-
-    <h3>Incorrect Peripheral Behavior</h3>
-    <ul>
-        <li><strong>Pin Mismatch</strong>: Verify template pin assignments match your board revision</li>
-        <li><strong>Scaling Errors</strong>: Check ADC/PWM scaling factors match your hardware (sensor gains, voltage levels)</li>
-        <li><strong>Timing Issues</strong>: Verify sample times and peripheral frequencies are correctly configured</li>
-        <li><strong>Real-time Violations</strong>: Use MCU Load block to check for overload conditions</li>
-    </ul>
-
-    <h2>Creating Custom Templates</h2>
-
-    <p>Once you've configured a model for a custom board, you can save it as a template for reuse:</p>
-
-    <ol>
-        <li><strong>Configure Model</strong>: Set up all peripherals and verify working on hardware</li>
-        <li><strong>Clean Algorithm</strong>: Replace specific control logic with generic placeholder algorithm</li>
-        <li><strong>Add Documentation</strong>: Include block comments explaining peripheral configuration</li>
-        <li><strong>Create Template File</strong>: Save as .sltx template file (File → Save As → Simulink Template)</li>
-        <li><strong>Add Metadata</strong>: Fill in template description, tags, and preview image</li>
-        <li><strong>Share</strong>: Distribute template to team or organization</li>
-    </ol>
-
-    <div class="warning">
-        <strong>Custom Board Note:</strong> When creating templates for custom hardware, thoroughly document:
-        <ul>
-            <li>Pin assignments and their mapping to board connectors</li>
-            <li>Clock configuration rationale and limitations</li>
-            <li>Scaling factors for analog inputs (sensor gains, voltage dividers)</li>
-            <li>Known hardware limitations or errata workarounds</li>
-        </ul>
-    </div>
-
-    <h2>Example Use Case: DC Motor Control</h2>
-
-    <p>Using the MCLV-2 template, you can implement a cascaded PI controller for DC motor speed control in under 30 minutes:</p>
-
-    <ol>
-        <li><strong>Load Template</strong>: Open "MCLV2_dsPIC33CK_MotorControl_Template"</li>
-        <li><strong>Pre-configured Peripherals</strong>:
-            <ul>
-                <li>PWM: 20kHz, center-aligned, 1µs dead-time</li>
-                <li>ADC: Synchronized to PWM, measuring motor current (AN0) and potentiometer (AN13)</li>
-                <li>QEI: 1000-line encoder, speed measurement at 2ms rate</li>
-                <li>UART: 115200 baud for picgui data logging</li>
-            </ul>
-        </li>
-        <li><strong>Add Control Algorithm</strong>:
-            <ul>
-                <li>Inner current loop: PI controller at 50µs (20kHz)</li>
-                <li>Outer speed loop: PI controller at 1ms (1kHz)</li>
-                <li>Speed reference from potentiometer</li>
-            </ul>
-        </li>
-        <li><strong>Build & Deploy</strong>: Press Ctrl+B to generate code and program board</li>
-        <li><strong>Tune & Visualize</strong>: Use picgui to monitor speed/current in real-time and adjust PI gains</li>
-    </ol>
-
-    <p><strong>Result:</strong> Working motor control system in 30 minutes instead of several hours of manual configuration!</p>
-
-    <h2>See Also</h2>
-    <p>
-        <a href="overview.html">MCHP Blockset Overview</a> |
-        <a href="quick_start.html">Quick Start Guide</a> |
-        <a href="motor_control_examples.html">Motor Control Examples</a> |
-        <a href="external_mode_pil.html">External Mode & PIL</a> |
-        <a href="../user_guide/index.html">User Guide</a>
-    </p>
-    </div>
+            
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const parentSection = activeLink.closest('.nav-section');
+                if (parentSection && parentSection.id) {
+                    const identifier = parentSection.id.replace('section-', '');
+                    const expandedSections = getExpandedSections();
+                    if (!expandedSections.has(identifier)) {
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            }
+        })();
+        
+    </script>
 </body>
 </html>

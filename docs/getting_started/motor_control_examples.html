@@ -1,617 +1,2010 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Motor Control Examples - MPLAB Device Blocks for Simulink</title>
+    <title>Motor Control Examples - MPLAB Device Blocks for Simulink - MPLAB Blockset for MATLAB/Simulink</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../assets/css/navigation.css">
-    <script src="../assets/js/navigation.js"></script>
+    <style>
+         
+         
+
+         
+        :root {
+             
+            --bg-primary: #f8f9fa;
+            --bg-secondary: white;
+            --bg-tertiary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --text-tertiary: #6c757d;
+            --text-heading: #003d5c;
+            --border-color: #dee2e6;
+            --border-light: #e1e8ed;
+            --border-medium: #e9ecef;
+            --accent-primary: #0076A8;
+            --accent-secondary: #005a85;
+            --accent-hover: #005580;
+            --accent-light: #e3f2fd;
+            --code-bg: #f4f4f4;
+            --code-text: #c7254e;
+            --pre-bg: linear-gradient(to bottom, #e8e8e8 0%, #f0f0f0 100%);
+            --pre-border: #d0d0d0;
+            --table-hover: #e3f2fd;
+            --table-stripe: #f8f9fa;
+            --note-bg: linear-gradient(to right, #e7f3fe 0%, #f5fbff 100%);
+            --note-border: #2196F3;
+            --note-text: #1976D2;
+            --warning-bg: linear-gradient(to right, #fff9e6 0%, #fffcf0 100%);
+            --warning-border: #ff9800;
+            --warning-text: #f57c00;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+             
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242831;
+            --bg-tertiary: #2d3139;
+            --text-primary: #e4e6eb;
+            --text-secondary: #adb5bd;
+            --text-tertiary: #8b95a1;
+            --text-heading: #e4e6eb;
+            --border-color: #3a3f4b;
+            --border-light: #3a3f4b;
+            --border-medium: #404654;
+            --accent-primary: #4da6d6;
+            --accent-secondary: #3d8ab5;
+            --accent-hover: #60b4e0;
+            --accent-light: #2d4556;
+            --code-bg: #2d3139;
+            --code-text: #ff6b9d;
+            --pre-bg: linear-gradient(to bottom, #2d3139 0%, #2d3139 100%);
+            --pre-border: #3a3f4b;
+            --table-hover: #2d4556;
+            --table-stripe: #2d3139;
+            --note-bg: linear-gradient(to right, #1e3a52 0%, #1e3a52 100%);
+            --note-border: #4da6d6;
+            --note-text: #66b3e0;
+            --warning-bg: linear-gradient(to right, #3d3520 0%, #3d3520 100%);
+            --warning-border: #ffb347;
+            --warning-text: #ffc870;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.5);
+        }
+
+         
+        
+        :root {
+             
+            --content-max-width: 1000px;
+            --content-margin-horizontal: 30px;
+            --content-margin-vertical: 15px;
+            --container-border-radius: 8px;
+        }
+        
+
+         
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 15px;
+        }
+
+         
+        
+         
+        .doc-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: var(--content-margin-vertical) var(--content-margin-horizontal);
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--container-border-radius);
+        }
+        
+
+         
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-section-title:hover {
+            background-color: var(--bg-tertiary);
+            border-left-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .nav-section-title .icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .nav-section-title .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-section.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-section-children {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .nav-section.expanded > .nav-section-children {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            padding-left: 45px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-light);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+         
+        .nav-subsection {
+            margin-bottom: 4px;
+        }
+
+        .nav-subsection-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            padding-left: 35px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .nav-subsection-title:hover {
+            background-color: var(--bg-primary);
+            border-left-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .nav-subsection-title .icon {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .nav-subsection-title .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-subsection.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsection .nav-section-children {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .nav-subsection.expanded > .nav-section-children {
+            display: block;
+        }
+
+         
+        .nav-block-link {
+            display: block;
+            padding: 6px 20px;
+            padding-left: 55px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-block-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .nav-block-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+
+         
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-left: 16px;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+         
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--text-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .microchip-logo {
+            height: 55px;
+        }
+
+         
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        .breadcrumbs a:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-tertiary);
+        }
+
+         
+        h2 {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+         
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+         
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 18px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: linear-gradient(to bottom, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-medium);
+            vertical-align: top;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--table-stripe);
+        }
+
+        tbody tr:hover td {
+            background-color: var(--table-hover);
+        }
+
+         
+        code {
+            background-color: var(--code-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: var(--code-text);
+            font-size: 14px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+         
+        .note {
+            background: var(--note-bg);
+            border-left: 5px solid var(--note-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\2139\FE0F  Note';
+            display: block;
+            font-weight: 600;
+            color: var(--note-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .note p {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .warning::before {
+            content: '\26A0\FE0F  Warning';
+            display: block;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .warning p {
+            color: var(--text-primary);
+        }
+
+         
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+         
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+         
+        .nav-footer {
+            margin-top: 48px;
+            padding: 20px 0 12px 0;
+            border-top: 2px solid var(--border-light);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .nav-footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+         
+        .block-icon-container {
+            display: table;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            table-layout: fixed;
+        }
+
+        .block-icon-image {
+            display: table-cell;
+            width: 220px;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+
+        .block-icon-image img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .block-icon-description {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+         
+        p img, .container > img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+         
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .microchip-logo {
+                height: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+         
+        
+        @media (max-width: 1024px) {
+             
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.mobile-visible {
+                left: 0;
+            }
+
+             
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+             
+            .content-wrapper {
+                width: 100%;
+            }
+
+            .container {
+                margin: 10px 15px;
+                padding: 20px;
+            }
+
+             
+            .sidebar.mobile-visible::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 280px;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .nav-section-title {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 6px 15px;
+                padding-left: 35px;
+            }
+        }
+        
+
+         
+        .under-construction-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid #e65100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .under-construction-banner .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .under-construction-banner strong {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Mobile Navigation Toggle -->
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    
+    
+    <div class="doc-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">MPLAB Blockset</h2>
+            </div>
+            <div class="sidebar-nav">
+                
+                <div class="nav-section">
+                    <a href="../" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">🏠</span>Home</span>
+                    </a>
+                </div>
 
-    <!-- Left Navigation Panel -->
-    <nav class="doc-nav-container">
-        <div class="doc-nav-header">
-            <a href="../index.html">MCHP Blockset Docs</a>
+                
+                
+                <div class="nav-section" id="section-getting-started">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('getting-started')">
+                        <span><span class="icon">🚀</span>Getting Started</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../getting_started/overview.html" class="nav-link">Overview</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/installation.html" class="nav-link">Installation</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/quick_start.html" class="nav-link">Quick Start Guide</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/motor_control_examples.html" class="nav-link">Motor Control Examples</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/scheduler_multitasking.html" class="nav-link">Scheduler &amp; Multitasking</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/external_mode_pil.html" class="nav-link">External Mode &amp; PIL</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/data_visualization.html" class="nav-link">Data Visualization</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-user-guide">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('user-guide')">
+                        <span><span class="icon">📚</span>User Guide</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/external_mode.html" class="nav-link">External Mode</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/pil_testing.html" class="nav-link">PIL Testing</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-block-reference">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('block-reference')">
+                        <span><span class="icon">🧩</span>Block Reference</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-pwm-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('pwm-timers')">
+                                    <span><span class="icon">⚡</span>PWM &amp; Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm.html" class="nav-block-link">PWM</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed.html" class="nav-block-link">PWM High-Speed</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_hs_fep.html" class="nav-block-link">PWM HS FEP</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed_override.html" class="nav-block-link">PWM HS Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/mcpwm.html" class="nav-block-link">MCPWM (PIC32)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x.html" class="nav-block-link">PWM SAM7x</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x_override.html" class="nav-block-link">PWM SAM7x Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/tcc_pwm.html" class="nav-block-link">TCC PWM (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('timers')">
+                                    <span><span class="icon">⏱️</span>Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_config.html" class="nav-block-link">Timer Config</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/input_capture.html" class="nav-block-link">Input Capture</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_hw.html" class="nav-block-link">Output Compare (HW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_sw.html" class="nav-block-link">Output Compare (SW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_pil_profiling.html" class="nav-block-link">PIL Profiling Timer</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-adc">
+                                <div class="nav-subsection-title" onclick="toggleSection('adc')">
+                                    <span><span class="icon">📊</span>ADC</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc.html" class="nav-block-link">ADC (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_hs_12b.html" class="nav-block-link">ADC HS 12-bit</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar.html" class="nav-block-link">ADC High-Speed SAR</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar_dspic.html" class="nav-block-link">ADC HS SAR (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_same5x.html" class="nav-block-link">ADC (SAM E5x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_samrh707x.html" class="nav-block-link">ADC (SAMRH707x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/afec_sam7x.html" class="nav-block-link">AFEC (SAM7x)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-communication">
+                                <div class="nav-subsection-title" onclick="toggleSection('communication')">
+                                    <span><span class="icon">📡</span>Communication</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-uart">
+                                            <div class="nav-subsection-title" onclick="toggleSection('uart')">
+                                                <span><span class="icon"></span>UART</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_config.html" class="nav-block-link">UART Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_tx.html" class="nav-block-link">UART Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_rx.html" class="nav-block-link">UART Rx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_txmatlab.html" class="nav-block-link">UART Tx MATLAB</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_break_and_autobaud.html" class="nav-block-link">UART Break &amp; Autobaud</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-can">
+                                            <div class="nav-subsection-title" onclick="toggleSection('can')">
+                                                <span><span class="icon"></span>CAN</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_config.html" class="nav-block-link">CAN Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_tx.html" class="nav-block-link">CAN Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_rx.html" class="nav-block-link">CAN Rx</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/i2c.html" class="nav-block-link">I2C Master/Slave</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/spi.html" class="nav-block-link">SPI Master/Slave</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-digital-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('digital-io')">
+                                    <span><span class="icon">🔌</span>Digital I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_input.html" class="nav-block-link">Digital Input</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output.html" class="nav-block-link">Digital Output</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_read.html" class="nav-block-link">Digital Output Read</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_write.html" class="nav-block-link">Digital Output Write</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-encoders">
+                                <div class="nav-subsection-title" onclick="toggleSection('encoders')">
+                                    <span><span class="icon">🔄</span>Encoders</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qei.html" class="nav-block-link">QEI (Quadrature Encoder)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/pdec.html" class="nav-block-link">PDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qdec_samx.html" class="nav-block-link">QDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/change_notification.html" class="nav-block-link">Change Notification</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-analog-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('analog-io')">
+                                    <span><span class="icon">📉</span>Analog I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html" class="nav-block-link">High-Speed Comparator</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html" class="nav-block-link">Comparator w/ Slope</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html" class="nav-block-link">Op-Amp</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/pga.html" class="nav-block-link">PGA (Programmable Gain Amp)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/dac_samx.html" class="nav-block-link">DAC (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-system-config">
+                                <div class="nav-subsection-title" onclick="toggleSection('system-config')">
+                                    <span><span class="icon">⚙️</span>System Config</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/master.html" class="nav-block-link">Master</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/interrupt.html" class="nav-block-link">Interrupt</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/compiler_options.html" class="nav-block-link">Compiler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/scheduler_options.html" class="nav-block-link">Scheduler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/idle_task.html" class="nav-block-link">Idle Task</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_load.html" class="nav-block-link">MCU Load</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_overload.html" class="nav-block-link">MCU Overload</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/tasks_state.html" class="nav-block-link">Tasks State</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/secondary_core.html" class="nav-block-link">Secondary Core</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-utility">
+                                <div class="nav-subsection-title" onclick="toggleSection('utility')">
+                                    <span><span class="icon">🔧</span>Utility Blocks</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/user_functions/c_function_call.html" class="nav-block-link">C Function Call</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/doc.html" class="nav-block-link">Documentation Block</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/msi.html" class="nav-block-link">MSI (Model Sample Info)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/port_info.html" class="nav-block-link">Port Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/timer_info.html" class="nav-block-link">Timer Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/simulink_reset_config.html" class="nav-block-link">Simulink Reset Config</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-examples">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('examples')">
+                        <span><span class="icon">📖</span>Examples</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-github">
+                    
+                    
+                    <a href="https://github.com/microchip-technology/mplab-blockset" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">💻</span>GitHub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </nav>
+
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <a href="../">Home</a>
+                    
+                        <span>&gt;</span>
+                        <a href="../getting_started.html">Getting Started</a>
+                    
+                    <span>&gt;</span>
+                    <span>Motor Control Examples - MPLAB Device Blocks for Simulink</span>
+                </div>
+
+                
+                <div class="under-construction-banner">
+                    <span class="icon">⚠️</span>
+                    <strong>Documentation Under Construction</strong> —
+                    This documentation is currently being developed. All information has not been validated by Microchip yet.
+                </div>
+                
+
+                <div class="page-header">
+                    <h1>Motor Control Examples - MPLAB Device Blocks for Simulink</h1>
+                    <div class="page-header-right">
+                        <img src="../images/microchip-logo.png" alt="Microchip Logo" class="microchip-logo">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                            <span class="theme-icon" id="theme-icon">☀️</span>
+                            <span id="theme-text">Light</span>
+                        </button>
+                    </div>
+                </div>
+
+                
+  <h3 id="-third-party-educational-content">⚠️ Third-Party Educational Content</h3>
+<p><strong>The motor control examples and algorithms presented in this guide are provided by the ctrl-elec project, an educational initiative from INSA Lyon (France).</strong></p>
+<p><strong>Attribution:</strong></p>
+<ul>
+<li><strong>Project:</strong> ctrl-elec - Real-time Control &amp; Embedded Systems Education</li>
+<li><strong>Institution:</strong> Institut National des Sciences Appliquées de Lyon (INSA Lyon)</li>
+<li><strong>Website:</strong>[https://www.ctrl-elec.fr/]</li>
+<li><strong>GitHub Repository:</strong>[https://github.com/rdelpoux/ctrl-elec]</li>
+<li><strong>RCP Platform:</strong>[http://rcp.ctrl-elec.fr/]</li>
+</ul>
+<p><strong>License:</strong> Educational use - Please refer to the ctrl-elec website for specific licensing terms.</p>
+<p><em>This content is included in the MPLAB Device Blocks for Simulink documentation to demonstrate real-world motor control applications. Microchip Technology and the MPLAB Device Blocks toolbox are separate from the ctrl-elec project.</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>This guide demonstrates how to use the MPLAB Device Blocks for Simulink toolbox for motor control applications, using examples and educational materials from the ctrl-elec project (INSA Lyon).</p>
+<p>The examples showcase:</p>
+<ul>
+<li><strong>Field-Oriented Control (FOC)</strong> for Permanent Magnet Synchronous Motors (PMSM)</li>
+<li><strong>Sensorless control</strong> using position and speed observers</li>
+<li><strong>Field weakening</strong> for extended speed range operation</li>
+<li><strong>Real-time parameter tuning</strong> using External Mode</li>
+<li><strong>Hardware-in-the-loop testing</strong> with dsPIC33 and PIC32 devices</li>
+</ul>
+<hr>
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    <p>Prerequisites:</p>
+<pre><code>        Understanding of motor control theory (vector control, Park/Clarke transforms)
+        Familiarity with Simulink and Model-Based Design
+        Microchip development hardware (e.g., MCLV-2, dsPICDEM MCLV)
+</code></pre>
+</div>
+
+<h2 id="example-1-field-oriented-control-foc-for-pmsm">Example 1: Field-Oriented Control (FOC) for PMSM</h2>
+<h3 id="overview">Overview</h3>
+<p>Field-Oriented Control (FOC) provides precise control of PMSM torque and speed by independently controlling flux and torque-producing currents in the rotating reference frame (d-q frame).</p>
+<h3 id="control-algorithm-components">Control Algorithm Components</h3>
+<hr>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Function</th>
+          <th>MPLAB Blocks Used</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Clarke Transform</td>
+          <td>Converts 3-phase currents (a,b,c) to stationary frame (α,β)</td>
+          <td>Math blocks (Simulink standard)</td>
+      </tr>
+      <tr>
+          <td>Park Transform</td>
+          <td>Converts stationary frame (α,β) to rotating frame (d,q)</td>
+          <td>Math blocks with rotor position input</td>
+      </tr>
+      <tr>
+          <td>PI Controllers</td>
+          <td>Regulate d-axis and q-axis currents independently</td>
+          <td>Discrete PID blocks with anti-windup</td>
+      </tr>
+      <tr>
+          <td>Inverse Park</td>
+          <td>Converts voltage commands (Vd, Vq) to stationary frame</td>
+          <td>Math blocks with angle input</td>
+      </tr>
+      <tr>
+          <td>Space Vector Modulation</td>
+          <td>Generates 3-phase PWM duty cycles</td>
+          <td>MCHP_PWM_HS</td>
+      </tr>
+      <tr>
+          <td>Current Sensing</td>
+          <td>Measures motor phase currents</td>
+          <td>MCHP_ADC</td>
+      </tr>
+      <tr>
+          <td>Position/Speed Estimation</td>
+          <td>Encoder or sensorless observer</td>
+          <td>MCHP_QEI</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="implementation-steps">Implementation Steps</h3>
+<ul>
+<li>
+<p><strong>Hardware Configuration</strong></p>
+</li>
+<li>
+<p>Configure PWM outputs using <code>MCHP_PWM_HS_FEP</code> block</p>
+</li>
+<li>
+<p>Set PWM frequency (typically 10-20 kHz)</p>
+</li>
+<li>
+<p>Enable complementary mode with dead-time insertion</p>
+</li>
+<li>
+<p>Configure center-aligned PWM for reduced harmonics</p>
+</li>
+<li>
+<p><strong>ADC Setup</strong></p>
+</li>
+<li>
+<p>Use <code>MCHP_ADC</code> block for current sensing</p>
+</li>
+<li>
+<p>Trigger ADC from PWM for synchronous sampling</p>
+</li>
+<li>
+<p>Sample at PWM valley or peak for accurate measurements</p>
+</li>
+<li>
+<p>Enable ADC interrupt for time-critical control loop</p>
+</li>
+<li>
+<p><strong>Control Loop Structure</strong></p>
+</li>
+<li>
+<p>Outer loop: Speed controller (lower rate, e.g., 1 kHz)</p>
+</li>
+<li>
+<p>Inner loop: Current controller (higher rate, e.g., 10 kHz)</p>
+</li>
+<li>
+<p>Use multi-rate model with appropriate task priorities</p>
+</li>
+<li>
+<p><strong>Parameter Tuning</strong></p>
+</li>
+<li>
+<p>Enable External Mode for real-time tuning</p>
+</li>
+<li>
+<p>Use picgui for lightweight data visualization</p>
+</li>
+<li>
+<p>Adjust PI gains using Ziegler-Nichols or model-based methods</p>
+</li>
+</ul>
+<h3 id="key-peripheral-blocks">Key Peripheral Blocks</h3>
+<pre tabindex="0"><code>| Block Name | Configuration | Purpose in FOC |
+|---|---|---|
+| MCHP_Master | Select target device, enable multi-tasking | System configuration and scheduler |
+| MCHP_PWM_HS_FEP | 3-phase complementary, center-aligned, 10 kHz | Drive motor inverter (6 IGBTs/MOSFETs) |
+| MCHP_ADC | 2 channels (phase currents), PWM-triggered | Measure Ia, Ib (Ic calculated) |
+| MCHP_QEI | Quadrature encoder interface, 1024 PPR | Rotor position and speed feedback |
+| MCHP_UART_Config | 115200 baud, XCP protocol | External Mode communication |
+| MCHP_Interrupt | Timer or ADC interrupt, highest priority | Trigger fast current control loop |
+
+---
+<div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+    <p>Safety Considerations:</p>
+<pre><code>        Implement overcurrent protection using ADC limits and emergency shutdown
+        Add dead-time compensation to prevent shoot-through
+        Test control algorithm in simulation before hardware deployment
+        Use current limiting during startup and parameter tuning
+        Monitor MCU load to prevent scheduler overruns
+</code></pre>
+</div>
+
+
+## Example 2: Sensorless Control with Sliding Mode Observer
+
+### Overview
+
+Sensorless control eliminates the need for mechanical position sensors by estimating rotor position and speed from electrical measurements (voltages and currents). This example uses a Sliding Mode Observer (SMO) for robust position estimation.
+
+### Observer Algorithm Components
+---
+| Component | Function | Implementation Notes |
+|---|---|---|
+| Current Observer | Estimates stator currents using motor model | Uses measured voltages and motor parameters (Rs, Ls) |
+| Back-EMF Estimation | Extracts back-EMF from current error | Sliding mode function with adaptive gain |
+| Position Calculation | Computes rotor angle from back-EMF (α,β) | Arctangent function with phase compensation |
+| Speed Estimation | Differentiates position or uses PLL | Low-pass filter to reduce noise |
+| Startup Strategy | Open-loop alignment then transition to sensorless | Forced angle ramp until sufficient back-EMF |
+
+### MPLAB Blocks Configuration
+````****``
+| Block Name | Configuration | Purpose in Sensorless Control |
+|---|---|---|
+| MCHP_ADC | 4 channels: Ia, Ib, Vdc, temperature | Measure currents and DC bus voltage |
+| MCHP_PWM_HS_FEP | Same as FOC example | Motor drive PWM generation |
+| Observer Subsystem | Fixed-point or floating-point math | Sliding mode observer implementation |
+| MCHP_Interrupt | ADC interrupt at PWM frequency | Execute observer at high rate (10-20 kHz) |
+
+### Key Tuning Parameters
+
+- **Observer Gain (k_smo):** Trade-off between convergence speed and noise sensitivity
+- **Low-Pass Filter Cutoff:** Filter back-EMF signals without excessive phase delay
+- **Transition Speed:** Minimum speed for sensorless operation (typically 5-10% rated speed)
+- **Startup Ramp Rate:** Balance between fast startup and smooth transition
+---
+---
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    <p>Advantages of Sensorless Control:</p>
+<pre><code>        Reduced hardware cost (no encoder)
+        Higher reliability (no mechanical sensor to fail)
+        Simplified wiring and installation
+        Suitable for harsh environments
+    
+    Limitations:
+    
+        Poor performance at zero/low speed
+        Requires accurate motor parameters
+        Sensitive to parameter variations (temperature, saturation)
+        More complex tuning process
+</code></pre>
+</div>
+
+
+## Example 3: Field Weakening Control
+
+### Overview
+
+Field weakening extends the speed range of PMSM beyond the base speed by injecting negative d-axis current. This reduces the flux linkage, allowing higher speeds while maintaining voltage within DC bus limits.
+
+### Field Weakening Strategy
+---
+| Operating Region | Control Strategy | Id Command | Iq Command |
+|---|---|---|---|
+| Constant Torque | (ω &lt; ωbase) | Maximum torque per ampere (MTPA) | 0 A (or slightly negative) | Limited by max current |
+| Field Weakening | (ωbase &lt; ω &lt; ωmax) | Voltage-limited operation | Negative (increases with speed) | Adjusted to maintain voltage limit |
+| Constant Power | (ω ≈ ωmax) | Maximum speed operation | Maximum negative Id | Reduced for voltage constraint |
+
+### Implementation with MPLAB Blocks
+
+- **Voltage Limit Calculation**
+- Measure DC bus voltage using `MCHP_ADC`
+- Calculate maximum voltage: Vmax = Vdc / √3 (for SVPWM)
+- Account for voltage drops and modulation overhead
+
+- **Field Weakening Controller**
+- Input: Speed feedback, voltage magnitude, current limits
+- Output: Id_ref (d-axis current command)
+- Algorithm: PI controller on voltage error or lookup table
+
+- **Current Limiting**
+- Enforce circular current limit: √(Id² + Iq²) ≤ Imax
+- Priority given to Id (flux control) at high speeds
+- Reduce Iq if total current exceeds limit
+
+### Tuning Guidelines
+---
+| Parameter | Typical Range | Effect |
+|---|---|---|
+| Base Speed (ωbase) | Rated speed or design speed | Transition point to field weakening |
+| Max Id Current | 50-80% of rated current | Maximum field weakening capability |
+| Voltage Margin | 5-10% below Vmax | Safety buffer for control headroom |
+| FW Controller Gain | Tuned for stability | Response speed vs. oscillations |
+
+---
+<div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+    <p>Field Weakening Considerations:</p>
+<pre><code>        Increased copper losses due to higher total current
+        Reduced efficiency at high speeds
+        Risk of demagnetization with excessive negative Id
+        Requires precise voltage and current limiting
+        Test carefully with thermal monitoring
+</code></pre>
+</div>
+
+
+## Development Workflow with MPLAB Blocks
+
+### Step 1: Model Development
+
+- Start from MCHP template for target device (e.g., dsPIC33CK Curiosity Board)
+- Add peripheral blocks: PWM, ADC, QEI, UART
+- Implement control algorithm using Simulink blocks
+- Configure multi-rate model: Fast loop (current) + Slow loop (speed)
+
+### Step 2: Simulation and Validation
+
+- Test algorithm with motor model in Simulink
+- Verify control stability and transient response
+- Check for numerical issues (saturation, overflow)
+- Optimize fixed-point data types for embedded implementation
+
+### Step 3: Code Generation and Deployment
+
+- Configure Embedded Coder settings in MCHP Master block
+- Generate C code and compile for target device
+- Program device using MPLAB X IPE or ICD
+- Use picgui or MPLAB Data Visualizer for initial debugging
+
+### Step 4: Real-Time Tuning
+
+- Enable External Mode in MCHP Master block
+- Connect via UART or USB to development PC
+- Adjust controller gains and parameters in real-time
+- Log data for post-processing and analysis
+
+### Step 5: Performance Optimization
+
+- Run PIL (Processor-in-the-Loop) test for execution time analysis
+- Optimize code with dsPIC assembly replacements (if needed)
+- Monitor CPU load using MCHP_MCULoad block
+- Verify scheduler timing with MCHP_TasksState block
+
+## Accessing ctrl-elec Resources
+
+### Educational Materials
+
+- **Website:**[https://www.ctrl-elec.fr/]
+- Comprehensive tutorials on motor control theory
+- Detailed explanations of FOC, sensorless control, and field weakening
+- Step-by-step lab exercises with MATLAB/Simulink
+
+- **GitHub Repository:**[https://github.com/rdelpoux/ctrl-elec]
+- Complete Simulink models for motor control examples
+- Reference implementations and test cases
+- Documentation and supplementary materials
+
+- **RCP Platform:**[http://rcp.ctrl-elec.fr/]
+- Rapid Control Prototyping platform documentation
+- Hardware setup guides for various development boards
+- Application notes and best practices
+
+### Adapting ctrl-elec Examples for MPLAB Blocks
+
+The ctrl-elec examples can be adapted to use MPLAB Device Blocks by:
+
+- **Replace generic peripheral blocks** with MCHP-specific blocks: 
+- Generic PWM → `MCHP_PWM_HS_FEP`
+- Generic ADC → `MCHP_ADC`
+- Generic encoder → `MCHP_QEI`
+
+- **Configure MCHP Master block** for target device and enable multi-tasking
+- **Adjust sample times** to match MCHP scheduler rates
+- **Enable External Mode** using MCHP UART blocks for real-time tuning
+- **Leverage MCHP-specific features**: 
+- PWM-triggered ADC for precise current sampling
+- DMA transfers for high-performance data movement
+- Assembly code replacement for optimized math operations
+
+---
+<div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+    Integration Tip: The control algorithms (Clarke/Park transforms, PI controllers, observers) remain identical. Only the peripheral interface blocks need to be replaced with MPLAB-specific blocks. The ctrl-elec documentation provides excellent theoretical background that complements the MPLAB blocks hardware implementation.
+</div>
+
+
+## Additional Resources
+
+### MPLAB Blockset Documentation
+
+- [Scheduler and Multitasking] - Configure multi-rate control loops
+- [External Mode and PIL Testing] - Real-time tuning and verification
+- [PWM Block Reference] - Motor drive PWM configuration
+- [ADC Block Reference] - Current and voltage sensing setup
+- [QEI Block Reference] - Encoder interface for position feedback
+
+### Microchip Application Notes
+
+- [AN1078] - Sensorless Field-Oriented Control (FOC) for PMSM
+- [AN1292] - Sensorless Field-Oriented Control of Three-Phase PMSMs
+- [AN1160] - Sensorless Field-Oriented Control of PMSM Motors
+- [AN2520] - Field Weakening for PMSM Motor Control
+
+## Summary
+
+This guide demonstrated how to implement advanced motor control algorithms using the MPLAB Device Blocks for Simulink, leveraging educational resources from the ctrl-elec project (INSA Lyon).
+
+**Key Takeaways:**
+
+- MPLAB blocks provide hardware-optimized peripheral interfaces for motor control
+- Field-Oriented Control (FOC) can be implemented using standard Simulink blocks + MCHP PWM/ADC
+- Sensorless control eliminates encoders using observers, with trade-offs in low-speed performance
+- Field weakening extends speed range beyond base speed using negative d-axis current
+- External Mode and PIL testing enable efficient tuning and verification
+- Multi-rate scheduling optimizes CPU usage for nested control loops
+
+**Next Steps:**
+
+- Visit [ctrl-elec website] for motor control theory tutorials
+- Download example models from [ctrl-elec GitHub]
+- Adapt examples using MCHP peripheral blocks for your target device
+- Use picgui and External Mode for real-time development
+- Refer to MPLAB blockset documentation for block-specific configuration details
+
+### Attribution
+
+**Motor control algorithms, theory, and examples presented in this guide are provided by:**
+
+**ctrl-elec project** - Real-time Control &amp; Embedded Systems Education**INSA Lyon** (Institut National des Sciences Appliquées de Lyon), France
+
+**Website:**[https://www.ctrl-elec.fr/]**GitHub:**[https://github.com/rdelpoux/ctrl-elec]**RCP Platform:**[http://rcp.ctrl-elec.fr/]
+
+*This documentation is part of the MPLAB Device Blocks for Simulink toolbox. The ctrl-elec project and INSA Lyon are independent educational initiatives. Microchip Technology provides the MPLAB blocks hardware interface, while ctrl-elec provides motor control algorithms and educational materials.*
+
+**MPLAB Device Blocks for Simulink** © Microchip Technology Inc. All rights reserved.
+
+
+## See Also
+
+### Application Notes
+
+- [AN1078 - Sensorless Field-Oriented Control (FOC) for PMSM](https://www.microchip.com/AN1078)
+- [AN1292 - Sensorless Field-Oriented Control of Three-Phase PMSMs](https://www.microchip.com/AN1292)
+- [AN1160 - Sensorless Field-Oriented Control of PMSM Motors](https://www.microchip.com/AN1160)
+- [AN2520](https://www.microchip.com/AN2520)
+
+### GitHub
+
+- [https://github.com/rdelpoux/ctrl-elec](https://github.com/rdelpoux/ctrl-elec)
+- [https://github.com/rdelpoux/ctrl-elec](https://github.com/rdelpoux/ctrl-elec)
+- [ctrl-elec GitHub](https://github.com/rdelpoux/ctrl-elec)
+- [https://github.com/rdelpoux/ctrl-elec](https://github.com/rdelpoux/ctrl-elec)
+
+### ctrl-elec
+
+- [https://www.ctrl-elec.fr/](https://www.ctrl-elec.fr/)
+- [http://rcp.ctrl-elec.fr/](http://rcp.ctrl-elec.fr/)
+- [https://www.ctrl-elec.fr/](https://www.ctrl-elec.fr/)
+- [http://rcp.ctrl-elec.fr/](http://rcp.ctrl-elec.fr/)
+- [ctrl-elec website](https://www.ctrl-elec.fr/)
+- [https://www.ctrl-elec.fr/](https://www.ctrl-elec.fr/)
+- [http://rcp.ctrl-elec.fr/](http://rcp.ctrl-elec.fr/)
+</code></pre>
+
+
+                <div class="nav-footer">
+                    <p>Last updated: January 2025 | MPLAB Blockset Documentation</p>
+                    <p>&copy; 2025 Microchip Technology Inc. All rights reserved.</p>
+                </div>
+            </div>
         </div>
-        <ul class="doc-nav-menu">
-            <li class="nav-item">
-                <a href="../index.html" class="nav-link">Home</a>
-            </li>
 
-            <!-- Getting Started Section -->
-            <li class="nav-item">
-                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
-                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
-                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
-                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
-                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
-                </ul>
-            </li>
-
-            <!-- User Guide Section -->
-            <li class="nav-item">
-                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
-                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
-                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
-                </ul>
-            </li>
-
-            <!-- Block Reference Section -->
-            <li class="nav-item">
-                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
-                </ul>
-            </li>
-
-            <!-- Examples Section -->
-            <li class="nav-item">
-                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
-                </ul>
-            </li>
-
-            <!-- Release Notes -->
-            <li class="nav-item">
-                <a href="../release_notes.html" class="nav-link">Release Notes</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="doc-content-wrapper">
-    <h1>Motor Control Examples</h1>
-
-    <!-- Third-Party Attribution Box -->
-    <div class="attribution-box">
-        <h3>⚠️ Third-Party Educational Content</h3>
-        <p><strong>The motor control examples and algorithms presented in this guide are provided by the ctrl-elec project, an educational initiative from INSA Lyon (France).</strong></p>
-        <p><strong>Attribution:</strong></p>
-        <ul>
-            <li><strong>Project:</strong> ctrl-elec - Real-time Control & Embedded Systems Education</li>
-            <li><strong>Institution:</strong> Institut National des Sciences Appliquées de Lyon (INSA Lyon)</li>
-            <li><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a></li>
-            <li><strong>GitHub Repository:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a></li>
-            <li><strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a></li>
-        </ul>
-        <p><strong>License:</strong> Educational use - Please refer to the ctrl-elec website for specific licensing terms.</p>
-        <p><em>This content is included in the MPLAB Device Blocks for Simulink documentation to demonstrate real-world motor control applications. Microchip Technology and the MPLAB Device Blocks toolbox are separate from the ctrl-elec project.</em></p>
+        
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation">
+            ☰
+        </button>
     </div>
+    
 
-    <h2>Introduction</h2>
-    <p>This guide demonstrates how to use the MPLAB Device Blocks for Simulink toolbox for motor control applications, using examples and educational materials from the ctrl-elec project (INSA Lyon).</p>
+    <script>
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    <p>The examples showcase:</p>
-    <ul>
-        <li><strong>Field-Oriented Control (FOC)</strong> for Permanent Magnet Synchronous Motors (PMSM)</li>
-        <li><strong>Sensorless control</strong> using position and speed observers</li>
-        <li><strong>Field weakening</strong> for extended speed range operation</li>
-        <li><strong>Real-time parameter tuning</strong> using External Mode</li>
-        <li><strong>Hardware-in-the-loop testing</strong> with dsPIC33 and PIC32 devices</li>
-    </ul>
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
 
-    <div class="note">
-        <strong>Prerequisites:</strong>
-        <ul>
-            <li>Understanding of motor control theory (vector control, Park/Clarke transforms)</li>
-            <li>Familiarity with Simulink and Model-Based Design</li>
-            <li>MPLAB Device Blocks for Simulink installed</li>
-            <li>Microchip development hardware (e.g., MCLV-2, dsPICDEM MCLV)</li>
-        </ul>
-    </div>
+        function updateThemeButton(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
 
-    <h2>Example 1: Field-Oriented Control (FOC) for PMSM</h2>
+            if (theme === 'dark') {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        }
 
-    <div class="example-box">
-        <h3>Overview</h3>
-        <p>Field-Oriented Control (FOC) provides precise control of PMSM torque and speed by independently controlling flux and torque-producing currents in the rotating reference frame (d-q frame).</p>
-    </div>
+        
+        (function initTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
 
-    <h3>Control Algorithm Components</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Component</th>
-                <th>Function</th>
-                <th>MPLAB Blocks Used</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Clarke Transform</strong></td>
-                <td>Converts 3-phase currents (a,b,c) to stationary frame (α,β)</td>
-                <td>Math blocks (Simulink standard)</td>
-            </tr>
-            <tr>
-                <td><strong>Park Transform</strong></td>
-                <td>Converts stationary frame (α,β) to rotating frame (d,q)</td>
-                <td>Math blocks with rotor position input</td>
-            </tr>
-            <tr>
-                <td><strong>PI Controllers</strong></td>
-                <td>Regulate d-axis and q-axis currents independently</td>
-                <td>Discrete PID blocks with anti-windup</td>
-            </tr>
-            <tr>
-                <td><strong>Inverse Park</strong></td>
-                <td>Converts voltage commands (Vd, Vq) to stationary frame</td>
-                <td>Math blocks with angle input</td>
-            </tr>
-            <tr>
-                <td><strong>Space Vector Modulation</strong></td>
-                <td>Generates 3-phase PWM duty cycles</td>
-                <td><code>MCHP_PWM_HS</code> or <code>MCHP_PWM_HS_FEP</code></td>
-            </tr>
-            <tr>
-                <td><strong>Current Sensing</strong></td>
-                <td>Measures motor phase currents</td>
-                <td><code>MCHP_ADC</code> with PWM-synchronized sampling</td>
-            </tr>
-            <tr>
-                <td><strong>Position/Speed Estimation</strong></td>
-                <td>Encoder or sensorless observer</td>
-                <td><code>MCHP_QEI</code> (encoder) or observer algorithm</td>
-            </tr>
-        </tbody>
-    </table>
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+        })();
 
-    <h3>Implementation Steps</h3>
-    <ol>
-        <li><strong>Hardware Configuration</strong>
-            <ul>
-                <li>Configure PWM outputs using <code>MCHP_PWM_HS_FEP</code> block</li>
-                <li>Set PWM frequency (typically 10-20 kHz)</li>
-                <li>Enable complementary mode with dead-time insertion</li>
-                <li>Configure center-aligned PWM for reduced harmonics</li>
-            </ul>
-        </li>
-        <li><strong>ADC Setup</strong>
-            <ul>
-                <li>Use <code>MCHP_ADC</code> block for current sensing</li>
-                <li>Trigger ADC from PWM for synchronous sampling</li>
-                <li>Sample at PWM valley or peak for accurate measurements</li>
-                <li>Enable ADC interrupt for time-critical control loop</li>
-            </ul>
-        </li>
-        <li><strong>Control Loop Structure</strong>
-            <ul>
-                <li>Outer loop: Speed controller (lower rate, e.g., 1 kHz)</li>
-                <li>Inner loop: Current controller (higher rate, e.g., 10 kHz)</li>
-                <li>Use multi-rate model with appropriate task priorities</li>
-            </ul>
-        </li>
-        <li><strong>Parameter Tuning</strong>
-            <ul>
-                <li>Enable External Mode for real-time tuning</li>
-                <li>Use picgui for lightweight data visualization</li>
-                <li>Adjust PI gains using Ziegler-Nichols or model-based methods</li>
-            </ul>
-        </li>
-    </ol>
+        
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                }
+            });
+        }
 
-    <h3>Key Peripheral Blocks</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Block Name</th>
-                <th>Configuration</th>
-                <th>Purpose in FOC</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code>MCHP_Master</code></td>
-                <td>Select target device, enable multi-tasking</td>
-                <td>System configuration and scheduler</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_PWM_HS_FEP</code></td>
-                <td>3-phase complementary, center-aligned, 10 kHz</td>
-                <td>Drive motor inverter (6 IGBTs/MOSFETs)</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_ADC</code></td>
-                <td>2 channels (phase currents), PWM-triggered</td>
-                <td>Measure Ia, Ib (Ic calculated)</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_QEI</code></td>
-                <td>Quadrature encoder interface, 1024 PPR</td>
-                <td>Rotor position and speed feedback</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_UART_Config</code></td>
-                <td>115200 baud, XCP protocol</td>
-                <td>External Mode communication</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_Interrupt</code></td>
-                <td>Timer or ADC interrupt, highest priority</td>
-                <td>Trigger fast current control loop</td>
-            </tr>
-        </tbody>
-    </table>
+        
+        
 
-    <div class="warning">
-        <strong>Safety Considerations:</strong>
-        <ul>
-            <li>Implement overcurrent protection using ADC limits and emergency shutdown</li>
-            <li>Add dead-time compensation to prevent shoot-through</li>
-            <li>Test control algorithm in simulation before hardware deployment</li>
-            <li>Use current limiting during startup and parameter tuning</li>
-            <li>Monitor MCU load to prevent scheduler overruns</li>
-        </ul>
-    </div>
+        
+        window.toggleSection = function(identifier) {
+            const section = document.getElementById('section-' + identifier);
+            if (section) {
+                section.classList.toggle('expanded');
 
-    <h2>Example 2: Sensorless Control with Sliding Mode Observer</h2>
+                
+                
+                if (section.classList.contains('nav-section')) {
+                    
+                    const expandedSections = getExpandedSections();
+                    if (section.classList.contains('expanded')) {
+                        expandedSections.add(identifier);
+                    } else {
+                        expandedSections.delete(identifier);
+                    }
+                    localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                }
+                
+                
+            }
+        };
 
-    <div class="example-box">
-        <h3>Overview</h3>
-        <p>Sensorless control eliminates the need for mechanical position sensors by estimating rotor position and speed from electrical measurements (voltages and currents). This example uses a Sliding Mode Observer (SMO) for robust position estimation.</p>
-    </div>
+        
+        function getExpandedSections() {
+            const stored = localStorage.getItem('expandedSections');
+            return new Set(stored ? JSON.parse(stored) : []);
+        }
 
-    <h3>Observer Algorithm Components</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Component</th>
-                <th>Function</th>
-                <th>Implementation Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Current Observer</strong></td>
-                <td>Estimates stator currents using motor model</td>
-                <td>Uses measured voltages and motor parameters (Rs, Ls)</td>
-            </tr>
-            <tr>
-                <td><strong>Back-EMF Estimation</strong></td>
-                <td>Extracts back-EMF from current error</td>
-                <td>Sliding mode function with adaptive gain</td>
-            </tr>
-            <tr>
-                <td><strong>Position Calculation</strong></td>
-                <td>Computes rotor angle from back-EMF (α,β)</td>
-                <td>Arctangent function with phase compensation</td>
-            </tr>
-            <tr>
-                <td><strong>Speed Estimation</strong></td>
-                <td>Differentiates position or uses PLL</td>
-                <td>Low-pass filter to reduce noise</td>
-            </tr>
-            <tr>
-                <td><strong>Startup Strategy</strong></td>
-                <td>Open-loop alignment then transition to sensorless</td>
-                <td>Forced angle ramp until sufficient back-EMF</td>
-            </tr>
-        </tbody>
-    </table>
+        
+        function restoreExpandedSections() {
+            const expandedSections = getExpandedSections();
+            expandedSections.forEach(identifier => {
+                const section = document.getElementById('section-' + identifier);
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            });
+        }
 
-    <h3>MPLAB Blocks Configuration</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Block Name</th>
-                <th>Configuration</th>
-                <th>Purpose in Sensorless Control</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code>MCHP_ADC</code></td>
-                <td>4 channels: Ia, Ib, Vdc, temperature</td>
-                <td>Measure currents and DC bus voltage</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_PWM_HS_FEP</code></td>
-                <td>Same as FOC example</td>
-                <td>Motor drive PWM generation</td>
-            </tr>
-            <tr>
-                <td><strong>Observer Subsystem</strong></td>
-                <td>Fixed-point or floating-point math</td>
-                <td>Sliding mode observer implementation</td>
-            </tr>
-            <tr>
-                <td><code>MCHP_Interrupt</code></td>
-                <td>ADC interrupt at PWM frequency</td>
-                <td>Execute observer at high rate (10-20 kHz)</td>
-            </tr>
-        </tbody>
-    </table>
+        
+        function highlightActivePage() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .nav-block-link, .nav-section-title[href], .nav-subsection-title[href]');
 
-    <h3>Key Tuning Parameters</h3>
-    <ul>
-        <li><strong>Observer Gain (k_smo):</strong> Trade-off between convergence speed and noise sensitivity</li>
-        <li><strong>Low-Pass Filter Cutoff:</strong> Filter back-EMF signals without excessive phase delay</li>
-        <li><strong>Transition Speed:</strong> Minimum speed for sensorless operation (typically 5-10% rated speed)</li>
-        <li><strong>Startup Ramp Rate:</strong> Balance between fast startup and smooth transition</li>
-    </ul>
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
 
-    <div class="note">
-        <strong>Advantages of Sensorless Control:</strong>
-        <ul>
-            <li>Reduced hardware cost (no encoder)</li>
-            <li>Higher reliability (no mechanical sensor to fail)</li>
-            <li>Simplified wiring and installation</li>
-            <li>Suitable for harsh environments</li>
-        </ul>
-        <strong>Limitations:</strong>
-        <ul>
-            <li>Poor performance at zero/low speed</li>
-            <li>Requires accurate motor parameters</li>
-            <li>Sensitive to parameter variations (temperature, saturation)</li>
-            <li>More complex tuning process</li>
-        </ul>
-    </div>
+                    
+                    const parentSubsection = link.closest('.nav-subsection');
+                    if (parentSubsection && !parentSubsection.classList.contains('expanded')) {
+                        parentSubsection.classList.add('expanded');
+                        
+                    }
 
-    <h2>Example 3: Field Weakening Control</h2>
+                    
+                    const parentSection = link.closest('.nav-section');
+                    if (parentSection && !parentSection.classList.contains('expanded')) {
+                        parentSection.classList.add('expanded');
+                        
+                        const identifier = parentSection.id.replace('section-', '');
+                        const expandedSections = getExpandedSections();
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            });
+        }
 
-    <div class="example-box">
-        <h3>Overview</h3>
-        <p>Field weakening extends the speed range of PMSM beyond the base speed by injecting negative d-axis current. This reduces the flux linkage, allowing higher speeds while maintaining voltage within DC bus limits.</p>
-    </div>
+        
+        window.toggleMobileSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-visible');
+            }
+        };
 
-    <h3>Field Weakening Strategy</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Operating Region</th>
-                <th>Control Strategy</th>
-                <th>Id Command</th>
-                <th>Iq Command</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Constant Torque</strong><br>(ω &lt; ωbase)</td>
-                <td>Maximum torque per ampere (MTPA)</td>
-                <td>0 A (or slightly negative)</td>
-                <td>Limited by max current</td>
-            </tr>
-            <tr>
-                <td><strong>Field Weakening</strong><br>(ωbase &lt; ω &lt; ωmax)</td>
-                <td>Voltage-limited operation</td>
-                <td>Negative (increases with speed)</td>
-                <td>Adjusted to maintain voltage limit</td>
-            </tr>
-            <tr>
-                <td><strong>Constant Power</strong><br>(ω ≈ ωmax)</td>
-                <td>Maximum speed operation</td>
-                <td>Maximum negative Id</td>
-                <td>Reduced for voltage constraint</td>
-            </tr>
-        </tbody>
-    </table>
+        
+        (function initSidebar() {
+            restoreExpandedSections();
+            highlightActivePage();
 
-    <h3>Implementation with MPLAB Blocks</h3>
-    <ol>
-        <li><strong>Voltage Limit Calculation</strong>
-            <ul>
-                <li>Measure DC bus voltage using <code>MCHP_ADC</code></li>
-                <li>Calculate maximum voltage: Vmax = Vdc / √3 (for SVPWM)</li>
-                <li>Account for voltage drops and modulation overhead</li>
-            </ul>
-        </li>
-        <li><strong>Field Weakening Controller</strong>
-            <ul>
-                <li>Input: Speed feedback, voltage magnitude, current limits</li>
-                <li>Output: Id_ref (d-axis current command)</li>
-                <li>Algorithm: PI controller on voltage error or lookup table</li>
-            </ul>
-        </li>
-        <li><strong>Current Limiting</strong>
-            <ul>
-                <li>Enforce circular current limit: √(Id² + Iq²) ≤ Imax</li>
-                <li>Priority given to Id (flux control) at high speeds</li>
-                <li>Reduce Iq if total current exceeds limit</li>
-            </ul>
-        </li>
-    </ol>
-
-    <h3>Tuning Guidelines</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Parameter</th>
-                <th>Typical Range</th>
-                <th>Effect</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Base Speed (ωbase)</strong></td>
-                <td>Rated speed or design speed</td>
-                <td>Transition point to field weakening</td>
-            </tr>
-            <tr>
-                <td><strong>Max Id Current</strong></td>
-                <td>50-80% of rated current</td>
-                <td>Maximum field weakening capability</td>
-            </tr>
-            <tr>
-                <td><strong>Voltage Margin</strong></td>
-                <td>5-10% below Vmax</td>
-                <td>Safety buffer for control headroom</td>
-            </tr>
-            <tr>
-                <td><strong>FW Controller Gain</strong></td>
-                <td>Tuned for stability</td>
-                <td>Response speed vs. oscillations</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="warning">
-        <strong>Field Weakening Considerations:</strong>
-        <ul>
-            <li>Increased copper losses due to higher total current</li>
-            <li>Reduced efficiency at high speeds</li>
-            <li>Risk of demagnetization with excessive negative Id</li>
-            <li>Requires precise voltage and current limiting</li>
-            <li>Test carefully with thermal monitoring</li>
-        </ul>
-    </div>
-
-    <h2>Development Workflow with MPLAB Blocks</h2>
-
-    <h3>Step 1: Model Development</h3>
-    <ol>
-        <li>Start from MCHP template for target device (e.g., dsPIC33CK Curiosity Board)</li>
-        <li>Add peripheral blocks: PWM, ADC, QEI, UART</li>
-        <li>Implement control algorithm using Simulink blocks</li>
-        <li>Configure multi-rate model: Fast loop (current) + Slow loop (speed)</li>
-    </ol>
-
-    <h3>Step 2: Simulation and Validation</h3>
-    <ol>
-        <li>Test algorithm with motor model in Simulink</li>
-        <li>Verify control stability and transient response</li>
-        <li>Check for numerical issues (saturation, overflow)</li>
-        <li>Optimize fixed-point data types for embedded implementation</li>
-    </ol>
-
-    <h3>Step 3: Code Generation and Deployment</h3>
-    <ol>
-        <li>Configure Embedded Coder settings in MCHP Master block</li>
-        <li>Generate C code and compile for target device</li>
-        <li>Program device using MPLAB X IPE or ICD</li>
-        <li>Use picgui or MPLAB Data Visualizer for initial debugging</li>
-    </ol>
-
-    <h3>Step 4: Real-Time Tuning</h3>
-    <ol>
-        <li>Enable External Mode in MCHP Master block</li>
-        <li>Connect via UART or USB to development PC</li>
-        <li>Adjust controller gains and parameters in real-time</li>
-        <li>Log data for post-processing and analysis</li>
-    </ol>
-
-    <h3>Step 5: Performance Optimization</h3>
-    <ol>
-        <li>Run PIL (Processor-in-the-Loop) test for execution time analysis</li>
-        <li>Optimize code with dsPIC assembly replacements (if needed)</li>
-        <li>Monitor CPU load using MCHP_MCULoad block</li>
-        <li>Verify scheduler timing with MCHP_TasksState block</li>
-    </ol>
-
-    <h2>Accessing ctrl-elec Resources</h2>
-
-    <h3>Educational Materials</h3>
-    <ul>
-        <li><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a>
-            <ul>
-                <li>Comprehensive tutorials on motor control theory</li>
-                <li>Detailed explanations of FOC, sensorless control, and field weakening</li>
-                <li>Step-by-step lab exercises with MATLAB/Simulink</li>
-            </ul>
-        </li>
-        <li><strong>GitHub Repository:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a>
-            <ul>
-                <li>Complete Simulink models for motor control examples</li>
-                <li>Reference implementations and test cases</li>
-                <li>Documentation and supplementary materials</li>
-            </ul>
-        </li>
-        <li><strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a>
-            <ul>
-                <li>Rapid Control Prototyping platform documentation</li>
-                <li>Hardware setup guides for various development boards</li>
-                <li>Application notes and best practices</li>
-            </ul>
-        </li>
-    </ul>
-
-    <h3>Adapting ctrl-elec Examples for MPLAB Blocks</h3>
-    <p>The ctrl-elec examples can be adapted to use MPLAB Device Blocks by:</p>
-    <ol>
-        <li><strong>Replace generic peripheral blocks</strong> with MCHP-specific blocks:
-            <ul>
-                <li>Generic PWM → <code>MCHP_PWM_HS_FEP</code></li>
-                <li>Generic ADC → <code>MCHP_ADC</code></li>
-                <li>Generic encoder → <code>MCHP_QEI</code></li>
-            </ul>
-        </li>
-        <li><strong>Configure MCHP Master block</strong> for target device and enable multi-tasking</li>
-        <li><strong>Adjust sample times</strong> to match MCHP scheduler rates</li>
-        <li><strong>Enable External Mode</strong> using MCHP UART blocks for real-time tuning</li>
-        <li><strong>Leverage MCHP-specific features</strong>:
-            <ul>
-                <li>PWM-triggered ADC for precise current sampling</li>
-                <li>DMA transfers for high-performance data movement</li>
-                <li>Assembly code replacement for optimized math operations</li>
-            </ul>
-        </li>
-    </ol>
-
-    <div class="note">
-        <strong>Integration Tip:</strong> The control algorithms (Clarke/Park transforms, PI controllers, observers) remain identical. Only the peripheral interface blocks need to be replaced with MPLAB-specific blocks. The ctrl-elec documentation provides excellent theoretical background that complements the MPLAB blocks hardware implementation.
-    </div>
-
-    <h2>Additional Resources</h2>
-
-    <h3>MPLAB Blockset Documentation</h3>
-    <ul>
-        <li><a href="scheduler_multitasking.html">Scheduler and Multitasking</a> - Configure multi-rate control loops</li>
-        <li><a href="external_mode_pil.html">External Mode and PIL Testing</a> - Real-time tuning and verification</li>
-        <li><a href="../block_reference/pwm.html">PWM Block Reference</a> - Motor drive PWM configuration</li>
-        <li><a href="../block_reference/adc.html">ADC Block Reference</a> - Current and voltage sensing setup</li>
-        <li><a href="../block_reference/qei.html">QEI Block Reference</a> - Encoder interface for position feedback</li>
-    </ul>
-
-    <h3>Microchip Application Notes</h3>
-    <ul>
-        <li><a href="https://www.microchip.com/AN1078">AN1078</a> - Sensorless Field-Oriented Control (FOC) for PMSM</li>
-        <li><a href="https://www.microchip.com/AN1292">AN1292</a> - Sensorless Field-Oriented Control of Three-Phase PMSMs</li>
-        <li><a href="https://www.microchip.com/AN1160">AN1160</a> - Sensorless Field-Oriented Control of PMSM Motors</li>
-        <li><a href="https://www.microchip.com/AN2520">AN2520</a> - Field Weakening for PMSM Motor Control</li>
-    </ul>
-
-    <h2>Summary</h2>
-    <p>This guide demonstrated how to implement advanced motor control algorithms using the MPLAB Device Blocks for Simulink, leveraging educational resources from the ctrl-elec project (INSA Lyon).</p>
-
-    <p><strong>Key Takeaways:</strong></p>
-    <ul>
-        <li>MPLAB blocks provide hardware-optimized peripheral interfaces for motor control</li>
-        <li>Field-Oriented Control (FOC) can be implemented using standard Simulink blocks + MCHP PWM/ADC</li>
-        <li>Sensorless control eliminates encoders using observers, with trade-offs in low-speed performance</li>
-        <li>Field weakening extends speed range beyond base speed using negative d-axis current</li>
-        <li>External Mode and PIL testing enable efficient tuning and verification</li>
-        <li>Multi-rate scheduling optimizes CPU usage for nested control loops</li>
-    </ul>
-
-    <p><strong>Next Steps:</strong></p>
-    <ol>
-        <li>Visit <a href="https://www.ctrl-elec.fr/" target="_blank">ctrl-elec website</a> for motor control theory tutorials</li>
-        <li>Download example models from <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">ctrl-elec GitHub</a></li>
-        <li>Adapt examples using MCHP peripheral blocks for your target device</li>
-        <li>Use picgui and External Mode for real-time development</li>
-        <li>Refer to MPLAB blockset documentation for block-specific configuration details</li>
-    </ol>
-
-    <!-- Footer with Attribution -->
-    <div class="footer">
-        <h3>Attribution</h3>
-        <p><strong>Motor control algorithms, theory, and examples presented in this guide are provided by:</strong></p>
-        <p><strong>ctrl-elec project</strong> - Real-time Control &amp; Embedded Systems Education<br>
-        <strong>INSA Lyon</strong> (Institut National des Sciences Appliquées de Lyon), France</p>
-        <p><strong>Website:</strong> <a href="https://www.ctrl-elec.fr/" target="_blank">https://www.ctrl-elec.fr/</a><br>
-        <strong>GitHub:</strong> <a href="https://github.com/rdelpoux/ctrl-elec" target="_blank">https://github.com/rdelpoux/ctrl-elec</a><br>
-        <strong>RCP Platform:</strong> <a href="http://rcp.ctrl-elec.fr/" target="_blank">http://rcp.ctrl-elec.fr/</a></p>
-
-        <p><em>This documentation is part of the MPLAB Device Blocks for Simulink toolbox. The ctrl-elec project and INSA Lyon are independent educational initiatives. Microchip Technology provides the MPLAB blocks hardware interface, while ctrl-elec provides motor control algorithms and educational materials.</em></p>
-
-        <p><strong>MPLAB Device Blocks for Simulink</strong><br>
-        © Microchip Technology Inc. All rights reserved.</p>
-    </div>
-
-    </div>
+            
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const parentSection = activeLink.closest('.nav-section');
+                if (parentSection && parentSection.id) {
+                    const identifier = parentSection.id.replace('section-', '');
+                    const expandedSections = getExpandedSections();
+                    if (!expandedSections.has(identifier)) {
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            }
+        })();
+        
+    </script>
 </body>
 </html>

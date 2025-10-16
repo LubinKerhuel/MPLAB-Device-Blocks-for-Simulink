@@ -1,386 +1,1660 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Timer Blocks - MCHP Blockset</title>
+    <title>Timer Blocks - MPLAB Blockset for MATLAB/Simulink</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../assets/css/navigation.css">
-    <script src="../assets/js/navigation.js"></script>
+    <style>
+         
+         
+
+         
+        :root {
+             
+            --bg-primary: #f8f9fa;
+            --bg-secondary: white;
+            --bg-tertiary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --text-tertiary: #6c757d;
+            --text-heading: #003d5c;
+            --border-color: #dee2e6;
+            --border-light: #e1e8ed;
+            --border-medium: #e9ecef;
+            --accent-primary: #0076A8;
+            --accent-secondary: #005a85;
+            --accent-hover: #005580;
+            --accent-light: #e3f2fd;
+            --code-bg: #f4f4f4;
+            --code-text: #c7254e;
+            --pre-bg: linear-gradient(to bottom, #e8e8e8 0%, #f0f0f0 100%);
+            --pre-border: #d0d0d0;
+            --table-hover: #e3f2fd;
+            --table-stripe: #f8f9fa;
+            --note-bg: linear-gradient(to right, #e7f3fe 0%, #f5fbff 100%);
+            --note-border: #2196F3;
+            --note-text: #1976D2;
+            --warning-bg: linear-gradient(to right, #fff9e6 0%, #fffcf0 100%);
+            --warning-border: #ff9800;
+            --warning-text: #f57c00;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+             
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242831;
+            --bg-tertiary: #2d3139;
+            --text-primary: #e4e6eb;
+            --text-secondary: #adb5bd;
+            --text-tertiary: #8b95a1;
+            --text-heading: #e4e6eb;
+            --border-color: #3a3f4b;
+            --border-light: #3a3f4b;
+            --border-medium: #404654;
+            --accent-primary: #4da6d6;
+            --accent-secondary: #3d8ab5;
+            --accent-hover: #60b4e0;
+            --accent-light: #2d4556;
+            --code-bg: #2d3139;
+            --code-text: #ff6b9d;
+            --pre-bg: linear-gradient(to bottom, #2d3139 0%, #2d3139 100%);
+            --pre-border: #3a3f4b;
+            --table-hover: #2d4556;
+            --table-stripe: #2d3139;
+            --note-bg: linear-gradient(to right, #1e3a52 0%, #1e3a52 100%);
+            --note-border: #4da6d6;
+            --note-text: #66b3e0;
+            --warning-bg: linear-gradient(to right, #3d3520 0%, #3d3520 100%);
+            --warning-border: #ffb347;
+            --warning-text: #ffc870;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.5);
+        }
+
+         
+        
+        :root {
+             
+            --content-max-width: 1000px;
+            --content-margin-horizontal: 30px;
+            --content-margin-vertical: 15px;
+            --container-border-radius: 8px;
+        }
+        
+
+         
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 15px;
+        }
+
+         
+        
+         
+        .doc-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: var(--content-margin-vertical) var(--content-margin-horizontal);
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--container-border-radius);
+        }
+        
+
+         
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-section-title:hover {
+            background-color: var(--bg-tertiary);
+            border-left-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .nav-section-title .icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .nav-section-title .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-section.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-section-children {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .nav-section.expanded > .nav-section-children {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            padding-left: 45px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-light);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+         
+        .nav-subsection {
+            margin-bottom: 4px;
+        }
+
+        .nav-subsection-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            padding-left: 35px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .nav-subsection-title:hover {
+            background-color: var(--bg-primary);
+            border-left-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .nav-subsection-title .icon {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .nav-subsection-title .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-subsection.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsection .nav-section-children {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .nav-subsection.expanded > .nav-section-children {
+            display: block;
+        }
+
+         
+        .nav-block-link {
+            display: block;
+            padding: 6px 20px;
+            padding-left: 55px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-block-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .nav-block-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+
+         
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-left: 16px;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+         
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--text-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .microchip-logo {
+            height: 55px;
+        }
+
+         
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        .breadcrumbs a:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-tertiary);
+        }
+
+         
+        h2 {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+         
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+         
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 18px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: linear-gradient(to bottom, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-medium);
+            vertical-align: top;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--table-stripe);
+        }
+
+        tbody tr:hover td {
+            background-color: var(--table-hover);
+        }
+
+         
+        code {
+            background-color: var(--code-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: var(--code-text);
+            font-size: 14px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+         
+        .note {
+            background: var(--note-bg);
+            border-left: 5px solid var(--note-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\2139\FE0F  Note';
+            display: block;
+            font-weight: 600;
+            color: var(--note-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .note p {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .warning::before {
+            content: '\26A0\FE0F  Warning';
+            display: block;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .warning p {
+            color: var(--text-primary);
+        }
+
+         
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+         
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+         
+        .nav-footer {
+            margin-top: 48px;
+            padding: 20px 0 12px 0;
+            border-top: 2px solid var(--border-light);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .nav-footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+         
+        .block-icon-container {
+            display: table;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            table-layout: fixed;
+        }
+
+        .block-icon-image {
+            display: table-cell;
+            width: 220px;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+
+        .block-icon-image img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .block-icon-description {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+         
+        p img, .container > img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+         
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .microchip-logo {
+                height: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+         
+        
+        @media (max-width: 1024px) {
+             
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.mobile-visible {
+                left: 0;
+            }
+
+             
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+             
+            .content-wrapper {
+                width: 100%;
+            }
+
+            .container {
+                margin: 10px 15px;
+                padding: 20px;
+            }
+
+             
+            .sidebar.mobile-visible::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 280px;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .nav-section-title {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 6px 15px;
+                padding-left: 35px;
+            }
+        }
+        
+
+         
+        .under-construction-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid #e65100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .under-construction-banner .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .under-construction-banner strong {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Mobile Navigation Toggle -->
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    
+    
+    <div class="doc-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">MPLAB Blockset</h2>
+            </div>
+            <div class="sidebar-nav">
+                
+                <div class="nav-section">
+                    <a href="../" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">🏠</span>Home</span>
+                    </a>
+                </div>
 
-    <!-- Left Navigation Panel -->
-    <nav class="doc-nav-container">
-        <div class="doc-nav-header">
-            <a href="../index.html">MCHP Blockset Docs</a>
+                
+                
+                <div class="nav-section" id="section-getting-started">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('getting-started')">
+                        <span><span class="icon">🚀</span>Getting Started</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../getting_started/overview.html" class="nav-link">Overview</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/installation.html" class="nav-link">Installation</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/quick_start.html" class="nav-link">Quick Start Guide</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/motor_control_examples.html" class="nav-link">Motor Control Examples</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/scheduler_multitasking.html" class="nav-link">Scheduler &amp; Multitasking</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/external_mode_pil.html" class="nav-link">External Mode &amp; PIL</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/data_visualization.html" class="nav-link">Data Visualization</a>
+                            
+                        
+                            
+                            
+                            <a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-user-guide">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('user-guide')">
+                        <span><span class="icon">📚</span>User Guide</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/external_mode.html" class="nav-link">External Mode</a>
+                            
+                        
+                            
+                            
+                            <a href="../user_guide/pil_testing.html" class="nav-link">PIL Testing</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-block-reference">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('block-reference')">
+                        <span><span class="icon">🧩</span>Block Reference</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-pwm-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('pwm-timers')">
+                                    <span><span class="icon">⚡</span>PWM &amp; Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm.html" class="nav-block-link">PWM</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed.html" class="nav-block-link">PWM High-Speed</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_hs_fep.html" class="nav-block-link">PWM HS FEP</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_highspeed_override.html" class="nav-block-link">PWM HS Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/mcpwm.html" class="nav-block-link">MCPWM (PIC32)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x.html" class="nav-block-link">PWM SAM7x</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/pwm_sam7x_override.html" class="nav-block-link">PWM SAM7x Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/pwm_io/tcc_pwm.html" class="nav-block-link">TCC PWM (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('timers')">
+                                    <span><span class="icon">⏱️</span>Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_config.html" class="nav-block-link">Timer Config</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/input_capture.html" class="nav-block-link">Input Capture</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_hw.html" class="nav-block-link">Output Compare (HW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/output_compare_sw.html" class="nav-block-link">Output Compare (SW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/timers/timer_pil_profiling.html" class="nav-block-link">PIL Profiling Timer</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-adc">
+                                <div class="nav-subsection-title" onclick="toggleSection('adc')">
+                                    <span><span class="icon">📊</span>ADC</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc.html" class="nav-block-link">ADC (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_hs_12b.html" class="nav-block-link">ADC HS 12-bit</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar.html" class="nav-block-link">ADC High-Speed SAR</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_highspeed_sar_dspic.html" class="nav-block-link">ADC HS SAR (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_same5x.html" class="nav-block-link">ADC (SAM E5x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/adc_samrh707x.html" class="nav-block-link">ADC (SAMRH707x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/adc/afec_sam7x.html" class="nav-block-link">AFEC (SAM7x)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-communication">
+                                <div class="nav-subsection-title" onclick="toggleSection('communication')">
+                                    <span><span class="icon">📡</span>Communication</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-uart">
+                                            <div class="nav-subsection-title" onclick="toggleSection('uart')">
+                                                <span><span class="icon"></span>UART</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_config.html" class="nav-block-link">UART Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_tx.html" class="nav-block-link">UART Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_rx.html" class="nav-block-link">UART Rx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_txmatlab.html" class="nav-block-link">UART Tx MATLAB</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/uart/uart_break_and_autobaud.html" class="nav-block-link">UART Break &amp; Autobaud</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-can">
+                                            <div class="nav-subsection-title" onclick="toggleSection('can')">
+                                                <span><span class="icon"></span>CAN</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_config.html" class="nav-block-link">CAN Config</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_tx.html" class="nav-block-link">CAN Tx</a>
+                                                
+                                                
+                                                <a href="../block_reference/communication/can/can_rx.html" class="nav-block-link">CAN Rx</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/i2c.html" class="nav-block-link">I2C Master/Slave</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/communication/spi.html" class="nav-block-link">SPI Master/Slave</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-digital-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('digital-io')">
+                                    <span><span class="icon">🔌</span>Digital I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_input.html" class="nav-block-link">Digital Input</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output.html" class="nav-block-link">Digital Output</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_read.html" class="nav-block-link">Digital Output Read</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/digital_io/digital_output_write.html" class="nav-block-link">Digital Output Write</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-encoders">
+                                <div class="nav-subsection-title" onclick="toggleSection('encoders')">
+                                    <span><span class="icon">🔄</span>Encoders</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qei.html" class="nav-block-link">QEI (Quadrature Encoder)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/pdec.html" class="nav-block-link">PDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/qdec_samx.html" class="nav-block-link">QDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/encoders_counters/change_notification.html" class="nav-block-link">Change Notification</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-analog-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('analog-io')">
+                                    <span><span class="icon">📉</span>Analog I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html" class="nav-block-link">High-Speed Comparator</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html" class="nav-block-link">Comparator w/ Slope</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html" class="nav-block-link">Op-Amp</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/comparator_opamps_volt_ref/pga.html" class="nav-block-link">PGA (Programmable Gain Amp)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/analog_io/dac_samx.html" class="nav-block-link">DAC (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-system-config">
+                                <div class="nav-subsection-title" onclick="toggleSection('system-config')">
+                                    <span><span class="icon">⚙️</span>System Config</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/master.html" class="nav-block-link">Master</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/interrupt.html" class="nav-block-link">Interrupt</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/compiler_options.html" class="nav-block-link">Compiler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/scheduler_options.html" class="nav-block-link">Scheduler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/idle_task.html" class="nav-block-link">Idle Task</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_load.html" class="nav-block-link">MCU Load</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/mcu_overload.html" class="nav-block-link">MCU Overload</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/tasks_state.html" class="nav-block-link">Tasks State</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/system_configuration/secondary_core.html" class="nav-block-link">Secondary Core</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-utility">
+                                <div class="nav-subsection-title" onclick="toggleSection('utility')">
+                                    <span><span class="icon">🔧</span>Utility Blocks</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/user_functions/c_function_call.html" class="nav-block-link">C Function Call</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/doc.html" class="nav-block-link">Documentation Block</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/msi.html" class="nav-block-link">MSI (Model Sample Info)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/port_info.html" class="nav-block-link">Port Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/timer_info.html" class="nav-block-link">Timer Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../block_reference/utility/simulink_reset_config.html" class="nav-block-link">Simulink Reset Config</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-examples">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('examples')">
+                        <span><span class="icon">📖</span>Examples</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-github">
+                    
+                    
+                    <a href="https://github.com/microchip-technology/mplab-blockset" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">💻</span>GitHub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </nav>
+
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <a href="../">Home</a>
+                    
+                        <span>&gt;</span>
+                        <a href="../block_reference.html">Block Reference</a>
+                    
+                    <span>&gt;</span>
+                    <span>Timer Blocks</span>
+                </div>
+
+                
+                <div class="under-construction-banner">
+                    <span class="icon">⚠️</span>
+                    <strong>Documentation Under Construction</strong> —
+                    This documentation is currently being developed. All information has not been validated by Microchip yet.
+                </div>
+                
+
+                <div class="page-header">
+                    <h1>Timer Blocks</h1>
+                    <div class="page-header-right">
+                        <img src="../images/microchip-logo.png" alt="Microchip Logo" class="microchip-logo">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                            <span class="theme-icon" id="theme-icon">☀️</span>
+                            <span id="theme-text">Light</span>
+                        </button>
+                    </div>
+                </div>
+
+                
+  <h1>Timer Blocks</h1>
+  <p>Timer and counter peripheral blocks</p>
+
+  
+    <h2><a href="../block_reference/timers/input_capture.html">IC - Input Capture Block</a></h2>
+    <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../assets/images/blocks/timers/InputCapture.svg" type="image/svg+xml">
+        <img src="../assets/images/blocks/timers/InputCapture.png" alt="Input Capture Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        IC - Input Capture Block  InputCapture Block Icon  The <strong>MCHP_IC</strong> block captures hardware timer values when external events occur on input pins. It enables precise measurement of pulse widths, periods, frequencies, and event timestamps using dedicated Input Capture peripheral modules.    Each IC channel can detect rising edges, falling edges, or both, and automatically capture the associated timer value. This is ideal for encoder interfaces, frequency measurement, and event timing applications.
+    </div>
+</div>
+
+<p>IC - Input Capture Block</p>
+  
+    <h2><a href="../block_reference/timers/output_compare_hw.html">OC HW - Output Compare (Hardware)</a></h2>
+    <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../assets/images/blocks/timers/OutputCompare_HW.svg" type="image/svg+xml">
+        <img src="../assets/images/blocks/timers/OutputCompare_HW.png" alt="Output Compare HW Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        The <strong>MCHP_OC_HW</strong> block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with <strong>no CPU overhead</strong> during normal operation.
+    </div>
+</div>
+
+<p>The <strong>MCHP_OC_HW</strong> block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with <strong>no CPU overhead</strong> during normal operation.</p>
+  
+    <h2><a href="../block_reference/timers/output_compare_sw.html">OC SW - Software Output Compare</a></h2>
+    <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../assets/images/blocks/timers/OutputCompare_SW.svg" type="image/svg+xml">
+        <img src="../assets/images/blocks/timers/OutputCompare_SW.png" alt="Output Compare SW Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        The <strong>MCHP_OC_SW</strong> block provides <strong>interrupt-driven software output compare</strong> functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering <strong>greater flexibility</strong> at the cost of CPU overhead.
+    </div>
+</div>
+
+<p>The <strong>MCHP_OC_SW</strong> block provides <strong>interrupt-driven software output compare</strong> functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering <strong>greater flexibility</strong> at the cost of CPU overhead.</p>
+  
+    <h2><a href="../block_reference/timers/timer_config.html">TIMER Config - Timer Configuration Block</a></h2>
+    <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../assets/images/blocks/timers/Timer.svg" type="image/svg+xml">
+        <img src="../assets/images/blocks/timers/Timer.png" alt="Timer Config Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        TIMER Config - Timer Configuration Block  Timer Block Icon  The <strong>MCHP_TIMER_Config</strong> block provides a high-level interface for configuring hardware timers on Microchip microcontrollers. This block creates and manages named timer resources that can be shared across multiple peripherals in the model, providing automatic timer allocation and optimal prescaler selection.    Unlike direct timer register access, this block manages the complete timer lifecycle including resource allocation, conflict resolution, and automatic prescaler calculation based on desired resolution and period requirements.
+    </div>
+</div>
+
+<p>TIMER Config - Timer Configuration Block</p>
+  
+    <h2><a href="../block_reference/timers/timer_pil_profiling.html">TIMER PIL Profiling - PIL Timing Profiler</a></h2>
+    <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../assets/images/blocks/timers/Timer_PIL_Profiling.svg" type="image/svg+xml">
+        <img src="../assets/images/blocks/timers/Timer_PIL_Profiling.png" alt="Timer PIL Profiling Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        TIMER PIL Profiling - PIL Timing Profiler  Timer_PIL_Profiling Block Icon  The <strong>MCHP_TIMER_PIL_Profiling</strong> block enables precise code execution timing measurement during Processor-in-the-Loop (PIL) simulations. It uses hardware timers to measure actual execution time of Simulink subsystems or blocks on target hardware.    This block is essential for performance profiling, real-time constraint verification, and optimization of embedded code. It provides microsecond-level timing accuracy using the target&rsquo;s hardware timer peripheral.
+    </div>
+</div>
+
+<p>TIMER PIL Profiling - PIL Timing Profiler</p>
+  
+
+
+                <div class="nav-footer">
+                    <p>Last updated: January 2025 | MPLAB Blockset Documentation</p>
+                    <p>&copy; 2025 Microchip Technology Inc. All rights reserved.</p>
+                </div>
+            </div>
         </div>
-        <ul class="doc-nav-menu">
-            <li class="nav-item">
-                <a href="../index.html" class="nav-link">Home</a>
-            </li>
 
-            <!-- Getting Started Section -->
-            <li class="nav-item">
-                <div class="nav-category">Getting Started <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../getting_started/overview.html" class="nav-link">Overview</a></li>
-                    <li><a href="../getting_started/installation.html" class="nav-link">Installation</a></li>
-                    <li><a href="../getting_started/quick_start.html" class="nav-link">Quick Start</a></li>
-                    <li><a href="../getting_started/board_templates.html" class="nav-link">Board Templates</a></li>
-                    <li><a href="../getting_started/supported_devices.html" class="nav-link">Supported Devices</a></li>
-                </ul>
-            </li>
-
-            <!-- User Guide Section -->
-            <li class="nav-item">
-                <div class="nav-category">User Guide <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../user_guide/index.html" class="nav-link">User Guide Overview</a></li>
-                    <li><a href="../user_guide/code_generation.html" class="nav-link">Code Generation</a></li>
-                    <li><a href="../user_guide/external_mode.html" class="nav-link">External Mode</a></li>
-                </ul>
-            </li>
-
-            <!-- Block Reference Section -->
-            <li class="nav-item">
-                <div class="nav-category">Block Reference <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../block_reference/index.html" class="nav-link">Block Reference Overview</a></li>
-                </ul>
-            </li>
-
-            <!-- Examples Section -->
-            <li class="nav-item">
-                <div class="nav-category">Examples <span class="nav-category-icon">▼</span></div>
-                <ul class="nav-list">
-                    <li><a href="../examples/field_weakening.html" class="nav-link">Field Weakening</a></li>
-                </ul>
-            </li>
-
-            <!-- Release Notes -->
-            <li class="nav-item">
-                <a href="../release_notes.html" class="nav-link">Release Notes</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="doc-content-wrapper">
-    <div class="breadcrumb">
-        <a href="index.html">Block Reference</a> &gt; Timer Blocks
+        
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation">
+            ☰
+        </button>
     </div>
+    
 
-    <h1>Timer and Timing Blocks</h1>
+    <script>
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-    <h2>Overview</h2>
-    <p>
-        Timer blocks provide precise time-based control and event management for Microchip microcontrollers. These blocks
-        enable <strong>resource allocation</strong>, <strong>input capture</strong>, <strong>output compare</strong>, and
-        <strong>performance profiling</strong> capabilities essential for real-time embedded systems.
-    </p>
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
 
-    <div class="note">
-        <strong>Key Capabilities:</strong>
-        <ul>
-            <li><strong>Automatic resource management:</strong> MCHP_Fun.TimerConfig() handles timer allocation</li>
-            <li><strong>Hardware precision:</strong> Timer-based events with instruction-cycle accuracy</li>
-            <li><strong>Flexible modes:</strong> Input capture, output compare, profiling, interrupts</li>
-            <li><strong>All device families:</strong> dsPIC30F/33F/33E/33C/33A, PIC24, PIC32, SAM</li>
-        </ul>
-    </div>
+        function updateThemeButton(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
 
-    <h2>Available Blocks</h2>
+            if (theme === 'dark') {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        }
 
-    <h3>Timer Configuration and Management</h3>
-    <ul>
-        <li>
-            <a href="timers/timer_config.html" class="block-link">MCHP_TIMER_Config</a> - Timer resource configuration and allocation
-            <ul>
-                <li>Named timer management (allocate/free timer resources)</li>
-                <li>Prescaler selection (1:1 to 1:256)</li>
-                <li>16-bit and 32-bit timer modes</li>
-                <li>Period register (PR) configuration</li>
-                <li><strong>Use for:</strong> Creating time bases for control loops, scheduling tasks</li>
-            </ul>
-        </li>
-        <li>
-            <a href="timers/timer_pil_profiling.html" class="block-link">MCHP_TIMER_PIL_Profiling</a> - PIL execution time measurement
-            <ul>
-                <li>Hardware-based profiling using timer counts</li>
-                <li>Measure function/block execution time</li>
-                <li>Processor-in-the-Loop (PIL) testing support</li>
-                <li><strong>Use for:</strong> Performance optimization, real-time analysis</li>
-            </ul>
-        </li>
-    </ul>
+        
+        (function initTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
 
-    <h3>Input Capture</h3>
-    <ul>
-        <li>
-            <a href="timers/input_capture.html" class="block-link">MCHP_IC - Input Capture</a> - External event timestamping
-            <ul>
-                <li>Capture timer value on rising/falling/both edges</li>
-                <li>Pulse width and period measurement</li>
-                <li>Encoder interface support (X2/X4 modes)</li>
-                <li>DMA support for high-frequency events</li>
-                <li><strong>Use for:</strong> Frequency measurement, encoder counting, PPM decoding</li>
-            </ul>
-        </li>
-    </ul>
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+        })();
 
-    <h3>Output Compare</h3>
-    <ul>
-        <li>
-            <a href="timers/output_compare_hw.html" class="block-link">MCHP_OC_HW - Output Compare (Hardware)</a> - Autonomous output generation
-            <ul>
-                <li>Hardware PWM generation (no CPU overhead)</li>
-                <li>Toggle, set high, set low, dual compare modes</li>
-                <li>Timer-based output control</li>
-                <li>Up to 9 OC channels (device dependent)</li>
-                <li><strong>Use for:</strong> PWM generation, precise pulse timing, motor control</li>
-            </ul>
-        </li>
-        <li>
-            <a href="timers/output_compare_sw.html" class="block-link">MCHP_OC_SW - Output Compare (Software)</a> - Interrupt-driven output control
-            <ul>
-                <li>Software-managed output via timer interrupts</li>
-                <li>More operational modes than hardware OC</li>
-                <li>Dynamic timing changes at runtime</li>
-                <li>Any GPIO pin (not limited to OC pins)</li>
-                <li><strong>Use for:</strong> Variable frequency outputs, flexible pulse generation</li>
-            </ul>
-        </li>
-    </ul>
+        
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                }
+            });
+        }
 
-    <h2>Block Selection Guide</h2>
-    <table>
-        <tr>
-            <th>Your Need</th>
-            <th>Recommended Block</th>
-            <th>Key Features</th>
-        </tr>
-        <tr>
-            <td>Allocate timer resources</td>
-            <td><a href="timers/timer_config.html">MCHP_TIMER_Config</a></td>
-            <td>Named timers, automatic allocation</td>
-        </tr>
-        <tr>
-            <td>Measure execution time</td>
-            <td><a href="timers/timer_pil_profiling.html">MCHP_TIMER_PIL_Profiling</a></td>
-            <td>Hardware timing, PIL support</td>
-        </tr>
-        <tr>
-            <td>Measure input frequency</td>
-            <td><a href="timers/input_capture.html">MCHP_IC</a></td>
-            <td>Period/pulse width measurement</td>
-        </tr>
-        <tr>
-            <td>Read encoder position</td>
-            <td><a href="timers/input_capture.html">MCHP_IC</a> (X2/X4 mode)</td>
-            <td>Quadrature decoder</td>
-        </tr>
-        <tr>
-            <td>Generate high-speed PWM</td>
-            <td><a href="timers/output_compare_hw.html">MCHP_OC_HW</a></td>
-            <td>No CPU overhead, autonomous</td>
-        </tr>
-        <tr>
-            <td>Variable frequency output</td>
-            <td><a href="timers/output_compare_sw.html">MCHP_OC_SW</a></td>
-            <td>Dynamic period changes</td>
-        </tr>
-    </table>
+        
+        
 
-    <h2>Timer Architecture by Device Family</h2>
-    <table>
-        <tr>
-            <th>Device Family</th>
-            <th>Timer Types</th>
-            <th>Max Timers</th>
-            <th>Special Features</th>
-        </tr>
-        <tr>
-            <td>dsPIC30F</td>
-            <td>Type A/B</td>
-            <td>5 (16-bit)</td>
-            <td>Basic timers, can pair for 32-bit</td>
-        </tr>
-        <tr>
-            <td>dsPIC33F, PIC24H</td>
-            <td>Type A/B</td>
-            <td>9 (16-bit)</td>
-            <td>32-bit pairing, external clock</td>
-        </tr>
-        <tr>
-            <td>dsPIC33E, PIC24E</td>
-            <td>Type A/B/C</td>
-            <td>9 (16-bit)</td>
-            <td>Enhanced features, more sources</td>
-        </tr>
-        <tr>
-            <td>dsPIC33C/CH/CK</td>
-            <td>Type A/B</td>
-            <td>1-2 (16-bit)</td>
-            <td>High-speed option (500 MHz counts)</td>
-        </tr>
-        <tr>
-            <td>dsPIC33A</td>
-            <td>Type A/B</td>
-            <td>1-2 (16-bit)</td>
-            <td>Modern architecture</td>
-        </tr>
-        <tr>
-            <td>PIC32MX/MZ/MK</td>
-            <td>32-bit</td>
-            <td>Up to 9</td>
-            <td>Native 32-bit, higher resolution</td>
-        </tr>
-        <tr>
-            <td>SAM E5x/E7x</td>
-            <td>TC (Timer/Counter)</td>
-            <td>Multiple</td>
-            <td>ARM timer subsystem</td>
-        </tr>
-    </table>
+        
+        window.toggleSection = function(identifier) {
+            const section = document.getElementById('section-' + identifier);
+            if (section) {
+                section.classList.toggle('expanded');
 
-    <h2>Common Timer Features</h2>
+                
+                
+                if (section.classList.contains('nav-section')) {
+                    
+                    const expandedSections = getExpandedSections();
+                    if (section.classList.contains('expanded')) {
+                        expandedSections.add(identifier);
+                    } else {
+                        expandedSections.delete(identifier);
+                    }
+                    localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                }
+                
+                
+            }
+        };
 
-    <h3>Prescaler Options</h3>
-    <table>
-        <tr>
-            <th>Prescaler</th>
-            <th>Resolution @ 60 MHz FCY</th>
-            <th>Max Period</th>
-            <th>Typical Use</th>
-        </tr>
-        <tr>
-            <td>1:1</td>
-            <td>16.67 ns</td>
-            <td>1.09 ms</td>
-            <td>High-speed capture, fast PWM</td>
-        </tr>
-        <tr>
-            <td>1:8</td>
-            <td>133.3 ns</td>
-            <td>8.74 ms</td>
-            <td>Standard PWM (10-100 kHz)</td>
-        </tr>
-        <tr>
-            <td>1:64</td>
-            <td>1.067 µs</td>
-            <td>69.9 ms</td>
-            <td>Low-frequency timing, servo</td>
-        </tr>
-        <tr>
-            <td>1:256</td>
-            <td>4.267 µs</td>
-            <td>279.6 ms</td>
-            <td>Slow events, scheduling</td>
-        </tr>
-    </table>
+        
+        function getExpandedSections() {
+            const stored = localStorage.getItem('expandedSections');
+            return new Set(stored ? JSON.parse(stored) : []);
+        }
 
-    <h3>Timer Clock Sources</h3>
-    <ul>
-        <li><strong>FCY (Instruction Cycle):</strong> Most common, derived from system clock</li>
-        <li><strong>External Clock:</strong> T1CK pin for external timebase</li>
-        <li><strong>Secondary Oscillator:</strong> 32.768 kHz for RTC applications</li>
-        <li><strong>LPRC:</strong> Low-power RC oscillator (~31 kHz)</li>
-    </ul>
+        
+        function restoreExpandedSections() {
+            const expandedSections = getExpandedSections();
+            expandedSections.forEach(identifier => {
+                const section = document.getElementById('section-' + identifier);
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            });
+        }
 
-    <h2>Timer Resource Management</h2>
+        
+        function highlightActivePage() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .nav-block-link, .nav-section-title[href], .nav-subsection-title[href]');
 
-    <h3>Automatic Allocation with MCHP_Fun.TimerConfig()</h3>
-    <p>
-        The MCHP Blockset includes an automatic timer allocation system that prevents conflicts when multiple blocks need timer resources.
-    </p>
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
 
-    <pre><code>% Example: OC_SW block requests timer
-[TimerNbr, TimerName] = MCHP_Fun.TimerConfig(...
-    blk, ...              % Block handle
-    'OC_SW', ...          % Resource type
-    Channel, ...          % Channel identifier
-    MCHP ...              % MCHP structure
-);
+                    
+                    const parentSubsection = link.closest('.nav-subsection');
+                    if (parentSubsection && !parentSubsection.classList.contains('expanded')) {
+                        parentSubsection.classList.add('expanded');
+                        
+                    }
 
-% Returns:
-%   TimerNbr: Allocated timer number (2, 3, 4, 5, ...)
-%   TimerName: String identifier ('Timer2', 'Timer3', ...)
-</code></pre>
+                    
+                    const parentSection = link.closest('.nav-section');
+                    if (parentSection && !parentSection.classList.contains('expanded')) {
+                        parentSection.classList.add('expanded');
+                        
+                        const identifier = parentSection.id.replace('section-', '');
+                        const expandedSections = getExpandedSections();
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            });
+        }
 
-    <h3>Named Timer Management</h3>
-    <p>Use <a href="timers/timer_config.html">MCHP_TIMER_Config</a> to create named timers for shared use:</p>
-    <pre><code>% Create named timer 'ControlLoop_20kHz'
-MCHP_TIMER_Config:
-  Name: 'ControlLoop_20kHz'
-  Frequency: 20000 Hz
-  → Automatically calculates prescaler and PR value
+        
+        window.toggleMobileSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-visible');
+            }
+        };
 
-% Other blocks can reference this timer by name
-% System ensures no conflicts or double-allocation
-</code></pre>
+        
+        (function initSidebar() {
+            restoreExpandedSections();
+            highlightActivePage();
 
-    <h2>Implementation Patterns</h2>
-
-    <h3>Pattern 1: High-Frequency PWM with Hardware OC</h3>
-    <pre><code>% Step 1: Configure timer for PWM frequency
-[MCHP_TIMER_Config]
-  Name: 'PWM_Timer'
-  Frequency: 50000  % 50 kHz
-
-% Step 2: Use hardware OC for autonomous operation
-[MCHP_OC_HW]
-  Channel: 1
-  Mode: 7  % Dual compare PWM
-  Timer: 'PWM_Timer'
-  % No CPU overhead during operation
-</code></pre>
-
-    <h3>Pattern 2: Input Frequency Measurement</h3>
-    <pre><code>% Input Capture in period measurement mode
-[MCHP_IC]
-  Channel: 1
-  Mode: 'Period (1 event)'
-  Timer: Auto-allocated
-  → Outputs frequency in Hz or period in seconds
-</code></pre>
-
-    <h3>Pattern 3: Synchronized Multi-Output</h3>
-    <pre><code>% Multiple OC channels sharing timer for synchronization
-[MCHP_TIMER_Config] → Timer2 @ 10 kHz
-
-[MCHP_OC_HW #1] → Channel 1, Mode 3 (Toggle), Timer2
-[MCHP_OC_HW #2] → Channel 2, Mode 3 (Toggle), Timer2
-[MCHP_OC_HW #3] → Channel 3, Mode 3 (Toggle), Timer2
-
-% All outputs synchronized to same timebase
-% Phase offset controlled via OCxR values
-</code></pre>
-
-    <h2>Related Blocks</h2>
-    <ul>
-        <li><a href="pwm_blocks.html"><strong>PWM Blocks</strong></a> - Dedicated PWM peripherals with advanced features</li>
-        <li><a href="adc_blocks.html"><strong>ADC Blocks</strong></a> - Often use timers for sampling triggers</li>
-        <li><a href="digital_io.html"><strong>Digital I/O Blocks</strong></a> - Basic GPIO for non-timed outputs</li>
-        <li><strong>MCHP_Interrupt</strong> - Timer interrupt configuration (System Blocks)</li>
-    </ul>
-
-    <h2>See Also</h2>
-    <ul>
-        <li><strong>Device Datasheet:</strong> Timers chapter for register details</li>
-        <li><strong>Getting Started Guide:</strong> Timer configuration examples</li>
-        <li><strong>Application Notes:</strong>
-            <ul>
-                <li><a href="https://www.microchip.com/AN1157">AN1157</a> - "Measuring Pulse Width Using Input Capture"</li>
-                <li><a href="https://www.microchip.com/AN1156">AN1156</a> - "Software Timer Library for Microchip Devices"</li>
-                <li><a href="https://www.microchip.com/AN580">AN580</a> - "Understanding Interrupt Latency"</li>
-            </ul>
-        </li>
-    </ul>
-
-    <footer>
-        <p>&copy; 2025 Microchip Technology Inc. - MPLAB Device Blocks for Simulink</p>
-        <p><a href="index.html">Block Reference Home</a> | <a href="../getting_started/overview.html">Getting Started</a></p>
-    </footer>
-    </div>
+            
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const parentSection = activeLink.closest('.nav-section');
+                if (parentSection && parentSection.id) {
+                    const identifier = parentSection.id.replace('section-', '');
+                    const expandedSections = getExpandedSections();
+                    if (!expandedSections.has(identifier)) {
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            }
+        })();
+        
+    </script>
 </body>
 </html>
