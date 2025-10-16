@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CAN Tx - MPLAB Blockset for MATLAB/Simulink</title>
+    <meta charset="utf-8">
+    <style>
+         
+         
+
+         
+        :root {
+             
+            --bg-primary: #f8f9fa;
+            --bg-secondary: white;
+            --bg-tertiary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --text-tertiary: #6c757d;
+            --text-heading: #003d5c;
+            --border-color: #dee2e6;
+            --border-light: #e1e8ed;
+            --border-medium: #e9ecef;
+            --accent-primary: #0076A8;
+            --accent-secondary: #005a85;
+            --accent-hover: #005580;
+            --accent-light: #e3f2fd;
+            --code-bg: #f4f4f4;
+            --code-text: #c7254e;
+            --pre-bg: linear-gradient(to bottom, #e8e8e8 0%, #f0f0f0 100%);
+            --pre-border: #d0d0d0;
+            --table-hover: #e3f2fd;
+            --table-stripe: #f8f9fa;
+            --note-bg: linear-gradient(to right, #e7f3fe 0%, #f5fbff 100%);
+            --note-border: #2196F3;
+            --note-text: #1976D2;
+            --warning-bg: linear-gradient(to right, #fff9e6 0%, #fffcf0 100%);
+            --warning-border: #ff9800;
+            --warning-text: #f57c00;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+             
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242831;
+            --bg-tertiary: #2d3139;
+            --text-primary: #e4e6eb;
+            --text-secondary: #adb5bd;
+            --text-tertiary: #8b95a1;
+            --text-heading: #e4e6eb;
+            --border-color: #3a3f4b;
+            --border-light: #3a3f4b;
+            --border-medium: #404654;
+            --accent-primary: #4da6d6;
+            --accent-secondary: #3d8ab5;
+            --accent-hover: #60b4e0;
+            --accent-light: #2d4556;
+            --code-bg: #2d3139;
+            --code-text: #ff6b9d;
+            --pre-bg: linear-gradient(to bottom, #2d3139 0%, #2d3139 100%);
+            --pre-border: #3a3f4b;
+            --table-hover: #2d4556;
+            --table-stripe: #2d3139;
+            --note-bg: linear-gradient(to right, #1e3a52 0%, #1e3a52 100%);
+            --note-border: #4da6d6;
+            --note-text: #66b3e0;
+            --warning-bg: linear-gradient(to right, #3d3520 0%, #3d3520 100%);
+            --warning-border: #ffb347;
+            --warning-text: #ffc870;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-lg: 0 2px 12px rgba(0,0,0,0.5);
+        }
+
+         
+        
+        :root {
+             
+            --content-max-width: 1000px;
+            --content-margin-horizontal: 30px;
+            --content-margin-vertical: 15px;
+            --container-border-radius: 8px;
+        }
+        
+
+         
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 15px;
+        }
+
+         
+        
+         
+        .doc-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: var(--content-margin-vertical) var(--content-margin-horizontal);
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--container-border-radius);
+        }
+        
+
+         
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-section-title:hover {
+            background-color: var(--bg-tertiary);
+            border-left-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .nav-section-title .icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .nav-section-title .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-section.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-section-children {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .nav-section.expanded > .nav-section-children {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            padding-left: 45px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-light);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+         
+        .nav-subsection {
+            margin-bottom: 4px;
+        }
+
+        .nav-subsection-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            padding-left: 35px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .nav-subsection-title:hover {
+            background-color: var(--bg-primary);
+            border-left-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .nav-subsection-title .icon {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .nav-subsection-title .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-subsection.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsection .nav-section-children {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .nav-subsection.expanded > .nav-section-children {
+            display: block;
+        }
+
+         
+        .nav-block-link {
+            display: block;
+            padding: 6px 20px;
+            padding-left: 55px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-block-link:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .nav-block-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+
+         
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-left: 16px;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+         
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: var(--text-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .microchip-logo {
+            height: 55px;
+        }
+
+         
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        .breadcrumbs a:hover {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-tertiary);
+        }
+
+         
+        h2 {
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+         
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+         
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 18px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        th {
+            background: linear-gradient(to bottom, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-medium);
+            vertical-align: top;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--table-stripe);
+        }
+
+        tbody tr:hover td {
+            background-color: var(--table-hover);
+        }
+
+         
+        code {
+            background-color: var(--code-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: var(--code-text);
+            font-size: 14px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            border: 1px solid var(--pre-border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+         
+        .note {
+            background: var(--note-bg);
+            border-left: 5px solid var(--note-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\2139\FE0F  Note';
+            display: block;
+            font-weight: 600;
+            color: var(--note-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .note p {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 18px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .warning::before {
+            content: '\26A0\FE0F  Warning';
+            display: block;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .warning p {
+            color: var(--text-primary);
+        }
+
+         
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+         
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+         
+        .nav-footer {
+            margin-top: 48px;
+            padding: 20px 0 12px 0;
+            border-top: 2px solid var(--border-light);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .nav-footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+         
+        .block-icon-container {
+            display: table;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 24px 0;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            table-layout: fixed;
+        }
+
+        .block-icon-image {
+            display: table-cell;
+            width: 220px;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+
+        .block-icon-image img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .block-icon-description {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+
+         
+        p img, .container > img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+         
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .microchip-logo {
+                height: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+         
+        
+        @media (max-width: 1024px) {
+             
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.mobile-visible {
+                left: 0;
+            }
+
+             
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+             
+            .content-wrapper {
+                width: 100%;
+            }
+
+            .container {
+                margin: 10px 15px;
+                padding: 20px;
+            }
+
+             
+            .sidebar.mobile-visible::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 280px;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .nav-section-title {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 6px 15px;
+                padding-left: 35px;
+            }
+        }
+        
+
+         
+        .under-construction-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid #e65100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .under-construction-banner .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .under-construction-banner strong {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div class="doc-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">MPLAB Blockset</h2>
+            </div>
+            <div class="sidebar-nav">
+                
+                <div class="nav-section">
+                    <a href="../../../" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">🏠</span>Home</span>
+                    </a>
+                </div>
+
+                
+                
+                <div class="nav-section" id="section-getting-started">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('getting-started')">
+                        <span><span class="icon">🚀</span>Getting Started</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../../../getting_started/overview.html" class="nav-link">Overview</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/installation.html" class="nav-link">Installation</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/quick_start.html" class="nav-link">Quick Start Guide</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/board_templates.html" class="nav-link">Board Templates</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/motor_control_examples.html" class="nav-link">Motor Control Examples</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/scheduler_multitasking.html" class="nav-link">Scheduler &amp; Multitasking</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/external_mode_pil.html" class="nav-link">External Mode &amp; PIL</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/data_visualization.html" class="nav-link">Data Visualization</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../getting_started/supported_devices.html" class="nav-link">Supported Devices</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-user-guide">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('user-guide')">
+                        <span><span class="icon">📚</span>User Guide</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../../../user_guide/code_generation.html" class="nav-link">Code Generation</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../user_guide/compiler_setup.html" class="nav-link">Compiler Setup</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../user_guide/external_mode.html" class="nav-link">External Mode</a>
+                            
+                        
+                            
+                            
+                            <a href="../../../user_guide/pil_testing.html" class="nav-link">PIL Testing</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-block-reference">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('block-reference')">
+                        <span><span class="icon">🧩</span>Block Reference</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-pwm-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('pwm-timers')">
+                                    <span><span class="icon">⚡</span>PWM &amp; Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm.html" class="nav-block-link">PWM</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm_highspeed.html" class="nav-block-link">PWM High-Speed</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm_hs_fep.html" class="nav-block-link">PWM HS FEP</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm_highspeed_override.html" class="nav-block-link">PWM HS Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/mcpwm.html" class="nav-block-link">MCPWM (PIC32)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm_sam7x.html" class="nav-block-link">PWM SAM7x</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/pwm_sam7x_override.html" class="nav-block-link">PWM SAM7x Override</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/pwm_io/tcc_pwm.html" class="nav-block-link">TCC PWM (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-timers">
+                                <div class="nav-subsection-title" onclick="toggleSection('timers')">
+                                    <span><span class="icon">⏱️</span>Timers</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/timers/timer_config.html" class="nav-block-link">Timer Config</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/timers/input_capture.html" class="nav-block-link">Input Capture</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/timers/output_compare_hw.html" class="nav-block-link">Output Compare (HW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/timers/output_compare_sw.html" class="nav-block-link">Output Compare (SW)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/timers/timer_pil_profiling.html" class="nav-block-link">PIL Profiling Timer</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-adc">
+                                <div class="nav-subsection-title" onclick="toggleSection('adc')">
+                                    <span><span class="icon">📊</span>ADC</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc.html" class="nav-block-link">ADC (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc_hs_12b.html" class="nav-block-link">ADC HS 12-bit</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc_highspeed_sar.html" class="nav-block-link">ADC High-Speed SAR</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc_highspeed_sar_dspic.html" class="nav-block-link">ADC HS SAR (dsPIC)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc_same5x.html" class="nav-block-link">ADC (SAM E5x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/adc_samrh707x.html" class="nav-block-link">ADC (SAMRH707x)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/adc/afec_sam7x.html" class="nav-block-link">AFEC (SAM7x)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-communication">
+                                <div class="nav-subsection-title" onclick="toggleSection('communication')">
+                                    <span><span class="icon">📡</span>Communication</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-uart">
+                                            <div class="nav-subsection-title" onclick="toggleSection('uart')">
+                                                <span><span class="icon"></span>UART</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/uart/uart_config.html" class="nav-block-link">UART Config</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/uart/uart_tx.html" class="nav-block-link">UART Tx</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/uart/uart_rx.html" class="nav-block-link">UART Rx</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/uart/uart_txmatlab.html" class="nav-block-link">UART Tx MATLAB</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/uart/uart_break_and_autobaud.html" class="nav-block-link">UART Break &amp; Autobaud</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <div class="nav-subsection" id="section-can">
+                                            <div class="nav-subsection-title" onclick="toggleSection('can')">
+                                                <span><span class="icon"></span>CAN</span>
+                                                <span class="toggle-icon">▶</span>
+                                            </div>
+                                            <div class="nav-section-children">
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/can/can_config.html" class="nav-block-link">CAN Config</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/can/can_tx.html" class="nav-block-link">CAN Tx</a>
+                                                
+                                                
+                                                <a href="../../../block_reference/communication/can/can_rx.html" class="nav-block-link">CAN Rx</a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/communication/i2c.html" class="nav-block-link">I2C Master/Slave</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/communication/spi.html" class="nav-block-link">SPI Master/Slave</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-digital-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('digital-io')">
+                                    <span><span class="icon">🔌</span>Digital I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/digital_io/digital_input.html" class="nav-block-link">Digital Input</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/digital_io/digital_output.html" class="nav-block-link">Digital Output</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/digital_io/digital_output_read.html" class="nav-block-link">Digital Output Read</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/digital_io/digital_output_write.html" class="nav-block-link">Digital Output Write</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-encoders">
+                                <div class="nav-subsection-title" onclick="toggleSection('encoders')">
+                                    <span><span class="icon">🔄</span>Encoders</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/encoders_counters/qei.html" class="nav-block-link">QEI (Quadrature Encoder)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/encoders_counters/pdec.html" class="nav-block-link">PDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/encoders_counters/qdec_samx.html" class="nav-block-link">QDEC (SAM)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/encoders_counters/change_notification.html" class="nav-block-link">Change Notification</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-analog-io">
+                                <div class="nav-subsection-title" onclick="toggleSection('analog-io')">
+                                    <span><span class="icon">📉</span>Analog I/O</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html" class="nav-block-link">High-Speed Comparator</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html" class="nav-block-link">Comparator w/ Slope</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html" class="nav-block-link">Op-Amp</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/analog_io/comparator_opamps_volt_ref/pga.html" class="nav-block-link">PGA (Programmable Gain Amp)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/analog_io/dac_samx.html" class="nav-block-link">DAC (SAM)</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-system-config">
+                                <div class="nav-subsection-title" onclick="toggleSection('system-config')">
+                                    <span><span class="icon">⚙️</span>System Config</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/master.html" class="nav-block-link">Master</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/interrupt.html" class="nav-block-link">Interrupt</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/compiler_options.html" class="nav-block-link">Compiler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/scheduler_options.html" class="nav-block-link">Scheduler Options</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/idle_task.html" class="nav-block-link">Idle Task</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/mcu_load.html" class="nav-block-link">MCU Load</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/mcu_overload.html" class="nav-block-link">MCU Overload</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/tasks_state.html" class="nav-block-link">Tasks State</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/system_configuration/secondary_core.html" class="nav-block-link">Secondary Core</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                            
+                            <div class="nav-subsection" id="section-utility">
+                                <div class="nav-subsection-title" onclick="toggleSection('utility')">
+                                    <span><span class="icon">🔧</span>Utility Blocks</span>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="nav-section-children">
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/user_functions/c_function_call.html" class="nav-block-link">C Function Call</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/utility/doc.html" class="nav-block-link">Documentation Block</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/utility/msi.html" class="nav-block-link">MSI (Model Sample Info)</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/utility/port_info.html" class="nav-block-link">Port Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/utility/timer_info.html" class="nav-block-link">Timer Info</a>
+                                        
+                                    
+                                        
+                                        
+                                        <a href="../../../block_reference/utility/simulink_reset_config.html" class="nav-block-link">Simulink Reset Config</a>
+                                        
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-examples">
+                    
+                    
+                    <div class="nav-section-title" onclick="toggleSection('examples')">
+                        <span><span class="icon">📖</span>Examples</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="nav-section-children">
+                        
+                            
+                            
+                            <a href="../../../examples/field_weakening.html" class="nav-link">Field Weakening</a>
+                            
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="nav-section" id="section-github">
+                    
+                    
+                    <a href="https://github.com/microchip-technology/mplab-blockset" class="nav-section-title" style="display: block; border-left: 3px solid transparent;">
+                        <span><span class="icon">💻</span>GitHub</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </nav>
+
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <a href="../../../">Home</a>
+                    
+                        <span>&gt;</span>
+                        <a href="../../../block_reference/communication.html">Communication Blocks</a>
+                    
+                    <span>&gt;</span>
+                    <span>CAN Tx</span>
+                </div>
+
+                
+                <div class="under-construction-banner">
+                    <span class="icon">⚠️</span>
+                    <strong>Documentation Under Construction</strong> —
+                    This documentation is currently being developed. All information has not been validated by Microchip yet.
+                </div>
+                
+
+                <div class="page-header">
+                    <h1>CAN Tx</h1>
+                    <div class="page-header-right">
+                        <img src="../../../images/microchip-logo.png" alt="Microchip Logo" class="microchip-logo">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                            <span class="theme-icon" id="theme-icon">☀️</span>
+                            <span id="theme-text">Light</span>
+                        </button>
+                    </div>
+                </div>
+
+                
+  <div class="block-icon-container">
+    <picture class="block-icon-image">
+        <source srcset="../../../assets/images/blocks/bus_can/CAN_Tx.svg" type="image/svg+xml">
+        <img src="../../../assets/images/blocks/bus_can/CAN_Tx.png" alt="CAN Tx Block Icon">
+    </picture>
+    <div class="block-icon-description">
+        The <strong>CAN Tx</strong> block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes.    This block requires a <strong>CAN Config</strong> block in the same model to configure the CAN peripheral. Multiple CAN Tx blocks can be used to send different messages on the same CAN module.
+    </div>
+</div>
+
+<p>The <strong>CAN Tx</strong> block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes.</p>
+<p>This block requires a <strong>CAN Config</strong> block in the same model to configure the CAN peripheral. Multiple CAN Tx blocks can be used to send different messages on the same CAN module.</p>
+<h2 id="block-ports">Block Ports</h2>
+<h3 id="input-ports">Input Ports</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Port Name</th>
+          <th>Data Type</th>
+          <th>Size</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MsgLen</td>
+          <td>uint8</td>
+          <td>Scalar (1)</td>
+          <td>Number of data bytes to transmit (0-8 for CAN 2.0, 0-64 for CAN-FD)</td>
+      </tr>
+      <tr>
+          <td>Tx[N]</td>
+          <td>uint8</td>
+          <td>Vector (1-64)</td>
+          <td>Message data bytes to transmit</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="block-parameters">Block Parameters</h2>
+<h3 id="can-module-selection">CAN Module Selection</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Valid Values</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CAN Module</td>
+          <td>Selects which CAN peripheral to use (must match CAN Config block)</td>
+          <td>CAN0, CAN1, MCAN0, MCAN1 (device-dependent)</td>
+          <td>CAN0 or MCAN0</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="message-configuration">Message Configuration</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Valid Values</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Message Type</td>
+          <td>Identifier format</td>
+          <td>Standard (11-bit ID), Extended (29-bit ID)</td>
+          <td>Standard</td>
+      </tr>
+      <tr>
+          <td>Message ID</td>
+          <td>CAN identifier (hexadecimal)</td>
+          <td>0x000-0x7FF (standard), 0x00000000-0x1FFFFFFF (extended)</td>
+          <td>0x100</td>
+      </tr>
+      <tr>
+          <td>Remote Transmission Request (RTR)</td>
+          <td>Send RTR frame instead of data frame</td>
+          <td>Enable / Disable</td>
+          <td>Disable</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="buffer-configuration">Buffer Configuration</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Options</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Data Store</td>
+          <td>Transmission buffer type</td>
+          <td>Tx FIFO, Tx Buffer</td>
+          <td>Tx FIFO</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Tip:</strong> Use <strong>Tx Buffer</strong> for time-critical, high-priority messages that must be sent immediately. Use <strong>Tx FIFO</strong> for lower priority messages that can be queued.</p>
+<h3 id="data-configuration">Data Configuration</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Valid Values</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Data Type</td>
+          <td>Data input port type</td>
+          <td>uint8, uint16, uint32</td>
+          <td>uint8</td>
+      </tr>
+      <tr>
+          <td>Data Size</td>
+          <td>Size of data input port</td>
+          <td>1-8 (CAN 2.0), 1-64 (CAN-FD)</td>
+          <td>8</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="can-message-structure">CAN Message Structure</h2>
+<h3 id="standard-can-20-frame">Standard CAN 2.0 Frame</h3>
+<pre tabindex="0"><code>|SOF| ID (11-bit) |RTR|IDE|r0| DLC |   DATA (0-8 bytes)   | CRC |ACK|EOF|
+ 1b     11 bits    1b  1b 1b  4b         0-64 bits         15b  2b  7b
+
+SOF: Start of Frame
+ID:  Message Identifier (11-bit standard or 29-bit extended)
+RTR: Remote Transmission Request
+IDE: Identifier Extension (0=standard, 1=extended)
+DLC: Data Length Code (0-8 bytes for CAN 2.0)
+CRC: Cyclic Redundancy Check
+ACK: Acknowledge
+EOF: End of Frame
+</code></pre><h3 id="extended-can-20-frame">Extended CAN 2.0 Frame</h3>
+<pre tabindex="0"><code>|SOF| ID Base |SRR|IDE| ID Extended (18-bit) |RTR|r1|r0| DLC | DATA | CRC |ACK|EOF|
+ 1b   11-bit   1b  1b       18 bits            1b  1b 1b  4b  0-8B  15b  2b  7b
+
+ID = ID_Base (11-bit) + ID_Extended (18-bit) = 29-bit total
+</code></pre><h3 id="can-fd-frame-sam-e5xe7x-only">CAN-FD Frame (SAM E5x/E7x only)</h3>
+<pre tabindex="0"><code>|SOF| ID |IDE|FDF|res|BRS|ESI| DLC |   DATA (0-64 bytes)   | CRC |ACK|EOF|
+                          Fast Data Phase (up to 8 Mbps)
+
+FDF: FD Format indicator
+BRS: Bit Rate Switch (data phase can be faster)
+ESI: Error State Indicator
+DLC: 0-15 (maps to 0,1,2...8,12,16,20,24,32,48,64 bytes)
+</code></pre><h2 id="message-priority-and-arbitration">Message Priority and Arbitration</h2>
+<h3 id="can-bus-arbitration">CAN Bus Arbitration</h3>
+<p>CAN uses CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance). Lower message IDs have higher priority:</p>
+<pre tabindex="0"><code>Priority Order (highest to lowest):
+  ID 0x000 → Highest priority (wins arbitration)
+  ID 0x001
+  ID 0x002
+  ...
+  ID 0x7FF → Lowest priority (standard ID)
+
+Example arbitration:
+  Node A transmits ID 0x100 (0001 0000 0000)
+  Node B transmits ID 0x101 (0001 0000 0001)
+  → Node A wins (bit 0 is dominant), Node B stops and retries
+</code></pre><p><strong>Best Practice:</strong> Assign lower IDs to time-critical messages:</p>
+<ul>
+<li>0x000-0x0FF: High-priority control commands, emergency stop</li>
+<li>0x100-0x1FF: Motor control, sensor feedback</li>
+<li>0x200-0x3FF: Status updates, diagnostic messages</li>
+<li>0x400-0x7FF: Low-priority telemetry, logging</li>
+</ul>
+<h2 id="implementation-details">Implementation Details</h2>
+<h3 id="transmission-process-sam-e7x-mcan">Transmission Process (SAM E7x MCAN)</h3>
+<pre tabindex="0"><code>/* CAN Tx Implementation */
+
+    /* Select buffer (FIFO or dedicated) */
+
+    /* Configure message header */
+    txBuf-&gt;ID = id;
+    txBuf-&gt;XTD = extended ? 1 : 0;  // Extended ID flag
+    txBuf-&gt;RTR = 0;                 // Data frame (not RTR)
+    txBuf-&gt;DLC = len;               // Data length code
+    txBuf-&gt;FDF = 0;                 // CAN 2.0 (not CAN-FD)
+    txBuf-&gt;BRS = 0;                 // No bit rate switching
+
+    /* Copy data to buffer */
+
+    /* Flush cache if using cached memory */
+    SCB_CleanDCache_by_Addr((uint32_t*)txBuf, sizeof(*txBuf));
+
+    /* Trigger transmission */
+
+### CAN-FD Transmission (SAM E5x/E7x)
+</code></pre><p>/* CAN-FD Transmission with up to 64 bytes */</p>
+<pre><code>/* DLC encoding for CAN-FD */
+uint8_t dlc;
+
+/* Configure CAN-FD message */
+txBuf-&gt;ID = id;
+txBuf-&gt;XTD = 0;     // Standard ID
+txBuf-&gt;RTR = 0;     // Data frame
+txBuf-&gt;DLC = dlc;   // DLC encoded
+txBuf-&gt;FDF = 1;     // CAN-FD format
+txBuf-&gt;BRS = 1;     // Bit rate switching enabled
+
+/* Copy data */
+memcpy(txBuf-&gt;buffer.c, data, len);
+
+/* Cache maintenance and trigger */
+SCB_CleanDCache_by_Addr((uint32_t*)txBuf, sizeof(*txBuf));
+MCAN0_REGS-&gt;MCAN_TXBAR = 0x01;
+</code></pre>
+<p>}</p>
+<pre tabindex="0"><code>
+## Block Usage Examples
+
+### Example 1: Periodic Sensor Data Transmission
+
+**Application:** Send temperature sensor data every 100ms
+</code></pre><p>Simulink Model:
+┌─────────────┐     ┌──────────┐
+│  Constant   │────→│  MsgLen  │
+│   (uint8)   │     │          │    CAN Tx
+│      4      │     │    Tx    │   (ID: 0x210)
+└─────────────┘     │          │
+│  [temp]  │
+┌─────────────┐     │  [hum]   │
+│  Sensors    │────→│  [pres]  │───→ CAN Bus
+│  [4 bytes]  │     │  [rsv]   │
+└─────────────┘     └──────────┘</p>
+<p>Configuration:</p>
+<ul>
+<li>CAN Module: CAN0</li>
+<li>Message Type: Standard (11-bit)</li>
+<li>Message ID: 0x210</li>
+<li>Data Store: Tx FIFO</li>
+<li>Data Size: 4 bytes</li>
+<li>Sample Time: 0.1 (100ms)</li>
+</ul>
+<pre tabindex="0"><code>
+### Example 2: Event-Triggered Command Transmission
+
+**Application:** Send motor control command on button press
+</code></pre><p>Simulink Model:
+┌─────────────┐     ┌──────────┐
+│  Button     │     │ Enabled  │
+│  Pressed    │────→│ Subsystem│
+└─────────────┘     │          │
+│ ┌──────┐ │
+┌─────────────┐     │ │MsgLen│ │    CAN Tx
+│  Constant   │────→│ │      │ │   (ID: 0x100)
+│      2      │     │ │  Tx  │ │
+└─────────────┘     │ │[cmd] │ │
+│ │[val] │ │───→ CAN Bus
+┌─────────────┐     │ └──────┘ │
+│ Command     │────→│          │
+│ [speed_cmd] │     │          │
+└─────────────┘     └──────────┘</p>
+<p>Configuration:</p>
+<ul>
+<li>Message Type: Extended (29-bit)</li>
+<li>Message ID: 0x18FF0100</li>
+<li>Data Store: Tx Buffer (high priority)</li>
+<li>Data Size: 2 bytes</li>
+<li>Triggering: Event-based (not periodic)</li>
+</ul>
+<pre tabindex="0"><code>
+### Example 3: Multi-Message Node
+
+**Application:** Motor controller sending multiple message types
+</code></pre><p>CAN Network Node:
+┌───────────────────────────────────┐
+│        Motor Control Node         │
+│                                   │
+│  ┌─────────┐  CAN Tx (0x100)     │
+│  │ Speed   │  → Motor Command     │───┐
+│  │ Control │  [setpoint][mode]    │   │
+│  └─────────┘                      │   │
+│                                   │   │
+│  ┌─────────┐  CAN Tx (0x200)     │   │
+│  │ Current │  → Status Feedback   │   ├──→ CAN Bus
+│  │ Sensor  │  [curr][volt][temp]  │   │    (250 kbps)
+│  └─────────┘                      │   │
+│                                   │   │
+│  ┌─────────┐  CAN Tx (0x300)     │   │
+│  │ Fault   │  → Error Report      │───┘
+│  │ Monitor │  [error_code][data]  │
+│  └─────────┘                      │
+└───────────────────────────────────┘</p>
+<p>Message Priority:
+0x100: Motor command (highest priority - wins arbitration)
+0x200: Status feedback (medium priority)
+0x300: Error report (lower priority, but critical)</p>
+<p>Transmission Rates:
+0x100: 10 Hz (100ms)
+0x200: 50 Hz (20ms)
+0x300: Event-triggered (faults only)</p>
+<pre tabindex="0"><code>
+### Example 4: CAN-FD High-Throughput Data
+
+**Application:** Vision system transmitting image data (SAM E70 only)
+</code></pre><p>CAN-FD Configuration:
+┌─────────────┐     ┌──────────┐
+│  Constant   │────→│  MsgLen  │
+│   (uint8)   │     │          │    CAN Tx
+│     64      │     │          │   (ID: 0x400)
+└─────────────┘     │    Tx    │    CAN-FD
+│ [64 bytes]│
+┌─────────────┐     │          │
+│ Image Chunk │────→│  Image   │───→ CAN-FD Bus
+│  64 bytes   │     │   Data   │    (500k nominal
+└─────────────┘     └──────────┘     2M data phase)</p>
+<p>Configuration:</p>
+<ul>
+<li>CAN Module: MCAN0</li>
+<li>Enable CAN-FD: On</li>
+<li>Message Type: Standard</li>
+<li>Message ID: 0x400</li>
+<li>Data Store: Tx FIFO</li>
+<li>Data Size: 64 bytes</li>
+<li>Nominal Rate: 500 kbps (arbitration)</li>
+<li>Data Rate: 2 Mbps (payload)</li>
+</ul>
+<p>Performance:</p>
+<ul>
+<li>64 bytes per message</li>
+<li>~1000 messages/sec</li>
+<li>~64 kB/sec throughput (vs 8 kB/sec for CAN 2.0)</li>
+</ul>
+<pre tabindex="0"><code>
+## Remote Transmission Request (RTR)
+
+### RTR Frame Usage
+
+ RTR frames request data from another node without sending payload data: 
+</code></pre><p>/* RTR Frame Structure */
+RTR Frame:</p>
+<ul>
+<li>Same ID as data frame being requested</li>
+<li>RTR bit set to 1</li>
+<li>DLC indicates expected data length</li>
+<li>No data bytes transmitted</li>
+</ul>
+<p>Example Use Case:
+Master requests sensor data from slave:
+1. Master sends RTR: ID=0x300, DLC=4, RTR=1
+2. Slave responds: ID=0x300, DLC=4, Data=[temp,hum,pres,rsv]</p>
+<pre tabindex="0"><code>
+
+## Transmission Modes Comparison
+
+| Feature | Tx FIFO | Tx Buffer |
+|---|---|---|
+| Transmission Order | First-In-First-Out queue | Immediate (based on priority) |
+| Priority Handling | Messages queued, sent in order | Hardware priority based on ID |
+| Latency | Variable (depends on queue depth) | Minimal (direct access) |
+| Use Case | General-purpose messaging | Time-critical, high-priority messages |
+| Overflow Behavior | Oldest message may be lost | New message rejected if buffer full |
+| Configuration Complexity | Simple (shared FIFO) | Requires dedicated buffer allocation |
+
+## Troubleshooting
+
+### Common Transmission Issues
+
+
+            
+                Missing CAN Config block in model
+                CAN module mismatch between Config and Tx blocks
+                Bus-off error state (CAN peripheral disabled)
+                Tx buffer full (dedicated buffer mode)
+                Arbitration continuously lost (message ID too low priority)
+            
+            Solutions:
+            
+                Verify CAN Config block exists and matches Tx block CAN module
+                Check CAN error status registers for bus-off condition
+                Use Tx FIFO instead of dedicated buffer for non-critical messages
+                Review message ID priority (lower ID = higher priority)
+                Monitor bus load and reduce transmission frequency if needed
+
+
+            
+                Assign lower IDs to time-critical messages
+                Use dedicated Tx buffers for high-priority messages
+                Reduce overall bus utilization (lower transmission rates)
+                Implement bus load monitoring and adaptive transmission
+
+
+            
+                Incorrect MsgLen value (length mismatch)
+                Data type mismatch between Tx and Rx blocks
+                Cache coherency issues (ARM Cortex-M7 with DCache)
+                Buffer overwritten before transmission completes
+            
+            Solutions:
+            
+                Verify MsgLen input matches actual data size
+                Ensure consistent data types across Tx/Rx blocks
+                Place CAN buffers in non-cached memory (TCM) on SAM E7x
+                Use cache maintenance functions (SCB_CleanDCache_by_Addr)
+
+### Performance Optimization
+
+| Issue | Symptom | Optimization |
+|---|---|---|
+| High transmission latency | Messages delayed beyond acceptable limits | Use dedicated Tx buffer instead of FIFO, reduce bus load |
+| Buffer overflow | Messages dropped, transmission errors | Increase Tx FIFO size, reduce transmission rate |
+| Poor bus utilization | Bus idle while messages pending | Optimize message packing, use CAN-FD for bulk data |
+| Excessive CPU load | Interrupt overhead from frequent transmissions | Batch messages, use DMA-based transmission (SAM E7x) |
+
+### Debug Checklist
+
+- ✓ Verify CAN Config block present and configured correctly
+- ✓ Check CAN module selection matches between Config and Tx blocks
+- ✓ Confirm message ID is valid for selected type (standard/extended)
+- ✓ Verify MsgLen input value matches data port size
+- ✓ Check bus termination and hardware connections
+- ✓ Monitor CAN error counters (TEC/REC) for bus health
+- ✓ Use CAN bus analyzer to verify actual transmitted messages
+- ✓ Check for arbitration loss patterns (message priority issues)
+- ✓ Verify data type consistency between Tx and Rx blocks
+- ✓ Test with simple constant data before using complex signals
+
+## Related Blocks
+
+- [CAN Config] - Configure CAN peripheral and buffers
+- [CAN Rx] - Receive CAN messages with filtering
+- [Digital Input] - Monitor CAN transceiver status pins
+- [Timer Output] - Generate periodic transmission triggers
+
+## References
+
+- ISO 11898-1:2015 - CAN Protocol Specification
+- Bosch CAN FD Specification Version 1.0
+- [SAM E70/S70/V70/V71 Family Datasheet (DS60001527)] - MCAN Module
+- [SAM E5x/D5x Family Datasheet (DS60001507)] - CAN Module
+- Application Note: CAN Message Prioritization and Bus Load Optimization (search [Microchip Portal])
+
+
+
+## See Also
+
+### Datasheets
+
+- [SAM E70/S70/V70/V71 Family Datasheet (DS60001527)](https://www.microchip.com/DS60001527)
+- [SAM E5x/D5x Family Datasheet (DS60001507)](https://www.microchip.com/DS60001507)
+
+### Other
+
+- [Microchip Portal](https://www.microchip.com/en-us/search)
+</code></pre>
+
+
+                <div class="nav-footer">
+                    <p>Last updated: January 2025 | MPLAB Blockset Documentation</p>
+                    <p>&copy; 2025 Microchip Technology Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <button class="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle navigation">
+            ☰
+        </button>
+    </div>
+    
+
+    <script>
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+
+            if (theme === 'dark') {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        }
+
+        
+        (function initTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+        })();
+
+        
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                }
+            });
+        }
+
+        
+        
+
+        
+        window.toggleSection = function(identifier) {
+            const section = document.getElementById('section-' + identifier);
+            if (section) {
+                section.classList.toggle('expanded');
+
+                
+                
+                if (section.classList.contains('nav-section')) {
+                    
+                    const expandedSections = getExpandedSections();
+                    if (section.classList.contains('expanded')) {
+                        expandedSections.add(identifier);
+                    } else {
+                        expandedSections.delete(identifier);
+                    }
+                    localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                }
+                
+                
+            }
+        };
+
+        
+        function getExpandedSections() {
+            const stored = localStorage.getItem('expandedSections');
+            return new Set(stored ? JSON.parse(stored) : []);
+        }
+
+        
+        function restoreExpandedSections() {
+            const expandedSections = getExpandedSections();
+            expandedSections.forEach(identifier => {
+                const section = document.getElementById('section-' + identifier);
+                if (section) {
+                    section.classList.add('expanded');
+                }
+            });
+        }
+
+        
+        function highlightActivePage() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .nav-block-link, .nav-section-title[href], .nav-subsection-title[href]');
+
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+
+                    
+                    const parentSubsection = link.closest('.nav-subsection');
+                    if (parentSubsection && !parentSubsection.classList.contains('expanded')) {
+                        parentSubsection.classList.add('expanded');
+                        
+                    }
+
+                    
+                    const parentSection = link.closest('.nav-section');
+                    if (parentSection && !parentSection.classList.contains('expanded')) {
+                        parentSection.classList.add('expanded');
+                        
+                        const identifier = parentSection.id.replace('section-', '');
+                        const expandedSections = getExpandedSections();
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            });
+        }
+
+        
+        window.toggleMobileSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-visible');
+            }
+        };
+
+        
+        (function initSidebar() {
+            restoreExpandedSections();
+            highlightActivePage();
+
+            
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                const parentSection = activeLink.closest('.nav-section');
+                if (parentSection && parentSection.id) {
+                    const identifier = parentSection.id.replace('section-', '');
+                    const expandedSections = getExpandedSections();
+                    if (!expandedSections.has(identifier)) {
+                        expandedSections.add(identifier);
+                        localStorage.setItem('expandedSections', JSON.stringify([...expandedSections]));
+                    }
+                }
+            }
+        })();
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Timer Blocks on MPLAB Blockset for MATLAB/Simulink</title>
+    <link>/block_reference/timers.html</link>
+    <description>Recent content in Timer Blocks on MPLAB Blockset for MATLAB/Simulink</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/block_reference/timers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IC - Input Capture Block</title>
+      <link>/block_reference/timers/input_capture.html</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/block_reference/timers/input_capture.html</guid>
+      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/timers/InputCapture.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/timers/InputCapture.png&#34; alt=&#34;Input Capture Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        IC - Input Capture Block  InputCapture Block Icon  The &lt;strong&gt;MCHP_IC&lt;/strong&gt; block captures hardware timer values when external events occur on input pins. It enables precise measurement of pulse widths, periods, frequencies, and event timestamps using dedicated Input Capture peripheral modules.    Each IC channel can detect rising edges, falling edges, or both, and automatically capture the associated timer value. This is ideal for encoder interfaces, frequency measurement, and event timing applications.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;IC - Input Capture Block&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OC HW - Output Compare (Hardware)</title>
+      <link>/block_reference/timers/output_compare_hw.html</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/block_reference/timers/output_compare_hw.html</guid>
+      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/timers/OutputCompare_HW.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/timers/OutputCompare_HW.png&#34; alt=&#34;Output Compare HW Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OC SW - Software Output Compare</title>
+      <link>/block_reference/timers/output_compare_sw.html</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/block_reference/timers/output_compare_sw.html</guid>
+      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/timers/OutputCompare_SW.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/timers/OutputCompare_SW.png&#34; alt=&#34;Output Compare SW Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        The &lt;strong&gt;MCHP_OC_SW&lt;/strong&gt; block provides &lt;strong&gt;interrupt-driven software output compare&lt;/strong&gt; functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering &lt;strong&gt;greater flexibility&lt;/strong&gt; at the cost of CPU overhead.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;The &lt;strong&gt;MCHP_OC_SW&lt;/strong&gt; block provides &lt;strong&gt;interrupt-driven software output compare&lt;/strong&gt; functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering &lt;strong&gt;greater flexibility&lt;/strong&gt; at the cost of CPU overhead.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>TIMER Config - Timer Configuration Block</title>
+      <link>/block_reference/timers/timer_config.html</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/block_reference/timers/timer_config.html</guid>
+      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/timers/Timer.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/timers/Timer.png&#34; alt=&#34;Timer Config Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        TIMER Config - Timer Configuration Block  Timer Block Icon  The &lt;strong&gt;MCHP_TIMER_Config&lt;/strong&gt; block provides a high-level interface for configuring hardware timers on Microchip microcontrollers. This block creates and manages named timer resources that can be shared across multiple peripherals in the model, providing automatic timer allocation and optimal prescaler selection.    Unlike direct timer register access, this block manages the complete timer lifecycle including resource allocation, conflict resolution, and automatic prescaler calculation based on desired resolution and period requirements.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;TIMER Config - Timer Configuration Block&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>TIMER PIL Profiling - PIL Timing Profiler</title>
+      <link>/block_reference/timers/timer_pil_profiling.html</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>/block_reference/timers/timer_pil_profiling.html</guid>
+      <description>&lt;div class=&#34;block-icon-container&#34;&gt;&#xD;&#xA;    &lt;picture class=&#34;block-icon-image&#34;&gt;&#xD;&#xA;        &lt;source srcset=&#34;../../assets/images/blocks/timers/Timer_PIL_Profiling.svg&#34; type=&#34;image/svg+xml&#34;&gt;&#xD;&#xA;        &lt;img src=&#34;../../assets/images/blocks/timers/Timer_PIL_Profiling.png&#34; alt=&#34;Timer PIL Profiling Block Icon&#34;&gt;&#xD;&#xA;    &lt;/picture&gt;&#xD;&#xA;    &lt;div class=&#34;block-icon-description&#34;&gt;&#xD;&#xA;        TIMER PIL Profiling - PIL Timing Profiler  Timer_PIL_Profiling Block Icon  The &lt;strong&gt;MCHP_TIMER_PIL_Profiling&lt;/strong&gt; block enables precise code execution timing measurement during Processor-in-the-Loop (PIL) simulations. It uses hardware timers to measure actual execution time of Simulink subsystems or blocks on target hardware.    This block is essential for performance profiling, real-time constraint verification, and optimization of embedded code. It provides microsecond-level timing accuracy using the target&amp;rsquo;s hardware timer peripheral.&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&#xA;&lt;p&gt;TIMER PIL Profiling - PIL Timing Profiler&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
