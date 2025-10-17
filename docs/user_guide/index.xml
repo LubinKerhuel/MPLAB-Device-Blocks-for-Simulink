@@ -1,130 +1,130 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User Guide on MPLAB Blockset for MATLAB/Simulink</title><link>/user_guide.html</link><description>Recent content in User Guide on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/user_guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Code Generation - User Guide</title><link>/user_guide/code_generation.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/code_generation.html</guid><description>&lt;h3 id="navigation">Navigation&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="../index.html">🏠 Home&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="user-guide-topics">User Guide Topics&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="code_generation.html">Code Generation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="external_mode.html">External Mode&lt;/a>&lt;/li>
-&lt;li>&lt;a href="pil_testing.html">PIL Testing&lt;/a>&lt;/li>
-&lt;li>&lt;a href="compiler_setup.html">Compiler Setup&lt;/a>&lt;/li>
-&lt;li>&lt;a href="../videos/index.html">📹 Video Demos&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The MCHP Blockset automatically generates optimized C code from Simulink models for deployment on Microchip microcontrollers.&lt;/p>
-&lt;h2 id="code-generation-workflow">Code Generation Workflow&lt;/h2>
-&lt;ul>
-&lt;li>&lt;strong>Model Design&lt;/strong> - Create algorithm in Simulink&lt;/li>
-&lt;li>&lt;strong>Configuration&lt;/strong> - Set up target hardware and compiler&lt;/li>
-&lt;li>&lt;strong>Build&lt;/strong> - Generate and compile code&lt;/li>
-&lt;li>&lt;strong>Deploy&lt;/strong> - Program device with generated firmware&lt;/li>
-&lt;/ul>
-&lt;h2 id="model-configuration-parameters">Model Configuration Parameters&lt;/h2>
-&lt;h3 id="system-target-file">System Target File&lt;/h3>
-&lt;p>Select the appropriate target for your device family:&lt;/p></description></item><item><title>Compiler Setup - User Guide</title><link>/user_guide/compiler_setup.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/compiler_setup.html</guid><description>&lt;h3 id="navigation">Navigation&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="../index.html">🏠 Home&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="user-guide-topics">User Guide Topics&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="code_generation.html">Code Generation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="external_mode.html">External Mode&lt;/a>&lt;/li>
-&lt;li>&lt;a href="pil_testing.html">PIL Testing&lt;/a>&lt;/li>
-&lt;li>&lt;a href="compiler_setup.html">Compiler Setup&lt;/a>&lt;/li>
-&lt;li>&lt;a href="../videos/index.html">📹 Video Demos&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>Detailed instructions for installing and configuring Microchip compilers for code generation.&lt;/p>
-&lt;h2 id="compiler-selection-by-family">Compiler Selection by Family&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Device Family&lt;/th>
- &lt;th>Compiler&lt;/th>
- &lt;th>Min Version&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>dsPIC 30F/33F/33E&lt;/td>
- &lt;td>XC16&lt;/td>
- &lt;td>v1.26+&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>dsPIC 33C/33A&lt;/td>
- &lt;td>XC-DSC&lt;/td>
- &lt;td>v3.20+&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>PIC32&lt;/td>
- &lt;td>XC32&lt;/td>
- &lt;td>v2.40+&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>SAM (ARM)&lt;/td>
- &lt;td>XC32&lt;/td>
- &lt;td>v2.40+&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;hr>
-&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User Guide on MPLAB Blockset for MATLAB/Simulink</title><link>/user_guide/index.html</link><description>Recent content in User Guide on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/user_guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Code Generation - User Guide</title><link>/user_guide/code_generation.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/code_generation.html</guid><description>&lt;h3 id="navigation"&gt;Navigation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../index.html"&gt;🏠 Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-guide-topics"&gt;User Guide Topics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="external_mode.html"&gt;External Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="pil_testing.html"&gt;PIL Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="../videos/index.html"&gt;📹 Video Demos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The MCHP Blockset automatically generates optimized C code from Simulink models for deployment on Microchip microcontrollers.&lt;/p&gt;
+&lt;h2 id="code-generation-workflow"&gt;Code Generation Workflow&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model Design&lt;/strong&gt; - Create algorithm in Simulink&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt; - Set up target hardware and compiler&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build&lt;/strong&gt; - Generate and compile code&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deploy&lt;/strong&gt; - Program device with generated firmware&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="model-configuration-parameters"&gt;Model Configuration Parameters&lt;/h2&gt;
+&lt;h3 id="system-target-file"&gt;System Target File&lt;/h3&gt;
+&lt;p&gt;Select the appropriate target for your device family:&lt;/p&gt;</description></item><item><title>Compiler Setup - User Guide</title><link>/user_guide/compiler_setup.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/compiler_setup.html</guid><description>&lt;h3 id="navigation"&gt;Navigation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../index.html"&gt;🏠 Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-guide-topics"&gt;User Guide Topics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="external_mode.html"&gt;External Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="pil_testing.html"&gt;PIL Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="../videos/index.html"&gt;📹 Video Demos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Detailed instructions for installing and configuring Microchip compilers for code generation.&lt;/p&gt;
+&lt;h2 id="compiler-selection-by-family"&gt;Compiler Selection by Family&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Device Family&lt;/th&gt;
+ &lt;th&gt;Compiler&lt;/th&gt;
+ &lt;th&gt;Min Version&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;dsPIC 30F/33F/33E&lt;/td&gt;
+ &lt;td&gt;XC16&lt;/td&gt;
+ &lt;td&gt;v1.26+&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;dsPIC 33C/33A&lt;/td&gt;
+ &lt;td&gt;XC-DSC&lt;/td&gt;
+ &lt;td&gt;v3.20+&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PIC32&lt;/td&gt;
+ &lt;td&gt;XC32&lt;/td&gt;
+ &lt;td&gt;v2.40+&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAM (ARM)&lt;/td&gt;
+ &lt;td&gt;XC32&lt;/td&gt;
+ &lt;td&gt;v2.40+&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
  Note: XC32 is based on ARM GCC and supports both PIC32 (MIPS-based) and SAM (ARM Cortex-M) devices. The compiler automatically adapts to the target architecture.
-&lt;/div>
+&lt;/div&gt;
 
-&lt;h2 id="installation-paths">Installation Paths&lt;/h2>
-&lt;p>&lt;strong>Windows (Default):&lt;/strong>&lt;/p></description></item><item><title>External Mode - User Guide</title><link>/user_guide/external_mode.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/external_mode.html</guid><description>&lt;h3 id="navigation">Navigation&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="../index.html">🏠 Home&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="user-guide-topics">User Guide Topics&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="code_generation.html">Code Generation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="external_mode.html">External Mode&lt;/a>&lt;/li>
-&lt;li>&lt;a href="pil_testing.html">PIL Testing&lt;/a>&lt;/li>
-&lt;li>&lt;a href="compiler_setup.html">Compiler Setup&lt;/a>&lt;/li>
-&lt;li>&lt;a href="../videos/index.html">📹 Video Demos&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>External Mode enables real-time parameter tuning and signal monitoring on running hardware through a communication link between Simulink and the target device.&lt;/p>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>Key capabilities:&lt;/p>
-&lt;ul>
-&lt;li>Modify parameters in real-time without rebuilding&lt;/li>
-&lt;li>Monitor signals and scopes while application runs&lt;/li>
-&lt;li>Capture data from hardware to Simulink workspace&lt;/li>
-&lt;li>Compare simulation vs. hardware behavior&lt;/li>
-&lt;/ul>
-&lt;h2 id="setup-steps">Setup Steps&lt;/h2>
-&lt;ul>
-&lt;li>Configure communication interface (UART, USB, etc.)&lt;/li>
-&lt;li>Enable External Mode in model configuration&lt;/li>
-&lt;li>Build and download model to hardware&lt;/li>
-&lt;li>Connect to target and start monitoring&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="../index.html">Home&lt;/a> | &lt;a href="../user_guide.html">User Guide&lt;/a> | &lt;a href="code_generation.html">Code Generation&lt;/a> | &lt;a href="pil_testing.html">PIL Testing&lt;/a> | &lt;a href="compiler_setup.html">Compiler Setup&lt;/a> | &lt;a href="../videos/index.html">Video Demos&lt;/a> | &lt;a href="../block_reference.html">Block Reference&lt;/a>&lt;/p></description></item><item><title>PIL Testing - User Guide</title><link>/user_guide/pil_testing.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/pil_testing.html</guid><description>&lt;h3 id="navigation">Navigation&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="../index.html">🏠 Home&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="user-guide-topics">User Guide Topics&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="code_generation.html">Code Generation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="external_mode.html">External Mode&lt;/a>&lt;/li>
-&lt;li>&lt;a href="pil_testing.html">PIL Testing&lt;/a>&lt;/li>
-&lt;li>&lt;a href="compiler_setup.html">Compiler Setup&lt;/a>&lt;/li>
-&lt;li>&lt;a href="../videos/index.html">📹 Video Demos&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>PIL testing verifies generated code by executing it on actual hardware and comparing results with simulation.&lt;/p>
-&lt;h2 id="benefits">Benefits&lt;/h2>
-&lt;ul>
-&lt;li>Verify code generation correctness&lt;/li>
-&lt;li>Measure execution time and performance&lt;/li>
-&lt;li>Detect numerical differences between simulation and hardware&lt;/li>
-&lt;li>Profile code for optimization&lt;/li>
-&lt;/ul>
-&lt;h2 id="pil-workflow">PIL Workflow&lt;/h2>
-&lt;ul>
-&lt;li>Create PIL block from subsystem&lt;/li>
-&lt;li>Configure communication interface&lt;/li>
-&lt;li>Run simulation with PIL block&lt;/li>
-&lt;li>Compare results with normal simulation&lt;/li>
-&lt;li>Analyze performance metrics&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="../index.html">Home&lt;/a> | &lt;a href="../user_guide.html">User Guide&lt;/a> | &lt;a href="code_generation.html">Code Generation&lt;/a> | &lt;a href="external_mode.html">External Mode&lt;/a> | &lt;a href="compiler_setup.html">Compiler Setup&lt;/a> | &lt;a href="../videos/index.html">Video Demos&lt;/a> | &lt;a href="../block_reference.html">Block Reference&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;h2 id="installation-paths"&gt;Installation Paths&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Windows (Default):&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>External Mode - User Guide</title><link>/user_guide/external_mode.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/external_mode.html</guid><description>&lt;h3 id="navigation"&gt;Navigation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../index.html"&gt;🏠 Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-guide-topics"&gt;User Guide Topics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="external_mode.html"&gt;External Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="pil_testing.html"&gt;PIL Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="../videos/index.html"&gt;📹 Video Demos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;External Mode enables real-time parameter tuning and signal monitoring on running hardware through a communication link between Simulink and the target device.&lt;/p&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Key capabilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Modify parameters in real-time without rebuilding&lt;/li&gt;
+&lt;li&gt;Monitor signals and scopes while application runs&lt;/li&gt;
+&lt;li&gt;Capture data from hardware to Simulink workspace&lt;/li&gt;
+&lt;li&gt;Compare simulation vs. hardware behavior&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="setup-steps"&gt;Setup Steps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure communication interface (UART, USB, etc.)&lt;/li&gt;
+&lt;li&gt;Enable External Mode in model configuration&lt;/li&gt;
+&lt;li&gt;Build and download model to hardware&lt;/li&gt;
+&lt;li&gt;Connect to target and start monitoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="../index.html"&gt;Home&lt;/a&gt; | &lt;a href="../user_guide.html"&gt;User Guide&lt;/a&gt; | &lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt; | &lt;a href="pil_testing.html"&gt;PIL Testing&lt;/a&gt; | &lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt; | &lt;a href="../videos/index.html"&gt;Video Demos&lt;/a&gt; | &lt;a href="../block_reference.html"&gt;Block Reference&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PIL Testing - User Guide</title><link>/user_guide/pil_testing.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/user_guide/pil_testing.html</guid><description>&lt;h3 id="navigation"&gt;Navigation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../index.html"&gt;🏠 Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="user-guide-topics"&gt;User Guide Topics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="external_mode.html"&gt;External Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="pil_testing.html"&gt;PIL Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="../videos/index.html"&gt;📹 Video Demos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PIL testing verifies generated code by executing it on actual hardware and comparing results with simulation.&lt;/p&gt;
+&lt;h2 id="benefits"&gt;Benefits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Verify code generation correctness&lt;/li&gt;
+&lt;li&gt;Measure execution time and performance&lt;/li&gt;
+&lt;li&gt;Detect numerical differences between simulation and hardware&lt;/li&gt;
+&lt;li&gt;Profile code for optimization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="pil-workflow"&gt;PIL Workflow&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create PIL block from subsystem&lt;/li&gt;
+&lt;li&gt;Configure communication interface&lt;/li&gt;
+&lt;li&gt;Run simulation with PIL block&lt;/li&gt;
+&lt;li&gt;Compare results with normal simulation&lt;/li&gt;
+&lt;li&gt;Analyze performance metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="../index.html"&gt;Home&lt;/a&gt; | &lt;a href="../user_guide.html"&gt;User Guide&lt;/a&gt; | &lt;a href="code_generation.html"&gt;Code Generation&lt;/a&gt; | &lt;a href="external_mode.html"&gt;External Mode&lt;/a&gt; | &lt;a href="compiler_setup.html"&gt;Compiler Setup&lt;/a&gt; | &lt;a href="../videos/index.html"&gt;Video Demos&lt;/a&gt; | &lt;a href="../block_reference.html"&gt;Block Reference&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

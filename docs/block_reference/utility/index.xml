@@ -1,247 +1,247 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/utility.html</link><description>Recent content in Utility Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>/block_reference/utility/doc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/doc.html</guid><description>&lt;div class="block-icon-container">
- &lt;picture class="block-icon-image">
- &lt;source srcset="../../assets/images/blocks/utility/Doc.svg" type="image/svg+xml">
- &lt;img src="../../assets/images/blocks/utility/Doc.png" alt="Doc Block Icon">
- &lt;/picture>
- &lt;div class="block-icon-description">
- The &lt;strong>Doc&lt;/strong> block provides quick access to MCHP Blockset documentation, help files, examples, and release notes directly from the Simulink model.
- &lt;/div>
-&lt;/div>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/utility/index.html</link><description>Recent content in Utility Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>/block_reference/utility/doc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/doc.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;picture class="block-icon-image"&gt;
+ &lt;source srcset="../../assets/images/blocks/utility/Doc.svg" type="image/svg+xml"&gt;
+ &lt;img src="../../assets/images/blocks/utility/Doc.png" alt="Doc Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;Doc&lt;/strong&gt; block provides quick access to MCHP Blockset documentation, help files, examples, and release notes directly from the Simulink model.
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;h2 id="features">Features&lt;/h2>
-&lt;ul>
-&lt;li>One-click access to block help&lt;/li>
-&lt;li>Quick links to user guide&lt;/li>
-&lt;li>Example browser&lt;/li>
-&lt;li>Release notes and changelog&lt;/li>
-&lt;li>Online support resources&lt;/li>
-&lt;/ul>
-&lt;h2 id="no-configuration-required">No Configuration Required&lt;/h2>
-&lt;p>The Doc block has no parameters. Simply double-click to open the documentation menu.&lt;/p>
-&lt;h2 id="available-resources">Available Resources&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Resource&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Block Reference&lt;/td>
- &lt;td>Detailed documentation for all blocks&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>User Guide&lt;/td>
- &lt;td>Getting started and tutorials&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Examples&lt;/td>
- &lt;td>Sample models for various applications&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Release Notes&lt;/td>
- &lt;td>Version history and new features&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Support Forum&lt;/td>
- &lt;td>Microchip community support&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table></description></item><item><title>MSI</title><link>/block_reference/utility/msi.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/msi.html</guid><description>&lt;div class="block-icon-container">
- &lt;picture class="block-icon-image">
- &lt;source srcset="../../assets/images/blocks/system_info/chip_webpage.svg" type="image/svg+xml">
- &lt;img src="../../assets/images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon">
- &lt;/picture>
- &lt;div class="block-icon-description">
- The &lt;strong>MSI&lt;/strong> block configures the Master Secondary Interface (MSI) for inter-core communication in dual-core dsPIC33CH devices, enabling data exchange between master and secondary cores.
- &lt;/div>
-&lt;/div>
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;One-click access to block help&lt;/li&gt;
+&lt;li&gt;Quick links to user guide&lt;/li&gt;
+&lt;li&gt;Example browser&lt;/li&gt;
+&lt;li&gt;Release notes and changelog&lt;/li&gt;
+&lt;li&gt;Online support resources&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="no-configuration-required"&gt;No Configuration Required&lt;/h2&gt;
+&lt;p&gt;The Doc block has no parameters. Simply double-click to open the documentation menu.&lt;/p&gt;
+&lt;h2 id="available-resources"&gt;Available Resources&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Resource&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Block Reference&lt;/td&gt;
+ &lt;td&gt;Detailed documentation for all blocks&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;User Guide&lt;/td&gt;
+ &lt;td&gt;Getting started and tutorials&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Examples&lt;/td&gt;
+ &lt;td&gt;Sample models for various applications&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Release Notes&lt;/td&gt;
+ &lt;td&gt;Version history and new features&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Support Forum&lt;/td&gt;
+ &lt;td&gt;Microchip community support&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>MSI</title><link>/block_reference/utility/msi.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/msi.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;picture class="block-icon-image"&gt;
+ &lt;source srcset="../../assets/images/blocks/system_info/chip_webpage.svg" type="image/svg+xml"&gt;
+ &lt;img src="../../assets/images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;MSI&lt;/strong&gt; block configures the Master Secondary Interface (MSI) for inter-core communication in dual-core dsPIC33CH devices, enabling data exchange between master and secondary cores.
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;h2 id="communication-methods">Communication Methods&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Method&lt;/th>
- &lt;th>Speed&lt;/th>
- &lt;th>Size&lt;/th>
- &lt;th>Direction&lt;/th>
- &lt;th>Use Case&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Mailboxes&lt;/td>
- &lt;td>Fast&lt;/td>
- &lt;td>16 words × 16 boxes&lt;/td>
- &lt;td>Bidirectional&lt;/td>
- &lt;td>Control parameters, flags&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>FIFO&lt;/td>
- &lt;td>Medium&lt;/td>
- &lt;td>Configurable buffer&lt;/td>
- &lt;td>Bidirectional&lt;/td>
- &lt;td>Data streaming, logs&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Protocol Interrupts&lt;/td>
- &lt;td>Immediate&lt;/td>
- &lt;td>N/A&lt;/td>
- &lt;td>Bidirectional&lt;/td>
- &lt;td>Event notification, sync&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="block-parameters">Block Parameters&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Parameter&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;th>Options&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Communication Type&lt;/td>
- &lt;td>Select MSI communication method&lt;/td>
- &lt;td>Mailbox / FIFO / Protocol Interrupt&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Mailbox Number&lt;/td>
- &lt;td>Mailbox index (0-15)&lt;/td>
- &lt;td>0 to 15&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Direction&lt;/td>
- &lt;td>Data transfer direction&lt;/td>
- &lt;td>Master→Secondary&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>FIFO Size&lt;/td>
- &lt;td>FIFO buffer size&lt;/td>
- &lt;td>16 to 256 words&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Interrupt Enable&lt;/td>
- &lt;td>Generate interrupt on data available&lt;/td>
- &lt;td>on / off&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="example-dual-core-communication">Example Dual-Core Communication&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Master Core (33CH128MP508):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MSI_Mailbox0_Write:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Write speed reference to Mailbox &lt;span style="color:#099">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Trigger secondary interrupt
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MSI_Mailbox1_Read:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Read current measurement from Mailbox &lt;span style="color:#099">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Update speed controller
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Secondary Core (33CH128MP508S1):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MSI_Mailbox0_Read:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Read speed reference from Mailbox &lt;span style="color:#099">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Execute in interrupt handler
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MSI_Mailbox1_Write:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Write current measurement to Mailbox &lt;span style="color:#099">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">-&lt;/span> Trigger master interrupt
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="mailbox-vs-fifo-selection">Mailbox vs FIFO Selection&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Scenario&lt;/th>
- &lt;th>Recommended&lt;/th>
- &lt;th>Reason&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Control loop parameters&lt;/td>
- &lt;td>Mailbox&lt;/td>
- &lt;td>Fast, deterministic, 16 words enough&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Sensor data streaming&lt;/td>
- &lt;td>FIFO&lt;/td>
- &lt;td>Buffered, handles variable rates&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Event flags, status&lt;/td>
- &lt;td>Mailbox&lt;/td>
- &lt;td>Immediate, small data&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Data logging&lt;/td>
- &lt;td>FIFO&lt;/td>
- &lt;td>Large buffer, non-critical timing&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Synchronization signals&lt;/td>
- &lt;td>Protocol Interrupt&lt;/td>
- &lt;td>No data, just notification&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="synchronization-example">Synchronization Example&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Master triggers secondary task execution&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Master:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> compute_reference();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> MSI_SendProtocolInterrupt(SECONDARY_START);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Secondary (Interrupt Handler):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">if&lt;/span> (protocol_interrupt &lt;span style="color:#000;font-weight:bold">==&lt;/span> SECONDARY_START)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> execute_fast_control_loop();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> MSI_SendProtocolInterrupt(TASK_COMPLETE);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Result: Precise task synchronization between cores&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="see-also">See Also&lt;/h2>
-&lt;ul>
-&lt;li>[MCHP_SECONDARY_CORE] - Secondary core configuration&lt;/li>
-&lt;li>[MCHP_Master] - Dual-core device selection&lt;/li>
-&lt;/ul></description></item><item><title>PortInfo</title><link>/block_reference/utility/port_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/port_info.html</guid><description>&lt;div class="block-icon-container">
- &lt;picture class="block-icon-image">
- &lt;source srcset="../../assets/images/blocks/utility/PortInfo.svg" type="image/svg+xml">
- &lt;img src="../../assets/images/blocks/utility/PortInfo.png" alt="Port Info Block Icon">
- &lt;/picture>
- &lt;div class="block-icon-description">
- The &lt;strong>PortInfo&lt;/strong> block displays a summary of GPIO port assignments and Peripheral Pin Select (PPS) mappings for all blocks in the model, helping detect conflicts and verify pin usage.
- &lt;/div>
-&lt;/div>
+&lt;h2 id="communication-methods"&gt;Communication Methods&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Method&lt;/th&gt;
+ &lt;th&gt;Speed&lt;/th&gt;
+ &lt;th&gt;Size&lt;/th&gt;
+ &lt;th&gt;Direction&lt;/th&gt;
+ &lt;th&gt;Use Case&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Mailboxes&lt;/td&gt;
+ &lt;td&gt;Fast&lt;/td&gt;
+ &lt;td&gt;16 words × 16 boxes&lt;/td&gt;
+ &lt;td&gt;Bidirectional&lt;/td&gt;
+ &lt;td&gt;Control parameters, flags&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FIFO&lt;/td&gt;
+ &lt;td&gt;Medium&lt;/td&gt;
+ &lt;td&gt;Configurable buffer&lt;/td&gt;
+ &lt;td&gt;Bidirectional&lt;/td&gt;
+ &lt;td&gt;Data streaming, logs&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Protocol Interrupts&lt;/td&gt;
+ &lt;td&gt;Immediate&lt;/td&gt;
+ &lt;td&gt;N/A&lt;/td&gt;
+ &lt;td&gt;Bidirectional&lt;/td&gt;
+ &lt;td&gt;Event notification, sync&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="block-parameters"&gt;Block Parameters&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Parameter&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Options&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Communication Type&lt;/td&gt;
+ &lt;td&gt;Select MSI communication method&lt;/td&gt;
+ &lt;td&gt;Mailbox / FIFO / Protocol Interrupt&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Mailbox Number&lt;/td&gt;
+ &lt;td&gt;Mailbox index (0-15)&lt;/td&gt;
+ &lt;td&gt;0 to 15&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Direction&lt;/td&gt;
+ &lt;td&gt;Data transfer direction&lt;/td&gt;
+ &lt;td&gt;Master→Secondary&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FIFO Size&lt;/td&gt;
+ &lt;td&gt;FIFO buffer size&lt;/td&gt;
+ &lt;td&gt;16 to 256 words&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Interrupt Enable&lt;/td&gt;
+ &lt;td&gt;Generate interrupt on data available&lt;/td&gt;
+ &lt;td&gt;on / off&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="example-dual-core-communication"&gt;Example Dual-Core Communication&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-matlab" data-lang="matlab"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Master Core (33CH128MP508):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;MSI_Mailbox0_Write&lt;span style="color:#1f2328"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Write speed reference to Mailbox &lt;span style="color:#0550ae"&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Trigger secondary interrupt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;MSI_Mailbox1_Read&lt;span style="color:#1f2328"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Read current measurement from Mailbox &lt;span style="color:#0550ae"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Update speed controller
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Secondary Core (33CH128MP508S1):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;MSI_Mailbox0_Read&lt;span style="color:#1f2328"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Read speed reference from Mailbox &lt;span style="color:#0550ae"&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Execute in interrupt handler
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;MSI_Mailbox1_Write&lt;span style="color:#1f2328"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Write current measurement to Mailbox &lt;span style="color:#0550ae"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#0550ae"&gt;-&lt;/span&gt; Trigger master interrupt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="mailbox-vs-fifo-selection"&gt;Mailbox vs FIFO Selection&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Scenario&lt;/th&gt;
+ &lt;th&gt;Recommended&lt;/th&gt;
+ &lt;th&gt;Reason&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Control loop parameters&lt;/td&gt;
+ &lt;td&gt;Mailbox&lt;/td&gt;
+ &lt;td&gt;Fast, deterministic, 16 words enough&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Sensor data streaming&lt;/td&gt;
+ &lt;td&gt;FIFO&lt;/td&gt;
+ &lt;td&gt;Buffered, handles variable rates&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Event flags, status&lt;/td&gt;
+ &lt;td&gt;Mailbox&lt;/td&gt;
+ &lt;td&gt;Immediate, small data&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Data logging&lt;/td&gt;
+ &lt;td&gt;FIFO&lt;/td&gt;
+ &lt;td&gt;Large buffer, non-critical timing&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Synchronization signals&lt;/td&gt;
+ &lt;td&gt;Protocol Interrupt&lt;/td&gt;
+ &lt;td&gt;No data, just notification&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="synchronization-example"&gt;Synchronization Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-matlab" data-lang="matlab"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Master triggers secondary task execution&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Master&lt;span style="color:#1f2328"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; compute_reference&lt;span style="color:#1f2328"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; MSI_SendProtocolInterrupt&lt;span style="color:#1f2328"&gt;(&lt;/span&gt;SECONDARY_START&lt;span style="color:#1f2328"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Secondary &lt;span style="color:#1f2328"&gt;(&lt;/span&gt;Interrupt Handler&lt;span style="color:#1f2328"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#cf222e"&gt;if&lt;/span&gt; &lt;span style="color:#1f2328"&gt;(&lt;/span&gt;protocol_interrupt &lt;span style="color:#0550ae"&gt;==&lt;/span&gt; SECONDARY_START&lt;span style="color:#1f2328"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; execute_fast_control_loop&lt;span style="color:#1f2328"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; MSI_SendProtocolInterrupt&lt;span style="color:#1f2328"&gt;(&lt;/span&gt;TASK_COMPLETE&lt;span style="color:#1f2328"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#cf222e"&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Result: Precise task synchronization between cores&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[MCHP_SECONDARY_CORE] - Secondary core configuration&lt;/li&gt;
+&lt;li&gt;[MCHP_Master] - Dual-core device selection&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>PortInfo</title><link>/block_reference/utility/port_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/port_info.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;picture class="block-icon-image"&gt;
+ &lt;source srcset="../../assets/images/blocks/utility/PortInfo.svg" type="image/svg+xml"&gt;
+ &lt;img src="../../assets/images/blocks/utility/PortInfo.png" alt="Port Info Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;PortInfo&lt;/strong&gt; block displays a summary of GPIO port assignments and Peripheral Pin Select (PPS) mappings for all blocks in the model, helping detect conflicts and verify pin usage.
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;h2 id="display-information">Display Information&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Information&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Port Assignments&lt;/td>
- &lt;td>All GPIO pins used by model with their function&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>PPS Mappings&lt;/td>
- &lt;td>Remappable peripheral assignments&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Conflicts&lt;/td>
- &lt;td>Duplicate pin assignments (highlighted in red)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Available Pins&lt;/td>
- &lt;td>Unused GPIO pins&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="example-display">Example Display&lt;/h2>
-&lt;pre tabindex="0">&lt;code>PORT A:
+&lt;h2 id="display-information"&gt;Display Information&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Information&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Port Assignments&lt;/td&gt;
+ &lt;td&gt;All GPIO pins used by model with their function&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PPS Mappings&lt;/td&gt;
+ &lt;td&gt;Remappable peripheral assignments&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Conflicts&lt;/td&gt;
+ &lt;td&gt;Duplicate pin assignments (highlighted in red)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Available Pins&lt;/td&gt;
+ &lt;td&gt;Unused GPIO pins&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="example-display"&gt;Example Display&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;PORT A:
  RA0: ADC1_AN0 (Analog Input)
  RA1: Digital Output
  RA2: UART1_TX (PPS - RP20)
@@ -252,156 +252,156 @@ PORT B:
  RB1: PWM1L (Fixed)
  RB2: QEI1_A (PPS - RP2)
  ⚠️ RB3: CONFLICT - Digital Input + UART2_RX
-&lt;/code>&lt;/pre>&lt;h2 id="usage">Usage&lt;/h2>
-&lt;ul>
-&lt;li>Add PortInfo block to model&lt;/li>
-&lt;li>Double-click to open display&lt;/li>
-&lt;li>Review port assignments&lt;/li>
-&lt;li>Resolve any conflicts shown
-&lt;strong>Conflict Resolution:&lt;/strong> Conflicts must be fixed before code generation. Change pin assignments in the conflicting peripheral blocks.&lt;/li>
-&lt;/ul>
-&lt;h2 id="see-also">See Also&lt;/h2>
-&lt;ul>
-&lt;li>[MCHP_TimerInfo] - Timer resource allocation&lt;/li>
-&lt;li>[MCHP_Digital_Input] - GPIO configuration&lt;/li>
-&lt;/ul></description></item><item><title>Simulink Reset Config</title><link>/block_reference/utility/simulink_reset_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/simulink_reset_config.html</guid><description>&lt;div class="block-icon-container">
- &lt;picture class="block-icon-image">
- &lt;source srcset="../../assets/images/blocks/utility/ResetConfig.svg" type="image/svg+xml">
- &lt;img src="../../assets/images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon">
- &lt;/picture>
- &lt;div class="block-icon-description">
- The &lt;strong>Simulink Reset Config&lt;/strong> block configures microcontroller reset behavior, startup initialization sequence, and watchdog timer settings.
- &lt;/div>
-&lt;/div>
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Add PortInfo block to model&lt;/li&gt;
+&lt;li&gt;Double-click to open display&lt;/li&gt;
+&lt;li&gt;Review port assignments&lt;/li&gt;
+&lt;li&gt;Resolve any conflicts shown
+&lt;strong&gt;Conflict Resolution:&lt;/strong&gt; Conflicts must be fixed before code generation. Change pin assignments in the conflicting peripheral blocks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[MCHP_TimerInfo] - Timer resource allocation&lt;/li&gt;
+&lt;li&gt;[MCHP_Digital_Input] - GPIO configuration&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Simulink Reset Config</title><link>/block_reference/utility/simulink_reset_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/simulink_reset_config.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;picture class="block-icon-image"&gt;
+ &lt;source srcset="../../assets/images/blocks/utility/ResetConfig.svg" type="image/svg+xml"&gt;
+ &lt;img src="../../assets/images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;Simulink Reset Config&lt;/strong&gt; block configures microcontroller reset behavior, startup initialization sequence, and watchdog timer settings.
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;h2 id="configuration-parameters">Configuration Parameters&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Parameter&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;th>Options&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Reset Behavior&lt;/td>
- &lt;td>Action on system reset&lt;/td>
- &lt;td>• Initialize all variables&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Watchdog Timer&lt;/td>
- &lt;td>Configure WDT operation&lt;/td>
- &lt;td>• Enabled (auto-reset)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Startup Delay&lt;/td>
- &lt;td>Initial delay before main loop&lt;/td>
- &lt;td>0 to 1000 ms&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Brown-out Handling&lt;/td>
- &lt;td>Low voltage detection behavior&lt;/td>
- &lt;td>• Reset on brown-out&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="reset-sources">Reset Sources&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Source&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;th>Typical Handling&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Power-On Reset (POR)&lt;/td>
- &lt;td>Initial power application&lt;/td>
- &lt;td>Full initialization&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Brown-Out Reset (BOR)&lt;/td>
- &lt;td>Voltage drop detection&lt;/td>
- &lt;td>Full initialization&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Watchdog Timeout&lt;/td>
- &lt;td>WDT not serviced&lt;/td>
- &lt;td>Full reset, log error&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Software Reset&lt;/td>
- &lt;td>Intentional reset command&lt;/td>
- &lt;td>Configurable (preserve state)&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>External Reset&lt;/td>
- &lt;td>MCLR pin assertion&lt;/td>
- &lt;td>Full initialization&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="example-configuration">Example Configuration&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-matlab" data-lang="matlab">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Safety-critical application with WDT&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Reset Behavior: Initialize all variables
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Watchdog Timer: Enabled, &lt;span style="color:#099">1000&lt;/span>ms period
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Startup Delay: &lt;span style="color:#099">100&lt;/span>ms (allow power stabilization)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Brown&lt;span style="color:#000;font-weight:bold">-&lt;/span>out: Reset on brown&lt;span style="color:#000;font-weight:bold">-&lt;/span>out
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#998;font-style:italic">% Log reset source in EEPROM for diagnostics&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="usage-guidelines">Usage Guidelines&lt;/h2>
-&lt;ul>
-&lt;li>Always enable watchdog for safety-critical applications&lt;/li>
-&lt;li>Use startup delay for sensor stabilization&lt;/li>
-&lt;li>Log reset sources for field diagnostics&lt;/li>
-&lt;li>Test all reset scenarios during validation&lt;/li>
-&lt;/ul>
-&lt;h2 id="see-also">See Also&lt;/h2>
-&lt;ul>
-&lt;li>[MCHP_Master] - Watchdog fuse configuration&lt;/li>
-&lt;li>[MCHP_IdleTask] - Watchdog servicing&lt;/li>
-&lt;/ul></description></item><item><title>TimerInfo</title><link>/block_reference/utility/timer_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/timer_info.html</guid><description>&lt;div class="block-icon-container">
- &lt;picture class="block-icon-image">
- &lt;source srcset="../../assets/images/blocks/utility/TimerInfo.svg" type="image/svg+xml">
- &lt;img src="../../assets/images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon">
- &lt;/picture>
- &lt;div class="block-icon-description">
- The &lt;strong>TimerInfo&lt;/strong> block visualizes timer resource allocation across all peripheral blocks, showing which timers are used, their configuration, and detecting conflicts.
- &lt;/div>
-&lt;/div>
+&lt;h2 id="configuration-parameters"&gt;Configuration Parameters&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Parameter&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Options&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Reset Behavior&lt;/td&gt;
+ &lt;td&gt;Action on system reset&lt;/td&gt;
+ &lt;td&gt;• Initialize all variables&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Watchdog Timer&lt;/td&gt;
+ &lt;td&gt;Configure WDT operation&lt;/td&gt;
+ &lt;td&gt;• Enabled (auto-reset)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Startup Delay&lt;/td&gt;
+ &lt;td&gt;Initial delay before main loop&lt;/td&gt;
+ &lt;td&gt;0 to 1000 ms&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Brown-out Handling&lt;/td&gt;
+ &lt;td&gt;Low voltage detection behavior&lt;/td&gt;
+ &lt;td&gt;• Reset on brown-out&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="reset-sources"&gt;Reset Sources&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Source&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Typical Handling&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Power-On Reset (POR)&lt;/td&gt;
+ &lt;td&gt;Initial power application&lt;/td&gt;
+ &lt;td&gt;Full initialization&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Brown-Out Reset (BOR)&lt;/td&gt;
+ &lt;td&gt;Voltage drop detection&lt;/td&gt;
+ &lt;td&gt;Full initialization&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Watchdog Timeout&lt;/td&gt;
+ &lt;td&gt;WDT not serviced&lt;/td&gt;
+ &lt;td&gt;Full reset, log error&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Software Reset&lt;/td&gt;
+ &lt;td&gt;Intentional reset command&lt;/td&gt;
+ &lt;td&gt;Configurable (preserve state)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;External Reset&lt;/td&gt;
+ &lt;td&gt;MCLR pin assertion&lt;/td&gt;
+ &lt;td&gt;Full initialization&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="example-configuration"&gt;Example Configuration&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-matlab" data-lang="matlab"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Safety-critical application with WDT&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Reset Behavior&lt;span style="color:#1f2328"&gt;:&lt;/span&gt; Initialize all variables
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Watchdog Timer&lt;span style="color:#1f2328"&gt;:&lt;/span&gt; Enabled&lt;span style="color:#1f2328"&gt;,&lt;/span&gt; &lt;span style="color:#0550ae"&gt;1000&lt;/span&gt;ms period
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Startup Delay&lt;span style="color:#1f2328"&gt;:&lt;/span&gt; &lt;span style="color:#0550ae"&gt;100&lt;/span&gt;ms &lt;span style="color:#1f2328"&gt;(&lt;/span&gt;allow power stabilization&lt;span style="color:#1f2328"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Brown&lt;span style="color:#0550ae"&gt;-&lt;/span&gt;out&lt;span style="color:#1f2328"&gt;:&lt;/span&gt; Reset on brown&lt;span style="color:#0550ae"&gt;-&lt;/span&gt;out
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Log reset source in EEPROM for diagnostics&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="usage-guidelines"&gt;Usage Guidelines&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Always enable watchdog for safety-critical applications&lt;/li&gt;
+&lt;li&gt;Use startup delay for sensor stabilization&lt;/li&gt;
+&lt;li&gt;Log reset sources for field diagnostics&lt;/li&gt;
+&lt;li&gt;Test all reset scenarios during validation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[MCHP_Master] - Watchdog fuse configuration&lt;/li&gt;
+&lt;li&gt;[MCHP_IdleTask] - Watchdog servicing&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>TimerInfo</title><link>/block_reference/utility/timer_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/timer_info.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;picture class="block-icon-image"&gt;
+ &lt;source srcset="../../assets/images/blocks/utility/TimerInfo.svg" type="image/svg+xml"&gt;
+ &lt;img src="../../assets/images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;TimerInfo&lt;/strong&gt; block visualizes timer resource allocation across all peripheral blocks, showing which timers are used, their configuration, and detecting conflicts.
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;h2 id="display-information">Display Information&lt;/h2>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Information&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>Timer Allocation&lt;/td>
- &lt;td>Which peripheral uses which timer&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Timer Configuration&lt;/td>
- &lt;td>Prescaler, period, mode&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Conflicts&lt;/td>
- &lt;td>Multiple peripherals requesting same timer&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>Available Timers&lt;/td>
- &lt;td>Unused timer resources&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="example-display">Example Display&lt;/h2>
-&lt;pre tabindex="0">&lt;code>Timer Resources (dsPIC33AK128MC106):
+&lt;h2 id="display-information"&gt;Display Information&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Information&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Timer Allocation&lt;/td&gt;
+ &lt;td&gt;Which peripheral uses which timer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Timer Configuration&lt;/td&gt;
+ &lt;td&gt;Prescaler, period, mode&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Conflicts&lt;/td&gt;
+ &lt;td&gt;Multiple peripherals requesting same timer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Available Timers&lt;/td&gt;
+ &lt;td&gt;Unused timer resources&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="example-display"&gt;Example Display&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;Timer Resources (dsPIC33AK128MC106):
 
 Timer1: ⚠️ CONFLICT
  - MCHP_Interrupt (Hardware Timer mode)
@@ -416,59 +416,59 @@ Timer3: QEI1 Position Measurement
 
 Timer4: [Available]
 Timer5: [Available]
-&lt;/code>&lt;/pre>&lt;h2 id="usage">Usage&lt;/h2>
-&lt;ul>
-&lt;li>Add TimerInfo block to model&lt;/li>
-&lt;li>Double-click to view allocation&lt;/li>
-&lt;li>Verify no conflicts exist&lt;/li>
-&lt;li>Identify available timers for new features
-&lt;strong>Timer Conflicts:&lt;/strong> Must be resolved before code generation. Reconfigure peripheral blocks to use different timers.&lt;/li>
-&lt;/ul>
-&lt;h2 id="see-also">See Also&lt;/h2>
-&lt;ul>
-&lt;li>[MCHP_PortInfo] - GPIO allocation&lt;/li>
-&lt;li>[Timer Blocks] - Timer peripheral blocks&lt;/li>
-&lt;/ul></description></item><item><title>Utility Blocks</title><link>/block_reference/utility/utility.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/utility.html</guid><description>&lt;p>Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.&lt;/p>
-&lt;h2 id="compiler-and-build-tools">Compiler and Build Tools&lt;/h2>
-&lt;p>&lt;strong>[]&lt;/strong>&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Block&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;th>Purpose&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>MCHP_CompilerOptimisation&lt;/td>
- &lt;td>Compiler selection, optimization levels, DFP configuration, linker options&lt;/td>
- &lt;td>Control code size, speed, and build behavior&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="resource-monitoring-and-visualization">Resource Monitoring and Visualization&lt;/h2>
-&lt;p>&lt;strong>[][]&lt;/strong>&lt;/p>
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>Block&lt;/th>
- &lt;th>Description&lt;/th>
- &lt;th>Purpose&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>MCHP_PortInfo&lt;/td>
- &lt;td>GPIO port assignment display with conflict detection&lt;/td>
- &lt;td>Verify pin usage, detect conflicts&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>MCHP_TimerInfo&lt;/td>
- &lt;td>Timer resource allocation visualization&lt;/td>
- &lt;td>Track timer usage, prevent conflicts&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
-&lt;h2 id="configuration-and-setup">Configuration and Setup&lt;/h2>
-&lt;p>&lt;strong>[][]&lt;/strong>&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Add TimerInfo block to model&lt;/li&gt;
+&lt;li&gt;Double-click to view allocation&lt;/li&gt;
+&lt;li&gt;Verify no conflicts exist&lt;/li&gt;
+&lt;li&gt;Identify available timers for new features
+&lt;strong&gt;Timer Conflicts:&lt;/strong&gt; Must be resolved before code generation. Reconfigure peripheral blocks to use different timers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[MCHP_PortInfo] - GPIO allocation&lt;/li&gt;
+&lt;li&gt;[Timer Blocks] - Timer peripheral blocks&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Utility Blocks</title><link>/block_reference/utility/utility.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/utility.html</guid><description>&lt;p&gt;Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.&lt;/p&gt;
+&lt;h2 id="compiler-and-build-tools"&gt;Compiler and Build Tools&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;[]&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Block&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Purpose&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_CompilerOptimisation&lt;/td&gt;
+ &lt;td&gt;Compiler selection, optimization levels, DFP configuration, linker options&lt;/td&gt;
+ &lt;td&gt;Control code size, speed, and build behavior&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="resource-monitoring-and-visualization"&gt;Resource Monitoring and Visualization&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;[][]&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Block&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Purpose&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_PortInfo&lt;/td&gt;
+ &lt;td&gt;GPIO port assignment display with conflict detection&lt;/td&gt;
+ &lt;td&gt;Verify pin usage, detect conflicts&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_TimerInfo&lt;/td&gt;
+ &lt;td&gt;Timer resource allocation visualization&lt;/td&gt;
+ &lt;td&gt;Track timer usage, prevent conflicts&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="configuration-and-setup"&gt;Configuration and Setup&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;[][]&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
