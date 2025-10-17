@@ -773,10 +773,42 @@
  &lt;img src="../../assets/images/blocks/pwm/PWM_SAMx7.png" alt="Pwm Sam7X Block Icon"&gt;
  &lt;/picture&gt;
  &lt;div class="block-icon-description"&gt;
- | Family | Examples | Features | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME5x | SAME54, SAME53, SAME51 | Up to 4 PWM channels, 120 MHz, TCC peripherals | | SAME7x | SAME70, SAMS70, SAMV71 | Up to 8 PWM channels, 300 MHz, advanced PWM features | | SAMC2x | SAMC21, SAMC20 | Up to 4 PWM channels, 48 MHz, motor control optimized | | SAMD2x | SAMD21, SAMD20 | Up to 3 PWM channels, 48 MHz, compact implementation |
+ Advanced PWM peripheral for SAM ARM Cortex-M microcontrollers. Provides complementary PWM with dead-time, fault protection, and pattern generation for motor control applications.
  &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;h3 id="sam-family-pwm-capabilities"&gt;SAM Family PWM Capabilities&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Family&lt;/th&gt;
+ &lt;th&gt;Examples&lt;/th&gt;
+ &lt;th&gt;Features&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAME5x&lt;/td&gt;
+ &lt;td&gt;SAME54, SAME53, SAME51&lt;/td&gt;
+ &lt;td&gt;Up to 4 PWM channels, 120 MHz, TCC peripherals&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAME7x&lt;/td&gt;
+ &lt;td&gt;SAME70, SAMS70, SAMV71&lt;/td&gt;
+ &lt;td&gt;Up to 8 PWM channels, 300 MHz, advanced PWM features&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAMC2x&lt;/td&gt;
+ &lt;td&gt;SAMC21, SAMC20&lt;/td&gt;
+ &lt;td&gt;Up to 4 PWM channels, 48 MHz, motor control optimized&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAMD2x&lt;/td&gt;
+ &lt;td&gt;SAMD21, SAMD20&lt;/td&gt;
+ &lt;td&gt;Up to 3 PWM channels, 48 MHz, compact implementation&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h2 id="supported-device-families"&gt;Supported Device Families&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;SAM E70&lt;/strong&gt;&lt;/li&gt;
@@ -996,10 +1028,37 @@
  &lt;img src="../../assets/images/blocks/pwm/TCC_PWM.png" alt="Tcc Pwm Block Icon"&gt;
  &lt;/picture&gt;
  &lt;div class="block-icon-description"&gt;
- | Family | TCC Instances | Channels per TCC | |&amp;mdash;|&amp;mdash;|&amp;mdash;| | SAME54/53/51 | TCC0, TCC1, TCC2 | 6, 4, 3 channels | | SAMC21/20 | TCC0, TCC1, TCC2 | 4, 4, 2 channels | | SAMD21/20 | TCC0, TCC1, TCC2 | 4, 2, 2 channels |
+ Timer/Counter for Control (TCC) PWM peripheral for SAM microcontrollers. Features advanced pattern generation, complementary outputs with dead-time, and fault protection for motor control.
  &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;h3 id="tcc-instance-availability"&gt;TCC Instance Availability&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Family&lt;/th&gt;
+ &lt;th&gt;TCC Instances&lt;/th&gt;
+ &lt;th&gt;Channels per TCC&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAME54/53/51&lt;/td&gt;
+ &lt;td&gt;TCC0, TCC1, TCC2&lt;/td&gt;
+ &lt;td&gt;6, 4, 3 channels&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAMC21/20&lt;/td&gt;
+ &lt;td&gt;TCC0, TCC1, TCC2&lt;/td&gt;
+ &lt;td&gt;4, 4, 2 channels&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SAMD21/20&lt;/td&gt;
+ &lt;td&gt;TCC0, TCC1, TCC2&lt;/td&gt;
+ &lt;td&gt;4, 2, 2 channels&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h2 id="supported-device-families"&gt;Supported Device Families&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;SAM E5x&lt;/strong&gt;&lt;/li&gt;
