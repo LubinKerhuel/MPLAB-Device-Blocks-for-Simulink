@@ -1,38 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Communication Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/communication/index.html</link><description>Recent content in Communication Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/communication/index.xml" rel="self" type="application/rss+xml"/><item><title>CAN Config</title><link>/block_reference/communication/can/can_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_config.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_can/CAN_Config.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_can/CAN_Config.png" alt="CAN Config Block Icon"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Communication Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/communication/index.html</link><description>Recent content in Communication Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/communication/index.xml" rel="self" type="application/rss+xml"/><item><title>CAN Config</title><link>/block_reference/communication/can/can_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_config.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_can/CAN_Config.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_can/CAN_Config_hu_3578314e6e24ffc8.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_can/CAN_Config.png" alt="CAN Config Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;CAN Config&lt;/strong&gt; block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks. CAN is a robust, multi-master serial bus system designed for networking intelligent devices. It is widely used in automotive, industrial automation, and embedded systems for reliable communication in electrically noisy environments. The protocol features automatic message prioritization, error detection, and fault confinement mechanisms.
  &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The &lt;strong&gt;CAN Config&lt;/strong&gt; block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks.&lt;/p&gt;</description></item><item><title>CAN Rx</title><link>/block_reference/communication/can/can_rx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_rx.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_can/CAN_Rx.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_can/CAN_Rx.png" alt="CAN Rx Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_can/CAN_Rx.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_can/CAN_Rx_hu_ba2ac711c7ee4d82.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_can/CAN_Rx.png" alt="CAN Rx Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;CAN Rx&lt;/strong&gt; block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs. This block requires a &lt;strong&gt;CAN Config&lt;/strong&gt; block in the same model to configure the CAN peripheral. Multiple CAN Rx blocks can be used to receive different messages on the same CAN module, each with its own filter configuration.
  &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The &lt;strong&gt;CAN Rx&lt;/strong&gt; block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs.&lt;/p&gt;</description></item><item><title>CAN Tx</title><link>/block_reference/communication/can/can_tx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/can/can_tx.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_can/CAN_Tx.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_can/CAN_Tx.png" alt="CAN Tx Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_can/CAN_Tx.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_can/CAN_Tx_hu_cf47c72cf4daf1a1.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_can/CAN_Tx.png" alt="CAN Tx Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;CAN Tx&lt;/strong&gt; block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes. This block requires a &lt;strong&gt;CAN Config&lt;/strong&gt; block in the same model to configure the CAN peripheral. Multiple CAN Tx blocks can be used to send different messages on the same CAN module.
  &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The &lt;strong&gt;CAN Tx&lt;/strong&gt; block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes.&lt;/p&gt;</description></item><item><title>UART Break/Autobaud</title><link>/block_reference/communication/uart/uart_break_and_autobaud.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_break_and_autobaud.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_uart/UART_Config.png" alt="UART Break and Autobaud Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_uart/UART_Config_hu_1765183ed556d577.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_uart/UART_Config.png" alt="UART Break and Autobaud Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  Microchip UART modules support advanced communication features including Break character transmission/detection and Auto-Baud rate detection for robust communication in systems where baud rates are unknown or need synchronization.
  &lt;/div&gt;
@@ -40,10 +52,13 @@
 
 &lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Microchip UART modules support advanced communication features including &lt;strong&gt;Break character transmission/detection&lt;/strong&gt; and &lt;strong&gt;Auto-Baud rate detection&lt;/strong&gt;. These features enable robust communication in systems where baud rates are unknown or need synchronization, and provide special signaling capabilities for protocol implementations.&lt;/p&gt;</description></item><item><title>UART Config Block</title><link>/block_reference/communication/uart/uart_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_config.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_uart/UART_Config.png" alt="UART Config Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_uart/UART_Config.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_uart/UART_Config_hu_1765183ed556d577.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_uart/UART_Config.png" alt="UART Config Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  UART_Config Block The &lt;strong&gt;UART Config&lt;/strong&gt; block configures a UART (Universal Asynchronous Receiver/Transmitter) module for serial communication. This block sets up baud rate, pin assignments, operating modes, and implementation methods for both transmit and receive operations.
  &lt;/div&gt;
@@ -237,10 +252,13 @@
 &lt;h2 id="registers-configured"&gt;Registers Configured&lt;/h2&gt;
 &lt;h3 id="dspicpic32-registers"&gt;dsPIC/PIC32 Registers&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;**``**``**``**``**``**&lt;/code&gt;&lt;/p&gt;</description></item><item><title>UART Rx Block</title><link>/block_reference/communication/uart/uart_rx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_rx.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_uart/UART_Rx.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_uart/UART_Rx.png" alt="UART Rx Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_uart/UART_Rx.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_uart/UART_Rx_hu_1f16565ef2f8fc54.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_uart/UART_Rx.png" alt="UART Rx Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  UART_Rx Block Icon The &lt;strong&gt;UART Rx&lt;/strong&gt; block receives data from a configured UART module. This block outputs 8-bit data (uint8 type) with flexible size configuration including inherited sizing, user-defined vectors, and automatic buffer sizing based on baud rate and sample time. It works in conjunction with the &lt;strong&gt;UART Config&lt;/strong&gt; block to provide efficient serial reception.
  &lt;/div&gt;
@@ -348,10 +366,13 @@
 &lt;h3 id="size-determination-methods"&gt;Size Determination Methods&lt;/h3&gt;
 &lt;h4 id="1-user-defined"&gt;1. User Defined&lt;/h4&gt;
 &lt;p&gt;Explicitly set output vector size:&lt;/p&gt;</description></item><item><title>UART Tx Block</title><link>/block_reference/communication/uart/uart_tx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_tx.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_uart/UART_Tx.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_uart/UART_Tx.png" alt="UART Tx Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_uart/UART_Tx.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_uart/UART_Tx_hu_bdfa0a38149e87f2.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_uart/UART_Tx.png" alt="UART Tx Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  UART_Tx Block Icon The &lt;strong&gt;UART Tx&lt;/strong&gt; block transmits data through a configured UART module. This block sends 8-bit data (uint8 type) and supports variable-length transmission with optional feedback on bytes sent. It works in conjunction with the &lt;strong&gt;UART Config&lt;/strong&gt; block to provide flexible, efficient serial transmission.
  &lt;/div&gt;
@@ -497,10 +518,13 @@
 &lt;/table&gt;
 &lt;h2 id="implementation-modes"&gt;Implementation Modes&lt;/h2&gt;
 &lt;p&gt;Transmission behavior depends on the implementation mode selected in the &lt;strong&gt;UART Config&lt;/strong&gt; block:&lt;/p&gt;</description></item><item><title>UART TxMatlab Block</title><link>/block_reference/communication/uart/uart_txmatlab.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/communication/uart/uart_txmatlab.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/bus_uart/UART_TxMatlab.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/bus_uart/UART_TxMatlab.png" alt="UART TxMatlab Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/bus_uart/UART_TxMatlab.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/bus_uart/UART_TxMatlab_hu_f0dd838bf84802fa.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/bus_uart/UART_TxMatlab.png" alt="UART TxMatlab Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  UART_TxMatlab Block Icon The &lt;strong&gt;UART TxMatlab&lt;/strong&gt; block transmits numerical data through UART to MATLAB (or alternative hosts) for real-time monitoring, plotting, and recording. This block supports multiple data types (int8, uint8, int16, uint16, int32, uint32, single, double) and implements a packetized protocol for reliable data streaming and visualization using the &lt;strong&gt;picgui&lt;/strong&gt; MATLAB interface.
  &lt;/div&gt;

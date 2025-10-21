@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on MPLAB Blockset for MATLAB/Simulink</title><link>/getting_started/index.html</link><description>Recent content in Getting Started on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/getting_started/index.xml" rel="self" type="application/rss+xml"/><item><title>Board Templates</title><link>/getting_started/board_templates.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/board_templates.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on MPLAB Device Blocks for Simulink</title><link>/getting_started/index.html</link><description>Recent content in Getting Started on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/getting_started/index.xml" rel="self" type="application/rss+xml"/><item><title>Board Templates</title><link>/getting_started/board_templates.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/board_templates.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Board templates provide pre-configured Simulink models optimized for popular Microchip development boards. These templates include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Pre-configured Master block&lt;/strong&gt; with correct chip selection and clock settings&lt;/li&gt;
@@ -45,7 +45,8 @@
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="available-board-templates"&gt;Available Board Templates&lt;/h2&gt;
-&lt;p&gt;&lt;img src="../assets/images/toolbox_concepts/MCHP_i_Board_MCLV_2.png" alt="MCLV-2 Development Board"&gt;&lt;/p&gt;</description></item><item><title>Data Visualization with PIC GUI</title><link>/getting_started/data_visualization.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/data_visualization.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source srcset="../images/toolbox_concepts/MCHP_i_Board_MCLV_2_hu_abdfe9413a1ca8df.webp" type="image/webp"&gt;&lt;img src="../images/toolbox_concepts/MCHP_i_Board_MCLV_2.png" alt="MCLV-2 Development Board" style="max-width: 100%; height: auto;"&gt;
+ &lt;/picture&gt;&lt;/p&gt;</description></item><item><title>Data Visualization with PIC GUI</title><link>/getting_started/data_visualization.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/data_visualization.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;h2 id="pic-gui-is-a-lightweight-user-friendly-data-visualization-tool-that-enables-real-time-monitoring-of-variables-from-your-embedded-application-unlike-external-mode-which-requires-xcp-protocol-pic-gui-provides-a-simplified-approach-to-streaming-data-over-uart-for-analysis-and-debugging"&gt;PIC GUI is a lightweight, user-friendly data visualization tool that enables real-time monitoring of variables from your embedded application. Unlike External Mode (which requires XCP protocol), PIC GUI provides a simplified approach to streaming data over UART for analysis and debugging.&lt;/h2&gt;
 &lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
  Key Benefit: PIC GUI offers instant data visualization with minimal setup - just add a UART Tx-Matlab block, connect a serial cable, and start plotting. No complex protocol configuration required.
@@ -138,13 +139,12 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;XC16&lt;/strong&gt; - For dsPIC 30F, 33F, 33E devices&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;XC-DSC&lt;/strong&gt; - For dsPIC 33C, 33A devices (v3.30+ recommended)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;XC32&lt;/strong&gt; - For PIC32 and SAM devices (ARM-based)
-****[]
+&lt;li&gt;&lt;strong&gt;XC32&lt;/strong&gt; - For PIC32 and SAM devices (ARM-based)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
  Note: Compilers can be downloaded from Microchip Developer Tools
 &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+
 &lt;h3 id="hardware-requirements"&gt;Hardware Requirements&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Programmer/Debugger&lt;/strong&gt; - ICD4, ICD5, PICkit4, or compatible&lt;/li&gt;
@@ -216,11 +216,12 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;********[]
 &lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
  Note on dsPIC33A: The dsPIC33A family represents a significant architectural advancement with its 32-bit core and hardware FPU, offering 10-100x faster floating-point performance compared to 16-bit dsPIC families. See Supported Devices for details.
 &lt;/div&gt;
-&lt;/p&gt;</description></item><item><title>Motor Control Examples - MPLAB Device Blocks for Simulink</title><link>/getting_started/motor_control_examples.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/motor_control_examples.html</guid><description>&lt;h3 id="-third-party-educational-content"&gt;⚠️ Third-Party Educational Content&lt;/h3&gt;
+
+&lt;h2 id="model-based-design-workflow"&gt;Model-Based Design Workflow&lt;/h2&gt;
+&lt;p&gt;The MCHP Blockset implements a complete Model-Based Design (MBD) workflow, enabling seamless transition from algorithm simulation to embedded code execution. The workflow follows three main phases:&lt;/p&gt;</description></item><item><title>Motor Control Examples - MPLAB Device Blocks for Simulink</title><link>/getting_started/motor_control_examples.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/getting_started/motor_control_examples.html</guid><description>&lt;h3 id="-third-party-educational-content"&gt;⚠️ Third-Party Educational Content&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;The motor control examples and algorithms presented in this guide are provided by the ctrl-elec project, an educational initiative from INSA Lyon (France).&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Attribution:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -531,5 +532,5 @@ Multi-rate models reduce CPU load by executing slow tasks (e.g., temperature mon
 &lt;hr&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="hahahugoshortcode103s1hbhb"&gt;&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
+&lt;h2 id="hahahugoshortcode115s1hbhb"&gt;&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
  &lt;p&gt;For Motor Control Applications:&lt;/p&gt;</description></item></channel></rss>

@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/system_configuration/index.html</link><description>Recent content in System Configuration Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml"/><item><title>CompilerOptimisation</title><link>/block_reference/system_configuration/compiler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/compiler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/CompilerOptimisation.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/CompilerOptimisation.png" alt="Compiler Options Block Icon"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>System Configuration Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/system_configuration/index.html</link><description>Recent content in System Configuration Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml"/><item><title>CompilerOptimisation</title><link>/block_reference/system_configuration/compiler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/compiler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/CompilerOptimisation.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/CompilerOptimisation_hu_426ef2b66cf52c3e.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/CompilerOptimisation.png" alt="Compiler Options Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;CompilerOptimisation&lt;/strong&gt; block configures compiler toolchain, optimization levels, Device Family Pack (DFP) selection, and linker options for controlling code size, execution speed, and build behavior.
  &lt;/div&gt;
@@ -269,10 +272,13 @@ GC_SECTIONS: Remove unused
 &lt;li&gt;[MCHP_Master] - Compiler auto-configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_PortInfo] - Resource visualization&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>IdleTask</title><link>/block_reference/system_configuration/idle_task.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/idle_task.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_functions/IdleTask.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_functions/IdleTask.png" alt="Idle Task Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_functions/IdleTask.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_functions/IdleTask_hu_e1722d6ddb11ef21.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_functions/IdleTask.png" alt="Idle Task Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  &lt;strong&gt;Idle Task Characteristics:&lt;/strong&gt; - &lt;strong&gt;Lowest priority&lt;/strong&gt; - Preempted by any scheduled task or interrupt - &lt;strong&gt;Non-deterministic timing&lt;/strong&gt; - Execution time varies with CPU load - &lt;strong&gt;Continuous loop&lt;/strong&gt; - Runs whenever CPU is idle - &lt;strong&gt;Single instance&lt;/strong&gt; - Only one idle task per model - &lt;strong&gt;Power management&lt;/strong&gt; - Ideal location for sleep/idle instructions
  &lt;/div&gt;
@@ -317,10 +323,13 @@ GC_SECTIONS: Remove unused
 &lt;/table&gt;
 &lt;h2 id="block-configuration"&gt;Block Configuration&lt;/h2&gt;
 &lt;p&gt;The idle task is implemented using a Simulink Function-Call Subsystem:&lt;/p&gt;</description></item><item><title>Interrupt</title><link>/block_reference/system_configuration/interrupt.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/interrupt.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_functions/Interrupt.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_functions/Interrupt.png" alt="Interrupt Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_functions/Interrupt.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_functions/Interrupt_hu_be185e9f99fe7b50.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_functions/Interrupt.png" alt="Interrupt Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;Interrupt&lt;/strong&gt; block creates interrupt-driven subsystems by connecting peripheral interrupt sources to Simulink triggered subsystems. The block automatically manages interrupt vector configuration, priority levels, and timing synchronization. &lt;strong&gt;Key Capabilities:&lt;/strong&gt; - &lt;strong&gt;Automatic interrupt detection&lt;/strong&gt; - Discovers all peripheral interrupts in model - &lt;strong&gt;Dynamic interrupt list&lt;/strong&gt; - Popup shows only available interrupts from active peripherals - &lt;strong&gt;Priority management&lt;/strong&gt; - Configure interrupt priority levels (device-dependent) - &lt;strong&gt;Multiple timing modes&lt;/strong&gt; - Base rate, periodic trigger, or hardware timer-based - &lt;strong&gt;Context preservation&lt;/strong&gt; - Automatic FPU context save/restore (PIC32 with FPU)
  &lt;/div&gt;
@@ -329,10 +338,13 @@ GC_SECTIONS: Remove unused
 &lt;h2 id="interrupt-sources"&gt;Interrupt Sources&lt;/h2&gt;
 &lt;h3 id="peripheral-interrupts-auto-detected"&gt;Peripheral Interrupts (Auto-detected)&lt;/h3&gt;
 &lt;p&gt;The block automatically detects interrupts from peripheral blocks in your model:&lt;/p&gt;</description></item><item><title>Master</title><link>/block_reference/system_configuration/master.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/master.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/Master.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/Master.png" alt="Master Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/Master.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/Master_hu_352302cec25857c0.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/Master.png" alt="Master Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  &lt;div class="warning" style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;"&gt;
  CRITICAL: The Master block is MANDATORY in every MCHP Blockset model. This is always the FIRST block to add to any new model. Without it, no other MCHP blocks will function. Master Block The &lt;strong&gt;Master&lt;/strong&gt; block is the central configuration block for the entire MCHP Blockset. It defines the target microcontroller, clock configuration, peripheral initialization, compiler settings, and code generation options. All other MCHP blocks depend on parameters set in this block. &lt;strong&gt;Primary Functions:&lt;/strong&gt; - &lt;strong&gt;Target Selection&lt;/strong&gt; - Choose from 800+ supported Microchip microcontrollers - &lt;strong&gt;Clock Configuration&lt;/strong&gt; - Configure oscillator, PLL, and system clocks (FCY/FOSC) - &lt;strong&gt;Fuse Settings&lt;/strong&gt; - Set device configuration bits (watchdog, code protection, etc.) - &lt;strong&gt;Build System&lt;/strong&gt; - Configure compiler paths, optimization, and project settings - &lt;strong&gt;External Mode&lt;/strong&gt; - Enable real-time data monitoring via UART - &lt;strong&gt;PIL Testing&lt;/strong&gt; - Processor-in-the-Loop test framework configuration
@@ -560,10 +572,13 @@ GC_SECTIONS: Remove unused
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="fuse-configuration-device-configuration-bits"&gt;Fuse Configuration (Device Configuration Bits)&lt;/h3&gt;
 &lt;p&gt;The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.&lt;/p&gt;</description></item><item><title>MCU LOAD</title><link>/block_reference/system_configuration/mcu_load.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_load.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/MCU_Load.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/MCU_Load.png" alt="MCU Load Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/MCU_Load.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/MCU_Load_hu_95fbbead88a232ba.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/MCU_Load.png" alt="MCU Load Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;MCU LOAD&lt;/strong&gt; block measures and outputs the real-time CPU utilization percentage, providing essential feedback for performance optimization and schedulability verification.
  &lt;/div&gt;
@@ -645,10 +660,13 @@ GC_SECTIONS: Remove unused
 &lt;li&gt;[MCHP_Tasks_State] - Task execution monitoring&lt;/li&gt;
 &lt;li&gt;[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>MCU OVERLOAD</title><link>/block_reference/system_configuration/mcu_overload.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_overload.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/MCU_Overload.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/MCU_Overload.png" alt="MCU Overload Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/MCU_Overload.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/MCU_Overload_hu_7fbbac1655cc78ed.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/MCU_Overload.png" alt="MCU Overload Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;MCU OVERLOAD&lt;/strong&gt; block detects when scheduled tasks miss their deadlines and provides diagnostic information for identifying the cause of overload conditions.
  &lt;/div&gt;
@@ -741,10 +759,13 @@ GC_SECTIONS: Remove unused
 &lt;li&gt;[MCHP_Tasks_State] - Task state visibility&lt;/li&gt;
 &lt;li&gt;[MCHP_Scheduler_Options] - Overload behavior config&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Scheduler Options</title><link>/block_reference/system_configuration/scheduler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/scheduler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/SchedulerOptions.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/SchedulerOptions.png" alt="Scheduler Options Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/SchedulerOptions.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/SchedulerOptions_hu_55921c25689056c4.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/SchedulerOptions.png" alt="Scheduler Options Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;Scheduler Options&lt;/strong&gt; block configures the behavior of the built-in &lt;strong&gt;Rate Monotonic Scheduler&lt;/strong&gt; used for multitasking in MCHP Blockset models. The scheduler manages execution of multiple tasks at different sample rates with &lt;strong&gt;preemptive priority-based scheduling&lt;/strong&gt;. &lt;strong&gt;Rate Monotonic Scheduling Principle:&lt;/strong&gt; - &lt;strong&gt;Highest rate = Highest priority&lt;/strong&gt; - Faster tasks automatically get higher priority - &lt;strong&gt;Preemptive execution&lt;/strong&gt; - Higher priority tasks interrupt lower priority tasks - &lt;strong&gt;Deterministic behavior&lt;/strong&gt; - Guaranteed timing if schedulability conditions are met - &lt;strong&gt;Automatic priority assignment&lt;/strong&gt; - No manual priority configuration needed
  &lt;/div&gt;
@@ -926,10 +947,13 @@ Solver: discrete (no continuous states)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="schedulability-analysis"&gt;Schedulability Analysis&lt;/h2&gt;
 &lt;h3 id="liu--layland-utilization-bound"&gt;Liu &amp;amp; Layland Utilization Bound&lt;/h3&gt;
 &lt;p&gt;For Rate Monotonic Scheduling, the system is schedulable if:&lt;/p&gt;</description></item><item><title>SECONDARY CORE</title><link>/block_reference/system_configuration/secondary_core.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/secondary_core.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/dual_core/SECONDARY_core.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/dual_core/SECONDARY_core.png" alt="Secondary Core Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/dual_core/SECONDARY_core.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/dual_core/SECONDARY_core_hu_ad02701507152912.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/dual_core/SECONDARY_core.png" alt="Secondary Core Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;SECONDARY CORE&lt;/strong&gt; block configures the secondary (slave) core in dual-core dsPIC33CH devices.
  &lt;/div&gt;
@@ -979,10 +1003,13 @@ Solver: discrete (no continuous states)
 &lt;ul&gt;
 &lt;li&gt;[MCHP_Master] - Target device configuration&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Tasks State</title><link>/block_reference/system_configuration/tasks_state.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/tasks_state.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_configuration/TasksState.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_configuration/TasksState.png" alt="Tasks State Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_configuration/TasksState.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/TasksState_hu_aaf7475f4369ced6.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_configuration/TasksState.png" alt="Tasks State Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;Tasks State&lt;/strong&gt; block outputs the current execution state of all scheduled tasks, providing real-time visibility into the multitasking scheduler behavior. Essential for debugging timing issues and verifying task preemption.
  &lt;/div&gt;

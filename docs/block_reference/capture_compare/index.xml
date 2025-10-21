@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Input Capture / Output Compare on MPLAB Device Blocks for Simulink</title><link>/block_reference/capture_compare/index.html</link><description>Recent content in Input Capture / Output Compare on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/capture_compare/index.xml" rel="self" type="application/rss+xml"/><item><title>IC - Input Capture Block</title><link>/block_reference/capture_compare/input_capture.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/capture_compare/input_capture.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/timers/InputCapture.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/timers/InputCapture_hu_b5e2a00701ffe96c.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/timers/InputCapture.png" alt="Input Capture Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ IC - Input Capture Block InputCapture Block Icon The &lt;strong&gt;MCHP_IC&lt;/strong&gt; block captures hardware timer values when external events occur on input pins. It enables precise measurement of pulse widths, periods, frequencies, and event timestamps using dedicated Input Capture peripheral modules. Each IC channel can detect rising edges, falling edges, or both, and automatically capture the associated timer value. This is ideal for encoder interfaces, frequency measurement, and event timing applications.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;IC - Input Capture Block&lt;/p&gt;</description></item><item><title>OC HW - Output Compare (Hardware)</title><link>/block_reference/capture_compare/output_compare_hw.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/capture_compare/output_compare_hw.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/timers/OutputCompare_HW.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/timers/OutputCompare_HW_hu_f98727353daf5b6b.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/timers/OutputCompare_HW.png" alt="Output Compare HW Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.&lt;/p&gt;</description></item><item><title>OC SW - Software Output Compare</title><link>/block_reference/capture_compare/output_compare_sw.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/capture_compare/output_compare_sw.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/timers/OutputCompare_SW.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/timers/OutputCompare_SW_hu_be2472f61e981a5a.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/timers/OutputCompare_SW.png" alt="Output Compare SW Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;MCHP_OC_SW&lt;/strong&gt; block provides &lt;strong&gt;interrupt-driven software output compare&lt;/strong&gt; functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering &lt;strong&gt;greater flexibility&lt;/strong&gt; at the cost of CPU overhead.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;MCHP_OC_SW&lt;/strong&gt; block provides &lt;strong&gt;interrupt-driven software output compare&lt;/strong&gt; functionality. Unlike hardware OC which operates autonomously, this block uses timer interrupts to precisely time output pin changes, offering &lt;strong&gt;greater flexibility&lt;/strong&gt; at the cost of CPU overhead.&lt;/p&gt;</description></item></channel></rss>

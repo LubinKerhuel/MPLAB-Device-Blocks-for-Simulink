@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility Blocks on MPLAB Blockset for MATLAB/Simulink</title><link>/block_reference/utility/index.html</link><description>Recent content in Utility Blocks on MPLAB Blockset for MATLAB/Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>/block_reference/utility/doc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/doc.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/utility/Doc.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/utility/Doc.png" alt="Doc Block Icon"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/utility/index.html</link><description>Recent content in Utility Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>/block_reference/utility/doc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/doc.html</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/utility/Doc.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/utility/Doc_hu_1a7afbe82a851eae.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/utility/Doc.png" alt="Doc Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;Doc&lt;/strong&gt; block provides quick access to MCHP Blockset documentation, help files, examples, and release notes directly from the Simulink model.
  &lt;/div&gt;
@@ -49,10 +52,13 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;</description></item><item><title>MSI</title><link>/block_reference/utility/msi.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/msi.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/system_info/chip_webpage.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/system_info/chip_webpage.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_info/chip_webpage_hu_8b893a9cb7f1d727.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;MSI&lt;/strong&gt; block configures the Master Secondary Interface (MSI) for inter-core communication in dual-core dsPIC33CH devices, enabling data exchange between master and secondary cores.
  &lt;/div&gt;
@@ -204,10 +210,13 @@
 &lt;li&gt;[MCHP_SECONDARY_CORE] - Secondary core configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_Master] - Dual-core device selection&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>PortInfo</title><link>/block_reference/utility/port_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/port_info.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/utility/PortInfo.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/utility/PortInfo.png" alt="Port Info Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/utility/PortInfo.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/utility/PortInfo_hu_70f1c23433f887c6.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/utility/PortInfo.png" alt="Port Info Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;PortInfo&lt;/strong&gt; block displays a summary of GPIO port assignments and Peripheral Pin Select (PPS) mappings for all blocks in the model, helping detect conflicts and verify pin usage.
  &lt;/div&gt;
@@ -265,10 +274,13 @@ PORT B:
 &lt;li&gt;[MCHP_TimerInfo] - Timer resource allocation&lt;/li&gt;
 &lt;li&gt;[MCHP_Digital_Input] - GPIO configuration&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Simulink Reset Config</title><link>/block_reference/utility/simulink_reset_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/simulink_reset_config.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/utility/ResetConfig.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/utility/ResetConfig.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/utility/ResetConfig_hu_5068bebbd7f1f236.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;Simulink Reset Config&lt;/strong&gt; block configures microcontroller reset behavior, startup initialization sequence, and watchdog timer settings.
  &lt;/div&gt;
@@ -364,10 +376,13 @@ PORT B:
 &lt;li&gt;[MCHP_Master] - Watchdog fuse configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_IdleTask] - Watchdog servicing&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>TimerInfo</title><link>/block_reference/utility/timer_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/timer_info.html</guid><description>&lt;div class="block-icon-container"&gt;
- &lt;picture class="block-icon-image"&gt;
- &lt;source srcset="../../assets/images/blocks/utility/TimerInfo.svg" type="image/svg+xml"&gt;
- &lt;img src="../../assets/images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;
+ &lt;source srcset="../../images/blocks/utility/TimerInfo.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/utility/TimerInfo_hu_9cb10f37e5d0fe8d.webp" type="image/webp"&gt;
+ &lt;img src="../../images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon"&gt;
  &lt;/picture&gt;
+ &lt;/div&gt;
+
  &lt;div class="block-icon-description"&gt;
  The &lt;strong&gt;TimerInfo&lt;/strong&gt; block visualizes timer resource allocation across all peripheral blocks, showing which timers are used, their configuration, and detecting conflicts.
  &lt;/div&gt;
@@ -430,7 +445,6 @@ Timer5: [Available]
 &lt;li&gt;[Timer Blocks] - Timer peripheral blocks&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Utility Blocks</title><link>/block_reference/utility/utility.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/utility/utility.html</guid><description>&lt;p&gt;Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.&lt;/p&gt;
 &lt;h2 id="compiler-and-build-tools"&gt;Compiler and Build Tools&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;[]&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -448,7 +462,6 @@ Timer5: [Available]
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="resource-monitoring-and-visualization"&gt;Resource Monitoring and Visualization&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;[][]&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -471,4 +484,88 @@ Timer5: [Available]
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="configuration-and-setup"&gt;Configuration and Setup&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;[][]&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Block&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Purpose&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_Simulink_Reset_Config&lt;/td&gt;
+ &lt;td&gt;Reset behavior and watchdog timer configuration&lt;/td&gt;
+ &lt;td&gt;Configure startup initialization&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_Doc&lt;/td&gt;
+ &lt;td&gt;Quick access to documentation and help resources&lt;/td&gt;
+ &lt;td&gt;One-click access to user guide, examples, support&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="dual-core-communication-dspic33ch"&gt;Dual-Core Communication (dsPIC33CH)&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Block&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Applicability&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MCHP_MSI&lt;/td&gt;
+ &lt;td&gt;Master Secondary Interface for inter-core data exchange&lt;/td&gt;
+ &lt;td&gt;dsPIC33CH dual-core only&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="typical-usage"&gt;Typical Usage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Initial Setup:&lt;/strong&gt; Configure compiler in MCHP_CompilerOptimisation block&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Development:&lt;/strong&gt; Add MCHP_PortInfo and MCHP_TimerInfo to monitor resources&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debugging:&lt;/strong&gt; Use MCHP_Doc for quick access to block help&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production:&lt;/strong&gt; Configure reset behavior with MCHP_Simulink_Reset_Config&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dual-Core (33CH):&lt;/strong&gt; Add MCHP_MSI blocks for master-secondary communication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="important-compiler-settings"&gt;Important Compiler Settings&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Setting&lt;/th&gt;
+ &lt;th&gt;Debug Build&lt;/th&gt;
+ &lt;th&gt;Production Build&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Optimization&lt;/td&gt;
+ &lt;td&gt;-O0 (none)&lt;/td&gt;
+ &lt;td&gt;-O2 (balanced) or -Os (size)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Debug Info&lt;/td&gt;
+ &lt;td&gt;On&lt;/td&gt;
+ &lt;td&gt;Off (unless field debugging needed)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;GC_SECTIONS&lt;/td&gt;
+ &lt;td&gt;Off (easier debug)&lt;/td&gt;
+ &lt;td&gt;On (remove unused code)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DFP&lt;/td&gt;
+ &lt;td&gt;Latest available&lt;/td&gt;
+ &lt;td&gt;Validated version&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="../block_reference/"&gt;Block Reference Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[System Blocks] - Core configuration and monitoring&lt;/li&gt;
+&lt;li&gt;[PWM Blocks] - Pulse-width modulation&lt;/li&gt;
+&lt;li&gt;[ADC Blocks] - Analog-to-digital conversion&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

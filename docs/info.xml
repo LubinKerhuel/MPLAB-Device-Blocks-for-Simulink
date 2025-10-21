@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MCHP Blockset Documentation Configuration -->
+<!-- This file provides metadata for MATLAB Help Browser integration -->
+<productinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="optional">
+
+    <!-- Product Information -->
+    <matlabrelease>R2016a</matlabrelease>
+    <name>MPLAB Device Blocks for Simulink</name>
+    <type>toolbox</type>
+    <icon>$toolbox/matlab/icons/matlabicon.gif</icon>
+
+    <!-- Full Product Name -->
+    <fullname>Microchip Blockset for Simulink</fullname>
+
+    <!-- Help Configuration -->
+    <help_location>.</help_location>
+    <help_contents_icon>$toolbox/matlab/icons/bookicon.gif</help_contents_icon>
+
+    <!-- Table of Contents -->
+    <helptoc>helptoc.xml</helptoc>
+
+    <!-- Documentation Metadata -->
+    <info_xml_schema_version>1.0</info_xml_schema_version>
+
+    <!-- Product Description -->
+    <description>Embedded code generation blockset for Microchip dsPIC, PIC32, and SAM microcontrollers. Provides peripheral blocks for PWM, ADC, UART, CAN, timers, and motor control applications.</description>
+
+    <!-- Documentation Version -->
+    <doc_version>4.2.0</doc_version>
+
+    <!-- Copyright -->
+    <copyright>Copyright 2010-2025 Microchip Technology Inc.</copyright>
+
+    <!-- Publisher -->
+    <publisher>Microchip Technology Inc.</publisher>
+
+    <!-- Additional Metadata -->
+    <label>MCHP Blockset</label>
+
+    <!-- Search Keywords for Help Browser -->
+    <keywords>
+        <keyword>dsPIC</keyword>
+        <keyword>PIC32</keyword>
+        <keyword>SAM</keyword>
+        <keyword>microcontroller</keyword>
+        <keyword>embedded</keyword>
+        <keyword>code generation</keyword>
+        <keyword>motor control</keyword>
+        <keyword>PWM</keyword>
+        <keyword>ADC</keyword>
+        <keyword>UART</keyword>
+        <keyword>CAN</keyword>
+        <keyword>FOC</keyword>
+        <keyword>field oriented control</keyword>
+        <keyword>Simulink</keyword>
+        <keyword>blockset</keyword>
+        <keyword>MPLAB</keyword>
+        <keyword>Microchip</keyword>
+    </keywords>
+
+</productinfo>
