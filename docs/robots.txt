@@ -4,9 +4,9 @@ Allow: /
 # Sitemap location
 Sitemap: https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/sitemap.xml
 
-# Crawl-delay for respectful indexing
+# Crawl-delay (optional - be nice to servers)
 Crawl-delay: 1
 
-# Block access to temporary/test files (if any)
-Disallow: /assets/temp/
-Disallow: /*.md$
+# Block specific paths if needed (currently none blocked)
+# Disallow: /search/
+# Disallow: /api/

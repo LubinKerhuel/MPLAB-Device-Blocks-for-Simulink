@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Analog I/O Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/analog_io/index.html</link><description>Recent content in Analog I/O Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/analog_io/index.xml" rel="self" type="application/rss+xml"/><item><title>MCHP DAC SAMx Documentation</title><link>/block_reference/analog_io/dac_samx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/dac_samx.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Analog I/O Blocks on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/index.html</link><description>Recent content in Analog I/O Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 16:47:04 +0200</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/index.xml" rel="self" type="application/rss+xml"/><item><title>MCHP DAC SAMx Documentation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/dac_samx.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/dac_samx.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/analog/DAC_SAMx.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/analog/DAC_SAMx_hu_104f8b18ae542768.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/analog/DAC_SAMx.png" alt="DAC SAMx Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/DAC_SAMx.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/DAC_SAMx_hu_104f8b18ae542768.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/DAC_SAMx.png" alt="DAC SAMx Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -56,11 +56,11 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Output Modes:&lt;/strong&gt; The DACC supports both single-ended outputs (DAC0 and DAC1 independent) and differential output mode (DAC0 - DAC1), providing flexibility for various signal generation requirements.&lt;/p&gt;</description></item><item><title>MCHP High-Speed Analog Comparator Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;&lt;strong&gt;Output Modes:&lt;/strong&gt; The DACC supports both single-ended outputs (DAC0 and DAC1 independent) and differential output mode (DAC0 - DAC1), providing flexibility for various signal generation requirements.&lt;/p&gt;</description></item><item><title>MCHP High-Speed Analog Comparator Documentation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/analog/HighSpeed_AnalogComparator.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/analog/HighSpeed_AnalogComparator_hu_9405d758d9dcfaf7.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/analog/HighSpeed_AnalogComparator.png" alt="High-Speed Analog Comparator Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator_hu_9405d758d9dcfaf7.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator.png" alt="High-Speed Analog Comparator Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -88,11 +88,11 @@
 &lt;/ul&gt;
 &lt;h2 id="device-family-support"&gt;Device Family Support&lt;/h2&gt;
 &lt;h4 id="dspic33ep"&gt;dsPIC33EP&lt;/h4&gt;
-&lt;p&gt;1-4 Comparators&lt;/p&gt;</description></item><item><title>MCHP High-Speed Analog Comparator with Slope Compensation Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;1-4 Comparators&lt;/p&gt;</description></item><item><title>MCHP High-Speed Analog Comparator with Slope Compensation Documentation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/highspeed_analogcomparator_wslope.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/analog/HighSpeed_AnalogComparator_wSlope.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/analog/HighSpeed_AnalogComparator_wSlope_hu_91b0e41e62b25853.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/analog/HighSpeed_AnalogComparator_wSlope.png" alt="High-Speed Analog Comparator with Slope Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator_wSlope_hu_91b0e41e62b25853.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/HighSpeed_AnalogComparator_wSlope.png" alt="High-Speed Analog Comparator with Slope Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -113,11 +113,11 @@
 &lt;h3 id="peak-current-mode-control"&gt;Peak Current Mode Control&lt;/h3&gt;
 &lt;p&gt;Peak current mode control regulates output by controlling the peak inductor current in each switching cycle. Slope compensation stabilizes the control loop when duty cycle exceeds 50%, preventing period-doubling oscillations.
 &lt;strong&gt;Why Slope Compensation?&lt;/strong&gt;
-In peak current mode control with D &amp;gt; 50%, the inductor current slope creates a positive feedback loop leading to sub-harmonic oscillation. Adding a compensation ramp to the current sense signal stabilizes the loop.&lt;/p&gt;</description></item><item><title>MCHP Op-Amp Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</guid><description>&lt;div class="block-icon-container"&gt;
+In peak current mode control with D &amp;gt; 50%, the inductor current slope creates a positive feedback loop leading to sub-harmonic oscillation. Adding a compensation ramp to the current sense signal stabilizes the loop.&lt;/p&gt;</description></item><item><title>MCHP Op-Amp Documentation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/op_amp.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/analog/OpAmp.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/analog/OpAmp_hu_fb5a2d1d77b1826d.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/analog/OpAmp.png" alt="OpAmp Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/OpAmp.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/OpAmp_hu_fb5a2d1d77b1826d.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/OpAmp.png" alt="OpAmp Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -271,11 +271,11 @@ In peak current mode control with D &amp;gt; 50%, the inductor current slope cre
 - [MCHP_ADC_HS_SAR_dsPIC33] - High-speed ADC for digitizing op-amp outputs
 - [MCHP_PWM_HS_FEP] - PWM for motor control synchronization
 [← Back to Analog Blocks]
-&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>MCHP PGA Documentation</title><link>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>MCHP PGA Documentation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/analog_io/comparator_opamps_volt_ref/pga.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/analog/PGA.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/analog/PGA_hu_1a67ae8490f70464.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/analog/PGA.png" alt="PGA Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/PGA.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/PGA_hu_1a67ae8490f70464.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/PGA.png" alt="PGA Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 

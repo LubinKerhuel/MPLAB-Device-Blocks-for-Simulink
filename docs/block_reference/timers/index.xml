@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Timer Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/timers/index.html</link><description>Recent content in Timer Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/timers/index.xml" rel="self" type="application/rss+xml"/><item><title>TIMER Config - Timer Configuration Block</title><link>/block_reference/timers/timer_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/timers/timer_config.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Timer Blocks on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/index.html</link><description>Recent content in Timer Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 16:47:04 +0200</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/index.xml" rel="self" type="application/rss+xml"/><item><title>TIMER Config - Timer Configuration Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/timer_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/timer_config.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/timers/Timer.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/timers/Timer_hu_9619a382f292dd18.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/timers/Timer.png" alt="Timer Config Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer_hu_9619a382f292dd18.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer.png" alt="Timer Config Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -11,11 +11,11 @@
  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;TIMER Config - Timer Configuration Block&lt;/p&gt;</description></item><item><title>TIMER PIL Profiling - PIL Timing Profiler</title><link>/block_reference/timers/timer_pil_profiling.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/timers/timer_pil_profiling.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;TIMER Config - Timer Configuration Block&lt;/p&gt;</description></item><item><title>TIMER PIL Profiling - PIL Timing Profiler</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/timer_pil_profiling.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/timers/timer_pil_profiling.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/timers/Timer_PIL_Profiling.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/timers/Timer_PIL_Profiling_hu_6b6c9c2593566fd7.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/timers/Timer_PIL_Profiling.png" alt="Timer PIL Profiling Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer_PIL_Profiling.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer_PIL_Profiling_hu_6b6c9c2593566fd7.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/Timer_PIL_Profiling.png" alt="Timer PIL Profiling Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 

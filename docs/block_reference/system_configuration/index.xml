@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>System Configuration Blocks on MPLAB Device Blocks for Simulink</title><link>/block_reference/system_configuration/index.html</link><description>Recent content in System Configuration Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml"/><item><title>CompilerOptimisation</title><link>/block_reference/system_configuration/compiler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/compiler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>System Configuration Blocks on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/index.html</link><description>Recent content in System Configuration Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 18 Oct 2025 01:32:36 +0200</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/index.xml" rel="self" type="application/rss+xml"/><item><title>CompilerOptimisation</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/compiler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/compiler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/CompilerOptimisation.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/CompilerOptimisation_hu_426ef2b66cf52c3e.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/CompilerOptimisation.png" alt="Compiler Options Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/CompilerOptimisation.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/CompilerOptimisation_hu_426ef2b66cf52c3e.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/CompilerOptimisation.png" alt="Compiler Options Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -271,11 +271,11 @@ GC_SECTIONS: Remove unused
 &lt;ul&gt;
 &lt;li&gt;[MCHP_Master] - Compiler auto-configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_PortInfo] - Resource visualization&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>IdleTask</title><link>/block_reference/system_configuration/idle_task.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/idle_task.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>IdleTask</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/idle_task.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/idle_task.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_functions/IdleTask.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_functions/IdleTask_hu_e1722d6ddb11ef21.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_functions/IdleTask.png" alt="Idle Task Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/IdleTask.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/IdleTask_hu_e1722d6ddb11ef21.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/IdleTask.png" alt="Idle Task Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -322,11 +322,11 @@ GC_SECTIONS: Remove unused
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="block-configuration"&gt;Block Configuration&lt;/h2&gt;
-&lt;p&gt;The idle task is implemented using a Simulink Function-Call Subsystem:&lt;/p&gt;</description></item><item><title>Interrupt</title><link>/block_reference/system_configuration/interrupt.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/interrupt.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The idle task is implemented using a Simulink Function-Call Subsystem:&lt;/p&gt;</description></item><item><title>Interrupt</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/interrupt.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/interrupt.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_functions/Interrupt.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_functions/Interrupt_hu_be185e9f99fe7b50.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_functions/Interrupt.png" alt="Interrupt Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/Interrupt.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/Interrupt_hu_be185e9f99fe7b50.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_functions/Interrupt.png" alt="Interrupt Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -337,11 +337,11 @@ GC_SECTIONS: Remove unused
 
 &lt;h2 id="interrupt-sources"&gt;Interrupt Sources&lt;/h2&gt;
 &lt;h3 id="peripheral-interrupts-auto-detected"&gt;Peripheral Interrupts (Auto-detected)&lt;/h3&gt;
-&lt;p&gt;The block automatically detects interrupts from peripheral blocks in your model:&lt;/p&gt;</description></item><item><title>Master</title><link>/block_reference/system_configuration/master.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/master.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The block automatically detects interrupts from peripheral blocks in your model:&lt;/p&gt;</description></item><item><title>Master</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/master.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/master.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/Master.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/Master_hu_352302cec25857c0.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/Master.png" alt="Master Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/Master.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/Master_hu_352302cec25857c0.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/Master.png" alt="Master Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -571,11 +571,11 @@ GC_SECTIONS: Remove unused
  Block display shows achieved MIPS/MHz on the diagram
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="fuse-configuration-device-configuration-bits"&gt;Fuse Configuration (Device Configuration Bits)&lt;/h3&gt;
-&lt;p&gt;The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.&lt;/p&gt;</description></item><item><title>MCU LOAD</title><link>/block_reference/system_configuration/mcu_load.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_load.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The Master block exposes device-specific configuration fuses extracted from Microchip XML specifications. Available fuses depend on the selected chip.&lt;/p&gt;</description></item><item><title>MCU LOAD</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/mcu_load.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/mcu_load.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/MCU_Load.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/MCU_Load_hu_95fbbead88a232ba.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/MCU_Load.png" alt="MCU Load Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Load.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Load_hu_95fbbead88a232ba.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Load.png" alt="MCU Load Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -659,11 +659,11 @@ GC_SECTIONS: Remove unused
 &lt;li&gt;[MCHP_MCU_OVERLOAD] - Overload detection and recovery&lt;/li&gt;
 &lt;li&gt;[MCHP_Tasks_State] - Task execution monitoring&lt;/li&gt;
 &lt;li&gt;[MCHP_Scheduler_Options] - Scheduler configuration&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>MCU OVERLOAD</title><link>/block_reference/system_configuration/mcu_overload.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/mcu_overload.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>MCU OVERLOAD</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/mcu_overload.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/mcu_overload.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/MCU_Overload.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/MCU_Overload_hu_7fbbac1655cc78ed.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/MCU_Overload.png" alt="MCU Overload Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Overload.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Overload_hu_7fbbac1655cc78ed.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/MCU_Overload.png" alt="MCU Overload Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -758,11 +758,11 @@ GC_SECTIONS: Remove unused
 &lt;li&gt;[MCHP_MCU_LOAD] - CPU utilization monitoring&lt;/li&gt;
 &lt;li&gt;[MCHP_Tasks_State] - Task state visibility&lt;/li&gt;
 &lt;li&gt;[MCHP_Scheduler_Options] - Overload behavior config&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Scheduler Options</title><link>/block_reference/system_configuration/scheduler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/scheduler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>Scheduler Options</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/scheduler_options.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/scheduler_options.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/SchedulerOptions.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/SchedulerOptions_hu_55921c25689056c4.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/SchedulerOptions.png" alt="Scheduler Options Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/SchedulerOptions.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/SchedulerOptions_hu_55921c25689056c4.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/SchedulerOptions.png" alt="Scheduler Options Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -946,11 +946,11 @@ Solver: discrete (no continuous states)
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Result: Skipped status updates acceptable&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="schedulability-analysis"&gt;Schedulability Analysis&lt;/h2&gt;
 &lt;h3 id="liu--layland-utilization-bound"&gt;Liu &amp;amp; Layland Utilization Bound&lt;/h3&gt;
-&lt;p&gt;For Rate Monotonic Scheduling, the system is schedulable if:&lt;/p&gt;</description></item><item><title>SECONDARY CORE</title><link>/block_reference/system_configuration/secondary_core.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/secondary_core.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;For Rate Monotonic Scheduling, the system is schedulable if:&lt;/p&gt;</description></item><item><title>SECONDARY CORE</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/secondary_core.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/secondary_core.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/dual_core/SECONDARY_core.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/dual_core/SECONDARY_core_hu_ad02701507152912.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/dual_core/SECONDARY_core.png" alt="Secondary Core Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/dual_core/SECONDARY_core.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/dual_core/SECONDARY_core_hu_ad02701507152912.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/dual_core/SECONDARY_core.png" alt="Secondary Core Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -1002,11 +1002,11 @@ Solver: discrete (no continuous states)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[MCHP_Master] - Target device configuration&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Tasks State</title><link>/block_reference/system_configuration/tasks_state.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>/block_reference/system_configuration/tasks_state.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>Tasks State</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/tasks_state.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block_reference/system_configuration/tasks_state.html</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;
- &lt;source srcset="../../images/blocks/system_configuration/TasksState.svg" type="image/svg+xml"&gt;&lt;source srcset="../../images/blocks/system_configuration/TasksState_hu_aaf7475f4369ced6.webp" type="image/webp"&gt;
- &lt;img src="../../images/blocks/system_configuration/TasksState.png" alt="Tasks State Block Icon"&gt;
+ &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/TasksState.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/TasksState_hu_aaf7475f4369ced6.webp" type="image/webp"&gt;
+ &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_configuration/TasksState.png" alt="Tasks State Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
