@@ -75,9 +75,7 @@
 <span>></span>
 <a href=https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/examples/index.html>Examples</a>
 <span>></span>
-<span>Field-weakening</span></div><div class=under-construction-banner><span class=icon>⚠️</span>
-<strong>Documentation Under Construction</strong> —
-This documentation is currently being developed. All information has not been validated by Microchip yet.</div><div class=page-header><h1>Field-weakening</h1><div class=page-header-right><img src=https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/microchip-logo.png alt="Microchip Logo" class=microchip-logo>
+<span>Field-weakening</span></div><div class=page-header><h1>Field-weakening</h1><div class=page-header-right><img src=https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/microchip-logo.png alt="Microchip Logo" class=microchip-logo>
 <button class=theme-toggle onclick=toggleTheme() aria-label="Toggle dark mode">
 <span class=theme-icon id=theme-icon>☀️</span>
 <span id=theme-text>Light</span></button></div></div><p><img src=https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/examples/images/fieldWeakeningDoc_1.png alt=PMSM_FW.png style=max-width:100%;height:auto></p><h2 id=introduction>Introduction</h2><p>This section describes some of the work obtained as part of Hiba Houmsi&rsquo;s thesis work, in collaboration with Federico Bribiesca Argomedo, Paolo Massioni and Romain Delpoux. These results have been published in <strong>(Houmsi2023)</strong>. As metionned in the saturation management page, voltage and currents may not exceed positive values $V_{\rm max}$ and $I_{\rm max}$, implying the following inequalities:</p><ul><li><p>$||v_ {dq}|| = \sqrt{v_d^2+v_q^2}\leq V_{\rm max}$ and</p></li><li><p>$||i_ {dq}|| = \sqrt{i_d^2+i_q^2}\leq I_{\rm max}$.</p></li></ul><p>At steady state, the electrical equation of the motor leads to:</p><p>$v_{dq}=Ri_{dq}+p\omega\mathcal{J} Li_{dq}+p\omega \pmatrix{0 \cr \phi_f}$,</p><p>so the saturation constraints is:</p><p>$$
