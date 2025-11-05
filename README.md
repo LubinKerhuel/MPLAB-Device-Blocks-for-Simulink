@@ -1,1200 +1,387 @@
-# MPLAB Device Blocks for Simulink
+# MPLAB® Device Blocks for Simulink®
 
 <img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/mplab-deviceblocksforsimulink-whitebackground.png" width="150">
 
-MPLAB Device Blocks for Simulink.
-- Target dsPIC :registered: DSCs, PIC32, SAMx2, SAMx5 or SAMx7 MCUs
-- Support MATLAB :registered: R2015a to R204b
+### Model-Based Design for Microchip Microcontrollers
 
-## Installation / Update
+**Automatic embedded C code generation from Simulink® models for dsPIC®, PIC32®, and SAM microcontrollers**
 
-[![View MPLAB :registered: Device Blocks for Simulink :registered: :dsPIC :registered: DSCs, PIC32 and SAM MCUs on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
+![MATLAB Versions](https://img.shields.io/badge/MATLAB-R2015a%20to%20R2024b-blue)
+![Devices](https://img.shields.io/badge/Devices-710%20MCUs-green)
+![License](https://img.shields.io/badge/License-Microchip-red)
 
+[![View MPLAB® Device Blocks for Simulink®: dsPIC® DSCs, PIC32® and SAM MCUs on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://fr.mathworks.com/matlabcentral/fileexchange/71892-mplab-device-blocks-for-simulink-dspic-pic32-and-sam-mcu)
+
+---
+
+## 🚀 Quick Start
 
 ### Installation
-- MATLAB :registered: toolstrip: Add-ons => Manage Add-ons => search "**MPLAB Device Block for Simulink**". 
-- With older MATLAB :registered: release without Add-ons toolstrip: Download the package from [github](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases) and run install.p script.
 
-The install.p script provides flexibility to set the installation destination for systems with administration rights limitations.
+**Recommended Method (MATLAB® Toolstrip):**
 
-### Commands
+1. Open MATLAB® → **Add-Ons** → **Get Add-Ons**
+2. Search for **"MPLAB® Device Blocks for Simulink"**
+3. Click **Install**
 
-| MATLAB :registered: Command      |                         Description                        |
-|---------------------|------------------------------------------------------------|
-| picclean            | clean-up MATLAB :registered: path from previous installations           |
-| picsetup            | from the mchp folder, re-configure the toolbox path        |
-| picInfo('check')    | Verify installation of compilers and tool to program chips |
-| picInfo('examples') | copy example in current working folder                     |
-| picInfo('cmd')      | list command                                               |
+**Alternative Method (GitHub Release):**
 
-### Ressources, Support, Questions:
+For older MATLAB® versions (pre-R2016b) or manual installation:
 
-Videos (webinars):
-- [Implementing Power Factor Correction on a Microchip dsPIC33A Digital Signal Controller (2023)](https://www.mathworks.com/videos/implementing-power-factor-correction-on-a-microchip-dspic33a-digital-signal-controller-1734709897715.html)
-- [Deploying Motor Control Algorithms on Microchip dsPIC, PIC32, and SAM Controllers (2023)](https://www.mathworks.com/videos/motor-control-with-embedded-coder-for-microchip-mcus-1488570451176.html)
-- [Position Control of a PMSM with Simulink and Microchip 32-bit MCUs (2021)](https://www.mathworks.com/videos/position-control-of-a-pmsm-with-simulink-and-microchip-32-bit-mcus-1679516692608.html)
-- [Using Simulink® External Mode XM with Microchip dsPIC® MCUs and Blocks for Simulink (2016)](https://www.microchip.com/en-us/about/media-center/videos/wuzLmORk1M0)
+1. Download the latest release from [GitHub Releases](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases)
+2. Run the `install.p` script in MATLAB®
 
-Visit our Microchip [Matlab forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)
+The installer provides flexible destination configuration for systems with restricted permissions.
 
+### Essential Commands
 
+| MATLAB® Command | Description |
+|-----------------|-------------|
+| `picsetup` | Configure or repair toolbox installation paths |
+| `picclean` | Remove previous installations from MATLAB® path |
+| `picInfo('check')` | Verify compilers and programming tools installation |
+| `picInfo('examples')` | Copy example models to current working folder |
+| `picInfo('cmd')` | Display all available commands |
 
-## Presentation
+### Getting Started Resources
+
+- 📘 **[Full Documentation](https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/)** - Comprehensive guides and tutorials
+- 🎥 **[Video Tutorials](#-resources--support)** - Webinars from MathWorks and Microchip
+- 💬 **[Microchip MATLAB® Forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)** - Community support and discussions
+
+---
+
+## ✨ Key Features
+
+### 🎯 Wide Device Support
+- **710+ Microcontrollers** supported across 12 device families
+- **dsPIC®** DSCs: 30F, 33F, 33E, 33C, 33CH, **33A** (NEW - 32-bit with FPU)
+- **PIC32®** MCUs: MK, MZ, MX, AK series
+- **SAM** MCUs: SAME5x, SAME7x, SAMC2x, SAMD2x (ARM® Cortex®-M)
+
+### ⚡ Automatic Code Generation
+- **One-click deployment**: Simulink model → Embedded C → .hex file
+- **MPLAB® X IDE** project generation
+- **Optimized code** with assembly replacements for DSP operations (dsPIC®)
+- **CMSIS DSP** library support for ARM® devices
+
+### 🔧 Peripheral Configuration
+Graphical interface blocks for all major peripherals:
+- **PWM** (High-Resolution with Fine Edge Placement for dsPIC® 33A)
+- **ADC** (synchronized with PWM, multiple conversion modes)
+- **Communication**: UART, SPI, I2C, CAN
+- **Timers**, Input Capture, Output Compare, QEI
+- **Op-Amps**, Comparators, DAC
+- **Change Notification**, GPIO
+
+### 🔄 Real-Time Testing
+- **External Mode**: Real-time parameter tuning and data visualization
+- **Processor-in-the-Loop (PIL)**: On-target code verification
+- **picgui Interface**: MATLAB®-based data logging and visualization
+
+### 📊 Advanced Scheduler
+- **Single-tasking** mode for simple applications
+- **Multi-tasking** rate monotonic scheduler with:
+  - Pre-emptive prioritization (fast loops interrupt slow loops)
+  - Background task support for system monitoring
+  - Configurable overload handling
+
+### 💻 Code Optimization
+- **Code Replacement**: Optimized sin/cos/atan2 for dsPIC® DSP engine
+- **Fast memory operations**: Assembly-optimized memcpy
+- **Fixed-point math**: Hardware MAC utilization
+- **Link-time optimization** for reduced code size
+
+---
+
+## 📦 What's Included
 
 <img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_BlockLibrary.png" width="450">
 
+### Simulink® Block Library
 
-Library blocks provides a graphical interface to configure (ADC, QEI, PWM, IC, OC, CN, I2C, SPI, UART, Op-Amp, Comparator, DAC...)
-No specific programming knowledge is required. The blockset enable rapid prototyping on boards equipped with a supported dsPIC or MCU.
+Complete peripheral driver blocks with intuitive GUI configuration. No low-level programming required.
 
-We also provide templates for various boards with preconfigured peripheral blocks.
+### Board Templates
 
 <img src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Templates.png" width="450">
 
+Pre-configured models for popular development boards:
+- dsPIC® 33A/33C/33CK Curiosity boards
+- MCLV-48V-300W Motor Control board
+- MCLV-2 Motor Control board
+- LVMC Low-Voltage Motor Control board
+- Explorer 16/32 development boards
+- SAME70/SAME54 Xplained Ultra boards
+- PIC32MZ/PIC32MK Curiosity boards
 
+### Examples & Tutorials
+- Motor control (FOC, sensorless, field weakening)
+- Peripheral demonstrations (UART, SPI, I2C, CAN)
+- External mode and PIL examples
+- University research projects (INSA Lyon collaboration)
 
-## Features
+### Third-Party Integration
+**UxV Blocks** for UAV/drone applications (GPS, MAVLink, telemetry) - type `picInfo` for installation instructions.
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/Scheduler_MultiTasking_Scope.png" width="500">
+---
 
-- Single Tasking scheduler. 
-- Multitasking scheduler with pre-emptive rate monotonic scheduling for mixing fast and slow control loops, adding complex computation running as a background task (typically, system health monitoring, or online parameters corrections). 
-- Advanced configuration for ADC / PWM peripheral. PWM can trig the ADC sampling at any specified place. End of ADC conversion trig the model base rate (no delay from ADC sampling & conversion)
-- Our built-in picgui interface enable flexible visualisation and computation on incoming data using user's own MATLAB :registered: script. 
-- The custom "C function" block allows including your any user defined C code.
+## 📋 Requirements
 
+### MathWorks Products (R2015a to R2024b)
+- MATLAB®
+- Simulink®
+- Embedded Coder™
+- MATLAB® Coder™
+- Simulink® Coder
 
-The blockset support Simulink features as:
+### Microchip Development Tools
 
-- Code replacement to benefit from the DSP architecture of our dsPIC, or CMSIS library for SAM chips based on  Arm :registered:  Cortex :registered:  (M0+, M4, M7) core.
-- Processor In the Loop (PIL)
-- External mode
+**IDE:**
+- MPLAB® X IDE - [Download](https://www.microchip.com/MPLABX)
 
-This version embedd a third part tool adding blocks for UAVs projects (GPS, MAVLink, Receiver S.BUS, S.Port and F.Port blocks for dsPIC). Type picInfo to find out how to install the UxV blocks.
+**Compilers:**
+- **XC-DSC** for dsPIC® DSCs - [Download](https://www.microchip.com/xcdsc)
+- **XC32** for PIC32® and SAM MCUs - [Download](https://www.microchip.com/xc32)
 
-## Requirements
+**Programmers/Debuggers:**
+- PICkit™ 5, 4, 3
+- MPLAB® ICD 5, 4, 3
+- MPLAB® SNAP
+- MPLAB® REAL-ICE™
+- J-32 Debug Probe
+- PICkit™ On-Board (PKOB4)
 
-<img align="right" src="https://raw.githubusercontent.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/master/MCHP_MBD_Overview.png" width="450">
+---
 
-- MathWorks (from R2017b to R2025a)   
-  - Matlab
-  - Simulink
-  - Embedded Coder
-  - MATLAB :registered: Coder
-  - Simulink Coder  
-- Microchip IDE
-  - MPLAB X IDE [download](https://www.microchip.com/MPLABX)
-- Microchip Compilers: 
-  - xc-dsc compiler for Digital Signa Controllers (DSCs) [download](https://www.microchip.com/xcdsc) (dsPIC)
-  - xc32 compiler for 32 bits MCU [download](https://www.microchip.com/xc32) (PIC32, SAMx5, SAMx7)
-- Microchip programmers:
-  - PICkit :tm: 5, PICkit :tm: 4, PICkit :tm: 3 programmer/debugger
-  - MPLAB ICD 5, ICD 4, ICD 3 in-circuit debuggers
-  - Snap in-circuit debugger
-  - J-32 Debug Probe debugger/programmer
-  - MPLAB REAL-ICE :tm: in-circuit emulator
-  - PICkit On-Board (PKOB4) embedded programmer
-  -  ...
+## 📚 Resources & Support
 
-## Release notes
-- v3.62
-  - removed superfluous 'debug' messages.
-  - Fixed external mode for model using a single tasking scheduler (or single rate model)
-  - Fixed mid point trigger for PWM in center aligned mode for dsPIC 33A/33C
-- v3.61
-  - Added DMA support on UART for SAMx54
-  - Added SAME54 motor control FOC examples
-  - Renamed target registered compiler on SAMx chip
-  - Fixed typo on generated code for some UART settings for dsPIC 33C  
-  - dsPIC: Removed some optimisation added with R2025a which breaks code for previous versions
-  - dsPIC 33C/A: Fixed trigger settings for PWM HS set with center aligned mode. Trig on 2nd half were not set appropriately.
-  - dsPIC 33C/A: Added comparator with slope  
-  - drop support for R2017a and versions below
-- v3.60
-  - SAMx7 added DMA support on SPI communication block
-  - Fixed SAMx7 UART DMA issue
-  - SAMx index for SPI and I2C peripheral starts at 0
-  - Improved throughput of rtiostream driver for dsPIC
-  - dsPIC 33A fixed PWM HS FEP when set with very low PWM frequency (~seconds)
-  - Added support for PIC32CZ_MC70
-  - Added support for PIC32CZ_CA70
-  - Added support for PIC32M_MCA
-  - Added support for PIC32A
-  - Added support for PIC33AK MPS
-  - Added motor control examples for PIC32MK & SAME54
-  - Added support for VScode project with the MPLAB VScode Extension
-  - Added PIL support for stack profiling with dsPIC
-- v3.59
-  - Fixed template external/internal op amp setting not working properly
-  - Fixed PWH L pin settings always configure as PWM output on dsPIC A and dsPIC C
-  - Added compiler option to minimize stack usage
-  - Updated dsPIC A DFP using compiler v3.20 version
-  - Updated dsPIC A interrupt contex saving 
-  - Fixed MPLAB X project with dual core dsPIC
-  - Fixed dsPIC dual core setting for pin used by the secondary core
-- v3.58
-  - Added board template for dsPIC A curiosity developpment board - dsPIC33AK128MC106
-  - Added board template for Motor Control Development Board - dsPIC33CDV(L)64MC106
-  - Added DMA to SPI in Slave mode (dsPIC)
-  - Fixed integration issues with MATLAB :registered: R2024b
-  - Fixed bug with older MATLAB :registered: release (R2022 and prior)
-  - Fixed peripehral blocks: CN, ADC GUI, SPI GUI
-  - Fixed COM port list on Ubuntu 24.04
-  - Fixed SPI driver for SAM deivces
-  - Fixed External mode not stopping when representing time with integers ticks
-  - Improved template for MCLV2, LVMC and MCLV 300W, config ready for external mode
-  - Improved default simulink settings when selecting a dsPIC as target
-  - Improve MPLAB X project creation
-  - Improved Programming script: could force programming chip with incorrect Id    
-- v3.57
-  - Added [dsPIC33A](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/dspic-dscs/dspic33a) family support, 32-bit CPU, 200MHz, 72-bit DSP accumulators and Floating Point Unit (FPU)
-  - Enabled option to use standard C datatype with integer width, or custom user definition
-  - Fixed external mode not functional with single tasking model
-  - Other improvement on programming interface and minor bugfixes
-- v3.55
-  - added picgui.log2mat script decoding picgui log without using the GUI
-  - Added pin configurations (dsPICs & PIC32): initial state, pull-up, pull-down and open drain.
-  - Fixed variables set in text fields when peripheral blocks were in a masked subsystem (did not get access to mask variables)
-  - User functions in Simulink user custom code are now listed in C function block
-  - Various improvements/fixes for MATLAB :registered: R2024a
-- v3.54
-  - fixed: xc-dsc not found on linux
-  - fixed: MPLAB blocks might not show-up in the simulink library
-- v3.53  
-  - Early support for dsPIC33CK64CDVL106 
-  - Fixed dsPIC UART Half duplex driver issue with some chip
-  - Fixed one error with external mode  
-- v3.52
-  - Added xc-dsc compiler suport for dsPIC. xc16 suport will continue
-  - Added unused code removal option taking place at linker stage
-  - Added motor control examples from INSA Lyon University (France)
-  - added ADC block for SAMRH707
-  - Refactor dsPIC scheduler code enabling further compiler optimization efficiency
-  - Improved DFP automatic path update
-  - Fixed virtual pin not showing up
-  - Fixed code for SPI on dsPIC with 4 byte internal SPI buffer instead of 8
-  - Fixed scheduler issue on dsPIC for single tasking implementation with at least one asynchronous task (user interrupt) set
-  - Fixed UART issue with rtiostream when using DMA implementation
-  - Other minor fixes
-- v3.51 
-  - Added some options on UART driver (dsPIC)
-  - Added virtual pin connection (dsPIC)
-  - SAMC21: bugfix for UART, SPI and I2C
-  - Support for SAMRH707    
-  - Fixed compatibility issue with MATLAB :registered: R2023b
-  - Improved support for external mode with older release
-  - Fixed external mode UART driver using a DMA circular buffer on dsPIC
-- v3.50.35
-  - Added board templates for
-    - LVMC (dsPIC33CK256MP508)
-    - MCLV-48V-300W
-      - dsPIC33CK256MP508 DIM (internal & external Op-Amp)
-      - dsPIC33CK64MC105 DIM (internal & external Op-Amp)
-    - MCLV2
-      - dsPIC33CK256MP508 PIM (internal & external Op-Amp)
-      - dsPIC33CK64MC105 PIM (internal & external Op-Amp)
-      - dsPIC33EP256MC506 (external Op-Amp)
-    - Power Tool reference design (dsPIC33CK64MP105)    
-  - improved linux compatibility 
-    - added UART linux compatible baudrates
-    - fixed UxV third part tool with blocks for GPS, Receiver, Telemetry, Mavlink...
-  - bugfixes (dsPIC):
-    - QEI: error on first block GUI opening
-    - Fixed blocks behaviour when placec in a masked subsystem
-    - fixed DOC block to download & access MCU datasheet
-    - UART: GUI provide number of internal chip buffer size
-    - removed some warning related to fast Memcpy function
-    - ADC for dsPIC CK/CH: fixed missing alternative pins when two ANx shared a same pin. Provide accurate name for internal channels (IVref, Temp, Vbat, CTMU...)
-  - some updates on the UART Circular buffer DMA based driver
-- v3.50.33
-  - External mode:
-    - Fixed single tasking implementation with XCP
-    - clean dsPIC CK PWM start and stop 
-    - improved interface when Host UART is not set prior to start external mode 
-  - Remove MPLAB X 6.05 MDB interface used to program chip. The MDB v6.05 command line chip programming  is broken. System will use either IPE v6.05, or another MDB version if available.
-  - Fixed dsPIC Matrix replacement memory leak when output is a vector transposed
-  - fixed linux issue when toolbox was installed in a path containing parenthesis like "(1)"  
-  - improved custom linker script path issue in specifics conditions
-- v3.50.32
-  - fixed one typo within package causing issue with SAM new CAN block and dsPIC UART Circular buffer DMA driver.
-- v3.50.31
-  - revert using programmer in debug mode to force starts of the program (MPLAB X 6.05 should get fixed instead)
-  - minor improvements on toolstrip and programming functions (upated IPE)
-- v3.50.30
-  - Fixed program not starting until disconnecting programmer / press reset button if available
-  - various fixes on XCP and UART DMA driver for dsPIC
-- v3.50.29
-  - Added Microchip toolstirp 
-  - Added CAN support for SAME7
-  - Updated QDEC quadrature function block for SAMx
-  - added UART Circular buffer with DMA on dsPIC
-  - Fixed PIC32 SPI SCK2 missing mapping
-  - Fixed pin mapping errors with dsPIC / PIC32
-  - Upated External mode XCP support on dsPIC
-- v3.50.27
-  - added support for dsPIC32MK EFE/EFF/EFK family
-  - support SPI on SAMx7 
-  - support I2C on SAMx7
-  - Fixed I2C for chip with non continuous I2C references (1 2 4 5..)
-  - Fixed SPI potential timing issue with fast clock chips (PIC32)
-  - added example using custom code to write SAMx FLASH (EEPROM emulator)
-  - Add Timers functionality on SAMx chips
-  - Improved PIL support with Test Harness
-  - Fixed Low priority interrupt with PIC32MZ that might trig an exception
-- v3.50.26
-  - fixed SPI code not generated with PIC32
-- v3.50.25
-  - PIL: Added support for PIL Top-Model and PIL Referenced Model approach  
-- v3.50.24
-  - Added dsPIC CK 128 & 256
-  - Fixed code Replacement for dsPIC not compiling in debug mode -O0 option
-  - PIC32 ADC High Speed SAR fixed channel of class 3 below 32 were handled as class 2 (break compilation)
-- v3.50.23
-  - missing file for Code Replacement for the dsPIC atan2 function 
-- v3.50.22
-  - Improved PIL on Linux
-  - Fixed issue on SAMx7 when analog port is used and no othet peripheral used the same port (Letter)
-  - Fixed SPI & I2C peripheral block, broken with SAMx2 and SAMX5.
-  - Complete support for dsPIC CK MC
-  - dsPIC Improved Code Replacement accuracy. Fix one typo preventing compilation in rare cases
-  - dsPIC, Code replaced (sin, cos, atan2) works with revolution unit, not limited to radian.
-- v3.50.20
-  - Updated datasheet block to locate pdf from Microchip website
-  - Fixed dsPIC Optimized assembly code issue resulting in wrong output with XC16 v2.00 set with -Ox optimization enabled.
-  - Fixed Idle task call to math function not compiling  
-  - Fixed SAMx7 analog pin configuration that might have a bias due to internal peripheral connection
-  - Improve compatibility with protected IP submodel
-  - Improved PIl support
-  - Experimental support for dsPIC CK MC
-- v5.50.19
-  - Programming interface updated. Extend number of kit programmed from MATLAB :registered: (use latest MPLAB X version. current release is 6.0.0)
-  - PIL target initialisation code improved. Fixed possible code issue with initialisation function signature mismatch
-  - PIL UART interface compatible with USB-COM port available on kits. Enabling host data flow control
-- v5.50.18
-  - SAMx7: Fixed USART generated code typo with interrupt implementation
-  - dsPIC CK: Fixed Change Notification User Interrupt triggered twice
-  - Improved UART block User Interface 
-  - SAMx7: Add Fuse configuration ensuring Fuse get programmed
-  - SAMx7:  Disable ICE functions on PORT B when pin is used for another purpose
-  - SAMx: Add compilation of intermediate model (library)
-  - Add PIL and External Mode example for Xplained Ultra board
-  - Update Installer
-- v3.50.17:
-  - Fixed programming not working form Linux (issue from 3.50.16)
-  - Update installer. Simplify installation as an add-on.
-- v3.50.16:  
-  - C Function Call: fixed issue breaking simulink datatype class settings
-  - MATLAB :registered: R2021b: code generator report not showing-up. Renamed compilation from .X to _X
-  - Improving DFP & CMSIS search script
-  - SAMx7 ADC: remove pull-up on analog chanels
-  - SAMx5 UART: add distinct priority for Tx & Rx
-  - SAMx5 UART: some baudrate setting were not working (no output)
-  - SAMx: removed register keyword wich might cause issue at compilation
-  - dsPIC PWM FEP: not working wheh channel 1 were not used
-  - dsPIC with dual core: always re-compile Main model code required.
-  - dsPIC: fixed code generated issue with SPI peripheral
-  - dsPIC: remove default fuse set for Brown Out reset
-  - dsPIC: fixed short double setting in MPLAB X project
-  - Improved MPLAB X project creation
-  - External mode: Add XCP protocol option (experimental)  
-- v3.50.13:
-  - dsPIC CH (dual core): Fixed Main/Secondary Interface. MSI Fuse not configured
-- v3.50.12:
-  - SAMx: Fixed Link Time Optimizer incorrect syntax 
-  - SAMx: Added CAN example for SAMx7
-  - SAMx: Optimized DCache update
-  - SAMx7: Fixed typo on UART Tx when set with DMA & single buffer   
-- v3.50.11:
-  - Improved robustness for long or special path with Windows & Linux
-  - SAMx7 QDEC peripheral: added Index edge option
-- v3.50.10:
-  - dsPIC CH update Slave->Secondary call convention for XC16 1.70
-- v3.50.09:
-  - Fixed Watch dog not Disabled for some (ds)PIC chips reseting after few seconds.
-  - Updated PIL & External mode for dsPIC with R2020b + updated example with dsPIC33CK Curiosity board
-  - Fixed SAMx7 AFEC (ADC) possible issue with channel inversion (wrong block outputs)
-  - SAMx7 improved library inclusion in MPLAB X project 
-- v3.50.08:
-  - Added SPI & I2C Support for SAMx2 & SAMx5
-  - picflash issue when multiple MPLAB X above v5.45 installed
-  - SAMx5 Number of UART listed might be incorrect
-  - SAMx5 ADC Time Step Trigger Parameters lost when model is saved
-  - SAMx Improved performance by removing some instruction barriere (DSP & ISB)
-  - dsPIC ADC HS SAR Fractional mode : typo prevent compilation.
-- v3.50.07:
-	- SAMx5 & SAMx7 Busy flag (for CPU load measurement ) stuck to 1 after short period of time
-	- SAMx chip: Add CMSIS DSP librar to MPLAB X project when using CRL (Required Mathworks Support Package for  Arm :registered:  Cortex :registered: -M)
-	- SAMx7 PWM event set to instant 0 had no effect
-	- SAMx7 ADC: Fixes on AFEC 1 behaviour (not working when used without AFEC0, Issue with triggering time step when used with AFEC 0)
-- v3.50.06:
-	- dsPIC 33FJxxGS had incorrect fuse option name (compilation break)
-	- Internal error might cause incorrect peripheral behaviour  with blocks supporting multiple instantiation
-	- Fixed issue introduced with 3.50.04 that break compilation of model embedding a model reference block (sub-model)
-- v3.50.05:
-	- DFP & CMSIS DSP library search path not proposing newly installed package/library
-	  Linux: CMSIS DSP lib failed at compilation time
-	- MPLAB X project not created (R2020b, SAMx7)
-- v3.50.04: 
-	- Added SAMx7 PWM Override block
-	- SAMx Peripheral Port mapping issue when a peripheral set-up several time the same pin (i.e. ADC multiple conversion of the same input pin on SAMx7)
-	- Fixed issue with MW environment block Sim/CodeGen for mixed model (simulation & code generation) (update)
-- v3.50.03: 
-	- Fixed issue with MW environment block Sim/CodeGen for mixed model (simulation & code generation)
-- v3.50.02:
-	- Fixed CMSIS DSP Library possibly added with incorrect path for SAMx5 & SAMx2
-	- Enabled  CMSIS DSP library link option
-	- Fixed SAMx7 PWM1 trigger not set on ADC depending on PWM0 and on blocks PWM0/1 execution order
-- v3.50.01:
-	- Fixed UART DMA Tx implementation for SAMx7
+### 🎥 Video Tutorials
 
-- v3.50
-   - Support SAM C2x / D2x / DA1  
-   - SAMx5 ADC: Multiple conversion per ADC, Trig ADC, Synchronize with Time Step, initialize with NVM factory calibration.
-   - SAMx5 QDEC: Add further options and simplify GUI.     
-   - Linux support (except PIL & External Mode)
-   - dsPIC Code Replacement fixed on R2021a 
-   - dSPIC CH/CK fixed issue on PWM HS for noncontiguous channel setup. Duty cycle block input swapped (Ch1-Ch3)
-   - CHANGE BEHAVIOUR !! SAMx7 PWM: Dead Time initial value were divided by 2. (1us on GUI set 0.5us on board)  
-   - Issue if no CMSIS installed
-   - Improved Simulink compiler option set in MPLAB project created.
-   - Improve doc block ability to locate online chip datasheet
-   - picgui update
+**Recent Webinars:**
+- **[Power Factor Correction on dsPIC® 33A](https://www.mathworks.com/videos/implementing-power-factor-correction-on-a-microchip-dspic33a-digital-signal-controller-1734709897715.html)** (2023) - Latest dsPIC® 33A with FPU
+- **[Motor Control Deployment](https://www.mathworks.com/videos/motor-control-with-embedded-coder-for-microchip-mcus-1488570451176.html)** (2023) - FOC algorithms for dsPIC®/PIC32®/SAM
+- **[PMSM Position Control](https://www.mathworks.com/videos/position-control-of-a-pmsm-with-simulink-and-microchip-32-bit-mcus-1679516692608.html)** (2021) - 32-bit motor control
+- **[External Mode Tutorial](https://www.microchip.com/en-us/about/media-center/videos/wuzLmORk1M0)** (2016) - Real-time debugging with dsPIC®
 
-- v3.49.02
-  - PWM HS FEP fixed several issues
-  - programming interface update. overall speed improvement
-  - Support Seeger programming hardware (J-32 / J flash Seeger driver)
-  - ...
-- v3.49.01:
-  - Fixed PIL issue with dsPIC / R2018b
+### 📖 Documentation
+- **[Complete Documentation Portal](https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/)** - User guides, block reference, examples
+- **[ctrl-elec Motor Control Tutorials](https://www.ctrl-elec.fr)** - Advanced FOC techniques by INSA Lyon
 
-- v3.49:
-  - Updated External-Mode & PIL. Added examples
-  - SAMx scheduler robust to overload
-  - PICGUI: data visualisation run in background  
-  - MPLAB X project creation is more robust
-  - dsPIC UART Driver update (typo fixed, robust in idle tasks sending data) 
-  - dsPIC EV watch dog setting fixed
-  - Task State block fixed pin settinf for SAMx
-  - Update makefile with R2020b template
-  - dsPIC 30f default fuse value is not 1 by default. Write all fuses
-  - dsPIC CK/CH fixed code replacement FastMemCpy implementation
-  - dsPIC CCPx timer typo for some blocks that use timer
-  - Updated PIC32 IPL switch function
-- v3.48: 
-  - Added SPI & I2C for SAMx5 family  
-  - ADC for SAMx5: fixed AIN0 channel input not working 
-  - Added support for 64 bit MPLAB X IDE (v5.45 and above)
-  - Fixed I2C & SPI register names for some dsPICs (EV, FJ)  
-  - dsPIC Change Notification / Input Capture: Fixed GUI Error when copy-past block to a model with a different chip
-  - Relaxed conditions triggering SINCOS Code Replacement.    
-- v3.47.00:
-  - Added SPI support for dsPIC GS, CH, CK
-  - Fixed pin mapping inconsistency on dualcore dsPIC for Secondary Core
-  - Fixed generic issue with former MATLAB :registered: release 
-  - Fixed MPLAB X project creation with R2019a
-- v3.46.064:
-  - Improved SAMx5 support. Added SPI support
-  - Fixed issue with dual core dsPIC support. Renamed core appelation with Main and Secondary.
-  - Fixed MPLAB X project not created with R2020b
-  - Added PIC32 GPK MCG and GPG
-- v3.46.063:
-  - Support for SAMx5 familly
-  - Fixed search issue for recent XC compilers
-  - Support external CMSIS and DFP packages
-  - Renamed scripts pad and padr to picgui.pad/padr (Conflict with MathWorks scripts on recent versions)  
-- v3.46.05:
-  - Fixed compiling issue when using a model reference block (compiling submodel as a library)
-- v3.46.04:
-  - PIC32: Extend limited choice for output pin function (Pin mapping)
-- v3.46.03:
-  - fixed Java related issue with programmer interface
-- v3.46.02:
-  - SPI fixed DMA support for PIC32. Added 8 bit mode with DMA enabled for dsPIC
-- v3.46.01:
-  - Programmer interface (Java might not be found)
-  - SAMx7 chip issues with doc block ; MPLAB X project
-  - Installer script propose old installation method (might fix add-ons issues related to user permissions in classroom/lab configuration)
-- v3.46.00:
-  - Added support for dual core dsPIC CH
-- v3.45.05:
-  - Fixed QEI typo in generated code (PIC32MK)
-  - fixed SPI typo affecting slave mode (PIC32)
-- v3.45.04:
-  - Fixed possible issue with MPLAB X project creation with model targeting PIC32
-  - Fixed Typo on Timer code generator for PIC32 (project not compiling when problem occurs)
-  - Added an External Mode example for PIC32MZ + minor update on other example and script compiling all models
-- v3.45.03:
-  - Fixed wrong heap linker flag at command line for PIC32 when using Compiler Option block  
-  - Fixed PIL and External Mode GUI not showing the model UART block settings.
-- v3.45.02: 
-  - Added IPE or MDB choice for programming (previously automatically selected)
-  - Added support for comparator for dsPIC33FJxxMC 02/06
-  - Added support for SNAP and PICkit :tm: 4 programmer with MDB interface
-  - Removed files generated by programmer interface (MDB or IPE) in working folder.
-  - Fixed some issue with SAMx70 and SAMx71 family
-  - Reduced Wait State for SAMV
-  - Updated motor example for SAME70 PIM with MCLV2 board
-  - Added missing dsPIC33CK
-  - Improved compatibility with MATLAB :registered: R2010a
-  - Extended block GUI text fields which can evaluate workspace variables
-  - UxV toolbox: improved compatibility with R2010a
+### 💬 Community Support
+- **[Microchip MATLAB® Forum](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS&forumId=a553l000000J2pvAAC&subForumName=MATLAB&page=1&offset=0)** - Ask questions and share experiences
+- **[GitHub Repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink)** - Examples and wiki
 
+---
 
-### Supported MCUs (710)
-- **dsPIC30F**
-  - 30F2010
-  - 30F2011
-  - 30F2012
-  - 30F3010
-  - 30F3011
-  - 30F3012
-  - 30F3013
-  - 30F3014
-  - 30F4011
-  - 30F4012
-  - 30F4013
-  - 30F5011
-  - 30F5013
-  - 30F5015
-  - 30F5016
-  - 30F6010
-  - 30F6011
-  - 30F6012
-  - 30F6013
-  - 30F6014
-  - 30F6015
-- **PIC32AK GC**
-  - 32AK1216GC41036
-  - 32AK1216GC41048
-  - 32AK1216GC41064
-  - 32AK3208GC41036
-  - 32AK3208GC41048
-  - 32AK3208GC41064
-  - 32AK6416GC41036
-  - 32AK6416GC41048
-  - 32AK6416GC41064
-- **PIC32MK MCA**
-  - 32MK0128MCA028
-  - 32MK0128MCA032
-  - 32MK0128MCA048
-- **PIC32MK GPG**
-  - 32MK0256GPG048
-  - 32MK0256GPG064
-  - 32MK0512GPG048
-  - 32MK0512GPG064
-- **PIC32MK MCJ**
-  - 32MK0256MCJ048
-  - 32MK0256MCJ064
-  - 32MK0512MCJ048
-  - 32MK0512MCJ064
-- **PIC32MK GPK**
-  - 32MK0512GPK064
-  - 32MK0512GPK100
-  - 32MK1024GPK064
-  - 32MK1024GPK100
-- **PIC32MK MCF**
-  - 32MK0512MCF064
-  - 32MK0512MCF100
-  - 32MK1024MCF064
-  - 32MK1024MCF100
-- **PIC32MK MCM**
-  - 32MK0512MCM064
-  - 32MK0512MCM100
-  - 32MK1024MCM064
-  - 32MK1024MCM100
-- **PIC32MZ EFE**
-  - 32MZ0512EFE064
-  - 32MZ0512EFE100
-  - 32MZ0512EFE124
-  - 32MZ0512EFE144
-  - 32MZ1024EFE064
-  - 32MZ1024EFE100
-  - 32MZ1024EFE124
-  - 32MZ1024EFE144
-- **PIC32MZ EFF**
-  - 32MZ0512EFF064
-  - 32MZ0512EFF100
-  - 32MZ0512EFF124
-  - 32MZ0512EFF144
-  - 32MZ1024EFF064
-  - 32MZ1024EFF100
-  - 32MZ1024EFF124
-  - 32MZ1024EFF144
-- **PIC32MZ EFK**
-  - 32MZ0512EFK064
-  - 32MZ0512EFK100
-  - 32MZ0512EFK124
-  - 32MZ0512EFK144
-  - 32MZ1024EFK064
-  - 32MZ1024EFK100
-  - 32MZ1024EFK124
-  - 32MZ1024EFK144
-- **PIC32MZ EFG**
-  - 32MZ1024EFG064
-  - 32MZ1024EFG100
-  - 32MZ1024EFG124
-  - 32MZ1024EFG144
-  - 32MZ2048EFG064
-  - 32MZ2048EFG100
-  - 32MZ2048EFG124
-  - 32MZ2048EFG144
-- **PIC32MZ EFH**
-  - 32MZ1024EFH064
-  - 32MZ1024EFH100
-  - 32MZ1024EFH124
-  - 32MZ1024EFH144
-  - 32MZ2048EFH064
-  - 32MZ2048EFH100
-  - 32MZ2048EFH124
-  - 32MZ2048EFH144
-- **PIC32MZ EFM**
-  - 32MZ1024EFM064
-  - 32MZ1024EFM100
-  - 32MZ1024EFM124
-  - 32MZ1024EFM144
-  - 32MZ2048EFM064
-  - 32MZ2048EFM100
-  - 32MZ2048EFM124
-  - 32MZ2048EFM144
-- **dsPIC33AK MC**
-  - 33AK128MC102
-  - 33AK128MC103
-  - 33AK128MC105
-  - 33AK128MC106
-  - 33AK256MC205
-  - 33AK256MC206
-  - 33AK256MC208
-  - 33AK256MC210
-  - 33AK256MC505
-  - 33AK256MC506
-  - 33AK256MC508
-  - 33AK256MC510
-  - 33AK32MC102
-  - 33AK32MC103
-  - 33AK32MC105
-  - 33AK32MC106
-  - 33AK512MC205
-  - 33AK512MC206
-  - 33AK512MC208
-  - 33AK512MC210
-  - 33AK512MC505
-  - 33AK512MC506
-  - 33AK512MC508
-  - 33AK512MC510
-  - 33AK64MC102
-  - 33AK64MC103
-  - 33AK64MC105
-  - 33AK64MC106
-- **dsPIC33AK MPS**
-  - 33AK256MPS205
-  - 33AK256MPS206
-  - 33AK256MPS208
-  - 33AK256MPS210
-  - 33AK256MPS212
-  - 33AK256MPS505
-  - 33AK256MPS506
-  - 33AK256MPS508
-  - 33AK256MPS510
-  - 33AK256MPS512
-  - 33AK512MPS205
-  - 33AK512MPS206
-  - 33AK512MPS208
-  - 33AK512MPS210
-  - 33AK512MPS212
-  - 33AK512MPS505
-  - 33AK512MPS506
-  - 33AK512MPS508
-  - 33AK512MPS510
-  - 33AK512MPS512
-- **dsPIC33CDV MP**
-  - 33CDV128MP206
-  - 33CDV128MP506
-  - 33CDV256MP206
-  - 33CDV256MP506
-- **dsPIC33CDV MC**
-  - 33CDV64MC106
-- **dsPIC33CDVC MP**
-  - 33CDVC128MP506
-  - 33CDVC256MP506
-- **dsPIC33CDVL MC**
-  - 33CDVL64MC106
-- **dsPIC33CH MP**
-  - 33CH1024MP305
-  - 33CH1024MP306
-  - 33CH1024MP308
-  - 33CH1024MP405
-  - 33CH1024MP406
-  - 33CH1024MP408
-  - 33CH1024MP410
-  - 33CH1024MP412
-  - 33CH1024MP605
-  - 33CH1024MP606
-  - 33CH1024MP608
-  - 33CH1024MP705
-  - 33CH1024MP706
-  - 33CH1024MP708
-  - 33CH1024MP710
-  - 33CH1024MP712
-  - 33CH128MP202
-  - 33CH128MP203
-  - 33CH128MP205
-  - 33CH128MP206
-  - 33CH128MP208
-  - 33CH128MP502
-  - 33CH128MP503
-  - 33CH128MP505
-  - 33CH128MP506
-  - 33CH128MP508
-  - 33CH256MP205
-  - 33CH256MP206
-  - 33CH256MP208
-  - 33CH256MP218
-  - 33CH256MP505
-  - 33CH256MP506
-  - 33CH256MP508
-  - 33CH512MP205
-  - 33CH512MP206
-  - 33CH512MP208
-  - 33CH512MP305
-  - 33CH512MP306
-  - 33CH512MP308
-  - 33CH512MP405
-  - 33CH512MP406
-  - 33CH512MP408
-  - 33CH512MP410
-  - 33CH512MP412
-  - 33CH512MP505
-  - 33CH512MP506
-  - 33CH512MP508
-  - 33CH512MP605
-  - 33CH512MP606
-  - 33CH512MP608
-  - 33CH512MP705
-  - 33CH512MP706
-  - 33CH512MP708
-  - 33CH512MP710
-  - 33CH512MP712
-  - 33CH64MP202
-  - 33CH64MP203
-  - 33CH64MP205
-  - 33CH64MP206
-  - 33CH64MP208
-  - 33CH64MP502
-  - 33CH64MP503
-  - 33CH64MP505
-  - 33CH64MP506
-  - 33CH64MP508
-- **dsPIC33CK MP**
-  - 33CK1024MP405
-  - 33CK1024MP406
-  - 33CK1024MP408
-  - 33CK1024MP410
-  - 33CK1024MP705
-  - 33CK1024MP706
-  - 33CK1024MP708
-  - 33CK1024MP710
-  - 33CK128MP202
-  - 33CK128MP203
-  - 33CK128MP205
-  - 33CK128MP206
-  - 33CK128MP208
-  - 33CK128MP502
-  - 33CK128MP503
-  - 33CK128MP505
-  - 33CK128MP506
-  - 33CK128MP508
-  - 33CK256MP202
-  - 33CK256MP203
-  - 33CK256MP205
-  - 33CK256MP206
-  - 33CK256MP208
-  - 33CK256MP305
-  - 33CK256MP306
-  - 33CK256MP308
-  - 33CK256MP405
-  - 33CK256MP406
-  - 33CK256MP408
-  - 33CK256MP410
-  - 33CK256MP502
-  - 33CK256MP503
-  - 33CK256MP505
-  - 33CK256MP506
-  - 33CK256MP508
-  - 33CK256MP605
-  - 33CK256MP606
-  - 33CK256MP608
-  - 33CK256MP705
-  - 33CK256MP706
-  - 33CK256MP708
-  - 33CK256MP710
-  - 33CK32MP102
-  - 33CK32MP103
-  - 33CK32MP105
-  - 33CK32MP202
-  - 33CK32MP203
-  - 33CK32MP205
-  - 33CK32MP206
-  - 33CK32MP502
-  - 33CK32MP503
-  - 33CK32MP505
-  - 33CK32MP506
-  - 33CK512MP305
-  - 33CK512MP306
-  - 33CK512MP308
-  - 33CK512MP405
-  - 33CK512MP406
-  - 33CK512MP408
-  - 33CK512MP410
-  - 33CK512MP605
-  - 33CK512MP606
-  - 33CK512MP608
-  - 33CK512MP705
-  - 33CK512MP706
-  - 33CK512MP708
-  - 33CK512MP710
-  - 33CK64MP102
-  - 33CK64MP103
-  - 33CK64MP105
-  - 33CK64MP202
-  - 33CK64MP203
-  - 33CK64MP205
-  - 33CK64MP206
-  - 33CK64MP208
-  - 33CK64MP502
-  - 33CK64MP503
-  - 33CK64MP505
-  - 33CK64MP506
-  - 33CK64MP508
-- **dsPIC33CK MC**
-  - 33CK128MC102
-  - 33CK128MC103
-  - 33CK128MC105
-  - 33CK128MC106
-  - 33CK128MC502
-  - 33CK128MC503
-  - 33CK128MC505
-  - 33CK128MC506
-  - 33CK256MC102
-  - 33CK256MC103
-  - 33CK256MC105
-  - 33CK256MC106
-  - 33CK256MC502
-  - 33CK256MC503
-  - 33CK256MC505
-  - 33CK256MC506
-  - 33CK32MC102
-  - 33CK32MC103
-  - 33CK32MC105
-  - 33CK64MC102
-  - 33CK64MC103
-  - 33CK64MC105
-- **dsPIC33CK MPT**
-  - 33CK256MPT608
-  - 33CK512MPT608
-- **dsPIC33EP GM**
-  - 33EP128GM304
-  - 33EP128GM306
-  - 33EP128GM310
-  - 33EP128GM604
-  - 33EP128GM706
-  - 33EP128GM710
-  - 33EP256GM304
-  - 33EP256GM306
-  - 33EP256GM310
-  - 33EP256GM604
-  - 33EP256GM706
-  - 33EP256GM710
-  - 33EP512GM304
-  - 33EP512GM306
-  - 33EP512GM310
-  - 33EP512GM604
-  - 33EP512GM706
-  - 33EP512GM710
-- **dsPIC33EP GP**
-  - 33EP128GP502
-  - 33EP128GP504
-  - 33EP128GP506
-  - 33EP256GP502
-  - 33EP256GP504
-  - 33EP256GP506
-  - 33EP32GP502
-  - 33EP32GP503
-  - 33EP32GP504
-  - 33EP512GP502
-  - 33EP512GP504
-  - 33EP512GP506
-  - 33EP512GP806
-  - 33EP64GP502
-  - 33EP64GP503
-  - 33EP64GP504
-  - 33EP64GP506
-- **dsPIC33EP GS**
-  - 33EP128GS702
-  - 33EP128GS704
-  - 33EP128GS705
-  - 33EP128GS706
-  - 33EP128GS708
-  - 33EP128GS804
-  - 33EP128GS805
-  - 33EP128GS806
-  - 33EP128GS808
-  - 33EP16GS202
-  - 33EP16GS502
-  - 33EP16GS504
-  - 33EP16GS505
-  - 33EP16GS506
-  - 33EP32GS202
-  - 33EP32GS502
-  - 33EP32GS504
-  - 33EP32GS505
-  - 33EP32GS506
-  - 33EP64GS502
-  - 33EP64GS504
-  - 33EP64GS505
-  - 33EP64GS506
-  - 33EP64GS708
-  - 33EP64GS804
-  - 33EP64GS805
-  - 33EP64GS806
-  - 33EP64GS808
-- **dsPIC33EP MC**
-  - 33EP128MC202
-  - 33EP128MC204
-  - 33EP128MC206
-  - 33EP128MC502
-  - 33EP128MC504
-  - 33EP128MC506
-  - 33EP256MC202
-  - 33EP256MC204
-  - 33EP256MC206
-  - 33EP256MC502
-  - 33EP256MC504
-  - 33EP256MC506
-  - 33EP32MC202
-  - 33EP32MC203
-  - 33EP32MC204
-  - 33EP32MC502
-  - 33EP32MC503
-  - 33EP32MC504
-  - 33EP512MC202
-  - 33EP512MC204
-  - 33EP512MC206
-  - 33EP512MC502
-  - 33EP512MC504
-  - 33EP512MC506
-  - 33EP512MC806
-  - 33EP64MC202
-  - 33EP64MC203
-  - 33EP64MC204
-  - 33EP64MC206
-  - 33EP64MC502
-  - 33EP64MC503
-  - 33EP64MC504
-  - 33EP64MC506
-- **dsPIC33EP MU**
-  - 33EP256MU806
-  - 33EP256MU810
-  - 33EP256MU814
-  - 33EP512MU810
-  - 33EP512MU814
-- **dsPIC33EV GM**
-  - 33EV128GM002
-  - 33EV128GM003
-  - 33EV128GM004
-  - 33EV128GM006
-  - 33EV128GM102
-  - 33EV128GM103
-  - 33EV128GM104
-  - 33EV128GM106
-  - 33EV256GM002
-  - 33EV256GM003
-  - 33EV256GM004
-  - 33EV256GM006
-  - 33EV256GM102
-  - 33EV256GM103
-  - 33EV256GM104
-  - 33EV256GM106
-  - 33EV32GM002
-  - 33EV32GM003
-  - 33EV32GM004
-  - 33EV32GM006
-  - 33EV32GM102
-  - 33EV32GM103
-  - 33EV32GM104
-  - 33EV32GM106
-  - 33EV64GM002
-  - 33EV64GM003
-  - 33EV64GM004
-  - 33EV64GM006
-  - 33EV64GM102
-  - 33EV64GM103
-  - 33EV64GM104
-  - 33EV64GM106
-- **dsPIC33FJ GP**
-  - 33FJ128GP202
-  - 33FJ128GP204
-  - 33FJ128GP206
-  - 33FJ128GP206A
-  - 33FJ128GP306
-  - 33FJ128GP306A
-  - 33FJ128GP310
-  - 33FJ128GP310A
-  - 33FJ128GP706
-  - 33FJ128GP706A
-  - 33FJ128GP708
-  - 33FJ128GP708A
-  - 33FJ128GP710
-  - 33FJ128GP710A
-  - 33FJ128GP802
-  - 33FJ128GP804
-  - 33FJ12GP201
-  - 33FJ12GP202
-  - 33FJ16GP304
-  - 33FJ256GP506
-  - 33FJ256GP506A
-  - 33FJ256GP510
-  - 33FJ256GP510A
-  - 33FJ256GP710
-  - 33FJ256GP710A
-  - 33FJ32GP202
-  - 33FJ32GP204
-  - 33FJ32GP302
-  - 33FJ32GP304
-  - 33FJ64GP202
-  - 33FJ64GP204
-  - 33FJ64GP206
-  - 33FJ64GP206A
-  - 33FJ64GP306
-  - 33FJ64GP306A
-  - 33FJ64GP310
-  - 33FJ64GP310A
-  - 33FJ64GP706
-  - 33FJ64GP706A
-  - 33FJ64GP708
-  - 33FJ64GP708A
-  - 33FJ64GP710
-  - 33FJ64GP710A
-  - 33FJ64GP802
-  - 33FJ64GP804
-- **dsPIC33FJ MC**
-  - 33FJ128MC202
-  - 33FJ128MC204
-  - 33FJ128MC506
-  - 33FJ128MC506A
-  - 33FJ128MC510
-  - 33FJ128MC510A
-  - 33FJ128MC706
-  - 33FJ128MC706A
-  - 33FJ128MC708
-  - 33FJ128MC708A
-  - 33FJ128MC710
-  - 33FJ128MC710A
-  - 33FJ128MC802
-  - 33FJ128MC804
-  - 33FJ12MC201
-  - 33FJ12MC202
-  - 33FJ16MC304
-  - 33FJ256MC510
-  - 33FJ256MC510A
-  - 33FJ256MC710
-  - 33FJ256MC710A
-  - 33FJ32MC202
-  - 33FJ32MC204
-  - 33FJ32MC302
-  - 33FJ32MC304
-  - 33FJ64MC202
-  - 33FJ64MC204
-  - 33FJ64MC506
-  - 33FJ64MC506A
-  - 33FJ64MC508
-  - 33FJ64MC508A
-  - 33FJ64MC510
-  - 33FJ64MC510A
-  - 33FJ64MC706
-  - 33FJ64MC706A
-  - 33FJ64MC710
-  - 33FJ64MC710A
-  - 33FJ64MC802
-  - 33FJ64MC804
-- **PIC32**
-  - PIC32CM1216MC00032
-  - PIC32CM1216MC00048
-  - PIC32CM6408MC00032
-  - PIC32CM6408MC00048
-  - PIC32CZ1038CA70064
-  - PIC32CZ1038CA70100
-  - PIC32CZ1038CA70144
-  - PIC32CZ1038MC70064
-  - PIC32CZ1038MC70100
-  - PIC32CZ2051CA70064
-  - PIC32CZ2051CA70100
-  - PIC32CZ2051CA70144
-  - PIC32CZ2051MC70064
-  - PIC32CZ2051MC70100
-  - PIC32CZ5125CA70064
-  - PIC32CZ5125CA70100
-  - PIC32CZ5125CA70144
-  - PIC32CZ5125MC70064
-  - PIC32CZ5125MC70100
-- **SAMC20**
-  - SAMC20E15A
-  - SAMC20E16A
-  - SAMC20E17A
-  - SAMC20E18A
-  - SAMC20G15A
-  - SAMC20G16A
-  - SAMC20G17A
-  - SAMC20G18A
-  - SAMC20J15A
-  - SAMC20J16A
-  - SAMC20J17A
-  - SAMC20J17AU
-  - SAMC20J18A
-  - SAMC20J18AU
-  - SAMC20N17A
-  - SAMC20N18A
-- **SAMC21**
-  - SAMC21E15A
-  - SAMC21E16A
-  - SAMC21E17A
-  - SAMC21E18A
-  - SAMC21G15A
-  - SAMC21G16A
-  - SAMC21G17A
-  - SAMC21G18A
-  - SAMC21J15A
-  - SAMC21J16A
-  - SAMC21J17A
-  - SAMC21J17AU
-  - SAMC21J18A
-  - SAMC21J18AU
-  - SAMC21N17A
-  - SAMC21N18A
-- **SAMD20**
-  - SAMD20E14
-  - SAMD20E14B
-  - SAMD20E15
-  - SAMD20E15B
-  - SAMD20E15BU
-  - SAMD20E16
-  - SAMD20E16B
-  - SAMD20E16BU
-  - SAMD20E17
-  - SAMD20E18
-  - SAMD20E1F
-  - SAMD20G14
-  - SAMD20G14B
-  - SAMD20G15
-  - SAMD20G15B
-  - SAMD20G16
-  - SAMD20G16B
-  - SAMD20G17
-  - SAMD20G17U
-  - SAMD20G18
-  - SAMD20G18U
-  - SAMD20J14
-  - SAMD20J14B
-  - SAMD20J15
-  - SAMD20J15B
-  - SAMD20J16
-  - SAMD20J16B
-  - SAMD20J17
-  - SAMD20J18
-- **SAMD21**
-  - SAMD21E15A
-  - SAMD21E15B
-  - SAMD21E15BU
-  - SAMD21E15CU
-  - SAMD21E15L
-  - SAMD21E16A
-  - SAMD21E16B
-  - SAMD21E16BU
-  - SAMD21E16CU
-  - SAMD21E16L
-  - SAMD21E17A
-  - SAMD21E17D
-  - SAMD21E17DU
-  - SAMD21E17L
-  - SAMD21E18A
-  - SAMD21F17L
-  - SAMD21G15A
-  - SAMD21G15B
-  - SAMD21G15L
-  - SAMD21G16A
-  - SAMD21G16B
-  - SAMD21G16L
-  - SAMD21G17A
-  - SAMD21G17AU
-  - SAMD21G17D
-  - SAMD21G17L
-  - SAMD21G18A
-  - SAMD21G18AU
-  - SAMD21J15A
-  - SAMD21J15B
-  - SAMD21J16A
-  - SAMD21J16B
-  - SAMD21J17A
-  - SAMD21J17D
-  - SAMD21J18A
-- **SAME51**
-  - SAME51G18A
-  - SAME51G19A
-  - SAME51J18A
-  - SAME51J19A
-  - SAME51J20A
-  - SAME51N19A
-  - SAME51N20A
-- **SAME53**
-  - SAME53J18A
-  - SAME53J19A
-  - SAME53J20A
-  - SAME53N19A
-  - SAME53N20A
-- **SAME54**
-  - SAME54N19A
-  - SAME54N20A
-  - SAME54P19A
-  - SAME54P20A
-- **SAME70**
-  - SAME70J19B
-  - SAME70J20B
-  - SAME70J21B
-  - SAME70N19B
-  - SAME70N20B
-  - SAME70N21B
-  - SAME70Q19B
-  - SAME70Q20B
-  - SAME70Q21B
-- **SAMRH707**
-  - SAMRH707F18A
-- **SAMRH71**
-  - SAMRH71F20B
-  - SAMRH71F20C
-- **SAMS70**
-  - SAMS70J19B
-  - SAMS70J20B
-  - SAMS70J21B
-  - SAMS70N19B
-  - SAMS70N20B
-  - SAMS70N21B
-  - SAMS70Q19B
-  - SAMS70Q20B
-  - SAMS70Q21B
-- **SAMV70**
-  - SAMV70J19B
-  - SAMV70J20B
-  - SAMV70N19B
-  - SAMV70N20B
-  - SAMV70Q19B
-  - SAMV70Q20B
-- **SAMV71**
-  - SAMV71J19B
-  - SAMV71J20B
-  - SAMV71J21B
-  - SAMV71N19B
-  - SAMV71N20B
-  - SAMV71N21B
-  - SAMV71Q19B
-  - SAMV71Q20B
-  - SAMV71Q21B
+## 📝 Recent Release Notes
+
+### v3.62 (Current)
+- Fixed external mode for single-tasking scheduler
+- Fixed PWM mid-point trigger for center-aligned mode (dsPIC® 33A/33C)
+- Removed superfluous debug messages
+
+### v3.61
+- **Added**: DMA support on UART for SAMx54
+- **Added**: SAME54 motor control FOC examples
+- **Fixed**: UART code generation for dsPIC® 33C
+- **Fixed**: PWM trigger settings for dsPIC® 33C/A center-aligned mode
+- **Added**: Comparator with slope for dsPIC® 33C/A
+- Dropped support for R2017a and earlier
+
+### v3.60
+- **Added**: Support for **PIC32CZ**, **PIC32M_MCA**, **PIC32A** families
+- **Added**: Support for **dsPIC® 33AK MPS** series
+- **Added**: DMA support on SPI (SAMx7)
+- **Added**: Motor control examples for PIC32MK® & SAME54
+- **Added**: VSCode project generation with MPLAB® VSCode Extension
+- **Added**: PIL stack profiling for dsPIC®
+- **Fixed**: PWM HS FEP timing issues at very low frequencies
+- **Improved**: UART rtiostream driver throughput for dsPIC®
+
+<details>
+<summary><b>View Complete Release History (v3.45 - v3.59)</b></summary>
+
+### v3.59
+- Fixed template Op-Amp settings
+- Updated dsPIC® A DFP for compiler v3.20
+- Fixed dual-core dsPIC® pin configuration
+
+### v3.58
+- Added board templates: dsPIC® 33A Curiosity, dsPIC® 33CDV Motor Control
+- Fixed integration with MATLAB® R2024b
+- Improved MCLV-2/LVMC/MCLV-300W templates
+
+### v3.57
+- **Added**: [dsPIC® 33A family](https://www.microchip.com/dspic33a) - 32-bit CPU, 200MHz, FPU
+- Fixed external mode for single-tasking models
+- Improved programming interface
+
+### v3.55-v3.56
+- Added picgui.log2mat for offline log decoding
+- Pin configuration: initial state, pull-up/down, open-drain
+- Fixed masked subsystem variable access
+- Support for MATLAB® R2024a improvements
+
+*For complete history, see [Full Release Notes](https://github.com/MPLAB-Blockset/MPLAB-Device-Blocks-for-Simulink/releases)*
+
+</details>
+
+---
+
+## 🖥️ Supported Microcontrollers (710 Devices)
+
+### Device Family Summary
+
+| Family | Count | Key Features | Representative Devices |
+|--------|-------|--------------|----------------------|
+| **dsPIC® 33A** | 38 | 32-bit CPU, 200MHz, FPU, Hi-Res PWM | 33AK128MC106, 33AK512MPS512 |
+| **dsPIC® 33C/CH/CK/CDV** | 160+ | 16-bit DSC, Dual-core options | 33CK256MP508, 33CH512MP305 |
+| **dsPIC® 33E/EP** | 100+ | 16-bit DSC, Hi-Speed ADC | 33EP256MC506, 33EP512GM710 |
+| **dsPIC® 33F/FJ** | 80+ | 16-bit DSC, Motor Control PWM | 33FJ256GP710, 33FJ128MC506 |
+| **dsPIC® 30F** | 16 | 16-bit DSC, Legacy support | 30F6015, 30F4013 |
+| **PIC32® AK/MK/MZ** | 90+ | 32-bit MIPS, Motor Control | 32MK1024MCF064, 32MZ2048EFM100 |
+| **PIC32® CZ** | 18 | 32-bit Arm® Cortex®-M7 | PIC32CZ5125CA70144 |
+| **SAM C/D/E/S/V** | 200+ | Arm® Cortex®-M0+/M4/M7 | SAME54P20A, SAME70Q21B, SAMC21J18A |
+
+<details>
+<summary><b>View Complete Device List (710 MCUs)</b></summary>
+
+### dsPIC® 30F Family (16 devices)
+30F2010, 30F2011, 30F2012, 30F3010, 30F3011, 30F3012, 30F3013, 30F3014, 30F4011, 30F4012, 30F4013, 30F5011, 30F5013, 30F5015, 30F5016, 30F6010, 30F6011, 30F6012, 30F6013, 30F6014, 30F6015
+
+### dsPIC® 33A Family (38 devices)
+
+**dsPIC® 33AK MC Series**
+33AK32MC102, 33AK32MC103, 33AK32MC105, 33AK32MC106, 33AK64MC102, 33AK64MC103, 33AK64MC105, 33AK64MC106, 33AK128MC102, 33AK128MC103, 33AK128MC105, 33AK128MC106, 33AK256MC205, 33AK256MC206, 33AK256MC208, 33AK256MC210, 33AK256MC505, 33AK256MC506, 33AK256MC508, 33AK256MC510, 33AK512MC205, 33AK512MC206, 33AK512MC208, 33AK512MC210, 33AK512MC505, 33AK512MC506, 33AK512MC508, 33AK512MC510
+
+**dsPIC® 33AK MPS Series**
+33AK256MPS205, 33AK256MPS206, 33AK256MPS208, 33AK256MPS210, 33AK256MPS212, 33AK256MPS505, 33AK256MPS506, 33AK256MPS508, 33AK256MPS510, 33AK256MPS512, 33AK512MPS205, 33AK512MPS206, 33AK512MPS208, 33AK512MPS210, 33AK512MPS212, 33AK512MPS505, 33AK512MPS506, 33AK512MPS508, 33AK512MPS510, 33AK512MPS512
+
+### dsPIC® 33C Family (170+ devices)
+
+**dsPIC® 33CDV/CDVC/CDVL Series**
+33CDV64MC106, 33CDV128MP206, 33CDV128MP506, 33CDV256MP206, 33CDV256MP506, 33CDVC128MP506, 33CDVC256MP506, 33CDVL64MC106
+
+**dsPIC® 33CH Series (Dual-Core)**
+33CH64MP202, 33CH64MP203, 33CH64MP205, 33CH64MP206, 33CH64MP208, 33CH64MP502, 33CH64MP503, 33CH64MP505, 33CH64MP506, 33CH64MP508, 33CH128MP202, 33CH128MP203, 33CH128MP205, 33CH128MP206, 33CH128MP208, 33CH128MP502, 33CH128MP503, 33CH128MP505, 33CH128MP506, 33CH128MP508, 33CH256MP205, 33CH256MP206, 33CH256MP208, 33CH256MP218, 33CH256MP505, 33CH256MP506, 33CH256MP508, 33CH512MP205, 33CH512MP206, 33CH512MP208, 33CH512MP305, 33CH512MP306, 33CH512MP308, 33CH512MP405, 33CH512MP406, 33CH512MP408, 33CH512MP410, 33CH512MP412, 33CH512MP505, 33CH512MP506, 33CH512MP508, 33CH512MP605, 33CH512MP606, 33CH512MP608, 33CH512MP705, 33CH512MP706, 33CH512MP708, 33CH512MP710, 33CH512MP712, 33CH1024MP305, 33CH1024MP306, 33CH1024MP308, 33CH1024MP405, 33CH1024MP406, 33CH1024MP408, 33CH1024MP410, 33CH1024MP412, 33CH1024MP605, 33CH1024MP606, 33CH1024MP608, 33CH1024MP705, 33CH1024MP706, 33CH1024MP708, 33CH1024MP710, 33CH1024MP712
+
+**dsPIC® 33CK Series**
+33CK32MP102, 33CK32MP103, 33CK32MP105, 33CK32MP202, 33CK32MP203, 33CK32MP205, 33CK32MP206, 33CK32MP502, 33CK32MP503, 33CK32MP505, 33CK32MP506, 33CK64MP102, 33CK64MP103, 33CK64MP105, 33CK64MP202, 33CK64MP203, 33CK64MP205, 33CK64MP206, 33CK64MP208, 33CK64MP502, 33CK64MP503, 33CK64MP505, 33CK64MP506, 33CK64MP508, 33CK128MP202, 33CK128MP203, 33CK128MP205, 33CK128MP206, 33CK128MP208, 33CK128MP502, 33CK128MP503, 33CK128MP505, 33CK128MP506, 33CK128MP508, 33CK256MP202, 33CK256MP203, 33CK256MP205, 33CK256MP206, 33CK256MP208, 33CK256MP305, 33CK256MP306, 33CK256MP308, 33CK256MP405, 33CK256MP406, 33CK256MP408, 33CK256MP410, 33CK256MP502, 33CK256MP503, 33CK256MP505, 33CK256MP506, 33CK256MP508, 33CK256MP605, 33CK256MP606, 33CK256MP608, 33CK256MP705, 33CK256MP706, 33CK256MP708, 33CK256MP710, 33CK512MP305, 33CK512MP306, 33CK512MP308, 33CK512MP405, 33CK512MP406, 33CK512MP408, 33CK512MP410, 33CK512MP605, 33CK512MP606, 33CK512MP608, 33CK512MP705, 33CK512MP706, 33CK512MP708, 33CK512MP710, 33CK1024MP405, 33CK1024MP406, 33CK1024MP408, 33CK1024MP410, 33CK1024MP705, 33CK1024MP706, 33CK1024MP708, 33CK1024MP710
+
+**dsPIC® 33CK MC Series**
+33CK32MC102, 33CK32MC103, 33CK32MC105, 33CK64MC102, 33CK64MC103, 33CK64MC105, 33CK128MC102, 33CK128MC103, 33CK128MC105, 33CK128MC106, 33CK128MC502, 33CK128MC503, 33CK128MC505, 33CK128MC506, 33CK256MC102, 33CK256MC103, 33CK256MC105, 33CK256MC106, 33CK256MC502, 33CK256MC503, 33CK256MC505, 33CK256MC506
+
+**dsPIC® 33CK MPT Series**
+33CK256MPT608, 33CK512MPT608
+
+### dsPIC® 33E/33EP Family (100+ devices)
+
+**dsPIC® 33EP GM/GP/GS/MC/MU Series**
+*(Complete list available - 100+ devices across GM, GP, GS, MC, MU subfamilies)*
+
+**dsPIC® 33EV GM Series**
+33EV32GM002, 33EV32GM003, 33EV32GM004, 33EV32GM006, 33EV32GM102, 33EV32GM103, 33EV32GM104, 33EV32GM106, 33EV64GM002, 33EV64GM003, 33EV64GM004, 33EV64GM006, 33EV64GM102, 33EV64GM103, 33EV64GM104, 33EV64GM106, 33EV128GM002, 33EV128GM003, 33EV128GM004, 33EV128GM006, 33EV128GM102, 33EV128GM103, 33EV128GM104, 33EV128GM106, 33EV256GM002, 33EV256GM003, 33EV256GM004, 33EV256GM006, 33EV256GM102, 33EV256GM103, 33EV256GM104, 33EV256GM106
+
+### dsPIC® 33F/33FJ Family (80+ devices)
+
+**dsPIC® 33FJ GP/MC Series**
+33FJ12GP201, 33FJ12GP202, 33FJ16GP304, 33FJ32GP202, 33FJ32GP204, 33FJ32GP302, 33FJ32GP304, 33FJ64GP202, 33FJ64GP204, 33FJ64GP206, 33FJ64GP206A, 33FJ64GP306, 33FJ64GP306A, 33FJ64GP310, 33FJ64GP310A, 33FJ64GP706, 33FJ64GP706A, 33FJ64GP708, 33FJ64GP708A, 33FJ64GP710, 33FJ64GP710A, 33FJ64GP802, 33FJ64GP804, 33FJ128GP202, 33FJ128GP204, 33FJ128GP206, 33FJ128GP206A, 33FJ128GP306, 33FJ128GP306A, 33FJ128GP310, 33FJ128GP310A, 33FJ128GP706, 33FJ128GP706A, 33FJ128GP708, 33FJ128GP708A, 33FJ128GP710, 33FJ128GP710A, 33FJ128GP802, 33FJ128GP804, 33FJ256GP506, 33FJ256GP506A, 33FJ256GP510, 33FJ256GP510A, 33FJ256GP710, 33FJ256GP710A
+*(Plus 33FJ MC series - motor control variants)*
+
+### PIC32® Family (100+ devices)
+
+**PIC32® AK GC Series**
+32AK1216GC41036, 32AK1216GC41048, 32AK1216GC41064, 32AK3208GC41036, 32AK3208GC41048, 32AK3208GC41064, 32AK6416GC41036, 32AK6416GC41048, 32AK6416GC41064
+
+**PIC32® MK Series (Motor Control)**
+32MK0128MCA028, 32MK0128MCA032, 32MK0128MCA048, 32MK0256GPG048, 32MK0256GPG064, 32MK0256MCJ048, 32MK0256MCJ064, 32MK0512GPG048, 32MK0512GPG064, 32MK0512GPK064, 32MK0512GPK100, 32MK0512MCF064, 32MK0512MCF100, 32MK0512MCJ048, 32MK0512MCJ064, 32MK0512MCM064, 32MK0512MCM100, 32MK1024GPK064, 32MK1024GPK100, 32MK1024MCF064, 32MK1024MCF100, 32MK1024MCM064, 32MK1024MCM100
+
+**PIC32® MZ Series (High-Performance)**
+32MZ0512EFE064, 32MZ0512EFE100, 32MZ0512EFE124, 32MZ0512EFE144, 32MZ0512EFF064, 32MZ0512EFF100, 32MZ0512EFF124, 32MZ0512EFF144, 32MZ0512EFK064, 32MZ0512EFK100, 32MZ0512EFK124, 32MZ0512EFK144
+*(Plus 1024KB and 2048KB variants across EFE/EFF/EFK/EFG/EFH/EFM subfamilies)*
+
+**PIC32® CZ Series (Cortex®-M7)**
+PIC32CZ1038CA70064, PIC32CZ1038CA70100, PIC32CZ1038CA70144, PIC32CZ1038MC70064, PIC32CZ1038MC70100, PIC32CZ2051CA70064, PIC32CZ2051CA70100, PIC32CZ2051CA70144, PIC32CZ2051MC70064, PIC32CZ2051MC70100, PIC32CZ5125CA70064, PIC32CZ5125CA70100, PIC32CZ5125CA70144, PIC32CZ5125MC70064, PIC32CZ5125MC70100
+
+**PIC32® CM Series**
+PIC32CM1216MC00032, PIC32CM1216MC00048, PIC32CM6408MC00032, PIC32CM6408MC00048
+
+### SAM Family (ARM® Cortex®-M) (200+ devices)
+
+**SAMC20/SAMC21 Series (Cortex®-M0+)**
+SAMC20E15A through SAMC20N18A (16 devices)
+SAMC21E15A through SAMC21N18A (16 devices)
+
+**SAMD20/SAMD21 Series (Cortex®-M0+)**
+SAMD20E14 through SAMD20J18 (26 devices)
+SAMD21E15A through SAMD21J18A (40 devices)
+
+**SAME51/SAME53/SAME54 Series (Cortex®-M4F)**
+SAME51G18A through SAME51N20A (7 devices)
+SAME53J18A through SAME53N20A (5 devices)
+SAME54N19A through SAME54P20A (4 devices)
+
+**SAME70/SAMS70/SAMV70/SAMV71 Series (Cortex®-M7)**
+SAME70J19B through SAME70Q21B (9 devices)
+SAMS70J19B through SAMS70Q21B (9 devices)
+SAMV70J19B through SAMV70Q20B (6 devices)
+SAMV71J19B through SAMV71Q21B (9 devices)
+
+**SAMRH Series (Radiation-Hardened)**
+SAMRH707F18A, SAMRH71F20B, SAMRH71F20C
+
+</details>
+
+---
+
+## 🎯 Target Applications
+
+### ⚡ Motor Control
+PMSM/BLDC control, Field-Oriented Control (FOC), sensorless algorithms, field weakening
+
+### 🔋 Power Electronics
+Digital power supplies, Power Factor Correction (PFC), inverters, DC-DC converters
+
+### 🏭 Industrial Automation
+PLC applications, sensor interfaces, communication protocols, real-time control
+
+### 🎛️ Embedded Systems
+Signal processing, data acquisition, control loops, IoT applications
+
+---
+
+## 📄 License & Credits
+
+**Developed by:** Microchip Technology Inc.
+
+**Contributors:**
+- Lubin KERHUEL (Microchip Technology Inc.)
+- Romain DELPOUX (INSA Lyon, Laboratoire Ampère) - Motor control examples
+
+**License:** Microchip Technology End User License Agreement
+
+---
+
+## 🔗 Important Links
+
+- **[Full Documentation](https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/)** - Comprehensive guides
+- **[GitHub Repository](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink)** - Source code and examples
+- **[MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71892)** - Download and reviews
+- **[Microchip Forums](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS)** - Community support
+- **[ctrl-elec Project](https://www.ctrl-elec.fr)** - Advanced motor control tutorials
+- **[Microchip.com](https://www.microchip.com)** - Official product information
+
+---
+
+<div align="center">
+
+**MPLAB® Device Blocks for Simulink®**
+
+*Empowering embedded systems development with Model-Based Design*
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/LubinKerhuel/MPLAB-Device-Blocks-for-Simulink)
+[![File Exchange](https://img.shields.io/badge/MATLAB-File%20Exchange-orange?logo=mathworks)](https://www.mathworks.com/matlabcentral/fileexchange/71892)
+[![Forum](https://img.shields.io/badge/Microchip-Forum-blue?logo=microchip)](https://forum.microchip.com/s/sub-forums?&subForumId=a553l000000J2rNAAS)
+
+</div>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/index.html</link><description>Recent content in Getting Started on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 18 Oct 2025 01:32:36 +0200</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/index.xml" rel="self" type="application/rss+xml"/><item><title>Board Templates</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/board_templates.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/board_templates.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/index.html</link><description>Recent content in Getting Started on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 01:52:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/index.xml" rel="self" type="application/rss+xml"/><item><title>Board Templates</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/board_templates.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/board_templates.html</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Board templates provide pre-configured Simulink models optimized for popular Microchip development boards. These templates include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Pre-configured Master block&lt;/strong&gt; with correct chip selection and clock settings&lt;/li&gt;
@@ -13,7 +13,6 @@
 &lt;/div&gt;
 
 &lt;h2 id="why-use-board-templates"&gt;Why Use Board Templates?&lt;/h2&gt;
-&lt;hr&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -53,7 +52,6 @@
 &lt;/div&gt;
 
 &lt;h2 id="pic-gui-vs-external-mode"&gt;PIC GUI vs External Mode&lt;/h2&gt;
-&lt;hr&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -105,20 +103,8 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
- &lt;p&gt;When to Use Each Tool:&lt;/p&gt;</description></item><item><title>External Mode &amp; PIL Testing - MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/external_mode_pil.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/external_mode_pil.html</guid><description>&lt;p&gt;The MPLAB Device Blocks for Simulink provides two powerful tools for testing and validating embedded algorithms:&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;When to Use Each Tool:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>External Mode &amp; PIL Testing - MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/external_mode_pil.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/external_mode_pil.html</guid><description>&lt;p&gt;The MPLAB Device Blocks for Simulink provides two powerful tools for testing and validating embedded algorithms:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;External Mode&lt;/strong&gt;: Real-time parameter tuning and data visualization during code execution&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;PIL (Processor-in-the-Loop)&lt;/strong&gt;: Verification of code generation accuracy and performance analysis&lt;/li&gt;
@@ -179,7 +165,6 @@
 &lt;li&gt;&lt;strong&gt;Multitasking Scheduler&lt;/strong&gt; - Rate monotonic scheduler for multi-rate applications&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="supported-device-families"&gt;Supported Device Families&lt;/h2&gt;
-&lt;hr&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -252,7 +237,7 @@
 &lt;li&gt;
 &lt;p&gt;Navigate to &lt;strong&gt;Code Generation → System target file&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Scheduler &amp; Multitasking - MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/scheduler_multitasking.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/scheduler_multitasking.html</guid><description>&lt;p&gt;The MPLAB Device Blocks for Simulink includes a sophisticated scheduler that enables efficient execution of multi-rate Simulink models on resource-constrained microcontrollers. This guide explains the scheduler concepts, configuration options, and best practices for optimal performance.&lt;/p&gt;
 &lt;h2 id="single-rate-vs-multi-rate-models"&gt;Single-Rate vs Multi-Rate Models&lt;/h2&gt;
-&lt;h2 id="simulink-models-can-be-designed-with-blocks-executing-at-the-same-rate-single-rate-or-at-different-rates-multi-rate"&gt;Simulink models can be designed with blocks executing at the same rate (single-rate) or at different rates (multi-rate):&lt;/h2&gt;
+&lt;p&gt;Simulink models can be designed with blocks executing at the same rate (single-rate) or at different rates (multi-rate):&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -287,7 +272,6 @@ Multi-rate models reduce CPU load by executing slow tasks (e.g., temperature mon
 &lt;p&gt;For multi-rate models, the MPLAB Device Blocks toolbox offers two execution modes:&lt;/p&gt;</description></item><item><title>Supported Devices</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/supported_devices.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/getting_started/supported_devices.html</guid><description>&lt;p&gt;The MCHP Blockset supports a wide range of Microchip microcontrollers and digital signal controllers across multiple families.&lt;/p&gt;
 &lt;h2 id="dspic33a-family-32-bit-digital-signal-controller-with-fpu"&gt;dsPIC33A Family (32-bit Digital Signal Controller with FPU)&lt;/h2&gt;
 &lt;h3 id="dspic33a-latest-generation---32-bit-architecture"&gt;dsPIC33A (Latest Generation - 32-bit Architecture)&lt;/h3&gt;
-&lt;hr&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -517,20 +501,5 @@ Multi-rate models reduce CPU load by executing slow tasks (e.g., temperature mon
 &lt;li&gt;&lt;strong&gt;Crypto&lt;/strong&gt; - Hardware cryptographic engines (SAME70)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="device-selection-guide"&gt;Device Selection Guide&lt;/h2&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;hr&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="hahahugoshortcode118s1hbhb"&gt;&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
- &lt;p&gt;For Motor Control Applications:&lt;/p&gt;</description></item></channel></rss>
+&lt;div class="note" style="background-color: #f0f8ff; border-left: 4px solid #0076A8; padding: 15px; margin: 20px 0;"&gt;
+ &lt;p&gt;&lt;strong&gt;For Motor Control Applications:&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
