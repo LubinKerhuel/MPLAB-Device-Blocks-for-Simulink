@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Input Capture / Output Compare on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/index.html</link><description>Recent content in Input Capture / Output Compare on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 01:52:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/index.xml" rel="self" type="application/rss+xml"/><item><title>IC - Input Capture Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/input_capture.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/input_capture.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Input Capture / Output Compare on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/</link><description>Recent content in Input Capture / Output Compare on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 16:38:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/index.xml" rel="self" type="application/rss+xml"/><item><title>IC - Input Capture Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/input_capture/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/input_capture/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/InputCapture.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/InputCapture_hu_b5e2a00701ffe96c.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/InputCapture.png" alt="Input Capture Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/timers/InputCapture.png" alt="Input Capture Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -11,11 +9,9 @@
  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;IC - Input Capture Block&lt;/p&gt;</description></item><item><title>OC HW - Output Compare (Hardware)</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_hw.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_hw.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;IC - Input Capture Block&lt;/p&gt;</description></item><item><title>OC HW - Output Compare (Hardware)</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_hw/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_hw/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_HW.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_HW_hu_f98727353daf5b6b.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_HW.png" alt="Output Compare HW Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/timers/OutputCompare_HW.png" alt="Output Compare HW Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -24,11 +20,9 @@
  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.&lt;/p&gt;</description></item><item><title>OC SW - Software Output Compare</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_sw.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_sw.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The &lt;strong&gt;MCHP_OC_HW&lt;/strong&gt; block provides hardware-based output generation using the Output Compare (OC) peripheral. It generates PWM signals, toggles outputs, or creates precise timing events based on timer comparisons with &lt;strong&gt;no CPU overhead&lt;/strong&gt; during normal operation.&lt;/p&gt;</description></item><item><title>OC SW - Software Output Compare</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_sw/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/capture_compare/output_compare_sw/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_SW.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_SW_hu_be2472f61e981a5a.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/timers/OutputCompare_SW.png" alt="Output Compare SW Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/timers/OutputCompare_SW.png" alt="Output Compare SW Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 

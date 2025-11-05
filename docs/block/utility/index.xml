@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility Blocks on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/index.html</link><description>Recent content in Utility Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 01:52:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/doc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/doc.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Utility on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/</link><description>Recent content in Utility on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 15:09:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Doc</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/doc/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/doc/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/Doc.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/Doc_hu_1a7afbe82a851eae.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/Doc.png" alt="Doc Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/utility/Doc.png" alt="Doc Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -51,11 +49,9 @@
  &lt;td&gt;Microchip community support&lt;/td&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>MSI</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/msi.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/msi.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/table&gt;</description></item><item><title>MSI</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/msi/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/msi/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_info/chip_webpage.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_info/chip_webpage_hu_8b893a9cb7f1d727.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/system_info/chip_webpage.png" alt="MSI Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -209,11 +205,9 @@
 &lt;ul&gt;
 &lt;li&gt;[MCHP_SECONDARY_CORE] - Secondary core configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_Master] - Dual-core device selection&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>PortInfo</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/port_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/port_info.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>PortInfo</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/port_info/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/port_info/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/PortInfo.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/PortInfo_hu_70f1c23433f887c6.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/PortInfo.png" alt="Port Info Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/utility/PortInfo.png" alt="Port Info Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -273,11 +267,9 @@ PORT B:
 &lt;ul&gt;
 &lt;li&gt;[MCHP_TimerInfo] - Timer resource allocation&lt;/li&gt;
 &lt;li&gt;[MCHP_Digital_Input] - GPIO configuration&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Simulink Reset Config</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/simulink_reset_config.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/simulink_reset_config.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>Simulink Reset Config</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/simulink_reset_config/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/simulink_reset_config/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/ResetConfig.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/ResetConfig_hu_5068bebbd7f1f236.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/utility/ResetConfig.png" alt="Simulink Reset Config Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -375,11 +367,9 @@ PORT B:
 &lt;ul&gt;
 &lt;li&gt;[MCHP_Master] - Watchdog fuse configuration&lt;/li&gt;
 &lt;li&gt;[MCHP_IdleTask] - Watchdog servicing&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>TimerInfo</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/timer_info.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/timer_info.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>TimerInfo</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/timer_info/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/timer_info/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/TimerInfo.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/TimerInfo_hu_9cb10f37e5d0fe8d.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/utility/TimerInfo.png" alt="Timer Info Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -443,7 +433,7 @@ Timer5: [Available]
 &lt;ul&gt;
 &lt;li&gt;[MCHP_PortInfo] - GPIO allocation&lt;/li&gt;
 &lt;li&gt;[Timer Blocks] - Timer peripheral blocks&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Utility Blocks</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/utility.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/utility.html</guid><description>&lt;p&gt;Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>Utility Blocks</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/utility/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/utility/utility/</guid><description>&lt;p&gt;Utility blocks provide essential development tools including compiler configuration, resource visualization, debugging aids, and dual-core communication for dsPIC33CH devices.&lt;/p&gt;
 &lt;h2 id="compiler-and-build-tools"&gt;Compiler and Build Tools&lt;/h2&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -564,7 +554,7 @@ Timer5: [Available]
 &lt;/table&gt;
 &lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="../block/"&gt;Block Reference Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Block Reference Home](../&lt;/li&gt;
 &lt;li&gt;[System Blocks] - Core configuration and monitoring&lt;/li&gt;
 &lt;li&gt;[PWM Blocks] - Pulse-width modulation&lt;/li&gt;
 &lt;li&gt;[ADC Blocks] - Analog-to-digital conversion&lt;/li&gt;

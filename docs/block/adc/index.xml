@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ADC Blocks on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/index.html</link><description>Recent content in ADC Blocks on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 01:52:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/index.xml" rel="self" type="application/rss+xml"/><item><title>ADC - Standard ADC Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ADC on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/</link><description>Recent content in ADC on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 16:38:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/index.xml" rel="self" type="application/rss+xml"/><item><title>ADC - Standard ADC Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_hu_c942c8ccd0f56541.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC.png" alt="Adc Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC.png" alt="Adc Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -23,11 +21,9 @@
 &lt;li&gt;&lt;strong&gt;PIC24F/H&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="key-features"&gt;Key Features&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 10-bit or 12-bit selectable (chip dependent) &lt;strong&gt;Sampling&lt;/strong&gt; Simultaneous or sequential sampling modes &lt;strong&gt;Channels&lt;/strong&gt; Up to 32 analog inputs (chip dependent) &lt;strong&gt;Scan Mode&lt;/strong&gt; Automatic multi-channel scanning &lt;strong&gt;DMA Support&lt;/strong&gt; Optional DMA for high-speed transfers &lt;strong&gt;Triggers&lt;/strong&gt; PWM, Timer, External, Manual triggers&lt;/p&gt;</description></item><item><title>ADC HighSpeed SAR - High-Speed SAR ADC Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 10-bit or 12-bit selectable (chip dependent) &lt;strong&gt;Sampling&lt;/strong&gt; Simultaneous or sequential sampling modes &lt;strong&gt;Channels&lt;/strong&gt; Up to 32 analog inputs (chip dependent) &lt;strong&gt;Scan Mode&lt;/strong&gt; Automatic multi-channel scanning &lt;strong&gt;DMA Support&lt;/strong&gt; Optional DMA for high-speed transfers &lt;strong&gt;Triggers&lt;/strong&gt; PWM, Timer, External, Manual triggers&lt;/p&gt;</description></item><item><title>ADC HighSpeed SAR - High-Speed SAR ADC Block</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HighSpeed_SAR.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HighSpeed_SAR_hu_8e152d7664b27d7d.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HighSpeed_SAR.png" alt="Adc Highspeed Sar Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_HighSpeed_SAR.png" alt="Adc Highspeed Sar Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -74,11 +70,9 @@
 &lt;li&gt;&lt;strong&gt;dsPIC33C (Standard)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="key-features"&gt;Key Features&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 6/8/10/12-bit selectable per core &lt;strong&gt;Dedicated Cores&lt;/strong&gt; 3-6 dedicated ADC cores (chip dependent) &lt;strong&gt;Shared ADC7&lt;/strong&gt; Software-configurable multiplexed core &lt;strong&gt;Speed&lt;/strong&gt; Up to 3.25 Msps per core &lt;strong&gt;Triggers&lt;/strong&gt; Independent triggers per core &lt;strong&gt;Special Inputs&lt;/strong&gt; VBat, IVref, Temperature, CTMU&lt;/p&gt;</description></item><item><title>ADC HighSpeed SAR dsPIC - High-Speed SAR ADC for dsPIC33C</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar_dspic.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar_dspic.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;&lt;strong&gt;Resolution&lt;/strong&gt; 6/8/10/12-bit selectable per core &lt;strong&gt;Dedicated Cores&lt;/strong&gt; 3-6 dedicated ADC cores (chip dependent) &lt;strong&gt;Shared ADC7&lt;/strong&gt; Software-configurable multiplexed core &lt;strong&gt;Speed&lt;/strong&gt; Up to 3.25 Msps per core &lt;strong&gt;Triggers&lt;/strong&gt; Independent triggers per core &lt;strong&gt;Special Inputs&lt;/strong&gt; VBat, IVref, Temperature, CTMU&lt;/p&gt;</description></item><item><title>ADC HighSpeed SAR dsPIC - High-Speed SAR ADC for dsPIC33C</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar_dspic/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_highspeed_sar_dspic/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_PIC32_High_Speed_SAR.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_PIC32_High_Speed_SAR_hu_fb763cbf03c0121.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_PIC32_High_Speed_SAR.png" alt="Adc Highspeed Sar Dspic Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_PIC32_High_Speed_SAR.png" alt="Adc Highspeed Sar Dspic Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -107,11 +101,9 @@
 &lt;li&gt;DMA support&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="configuration-parameters"&gt;Configuration Parameters&lt;/h2&gt;
-&lt;p&gt;dsPIC-style parameter interface with array-based configuration for dedicated cores.&lt;/p&gt;</description></item><item><title>ADC HS 12b - 12-bit High-Speed ADC for dsPIC33A</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_hs_12b.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_hs_12b.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;dsPIC-style parameter interface with array-based configuration for dedicated cores.&lt;/p&gt;</description></item><item><title>ADC HS 12b - 12-bit High-Speed ADC for dsPIC33A</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_hs_12b/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_hs_12b/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HS_12b_dsPICA.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HS_12b_dsPICA_hu_2f797a68e348409e.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_HS_12b_dsPICA.png" alt="Adc Hs 12B Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_HS_12b_dsPICA.png" alt="Adc Hs 12B Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -199,11 +191,9 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;⭐ &lt;strong&gt;Most Common&lt;/strong&gt;: Use PWM Special Event trigger at valley (&lt;code&gt;SEVTCMP: 0&lt;/code&gt;) for center-aligned motor control PWM&lt;/p&gt;</description></item><item><title>ADC SAME5x - ADC for SAM E5x/D5x/C2x Families</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_same5x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_same5x.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;⭐ &lt;strong&gt;Most Common&lt;/strong&gt;: Use PWM Special Event trigger at valley (&lt;code&gt;SEVTCMP: 0&lt;/code&gt;) for center-aligned motor control PWM&lt;/p&gt;</description></item><item><title>ADC SAME5x - ADC for SAM E5x/D5x/C2x Families</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_same5x/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_same5x/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx5_SAMC2x.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx5_SAMC2x_hu_622e96b4be37ca88.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx5_SAMC2x.png" alt="Adc Same5X Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_SAMx5_SAMC2x.png" alt="Adc Same5X Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -269,15 +259,16 @@
 &lt;/ul&gt;
 &lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="afec_sam7x.html"&gt;AFEC SAM7x&lt;/a&gt; - For SAM E7x/S7x/V7x families&lt;/li&gt;
-&lt;li&gt;&lt;a href="adc_samrh707x.html"&gt;ADC SAMRH707x&lt;/a&gt; - For radiation-hardened SAM RH707x&lt;/li&gt;
+&lt;li&gt;&lt;a href="afec_sam7x"&gt;AFEC SAM7x&lt;/a&gt;
+ - For SAM E7x/S7x/V7x families&lt;/li&gt;
+&lt;li&gt;&lt;a href="adc_samrh707x"&gt;ADC SAMRH707x&lt;/a&gt;
+ - For radiation-hardened SAM RH707x&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
-&lt;p&gt;&lt;a href="../adc_blocks.html"&gt;ADC Blocks Overview&lt;/a&gt;&lt;/p&gt;</description></item><item><title>ADC SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;&lt;a href="../adc_blocks"&gt;ADC Blocks Overview&lt;/a&gt;
+&lt;/p&gt;</description></item><item><title>ADC SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMRH707x.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMRH707x_hu_d102b54cd8f8ba21.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMRH707x.png" alt="Adc Samrh707X Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_SAMRH707x.png" alt="Adc Samrh707X Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -325,11 +316,9 @@
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
-&lt;p&gt;Similar sequence-based configuration to SAM E5x ADC block, with additional reliability features and radiation-aware timing parameters.&lt;/p&gt;</description></item><item><title>AFEC SAM7x - Analog Front-End Controller for SAM 7x</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/afec_sam7x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/afec_sam7x.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;Similar sequence-based configuration to SAM E5x ADC block, with additional reliability features and radiation-aware timing parameters.&lt;/p&gt;</description></item><item><title>AFEC SAM7x - Analog Front-End Controller for SAM 7x</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/afec_sam7x/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/afec_sam7x/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx7.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx7_hu_9b229f4aefbf5568.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/analog/ADC_SAMx7.png" alt="Afec Sam7X Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_SAMx7.png" alt="Afec Sam7X Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 

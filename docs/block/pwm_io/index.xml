@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PWM on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/index.html</link><description>Recent content in PWM on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 01:52:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/index.xml" rel="self" type="application/rss+xml"/><item><title>MCPWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/mcpwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/mcpwm.html</guid><description>&lt;div class="block-icon-container"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PWM on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/</link><description>Recent content in PWM on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 16:38:59 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/index.xml" rel="self" type="application/rss+xml"/><item><title>MCPWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/mcpwm/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/mcpwm/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/MCPWM.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/MCPWM_hu_22ed66b6da9b3cf8.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/MCPWM.png" alt="Mcpwm Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/MCPWM.png" alt="Mcpwm Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -163,11 +161,9 @@
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="pwm-adc-synchronization"&gt;PWM-ADC Synchronization&lt;/h2&gt;
-&lt;p&gt;Proper synchronization between PWM generation and ADC sampling is critical for motor control and power conversion applications. The MCPWM block provides multiple trigger outputs (&lt;code&gt;TRIG1..3&lt;/code&gt;, &lt;code&gt;SEVTCMP&lt;/code&gt;) to precisely coordinate ADC conversions with PWM waveform timing.&lt;/p&gt;</description></item><item><title>PWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;Proper synchronization between PWM generation and ADC sampling is critical for motor control and power conversion applications. The MCPWM block provides multiple trigger outputs (&lt;code&gt;TRIG1..3&lt;/code&gt;, &lt;code&gt;SEVTCMP&lt;/code&gt;) to precisely coordinate ADC conversions with PWM waveform timing.&lt;/p&gt;</description></item><item><title>PWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_hu_516d13d9106f9db7.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM.png" alt="Pwm Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM.png" alt="Pwm Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -333,11 +329,9 @@
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id="pwm-adc-synchronization"&gt;PWM-ADC Synchronization&lt;/h2&gt;
-&lt;p&gt;The standard PWM block provides a Special Event Trigger (&lt;code&gt;PxSECMP&lt;/code&gt; / &lt;code&gt;SEVTCMP&lt;/code&gt;) to synchronize ADC sampling with PWM generation. This is essential for accurate current and voltage sensing in motor control and power conversion applications.&lt;/p&gt;</description></item><item><title>PWM HighSpeed</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The standard PWM block provides a Special Event Trigger (&lt;code&gt;PxSECMP&lt;/code&gt; / &lt;code&gt;SEVTCMP&lt;/code&gt;) to synchronize ADC sampling with PWM generation. This is essential for accurate current and voltage sensing in motor control and power conversion applications.&lt;/p&gt;</description></item><item><title>PWM HighSpeed</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_hu_f29c3b39862a87c5.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS.png" alt="Pwm Highspeed Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM_HS.png" alt="Pwm Highspeed Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -591,11 +585,9 @@
 &lt;/table&gt;
 &lt;h2 id="clock-configuration"&gt;Clock Configuration&lt;/h2&gt;
 &lt;h3 id="auxiliary-clock-apll---dspic33ep-gs-only"&gt;Auxiliary Clock (APLL) - dsPIC33EP GS Only&lt;/h3&gt;
-&lt;p&gt;For devices with DOS_00958_pwm_TLAH or DOS_00958_pwm_TLAY:&lt;/p&gt;</description></item><item><title>PWM HighSpeed Override</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed_override.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed_override.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;For devices with DOS_00958_pwm_TLAH or DOS_00958_pwm_TLAY:&lt;/p&gt;</description></item><item><title>PWM HighSpeed Override</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed_override/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_highspeed_override/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_Override.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_Override_hu_352b2bbbce06a66c.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_Override.png" alt="Pwm Highspeed Override Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM_HS_Override.png" alt="Pwm Highspeed Override Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -737,11 +729,9 @@
 &lt;/table&gt;
 &lt;h2 id="implementation-details"&gt;Implementation Details&lt;/h2&gt;
 &lt;h3 id="hardware-registers"&gt;Hardware Registers&lt;/h3&gt;
-&lt;p&gt;The override block configures the following registers:&lt;/p&gt;</description></item><item><title>PWM HS FEP</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_hs_fep.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_hs_fep.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;The override block configures the following registers:&lt;/p&gt;</description></item><item><title>PWM HS FEP</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_hs_fep/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_hs_fep/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_FEP.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_FEP_hu_595104f6f0e9206a.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_HS_FEP.png" alt="Pwm Hs Fep Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM_HS_FEP.png" alt="Pwm Hs Fep Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -782,11 +772,9 @@
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;⚠️ &lt;strong&gt;Critical for HiRES Mode&lt;/strong&gt;: Must use &lt;code&gt;&amp;quot;no scaling&amp;quot;&lt;/code&gt; clock option - dividers/scalers disable High-Resolution mode!&lt;/p&gt;</description></item><item><title>PWM SAM7x</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Critical for HiRES Mode&lt;/strong&gt;: Must use &lt;code&gt;&amp;quot;no scaling&amp;quot;&lt;/code&gt; clock option - dividers/scalers disable High-Resolution mode!&lt;/p&gt;</description></item><item><title>PWM SAM7x</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7_hu_6f960528f3ece83b.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7.png" alt="Pwm Sam7X Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM_SAMx7.png" alt="Pwm Sam7X Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -959,14 +947,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect duty cycle inputs from FOC algorithm&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x_override.html"&gt;&lt;strong&gt;MCHP_PWM_SAM7x_Override&lt;/strong&gt;&lt;/a&gt; - Override control for SAM7x PWM&lt;/li&gt;
-&lt;li&gt;&lt;a href="tcc_pwm.html"&gt;&lt;strong&gt;MCHP_TCC_PWM&lt;/strong&gt;&lt;/a&gt; - TCC-based PWM for SAME5x/SAMC2x&lt;/li&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x_override"&gt;&lt;strong&gt;MCHP_PWM_SAM7x_Override&lt;/strong&gt;&lt;/a&gt;
+ - Override control for SAM7x PWM&lt;/li&gt;
+&lt;li&gt;&lt;a href="tcc_pwm"&gt;&lt;strong&gt;MCHP_TCC_PWM&lt;/strong&gt;&lt;/a&gt;
+ - TCC-based PWM for SAME5x/SAMC2x&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with PWM synchronization&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>PWM SAM7x Override</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;/ul&gt;</description></item><item><title>PWM SAM7x Override</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7_Override.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7_Override_hu_adfc1c08105e6f91.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/PWM_SAMx7_Override.png" alt="Pwm Sam7X Override Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/PWM_SAMx7_Override.png" alt="Pwm Sam7X Override Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -1041,13 +1029,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect emergency stop -&amp;gt; Override_Enable&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x.html"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt; - Main SAM7x PWM block&lt;/li&gt;
-&lt;li&gt;&lt;a href="pwm_highspeed_override.html"&gt;&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt;&lt;/a&gt; - Override for dsPIC PWM&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>TCC PWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm.html</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm.html</guid><description>&lt;div class="block-icon-container"&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
+ - Main SAM7x PWM block&lt;/li&gt;
+&lt;li&gt;&lt;a href="pwm_highspeed_override"&gt;&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt;&lt;/a&gt;
+ - Override for dsPIC PWM&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>TCC PWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
- &lt;picture&gt;
- &lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/TCC_PWM.svg" type="image/svg+xml"&gt;&lt;source srcset="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/TCC_PWM_hu_b6bed4fc5c09dd56.webp" type="image/webp"&gt;
- &lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/images/blocks/pwm/TCC_PWM.png" alt="Tcc Pwm Block Icon"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/pwm/TCC_PWM.png" alt="Tcc Pwm Block Icon"&gt;
  &lt;/picture&gt;
  &lt;/div&gt;
 
@@ -1225,7 +1213,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect Hall sensor state -&amp;gt; Pattern_Index&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x.html"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt; - General SAM7x PWM&lt;/li&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
+ - General SAM7x PWM&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_TC_PWM&lt;/strong&gt; - Basic Timer/Counter PWM&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with TCC event sync&lt;/li&gt;
 &lt;/ul&gt;</description></item></channel></rss>
