@@ -564,7 +564,7 @@ Timer5: [Available]
 &lt;/table&gt;
 &lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="../block_reference/"&gt;Block Reference Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="../block/"&gt;Block Reference Home&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[System Blocks] - Core configuration and monitoring&lt;/li&gt;
 &lt;li&gt;[PWM Blocks] - Pulse-width modulation&lt;/li&gt;
 &lt;li&gt;[ADC Blocks] - Analog-to-digital conversion&lt;/li&gt;
