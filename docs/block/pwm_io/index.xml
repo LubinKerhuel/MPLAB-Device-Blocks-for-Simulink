@@ -947,9 +947,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect duty cycle inputs from FOC algorithm&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x_override"&gt;&lt;strong&gt;MCHP_PWM_SAM7x_Override&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x_override/"&gt;&lt;strong&gt;MCHP_PWM_SAM7x_Override&lt;/strong&gt;&lt;/a&gt;
  - Override control for SAM7x PWM&lt;/li&gt;
-&lt;li&gt;&lt;a href="tcc_pwm"&gt;&lt;strong&gt;MCHP_TCC_PWM&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="tcc_pwm/"&gt;&lt;strong&gt;MCHP_TCC_PWM&lt;/strong&gt;&lt;/a&gt;
  - TCC-based PWM for SAME5x/SAMC2x&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with PWM synchronization&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>PWM SAM7x Override</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/pwm_sam7x_override/</guid><description>&lt;div class="block-icon-container"&gt;
@@ -1029,9 +1029,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect emergency stop -&amp;gt; Override_Enable&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x/"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
  - Main SAM7x PWM block&lt;/li&gt;
-&lt;li&gt;&lt;a href="pwm_highspeed_override"&gt;&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="pwm_highspeed_override/"&gt;&lt;strong&gt;MCHP_PWM_HighSpeed_Override&lt;/strong&gt;&lt;/a&gt;
  - Override for dsPIC PWM&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>TCC PWM</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/pwm_io/tcc_pwm/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
@@ -1213,7 +1213,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#57606a"&gt;% Connect Hall sensor state -&amp;gt; Pattern_Index&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="pwm_sam7x"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="pwm_sam7x/"&gt;&lt;strong&gt;MCHP_PWM_SAM7x&lt;/strong&gt;&lt;/a&gt;
  - General SAM7x PWM&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_TC_PWM&lt;/strong&gt; - Basic Timer/Counter PWM&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MCHP_ADC_SAM&lt;/strong&gt; - SAM ADC with TCC event sync&lt;/li&gt;

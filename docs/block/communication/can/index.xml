@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CAN on MPLAB Device Blocks for Simulink</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/</link><description>Recent content in CAN on MPLAB Device Blocks for Simulink</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 05 Nov 2025 12:20:44 +0100</lastBuildDate><atom:link href="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/index.xml" rel="self" type="application/rss+xml"/><item><title>CAN Config</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_config/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_config/</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/bus_can/CAN_Config.png" alt="CAN Config Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;CAN Config&lt;/strong&gt; block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks. CAN is a robust, multi-master serial bus system designed for networking intelligent devices. It is widely used in automotive, industrial automation, and embedded systems for reliable communication in electrically noisy environments. The protocol features automatic message prioritization, error detection, and fault confinement mechanisms.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;CAN Config&lt;/strong&gt; block configures the Controller Area Network (CAN) peripheral for communication on CAN bus networks. This block sets up essential parameters including bit timing (baud rate), message buffer allocation, filtering configuration, and interrupt priorities. The CAN Config block must be present in your model before using CAN Tx or CAN Rx blocks.&lt;/p&gt;</description></item><item><title>CAN Rx</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_rx/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_rx/</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/bus_can/CAN_Rx.png" alt="CAN Rx Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;CAN Rx&lt;/strong&gt; block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs. This block requires a &lt;strong&gt;CAN Config&lt;/strong&gt; block in the same model to configure the CAN peripheral. Multiple CAN Rx blocks can be used to receive different messages on the same CAN module, each with its own filter configuration.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;CAN Rx&lt;/strong&gt; block receives CAN messages from the CAN bus network and outputs the message ID, data length, and payload data. The block supports flexible message filtering with standard (11-bit) and extended (29-bit) identifiers, multiple filter types (exact match, range, mask), and configurable storage in dedicated buffers or FIFOs.&lt;/p&gt;</description></item><item><title>CAN Tx</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_tx/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/communication/can/can_tx/</guid><description>&lt;div class="block-icon-container"&gt;
+ &lt;div class="block-icon-image"&gt;
+ &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/bus_can/CAN_Tx.png" alt="CAN Tx Block Icon"&gt;
+ &lt;/picture&gt;
+ &lt;/div&gt;
+
+ &lt;div class="block-icon-description"&gt;
+ The &lt;strong&gt;CAN Tx&lt;/strong&gt; block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes. This block requires a &lt;strong&gt;CAN Config&lt;/strong&gt; block in the same model to configure the CAN peripheral. Multiple CAN Tx blocks can be used to send different messages on the same CAN module.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;strong&gt;CAN Tx&lt;/strong&gt; block transmits CAN messages on the CAN bus network. It accepts message data and length as inputs, and sends the message with the configured ID and format. The block supports both standard (11-bit) and extended (29-bit) identifiers, remote transmission requests (RTR), and both dedicated buffer and FIFO transmission modes.&lt;/p&gt;</description></item></channel></rss>

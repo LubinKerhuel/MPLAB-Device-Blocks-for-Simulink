@@ -259,13 +259,13 @@
 &lt;/ul&gt;
 &lt;h2 id="related-blocks"&gt;Related Blocks&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="afec_sam7x"&gt;AFEC SAM7x&lt;/a&gt;
+&lt;li&gt;&lt;a href="afec_sam7x/"&gt;AFEC SAM7x&lt;/a&gt;
  - For SAM E7x/S7x/V7x families&lt;/li&gt;
-&lt;li&gt;&lt;a href="adc_samrh707x"&gt;ADC SAMRH707x&lt;/a&gt;
+&lt;li&gt;&lt;a href="adc_samrh707x/"&gt;ADC SAMRH707x&lt;/a&gt;
  - For radiation-hardened SAM RH707x&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="see-also"&gt;See Also&lt;/h2&gt;
-&lt;p&gt;&lt;a href="../adc_blocks"&gt;ADC Blocks Overview&lt;/a&gt;
+&lt;p&gt;&lt;a href="../adc_blocks/"&gt;ADC Blocks Overview&lt;/a&gt;
 &lt;/p&gt;</description></item><item><title>ADC SAMRH707x - ADC for SAM RH707x Radiation-Hardened MCU</title><link>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x/</link><pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate><guid>https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/block/adc/adc_samrh707x/</guid><description>&lt;div class="block-icon-container"&gt;
  &lt;div class="block-icon-image"&gt;
  &lt;picture&gt;&lt;img src="https://mplab-blockset.github.io/MPLAB-Device-Blocks-for-Simulink/assets/images/blocks/analog/ADC_SAMRH707x.png" alt="Adc Samrh707X Block Icon"&gt;
